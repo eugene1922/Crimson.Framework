@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Map01_Terrain_Color_6
+  m_Shader: {fileID: 4800000, guid: e275b6b78e4c9bc42813f7f752f69503, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Details:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9307125583d15984aa04c8a5ebdfdf07, type: 3}
+        m_Scale: {x: 85, y: 85}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: d5cafc9b1d9983e489fabf5bff2aec2d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_A:
+        m_Texture: {fileID: 2800000, guid: cdb5c65eb5ce8954b8e0adafc78b30a5, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_A_Normals:
+        m_Texture: {fileID: 2800000, guid: cdb5c65eb5ce8954b8e0adafc78b30a5, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_B:
+        m_Texture: {fileID: 2800000, guid: 9307125583d15984aa04c8a5ebdfdf07, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_B_Normals:
+        m_Texture: {fileID: 2800000, guid: 4759f54ec8dc9204a843747ae1001889, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_G:
+        m_Texture: {fileID: 2800000, guid: da1c09ef13627354a813bf086613b11e, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_G_Normals:
+        m_Texture: {fileID: 2800000, guid: 565dd8861636ba7459b740135c367c60, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_R:
+        m_Texture: {fileID: 2800000, guid: 758ef138c29e27c4a8344a38a1643ba0, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_R_Normals:
+        m_Texture: {fileID: 2800000, guid: 758ef138c29e27c4a8344a38a1643ba0, type: 3}
+        m_Scale: {x: 55, y: 55}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMap_Tile: 0
+    - _Cutoff: 0.5
+    - _Depth_Blend: 0
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Texture_A_Intensity: 0
+    - _Texture_A_Nornal_Intensity: 0
+    - _Texture_A_Saturation: 0
+    - _Texture_B_Intensity: 1
+    - _Texture_B_Normal_Intensity: 0
+    - _Texture_B_Saturation: 0
+    - _Texture_G_Intensity: 0.95
+    - _Texture_G_Normal_Intensity: 0.444
+    - _Texture_G_Saturation: -0.14
+    - _Texture_R_Intensity: 1
+    - _Texture_R_Normal_Intensity: 0.03
+    - _Texture_R_Saturation: 0
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _Coastline: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    - _ColorMap1: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorMap2: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Texture_A_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Texture_B_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Texture_G_Color: {r: 1, g: 0.9895334, b: 0.8160377, a: 0}
+    - _Texture_R_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Water: {r: 1, g: 1, b: 1, a: 1}

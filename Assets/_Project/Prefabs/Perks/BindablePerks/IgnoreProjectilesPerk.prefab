@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6882162225140268797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5157345633992761293}
+  - component: {fileID: -1201467966035257858}
+  - component: {fileID: 1638054503595491669}
+  m_Layer: 5
+  m_Name: IgnoreProjectilesPerk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5157345633992761293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882162225140268797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1201467966035257858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882162225140268797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3aa30ca3bd408d92446c07a6810628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customBinding:
+    index: 3
+    actions:
+    - {fileID: 1638054503595491669}
+  destroyAfterActions: 1
+  removeSameIndexBindings: 1
+--- !u!114 &1638054503595491669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882162225140268797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4410865379594c3a8b17c28ccbf6f479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkLevel: 1
+  ignoredTag: IgnoreProjectiles
+  materialToApply: {fileID: 2100000, guid: 4ff5df6ce9c259d4098e8332cada6f5a, type: 2}
+  immutableMaterials:
+  - {fileID: 2100000, guid: da097035ee0c9b54188e9d3074455c7a, type: 2}
+  notRenderImmutableMaterials: 1
+  perkLifetime: 3
+  cooldownTime: 6
+  FxPrefabs:
+  - {fileID: 8125633342362197896, guid: 2ee0dff4c9931ea47bf4dfed1cd8bfe2, type: 3}
+  perkRelatedComponents:
+  - {fileID: -1201467966035257858}
+  levelablePropertiesList: []

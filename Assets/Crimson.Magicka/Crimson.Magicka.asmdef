@@ -1,0 +1,16 @@
+{
+    "name": "Crimson.Magicka",
+    "references": [
+        "GUID:0fa4b1bfbb6165b459df012614ddeb00",
+        "GUID:2d4981ca910687e419c19339898a26ef"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: be862c9e3371e8641aee84805da32406
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - GeneralLogo: {fileID: 2800000, guid: d2189a67ea880954692cd1ff091ba551, type: 3}
+  - TerrainObject: {instanceID: 0}
+  - TerrainMaterial: {instanceID: 0}
+  - Mask1: {instanceID: 0}
+  - Texture1: {instanceID: 0}
+  - Texture2: {instanceID: 0}
+  - Texture3: {instanceID: 0}
+  - Texture4: {instanceID: 0}
+  - Mask2: {instanceID: 0}
+  - Texture5: {instanceID: 0}
+  - Texture6: {instanceID: 0}
+  - Texture7: {instanceID: 0}
+  - Mask3: {instanceID: 0}
+  - Texture8: {instanceID: 0}
+  - Texture9: {instanceID: 0}
+  - Texture10: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

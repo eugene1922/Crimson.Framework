@@ -1,0 +1,529 @@
+fileFormatVersion: 2
+guid: dc33d50990e19784fa8b12ebe6157082
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Hair Female 18
+  - first:
+      1: 100004
+    second: Rig
+  - first:
+      1: 100006
+    second: RigLA1
+  - first:
+      1: 100008
+    second: RigLA2
+  - first:
+      1: 100010
+    second: RigLA3
+  - first:
+      1: 100012
+    second: RigLA4
+  - first:
+      1: 100014
+    second: RigLA5
+  - first:
+      1: 100016
+    second: RigLB1
+  - first:
+      1: 100018
+    second: RigLB2
+  - first:
+      1: 100020
+    second: RigLB3
+  - first:
+      1: 100022
+    second: RigLB4
+  - first:
+      1: 100024
+    second: RigLB5
+  - first:
+      1: 100026
+    second: RigLC1
+  - first:
+      1: 100028
+    second: RigLC2
+  - first:
+      1: 100030
+    second: RigLC3
+  - first:
+      1: 100032
+    second: RigLC4
+  - first:
+      1: 100034
+    second: RigLC5
+  - first:
+      1: 100036
+    second: RigMain
+  - first:
+      1: 100038
+    second: RigRA1
+  - first:
+      1: 100040
+    second: RigRA2
+  - first:
+      1: 100042
+    second: RigRA3
+  - first:
+      1: 100044
+    second: RigRA4
+  - first:
+      1: 100046
+    second: RigRA5
+  - first:
+      1: 100048
+    second: RigRB1
+  - first:
+      1: 100050
+    second: RigRB2
+  - first:
+      1: 100052
+    second: RigRB3
+  - first:
+      1: 100054
+    second: RigRB4
+  - first:
+      1: 100056
+    second: RigRB5
+  - first:
+      1: 100058
+    second: RigRC1
+  - first:
+      1: 100060
+    second: RigRC2
+  - first:
+      1: 100062
+    second: RigRC3
+  - first:
+      1: 100064
+    second: RigRC4
+  - first:
+      1: 100066
+    second: RigRC5
+  - first:
+      1: 100068
+    second: RigTA1
+  - first:
+      1: 100070
+    second: RigTA2
+  - first:
+      1: 100072
+    second: RigTA3
+  - first:
+      1: 100074
+    second: RigTA4
+  - first:
+      1: 100076
+    second: RigTA5
+  - first:
+      1: 100078
+    second: RigTB1
+  - first:
+      1: 100080
+    second: RigTB2
+  - first:
+      1: 100082
+    second: RigTB3
+  - first:
+      1: 100084
+    second: RigTB4
+  - first:
+      1: 100086
+    second: RigTB5
+  - first:
+      1: 100088
+    second: RigTC1
+  - first:
+      1: 100090
+    second: RigTC2
+  - first:
+      1: 100092
+    second: RigTC3
+  - first:
+      1: 100094
+    second: RigTC4
+  - first:
+      1: 100096
+    second: RigTC5
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Hair Female 18
+  - first:
+      4: 400004
+    second: Rig
+  - first:
+      4: 400006
+    second: RigLA1
+  - first:
+      4: 400008
+    second: RigLA2
+  - first:
+      4: 400010
+    second: RigLA3
+  - first:
+      4: 400012
+    second: RigLA4
+  - first:
+      4: 400014
+    second: RigLA5
+  - first:
+      4: 400016
+    second: RigLB1
+  - first:
+      4: 400018
+    second: RigLB2
+  - first:
+      4: 400020
+    second: RigLB3
+  - first:
+      4: 400022
+    second: RigLB4
+  - first:
+      4: 400024
+    second: RigLB5
+  - first:
+      4: 400026
+    second: RigLC1
+  - first:
+      4: 400028
+    second: RigLC2
+  - first:
+      4: 400030
+    second: RigLC3
+  - first:
+      4: 400032
+    second: RigLC4
+  - first:
+      4: 400034
+    second: RigLC5
+  - first:
+      4: 400036
+    second: RigMain
+  - first:
+      4: 400038
+    second: RigRA1
+  - first:
+      4: 400040
+    second: RigRA2
+  - first:
+      4: 400042
+    second: RigRA3
+  - first:
+      4: 400044
+    second: RigRA4
+  - first:
+      4: 400046
+    second: RigRA5
+  - first:
+      4: 400048
+    second: RigRB1
+  - first:
+      4: 400050
+    second: RigRB2
+  - first:
+      4: 400052
+    second: RigRB3
+  - first:
+      4: 400054
+    second: RigRB4
+  - first:
+      4: 400056
+    second: RigRB5
+  - first:
+      4: 400058
+    second: RigRC1
+  - first:
+      4: 400060
+    second: RigRC2
+  - first:
+      4: 400062
+    second: RigRC3
+  - first:
+      4: 400064
+    second: RigRC4
+  - first:
+      4: 400066
+    second: RigRC5
+  - first:
+      4: 400068
+    second: RigTA1
+  - first:
+      4: 400070
+    second: RigTA2
+  - first:
+      4: 400072
+    second: RigTA3
+  - first:
+      4: 400074
+    second: RigTA4
+  - first:
+      4: 400076
+    second: RigTA5
+  - first:
+      4: 400078
+    second: RigTB1
+  - first:
+      4: 400080
+    second: RigTB2
+  - first:
+      4: 400082
+    second: RigTB3
+  - first:
+      4: 400084
+    second: RigTB4
+  - first:
+      4: 400086
+    second: RigTB5
+  - first:
+      4: 400088
+    second: RigTC1
+  - first:
+      4: 400090
+    second: RigTC2
+  - first:
+      4: 400092
+    second: RigTC3
+  - first:
+      4: 400094
+    second: RigTC4
+  - first:
+      4: 400096
+    second: RigTC5
+  - first:
+      43: 4300000
+    second: Hair Female 18
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Hair Female 18
+  externalObjects: {}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Hair Female 18
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: RigMain
+        weight: 1
+      - path: RigMain/RigLA1
+        weight: 1
+      - path: RigMain/RigLA1/RigLA2
+        weight: 1
+      - path: RigMain/RigLA1/RigLA2/RigLA3
+        weight: 1
+      - path: RigMain/RigLA1/RigLA2/RigLA3/RigLA4
+        weight: 1
+      - path: RigMain/RigLA1/RigLA2/RigLA3/RigLA4/RigLA5
+        weight: 1
+      - path: RigMain/RigLB1
+        weight: 1
+      - path: RigMain/RigLB1/RigLB2
+        weight: 1
+      - path: RigMain/RigLB1/RigLB2/RigLB3
+        weight: 1
+      - path: RigMain/RigLB1/RigLB2/RigLB3/RigLB4
+        weight: 1
+      - path: RigMain/RigLB1/RigLB2/RigLB3/RigLB4/RigLB5
+        weight: 1
+      - path: RigMain/RigLC1
+        weight: 1
+      - path: RigMain/RigLC1/RigLC2
+        weight: 1
+      - path: RigMain/RigLC1/RigLC2/RigLC3
+        weight: 1
+      - path: RigMain/RigLC1/RigLC2/RigLC3/RigLC4
+        weight: 1
+      - path: RigMain/RigLC1/RigLC2/RigLC3/RigLC4/RigLC5
+        weight: 1
+      - path: RigMain/RigRA1
+        weight: 1
+      - path: RigMain/RigRA1/RigRA2
+        weight: 1
+      - path: RigMain/RigRA1/RigRA2/RigRA3
+        weight: 1
+      - path: RigMain/RigRA1/RigRA2/RigRA3/RigRA4
+        weight: 1
+      - path: RigMain/RigRA1/RigRA2/RigRA3/RigRA4/RigRA5
+        weight: 1
+      - path: RigMain/RigRB1
+        weight: 1
+      - path: RigMain/RigRB1/RigRB2
+        weight: 1
+      - path: RigMain/RigRB1/RigRB2/RigRB3
+        weight: 1
+      - path: RigMain/RigRB1/RigRB2/RigRB3/RigRB4
+        weight: 1
+      - path: RigMain/RigRB1/RigRB2/RigRB3/RigRB4/RigRB5
+        weight: 1
+      - path: RigMain/RigRC1
+        weight: 1
+      - path: RigMain/RigRC1/RigRC2
+        weight: 1
+      - path: RigMain/RigRC1/RigRC2/RigRC3
+        weight: 1
+      - path: RigMain/RigRC1/RigRC2/RigRC3/RigRC4
+        weight: 1
+      - path: RigMain/RigRC1/RigRC2/RigRC3/RigRC4/RigRC5
+        weight: 1
+      - path: RigMain/RigTA1
+        weight: 1
+      - path: RigMain/RigTA1/RigTA2
+        weight: 1
+      - path: RigMain/RigTA1/RigTA2/RigTA3
+        weight: 1
+      - path: RigMain/RigTA1/RigTA2/RigTA3/RigTA4
+        weight: 1
+      - path: RigMain/RigTA1/RigTA2/RigTA3/RigTA4/RigTA5
+        weight: 1
+      - path: RigMain/RigTB1
+        weight: 1
+      - path: RigMain/RigTB1/RigTB2
+        weight: 1
+      - path: RigMain/RigTB1/RigTB2/RigTB3
+        weight: 1
+      - path: RigMain/RigTB1/RigTB2/RigTB3/RigTB4
+        weight: 1
+      - path: RigMain/RigTB1/RigTB2/RigTB3/RigTB4/RigTB5
+        weight: 1
+      - path: RigMain/RigTC1
+        weight: 1
+      - path: RigMain/RigTC1/RigTC2
+        weight: 1
+      - path: RigMain/RigTC1/RigTC2/RigTC3
+        weight: 1
+      - path: RigMain/RigTC1/RigTC2/RigTC3/RigTC4
+        weight: 1
+      - path: RigMain/RigTC1/RigTC2/RigTC3/RigTC4/RigTC5
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 1
+    maxBonesPerVertex: 2
+    minBoneWeight: 0.5
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

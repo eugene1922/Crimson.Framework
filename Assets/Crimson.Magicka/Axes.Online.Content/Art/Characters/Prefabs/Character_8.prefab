@@ -1,0 +1,2306 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &170674312478674842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5874008550083628047}
+  m_Layer: 0
+  m_Name: Magicka_L_Ankle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5874008550083628047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170674312478674842}
+  m_LocalRotation: {x: -0.19987175, y: 0.021194233, z: -0.49631065, w: 0.8445578}
+  m_LocalPosition: {x: -0.2503213, y: 0.00025897071, z: -0.0000059013364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 973969727342105870}
+  m_Father: {fileID: 8315939406344473459}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.22238839, y: 0.7605, z: -53.02059}
+--- !u!1 &249953213403107901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7059074573815117578}
+  - component: {fileID: 2576655516347084657}
+  - component: {fileID: 7389973311012336275}
+  m_Layer: 0
+  m_Name: staff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7059074573815117578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249953213403107901}
+  m_LocalRotation: {x: -0.028575419, y: 0.7050066, z: 0.016253723, w: 0.7084384}
+  m_LocalPosition: {x: -0.7348738, y: 0.98298293, z: 0.3698526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7628497278242870220}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 24.869808, y: 81.56276, z: 75.82987}
+--- !u!33 &2576655516347084657
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249953213403107901}
+  m_Mesh: {fileID: -5913018098454834342, guid: 06218562af134714e8c01d5cab29c12c, type: 3}
+--- !u!23 &7389973311012336275
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249953213403107901}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 885609d812d9b514ba60d72fcffdeff4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &322264946387605231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4273128989717119093}
+  m_Layer: 0
+  m_Name: Magicka_Purse_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4273128989717119093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322264946387605231}
+  m_LocalRotation: {x: 0.00004857314, y: 0.0000011324837, z: 0.026084326, w: 0.9996598}
+  m_LocalPosition: {x: -0.15069965, y: 0.0000021448134, z: -0.000000018200659}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8106052097519576377}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.042425133, y: 13.061442, z: 7.4227366}
+--- !u!1 &481112309866139780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7764189273182698403}
+  m_Layer: 0
+  m_Name: Magicka_R_Leg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7764189273182698403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481112309866139780}
+  m_LocalRotation: {x: -0.0019313649, y: 0.000309419, z: 0.15174347, w: 0.988418}
+  m_LocalPosition: {x: -0.2208163, y: 0.00000004339218, z: -0.0000003223419}
+  m_LocalScale: {x: 1.000001, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7833663188226488094}
+  m_Father: {fileID: 4537243780910308348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.22544412, y: -0.00015776922, z: 21.611}
+--- !u!1 &638220909511594095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3932924177820511212}
+  m_Layer: 0
+  m_Name: Magicka_R_Digit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3932924177820511212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638220909511594095}
+  m_LocalRotation: {x: -0.00006802009, y: 0.00018096674, z: -0.35012832, w: 0.9367017}
+  m_LocalPosition: {x: -0.21457447, y: 0.000041743275, z: -0.0000129928585}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7833663188226488094}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0293715, y: 0.41654733, z: -39.807228}
+--- !u!1 &1116363968806346345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8201762804672227308}
+  m_Layer: 0
+  m_Name: Magicka_Hub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8201762804672227308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116363968806346345}
+  m_LocalRotation: {x: -0.5000002, y: 0.49999973, z: 0.5000003, w: -0.4999998}
+  m_LocalPosition: {x: -0.0000000012620225, y: 0.6129892, z: 0.008358541}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2719962961485714199}
+  - {fileID: 8256285610572437382}
+  - {fileID: 8106052097519576377}
+  - {fileID: 4537243780910308348}
+  - {fileID: 84192445171376117}
+  - {fileID: 6867371617080253511}
+  - {fileID: 4673508071981001438}
+  m_Father: {fileID: 3947312111724490516}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.2305514, y: -99.65951, z: -90.20945}
+--- !u!1 &1293659685811921211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6786961291557253610}
+  m_Layer: 0
+  m_Name: Magicka_Beard_bone_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6786961291557253610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293659685811921211}
+  m_LocalRotation: {x: -0.007288953, y: -0.05464413, z: -0.14625552, w: 0.98770964}
+  m_LocalPosition: {x: -0.15281595, y: -0.000000099182124, z: -0.0000000061988827}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1560208433803842017}
+  m_Father: {fileID: 8783602632181008380}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.22193325, y: -12.615569, z: -11.854037}
+--- !u!1 &1351876174040255772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7370103974707678640}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7370103974707678640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351876174040255772}
+  m_LocalRotation: {x: 3.769597e-15, y: 4.134396e-16, z: 0.10902363, w: 0.9940392}
+  m_LocalPosition: {x: -0.33871537, y: 0.0000013389587, z: 0.0000000026226734}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7817367401578782258}
+  m_Father: {fileID: 3878203353976325848}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -6.580688, y: 12.859911, z: 30.295162}
+--- !u!1 &1569231135377627057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4537243780910308348}
+  m_Layer: 0
+  m_Name: Magicka_R_Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4537243780910308348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569231135377627057}
+  m_LocalRotation: {x: -0.049563356, y: 0.9940348, z: 0.014746725, w: -0.09602501}
+  m_LocalPosition: {x: -0, y: 0, z: -0.17062499}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7764189273182698403}
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 4.0204077, y: 172.07568, z: -46.730263}
+--- !u!1 &1689103838947746416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3695158092612173166}
+  m_Layer: 0
+  m_Name: Magicka_L_Digit_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3695158092612173166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689103838947746416}
+  m_LocalRotation: {x: 0.5042059, y: 0.6569562, z: -0.054624584, w: 0.55785406}
+  m_LocalPosition: {x: -0.054666534, y: -0.000019985198, z: 0.048754957}
+  m_LocalScale: {x: 1.000002, y: 1.000002, z: 0.999998}
+  m_Children:
+  - {fileID: 736887237371861142}
+  m_Father: {fileID: 3197310834469345063}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 30.5025, y: 117.04463, z: 46.437954}
+--- !u!1 &1946470493590223709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3837442325420114320}
+  m_Layer: 0
+  m_Name: Magicka_R_Digit_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3837442325420114320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946470493590223709}
+  m_LocalRotation: {x: -0.62255293, y: -0.3390965, z: 0.06963781, w: 0.701849}
+  m_LocalPosition: {x: -0.054635067, y: -0.000000099182124, z: -0.048750047}
+  m_LocalScale: {x: 1, y: 1.000001, z: 1.000001}
+  m_Children:
+  - {fileID: 6468809408115545213}
+  m_Father: {fileID: 4864557877503202652}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -34.24143, y: -100.478485, z: 90.56886}
+--- !u!1 &2197024457744617580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867119610889473819}
+  m_Layer: 0
+  m_Name: Magicka_L_Digit_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &867119610889473819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2197024457744617580}
+  m_LocalRotation: {x: -0.01273511, y: -0.02332565, z: 0.5904041, w: 0.8066702}
+  m_LocalPosition: {x: -0.07578092, y: 0.000028366087, z: 0.0000013885498}
+  m_LocalScale: {x: 0.999999, y: 1, z: 1.000001}
+  m_Children: []
+  m_Father: {fileID: 2803306309888775380}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000001899727, y: -0.000008367398, z: 82.91901}
+--- !u!1 &2410639533692717198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8571190701001792485}
+  m_Layer: 0
+  m_Name: Magicka_L_Digit_v5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8571190701001792485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410639533692717198}
+  m_LocalRotation: {x: -0.0000013622391, y: -0.00003982013, z: 0.15217157, w: 0.98835415}
+  m_LocalPosition: {x: -0.07247634, y: -0.000030200958, z: -0.000021224974}
+  m_LocalScale: {x: 1, y: 1.000001, z: 0.999999}
+  m_Children: []
+  m_Father: {fileID: 736887237371861142}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0000075385374, y: -0.000004008077, z: 27.998594}
+--- !u!1 &2528756439077031502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6468809408115545213}
+  m_Layer: 0
+  m_Name: Magicka_R_Digit_v4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6468809408115545213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528756439077031502}
+  m_LocalRotation: {x: -0.0022491717, y: 0.028722879, z: 0.078034535, w: 0.9965343}
+  m_LocalPosition: {x: -0.082875, y: 0, z: -0.000000024795531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5710516567719909507}
+  m_Father: {fileID: 3837442325420114320}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0514928, y: 1.5547224, z: 24.776564}
+--- !u!1 &2729593681114955658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3091719976998778412}
+  m_Layer: 0
+  m_Name: Magicka_R_Digit_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3091719976998778412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729593681114955658}
+  m_LocalRotation: {x: 0, y: 0, z: 0.26599005, w: 0.9639758}
+  m_LocalPosition: {x: -0.18211704, y: -0.000000049591062, z: 0}
+  m_LocalScale: {x: 1, y: 1.000001, z: 1}
+  m_Children:
+  - {fileID: 4204275194178318427}
+  m_Father: {fileID: 4864557877503202652}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.000004749261, y: -0.0000035828637, z: 30.160963}
+--- !u!1 &2793183357283233485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784360292208727169}
+  m_Layer: 0
+  m_Name: Magicka_R_Forearm_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &784360292208727169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793183357283233485}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.14383629, y: -0.0000000123977655, z: -0.000000049591062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4864557877503202652}
+  m_Father: {fileID: 7356134711489730870}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.7045189, y: 0.0000012490575, z: -0.0000018192009}
+--- !u!1 &2887028030238844577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736887237371861142}
+  m_Layer: 0
+  m_Name: Magicka_L_Digit_v4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &736887237371861142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887028030238844577}
+  m_LocalRotation: {x: 0.13008685, y: 0.1273857, z: 0.29310274, w: 0.9385846}
+  m_LocalPosition: {x: -0.08289493, y: -0.0000355072, z: -0.000016464233}
+  m_LocalScale: {x: 1, y: 1.000002, z: 0.999999}
+  m_Children:
+  - {fileID: 8571190701001792485}
+  m_Father: {fileID: 3695158092612173166}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.16558449, y: 29.957611, z: 63.212948}
+--- !u!1 &3403013846264348776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2504044674935357745}
+  m_Layer: 0
+  m_Name: Magicka_Hat_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2504044674935357745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403013846264348776}
+  m_LocalRotation: {x: 0.054417815, y: 0.105351396, z: -0.31967184, w: 0.9400796}
+  m_LocalPosition: {x: -0.2216839, y: 0.00000059509273, z: 0.000000052995517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7385904585809081994}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 8.84463, y: 2.4657624, z: -29.444029}
+--- !u!1 &3468592151297213226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7644632879292913445}
+  m_Layer: 0
+  m_Name: Magicka_Hat_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7644632879292913445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468592151297213226}
+  m_LocalRotation: {x: 0.0079767555, y: -0.0062464247, z: 0.29376763, w: 0.9558232}
+  m_LocalPosition: {x: -0.43880382, y: -0.036646035, z: -0.000000024795531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4798422409046726698}
+  - {fileID: 7385904585809081994}
+  m_Father: {fileID: 5519407125602362240}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 1.1135489, y: -0.46508974, z: 34.14087}
+--- !u!1 &3728630266801880500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3947312111724490516}
+  m_Layer: 0
+  m_Name: Magicka_Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3947312111724490516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3728630266801880500}
+  m_LocalRotation: {x: -0.00000032584137, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8201762804672227308}
+  m_Father: {fileID: 1993644635622938963}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.00003733867, y: 0, z: 0}
+--- !u!1 &3821163764445116600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4864557877503202652}
+  m_Layer: 0
+  m_Name: Magicka_R_Palm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4864557877503202652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821163764445116600}
+  m_LocalRotation: {x: 0.70553, y: -0.047616355, z: -0.044550773, w: 0.7056737}
+  m_LocalPosition: {x: -0.1438362, y: -0.0000000123977655, z: 0}
+  m_LocalScale: {x: 0.999999, y: 1, z: 0.999999}
+  m_Children:
+  - {fileID: 3091719976998778412}
+  - {fileID: 3837442325420114320}
+  m_Father: {fileID: 784360292208727169}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 77.06881, y: -93.399956, z: -73.40782}
+--- !u!1 &4244040886521239698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4707696038560052914}
+  m_Layer: 0
+  m_Name: Magicka_Rope_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4707696038560052914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244040886521239698}
+  m_LocalRotation: {x: 0.0027302685, y: -0.087112986, z: 0.0312098, w: 0.9957057}
+  m_LocalPosition: {x: -0.18269134, y: 0.000000049591062, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 84192445171376117}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4328226528200144902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560208433803842017}
+  m_Layer: 0
+  m_Name: Magicka_Beard_bone_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560208433803842017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328226528200144902}
+  m_LocalRotation: {x: -0.0054862755, y: -0.058947515, z: -0.110061206, w: 0.9921601}
+  m_LocalPosition: {x: -0.19529198, y: 0.000000049591062, z: -0.0000000030994414}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6411638036548777536}
+  m_Father: {fileID: 6786961291557253610}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.5790391, y: -19.935783, z: -4.4387016}
+--- !u!1 &4452455379300062941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8256285610572437382}
+  m_Layer: 0
+  m_Name: Magicka_L_Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8256285610572437382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4452455379300062941}
+  m_LocalRotation: {x: -0.06528597, y: 0.9944482, z: -0.014482836, w: 0.08124581}
+  m_LocalPosition: {x: -0, y: 0.0000000015497207, z: 0.17062499}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8315939406344473459}
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 4.2749333, y: -179.26201, z: 13.7997055}
+--- !u!1 &4895266695199228387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7817367401578782258}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7817367401578782258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895266695199228387}
+  m_LocalRotation: {x: 3.5211265e-17, y: -3.363646e-16, z: 0.104112945, w: 0.9945655}
+  m_LocalPosition: {x: -0.3219082, y: 0, z: 0.0000000031045344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7370103974707678640}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -6.0392175, y: 9.515482, z: 33.286507}
+--- !u!1 &4901252253228522194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2204119589095124638}
+  m_Layer: 0
+  m_Name: Magicka_Rope_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2204119589095124638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901252253228522194}
+  m_LocalRotation: {x: -0.00000023996873, y: -0.0000000038905617, z: -0.098498836,
+    w: 0.99513716}
+  m_LocalPosition: {x: -0.22160302, y: 0.0000000123977655, z: 0.000000024795531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6867371617080253511}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4970321986268688595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993644635622938963}
+  m_Layer: 0
+  m_Name: Bones
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1993644635622938963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970321986268688595}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3947312111724490516}
+  m_Father: {fileID: 7628497278242870220}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5145192972669695116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6780392750718342263}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6780392750718342263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5145192972669695116}
+  m_LocalRotation: {x: -0.045267984, y: 0.99897486, z: -0.0000003990881, w: 0.000000017565897}
+  m_LocalPosition: {x: 0.080968514, y: 0.22990778, z: 0.2042649}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5612312390206975888}
+  m_Father: {fileID: 3382954251477753543}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -4.3917074, y: 170.51659, z: 0.7851168}
+--- !u!1 &5391056517966340256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6867371617080253511}
+  m_Layer: 0
+  m_Name: Magicka_Rope_v4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6867371617080253511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5391056517966340256}
+  m_LocalRotation: {x: -0.0114051765, y: 0.71653354, z: 0.69616073, w: -0.04254182}
+  m_LocalPosition: {x: -0.12138503, y: 0.31059158, z: 0.097361915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2204119589095124638}
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -82.730286, y: -119.103615, z: -63.621548}
+--- !u!1 &5592763207508779765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2803306309888775380}
+  m_Layer: 0
+  m_Name: Magicka_L_Digit_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2803306309888775380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5592763207508779765}
+  m_LocalRotation: {x: -0.007374866, y: -0.025540482, z: 0.40181345, w: 0.9153356}
+  m_LocalPosition: {x: -0.18214718, y: -0.0000043640134, z: 0.0000011901855}
+  m_LocalScale: {x: 1, y: 1, z: 1.000002}
+  m_Children:
+  - {fileID: 867119610889473819}
+  m_Father: {fileID: 3197310834469345063}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.00000211061, y: -0.0000021153253, z: 44.93607}
+--- !u!1 &5601143544590720614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541816594908269499}
+  m_Layer: 0
+  m_Name: Magicka_L_Forearm_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &541816594908269499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601143544590720614}
+  m_LocalRotation: {x: -0.0000014309666, y: -0.0000018700916, z: -0.00024327263, w: 1}
+  m_LocalPosition: {x: -0.18443416, y: -0.00000059509273, z: -0.000000099182124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1170141004999829212}
+  m_Father: {fileID: 1669935685068410877}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -50.87379, y: 48.66982, z: -51.101498}
+--- !u!1 &5661949244851730600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3878203353976325848}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3878203353976325848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661949244851730600}
+  m_LocalRotation: {x: 0.11947929, y: 0.9928367, z: -0.00000011835536, w: -0.000000014243041}
+  m_LocalPosition: {x: 0.045524396, y: -0.2347806, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7370103974707678640}
+  m_Father: {fileID: 3382954251477753543}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -6.6721935, y: -171.61824, z: 47.39873}
+--- !u!1 &5677646563727100459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1669935685068410877}
+  m_Layer: 0
+  m_Name: Magicka_L_Shoulder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1669935685068410877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677646563727100459}
+  m_LocalRotation: {x: 0.054976188, y: 0.08169039, z: -0.49825218, w: 0.8614227}
+  m_LocalPosition: {x: -0.23486102, y: 0.000000024795531, z: -0.000000099182124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 541816594908269499}
+  m_Father: {fileID: 3563041780296458854}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 10.573092, y: 25.861753, z: -10.367076}
+--- !u!1 &5753274041119772594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4673508071981001438}
+  m_Layer: 0
+  m_Name: Magicka_Spine_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4673508071981001438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753274041119772594}
+  m_LocalRotation: {x: 3.8935474e-10, y: -0.00000006016909, z: 0.0064708735, w: 0.9999791}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4924172280413321905}
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -1.6105052, y: -0.19370274, z: -0.28306013}
+--- !u!1 &5917094868387083221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 973969727342105870}
+  m_Layer: 0
+  m_Name: Magicka_L_Digit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &973969727342105870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917094868387083221}
+  m_LocalRotation: {x: 0.00006832754, y: -0.00018143198, z: -0.34996665, w: 0.93676215}
+  m_LocalPosition: {x: -0.21472013, y: 0.000026171683, z: 0.000017778395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5874008550083628047}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -6.651009, y: 1.1087182, z: -30.686953}
+--- !u!1 &5972109645001428821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4798422409046726698}
+  m_Layer: 0
+  m_Name: Magicka_Feather
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4798422409046726698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972109645001428821}
+  m_LocalRotation: {x: -0.27089837, y: 0.18520662, z: 0.3125363, w: 0.8914223}
+  m_LocalPosition: {x: -0.03962584, y: 0.06874432, z: 0.2166916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7644632879292913445}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -41.312946, y: 27.232803, z: 19.00818}
+--- !u!1 &6264453329119487610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7833663188226488094}
+  m_Layer: 0
+  m_Name: Magicka_R_Ankle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7833663188226488094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6264453329119487610}
+  m_LocalRotation: {x: 0.12413272, y: -0.060131192, z: -0.49390686, w: 0.8585053}
+  m_LocalPosition: {x: -0.2503215, y: 0.00008643722, z: 0.00000029754636}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3932924177820511212}
+  m_Father: {fileID: 7764189273182698403}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 3.063393, y: 2.3935144, z: -42.034138}
+--- !u!1 &6471419810796747995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4928967480835240391}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4928967480835240391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471419810796747995}
+  m_LocalRotation: {x: 9.869628e-16, y: -1.06998783e-16, z: -0.10778064, w: 0.9941747}
+  m_LocalPosition: {x: -0.3280137, y: 0, z: 0.000000049447383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8911909488757934211}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.5770047, y: 6.169443, z: -16.312674}
+--- !u!1 &6538016802635728623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4924172280413321905}
+  m_Layer: 0
+  m_Name: Magicka_Spine_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4924172280413321905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6538016802635728623}
+  m_LocalRotation: {x: 0.0000000023478506, y: -0.0000000631492, z: 0.037153754, w: 0.9993096}
+  m_LocalPosition: {x: -0.17384464, y: 0, z: -0.000000041643016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 527221599926567395}
+  m_Father: {fileID: 4673508071981001438}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -8.230201, y: -1.0473363, z: -0.8182858}
+--- !u!1 &6731019078778605586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8911909488757934211}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8911909488757934211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731019078778605586}
+  m_LocalRotation: {x: -0.000001668138, y: 0.000000051411803, z: -0.030805279, w: 0.9995254}
+  m_LocalPosition: {x: -0.30304122, y: 0, z: 0.0000000123977655}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4928967480835240391}
+  m_Father: {fileID: 2776138935683092177}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.081620544, y: -1.9244796, z: -10.128559}
+--- !u!1 &6883334231186317791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7628497278242870220}
+  - component: {fileID: 8941100870233877605}
+  - component: {fileID: 9099412893507334089}
+  - component: {fileID: 793658347218873294}
+  - component: {fileID: 7334482174468746453}
+  m_Layer: 0
+  m_Name: Character_8
+  m_TagString: Character
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7628497278242870220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883334231186317791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5221435901287403518}
+  - {fileID: 1993644635622938963}
+  - {fileID: 2624355896432260087}
+  - {fileID: 7059074573815117578}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8941100870233877605
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883334231186317791}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &9099412893507334089
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883334231186317791}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.9243636
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.89160943, z: 0}
+--- !u!114 &793658347218873294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883334231186317791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!95 &7334482174468746453
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883334231186317791}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 06218562af134714e8c01d5cab29c12c, type: 3}
+  m_Controller: {fileID: 9100000, guid: b189550f42ea17945bc8ab00f9a9d0fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &6905152750113442150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5710516567719909507}
+  m_Layer: 0
+  m_Name: Magicka_R_Digit_v5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5710516567719909507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6905152750113442150}
+  m_LocalRotation: {x: 0.000000014901161, y: 0.000000014901157, z: -0.000000014901158,
+    w: 1}
+  m_LocalPosition: {x: -0.072442524, y: 0, z: -0.000000024795531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6468809408115545213}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.18572058, y: -1.6842768, z: 15.814014}
+--- !u!1 &6944304690067115052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3197310834469345063}
+  m_Layer: 0
+  m_Name: Magicka_L_Palm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3197310834469345063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944304690067115052}
+  m_LocalRotation: {x: 0.8224118, y: -0.38647705, z: -0.10870168, w: -0.40306118}
+  m_LocalPosition: {x: -0.14383636, y: 0.00003119278, z: 0.000025985717}
+  m_LocalScale: {x: 1.000001, y: 1.000001, z: 0.999999}
+  m_Children:
+  - {fileID: 2803306309888775380}
+  - {fileID: 3695158092612173166}
+  m_Father: {fileID: 1170141004999829212}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -61.298416, y: -27.773884, z: 68.42228}
+--- !u!1 &6948084471217515489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1551702008958253366}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1551702008958253366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948084471217515489}
+  m_LocalRotation: {x: -3.2966727e-10, y: -0.0000000045800994, z: -0.07179245, w: 0.9974196}
+  m_LocalPosition: {x: -0.3202367, y: 0, z: -5.9117153e-15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5612312390206975888}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.103044, y: -9.219896, z: 1.3044081}
+--- !u!1 &7589903828754909301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3563041780296458854}
+  m_Layer: 0
+  m_Name: Magicka_L_Collarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3563041780296458854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589903828754909301}
+  m_LocalRotation: {x: 0.22773722, y: 0.7376679, z: 0.19500518, w: 0.604942}
+  m_LocalPosition: {x: 0.000000099182124, y: 0.13432227, z: 0.13305224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1669935685068410877}
+  m_Father: {fileID: 3382954251477753543}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.3671327, y: 106.19883, z: 35.491154}
+--- !u!1 &7653116793355062243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8106052097519576377}
+  m_Layer: 0
+  m_Name: Magicka_Purse_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8106052097519576377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653116793355062243}
+  m_LocalRotation: {x: -0.01575238, y: 0.99987596, z: -0.0000022475492, w: 0.000008691757}
+  m_LocalPosition: {x: -0.11152633, y: 0.15045582, z: -0.30232978}
+  m_LocalScale: {x: 1, y: 1, z: 1.000001}
+  m_Children:
+  - {fileID: 4273128989717119093}
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 11.135726, y: -165.15457, z: 29.435362}
+--- !u!1 &7812253856773057326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3428443217263258164}
+  m_Layer: 0
+  m_Name: Magicka_Neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3428443217263258164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7812253856773057326}
+  m_LocalRotation: {x: 0.086760305, y: -0.046653558, z: -0.014108923, w: 0.99503624}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5519407125602362240}
+  m_Father: {fileID: 3382954251477753543}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 4.829004, y: 0.5217297, z: 3.0063665}
+--- !u!1 &7860461584106826482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6411638036548777536}
+  m_Layer: 0
+  m_Name: Magicka_Beard_bone_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6411638036548777536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860461584106826482}
+  m_LocalRotation: {x: 0.0006687753, y: -0.051033746, z: -0.008411108, w: 0.9986613}
+  m_LocalPosition: {x: -0.14327176, y: -0.0000004711151, z: 0.0000000015537288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1560208433803842017}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 2.9220357, y: -21.113111, z: 2.1853561}
+--- !u!1 &7918792746621085892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8812186090850880274}
+  m_Layer: 0
+  m_Name: Magicka_R_Collarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8812186090850880274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918792746621085892}
+  m_LocalRotation: {x: -0.22773726, y: -0.7376679, z: 0.19500504, w: 0.60494196}
+  m_LocalPosition: {x: 0.000000099182124, y: 0.13432227, z: -0.13305223}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2245697263105519032}
+  m_Father: {fileID: 3382954251477753543}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 4.16732, y: -106.33597, z: 33.28817}
+--- !u!1 &8048023912400281396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8783602632181008380}
+  m_Layer: 0
+  m_Name: Magicka_Beard_bone_v4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8783602632181008380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048023912400281396}
+  m_LocalRotation: {x: 0.048619986, y: 0.014132348, z: 0.9566607, w: -0.2867694}
+  m_LocalPosition: {x: -0.0977052, y: 0.19283281, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6786961291557253610}
+  m_Father: {fileID: 5519407125602362240}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 3.0112135, y: -6.752204, z: -152.86949}
+--- !u!1 &8069567955825813331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7356134711489730870}
+  m_Layer: 0
+  m_Name: Magicka_R_Forearm_v1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7356134711489730870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8069567955825813331}
+  m_LocalRotation: {x: 0, y: -0, z: -0.17489645, w: 0.98458683}
+  m_LocalPosition: {x: -0.18443407, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 784360292208727169}
+  m_Father: {fileID: 2245697263105519032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0000058808605, y: -0.0000010856261, z: -24.365227}
+--- !u!1 &8086584666689863773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2245697263105519032}
+  m_Layer: 0
+  m_Name: Magicka_R_Shoulder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2245697263105519032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086584666689863773}
+  m_LocalRotation: {x: -0.21843888, y: -0.4405424, z: -0.09303177, w: 0.8657667}
+  m_LocalPosition: {x: -0.23486106, y: 0, z: 0.00000019836425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7356134711489730870}
+  m_Father: {fileID: 8812186090850880274}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -29.174042, y: -37.741272, z: 11.412755}
+--- !u!1 &8089816914569080169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2776138935683092177}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2776138935683092177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089816914569080169}
+  m_LocalRotation: {x: -0.051860165, y: 0.99865437, z: -0.000002127662, w: 0.00000011048956}
+  m_LocalPosition: {x: 0.080968514, y: 0.22990783, z: -0.2042649}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8911909488757934211}
+  m_Father: {fileID: 3382954251477753543}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 2.3960278, y: -175.85246, z: -12.017684}
+--- !u!1 &8302743803813419200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 84192445171376117}
+  m_Layer: 0
+  m_Name: Magicka_Rope_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &84192445171376117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302743803813419200}
+  m_LocalRotation: {x: -0.11583054, y: 0.70855266, z: 0.68577814, w: 0.11935184}
+  m_LocalPosition: {x: -0.032540366, y: 0.27386525, z: 0.1814893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4707696038560052914}
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -81.49141, y: -139.90265, z: -64.8969}
+--- !u!1 &8424145142898677217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2624355896432260087}
+  - component: {fileID: 7355617960018605683}
+  m_Layer: 0
+  m_Name: Character_8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2624355896432260087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424145142898677217}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7628497278242870220}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &7355617960018605683
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424145142898677217}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8e8c03382df09174ca0317665c2fd571, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 1257694540660317834, guid: 06218562af134714e8c01d5cab29c12c, type: 3}
+  m_Bones:
+  - {fileID: 3563041780296458854}
+  - {fileID: 3382954251477753543}
+  - {fileID: 1669935685068410877}
+  - {fileID: 4924172280413321905}
+  - {fileID: 8201762804672227308}
+  - {fileID: 8256285610572437382}
+  - {fileID: 527221599926567395}
+  - {fileID: 541816594908269499}
+  - {fileID: 4673508071981001438}
+  - {fileID: 8812186090850880274}
+  - {fileID: 2245697263105519032}
+  - {fileID: 7356134711489730870}
+  - {fileID: 4537243780910308348}
+  - {fileID: 1170141004999829212}
+  - {fileID: 5519407125602362240}
+  - {fileID: 3428443217263258164}
+  - {fileID: 8315939406344473459}
+  - {fileID: 3197310834469345063}
+  - {fileID: 736887237371861142}
+  - {fileID: 8571190701001792485}
+  - {fileID: 3695158092612173166}
+  - {fileID: 784360292208727169}
+  - {fileID: 973969727342105870}
+  - {fileID: 5874008550083628047}
+  - {fileID: 7764189273182698403}
+  - {fileID: 3932924177820511212}
+  - {fileID: 6468809408115545213}
+  - {fileID: 3837442325420114320}
+  - {fileID: 5710516567719909507}
+  - {fileID: 4864557877503202652}
+  - {fileID: 3091719976998778412}
+  - {fileID: 4204275194178318427}
+  - {fileID: 2803306309888775380}
+  - {fileID: 867119610889473819}
+  - {fileID: 7833663188226488094}
+  - {fileID: 6786961291557253610}
+  - {fileID: 1560208433803842017}
+  - {fileID: 8783602632181008380}
+  - {fileID: 7817367401578782258}
+  - {fileID: 7370103974707678640}
+  - {fileID: 3878203353976325848}
+  - {fileID: 6867371617080253511}
+  - {fileID: 84192445171376117}
+  - {fileID: 2204119589095124638}
+  - {fileID: 4707696038560052914}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 8201762804672227308}
+  m_AABB:
+    m_Center: {x: -0.45740676, y: -0.12606874, z: 0.03819555}
+    m_Extent: {x: 1.1676309, y: 0.68641067, z: 0.93739325}
+  m_DirtyAABB: 0
+--- !u!1 &8576967919344503393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 527221599926567395}
+  m_Layer: 0
+  m_Name: Magicka_Spine_v3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &527221599926567395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576967919344503393}
+  m_LocalRotation: {x: 1.1819325e-10, y: -0.0000000031789964, z: 0.037153754, w: 0.9993096}
+  m_LocalPosition: {x: -0.17384478, y: 0.0000000061988827, z: 1.18234305e-14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3382954251477753543}
+  m_Father: {fileID: 4924172280413321905}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -8.231146, y: -0.9724589, z: -0.82363456}
+--- !u!1 &8761189239891854509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4204275194178318427}
+  m_Layer: 0
+  m_Name: Magicka_R_Digit_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4204275194178318427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761189239891854509}
+  m_LocalRotation: {x: 0.000000020801592, y: 0.00000003665583, z: 0.26598993, w: 0.9639758}
+  m_LocalPosition: {x: -0.07575754, y: 0, z: 0.000000024795531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3091719976998778412}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000042029565, y: 0.0000050893427, z: 30.160942}
+--- !u!1 &8789340683096657964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3382954251477753543}
+  m_Layer: 0
+  m_Name: Magicka_Ribcage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3382954251477753543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8789340683096657964}
+  m_LocalRotation: {x: 0.0000000016523982, y: 1.0692684e-11, z: 0.0064708735, w: 0.9999791}
+  m_LocalPosition: {x: -0.17384455, y: 0.0000000123977655, z: 1.18234305e-14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3563041780296458854}
+  - {fileID: 3878203353976325848}
+  - {fileID: 2776138935683092177}
+  - {fileID: 6780392750718342263}
+  - {fileID: 3428443217263258164}
+  - {fileID: 8812186090850880274}
+  m_Father: {fileID: 527221599926567395}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.6129802, y: -0.121733494, z: -0.2839717}
+--- !u!1 &8824376716370251967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170141004999829212}
+  m_Layer: 0
+  m_Name: Magicka_L_Forearm_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1170141004999829212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824376716370251967}
+  m_LocalRotation: {x: -0.32377362, y: 0.000025428393, z: -0.00006694336, w: 0.94613457}
+  m_LocalPosition: {x: -0.14383636, y: 0.000020009993, z: 0.0000006942749}
+  m_LocalScale: {x: 1, y: 1, z: 1.000001}
+  m_Children:
+  - {fileID: 3197310834469345063}
+  m_Father: {fileID: 541816594908269499}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 20.653152, y: -0.000007903192, z: 0.0000017989811}
+--- !u!1 &8886822417645485613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5612312390206975888}
+  m_Layer: 0
+  m_Name: Magicka_Mantle_v8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5612312390206975888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886822417645485613}
+  m_LocalRotation: {x: -1.809057e-10, y: -0.0000000029754388, z: -0.060687605, w: 0.99815685}
+  m_LocalPosition: {x: -0.30298972, y: -0.00000074386594, z: -0.0000000123977655}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1551702008958253366}
+  m_Father: {fileID: 6780392750718342263}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -4.1911182, y: -10.84298, z: 4.8199778}
+--- !u!1 &8891464005763452309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7385904585809081994}
+  m_Layer: 0
+  m_Name: Magicka_Hat_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7385904585809081994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891464005763452309}
+  m_LocalRotation: {x: -0.108908, y: 0.12429434, z: 0.62399197, w: 0.7637565}
+  m_LocalPosition: {x: -0.25446603, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2504044674935357745}
+  m_Father: {fileID: 7644632879292913445}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -31.797438, y: 4.8114867, z: 90.36974}
+--- !u!1 &9135054849542649344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2719962961485714199}
+  m_Layer: 0
+  m_Name: Magicka_Belt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2719962961485714199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135054849542649344}
+  m_LocalRotation: {x: 0.08826373, y: 0.7023933, z: 0.7016476, w: -0.08089399}
+  m_LocalPosition: {x: -0.0762947, y: 0.26547846, z: 0.14542897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8201762804672227308}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -30.402536, y: -77.36776, z: -99.762665}
+--- !u!1 &9139561307003100360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5519407125602362240}
+  m_Layer: 0
+  m_Name: Magicka_Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5519407125602362240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9139561307003100360}
+  m_LocalRotation: {x: 0.08677263, y: -0.04699112, z: -0.014047101, w: 0.99502015}
+  m_LocalPosition: {x: -0.15309346, y: 0.0000000123977655, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8783602632181008380}
+  - {fileID: 7644632879292913445}
+  m_Father: {fileID: 3428443217263258164}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 4.824583, y: 0.9785949, z: 3.888297}
+--- !u!1 &9166751671788610204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8315939406344473459}
+  m_Layer: 0
+  m_Name: Magicka_L_Leg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8315939406344473459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166751671788610204}
+  m_LocalRotation: {x: 0.0019355637, y: -0.00036288152, z: 0.18206617, w: 0.9832843}
+  m_LocalPosition: {x: -0.22081636, y: -0.000000024795531, z: 0.0000013637542}
+  m_LocalScale: {x: 1.000001, y: 1, z: 0.999999}
+  m_Children:
+  - {fileID: 5874008550083628047}
+  m_Father: {fileID: 8256285610572437382}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.22395898, y: 0.008056969, z: 75.59586}
+--- !u!1001 &940390885633074404
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7628497278242870220}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3675474
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3675474
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3675474
+      objectReference: {fileID: 0}
+    - target: {fileID: -2416733968201007103, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da097035ee0c9b54188e9d3074455c7a, type: 2}
+    - target: {fileID: -2416733968201007103, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2416733968201007103, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+        type: 3}
+      propertyPath: m_Name
+      value: ShadowMesh (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab0aca40c359bff4a9ccf7f48ad5cc23, type: 3}
+--- !u!4 &5221435901287403518 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: ab0aca40c359bff4a9ccf7f48ad5cc23,
+    type: 3}
+  m_PrefabInstance: {fileID: 940390885633074404}
+  m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6882162225140268797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5157345633992761293}
+  - component: {fileID: -1201467966035257858}
+  - component: {fileID: 328192306876815148}
+  m_Layer: 5
+  m_Name: DashPerk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5157345633992761293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882162225140268797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1201467966035257858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882162225140268797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3aa30ca3bd408d92446c07a6810628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customBinding:
+    index: 4
+    actions:
+    - {fileID: 328192306876815148}
+  destroyAfterActions: 1
+  removeSameIndexBindings: 1
+--- !u!114 &328192306876815148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882162225140268797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e77814d3934c9a8e2ec977d5998f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkLevel: 0
+  force: 100
+  timer: 0.1
+  cooldownTime: 5
+  aimingAvailable: 1
+  deactivateAimingOnCooldown: 1
+  aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 0
+    aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
+      type: 3}
+    sightPrefab: {fileID: 7091806835298126752, guid: e5e0d52d0d507274faac9a5ef1cffd03,
+      type: 3}
+    sightDistance: 5
+  dashFX:
+  - {fileID: 8575838153484086779, guid: 1fdfdd2c1c4a1b74280496a8b40cf8da, type: 3}
+  - {fileID: 2154348514870167830, guid: b381f5f18673d7849a50b48f8131c7a5, type: 3}
+  perkRelatedComponents:
+  - {fileID: -1201467966035257858}
+  levelablePropertiesList:
+  - propertyName: force
+    levelablePropertyAction: 1
+    modifier: 1
+    levelablePropertiesInfo:
+    - force

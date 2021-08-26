@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Cherry.Magicka/Axes.Online.Content/Scenes/Axes_Blocking.unity
+    guid: e547b6d8b8d344642958e9d096312d05
+  - enabled: 0
+    path: Assets/Cherry.Magicka/TAfolder/Scenes/Axes_Blocking2.unity
+    guid: c68639273c23eeb4488d60860b1ae1eb
+  - enabled: 0
+    path: Assets/Cherry.Magicka/TAfolder/Scenes/Axes_Blocking3.unity
+    guid: e778b63418d281b4bb4942b783cc0528
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 16d0d19b3eac44f8494faad85828f8d8,
+      type: 2}

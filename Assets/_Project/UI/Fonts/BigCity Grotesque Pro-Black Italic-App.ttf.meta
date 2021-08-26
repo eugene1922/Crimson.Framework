@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 3ec304eac8555b0408fd066db3faa03c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: BigCity Grotesque Pro
+  fontNames:
+  - BigCity Grotesque Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7d6aabe368ffed94fb20992d1f0fc206, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
