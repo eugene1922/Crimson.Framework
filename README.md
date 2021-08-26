@@ -1,4 +1,4 @@
-# Cherry Framework
+# Crimson Framework
 *The cherry on the cake.*
 
 ## Principles
@@ -15,11 +15,12 @@ Under construction. UPM installation guide will be here later.
 The module is each folder under the `Assets` directory. Each module can be referenced by any other module, except modules referenced by this module itself. Common modules (with multiple references by others) are allowed, but circular are not.
 
 This project contains following modules:
-* `Cherry.Core` — core gameplay ECS framework
-* `Cherry.Loading` — common bootstrapping code (entry point, composition root)
-* `Cherry.Common` — common utilities (serialization, logging, etc.)
-* `Cherry.Magicka` — initial project using frameworks described above
-* `Cherry.ThirdParty` — third-party plugins and tools
+* `Crimson.Core` — core gameplay ECS framework
+* `Crimson.Magicka` — initial project using frameworks described above
+* `Crimson.ThirdParty` — third-party plugins and tools
+TBD:
+* `Crimson.Loading` — common bootstrapping code (entry point, composition root)
+* `Crimson.Common` — common utilities (serialization, logging, etc.)
 
 ## How to add module
 ### Base module
@@ -29,15 +30,15 @@ Just add it into the `Assets` directory. And don't forget to add `.asmdef` files
 If you want to introduce an editor namespace for any module, please put it on the same level as base module, e.g.:
 ```
 /Assets/
-├── Cherry.Core
-├── Cherry.Core.Editor
+├── Crimson.Core
+├── Crimson.Core.Editor
 ```
 
 ### Test module
 The same as editor module.
 ```
 /Assets/
-├── Cherry.Core
-├── Cherry.Core.Editor
-├── Cherry.Core.Tests
+├── Crimson.Core
+├── Crimson.Core.Editor
+├── Crimson.Core.Tests
 ```
