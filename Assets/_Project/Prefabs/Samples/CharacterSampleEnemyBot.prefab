@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: -8760103647376991612}
   - component: {fileID: 6430768560650811411}
   - component: {fileID: -1924274504665356381}
+  - component: {fileID: -8540745754969349028}
   m_Layer: 0
-  m_Name: CharacterSampleBot
+  m_Name: CharacterSampleEnemyBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,6 +148,7 @@ MonoBehaviour:
     targetFilterMode: 0
     targetFilterTags:
     - Player
+    - Ally
   - behaviourType: AttackBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -189,6 +191,7 @@ MonoBehaviour:
     targetFilterMode: 0
     targetFilterTags:
     - Player
+    - Ally
   - behaviourType: AttackBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -231,6 +234,7 @@ MonoBehaviour:
     targetFilterMode: 0
     targetFilterTags:
     - Player
+    - Ally
   - behaviourType: RandomActionBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -538,3 +542,17 @@ MonoBehaviour:
     modifier: 1
     levelablePropertiesInfo:
     - force
+--- !u!114 &-8540745754969349028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newTag: Enemy
+  applyOnStart: 1

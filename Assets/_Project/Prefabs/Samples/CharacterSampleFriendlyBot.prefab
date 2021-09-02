@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: -8760103647376991612}
   - component: {fileID: 6430768560650811411}
   - component: {fileID: -1924274504665356381}
+  - component: {fileID: -1322401185430875244}
   m_Layer: 0
-  m_Name: CharacterSampleBot
+  m_Name: CharacterSampleFriendlyBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +54,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
+    - {fileID: 4158749165927678511, guid: 1ef2c06c973a96e46b0824a3a567156e, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
     executeCustomInput: 0
     targetFilterMode: 0
     targetFilterTags:
-    - Player
+    - Enemy
   - behaviourType: AttackBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -188,7 +189,7 @@ MonoBehaviour:
     executeCustomInput: 1
     targetFilterMode: 0
     targetFilterTags:
-    - Player
+    - Enemy
   - behaviourType: AttackBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -230,8 +231,8 @@ MonoBehaviour:
     executeCustomInput: 2
     targetFilterMode: 0
     targetFilterTags:
-    - Player
-  - behaviourType: RandomActionBehaviour
+    - Enemy
+  - behaviourType: AttackBehaviour
     priorityCurve:
       serializedVersion: 2
       m_Curve:
@@ -240,10 +241,52 @@ MonoBehaviour:
         value: 1
         inSlope: 0
         outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveMinSample: 0
+    curveMaxSample: 5
+    basePriority: 2.5
+    additionalMode: 
+    executeCustomInput: 3
+    targetFilterMode: 0
+    targetFilterTags:
+    - Enemy
+  - behaviourType: FollowLeaderBehaviour
+    priorityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.016548425
+        value: 0.85036427
+        inSlope: 0.49921954
+        outSlope: 0.49921954
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.09882318
       - serializedVersion: 3
         time: 1
         value: 1
@@ -251,18 +294,20 @@ MonoBehaviour:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    curveMinSample: 0
-    curveMaxSample: 100
+    curveMinSample: 4
+    curveMaxSample: 150
     basePriority: 1
     additionalMode: 
-    executeCustomInput: 3
+    executeCustomInput: 1
     targetFilterMode: 0
-    targetFilterTags: []
+    targetFilterTags:
+    - Player
+    - Ally
   - behaviourType: RoamBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -538,3 +583,17 @@ MonoBehaviour:
     modifier: 1
     levelablePropertiesInfo:
     - force
+--- !u!114 &-1322401185430875244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newTag: Ally
+  applyOnStart: 1

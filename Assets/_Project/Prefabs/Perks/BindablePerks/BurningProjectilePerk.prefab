@@ -72,7 +72,7 @@ MonoBehaviour:
   findTargetProperties:
     targetType: 3
     actorWithComponentName: 
-    targetTag: Player
+    targetTag: Enemy
     ignoreSpawner: 1
     strategy: 0
     maxDistanceThreshold: 20

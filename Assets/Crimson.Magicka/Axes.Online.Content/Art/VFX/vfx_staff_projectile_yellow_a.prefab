@@ -143,7 +143,7 @@ MonoBehaviour:
     filterMode: 0
     filterTags:
     - CollisionObjects
-    - Player
+    - Enemy
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -156,7 +156,7 @@ MonoBehaviour:
     filterTags:
     - DestructibleObject
     - CollisionObjects
-    - Player
+    - Enemy
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   SpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 9089498789839737983, guid: 3f08e99d196dc5b4e817490cfb199888, type: 3}
     spawnPosition: 2

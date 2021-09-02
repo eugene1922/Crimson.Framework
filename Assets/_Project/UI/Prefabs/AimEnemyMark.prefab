@@ -60,17 +60,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findTargetProperties:
-    targetType: 0
+    targetType: 3
     actorWithComponentName: 
-    targetTag: 
-    ignoreSpawner: 0
+    targetTag: Enemy
+    ignoreSpawner: 1
     strategy: 0
     maxDistanceThreshold: 0
   followMovementType: 0
   movementSpeed: 0
   retainOffset: 0
   continousFollow: 0
-  hideIfNoTarget: 0
+  hideIfNoTarget: 1
 --- !u!1001 &3260729270402142420
 PrefabInstance:
   m_ObjectHideFlags: 0

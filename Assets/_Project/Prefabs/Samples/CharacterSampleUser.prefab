@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4939348821489114762}
   - component: {fileID: -136997334286632821}
   - component: {fileID: 9024014690872530750}
+  - component: {fileID: -5199557533950553967}
   m_Layer: 0
   m_Name: CharacterSampleUser
   m_TagString: Untagged
@@ -154,7 +155,7 @@ MonoBehaviour:
   findTargetProperties:
     targetType: 3
     actorWithComponentName: 
-    targetTag: Player
+    targetTag: Enemy
     ignoreSpawner: 1
     strategy: 0
     maxDistanceThreshold: 20
@@ -181,7 +182,8 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    spawnPoints:
+    - {fileID: 0}
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -205,3 +207,17 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+--- !u!114 &-5199557533950553967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newTag: Player
+  applyOnStart: 1
