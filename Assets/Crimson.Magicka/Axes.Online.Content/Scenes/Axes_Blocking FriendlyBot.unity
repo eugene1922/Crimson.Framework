@@ -19826,6 +19826,12 @@ PrefabInstance:
       propertyPath: SpawnData.spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1823071716}
+    - target: {fileID: 3852962216648636370, guid: 53d96b1949d52964cb7b2a40b14f61a6,
+        type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 1322200569230309113, guid: 910a9cb53cdccaf45880ca1e12e277c9,
+        type: 3}
     - target: {fileID: 5757864796487651635, guid: 53d96b1949d52964cb7b2a40b14f61a6,
         type: 3}
       propertyPath: SpawnData.spawnPoints.Array.size
