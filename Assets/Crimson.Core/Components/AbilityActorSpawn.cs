@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Crimson.Core.Common;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -21,7 +21,8 @@ namespace Crimson.Core.Components
             set => componentName = value;
         }
 
-        [Space] [SerializeField]
+        [Space]
+        [SerializeField]
         public string componentName = "";
 
         [Space] public ActorSpawnerSettings SpawnData = new ActorSpawnerSettings();
@@ -41,6 +42,7 @@ namespace Crimson.Core.Components
             if (ExecuteOnAwake) Execute();
         }
 
+        [ContextMenu("Execute")]
         public void Execute()
         {
             Spawn();
@@ -67,5 +69,5 @@ namespace Crimson.Core.Components
 
             Destroy(this);
         }
-    } 
+    }
 }

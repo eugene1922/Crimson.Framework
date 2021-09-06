@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913176331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 16.1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.39, z: -5.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -282,14 +282,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1133847499497671720, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
-        type: 3}
-      propertyPath: m_IsTrigger
+    - target: {fileID: 1162490472, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: ExecuteOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1133847499497671720, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
-        type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 1162490472, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: SpawnData.destroyAbilityAfterSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162490473, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: collisionActions.Array.data[0].destroyAfterAction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7432209876421589088, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
@@ -305,7 +307,7 @@ PrefabInstance:
     - target: {fileID: 7432209876421589088, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7432209876421589088, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
         type: 3}
