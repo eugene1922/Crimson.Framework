@@ -137,7 +137,9 @@ namespace Crimson.Core.Systems
                         }
                     }
 
-                    if (state.players.Count(s => s.CompareTag(state.enemyTag)) == 0 && state.players.First() == state.userPlayer)
+                    if (state.NeedCheckEndGame
+                        && state.players.Count(s => s.CompareTag(state.enemyTag)) == 0
+                        && state.players.First() == state.userPlayer)
                     {
                         ShowEndPanel(state, EndResultType.Win);
                     }

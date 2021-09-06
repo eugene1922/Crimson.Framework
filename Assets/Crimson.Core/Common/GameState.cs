@@ -61,6 +61,8 @@ namespace Crimson.Core.Common
 
         public GameObject winPanel;
 
+        public bool NeedCheckEndGame;
+
         public override void PostConvert()
         {
             WorldEntityManager.AddComponentData(ActorEntity, new GameStateData());
