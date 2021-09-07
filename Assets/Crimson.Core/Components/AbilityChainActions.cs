@@ -18,6 +18,10 @@ namespace Assets.Crimson.Core.Components
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
+            if (ExecuteOnAwake)
+            {
+                Execute();
+            }
         }
 
         [ContextMenu("Test")]
@@ -28,10 +32,7 @@ namespace Assets.Crimson.Core.Components
 
         private void Start()
         {
-            if (ExecuteOnAwake)
-            {
-                Execute();
-            }
+
         }
 
         private void TestMethod()

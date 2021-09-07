@@ -4,9 +4,8 @@ namespace Assets.Crimson.Core.Common
 {
     public class EnemyRoom : Actor
     {
-        protected override void Start()
+        protected void Awake()
         {
-            base.Start();
             Setup();
         }
     }
