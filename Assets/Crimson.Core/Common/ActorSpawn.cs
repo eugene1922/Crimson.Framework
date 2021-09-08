@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -20,7 +20,7 @@ namespace Crimson.Core.Common
             IActor owner = null)
         {
             if (spawnSettings.SpawnerDisabled) return null;
-            
+
             Vector3 tempPos = Vector3.zero;
             Quaternion tempRot = Quaternion.Euler(Vector3.zero);
             GameObject tempObj;
@@ -41,7 +41,7 @@ namespace Crimson.Core.Common
                     return null;
                 }
             }
-            
+
             switch (spawnSettings.FillSpawnPoints)
             {
                 case FillMode.UseEachObjectOnce:
@@ -146,7 +146,7 @@ namespace Crimson.Core.Common
                             var spawnerMovementData =
                                 World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<ActorMovementData>(
                                     spawner.ActorEntity);
-                            tempRot = spawnerMovementData.Input.Equals(float3.zero)?Quaternion.Euler(Vector3.zero): Quaternion.LookRotation(Vector3.Normalize(spawnerMovementData.Input));
+                            tempRot = spawnerMovementData.Input.Equals(float3.zero) ? Quaternion.Euler(Vector3.zero) : Quaternion.LookRotation(Vector3.Normalize(spawnerMovementData.Input));
                         }
                         catch
                         {

@@ -377,16 +377,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1162490472, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
-      propertyPath: ExecuteOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162490472, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
-      propertyPath: SpawnData.destroyAbilityAfterSpawn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162490473, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
-      propertyPath: collisionActions.Array.data[0].destroyAfterAction
+    - target: {fileID: 1162490470, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: ExecuteOnSpawn.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7432209876421589088, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
@@ -746,10 +738,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExecuteOnAwake: 0
+  ExecuteOnStart: 0
   Settings:
     Actions: []
     Delay: 0
+    LoopCount: 0
+    StartupDelay: 0
 --- !u!114 &1907647071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,10 +782,10 @@ GameObject:
   m_Component:
   - component: {fileID: 999102460842371321}
   - component: {fileID: 999102460842371325}
-  - component: {fileID: 999102460842371324}
   - component: {fileID: 999102460842371327}
   - component: {fileID: 2466021746987109227}
-  - component: {fileID: 999102460842371300}
+  - component: {fileID: 999102460842371301}
+  - component: {fileID: 999102460842371302}
   m_Layer: 0
   m_Name: LevelBootstrap
   m_TagString: Untagged
@@ -799,7 +793,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &999102460842371300
+--- !u!114 &999102460842371301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -812,6 +806,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: User Character
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 782494515181297419, guid: 734b6926f9b882141b6ab7a8103cb20a, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 20
+    skipBusySpawnPoints: 1
+    spawnPointsFrom: 0
+    spawnPoints:
+    - {fileID: 913176331}
+    spawnPointTag: 
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 5854924350193893075, guid: 8591172140725be4a82e360b22309c48, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+--- !u!114 &999102460842371302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999102460842371299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8d79eb59c04294bc4318b766629486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Ally bot
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -856,45 +889,6 @@ Transform:
   m_Father: {fileID: 4245876652804268032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &999102460842371324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999102460842371299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8d79eb59c04294bc4318b766629486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: User Character
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 782494515181297419, guid: 734b6926f9b882141b6ab7a8103cb20a, type: 3}
-    spawnPosition: 0
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 20
-    skipBusySpawnPoints: 1
-    spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 913176331}
-    spawnPointTag: 
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 5854924350193893075, guid: 8591172140725be4a82e360b22309c48, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
 --- !u!114 &999102460842371325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +973,7 @@ MonoBehaviour:
     randomSeed: 0
   startTime: 0
   userPlayer: {fileID: 0}
-  userSpawner: {fileID: 999102460842371324}
+  userSpawner: {fileID: 0}
   winPanel: {fileID: 2685741086020035726, guid: cedcb3d5745c0c741a3c4f539e162cef,
     type: 3}
   NeedCheckEndGame: 0

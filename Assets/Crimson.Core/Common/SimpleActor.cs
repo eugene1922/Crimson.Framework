@@ -2,7 +2,7 @@
 
 namespace Assets.Crimson.Core.Common
 {
-    public class EnemyRoom : Actor
+    public class SimpleActor : Actor
     {
         protected void Awake()
         {
