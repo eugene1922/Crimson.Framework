@@ -32,7 +32,12 @@ namespace Crimson.Core.Components
         public Transform Target
         {
             get => _target;
-            set => _target = value;
+            
+            set
+            {
+                Debug.LogError(value);
+                _target = value;
+            }
         }
         
         private Transform _target;

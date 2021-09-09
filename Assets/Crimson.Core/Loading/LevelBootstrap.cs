@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Crimson.Core.Loading
@@ -21,7 +21,6 @@ namespace Crimson.Core.Loading
 
             CollectSpawners();
             RunSpawners();
-            RunSpawnActions();
         }
 
         public void CollectSpawners(List<IActorSpawner> spawners)
@@ -38,7 +37,7 @@ namespace Crimson.Core.Loading
             }
             //else
             //{
-                // Use match parameters from meta loader:
+            // Use match parameters from meta loader:
             //    actorSpawners = GetActorSpawners(parameters);
             //}
 
@@ -53,14 +52,6 @@ namespace Crimson.Core.Loading
             }
         }
 
-        public void RunSpawnActions(List<IActorSpawner> spawners)
-        {
-            foreach (var spawner in spawners)
-            {
-                spawner.RunSpawnActions();
-            }
-        }
-
         public void CollectSpawners()
         {
             CollectSpawners(_actorSpawners);
@@ -70,20 +61,5 @@ namespace Crimson.Core.Loading
         {
             RunSpawners(_actorSpawners);
         }
-
-        public void RunSpawnActions()
-        {
-            RunSpawnActions(_actorSpawners);
-        }
-/*
-        private IEnumerable<IActorSpawner> GetActorSpawners(MatchParameters parameters)
-        {
-            foreach (var matchPlayer in parameters.Players)
-            {
-                if (parameters.MatchType == MatchType.Local && matchPlayer.PlayerType == PlayerType.Network)
-                    matchPlayer.PlayerType = PlayerType.Local;
-                yield return ActorSpawnerFromMetaFactory.Create(matchPlayer);
-            }
-        }*/
     }
 }

@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   SpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
     spawnPosition: 2
@@ -359,8 +360,13 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 0}
     sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
     sightDistance: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1090190289803064, guid: 9c3f051267bdf9e48ae4328d1b5e6d98, type: 3}
     spawnPosition: 2
@@ -423,8 +429,13 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 0}
     sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
     sightDistance: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
     spawnPosition: 2
@@ -514,7 +525,11 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 0}
     sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
     sightDistance: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   dashFX: []
   perkRelatedComponents: []
   levelablePropertiesList:

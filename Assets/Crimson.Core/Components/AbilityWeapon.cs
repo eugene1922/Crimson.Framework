@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -26,7 +26,9 @@ namespace Crimson.Core.Components
             set => componentName = value;
         }
 
-        [Space] [ShowInInspector] [SerializeField]
+        [Space]
+        [ShowInInspector]
+        [SerializeField]
         public string componentName = "";
 
         public bool primaryProjectile;
@@ -35,7 +37,7 @@ namespace Crimson.Core.Components
         public bool deactivateAimingOnCooldown;
 
         [EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
-        
+
         [EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
 
         [ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
@@ -57,10 +59,12 @@ namespace Crimson.Core.Components
 
         [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
 
-        [InfoBox("Put here IEnable implementation to display reload")] [Space]
+        [InfoBox("Put here IEnable implementation to display reload")]
+        [Space]
         public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
 
-        [HideIf("projectileClipCapacity", 0f)] [Space]
+        [HideIf("projectileClipCapacity", 0f)]
+        [Space]
         public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
 
         public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
@@ -142,7 +146,7 @@ namespace Crimson.Core.Components
                     AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
                 });
             }
-            
+
             if (AimingAnimProperties.HasActorAimingAnimation)
             {
                 _dstManager.AddComponentData(entity, new AimingAnimProperties
@@ -217,7 +221,7 @@ namespace Crimson.Core.Components
         {
             this.EvaluateAim(Actor as Actor, pos);
         }
-        
+
         public void EvaluateAimBySelectedType(Vector2 pos)
         {
             switch (AimingProperties.aimingType)
@@ -233,22 +237,22 @@ namespace Crimson.Core.Components
                     break;
             }
         }
-        
+
         public void EvaluateAimByCircle()
         {
             if (_circlePrefabScaled) return;
-            
+
             var objectsToSpawn = projectileSpawnData.ObjectsToSpawn;
             if (!objectsToSpawn.Any() || objectsToSpawn.Count > 1) return;
 
             var objectToSpawn = objectsToSpawn.First();
 
             var abilityCollision = objectToSpawn.GetComponent<AbilityCollision>();
-            
+
             if (abilityCollision == null) return;
-            
+
             var coll = abilityCollision.useCollider;
-            
+
             if (coll == null) return;
 
             var colliderRadius = 0f;
@@ -260,7 +264,7 @@ namespace Crimson.Core.Components
                     break;
                 case CapsuleCollider capsule:
                     var direction = capsule.direction;
-                    
+
                     colliderRadius = (direction == 0 || direction == 2)
                         ? capsule.height * 0.5f
                         : capsule.radius;
@@ -280,7 +284,7 @@ namespace Crimson.Core.Components
         {
             this.ResetAiming(Actor);
             _circlePrefabScaled = false;
-            
+
             if (AimingProperties.evaluateActionOptions != EvaluateActionOptions.RepeatingEvaluation) return;
             OnHoldAttackActive = false;
             ResetSpawnPointRootRotation();
@@ -293,7 +297,7 @@ namespace Crimson.Core.Components
                 SpawnPointsRoot.localRotation = Quaternion.identity;
                 return;
             }
-            
+
             SpawnPointsRoot.localRotation = Quaternion.Euler(0, -180, 0);
         }
 
@@ -318,7 +322,7 @@ namespace Crimson.Core.Components
             var objectsToSpawn = suppressWeaponSpawn
                 ? projectileSpawnData.ObjectsToSpawn
                 : SpawnedObjects;
-            
+
             if (objectsToSpawn == null) return;
 
             foreach (var callback in SpawnCallbacks)
@@ -333,18 +337,10 @@ namespace Crimson.Core.Components
             });
 
             if (!_actorToUi) return;
-            
+
             ResetSpawnPointRootRotation();
             OnHoldAttackActive = false;
             findTargetProperties.SearchCompleted = false;
-        }
-
-        public void RunSpawnActions()
-        {
-            if (projectileSpawnData.RunSpawnActionsOnObjects)
-            {
-                _ = ActorSpawn.RunSpawnActions(SpawnedObjects);
-            }
         }
 
         public void Reload()
@@ -423,7 +419,7 @@ namespace Crimson.Core.Components
         DirectAttack = 0,
         AutoAim = 1
     }
-    
+
     public enum AttackDirectionType
     {
         Forward = 0,

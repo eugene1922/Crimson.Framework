@@ -1,10 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
@@ -14,12 +14,13 @@ namespace Crimson.Core.Loading
     public struct ActorSpawnerSettings : IActorSpawnerSettings
     {
         [Space] public bool spawnerDisabled;
-        
+
         [Space] public List<GameObject> objectsToSpawn;
 
         [EnumToggleButtons] public SpawnPosition spawnPosition;
 
-        [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)] [EnumToggleButtons]
+        [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
+        [EnumToggleButtons]
         public FillOrder spawnPointsFillingMode;
 
         public FillMode fillSpawnPoints;
@@ -30,7 +31,8 @@ namespace Crimson.Core.Loading
         [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
         public bool skipBusySpawnPoints;
 
-        [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)] [EnumToggleButtons]
+        [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
+        [EnumToggleButtons]
         public SpawnPointsSource spawnPointsFrom;
 
         [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
@@ -50,10 +52,12 @@ namespace Crimson.Core.Loading
         [ShowIf("parentOfSpawns", TargetType.ComponentName)]
         public string actorWithComponentName;
 
-        [ShowIf("parentOfSpawns", TargetType.ChooseByTag)] [ValueDropdown("Tags")]
+        [ShowIf("parentOfSpawns", TargetType.ChooseByTag)]
+        [ValueDropdown("Tags")]
         public string parentTag;
 
-        [HideIf("@parentOfSpawns == TargetType.Spawner || parentOfSpawns == TargetType.None")] [EnumToggleButtons]
+        [HideIf("@parentOfSpawns == TargetType.Spawner || parentOfSpawns == TargetType.None")]
+        [EnumToggleButtons]
         public ChooseTargetStrategy chooseParentStrategy;
 
         public List<GameObject> copyComponentsFromSamples;
@@ -70,7 +74,7 @@ namespace Crimson.Core.Loading
         public bool destroyAbilityAfterSpawn;
         public int randomSeed;
 
-        private System.Random _rnd;
+        private Random _rnd;
 
         public bool SpawnerDisabled
         {
@@ -118,7 +122,11 @@ namespace Crimson.Core.Loading
         {
             get
             {
-                if (spawnPoints == null) spawnPoints = new List<GameObject>();
+                if (spawnPoints == null)
+                {
+                    spawnPoints = new List<GameObject>();
+                }
+
                 spawnPoints.RemoveAll(go => go == null);
 
                 return spawnPoints;

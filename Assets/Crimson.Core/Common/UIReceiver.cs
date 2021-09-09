@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Crimson.Core.Components;
+﻿using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
@@ -18,7 +18,8 @@ namespace Crimson.Core.Common
 
         public List<CustomButtonController> customButtons = new List<CustomButtonController>();
 
-        [Space] [OnValueChanged("UpdateUIChannelInfo")]
+        [Space]
+        [OnValueChanged("UpdateUIChannelInfo")]
         public bool explicitUIChannel;
 
         [ShowIf("explicitUIChannel")] public int UIChannelID = 0;
@@ -38,6 +39,7 @@ namespace Crimson.Core.Common
 
         private List<IUIElement> _uiElements = new List<IUIElement>();
         private List<string> _associatedIdsCache = new List<string>();
+        private static List<string> _ids;
 
         public override void PostConvert()
         {
@@ -66,7 +68,7 @@ namespace Crimson.Core.Common
         {
             var maxValuesToUpdate = UIElements.Where(element =>
                 element is IUIProgressBar progressBar && progressBar.MaxValueAssociatedID.Equals(elementID)).ToList();
-            maxValuesToUpdate.ForEach(progressBar => ((IUIProgressBar) progressBar).SetMaxValue(updatedData));
+            maxValuesToUpdate.ForEach(progressBar => ((IUIProgressBar)progressBar).SetMaxValue(updatedData));
 
             var elementToUpdate = UIElements.Where(element => element.AssociatedID.Equals(elementID)).ToList();
             elementToUpdate.ForEach(element => element.SetData(updatedData));
@@ -133,7 +135,7 @@ namespace Crimson.Core.Common
 
             primaryWeaponAbility.UpdateBindingIndex(primaryWeaponBinding.index, Spawner.ActorEntity);
 
-            primaryWeaponButton.SetupCustomButton(((IAimable) primaryWeaponAbility).AimingAvailable,
+            primaryWeaponButton.SetupCustomButton(((IAimable)primaryWeaponAbility).AimingAvailable,
                 primaryWeaponAbility.aimingProperties.evaluateActionOptions ==
                 EvaluateActionOptions.RepeatingEvaluation);
         }
@@ -143,22 +145,25 @@ namespace Crimson.Core.Common
             var fields = Assembly.GetExecutingAssembly()
                 .GetTypes().SelectMany(t => t.GetFields());
 
-            var ids = new List<string>();
-
-            foreach (var field in fields)
+            if (_ids == null)
             {
-                var attrs = field.GetCustomAttributes(false);
+                _ids = new List<string>();
 
-                foreach (var attr in attrs)
+                foreach (var field in fields)
                 {
-                    if (attr is CastToUI castToUi)
+                    var attrs = field.GetCustomAttributes(false);
+
+                    foreach (var attr in attrs)
                     {
-                        ids.Add(castToUi.FieldId);
+                        if (attr is CastToUI castToUi)
+                        {
+                            _ids.Add(castToUi.FieldId);
+                        }
                     }
                 }
             }
 
-            return ids;
+            return _ids;
         }
 
         private void UpdateUIChannelInfo()

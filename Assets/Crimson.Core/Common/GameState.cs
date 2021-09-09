@@ -1,36 +1,36 @@
-using System.Collections.Generic;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
+using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Common
 {
+    public struct GameStateData : IComponentData
+    {
+        public byte foo;
+    }
+
     public class GameState : Actor
     {
-        public GameObject respawnPanel;
-        public GameObject winPanel;
-        public GameObject losePanel;
+        [ValueDropdown("Tags")]
+        public string enemyTag;
 
-        public GameObject rootCanvas; 
-        
+        public GameObject losePanel;
         public int maxDeathCount = 1;
 
-        [ValidateInput("MustBeSpawner", "Spawner MonoBehaviours must derive from IActorSpawner!!")]
-        public MonoBehaviour userSpawner;
-
         [HideInInspector]
-        public AbilityActorPlayer userPlayer;
+        public IYandexAppMetrica metrica;
+
         [HideInInspector]
         public List<AbilityActorPlayer> players;
 
-        [HideInInspector] 
-        public IYandexAppMetrica metrica;
-
-        [HideInInspector] 
-        public double startTime;
+        public GameObject respawnPanel;
+        public GameObject rootCanvas;
 
         [HideInInspector]
         public ActorSpawnerSettings sampleSpawner = new ActorSpawnerSettings
@@ -46,10 +46,23 @@ namespace Crimson.Core.Common
             chooseParentStrategy = ChooseTargetStrategy.Nearest,
             RunSpawnActionsOnObjects = true,
             DestroyAbilityAfterSpawn = false,
-            CopyComponentsFromSamples = new List<GameObject>( ),
+            CopyComponentsFromSamples = new List<GameObject>(),
             CopyComponentsOfType = ComponentsOfType.AllComponents
         };
-        
+
+        [HideInInspector]
+        public double startTime;
+
+        [HideInInspector]
+        public AbilityActorPlayer userPlayer;
+
+        [ValidateInput("MustBeSpawner", "Spawner MonoBehaviours must derive from IActorSpawner!!")]
+        public MonoBehaviour userSpawner;
+
+        public GameObject winPanel;
+
+        public bool NeedCheckEndGame;
+
         public override void PostConvert()
         {
             WorldEntityManager.AddComponentData(ActorEntity, new GameStateData());
@@ -57,7 +70,7 @@ namespace Crimson.Core.Common
 
         protected override void Start()
         {
-            sampleSpawner.SpawnPoints = new List<GameObject> {this.gameObject};
+            sampleSpawner.SpawnPoints = new List<GameObject> { this.gameObject };
             sampleSpawner.objectsToSpawn = new List<GameObject>
             {
                 respawnPanel,
@@ -67,15 +80,15 @@ namespace Crimson.Core.Common
             metrica = AppMetrica.Instance;
             Setup();
         }
-        
+
+        private static IEnumerable Tags()
+        {
+            return EditorUtils.GetEditorTags();
+        }
+
         private bool MustBeSpawner(MonoBehaviour a)
         {
             return (a is IActorSpawner) || (a is null);
         }
-    }
-
-    public struct GameStateData : IComponentData
-    {
-        public byte foo;
     }
 }

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3134124665411950115}
   - component: {fileID: 7513091788076206376}
   - component: {fileID: -8874861893766724363}
+  - component: {fileID: 3518497310009205559}
   m_Layer: 0
   m_Name: CharacterSampleBot3
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   SpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
     spawnPosition: 2
@@ -361,8 +363,13 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 0}
     sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
     sightDistance: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1090190289803064, guid: 9c3f051267bdf9e48ae4328d1b5e6d98, type: 3}
     spawnPosition: 2
@@ -425,8 +432,13 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 0}
     sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
     sightDistance: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1818218211170410, guid: e0010223075b2f848854338d1599df09, type: 3}
     spawnPosition: 2
@@ -523,8 +535,13 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 0}
     sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
     sightDistance: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 7118220308488675679, guid: dc1050b2fdd63fc4aaa9ace31d32e85a, type: 3}
     spawnPosition: 2
@@ -573,3 +590,17 @@ MonoBehaviour:
   perkRelatedComponents:
   - {fileID: 7513091788076206376}
   levelablePropertiesList: []
+--- !u!114 &3518497310009205559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newTag: Enemy
+  applyOnStart: 1
