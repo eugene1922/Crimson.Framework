@@ -79,7 +79,7 @@ namespace Crimson.Core.Systems
                         if (follow.hideIfNoTarget) follow.gameObject.SetActive(false);
                         return;
                     }
-
+                    
                     if (follow.hideIfNoTarget) follow.gameObject.SetActive(true);
                     float3 targetPosition = follow.Target.position;
                     movement.Position = targetPosition;

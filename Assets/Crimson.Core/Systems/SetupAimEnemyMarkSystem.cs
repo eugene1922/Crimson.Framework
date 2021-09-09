@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
+    [DisableAutoCreation]
     public class SetupAimEnemyMarkSystem : ComponentSystem
     {
         private EntityQuery _actorToUiQuery, _findMarkQuery, _markQuery;
