@@ -55,7 +55,6 @@ namespace Crimson.Core.Systems
                             state.startTime = Time.ElapsedTime;
                             if (panels == null) return;
 
-                            ActorSpawn.RunSpawnActions(panels);
                             foreach (var panel in panels)
                             {
                                 panel.transform.SetParent(state.rootCanvas.transform);

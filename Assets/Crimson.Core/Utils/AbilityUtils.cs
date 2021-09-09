@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Crimson.Core.Common;
+using Crimson.Core.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Crimson.Core.Common;
-using Crimson.Core.Components;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
@@ -19,7 +19,7 @@ namespace Crimson.Core.Utils
             var componentsToCopy = perk.PerkRelatedComponents.Select(m => m as Component).ToList();
             componentsToCopy.Add(perk as Component);
 
-            var newComponents = target.GameObject.CopyComponentsWithLinks(componentsToCopy);
+            var newComponents = target.GameObject.CopyComponentsWithLinks(componentsToCopy.ToArray());
 
             if (bindingIndex != -1)
             {
@@ -65,13 +65,13 @@ namespace Crimson.Core.Utils
                 {
                     case ModifiablePropertiesActions.Multiply:
                         newValue = target == null || target == actor.Owner
-                            ?  (float) fieldValue * levelableProperty.modifier
-                            : (float) ((float) fieldValue * Math.Pow(levelableProperty.modifier, ability.Level - 1));
+                            ? (float)fieldValue * levelableProperty.modifier
+                            : (float)((float)fieldValue * Math.Pow(levelableProperty.modifier, ability.Level - 1));
                         break;
                     case ModifiablePropertiesActions.Add:
                         newValue = target == null || target == actor.Owner
-                            ? (float) fieldValue + levelableProperty.modifier
-                            : (float) fieldValue + (ability.Level - 1) * levelableProperty.modifier;
+                            ? (float)fieldValue + levelableProperty.modifier
+                            : (float)fieldValue + (ability.Level - 1) * levelableProperty.modifier;
                         break;
                 }
 
@@ -96,7 +96,7 @@ namespace Crimson.Core.Utils
 
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(entity, new BindedActionsCooldownData
             {
-                ReadyToUseBindingIndexes = new FixedList32<int> {bindable.BindingIndex}
+                ReadyToUseBindingIndexes = new FixedList32<int> { bindable.BindingIndex }
             });
         }
 
@@ -108,7 +108,7 @@ namespace Crimson.Core.Utils
 
             if (!(timer is IBindable)) return;
 
-            var bindable = (IBindable) timer;
+            var bindable = (IBindable)timer;
 
             if (bindable.BindingIndex < 0) return;
 
@@ -129,12 +129,12 @@ namespace Crimson.Core.Utils
             {
                 dstManager.AddComponentData(actor.ActorEntity, new BindedActionsCooldownData
                 {
-                    OnCooldownBindingIndexes = new FixedList32<int> {bindable.BindingIndex},
+                    OnCooldownBindingIndexes = new FixedList32<int> { bindable.BindingIndex },
                 });
             }
 
             var abilityPlayerInput = actor.Abilities.FirstOrDefault(a => a is AbilityPlayerInput) as AbilityPlayerInput;
-            
+
             if (abilityPlayerInput == null) return;
 
             var currentBinding = abilityPlayerInput.customBindings.FirstOrDefault(b => b.index == bindable.BindingIndex);
@@ -142,7 +142,7 @@ namespace Crimson.Core.Utils
             if (!currentBinding.Equals(new CustomBinding()) && currentBinding.actions.FirstOrDefault(a =>
                     a is IAimable aimable && aimable.AimingAvailable && aimable.DeactivateAimingOnCooldown) != null)
             {
-                uiReceiverList.ForEach(r => ((UIReceiver) r).SetCustomButtonOnCooldown(bindable.BindingIndex, true));
+                uiReceiverList.ForEach(r => ((UIReceiver)r).SetCustomButtonOnCooldown(bindable.BindingIndex, true));
             }
         }
 
@@ -154,7 +154,7 @@ namespace Crimson.Core.Utils
 
             if (!(timer is IBindable)) return;
 
-            var bindable = (IBindable) timer;
+            var bindable = (IBindable)timer;
 
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -170,7 +170,7 @@ namespace Crimson.Core.Utils
             if (!currentBinding.Equals(new CustomBinding()) && currentBinding.actions.FirstOrDefault(a =>
                     a is IAimable aimable && aimable.AimingAvailable && aimable.DeactivateAimingOnCooldown) != null)
             {
-                uiReceiverList.ForEach(r => ((UIReceiver) r).SetCustomButtonOnCooldown(bindable.BindingIndex, false));
+                uiReceiverList.ForEach(r => ((UIReceiver)r).SetCustomButtonOnCooldown(bindable.BindingIndex, false));
             }
 
             if (dstManager.HasComponent<BindedActionsCooldownData>(actor.ActorEntity))
@@ -184,17 +184,16 @@ namespace Crimson.Core.Utils
 
             dstManager.AddComponentData(actor.ActorEntity,
                 new BindedActionsCooldownData
-                    {ReadyToUseBindingIndexes = new FixedList32<int> {bindable.BindingIndex}});
+                { ReadyToUseBindingIndexes = new FixedList32<int> { bindable.BindingIndex } });
         }
-        
+
         public static void EvaluateAim(this IAimable aiming, IActor actor, Vector2 pos)
         {
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            
+
             if (aiming.SpawnedAimingPrefab == null)
             {
-                GameObject prefabToSpawn = null;
-
+                GameObject prefabToSpawn;
                 switch (aiming.AimingProperties.aimingType)
                 {
                     case AimingType.AimingArea:
@@ -210,7 +209,10 @@ namespace Crimson.Core.Utils
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (prefabToSpawn == null) return;
+                if (prefabToSpawn == null)
+                {
+                    return;
+                }
 
                 var spawnAbility = actor.GameObject.AddComponent<AbilityActorSimpleSpawn>();
 
@@ -222,24 +224,27 @@ namespace Crimson.Core.Utils
                 spawnAbility.DestroyAfterSpawn = true;
 
                 spawnAbility.Execute();
-                
-                if (spawnAbility.spawnedObject == null) return;
+
+                if (spawnAbility.spawnedObject == null)
+                {
+                    return;
+                }
 
                 aiming.SpawnedAimingPrefab = spawnAbility.spawnedObject;
             }
 
             if (!dstManager.HasComponent<ActorEvaluateAimingAnimData>(actor.ActorEntity))
             {
-                dstManager.AddComponentData(actor.ActorEntity, new ActorEvaluateAimingAnimData {AimingActive = true});
+                dstManager.AddComponentData(actor.ActorEntity, new ActorEvaluateAimingAnimData { AimingActive = true });
             }
             else
             {
                 var existingComponent = dstManager.GetComponentData<ActorEvaluateAimingAnimData>(actor.ActorEntity);
                 existingComponent.AimingActive = true;
-                
+
                 dstManager.SetComponentData(actor.ActorEntity, existingComponent);
             }
-            
+
             aiming.EvaluateAimBySelectedType(pos);
 
 
@@ -256,7 +261,7 @@ namespace Crimson.Core.Utils
 
             return aiming.SpawnedAimingPrefab.transform.forward;
         }
-        
+
         public static Vector3 EvaluateAimBySight(this IAimable aiming, IActor actor, Vector2 pos)
         {
             var newSightPos = actor.GameObject.transform.position - new Vector3(
@@ -267,22 +272,22 @@ namespace Crimson.Core.Utils
 
             return aiming.SpawnedAimingPrefab.transform.position;
         }
-        
+
         public static void ResetAiming(this IAimable aiming, IActor actor)
         {
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            
+
             if (aiming.SpawnedAimingPrefab == null) return;
-            
+
             if (!dstManager.HasComponent<ActorEvaluateAimingAnimData>(actor.ActorEntity))
             {
-                dstManager.AddComponentData(actor.ActorEntity, new ActorEvaluateAimingAnimData {AimingActive = false});
+                dstManager.AddComponentData(actor.ActorEntity, new ActorEvaluateAimingAnimData { AimingActive = false });
             }
             else
             {
                 var existingComponent = dstManager.GetComponentData<ActorEvaluateAimingAnimData>(actor.ActorEntity);
                 existingComponent.AimingActive = false;
-                
+
                 dstManager.SetComponentData(actor.ActorEntity, existingComponent);
             }
 

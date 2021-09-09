@@ -832,6 +832,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
+    SpawnDelays:
+      Delay: 0
+      StartupDelay: 0
 --- !u!114 &999102460842371302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +878,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
+    SpawnDelays:
+      Delay: 1
+      StartupDelay: 5
 --- !u!4 &999102460842371321
 Transform:
   m_ObjectHideFlags: 0
@@ -971,6 +977,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
+    SpawnDelays:
+      Delay: 0
+      StartupDelay: 0
   startTime: 0
   userPlayer: {fileID: 0}
   userSpawner: {fileID: 0}

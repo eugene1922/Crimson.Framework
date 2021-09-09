@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Crimson.Core.Utils.LowLevel;
+using System;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
@@ -52,19 +52,25 @@ namespace Crimson.Core.Systems
                             .Where(b => b.index == j)
                             .SelectMany(b => b.actions)
                             .Where(a => a is IAimable aimable && aimable.AimingAvailable)
-                            .ToList();
+                            .Cast<IAimable>();
 
-                        if (!currentWeapons.Any()) continue;
+                        if (currentWeapons.Count() == 0) continue;
 
-                        var inputValue = (Vector2) input.CustomSticksInput[i];
+                        var inputValue = (Vector2)input.CustomSticksInput[i];
 
                         if (inputValue == Vector2.zero)
                         {
-                            currentWeapons.ForEach(a => ((IAimable) a).ResetAiming());
+                            foreach (var item in currentWeapons)
+                            {
+                                item.ResetAiming();
+                            }
                             continue;
                         }
 
-                        currentWeapons.ForEach(a => ((IAimable) a).EvaluateAim(inputValue));
+                        foreach (var item in currentWeapons)
+                        {
+                            item.EvaluateAim(inputValue);
+                        }
                     }
                 });
 
@@ -73,29 +79,32 @@ namespace Crimson.Core.Systems
                 {
                     foreach (var b in mapping.bindingsDict)
                     {
-                        var aimables = b.Value.OfType<IAimable>().ToList();
+                        var aimables = b.Value.OfType<IAimable>();
 
                         if (Math.Abs(input.CustomInput[b.Key]) < Constants.INPUT_THRESH)
                         {
-                            aimables.ForEach(a => a.ActionExecutionAllowed = true);
+                            foreach (var item in aimables)
+                            {
+                                item.ActionExecutionAllowed = true;
+                            }
                             continue;
                         }
-                        
-                        aimables.ForEach(a =>
-                        {
-                            if (!a.ActionExecutionAllowed) return;
-                            
-                            (a as IActorAbility)?.Execute();
 
-                            if (a.AimingProperties.evaluateActionOptions == EvaluateActionOptions.EvaluateOnce) a.ActionExecutionAllowed = false;
-                            
+                        foreach (var item in aimables)
+                        {
+                            if (!item.ActionExecutionAllowed) return;
+
+                            (item as IActorAbility)?.Execute();
+
+                            if (item.AimingProperties.evaluateActionOptions == EvaluateActionOptions.EvaluateOnce) item.ActionExecutionAllowed = false;
+
                             if (mapping.inputSource != InputSource.UserInput) return;
-                            
+
                             PostUpdateCommands.AddComponent(entity, new NotifyButtonActionExecutedData
                             {
                                 ButtonIndex = b.Key
                             });
-                        });
+                        }
                     }
                 });
 

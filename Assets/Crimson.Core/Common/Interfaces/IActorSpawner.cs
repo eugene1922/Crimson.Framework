@@ -7,6 +7,5 @@ namespace Crimson.Core.Common
     {
         List<GameObject> SpawnedObjects { get; }
         void Spawn();
-        void RunSpawnActions();
     }
 }

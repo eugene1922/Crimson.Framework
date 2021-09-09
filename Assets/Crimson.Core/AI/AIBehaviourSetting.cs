@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Crimson.Core.AI
@@ -16,7 +16,8 @@ namespace Crimson.Core.AI
     {
         [ValueDropdown("GetAIs")] public string behaviourType = "";
 
-        [HideIf("@GetOrCreateAI(behaviourType) == null || HideCurve(behaviourType)")] [InfoBox("@GetCurveLabel(behaviourType)")]
+        [HideIf("@GetOrCreateAI(behaviourType) == null || HideCurve(behaviourType)")]
+        [InfoBox("@GetCurveLabel(behaviourType)")]
         public AnimationCurve priorityCurve = AnimationCurve.Linear(0f, 1f, 1f, 1f);
 
         [HideIf("@GetOrCreateAI(behaviourType) == null || HideCurve(behaviourType)")]
@@ -25,20 +26,26 @@ namespace Crimson.Core.AI
         [HideIf("@GetOrCreateAI(behaviourType) == null || HideCurve(behaviourType)")]
         public float curveMaxSample = 100;
 
-        [HideIf("@GetOrCreateAI(behaviourType) == null")] [Range(0, 3)]
+        [HideIf("@GetOrCreateAI(behaviourType) == null")]
+        [Range(0, 3)]
         public float basePriority = 1;
 
-        [ShowIf("@ShowModes(behaviourType)")] [Space] [ValueDropdown("@GetModes(behaviourType)")]
+        [ShowIf("@ShowModes(behaviourType)")]
+        [Space]
+        [ValueDropdown("@GetModes(behaviourType)")]
         public string additionalMode = "";
 
         [ShowIf("@ShowActions(behaviourType)")]
         [Space]
         public int executeCustomInput = 1;
 
-        [ShowIf("@ShowFilters(behaviourType)")] [Space] [EnumToggleButtons]
+        [ShowIf("@ShowFilters(behaviourType)")]
+        [Space]
+        [EnumToggleButtons]
         public TagFilterMode targetFilterMode = TagFilterMode.IncludeOnly;
 
-        [ShowIf("@ShowFilters(behaviourType)")] [ValueDropdown("Tags")]
+        [ShowIf("@ShowFilters(behaviourType)")]
+        [ValueDropdown("Tags")]
         public List<string> targetFilterTags;
 
         public IAIBehaviour BehaviourInstance => GetOrCreateAI(behaviourType);
@@ -46,12 +53,30 @@ namespace Crimson.Core.AI
         private IAIBehaviour _behaviourInstance;
 
         public IActor Actor;
+        private static Dictionary<string, Type> _aiTypes;
+
+        private Dictionary<string, Type> _avaiableTypes
+        {
+            get
+            {
+                if (_aiTypes == null)
+                {
+                    _aiTypes = AppDomain.CurrentDomain.GetAssemblies()
+                                                      .SelectMany(s => s.GetTypes())
+                                                      .Where(p => typeof(IAIBehaviour).IsAssignableFrom(p) && p.IsClass)
+                                                      .GroupBy(s => s.Name.Split('.').Last())
+                                                      .ToDictionary(s => s.Key, v => v.First());
+                }
+
+                return _aiTypes;
+            }
+        }
 
         private static IEnumerable<string> GetAIs()
         {
 #if UNITY_EDITOR
 
-            var l = new List<string> {String.Empty};
+            var l = new List<string> { String.Empty };
             l.AddRange(AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => typeof(IAIBehaviour).IsAssignableFrom(p) && p.IsClass)
@@ -81,9 +106,7 @@ namespace Crimson.Core.AI
                     .Equals(type, StringComparison.Ordinal))
                 return _behaviourInstance;
 
-            Type t = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(s => s.GetTypes()).Where(p => typeof(IAIBehaviour).IsAssignableFrom(p) && p.IsClass)
-                .FirstOrDefault(p => p.Name.Split('.').Last().Equals(type, StringComparison.Ordinal));
+            Type t = _avaiableTypes[type];
             if (t == null)
             {
                 Debug.LogError(
@@ -104,12 +127,12 @@ namespace Crimson.Core.AI
             if (b == null || b.XAxis.Equals(String.Empty, StringComparison.Ordinal)) return string.Empty;
 
             return "Curve for behaviour priority based on " + b.XAxis;
-            
+
 #else
             return String.Empty;
 #endif
         }
-        
+
         private bool HideCurve(string type)
         {
 #if UNITY_EDITOR
@@ -144,7 +167,7 @@ namespace Crimson.Core.AI
             return false;
 #endif
         }
-        
+
         private bool ShowModes(string type)
         {
 #if UNITY_EDITOR
@@ -155,7 +178,7 @@ namespace Crimson.Core.AI
             return false;
 #endif
         }
-        
+
         private static IEnumerable Tags()
         {
             return EditorUtils.GetEditorTags();

@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
@@ -11,8 +12,16 @@ namespace Crimson.Core.Components
 {
     [HideMonoScript]
     [DoNotAddToEntity]
-    public class AbilityActorSpawn : MonoBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName
+    public class AbilityActorSpawn : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName
     {
+        [Space]
+        [SerializeField]
+        public string componentName = "";
+
+        [Space] public bool ExecuteOnAwake = false;
+        [Space] public ActorSpawnerSettings SpawnData;
+        [Space] public TimerDelays SpawnDelays;
+        private SpawnTimerCollection _spawnedObjectCollection = new SpawnTimerCollection();
         public IActor Actor { get; set; }
 
         public string ComponentName
@@ -21,45 +30,33 @@ namespace Crimson.Core.Components
             set => componentName = value;
         }
 
-        [Space]
-        [SerializeField]
-        public string componentName = "";
-
-        [Space] public ActorSpawnerSettings SpawnData = new ActorSpawnerSettings();
-
-        [Space] public bool ExecuteOnAwake = false;
-        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
-        public List<Action<GameObject>> SpawnCallbacks { get; set; } = new List<Action<GameObject>>();
         public Action<GameObject> DisposableSpawnCallback { get; set; }
+        public List<Action<GameObject>> SpawnCallbacks { get; set; } = new List<Action<GameObject>>();
+        public List<GameObject> SpawnedObjects => _spawnedObjectCollection;
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
         }
 
-        void Start()
-        {
-            if (ExecuteOnAwake) Execute();
-        }
-
         [ContextMenu("Execute")]
         public void Execute()
         {
             Spawn();
-            RunSpawnActions();
             DestroyAbilityAfterSpawn();
         }
 
         public void Spawn()
         {
-            SpawnedObjects = ActorSpawn.Spawn(SpawnData, Actor, Actor.Owner);
-        }
-
-        public void RunSpawnActions()
-        {
-            if (SpawnData.RunSpawnActionsOnObjects)
+            _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor.Owner));
+            _spawnedObjectCollection.Clear();
+            if (SpawnDelays.IsEmpty)
             {
-                _ = ActorSpawn.RunSpawnActions(SpawnedObjects);
+                _spawnedObjectCollection.Spawn();
+            }
+            else
+            {
+                _spawnedObjectCollection.SpawnWithOptions(Timer, SpawnDelays);
             }
         }
 
@@ -68,6 +65,11 @@ namespace Crimson.Core.Components
             if (!SpawnData.DestroyAbilityAfterSpawn) return;
 
             Destroy(this);
+        }
+
+        private void Start()
+        {
+            if (ExecuteOnAwake) Execute();
         }
     }
 }

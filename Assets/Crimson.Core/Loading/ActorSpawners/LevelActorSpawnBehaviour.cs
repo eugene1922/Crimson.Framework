@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using Crimson.Core.Common;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Crimson.Core.Loading.ActorSpawners
 {
-    [HideMonoScript][DoNotAddToEntity]
+    [HideMonoScript]
+    [DoNotAddToEntity]
     public sealed class LevelActorSpawnBehaviour : MonoBehaviour, IActorSpawner, IComponentName
     {
         public string ComponentName
@@ -16,22 +17,19 @@ namespace Crimson.Core.Loading.ActorSpawners
         }
 
         [Space] [SerializeField] public string componentName = "";
-        [Space] 
-        
+        [Space]
+
         public ActorSpawnerSettings SpawnData;
 
-        public List<GameObject> SpawnedObjects { get; private set; }
-        
+        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
+
         public void Spawn()
         {
-            SpawnedObjects = ActorSpawn.Spawn(SpawnData);
-        }
-
-        public void RunSpawnActions()
-        {
-            if (SpawnData.RunSpawnActionsOnObjects)
+            var spawnItems = ActorSpawn.GenerateData(SpawnData);
+            SpawnedObjects.Clear();
+            for (var i = 0; i < spawnItems.Count; i++)
             {
-                _ = ActorSpawn.RunSpawnActions(SpawnedObjects);
+                SpawnedObjects.Add(ActorSpawn.Spawn(spawnItems[i]));
             }
         }
     }

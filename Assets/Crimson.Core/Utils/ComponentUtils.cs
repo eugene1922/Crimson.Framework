@@ -1,10 +1,10 @@
+using Crimson.Core.AI;
+using Crimson.Core.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Crimson.Core.AI;
-using Crimson.Core.Common;
 using Unity.Entities;
 using UnityEngine;
 using Object = System.Object;
@@ -66,16 +66,15 @@ namespace Crimson.Core.Utils
             return go.AddComponent(sample.GetType()).GetCopyOf(sample);
         }
 
-        public static List<Component> CopyComponentsWithLinks(this GameObject dest, List<Component> sampledComponents)
+        public static List<Component> CopyComponentsWithLinks(this GameObject dest, params Component[] components)
         {
             var newComponents = new List<Component>();
-            Dictionary<Component, Component> copies = new Dictionary<Component, Component>();
+            var copies = new Dictionary<Component, Component>();
 
-            const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance |
-                                       BindingFlags.Default | BindingFlags.DeclaredOnly;
-            
-            foreach (var component in sampledComponents)
+            Component component;
+            for (var i = 0; i < components.Length; i++)
             {
+                component = components[i];
                 var newComponent = CopyComponent(dest, component);
                 copies.Add(component, newComponent);
                 newComponents.Add(newComponent);
@@ -92,14 +91,14 @@ namespace Crimson.Core.Utils
         static Object UpdateComponentFields(Object obj, Dictionary<Component, Component> copies)
         {
             var type = obj.GetType();
-            
+
             var fInfos = type.GetFields(Flags);
 
             foreach (var fInfo in fInfos)
             {
                 var tempObj = fInfo.GetValue(obj);
                 var resultObj = UpdateObject(tempObj, copies);
-                
+
                 fInfo.SetValue(obj, resultObj);
             }
 
@@ -112,7 +111,7 @@ namespace Crimson.Core.Utils
 
             if (newObj is MonoBehaviour)
             {
-                var tempComponent = (Component) newObj;
+                var tempComponent = (Component)newObj;
 
                 if (copies.ContainsKey(tempComponent))
                 {
@@ -132,15 +131,14 @@ namespace Crimson.Core.Utils
                         IList outEnumerable;
                         if (enumerable.GetType().IsArray)
                         {
-                            outEnumerable = tempList is MonoBehaviour[]
-                                ? new MonoBehaviour[tempList.Count]
-                                : (IList) Array.CreateInstance(tempList.GetType().GenericTypeArguments[0], tempList.Count);
+                            outEnumerable = tempList is MonoBehaviour[]? new MonoBehaviour[tempList.Count]
+                                : (IList)Array.CreateInstance(tempList.GetType().GenericTypeArguments[0], tempList.Count);
                         }
                         else
                         {
                             outEnumerable = tempList is List<MonoBehaviour>
                                 ? new List<MonoBehaviour>()
-                                : (IList) Activator.CreateInstance(typeof(List<>).MakeGenericType(tempList.GetType().GenericTypeArguments[0]));
+                                : (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(tempList.GetType().GenericTypeArguments[0]));
                         }
 
                         for (var i = 0; i < tempList.Count; i++)
@@ -156,7 +154,7 @@ namespace Crimson.Core.Utils
                                 outEnumerable.Add(outObj);
                             }
                         }
-                        
+
                         return outEnumerable;
                     }
 
@@ -176,7 +174,7 @@ namespace Crimson.Core.Utils
 
             return newObj;
         }
-        
+
         public static bool IsNullOrEmpty(this IEnumerable source)
         {
             if (source != null)
@@ -215,12 +213,12 @@ namespace Crimson.Core.Utils
             var fields = component.GetType().GetFields(flags).ToList();
 
             return (from field in fields
-                let attrs = field.GetCustomAttributes(true)
-                from attr in attrs
-                where attr is T
-                select field).ToList();
+                    let attrs = field.GetCustomAttributes(true)
+                    from attr in attrs
+                    where attr is T
+                    select field).ToList();
         }
-        
-        
+
+
     }
 }
