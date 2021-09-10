@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteOnAwake: 1
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -75,7 +76,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  ExecuteOnAwake: 1
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!114 &-1330729215862922913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +146,7 @@ MonoBehaviour:
     curveMinSample: 0
     curveMaxSample: 20
     basePriority: 0.1
-    additionalMode: 'Random mode: priority as probability'
+    additionalMode: 'Strict mode: distance to priority'
     executeCustomInput: 0
     targetFilterMode: 0
     targetFilterTags:
@@ -184,7 +187,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 10
+    curveMaxSample: 3
     basePriority: 1.54
     additionalMode: 
     executeCustomInput: 1
@@ -227,7 +230,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 10
+    curveMaxSample: 3
     basePriority: 2.5
     additionalMode: 
     executeCustomInput: 2
@@ -267,38 +270,6 @@ MonoBehaviour:
     executeCustomInput: 3
     targetFilterMode: 0
     targetFilterTags: []
-  - behaviourType: RoamBehaviour
-    priorityCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    curveMinSample: 0
-    curveMaxSample: 100
-    basePriority: 1
-    additionalMode: 
-    executeCustomInput: 1
-    targetFilterMode: 0
-    targetFilterTags: []
   - behaviourType: FollowLeaderBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -333,7 +304,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    curveMinSample: 10
+    curveMinSample: 1
     curveMaxSample: 150
     basePriority: 2
     additionalMode: 
