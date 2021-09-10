@@ -1,11 +1,8 @@
+using Crimson.Core.AI;
+using Crimson.Core.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using GameFramework.Example.Common;
-using GameFramework.Example.Components;
-using GameFramework.Example.Utils;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -47,7 +44,7 @@ namespace GameFramework.Example.AI
 
         public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
         {
-            
+
 
             return true;
         }
