@@ -9,7 +9,8 @@ namespace Crimson.Core.Common
 {
     public class OnScreenCustomButton : OnScreenControl, IPointerDownHandler, IPointerUpHandler
     {
-        [InputControl(layout = "Button")] [SerializeField]
+        [InputControl(layout = "Button")]
+        [SerializeField]
         public string buttonControlPath;
         protected override string controlPathInternal
         {
@@ -39,15 +40,20 @@ namespace Crimson.Core.Common
         {
             if (eventData == null)
                 throw new ArgumentNullException(nameof(eventData));
-            
+
             SendValueToControl(_repeatedInvokingOnHold ? 0.0f : 1.0f);
         }
 
         public void ForceButtonRelease()
         {
             if (_repeatedInvokingOnHold) return;
-            
+
             SendValueToControl(0.0f);
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            throw new NotImplementedException();
         }
     }
 
