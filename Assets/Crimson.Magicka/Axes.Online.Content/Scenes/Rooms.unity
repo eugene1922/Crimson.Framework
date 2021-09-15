@@ -741,7 +741,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 782494515181297419, guid: 734b6926f9b882141b6ab7a8103cb20a, type: 3}
+    - {fileID: 3262676482833563216, guid: 89aa5e10162a330458f87730e76842de, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -780,7 +780,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 8625986845994627173, guid: f492de767fe9f4c4686d7ecf672716c9, type: 3}
+    - {fileID: 4378100992983064747, guid: 830905554525824489893d40dd1ddef7, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 1
