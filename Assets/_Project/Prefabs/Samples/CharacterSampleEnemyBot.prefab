@@ -313,7 +313,7 @@ MonoBehaviour:
     targetFilterTags:
     - Player
     - Ally
-  behaviourUpdatePeriod: {x: 1, y: 2}
+  behaviourUpdatePeriod: {x: 5, y: 7}
   activeBehaviour:
     behaviourType: 
     priorityCurve:

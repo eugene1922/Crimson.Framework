@@ -373,7 +373,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 5368583718573856659, guid: c5ca2cf90ff396d4fa8977a39ac23523, type: 3}
+    - {fileID: 6709606558096413722, guid: 39b186a062cd38841877bedb88dadee9, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 5368583718573856659, guid: c5ca2cf90ff396d4fa8977a39ac23523, type: 3}
+    - {fileID: 3631584107432802808, guid: 930b2749a3ec57c45931fdb75b60571c, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -559,7 +559,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 5368583718573856659, guid: c5ca2cf90ff396d4fa8977a39ac23523, type: 3}
+    - {fileID: 1390265400807741638, guid: 08574e98d49f11e48bbf07efeb5a1c27, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 5368583718573856659, guid: c5ca2cf90ff396d4fa8977a39ac23523, type: 3}
+    - {fileID: 1390265400807741638, guid: 08574e98d49f11e48bbf07efeb5a1c27, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 5368583718573856659, guid: c5ca2cf90ff396d4fa8977a39ac23523, type: 3}
+    - {fileID: 6709606558096413722, guid: 39b186a062cd38841877bedb88dadee9, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0

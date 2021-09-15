@@ -377,10 +377,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1162490470, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
-      propertyPath: ExecuteOnSpawn.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7432209876421589088, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
         type: 3}
       propertyPath: m_LocalPosition.x
