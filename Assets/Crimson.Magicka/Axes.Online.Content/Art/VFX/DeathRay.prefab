@@ -4937,7 +4937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkLevel: 1
-  damageValue: 20
+  damageValue: 100
   levelablePropertiesList: []
 --- !u!114 &6200437381617937406
 MonoBehaviour:
@@ -5027,9 +5027,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   m_Radius: 0.05
-  m_Height: 0.5
+  m_Height: 2.6518445
   m_Direction: 1
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Center: {x: 0, y: 1.4259242, z: 2.5921377e-15}
 --- !u!1 &6219323386875512987
 GameObject:
   m_ObjectHideFlags: 0
@@ -20247,7 +20247,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 50
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -20312,9 +20312,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 2.5}
+    m_Position: {x: 0, y: 0, z: 5.82}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0.01, y: 0.01, z: 3.5}
+    m_Scale: {x: 0.01, y: 0.01, z: 10}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0

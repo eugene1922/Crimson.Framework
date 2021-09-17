@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteOnAwake: 1
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -74,7 +75,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  ExecuteOnAwake: 1
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!114 &-1330729215862922913
 MonoBehaviour:
   m_ObjectHideFlags: 0

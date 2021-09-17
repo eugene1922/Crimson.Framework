@@ -168,8 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   primaryProjectile: 0
-  aimingAvailable: 0
-  deactivateAimingOnCooldown: 0
+  aimingAvailable: 1
+  deactivateAimingOnCooldown: 1
   attackDirectionType: 0
   weaponSpawnItem:
     spawnerDisabled: 0
