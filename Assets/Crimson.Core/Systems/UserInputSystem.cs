@@ -78,26 +78,27 @@ namespace Crimson.Core.Systems
             for (var i = 0; i <= 9; i++)
             {
                 var j = i;
-                _customActions.Add(new InputAction($"CustomAction{j}", binding: $"<Keyboard>/{j}"));
+                var action = new InputAction($"CustomAction{j}", binding: $"<Keyboard>/{j}");
+
                 switch (j)
                 {
                     case 0:
-                        _customActions.Last().AddBinding(new InputBinding("<Mouse>/leftButton"));
+                        action.AddBinding(new InputBinding("<Mouse>/leftButton"));
                         break;
                     case 1:
-                        _customActions.Last().AddBinding(new InputBinding("<Mouse>/rightButton"));
+                        action.AddBinding(new InputBinding("<Mouse>/rightButton"));
                         break;
                 }
 
-                _customActions.Last().started += context => { _customInputs[j] = context.ReadValue<float>(); };
-                _customActions.Last().performed += context => { _customInputs[j] = context.ReadValue<float>(); };
-                _customActions.Last().canceled += context => { _customInputs[j] = context.ReadValue<float>(); };
-                _customActions.Last().Enable();
+                action.started += context => { _customInputs[j] = context.ReadValue<float>(); };
+                action.performed += context => { _customInputs[j] = context.ReadValue<float>(); };
+                action.canceled += context => { _customInputs[j] = context.ReadValue<float>(); };
+                action.Enable();
+                _customActions.Add(action);
             }
 
             RegisterCustomSticks();
         }
-
         protected override void OnStopRunning()
         {
             _mouseAction.Disable();

@@ -22,7 +22,7 @@ namespace Crimson.Core.Common
 
         public void SetupButton(bool repeatedInvokingOnHold)
         {
-            _repeatedInvokingOnHold = repeatedInvokingOnHold;
+            _repeatedInvokingOnHold = true;// repeatedInvokingOnHold;
         }
 
         public void OnPointerDown(PointerEventData eventData)

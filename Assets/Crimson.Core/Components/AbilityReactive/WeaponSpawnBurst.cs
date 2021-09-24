@@ -77,7 +77,10 @@ namespace Crimson.Core.Components.AbilityReactive
         public IActor TargetActor { get; set; }
         public IActor AbilityOwnerActor { get; set; }
 
-        public IAimable Aim => _aimComponent;
+        public IAimable Aim => AimComponent as IAimable;
+
+        [ValidateInput("MustBeAimable", "Ability MonoBehaviours must derive from IAimable!")]
+        public MonoBehaviour AimComponent;
 
         protected Entity _entity;
         private EntityManager _dstManager;

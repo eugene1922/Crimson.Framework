@@ -184,8 +184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 0
+    ActorProjectileAnimationName: 
+  appliedPerksNames: []
+  clipReloadDisplayToggle: []
+  clipReloadTime: 1
   componentName: 
-  SpawnPoint: {fileID: 109786123851096012}
+  projectileClipCapacity: 0
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -210,16 +216,11 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  _cooldownTime: 0.3
-  projectileClipCapacity: 0
-  clipReloadTime: 1
   reloadDisplayToggle: []
-  clipReloadDisplayToggle: []
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
+  SpawnPoint: {fileID: 109786123851096012}
   suppressWeaponSpawn: 0
-  appliedPerksNames: []
+  _cooldownTime: 0.3
+  AimComponent: {fileID: 5310275137840092017}
 --- !u!114 &5310275137840092017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,13 +262,14 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  _resetAimTime: 0.15
   _aimingProperties:
     evaluateActionOptions: 0
-    aimingType: 2
+    aimingType: 1
     aimingAreaPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
       type: 3}
-    sightPrefab: {fileID: 0}
+    sightPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
+      type: 3}
     circlePrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
       type: 3}
-    sightDistance: 0
+    sightDistance: 10
+  _resetAimTime: 0.15

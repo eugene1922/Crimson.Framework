@@ -35,7 +35,6 @@ namespace Crimson.Core.Systems
                     }
                     foreach (var b in mapping.bindingsDict)
                     {
-                        if (Math.Abs(input.CustomInput[b.Key]) < Constants.INPUT_THRESH) continue;
                         b.Value.ForEach(a =>
                         {
                             var reactiveParser = a as AbilityReactiveParser;
@@ -43,7 +42,8 @@ namespace Crimson.Core.Systems
                             {
                                 reactiveParser.Parse(b.Key, playerInput);
                             }
-                            a.Execute();
+                            if (Math.Abs(playerInput.CustomInput[b.Key]) >= Constants.INPUT_THRESH)
+                                a.Execute();
 
                             if (mapping.inputSource != InputSource.UserInput) return;
 
@@ -51,8 +51,6 @@ namespace Crimson.Core.Systems
                             {
                                 ButtonIndex = b.Key
                             });
-
-
                         });
                     }
                 });

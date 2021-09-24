@@ -1,4 +1,5 @@
 ﻿using Crimson.Core.Common;
+using Crimson.Core.Components.Interfaces;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Crimson.Core.Components.AbilityReactive
         private float _lastInput;
         private float2 _lastStickInput;
         public IActor Actor { get; set; }
+
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             bindingsDict = new Dictionary<InputTypes, List<IActorAbility>>();
@@ -56,32 +58,34 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public void Parse(int index, PlayerInputData inputData)
         {
-            Debug.Log($"Parser: index={index} input.move={inputData.CustomSticksInput[index]}");
+            var input = inputData.CustomInput[index];
+            var stickInput = inputData.CustomSticksInput[index];
             foreach (var key in bindingsDict.Keys)
             {
-                var input = inputData.CustomInput[index];
-                var stickInput = inputData.CustomSticksInput[index];
                 switch (key)
                 {
                     case InputTypes.OnDrag:
                         ParseDrag(stickInput);
                         break;
+
                     case InputTypes.OnHold:
                         ParseHold(input);
                         break;
+
                     case InputTypes.OnClickDown:
                         ParseClickDown(input);
                         break;
+
                     case InputTypes.OnClickUp:
                         ParseClickUp(input);
                         break;
+
                     default:
                         break;
                 }
-                _lastInput = input;
-                _lastStickInput = stickInput;
             }
-
+            _lastInput = input;
+            _lastStickInput = stickInput;
         }
 
         private void InvokeActionsByType(InputTypes inputType)
@@ -90,6 +94,42 @@ namespace Crimson.Core.Components.AbilityReactive
             for (var i = 0; i < actions.Count; i++)
             {
                 actions[i].Execute();
+            }
+        }
+
+        private void InvokeBeginDrag(float2 input, List<IActorAbility> actions)
+        {
+            for (var i = 0; i < actions.Count; i++)
+            {
+                actions[i].Execute();
+                if (actions[i] is IDragable dragable)
+                {
+                    dragable.BeginDrag(input);
+                }
+            }
+        }
+
+        private void InvokeDrag(float2 input, List<IActorAbility> actions)
+        {
+            for (var i = 0; i < actions.Count; i++)
+            {
+                actions[i].Execute();
+                if (actions[i] is IDragable dragable)
+                {
+                    dragable.Drag(input);
+                }
+            }
+        }
+
+        private void InvokeEndDrag(float2 input, List<IActorAbility> actions)
+        {
+            for (var i = 0; i < actions.Count; i++)
+            {
+                actions[i].Execute();
+                if (actions[i] is IDragable dragable)
+                {
+                    dragable.EndDrag(input);
+                }
             }
         }
 
@@ -108,23 +148,33 @@ namespace Crimson.Core.Components.AbilityReactive
                 InvokeActionsByType(InputTypes.OnClickUp);
             }
         }
+
         private void ParseDrag(float2 stickInput)
         {
+            var actions = bindingsDict[InputTypes.OnDrag];
+
+            if (math.length(_lastStickInput) == 0 && math.length(stickInput) > 0)
+            {
+                InvokeBeginDrag(stickInput, actions);
+            }
+
             if (math.length(stickInput) > 0)
             {
-                InvokeActionsByType(InputTypes.OnDrag);
+                InvokeDrag(stickInput, actions);
+            }
+
+            if (math.length(stickInput) == 0 && math.length(_lastStickInput) > 0)
+            {
+                InvokeEndDrag(stickInput, actions);
             }
         }
 
         private void ParseHold(float input)
         {
-            if (_lastInput != 1 || input != 1)
+            if (_lastInput == 1 && input == 1)
             {
-                return;
+                InvokeActionsByType(InputTypes.OnHold);
             }
-
-            Debug.Log("Invoke on hold");
-            InvokeActionsByType(InputTypes.OnHold);
         }
     }
 }
