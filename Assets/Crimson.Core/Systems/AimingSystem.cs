@@ -46,10 +46,8 @@ namespace Crimson.Core.Systems
 
                     for (var i = 0; i <= input.CustomSticksInput.Length; i++)
                     {
-                        var j = i;
-
                         var currentWeapons = mapping.customBindings
-                            .Where(b => b.index == j)
+                            .Where(b => b.index == i)
                             .SelectMany(b => b.actions)
                             .Where(a => a is IAimable aimable && aimable.AimingAvailable)
                             .Cast<IAimable>();
@@ -57,7 +55,6 @@ namespace Crimson.Core.Systems
                         if (currentWeapons.Count() == 0) continue;
 
                         var inputValue = (Vector2)input.CustomSticksInput[i];
-
                         if (inputValue == Vector2.zero)
                         {
                             foreach (var item in currentWeapons)

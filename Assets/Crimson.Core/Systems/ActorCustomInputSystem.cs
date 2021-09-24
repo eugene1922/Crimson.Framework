@@ -1,8 +1,9 @@
-using System;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Crimson.Core.Components.AbilityReactive;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils.LowLevel;
+using System;
 using Unity.Entities;
 
 namespace Crimson.Core.Systems
@@ -27,16 +28,25 @@ namespace Crimson.Core.Systems
             Entities.With(_query).ForEach(
                 (Entity entity, AbilityPlayerInput mapping, ref PlayerInputData input) =>
                 {
+                    var playerInput = input;
+                    if (mapping.inputSource == InputSource.UserInput)
+                    {
+                        //Debug.Log($"Input:{input}");
+                    }
                     foreach (var b in mapping.bindingsDict)
                     {
                         if (Math.Abs(input.CustomInput[b.Key]) < Constants.INPUT_THRESH) continue;
                         b.Value.ForEach(a =>
                         {
-                            if (a is IAimable) return;
+                            var reactiveParser = a as AbilityReactiveParser;
+                            if (reactiveParser != null)
+                            {
+                                reactiveParser.Parse(b.Key, playerInput);
+                            }
                             a.Execute();
-                            
+
                             if (mapping.inputSource != InputSource.UserInput) return;
-                                
+
                             PostUpdateCommands.AddComponent(entity, new NotifyButtonActionExecutedData
                             {
                                 ButtonIndex = b.Key

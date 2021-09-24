@@ -21,7 +21,7 @@ namespace Crimson.Core.Components
         [Space] public bool ExecuteOnAwake = false;
         [Space] public ActorSpawnerSettings SpawnData;
         [Space] public TimerDelays SpawnDelays;
-        private SpawnTimerCollection _spawnedObjectCollection = new SpawnTimerCollection();
+        private readonly SpawnTimerCollection _spawnedObjectCollection = new SpawnTimerCollection();
         public IActor Actor { get; set; }
 
         public string ComponentName

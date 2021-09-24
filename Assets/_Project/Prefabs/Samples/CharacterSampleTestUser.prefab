@@ -10,12 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 109786123851096012}
   - component: {fileID: 7669828600908181923}
+  - component: {fileID: 2000508641564710722}
   - component: {fileID: -4939348821489114762}
   - component: {fileID: -136997334286632821}
   - component: {fileID: -5199557533950553967}
-  - component: {fileID: 6517037303009265377}
+  - component: {fileID: 3986267039757951303}
+  - component: {fileID: 5310275137840092017}
   m_Layer: 0
-  m_Name: CharacterSampleUser
+  m_Name: CharacterSampleTestUser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +56,26 @@ MonoBehaviour:
   customBindings:
   - index: 1
     actions:
-    - {fileID: 6517037303009265377}
+    - {fileID: 2000508641564710722}
+--- !u!114 &2000508641564710722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f565b7c09b33d499979c29272fd01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputBehaviours:
+  - InputType: 0
+    Actions:
+    - {fileID: 5310275137840092017}
+  - InputType: 1
+    Actions:
+    - {fileID: 3986267039757951303}
 --- !u!114 &-4939348821489114762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +136,6 @@ MonoBehaviour:
     - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
     - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
     - {fileID: 6649478402526264423, guid: f4ca641f063b44e1b925e77b0052c736, type: 3}
-    - {fileID: 12198837163808433, guid: b0d84bf60b57d3144a659d0083989395, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -152,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newTag: Player
   applyOnStart: 1
---- !u!114 &6517037303009265377
+--- !u!114 &3986267039757951303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,27 +181,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5854924350193893075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f27bbc5db2e824eaa1a3864f89642e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
-  primaryProjectile: 0
-  aimingAvailable: 1
-  deactivateAimingOnCooldown: 0
-  attackDirectionType: 0
-  weaponSpawnItem:
+  SpawnPoint: {fileID: 109786123851096012}
+  projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 6158782068863725022, guid: 4c8e75a21e8966b47baf954b546ac5ea, type: 3}
+    - {fileID: 1090190289803064, guid: 9c3f051267bdf9e48ae4328d1b5e6d98, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints: []
+    _spawnPoints:
+    - {fileID: 0}
     spawnPointTag: 
-    rotationOfSpawns: 3
+    rotationOfSpawns: 0
     parentOfSpawns: 1
     actorWithComponentName: 
     parentTag: 
@@ -192,8 +210,7 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  startupDelay: 0
-  cooldownTime: 0.3
+  _cooldownTime: 0.3
   projectileClipCapacity: 0
   clipReloadTime: 1
   reloadDisplayToggle: []
@@ -203,3 +220,54 @@ MonoBehaviour:
     ActorProjectileAnimationName: 
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+--- !u!114 &5310275137840092017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89289af1b1c4cdd468390ec60bbe1907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
+  aimingAvailable: 1
+  componentName: 
+  deactivateAimingOnCooldown: 0
+  _markSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    rotationOfSpawns: 0
+    parentOfSpawns: 1
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+  _resetAimTime: 0.15
+  _aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 2
+    aimingAreaPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
+      type: 3}
+    sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
+      type: 3}
+    sightDistance: 0

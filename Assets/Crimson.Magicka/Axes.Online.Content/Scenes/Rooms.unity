@@ -748,7 +748,7 @@ MonoBehaviour:
     x: 20
     skipBusySpawnPoints: 1
     spawnPointsFrom: 0
-    spawnPoints:
+    _spawnPoints:
     - {fileID: 913176331}
     spawnPointTag: 
     rotationOfSpawns: 0
@@ -758,7 +758,7 @@ MonoBehaviour:
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 5854924350193893075, guid: 8591172140725be4a82e360b22309c48, type: 3}
+    - {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 1
@@ -787,7 +787,7 @@ MonoBehaviour:
     x: 20
     skipBusySpawnPoints: 1
     spawnPointsFrom: 0
-    spawnPoints:
+    _spawnPoints:
     - {fileID: 1608263651}
     - {fileID: 614573736}
     - {fileID: 1789157912}
@@ -890,7 +890,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 3
     parentOfSpawns: 0

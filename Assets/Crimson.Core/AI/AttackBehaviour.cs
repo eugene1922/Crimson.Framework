@@ -1,8 +1,8 @@
+using Crimson.Core.Components;
+using Crimson.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Crimson.Core.Components;
-using Crimson.Core.Utils;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -43,13 +43,13 @@ namespace Crimson.Core.AI
             }
         }
 
-        public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai,  List<Transform> targets)
+        public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
         {
-            if ( this.GetType().ToString().Contains(ai.activeBehaviour.behaviourType))
+            if (this.GetType().ToString().Contains(ai.activeBehaviour.behaviourType))
             {
                 return 0f;
             }
-            
+
             _target = null;
             _behaviour = behaviour;
             _transform = behaviour.Actor.GameObject.transform;
@@ -57,7 +57,7 @@ namespace Crimson.Core.AI
             if (Time.timeSinceLevelLoad < ATTACK_DELAY * Random.value) return 0f;
 
             if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<DeadActorData>(entity)) return 0f;
-            
+
             if (CustomInput == null)
             {
                 //Debug.Log("[ATTACK BEHAVIOUR] No Input Ability!");
@@ -82,14 +82,14 @@ namespace Crimson.Core.AI
 
             List<Transform> orderedTargets = targets.Where(t => t.FilterTag(_behaviour) && t != _transform).OrderBy(t =>
                 math.distancesq(_transform.position, t.position)).ToList();
-            
+
             if (orderedTargets.Count == 0) return 0f;
 
             foreach (var t in orderedTargets)
             {
                 //Debug.DrawRay(_transform.position + VIEW_POINT_DELTA, t.position - _transform.position, Color.blue, 2f);
-                
-                if (Physics.Raycast(_transform.position+VIEW_POINT_DELTA, t.position - _transform.position, out var hit,
+
+                if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, t.position - _transform.position, out var hit,
                     AIM_MAX_DIST))
                 {
                     if (hit.transform != t) continue;
@@ -100,11 +100,11 @@ namespace Crimson.Core.AI
                     var curveSample = math.clamp(
                         (dist - _behaviour.curveMinSample) / sampleScale, 0f, 1f);
                     var result = _behaviour.priorityCurve.Evaluate(curveSample) * _behaviour.basePriority;
-                
+
                     return result;
                 }
             }
-            
+
             return 0f;
         }
 
@@ -115,7 +115,7 @@ namespace Crimson.Core.AI
 
         public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
         {
-            
+
             if (!_abilities.ActionPossible()) return false;
 
             if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
@@ -124,18 +124,11 @@ namespace Crimson.Core.AI
                 var dir = _target.position - _transform.position;
                 var angle = Vector2.Angle(new Vector2(dir.x, dir.z),
                     new Vector2(_transform.forward.x, _transform.forward.z));
-                
-                if (angle < SHOOTING_ANGLE_THRESH)
-                {
-                    inputData.CustomInput[_behaviour.executeCustomInput] = 1f;
-                }
-                else
-                {
-                    inputData.CustomInput[_behaviour.executeCustomInput] = 0f;
-                }
-                
+
+                inputData.CustomInput[_behaviour.executeCustomInput] = angle < SHOOTING_ANGLE_THRESH ? 1f : 0f;
+
                 inputData.Move = math.normalize(new float2(dir.x, dir.z));
-                
+
                 return true;
             }
 

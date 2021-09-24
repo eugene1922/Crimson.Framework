@@ -69,8 +69,6 @@ namespace Crimson.Core.Components
 
         public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
 
-        public bool suppressWeaponSpawn = false;
-
         [HideInInspector] public List<string> appliedPerksNames = new List<string>();
         public List<GameObject> SpawnedObjects { get; private set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
@@ -303,30 +301,30 @@ namespace Crimson.Core.Components
 
         public void Spawn()
         {
-            if (!suppressWeaponSpawn)
+            if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive &&
+                _actorToUi && !findTargetProperties.SearchCompleted)
             {
-                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive &&
-                    _actorToUi && !findTargetProperties.SearchCompleted)
+                _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
                 {
-                    _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
-                    {
-                        WeaponComponentName = ComponentName
-                    });
+                    WeaponComponentName = ComponentName
+                });
 
-                    return;
-                }
-
-                SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
+                return;
             }
 
-            var objectsToSpawn = suppressWeaponSpawn
-                ? projectileSpawnData.ObjectsToSpawn
-                : SpawnedObjects;
+            SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
 
-            if (objectsToSpawn == null) return;
+            var objectsToSpawn = SpawnedObjects;
 
-            foreach (var callback in SpawnCallbacks)
+            if (objectsToSpawn == null)
             {
+                return;
+            }
+
+            Action<GameObject> callback;
+            for (var i = 0; i < SpawnCallbacks.Count; i++)
+            {
+                callback = SpawnCallbacks[i];
                 objectsToSpawn.ForEach(go => callback.Invoke(go));
             }
 
