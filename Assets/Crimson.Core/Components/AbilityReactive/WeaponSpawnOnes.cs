@@ -171,7 +171,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public void Spawn()
         {
-            if (Aim != null)
+            if (Aim != null && Aim.SpawnedAimingPrefab != null)
             {
                 SpawnPointsRoot.LookAt(Aim.SpawnedAimingPrefab.transform);
             }
