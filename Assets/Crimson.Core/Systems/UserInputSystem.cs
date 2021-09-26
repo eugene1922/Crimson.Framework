@@ -164,15 +164,11 @@ namespace Crimson.Core.Systems
                 inputData.Mouse = MouseInput;
                 inputData.Look = LookInput;
 
-                var debugString = "";
-                
                 for (var i = 0; i < CustomInputs.Length; i++)
                 {
-                    debugString += $"{CustomInputs[i]:N1} |";
                     inputData.CustomInput[i] = CustomInputs[i];
                 }
-
-                Debug.Log(debugString);
+                
                 for (var i = 0; i < CustomSticksInputs.Length; i++)
                 {
                     inputData.CustomSticksInput[i] = CustomSticksInputs[i];
