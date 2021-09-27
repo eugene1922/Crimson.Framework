@@ -4856,7 +4856,6 @@ GameObject:
   - component: {fileID: 3321278090737671255}
   - component: {fileID: 8267625626124722838}
   - component: {fileID: 6200437381617937406}
-  - component: {fileID: 3244700669264814498}
   m_Layer: 10
   m_Name: DeathRay
   m_TagString: Untagged
@@ -4963,28 +4962,6 @@ MonoBehaviour:
   retainOffset: 0
   continousFollow: 1
   hideIfNoTarget: 0
---- !u!114 &3244700669264814498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6158782068863725022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535773388f1f4534bdad2a70960d5503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: 1
-  actorWithComponentName: 
-  targetTag: 
-  strategy: 0
-  followX: 1
-  followY: 1
-  followZ: 1
-  retainRotationOffset: 0
-  hideIfNoTarget: 0
-  target: {fileID: 0}
 --- !u!1 &6160300039647674046
 GameObject:
   m_ObjectHideFlags: 0

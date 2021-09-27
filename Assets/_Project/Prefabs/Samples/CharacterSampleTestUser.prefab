@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: -4939348821489114762}
   - component: {fileID: -136997334286632821}
   - component: {fileID: -5199557533950553967}
-  - component: {fileID: 3986267039757951303}
-  - component: {fileID: 5310275137840092017}
+  - component: {fileID: -7136897725198441121}
+  - component: {fileID: -800949660377118528}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -70,12 +70,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputBehaviours:
-  - InputType: 0
-    Actions:
-    - {fileID: 5310275137840092017}
   - InputType: 1
     Actions:
-    - {fileID: 3986267039757951303}
+    - {fileID: -800949660377118528}
+    - {fileID: -7136897725198441121}
 --- !u!114 &-4939348821489114762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newTag: Player
   applyOnStart: 1
---- !u!114 &3986267039757951303
+--- !u!114 &-7136897725198441121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,12 +179,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5854924350193893075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
+  m_Script: {fileID: 11500000, guid: d029a305833285747ab6a38f45bf474d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldownTime: 0.3
+  _weaponFinishTime: 0.15
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 0
     ActorProjectileAnimationName: 
+  AimComponent: {fileID: -800949660377118528}
   appliedPerksNames: []
   clipReloadDisplayToggle: []
   clipReloadTime: 1
@@ -195,7 +196,7 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 9c3f051267bdf9e48ae4328d1b5e6d98, type: 3}
+    - {fileID: 6158782068863725022, guid: 4c8e75a21e8966b47baf954b546ac5ea, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -217,11 +218,8 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   reloadDisplayToggle: []
-  SpawnPoint: {fileID: 109786123851096012}
   suppressWeaponSpawn: 0
-  _cooldownTime: 0.3
-  AimComponent: {fileID: 5310275137840092017}
---- !u!114 &5310275137840092017
+--- !u!114 &-800949660377118528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5854924350193893075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89289af1b1c4cdd468390ec60bbe1907, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a36ee688fe8bc747932cc8d153763c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aimingAnimProperties:
@@ -239,7 +237,14 @@ MonoBehaviour:
   aimingAvailable: 1
   componentName: 
   deactivateAimingOnCooldown: 0
-  _markSpawnData:
+  FindTargetProperties:
+    targetType: 3
+    actorWithComponentName: 
+    targetTag: Ally
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 15
+  MarkSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14, type: 3}
@@ -252,7 +257,7 @@ MonoBehaviour:
     _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
-    parentOfSpawns: 1
+    parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: 
     chooseParentStrategy: 0
@@ -262,14 +267,4 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  _aimingProperties:
-    evaluateActionOptions: 0
-    aimingType: 1
-    aimingAreaPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
-      type: 3}
-    sightPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
-      type: 3}
-    circlePrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
-      type: 3}
-    sightDistance: 10
-  _resetAimTime: 0.15
+  ResetAimTime: 0.15

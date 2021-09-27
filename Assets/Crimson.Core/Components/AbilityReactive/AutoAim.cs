@@ -14,7 +14,6 @@ namespace Crimson.Core.Components.AbilityReactive
         IActorAbility,
         IActorSpawnerAbility,
         IComponentName,
-        IEnableable,
         IAimable
     {
         public AimingAnimationProperties aimingAnimProperties;
@@ -26,9 +25,8 @@ namespace Crimson.Core.Components.AbilityReactive
         public string componentName = "";
 
         public bool deactivateAimingOnCooldown;
-        public ActorSpawnerSettings MarkSpawnData;
-
         [SerializeField] public FindTargetProperties FindTargetProperties = new FindTargetProperties();
+        public ActorSpawnerSettings MarkSpawnData;
 
         [InfoBox("Time when aim disable (Seconds)")]
         public float ResetAimTime = 0.15f;
@@ -64,12 +62,11 @@ namespace Crimson.Core.Components.AbilityReactive
         }
 
         public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
-        public bool OnHoldAttackActive { get; set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public GameObject SpawnedAimingPrefab { get; set; }
         public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
         public Transform SpawnPointsRoot { get; private set; }
+        public bool OnHoldAttackActive { get; set; }
         protected Entity CurrentEntity { get; private set; }
         protected EntityManager CurrentEntityManager { get; private set; }
 
@@ -82,8 +79,6 @@ namespace Crimson.Core.Components.AbilityReactive
             CurrentEntity = entity;
 
             SpawnCallbacks = new List<Action<GameObject>>();
-
-            Enabled = true;
 
             CurrentEntityManager.AddComponent<TimerData>(entity);
 
@@ -111,7 +106,7 @@ namespace Crimson.Core.Components.AbilityReactive
         public void Execute()
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-            if (Enabled && CurrentEntityManager.Exists(CurrentEntity))
+            if (CurrentEntityManager.Exists(CurrentEntity))
             {
                 Spawn();
 
@@ -123,50 +118,42 @@ namespace Crimson.Core.Components.AbilityReactive
         public override void FinishTimer()
         {
             base.FinishTimer();
-            Enabled = true;
+            ResetAiming();
         }
 
         public virtual void ResetAiming()
         {
             this.ResetAiming(Actor);
-            OnHoldAttackActive = false;
-            ResetSpawnPointRootRotation();
-        }
-
-        public void ResetSpawnPointRootRotation()
-        {
-            if (SpawnPointsRoot == null)
+            for (var i = 0; i < SpawnedObjects.Count; i++)
             {
-                return;
+                Destroy(SpawnedObjects[i]);
             }
-            SpawnPointsRoot.localRotation = Quaternion.identity;
+            SpawnedObjects.Clear();
         }
 
         public void SetTarget(Vector3 position)
         {
-            SpawnedObjects.ForEach(s => s.transform.position = position);
+            SpawnedObjects.ForEach(s => { if (s != null) s.transform.position = position; });
         }
 
         public void Spawn()
         {
-            if (SpawnedObjects == null || SpawnedObjects.Count == 0)
-            {
-                SpawnedObjects = ActorSpawn.Spawn(MarkSpawnData, Actor, Actor);
-            }
+            SpawnMarkIfNull();
             if (!FindTargetProperties.SearchCompleted)
             {
                 CurrentEntityManager.AddComponentData(CurrentEntity, new AutoAimTargetData());
-
                 return;
             }
 
             FindTargetProperties.SearchCompleted = false;
         }
 
-        public override void StartTimer()
+        private void SpawnMarkIfNull()
         {
-            base.StartTimer();
-            Enabled = false;
+            if (SpawnedObjects == null || SpawnedObjects.Count == 0)
+            {
+                SpawnedObjects = ActorSpawn.Spawn(MarkSpawnData, Actor, Actor);
+            }
         }
     }
 }

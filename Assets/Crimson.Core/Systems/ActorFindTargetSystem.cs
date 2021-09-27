@@ -173,6 +173,7 @@ namespace Crimson.Core.Systems
                         properties.maxDistanceThreshold * properties.maxDistanceThreshold)
                     {
                         properties.SearchCompleted = true;
+                        autoAim.ResetAiming();
                         PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
 
                         return;

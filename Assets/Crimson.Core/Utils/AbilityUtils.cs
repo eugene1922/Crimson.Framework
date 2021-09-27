@@ -247,9 +247,6 @@ namespace Crimson.Core.Utils
             }
 
             aiming.EvaluateAimBySelectedType(pos);
-
-
-            aiming.OnHoldAttackActive = true;
         }
 
         public static Vector3 EvaluateAimByArea(this IAimable aiming, Vector2 pos)
