@@ -377,6 +377,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1162490471, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d,
+        type: 3}
+    - target: {fileID: 1162490476, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d,
+        type: 3}
+    - target: {fileID: 1162490477, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d,
+        type: 3}
+    - target: {fileID: 1162490478, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d,
+        type: 3}
+    - target: {fileID: 1162490479, guid: 5f33aaa1e566e9e43b24d3b9a310881a, type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d,
+        type: 3}
     - target: {fileID: 7432209876421589088, guid: 5f33aaa1e566e9e43b24d3b9a310881a,
         type: 3}
       propertyPath: m_LocalPosition.x
