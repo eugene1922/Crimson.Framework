@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4969091116097092}
   - component: {fileID: 33706746060165026}
   - component: {fileID: 23814114568543640}
-  - component: {fileID: 7538018003350427514}
+  - component: {fileID: 2524671374342468611}
   m_Layer: 0
   m_Name: SM_Env_Road_Straight_01
   m_TagString: Untagged
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7538018003350427514
+--- !u!65 &2524671374342468611
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.658691, y: 0.21063384, z: 5.696106}
-  m_Center: {x: 0.17523766, y: -0.10531692, z: 2.5370784}
+  m_Size: {x: 11.580616, y: 0.21063384, z: 5.0015235}
+  m_Center: {x: 0.00000023841858, y: -0.10531692, z: 2.4992383}
 --- !u!1 &1667853169065130
 GameObject:
   m_ObjectHideFlags: 0
