@@ -18,7 +18,7 @@ RenderSettings:
   m_FogColor: {r: 0.21217516, g: 0.3018868, b: 0.28786936, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 20
+  m_LinearFogStart: 19
   m_LinearFogEnd: 40
   m_AmbientSkyColor: {r: 0.754717, g: 0.6720094, b: 0.3951584, a: 1}
   m_AmbientEquatorColor: {r: 0.48362404, g: 0.49056602, b: 0.48601034, a: 1}
@@ -66640,7 +66640,7 @@ LightingSettings:
   m_AO: 1
   m_AOMaxDistance: 1
   m_CompAOExponent: 2.35
-  m_CompAOExponentDirect: 1
+  m_CompAOExponentDirect: 1.03
   m_ExtractAO: 0
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
