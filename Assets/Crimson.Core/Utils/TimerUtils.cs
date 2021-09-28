@@ -61,17 +61,36 @@ namespace Crimson.Core.Utils
             return (timer = obj.GetComponent<TimerComponent>()) != null ? timer : obj.AddComponent<TimerComponent>();
         }
 
-        public static void RemoveAction(this TimerBaseBehaviour obj, Action action, bool onlyNext = false)
+        public static void RemoveAction(this TimerBaseBehaviour obj, Action action)
         {
-            for (var i = 0; i < obj.Timer.TimedActions.Count; i++)
+            var indexes = FindActionIndexes(obj, action);
+            for (var i = 0; i < indexes.Count; i++)
             {
-                if (!obj.Timer.TimedActions[i].Act.Equals(action)) continue;
-
-                obj.Timer.TimedActions.RemoveAt(i);
-                i--;
-
-                if (onlyNext) return;
+                obj.Timer.TimedActions.RemoveAt(indexes[i]);
             }
+        }
+
+        public static List<int> FindActionIndexes(this TimerBaseBehaviour obj, Action action)
+        {
+            var result = new List<int>();
+            var actions = obj.Timer.TimedActions;
+            for (var i = 0; i < actions.Count; i++)
+            {
+                if (!actions[i].Act.Equals(action))
+                {
+                    continue;
+                }
+
+                result.Add(i);
+            }
+
+            return result;
+        }
+
+        public static void RestartAction(this TimerBaseBehaviour obj, Action action, float delay)
+        {
+            RemoveAction(obj, action);
+            obj.Timer.TimedActions.Add(CreateAction(action, delay));
         }
     }
 }

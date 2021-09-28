@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -136997334286632821}
   - component: {fileID: -5199557533950553967}
   - component: {fileID: -7136897725198441121}
-  - component: {fileID: -800949660377118528}
+  - component: {fileID: 9054062468200216802}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -72,8 +72,10 @@ MonoBehaviour:
   InputBehaviours:
   - InputType: 1
     Actions:
-    - {fileID: -800949660377118528}
     - {fileID: -7136897725198441121}
+  - InputType: 0
+    Actions:
+    - {fileID: 9054062468200216802}
 --- !u!114 &-4939348821489114762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +189,7 @@ MonoBehaviour:
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 0
     ActorProjectileAnimationName: 
-  AimComponent: {fileID: -800949660377118528}
+  AimComponent: {fileID: 9054062468200216802}
   appliedPerksNames: []
   clipReloadDisplayToggle: []
   clipReloadTime: 1
@@ -219,7 +221,7 @@ MonoBehaviour:
     randomSeed: 0
   reloadDisplayToggle: []
   suppressWeaponSpawn: 0
---- !u!114 &-800949660377118528
+--- !u!114 &9054062468200216802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5854924350193893075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a36ee688fe8bc747932cc8d153763c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 89289af1b1c4cdd468390ec60bbe1907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aimingAnimProperties:
@@ -237,34 +239,12 @@ MonoBehaviour:
   aimingAvailable: 1
   componentName: 
   deactivateAimingOnCooldown: 0
-  FindTargetProperties:
-    targetType: 3
-    actorWithComponentName: 
-    targetTag: Ally
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 15
-  MarkSpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-  ResetAimTime: 0.15
+  _aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 1
+    aimingAreaPrefab: {fileID: 0}
+    sightPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
+      type: 3}
+    circlePrefab: {fileID: 0}
+    sightDistance: 15
+  _resetAimTime: 0.15

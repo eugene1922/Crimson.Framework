@@ -282,7 +282,6 @@ namespace Crimson.Core.Components
         {
             this.ResetAiming(Actor);
             _circlePrefabScaled = false;
-
             if (AimingProperties.evaluateActionOptions != EvaluateActionOptions.RepeatingEvaluation) return;
             OnHoldAttackActive = false;
             ResetSpawnPointRootRotation();
@@ -364,7 +363,7 @@ namespace Crimson.Core.Components
 
         public void EvaluateAimByArea(Vector2 pos)
         {
-            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos);
+            var aimPosition = AbilityUtils.EvaluateAimByArea(this, pos);
 
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
@@ -377,7 +376,7 @@ namespace Crimson.Core.Components
                 var targetActor = go.GetComponent<Actor>();
                 if (targetActor == null) return;
 
-                var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
+                var vector = Quaternion.Euler(0, -180, 0) * aimPosition;
 
                 targetActor.ChangeActorForceMovementData(
                     projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
@@ -386,7 +385,7 @@ namespace Crimson.Core.Components
 
         public void EvaluateAimBySight(Vector2 pos)
         {
-            var lastSpawnedAimingPrefabPos = this.EvaluateAimBySight(Actor, pos);
+            var aimPosition = this.EvaluateAimBySight(Actor, pos);
 
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
@@ -398,15 +397,14 @@ namespace Crimson.Core.Components
                 var targetActor = go.GetComponent<Actor>();
                 if (targetActor == null) return;
 
-                var vector = lastSpawnedAimingPrefabPos - Actor.GameObject.transform.position;
+                var vector = aimPosition - Actor.GameObject.transform.position;
 
                 targetActor.ChangeActorForceMovementData(
                     projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
 
                 _dstManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
                 {
-                    Point = new float2(lastSpawnedAimingPrefabPos.x,
-                        lastSpawnedAimingPrefabPos.z)
+                    Point = new float2(aimPosition.x, aimPosition.z)
                 });
             };
         }

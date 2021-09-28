@@ -256,7 +256,6 @@ namespace Crimson.Core.Utils
             var newRot = aiming.SpawnedAimingPrefab.transform.eulerAngles;
             newRot.y = currentRotation;
             aiming.SpawnedAimingPrefab.transform.eulerAngles = newRot;
-
             return aiming.SpawnedAimingPrefab.transform.forward;
         }
 

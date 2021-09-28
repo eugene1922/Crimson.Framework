@@ -19,13 +19,12 @@ namespace Crimson.Core.Components.AbilityReactive
         public AimingAnimationProperties aimingAnimProperties;
         public bool aimingAvailable;
 
-        [Space]
-        [ShowInInspector]
-        [SerializeField]
+        [Space,
+        ShowInInspector]
         public string componentName = "";
 
         public bool deactivateAimingOnCooldown;
-        [SerializeField] public FindTargetProperties FindTargetProperties = new FindTargetProperties();
+        public FindTargetProperties FindTargetProperties = new FindTargetProperties();
         public ActorSpawnerSettings MarkSpawnData;
 
         [InfoBox("Time when aim disable (Seconds)")]
@@ -111,7 +110,7 @@ namespace Crimson.Core.Components.AbilityReactive
                 Spawn();
 
                 StartTimer();
-                Timer.TimedActions.AddAction(FinishTimer, ResetAimTime);
+                this.RestartAction(FinishTimer, ResetAimTime);
             }
         }
 
@@ -129,6 +128,7 @@ namespace Crimson.Core.Components.AbilityReactive
                 Destroy(SpawnedObjects[i]);
             }
             SpawnedObjects.Clear();
+            SpawnedAimingPrefab = null;
         }
 
         public void SetTarget(Vector3 position)
@@ -153,6 +153,10 @@ namespace Crimson.Core.Components.AbilityReactive
             if (SpawnedObjects == null || SpawnedObjects.Count == 0)
             {
                 SpawnedObjects = ActorSpawn.Spawn(MarkSpawnData, Actor, Actor);
+                if (SpawnedObjects.Count > 0)
+                {
+                    SpawnedAimingPrefab = SpawnedObjects[0];
+                }
             }
         }
     }

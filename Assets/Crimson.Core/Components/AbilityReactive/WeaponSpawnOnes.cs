@@ -15,7 +15,7 @@ namespace Crimson.Core.Components.AbilityReactive
     [HideMonoScript]
     [DoNotAddToEntity]
     public class WeaponSpawnOnes : TimerBaseBehaviour,
-        IActorAbilityTarget,
+        IActorAbility,
         IActorSpawnerAbility,
         IComponentName,
         IEnableable,
@@ -55,7 +55,6 @@ namespace Crimson.Core.Components.AbilityReactive
         [ValidateInput("MustBeAimable", "Ability MonoBehaviours must derive from IAimable!")]
         public MonoBehaviour AimComponent;
 
-        public IActor AbilityOwnerActor { get; set; }
         public bool ActionExecutionAllowed { get; set; }
         public IActor Actor { get; set; }
 
@@ -80,7 +79,6 @@ namespace Crimson.Core.Components.AbilityReactive
         public GameObject SpawnedAimingPrefab { get; set; }
         public List<GameObject> SpawnedObjects { get; private set; }
         public Transform SpawnPointsRoot { get; private set; }
-        public IActor TargetActor { get; set; }
         protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 
         public void AddComponentData(ref Entity entity, IActor actor)

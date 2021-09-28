@@ -167,11 +167,7 @@ MonoBehaviour:
   componentName: 
   primaryProjectile: 0
   aimingAvailable: 1
-<<<<<<< HEAD
-  deactivateAimingOnCooldown: 0
-=======
   deactivateAimingOnCooldown: 1
->>>>>>> feature/new-level
   attackDirectionType: 0
   weaponSpawnItem:
     spawnerDisabled: 0

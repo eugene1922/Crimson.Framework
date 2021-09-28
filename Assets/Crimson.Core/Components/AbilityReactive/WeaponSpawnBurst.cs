@@ -15,7 +15,7 @@ namespace Crimson.Core.Components.AbilityReactive
     [HideMonoScript]
     [DoNotAddToEntity]
     public class WeaponSpawnBurst : TimerBaseBehaviour,
-        IActorAbilityTarget,
+        IActorAbility,
         IActorSpawnerAbility,
         IComponentName,
         ICooldownable,
@@ -55,7 +55,6 @@ namespace Crimson.Core.Components.AbilityReactive
         private bool _actorToUi;
         private EntityManager _dstManager;
 
-        public IActor AbilityOwnerActor { get; set; }
         public bool ActionExecutionAllowed { get; set; }
         public IActor Actor { get; set; }
         public IAimable Aim => AimComponent as IAimable;
@@ -84,8 +83,6 @@ namespace Crimson.Core.Components.AbilityReactive
         public List<GameObject> SpawnedObjects { get; private set; }
 
         public Transform SpawnPointsRoot { get; private set; }
-
-        public IActor TargetActor { get; set; }
 
         protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -152,7 +149,7 @@ namespace Crimson.Core.Components.AbilityReactive
                     new ActorProjectileThrowAnimData());
 
                 StartTimer();
-                Timer.TimedActions.AddAction(FinishTimer, _weaponFinishTime);
+                this.RestartAction(FinishTimer, _weaponFinishTime);
             }
         }
 
