@@ -33,7 +33,9 @@ public class LightFlickerEffect : MonoBehaviour {
     /// this, deactivating/reactivating is usually fine but if you want a strict
     /// restart you can do.
     /// </summary>
-    public void Reset() {
+    public void Reset()
+    {
+        if (light == null) return;
         smoothQueue.Clear();
         lastSum = 0;
     }
