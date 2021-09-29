@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Crimson.Content/PolygonParticles/Materials/Materials.meta
+guid: 8ed15a1c20812f945b5fb6685aee3d4c
+=======
 guid: 37c5da44c8bdc45d78b348eb2b8cc9b8
+>>>>>>> feature/new-level:Assets/Crimson.Content/Scripts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

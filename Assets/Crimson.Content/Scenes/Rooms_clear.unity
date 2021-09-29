@@ -161,7 +161,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -21103,6 +21103,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5223289134390059421, guid: 73229eaebbdde45339bf6e78786e88d5,
         type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223289134390059421, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
       propertyPath: SpawnData.spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 370702230727255555}
@@ -21111,6 +21116,22 @@ PrefabInstance:
       propertyPath: SpawnData.spawnPoints.Array.data[1]
       value: 
       objectReference: {fileID: 370702230727255555}
+    - target: {fileID: 5223289134390059421, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 370702230727255555}
+    - target: {fileID: 5223289134390059421, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78,
+        type: 3}
+    - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
         type: 3}
       propertyPath: SpawnData.spawnPoints.Array.data[0]
@@ -21134,6 +21155,31 @@ PrefabInstance:
     - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
         type: 3}
       propertyPath: SpawnData.spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 370702230049678253}
+    - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 370702228954068715}
+    - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 370702230413457312}
+    - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 370702229305881360}
+    - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 370702229441163831}
+    - target: {fileID: 5223289134390059422, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: SpawnData._spawnPoints.Array.data[4]
       value: 
       objectReference: {fileID: 370702230049678253}
     - target: {fileID: 9173056185145076088, guid: 73229eaebbdde45339bf6e78786e88d5,

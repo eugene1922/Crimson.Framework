@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Crimson.Core.Components;
+﻿using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
@@ -16,11 +16,11 @@ namespace Crimson.Core.Common
             var perk = perkPrefab.GetComponent<IPerkAbility>();
 
             var newComponents = (perk as IPerkAbilityBindable)?.CopyBindablePerk(target);
-            
+
             if (newComponents == null) return;
 
             UpdatePerkButton(target, newComponents, out var updatedButtonReceiver);
-            
+
             if (updatedButtonReceiver == null || !newComponents.Any()) return;
 
             foreach (var bindable in newComponents.OfType<IBindable>())
@@ -42,7 +42,7 @@ namespace Crimson.Core.Common
             if (addActionToInputAbility == null || targetPlayerAbility == null) return;
 
             var buttonToUpdate = targetPlayerAbility.UIReceiverList
-                .SelectMany(u => ((UIReceiver) u).customButtons)
+                .SelectMany(u => ((UIReceiver)u).customButtons)
                 .FirstOrDefault(b => b.bindingIndex == addActionToInputAbility.customBinding.index);
 
             var stickControlAvailable = copiedComponents.OfType<IAimable>().FirstOrDefault()?.AimingAvailable;

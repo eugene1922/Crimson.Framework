@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -47,8 +47,8 @@ namespace Crimson.Core.Components
 
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-            var c = new FixedList512<float> {Length = Constants.INPUT_BUFFER_CAPACITY};
-            var sticksInput = new FixedList512<float2> {Length = Constants.INPUT_BUFFER_CAPACITY};
+            var c = new FixedList512<float> { Length = Constants.INPUT_BUFFER_CAPACITY };
+            var sticksInput = new FixedList512<float2> { Length = Constants.INPUT_BUFFER_CAPACITY };
 
             dstManager.AddComponentData(entity, new PlayerInputData
             {
@@ -131,6 +131,21 @@ namespace Crimson.Core.Components
         public float MinMagnitude;
         [NetworkSimData] public FixedList512<float> CustomInput;
         [NetworkSimData] public FixedList512<float2> CustomSticksInput;
+
+        public override string ToString()
+        {
+            var results = $"Move:{Move}\n" +
+                          $"Mouse:{Mouse}\n" +
+                          $"Look:{Look}\n";
+
+            results += $"CustomInput:\n";
+            for (var i = 0; i < CustomInput.Length; i++)
+            {
+                results += $"\t{CustomInput[i]}:{CustomSticksInput[i]}\n";
+            }
+
+            return results;
+        }
     }
 
     public struct UserInputData : IComponentData

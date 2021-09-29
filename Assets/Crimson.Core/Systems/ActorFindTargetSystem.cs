@@ -1,10 +1,11 @@
+using Crimson.Core.Common;
+using Crimson.Core.Components;
+using Crimson.Core.Components.AbilityReactive;
+using Crimson.Core.Enums;
+using Crimson.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Crimson.Core.Common;
-using Crimson.Core.Components;
-using Crimson.Core.Enums;
-using Crimson.Core.Utils;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Crimson.Core.Systems
 {
     public class ActorFindTargetSystem : ComponentSystem
     {
-        private EntityQuery _queryFollowMovement, _queryFollowRotation, _queryAutoAim;
+        private EntityQuery _queryFollowMovement, _queryFollowRotation, _queryAutoAim, _newAutoAimQuery;
 
         protected override void OnCreate()
         {
@@ -31,6 +32,11 @@ namespace Crimson.Core.Systems
 
             _queryAutoAim = GetEntityQuery(
                 ComponentType.ReadOnly<FindAutoAimTargetData>(),
+                ComponentType.ReadOnly<Actor>(),
+                ComponentType.Exclude<DeadActorData>());
+
+            _newAutoAimQuery = GetEntityQuery(
+                ComponentType.ReadOnly<AutoAimTargetData>(),
                 ComponentType.ReadOnly<Actor>(),
                 ComponentType.Exclude<DeadActorData>());
         }
@@ -109,14 +115,15 @@ namespace Crimson.Core.Systems
 
                     var targetTransform =
                         FindActorsUtils.ChooseActor(weapon.gameObject.transform, targets, properties.strategy);
-                    
-                    if (targetTransform == null || properties.strategy == ChooseTargetStrategy.Nearest && properties.maxDistanceThreshold > 0f &&
-                        math.distancesq(targetTransform.position, weapon.Actor.GameObject.transform.position) >
+
+                    if (targetTransform == null || properties.strategy == ChooseTargetStrategy.Nearest
+                        && properties.maxDistanceThreshold > 0f
+                        && math.distancesq(targetTransform.position, weapon.Actor.GameObject.transform.position) >
                         properties.maxDistanceThreshold * properties.maxDistanceThreshold)
                     {
                         properties.SearchCompleted = true;
                         PostUpdateCommands.RemoveComponent<FindAutoAimTargetData>(entity);
-                        
+
                         weapon.Spawn();
                         return;
                     }
@@ -129,11 +136,52 @@ namespace Crimson.Core.Systems
                         targetActor.ChangeActorForceMovementData(go.transform.forward);
                         weapon.DisposableSpawnCallback = null;
                     };
-                    
+
                     weapon.SpawnPointsRoot.LookAt(targetTransform.position);
                     properties.SearchCompleted = true;
                     weapon.Spawn();
                     PostUpdateCommands.RemoveComponent<FindAutoAimTargetData>(entity);
+                }
+            );
+
+            Entities.With(_newAutoAimQuery).ForEach(
+                (Entity entity, Actor actor, ref AutoAimTargetData findAutoAimTargetData) =>
+                {
+                    var autoAimData = findAutoAimTargetData;
+                    var autoAim = actor.GetComponent<AutoAim>();
+                    if (autoAim == null)
+                    {
+                        PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
+                        return;
+                    }
+                    var properties = autoAim.FindTargetProperties;
+
+                    var targets = GetTargetList(actor, properties.targetType,
+                        properties.actorWithComponentName, properties.targetTag);
+
+                    if (properties.ignoreSpawner && targets.Contains(actor.GameObject.transform))
+                    {
+                        targets.Remove(actor.GameObject.transform);
+                    }
+
+                    var targetTransform =
+                        FindActorsUtils.ChooseActor(actor.gameObject.transform, targets, properties.strategy);
+
+                    if (targetTransform == null || properties.strategy == ChooseTargetStrategy.Nearest
+                        && properties.maxDistanceThreshold > 0f
+                        && math.distancesq(targetTransform.position, actor.GameObject.transform.position) >
+                        properties.maxDistanceThreshold * properties.maxDistanceThreshold)
+                    {
+                        properties.SearchCompleted = true;
+                        autoAim.ResetAiming();
+                        PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
+
+                        return;
+                    }
+
+                    autoAim.SetTarget(targetTransform.position);
+                    properties.SearchCompleted = true;
+                    PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
                 }
             );
         }
@@ -150,8 +198,8 @@ namespace Crimson.Core.Systems
                         (Entity entity, Transform obj) =>
                         {
                             targets.AddRange(from component in obj.gameObject.GetComponents<IComponentName>()
-                                where component.ComponentName.Equals(name, StringComparison.Ordinal)
-                                select obj);
+                                             where component.ComponentName.Equals(name, StringComparison.Ordinal)
+                                             select obj);
                         }
                     );
                     break;

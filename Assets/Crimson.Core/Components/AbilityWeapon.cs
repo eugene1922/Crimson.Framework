@@ -69,8 +69,6 @@ namespace Crimson.Core.Components
 
         public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
 
-        public bool suppressWeaponSpawn = false;
-
         [HideInInspector] public List<string> appliedPerksNames = new List<string>();
         public List<GameObject> SpawnedObjects { get; private set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
@@ -284,7 +282,6 @@ namespace Crimson.Core.Components
         {
             this.ResetAiming(Actor);
             _circlePrefabScaled = false;
-
             if (AimingProperties.evaluateActionOptions != EvaluateActionOptions.RepeatingEvaluation) return;
             OnHoldAttackActive = false;
             ResetSpawnPointRootRotation();
@@ -303,30 +300,30 @@ namespace Crimson.Core.Components
 
         public void Spawn()
         {
-            if (!suppressWeaponSpawn)
+            if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive &&
+                _actorToUi && !findTargetProperties.SearchCompleted)
             {
-                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive &&
-                    _actorToUi && !findTargetProperties.SearchCompleted)
+                _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
                 {
-                    _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
-                    {
-                        WeaponComponentName = ComponentName
-                    });
+                    WeaponComponentName = ComponentName
+                });
 
-                    return;
-                }
-
-                SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
+                return;
             }
 
-            var objectsToSpawn = suppressWeaponSpawn
-                ? projectileSpawnData.ObjectsToSpawn
-                : SpawnedObjects;
+            SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
 
-            if (objectsToSpawn == null) return;
+            var objectsToSpawn = SpawnedObjects;
 
-            foreach (var callback in SpawnCallbacks)
+            if (objectsToSpawn == null)
             {
+                return;
+            }
+
+            Action<GameObject> callback;
+            for (var i = 0; i < SpawnCallbacks.Count; i++)
+            {
+                callback = SpawnCallbacks[i];
                 objectsToSpawn.ForEach(go => callback.Invoke(go));
             }
 
@@ -366,7 +363,7 @@ namespace Crimson.Core.Components
 
         public void EvaluateAimByArea(Vector2 pos)
         {
-            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos);
+            var aimPosition = AbilityUtils.EvaluateAimByArea(this, pos);
 
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
@@ -379,7 +376,7 @@ namespace Crimson.Core.Components
                 var targetActor = go.GetComponent<Actor>();
                 if (targetActor == null) return;
 
-                var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
+                var vector = Quaternion.Euler(0, -180, 0) * aimPosition;
 
                 targetActor.ChangeActorForceMovementData(
                     projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
@@ -388,7 +385,7 @@ namespace Crimson.Core.Components
 
         public void EvaluateAimBySight(Vector2 pos)
         {
-            var lastSpawnedAimingPrefabPos = this.EvaluateAimBySight(Actor, pos);
+            var aimPosition = this.EvaluateAimBySight(Actor, pos);
 
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
@@ -400,15 +397,14 @@ namespace Crimson.Core.Components
                 var targetActor = go.GetComponent<Actor>();
                 if (targetActor == null) return;
 
-                var vector = lastSpawnedAimingPrefabPos - Actor.GameObject.transform.position;
+                var vector = aimPosition - Actor.GameObject.transform.position;
 
                 targetActor.ChangeActorForceMovementData(
                     projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
 
                 _dstManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
                 {
-                    Point = new float2(lastSpawnedAimingPrefabPos.x,
-                        lastSpawnedAimingPrefabPos.z)
+                    Point = new float2(aimPosition.x, aimPosition.z)
                 });
             };
         }

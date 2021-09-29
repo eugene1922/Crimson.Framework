@@ -1,8 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: ab07fe861878d469b9c5455f9a1f0257
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
+=======
+<<<<<<< HEAD:Assets/Crimson.Content/PolygonParticles/Textures.meta
+guid: 297f6df657122674e84b8c9346b05be6
+=======
+guid: ab07fe861878d469b9c5455f9a1f0257
+>>>>>>> feature/new-level:Assets/Crimson.Content/PolygonParticles/Models/Materials.meta
+folderAsset: yes
+timeCreated: 1588289680
+licenseType: Free
+DefaultImporter:
+>>>>>>> feature/new-level
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -152,9 +152,7 @@ namespace Crimson.Core.Utils
 
             if (actorPlayer == null || !actorPlayer.actorToUI) return;
 
-            if (!(timer is IBindable)) return;
-
-            var bindable = (IBindable)timer;
+            if (!(timer is IBindable bindable)) return;
 
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -177,8 +175,11 @@ namespace Crimson.Core.Utils
             {
                 var existingComponent = dstManager.GetComponentData<BindedActionsCooldownData>(actor.ActorEntity);
 
-                existingComponent.ReadyToUseBindingIndexes.Add(bindable.BindingIndex);
-                dstManager.SetComponentData(actor.ActorEntity, existingComponent);
+                if (!existingComponent.ReadyToUseBindingIndexes.Contains(bindable.BindingIndex))
+                {
+                    existingComponent.ReadyToUseBindingIndexes.Add(bindable.BindingIndex);
+                    dstManager.SetComponentData(actor.ActorEntity, existingComponent);
+                }
                 return;
             }
 
@@ -246,9 +247,6 @@ namespace Crimson.Core.Utils
             }
 
             aiming.EvaluateAimBySelectedType(pos);
-
-
-            aiming.OnHoldAttackActive = true;
         }
 
         public static Vector3 EvaluateAimByArea(this IAimable aiming, Vector2 pos)
@@ -258,7 +256,6 @@ namespace Crimson.Core.Utils
             var newRot = aiming.SpawnedAimingPrefab.transform.eulerAngles;
             newRot.y = currentRotation;
             aiming.SpawnedAimingPrefab.transform.eulerAngles = newRot;
-
             return aiming.SpawnedAimingPrefab.transform.forward;
         }
 
