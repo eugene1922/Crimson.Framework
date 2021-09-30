@@ -107,10 +107,13 @@ namespace Crimson.Core.Common
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
+            Debug.Log("Convert " + this.gameObject.name + " | "+ entity.ToString());
             ActorEntity = entity;
             WorldEntityManager = dstManager;
             WorldEntityManager.AddComponent<NetworkSyncReceive>(ActorEntity);
             if (!ComponentName.Equals(string.Empty)) ComponentNames.Add(this.ComponentName);
+            
+            PostConvert();
 
             HandleAbilities(entity);
         }
@@ -131,6 +134,7 @@ namespace Crimson.Core.Common
 
         public virtual void PostConvert()
         {
+            Debug.Log(ActorEntity.ToString());
             WorldEntityManager.AddComponentData(ActorEntity, new ActorData {ActorId = ActorId, StateId = ActorStateId});
 
             if (Spawner == null) return;
@@ -143,6 +147,7 @@ namespace Crimson.Core.Common
 
         public void Setup()
         {
+            Debug.Log("Setup " + gameObject.name);
             if (World.DefaultGameObjectInjectionWorld == null)
             {
                 Debug.LogError(
@@ -154,9 +159,11 @@ namespace Crimson.Core.Common
             if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
                 return;
 
-            EntityConversionUtils.ConvertAndInjectOriginal(this.gameObject);
+            this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
+           
+            //ConvertAndInjectOriginal(this.gameObject);
 
-            PostConvert();
+            //PostConvert();
         }
 
         protected virtual void Start()
@@ -167,7 +174,6 @@ namespace Crimson.Core.Common
         {
             try
             {
-                if (WorldEntityManager == null) return;
                 if (ActorEntity.Index <= WorldEntityManager.EntityCapacity && WorldEntityManager.Exists(ActorEntity))
                 {
                     WorldEntityManager.DestroyEntity(ActorEntity);

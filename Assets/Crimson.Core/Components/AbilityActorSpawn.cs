@@ -36,6 +36,7 @@ namespace Crimson.Core.Components
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
+            Debug.Log("Add component data" + actor.GameObject.name);
             Actor = actor;
         }
 
@@ -48,6 +49,7 @@ namespace Crimson.Core.Components
 
         public void Spawn()
         {
+            Debug.Log($" some shit {SpawnData}, {Actor == null}, {Actor?.Owner}");
             _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor.Owner));
             _spawnedObjectCollection.Clear();
             if (SpawnDelays.IsEmpty)
