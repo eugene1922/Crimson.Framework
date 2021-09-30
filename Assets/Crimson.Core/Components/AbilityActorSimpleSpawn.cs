@@ -38,15 +38,11 @@ namespace Crimson.Core.Components
 
         private IActor _currentSpawner;
         private IActor _currentOwner;
-
-        void Start()
-        {
-            if (ExecuteOnAwake) Execute();
-        }
-
+        
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
+            if (ExecuteOnAwake) Execute();
         }
 
         public void Execute()

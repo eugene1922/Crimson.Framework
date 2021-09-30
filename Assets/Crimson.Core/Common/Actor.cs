@@ -105,9 +105,8 @@ namespace Crimson.Core.Common
         private List<IActorAbility> _abilities = new List<IActorAbility>();
         private List<IPerkAbility> _appliedPerks = new List<IPerkAbility>();
 
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            Debug.Log("Convert " + this.gameObject.name + " | "+ entity.ToString());
             ActorEntity = entity;
             WorldEntityManager = dstManager;
             WorldEntityManager.AddComponent<NetworkSyncReceive>(ActorEntity);
@@ -134,7 +133,6 @@ namespace Crimson.Core.Common
 
         public virtual void PostConvert()
         {
-            Debug.Log(ActorEntity.ToString());
             WorldEntityManager.AddComponentData(ActorEntity, new ActorData {ActorId = ActorId, StateId = ActorStateId});
 
             if (Spawner == null) return;
@@ -147,7 +145,6 @@ namespace Crimson.Core.Common
 
         public void Setup()
         {
-            Debug.Log("Setup " + gameObject.name);
             if (World.DefaultGameObjectInjectionWorld == null)
             {
                 Debug.LogError(
@@ -158,18 +155,14 @@ namespace Crimson.Core.Common
             // Root ConvertToEntity is responsible for converting the whole hierarchy
             if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
                 return;
-
+            
             this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
-           
+
             //ConvertAndInjectOriginal(this.gameObject);
 
             //PostConvert();
         }
-
-        protected virtual void Start()
-        {
-        }
-
+        
         private void OnDestroy()
         {
             try
@@ -181,7 +174,7 @@ namespace Crimson.Core.Common
             }
             catch (Exception e)
             {
-                Debug.LogException(new Exception("[ACTOR] Exception during OnDestroy: " + e.Message));
+                Debug.LogWarning(new Exception($"[ACTOR] Exception during {gameObject.name} OnDestroy: {e.Message}" ));
             }
         }
 

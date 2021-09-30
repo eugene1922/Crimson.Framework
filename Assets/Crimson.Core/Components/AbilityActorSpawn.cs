@@ -36,8 +36,8 @@ namespace Crimson.Core.Components
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
-            Debug.Log("Add component data" + actor.GameObject.name);
             Actor = actor;
+            if (ExecuteOnAwake) Execute();
         }
 
         [ContextMenu("Execute")]
@@ -49,29 +49,16 @@ namespace Crimson.Core.Components
 
         public void Spawn()
         {
-            Debug.Log($" some shit {SpawnData}, {Actor == null}, {Actor?.Owner}");
             _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor.Owner));
             _spawnedObjectCollection.Clear();
-            if (SpawnDelays.IsEmpty)
-            {
-                _spawnedObjectCollection.Spawn();
-            }
-            else
-            {
-                _spawnedObjectCollection.SpawnWithOptions(Timer, SpawnDelays);
-            }
+            _spawnedObjectCollection.SpawnWithOptions(Timer, SpawnDelays);
+            
         }
 
         private void DestroyAbilityAfterSpawn()
         {
-            if (!SpawnData.DestroyAbilityAfterSpawn) return;
-
-            Destroy(this);
+            if (SpawnData.DestroyAbilityAfterSpawn) Destroy(this);
         }
 
-        private void Start()
-        {
-            if (ExecuteOnAwake) Execute();
-        }
     }
 }
