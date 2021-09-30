@@ -16,7 +16,7 @@ namespace Crimson.Core.Common
         void EvaluateAimBySelectedType(Vector2 pos);
         void ResetAiming();
     }
-    
+
     public struct AimingAnimProperties : IComponentData
     {
         public int AnimHash;

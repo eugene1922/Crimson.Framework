@@ -18,11 +18,11 @@ namespace Crimson.Core.Common
             set => buttonControlPath = value;
         }
 
-        private bool _repeatedInvokingOnHold;
+        private bool _repeatedInvokingOnHold = true;
 
         public void SetupButton(bool repeatedInvokingOnHold)
         {
-            _repeatedInvokingOnHold = repeatedInvokingOnHold;
+            _repeatedInvokingOnHold = true;// repeatedInvokingOnHold;
         }
 
         public void OnPointerDown(PointerEventData eventData)

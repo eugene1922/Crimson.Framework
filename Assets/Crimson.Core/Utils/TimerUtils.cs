@@ -1,7 +1,7 @@
+using Crimson.Core.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Crimson.Core.Common;
 using UnityEngine;
 
 namespace Crimson.Core.Utils
@@ -10,23 +10,23 @@ namespace Crimson.Core.Utils
     {
         public static void AddAction(this List<TimerAction> timedActions, Action action, float delay)
         {
-            timedActions.Add(new TimerAction {Act = action, Delay = delay});
+            timedActions.Add(CreateAction(action, delay));
         }
 
         public static void AddAction(this TimerBaseBehaviour obj, Action action, float delay)
         {
-            obj.Timer.TimedActions.Add(new TimerAction {Act = action, Delay = delay});
+            obj.Timer.TimedActions.Add(CreateAction(action, delay));
         }
 
         public static void AddAction(this TimerBaseBehaviour obj, Action action, Func<float> delay)
         {
-            obj.Timer.TimedActions.Add(new TimerAction {Act = action, Delay = delay()});
+            obj.Timer.TimedActions.Add(CreateAction(action, delay()));
         }
 
         public static void AddRepeatedAction(this TimerBaseBehaviour obj, Action action, Func<float> delay)
         {
             var d = delay();
-            obj.Timer.TimedActions.Add(new TimerAction {Act = action, Delay = d});
+            obj.Timer.TimedActions.Add(CreateAction(action, d));
             obj.Timer.TimedActions.Add(new TimerAction
             {
                 Act = () =>
@@ -37,24 +37,16 @@ namespace Crimson.Core.Utils
             });
         }
 
-        public static void RemoveAction(this TimerBaseBehaviour obj, Action action, bool onlyNext = false)
-        {
-            for (var i = 0; i < obj.Timer.TimedActions.Count; i++)
-            {
-                if (!obj.Timer.TimedActions[i].Act.Equals(action)) continue;
-                
-                obj.Timer.TimedActions.RemoveAt(i);
-                i--;
-                
-                if (onlyNext) return;
-            }
-        }
-        
         public static bool ContainsAction(this TimerBaseBehaviour obj, Action action)
         {
             return obj.Timer.TimedActions.Any(act => act.Act.Equals(action));
         }
-        
+
+        public static TimerAction CreateAction(Action action, float delay)
+        {
+            return new TimerAction { Act = action, Delay = delay };
+        }
+
         public static TimerAction? GetCurrentTimer(this TimerBaseBehaviour obj)
         {
             if (obj.Timer == null) return null;
@@ -67,6 +59,38 @@ namespace Crimson.Core.Utils
         {
             if (timer != null) return timer;
             return (timer = obj.GetComponent<TimerComponent>()) != null ? timer : obj.AddComponent<TimerComponent>();
+        }
+
+        public static void RemoveAction(this TimerBaseBehaviour obj, Action action)
+        {
+            var indexes = FindActionIndexes(obj, action);
+            for (var i = 0; i < indexes.Count; i++)
+            {
+                obj.Timer.TimedActions.RemoveAt(indexes[i]);
+            }
+        }
+
+        public static List<int> FindActionIndexes(this TimerBaseBehaviour obj, Action action)
+        {
+            var result = new List<int>();
+            var actions = obj.Timer.TimedActions;
+            for (var i = 0; i < actions.Count; i++)
+            {
+                if (!actions[i].Act.Equals(action))
+                {
+                    continue;
+                }
+
+                result.Add(i);
+            }
+
+            return result;
+        }
+
+        public static void RestartAction(this TimerBaseBehaviour obj, Action action, float delay)
+        {
+            RemoveAction(obj, action);
+            obj.Timer.TimedActions.Add(CreateAction(action, delay));
         }
     }
 }

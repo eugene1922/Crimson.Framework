@@ -148,7 +148,7 @@ namespace Crimson.Core.Systems
         [BurstCompile]
         private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
         {
-            public EntityCommandBuffer.Concurrent Ecb;
+            public EntityCommandBuffer.ParallelWriter Ecb;
 
             [ReadOnly] public float2 MoveInput;
             [ReadOnly] public float2 MouseInput;
@@ -179,7 +179,7 @@ namespace Crimson.Core.Systems
         {
             var job = new PlayerInputJob
             {
-                Ecb = _barrier.CreateCommandBuffer().ToConcurrent(),
+                Ecb = _barrier.CreateCommandBuffer().AsParallelWriter(),
                 MoveInput = _moveInput,
                 MouseInput = _mouseInput,
                 LookInput = _lookInput,

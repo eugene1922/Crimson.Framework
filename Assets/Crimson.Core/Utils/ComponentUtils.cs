@@ -31,7 +31,7 @@ namespace Crimson.Core.Utils
                 }
                 catch
                 {
-                    Debug.LogError("[COMPONENT REPLICATOR] Error while copying properties");
+                    Debug.LogError($"[COMPONENT REPLICATOR] Error while copying properties. {comp.GetType().Name}");
                 } // In case of NotImplementedException being thrown. For some reason specifying that exception didn't seem to catch it, so I didn't catch anything specific.
             }
 

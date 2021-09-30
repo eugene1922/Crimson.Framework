@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 884b9190ff95146d48f2e74eabd2669f
+=======
+<<<<<<< HEAD:Assets/Crimson.Content/Mixamo/Creature Pack/mutant dying.anim.meta
+guid: 576b4619a6196e541b0c439f0ff96c7b
+=======
+guid: 884b9190ff95146d48f2e74eabd2669f
+>>>>>>> feature/new-level:Assets/Crimson.Content/PolygonParticles/Materials/Materials/pCube1Mat.mat.meta
+>>>>>>> feature/new-level
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0

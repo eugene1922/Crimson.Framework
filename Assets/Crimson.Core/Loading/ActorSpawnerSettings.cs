@@ -38,7 +38,8 @@ namespace Crimson.Core.Loading
         [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
         [ShowIf("SpawnPointsFrom", SpawnPointsSource.Manually)]
         [SceneObjectsOnly]
-        public List<GameObject> spawnPoints;
+        [SerializeField]
+        private List<GameObject> _spawnPoints;
 
         [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
         [ShowIf("SpawnPointsFrom", SpawnPointsSource.FindByTag)]
@@ -122,16 +123,16 @@ namespace Crimson.Core.Loading
         {
             get
             {
-                if (spawnPoints == null)
+                if (_spawnPoints == null)
                 {
-                    spawnPoints = new List<GameObject>();
+                    _spawnPoints = new List<GameObject>();
                 }
 
-                spawnPoints.RemoveAll(go => go == null);
+                _spawnPoints.RemoveAll(go => go == null);
 
-                return spawnPoints;
+                return _spawnPoints;
             }
-            set => spawnPoints = value;
+            set => _spawnPoints = value;
         }
 
         public SpawnPointsSource SpawnPointsFrom

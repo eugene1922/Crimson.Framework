@@ -21,7 +21,7 @@ namespace Crimson.Core.Components
         [Space] public bool ExecuteOnAwake = false;
         [Space] public ActorSpawnerSettings SpawnData;
         [Space] public TimerDelays SpawnDelays;
-        private SpawnTimerCollection _spawnedObjectCollection = new SpawnTimerCollection();
+        private readonly SpawnTimerCollection _spawnedObjectCollection = new SpawnTimerCollection();
         public IActor Actor { get; set; }
 
         public string ComponentName
@@ -36,6 +36,7 @@ namespace Crimson.Core.Components
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
+            Debug.Log("Add component data" + actor.GameObject.name);
             Actor = actor;
         }
 
@@ -48,6 +49,7 @@ namespace Crimson.Core.Components
 
         public void Spawn()
         {
+            Debug.Log($" some shit {SpawnData}, {Actor == null}, {Actor?.Owner}");
             _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor.Owner));
             _spawnedObjectCollection.Clear();
             if (SpawnDelays.IsEmpty)
