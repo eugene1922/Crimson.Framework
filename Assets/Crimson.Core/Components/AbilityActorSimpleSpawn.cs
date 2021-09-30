@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-    [DoNotAddToEntity]
     [HideMonoScript]
     public class AbilityActorSimpleSpawn : MonoBehaviour, IActorAbility, IComponentName
     {

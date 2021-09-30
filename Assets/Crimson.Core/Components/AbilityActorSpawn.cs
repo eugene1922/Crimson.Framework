@@ -11,7 +11,6 @@ using UnityEngine;
 namespace Crimson.Core.Components
 {
     [HideMonoScript]
-    [DoNotAddToEntity]
     public class AbilityActorSpawn : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName
     {
         [Space]

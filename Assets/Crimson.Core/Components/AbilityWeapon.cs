@@ -14,7 +14,6 @@ using UnityEngine;
 namespace Crimson.Core.Components
 {
     [HideMonoScript]
-    [DoNotAddToEntity]
     public class AbilityWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable,
         ICooldownable, IBindable, IAimable
     {

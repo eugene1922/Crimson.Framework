@@ -172,9 +172,9 @@ namespace Crimson.Core.Common
                     WorldEntityManager.DestroyEntity(ActorEntity);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Debug.LogWarning(new Exception($"[ACTOR] Exception during {gameObject.name} OnDestroy: {e.Message}" ));
+                // ignored
             }
         }
 
