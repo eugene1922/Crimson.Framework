@@ -79,7 +79,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public GameObject SpawnedAimingPrefab { get; set; }
 
-        public List<GameObject> SpawnedObjects { get; private set; }
+        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
 
         public Transform SpawnPointsRoot { get; private set; }
 
@@ -166,11 +166,12 @@ namespace Crimson.Core.Components.AbilityReactive
         public void Spawn()
         {
             LookAtTargetIfAimExist();
-
+            
             if (SpawnedObjects.Count != 0)
             {
                 return;
             }
+            
             SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
 
             if (SpawnedObjects == null)
@@ -193,11 +194,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
             ResetSpawnPointRootRotation();
             OnHoldAttackActive = false;
-        }
-
-        public override void StartTimer()
-        {
-            base.StartTimer();
         }
 
         private void InvokeSpawnCallbacks()
