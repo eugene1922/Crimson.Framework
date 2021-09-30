@@ -181,6 +181,7 @@ namespace Crimson.Core.Common
             }
             catch (Exception e)
             {
+                Debug.LogException(new Exception("[ACTOR] Exception during OnDestroy: " + e.Message));
             }
         }
 

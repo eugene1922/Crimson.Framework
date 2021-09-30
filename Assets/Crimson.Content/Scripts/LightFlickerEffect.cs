@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 // Written by Steve Streeting 2017
 // License: CC0 Public Domain http://creativecommons.org/publicdomain/zero/1.0/
@@ -13,7 +14,7 @@ using System.Collections.Generic;
 /// </summary>
 public class LightFlickerEffect : MonoBehaviour {
     [Tooltip("External light to flicker; you can leave this null if you attach script to a light")]
-    public new Light light;
+    public List<Light> lights = new List<Light>();
     [Tooltip("Minimum random light intensity")]
     public float minIntensity = 0f;
     [Tooltip("Maximum random light intensity")]
@@ -35,7 +36,7 @@ public class LightFlickerEffect : MonoBehaviour {
     /// </summary>
     public void Reset()
     {
-        if (light == null) return;
+        if (lights.Count == 0) return;
         smoothQueue.Clear();
         lastSum = 0;
     }
@@ -43,13 +44,13 @@ public class LightFlickerEffect : MonoBehaviour {
     void Start() {
          smoothQueue = new Queue<float>(smoothing);
          // External or internal light?
-         if (light == null) {
-            light = GetComponent<Light>();
+         if (lights.Count == 0) {
+            lights = GetComponentsInChildren<Light>(false).ToList(); 
          }
     }
 
     void Update() {
-        if (light == null)
+        if (lights.Count == 0)
             return;
 
         // pop off an item if too big
@@ -63,7 +64,10 @@ public class LightFlickerEffect : MonoBehaviour {
         lastSum += newVal;
 
         // Calculate new smoothed average
-        light.intensity = lastSum / (float)smoothQueue.Count;
+        foreach (var l in lights)
+        {
+            l.intensity = lastSum / smoothQueue.Count;
+        }
     }
 
 }

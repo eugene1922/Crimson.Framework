@@ -146,7 +146,9 @@ namespace Crimson.Core.Systems
         }
 
         [BurstCompile]
+#pragma warning disable 618
         private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
+#pragma warning restore 618
         {
             public EntityCommandBuffer.ParallelWriter Ecb;
 
