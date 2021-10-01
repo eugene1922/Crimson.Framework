@@ -61,7 +61,7 @@ namespace Assets.Crimson.Core.Components
         public bool suppressWeaponSpawn = false;
 
         [HideInInspector] public List<string> appliedPerksNames = new List<string>();
-        public List<GameObject> SpawnedObjects { get; private set; }
+        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public Action<GameObject> DisposableSpawnCallback { get; set; }
         public bool Enabled { get; set; }

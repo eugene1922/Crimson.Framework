@@ -76,7 +76,7 @@ namespace Crimson.Core.Components.AbilityReactive
         public bool OnHoldAttackActive { get; set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public GameObject SpawnedAimingPrefab { get; set; }
-        public List<GameObject> SpawnedObjects { get; private set; }
+        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
         public Transform SpawnPointsRoot { get; private set; }
         protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 
