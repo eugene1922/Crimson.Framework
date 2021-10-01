@@ -21182,6 +21182,11 @@ PrefabInstance:
       propertyPath: SpawnData._spawnPoints.Array.data[4]
       value: 
       objectReference: {fileID: 370702230049678253}
+    - target: {fileID: 5559702153122194388, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: limit
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9173056185145076088, guid: 73229eaebbdde45339bf6e78786e88d5,
         type: 3}
       propertyPath: m_RootOrder

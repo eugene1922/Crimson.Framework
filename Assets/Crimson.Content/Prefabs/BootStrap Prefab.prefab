@@ -81,6 +81,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3312884724991637442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5223289134390059393}
+  - component: {fileID: 5559702153122194388}
   - component: {fileID: 5223289134390059397}
   - component: {fileID: 5223289134390059399}
   - component: {fileID: 7464802250361029139}
@@ -133,6 +135,19 @@ Transform:
   m_Father: {fileID: 9173056185145076088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5559702153122194388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223289134390059419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983dbb733537647208ab83d9cfa7f6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limit: 0
 --- !u!114 &5223289134390059397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +217,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 3
     parentOfSpawns: 0
@@ -244,8 +259,7 @@ MonoBehaviour:
     x: 20
     skipBusySpawnPoints: 1
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 0}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -283,12 +297,7 @@ MonoBehaviour:
     x: 20
     skipBusySpawnPoints: 1
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -388,6 +397,49 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+--- !u!1 &7410582098008254895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4559352662638657774}
+  - component: {fileID: 6741896019138017440}
+  m_Layer: 0
+  m_Name: FPS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4559352662638657774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410582098008254895}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 55.971565, y: 5.1874948, z: 27.729713}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9173056185145076088}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6741896019138017440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410582098008254895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa5a052115384ffcbbdb0e227c33325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9173056185145076089
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +470,7 @@ Transform:
   - {fileID: 5223289134390059393}
   - {fileID: 7030998300911998664}
   - {fileID: 468751272762221771}
+  - {fileID: 4559352662638657774}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "f92437a1",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "f92437a1",
+        "name": "com.GarageWhale.Crimson",
+        "processId": 22491,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -25,6 +25,30 @@
             "name": "com.mi.android.globallauncher",
             "processId": 2826,
             "exited": true
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 19422,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 21352,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 21993,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 22491,
+            "exited": false
         }
     ],
     "m_Tags": {
