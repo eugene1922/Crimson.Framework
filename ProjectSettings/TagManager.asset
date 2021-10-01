@@ -20,6 +20,9 @@ TagManager:
   - CrystalSpawnPoint
   - Character
   - Ally
+  - BootstrapPrefab
+  - PlayerSpawn
+  - AllySpawn
   layers:
   - Default
   - TransparentFX

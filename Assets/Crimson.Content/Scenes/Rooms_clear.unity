@@ -21187,6 +21187,12 @@ PrefabInstance:
       propertyPath: limit
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6258928002054762504, guid: 73229eaebbdde45339bf6e78786e88d5,
+        type: 3}
+      propertyPath: bootstrapPrefab
+      value: 
+      objectReference: {fileID: 6287879934580752718, guid: 9b14cf3438b204d24be06b43e6b32d5c,
+        type: 3}
     - target: {fileID: 9173056185145076088, guid: 73229eaebbdde45339bf6e78786e88d5,
         type: 3}
       propertyPath: m_RootOrder
@@ -92831,7 +92837,7 @@ GameObject:
   - component: {fileID: 370702228954068716}
   m_Layer: 0
   m_Name: Spawn-Ally
-  m_TagString: Untagged
+  m_TagString: AllySpawn
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92861,7 +92867,7 @@ GameObject:
   - component: {fileID: 370702229305881361}
   m_Layer: 0
   m_Name: Spawn-Ally (2)
-  m_TagString: Untagged
+  m_TagString: AllySpawn
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92891,7 +92897,7 @@ GameObject:
   - component: {fileID: 370702229441163848}
   m_Layer: 0
   m_Name: Spawn-Ally (3)
-  m_TagString: Untagged
+  m_TagString: AllySpawn
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92921,7 +92927,7 @@ GameObject:
   - component: {fileID: 370702230049678254}
   m_Layer: 0
   m_Name: Spawn-Ally (4)
-  m_TagString: Untagged
+  m_TagString: AllySpawn
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92951,7 +92957,7 @@ GameObject:
   - component: {fileID: 370702230413457313}
   m_Layer: 0
   m_Name: Spawn-Ally (1)
-  m_TagString: Untagged
+  m_TagString: AllySpawn
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92981,7 +92987,7 @@ GameObject:
   - component: {fileID: 370702230727255556}
   m_Layer: 0
   m_Name: Spawn-Player (1)
-  m_TagString: Untagged
+  m_TagString: PlayerSpawn
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

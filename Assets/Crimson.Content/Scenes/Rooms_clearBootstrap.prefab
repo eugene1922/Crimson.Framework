@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6287879934580752718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6287879934580752724}
+  - component: {fileID: 5915433106027217665}
+  - component: {fileID: 6287879934580752720}
+  - component: {fileID: 6287879934580752722}
+  - component: {fileID: 8694092084275733190}
+  - component: {fileID: 6287879934580752712}
+  - component: {fileID: 6287879934580752715}
+  m_Layer: 0
+  m_Name: Rooms_clearBootstrap
+  m_TagString: BootstrapPrefab
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6287879934580752724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5915433106027217665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983dbb733537647208ab83d9cfa7f6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limit: 0
+--- !u!114 &6287879934580752720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c546d784df4466cae88d911fdc737d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDummyMeta: 0
+--- !u!114 &6287879934580752722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384219d32da737d4daf4abb74f33ec02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvailablePerksList:
+  - {fileID: 6882162225140268797, guid: f874015fabdd1d9469b76283538ed73e, type: 3}
+  - {fileID: 6882162225140268797, guid: b8d7e42a9ab24b74d9d193977ca29ebe, type: 3}
+  - {fileID: 6882162225140268797, guid: 58cfcdb00f8f8c448929ccd4e99a3e71, type: 3}
+  - {fileID: 6882162225140268797, guid: 744a53dce51153040b5db5aa391a54ac, type: 3}
+  - {fileID: 6882162225140268797, guid: 21bf8fa53bf752645bfeacacd801f2a7, type: 3}
+  - {fileID: 6882162225140268797, guid: 9fb43811482d6334eae0a76d52776902, type: 3}
+  - {fileID: 6882162225140268797, guid: c3f9ba21617a05c449d8c9770c254837, type: 3}
+  PresetPerksList:
+  - {fileID: 3346237751193418256, guid: 4178d70c09aa1fd4e8dabb016804d6f9, type: 3}
+  - {fileID: 3346237751193418256, guid: 757df29c724807b4ea32943cc90d4bb9, type: 3}
+  - {fileID: 3346237751193418256, guid: 13469929c8b8d0f49b5663e6c63a026d, type: 3}
+  CheatPerksList: []
+--- !u!114 &8694092084275733190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea50fd88d1940f9a7a90afc3ce2b26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+  enemyTag: Enemy
+  losePanel: {fileID: 8244941744796162177, guid: 7f580cbd1607ec649a86ae0e70d3258a,
+    type: 3}
+  maxDeathCount: 1
+  players: []
+  respawnPanel: {fileID: 8696230764928413656, guid: e0f5c098160a761478ad431ee30749b1,
+    type: 3}
+  rootCanvas: {fileID: 0}
+  sampleSpawner:
+    spawnerDisabled: 0
+    objectsToSpawn: []
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+  startTime: 0
+  userPlayer: {fileID: 0}
+  userSpawner: {fileID: 0}
+  winPanel: {fileID: 2685741086020035726, guid: cedcb3d5745c0c741a3c4f539e162cef,
+    type: 3}
+  NeedCheckEndGame: 0
+--- !u!114 &6287879934580752712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8d79eb59c04294bc4318b766629486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: User Character
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 3262676482833563216, guid: 89aa5e10162a330458f87730e76842de, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 20
+    skipBusySpawnPoints: 1
+    spawnPointsFrom: 1
+    _spawnPoints: []
+    spawnPointTag: PlayerSpawn
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+--- !u!114 &6287879934580752715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287879934580752718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8d79eb59c04294bc4318b766629486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Ally bot
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 4378100992983064747, guid: 830905554525824489893d40dd1ddef7, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 1
+    x: 20
+    skipBusySpawnPoints: 1
+    spawnPointsFrom: 1
+    _spawnPoints: []
+    spawnPointTag: AllySpawn
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 1322200569230309113, guid: 1fa5e8e2bed3b014c9ed2a2edaabdc02, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
