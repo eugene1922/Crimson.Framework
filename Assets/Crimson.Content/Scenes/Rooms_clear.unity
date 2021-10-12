@@ -86350,7 +86350,7 @@ MonoBehaviour:
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
     - {fileID: 1322200569230309113, guid: 0b3128ef1e33bf5428e22683a4352174, type: 3}
-    copyComponentsOfType: 0
+    copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
