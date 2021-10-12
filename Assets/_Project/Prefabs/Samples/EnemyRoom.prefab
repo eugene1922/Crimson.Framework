@@ -52,10 +52,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8937198035812282920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -145,10 +148,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -173,6 +178,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3124550747818771391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -238,10 +244,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -266,6 +274,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2771969836031122481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -380,12 +389,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 2992720631622122518}
-    - {fileID: 3536887790159334279}
-    - {fileID: 4181457453861843090}
-    - {fileID: 8654846624390249192}
-    - {fileID: 8248262950952806075}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -473,12 +477,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 2992720631622122518}
-    - {fileID: 3536887790159334279}
-    - {fileID: 4181457453861843090}
-    - {fileID: 8654846624390249192}
-    - {fileID: 8248262950952806075}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -566,12 +565,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 2992720631622122518}
-    - {fileID: 3536887790159334279}
-    - {fileID: 4181457453861843090}
-    - {fileID: 8654846624390249192}
-    - {fileID: 8248262950952806075}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -685,10 +679,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -713,6 +709,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8278664502034134361
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -813,10 +810,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -841,6 +840,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2598704676327457811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -863,9 +863,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7432209876421589088}
-  - component: {fileID: 5139664070085541118}
   - component: {fileID: 1162490473}
   - component: {fileID: 5782749824127582080}
+  - component: {fileID: 3948453667683284091}
   m_Layer: 0
   m_Name: EnemyRoom
   m_TagString: Untagged
@@ -890,20 +890,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5139664070085541118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432209876421589091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f65f9dc9b7bf644ada35efe1de1a11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
 --- !u!114 &1162490473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +940,20 @@ MonoBehaviour:
     Delay: 1
     LoopCount: 1
     StartupDelay: 1
+--- !u!114 &3948453667683284091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432209876421589091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
 --- !u!1 &7599706914185218293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,12 +1090,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 2992720631622122518}
-    - {fileID: 3536887790159334279}
-    - {fileID: 4181457453861843090}
-    - {fileID: 8654846624390249192}
-    - {fileID: 8248262950952806075}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -1183,12 +1178,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 2992720631622122518}
-    - {fileID: 3536887790159334279}
-    - {fileID: 4181457453861843090}
-    - {fileID: 8654846624390249192}
-    - {fileID: 8248262950952806075}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0

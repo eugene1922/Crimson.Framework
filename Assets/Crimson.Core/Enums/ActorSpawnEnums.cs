@@ -20,7 +20,8 @@ namespace Crimson.Core.Enums
     {
         UseSpawnPoints = 0,
         RandomPositionOnNavMesh = 1,
-        UseSpawnerPosition = 2
+        UseSpawnerPosition = 2,
+        UseZeroPosition = 3
     }
     
     public enum SpawnDirection

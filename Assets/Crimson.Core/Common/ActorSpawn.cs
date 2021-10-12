@@ -123,6 +123,9 @@ namespace Crimson.Core.Common
                         data.Position = spawner.GameObject.transform.position;
                         break;
 
+                    case SpawnPosition.UseZeroPosition:
+                        data.Position = Vector3.zero;
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

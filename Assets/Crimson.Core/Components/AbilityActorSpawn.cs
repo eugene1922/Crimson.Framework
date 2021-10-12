@@ -48,7 +48,7 @@ namespace Crimson.Core.Components
 
         public void Spawn()
         {
-            _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor.Owner));
+            _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor?.Owner));
             _spawnedObjectCollection.Clear();
             _spawnedObjectCollection.SpawnWithOptions(Timer, SpawnDelays);
             

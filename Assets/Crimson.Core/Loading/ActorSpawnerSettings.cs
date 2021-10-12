@@ -17,7 +17,7 @@ namespace Crimson.Core.Loading
 
         [Space] public List<GameObject> objectsToSpawn;
 
-        [EnumToggleButtons] public SpawnPosition spawnPosition;
+        public SpawnPosition spawnPosition;
 
         [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
         [EnumToggleButtons]
