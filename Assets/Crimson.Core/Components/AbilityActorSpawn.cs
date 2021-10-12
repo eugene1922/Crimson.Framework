@@ -36,6 +36,7 @@ namespace Crimson.Core.Components
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponent<TimerData>(entity);
             if (ExecuteOnAwake) Execute();
         }
 
