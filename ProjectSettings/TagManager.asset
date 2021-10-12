@@ -23,6 +23,9 @@ TagManager:
   - BootstrapPrefab
   - PlayerSpawn
   - AllySpawn
+  - Zone-1-Spawn
+  - Zone-2-Spawn
+  - Zone-3-Spawn
   layers:
   - Default
   - TransparentFX
