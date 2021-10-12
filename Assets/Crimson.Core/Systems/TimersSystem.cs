@@ -19,21 +19,21 @@ namespace Crimson.Core.Systems
         protected override void OnUpdate()
         {
             var dt = Time.DeltaTime;
-            
+
             Entities.With(_query).ForEach(
                 (Entity entity, TimerComponent timer) =>
                 {
-                    for (var i = timer.TimedActions.Count-1; i >= 0; i--)
+                    for (var i = timer.TimedActions.Count - 1; i >= 0; i--)
                     {
                         var timerAction = timer.TimedActions[i];
                         timerAction.Delay -= dt;
                         timer.TimedActions[i] = timerAction;
-                        
+
                         if (!(timerAction.Delay <= 0f)) continue;
-                        var a = timer.TimedActions[i].Act; 
+                        var a = timer.TimedActions[i].Act;
                         timer.TimedActions.RemoveAt(i);
-                        
-                        a.Invoke();
+
+                        a?.Invoke();
                     }
                 });
         }

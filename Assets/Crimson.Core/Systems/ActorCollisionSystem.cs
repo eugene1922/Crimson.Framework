@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Crimson.Core.Utils.LowLevel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -45,7 +45,7 @@ namespace Crimson.Core.Systems
                 }
                 else
                 {
-                    _networkCollisions.Add(collision.ActorStateId, new List<int> {collision.HitStateId});
+                    _networkCollisions.Add(collision.ActorStateId, new List<int> { collision.HitStateId });
                 }
 
                 PostUpdateCommands.DestroyEntity(entity);
@@ -83,8 +83,8 @@ namespace Crimson.Core.Systems
                                 ((colliderData.CapsuleStart + position) + (colliderData.CapsuleEnd + position)) / 2f;
                             var point1 = colliderData.CapsuleStart + position;
                             var point2 = colliderData.CapsuleEnd + position;
-                            point1 = (float3)(rotation*(point1 - center)) + center;
-                            point2 = (float3)(rotation*(point2 - center)) + center;
+                            point1 = (float3)(rotation * (point1 - center)) + center;
+                            point2 = (float3)(rotation * (point2 - center)) + center;
                             size = Physics.OverlapCapsuleNonAlloc(point1,
                                 point2,
                                 colliderData.CapsuleRadius, _results);
@@ -104,11 +104,11 @@ namespace Crimson.Core.Systems
                     }
 
                     int selfHit = 0;
-                    
+
                     if (abilityCollision.SpawnerColliders == null)
                     {
                         var spawner = abilityCollision.Actor.Spawner;
-                        if ((spawner == null) || 
+                        if ((spawner == null) ||
                         ((abilityCollision.SpawnerColliders = spawner.GameObject.GetAllColliders()) == null))
                         {
                             abilityCollision.SpawnerColliders = new List<Collider>();
@@ -146,7 +146,7 @@ namespace Crimson.Core.Systems
                         }
                         else continue;
 
-                        
+
 
                         if (abilityCollision.OwnColliders.Count > 0 &&
                             abilityCollision.OwnColliders.FirstOrDefault(c => c == hit)) continue;
@@ -160,10 +160,10 @@ namespace Crimson.Core.Systems
                                 continue;
                             }
                         }
-                        
+
                         if (abilityCollision.debugCollisions && Application.isEditor)
                         {
-                            Debug.Log($"[COLLISION] HIT] {hit.gameObject} into {abilityCollision.Actor.GameObject} and collision exists: {abilityCollision.ExistentCollisions.Contains(hit)}" );
+                            Debug.Log($"[COLLISION] HIT] {hit.gameObject} into {abilityCollision.Actor.GameObject} and collision exists: {abilityCollision.ExistentCollisions.Contains(hit)}");
                         }
 
                         if (abilityCollision.ExistentCollisions.Exists(c => c == hit)) continue;
@@ -205,7 +205,7 @@ namespace Crimson.Core.Systems
                                 continue;
 
 
-                            foreach (var a in action.actions)
+                            foreach (var a in action.actions.Where(s => s != null))
                             {
                                 switch (a)
                                 {
