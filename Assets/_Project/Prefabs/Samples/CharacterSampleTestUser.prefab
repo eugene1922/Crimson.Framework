@@ -198,7 +198,7 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 6158782068863725022, guid: 4c8e75a21e8966b47baf954b546ac5ea, type: 3}
+    - {fileID: 3741013819364029791, guid: ef26af55fc60f48c1a6d7cac74bfd687, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
