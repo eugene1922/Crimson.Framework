@@ -26,6 +26,7 @@ TagManager:
   - Zone-1-Spawn
   - Zone-2-Spawn
   - Zone-3-Spawn
+  - Zone-3-Boss
   layers:
   - Default
   - TransparentFX
