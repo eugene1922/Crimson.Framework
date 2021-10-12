@@ -62,8 +62,7 @@ MonoBehaviour:
     x: 1
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 1407048474267818, guid: ccfa9fa1b0aa068489c832a5d1746048, type: 3}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 3
     parentOfSpawns: 2
@@ -454,7 +453,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -523,7 +522,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -630,4 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTag: Ally
+  alsoSetLayer: 1
+  newLayer: Allies
   applyOnStart: 1

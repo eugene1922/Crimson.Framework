@@ -169,7 +169,7 @@ namespace Crimson.Core.Systems
 
                     if (targetTransform == null || properties.strategy == ChooseTargetStrategy.Nearest
                         && properties.maxDistanceThreshold > 0f
-                        && math.distancesq(targetTransform.position, actor.GameObject.transform.position) >
+                        && math.distancesq(targetTransform.position, actor.GameObject.transform.position) <
                         properties.maxDistanceThreshold * properties.maxDistanceThreshold)
                     {
                         properties.SearchCompleted = true;

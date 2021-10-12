@@ -75,6 +75,9 @@ MonoBehaviour:
     Actions:
     - {fileID: -7136897725198441121}
     - {fileID: 8733997711401153921}
+  - InputType: 0
+    Actions:
+    - {fileID: 9054062468200216802}
 --- !u!114 &-4939348821489114762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTag: Player
+  alsoSetLayer: 1
+  newLayer: Allies
   applyOnStart: 1
 --- !u!114 &-7136897725198441121
 MonoBehaviour:
@@ -241,11 +246,13 @@ MonoBehaviour:
   _aimingProperties:
     evaluateActionOptions: 0
     aimingType: 1
-    aimingAreaPrefab: {fileID: 0}
+    aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
+      type: 3}
     sightPrefab: {fileID: 12198837163808433, guid: c0be0c496ef5c1e499832569c2db5d14,
       type: 3}
     circlePrefab: {fileID: 0}
-    sightDistance: 15
+    sightDistance: 7
+    reverseControls: 0
   _resetAimTime: 0.15
 --- !u!114 &8733997711401153921
 MonoBehaviour:
@@ -271,7 +278,7 @@ MonoBehaviour:
     targetTag: Enemy
     ignoreSpawner: 0
     strategy: 0
-    maxDistanceThreshold: 0
+    maxDistanceThreshold: 10
   MarkSpawnData:
     spawnerDisabled: 1
     objectsToSpawn: []

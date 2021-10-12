@@ -261,6 +261,8 @@ namespace Crimson.Core.Utils
 
         public static Vector3 EvaluateAimBySight(this IAimable aiming, IActor actor, Vector2 pos)
         {
+            if (!aiming.AimingProperties.reverseControls) pos *= -1;
+            
             var newSightPos = actor.GameObject.transform.position - new Vector3(
                                   pos.x * aiming.AimingProperties.sightDistance,
                                   0, pos.y * aiming.AimingProperties.sightDistance);

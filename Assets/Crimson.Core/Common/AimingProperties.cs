@@ -11,11 +11,14 @@ namespace Crimson.Core.Common
         [Space] [EnumToggleButtons] public EvaluateActionOptions evaluateActionOptions;
         [Space][EnumToggleButtons] public AimingType aimingType;
         
-        public GameObject aimingAreaPrefab;
-        public GameObject sightPrefab;
-        public GameObject circlePrefab;
+        [ShowIf("@aimingType == AimingType.AimingArea")]public GameObject aimingAreaPrefab;
+        [ShowIf("@aimingType == AimingType.SightControl")]public GameObject sightPrefab;
+        [ShowIf("@aimingType == AimingType.Circle")]public GameObject circlePrefab;
 
         [ShowIf("@aimingType == AimingType.SightControl")]
         public float sightDistance;
+
+        [ShowIf("@aimingType == AimingType.SightControl")]
+        public bool reverseControls;
     }
 }

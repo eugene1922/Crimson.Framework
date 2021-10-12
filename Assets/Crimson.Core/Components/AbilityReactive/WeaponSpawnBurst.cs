@@ -217,6 +217,13 @@ namespace Crimson.Core.Components.AbilityReactive
                     SpawnedObjects[i].transform.LookAt(aimTarget.transform);
                 }
             }
+            else
+            {
+                for (var i = 0; i < SpawnedObjects.Count; i++)
+                {
+                    SpawnedObjects[i].transform.rotation = Actor.GameObject.transform.rotation;
+                }
+            }
         }
 
         private bool MustBeAimable(MonoBehaviour behaviour)
