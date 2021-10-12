@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -5199557533950553967}
   - component: {fileID: -7136897725198441121}
   - component: {fileID: 9054062468200216802}
+  - component: {fileID: 8733997711401153921}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -73,9 +74,7 @@ MonoBehaviour:
   - InputType: 1
     Actions:
     - {fileID: -7136897725198441121}
-  - InputType: 0
-    Actions:
-    - {fileID: 9054062468200216802}
+    - {fileID: 8733997711401153921}
 --- !u!114 &-4939348821489114762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,3 +247,51 @@ MonoBehaviour:
     circlePrefab: {fileID: 0}
     sightDistance: 15
   _resetAimTime: 0.15
+--- !u!114 &8733997711401153921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a36ee688fe8bc747932cc8d153763c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
+  aimingAvailable: 0
+  componentName: 
+  deactivateAimingOnCooldown: 0
+  FindTargetProperties:
+    targetType: 3
+    actorWithComponentName: 
+    targetTag: Enemy
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  MarkSpawnData:
+    spawnerDisabled: 1
+    objectsToSpawn: []
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+  ResetAimTime: 0.15

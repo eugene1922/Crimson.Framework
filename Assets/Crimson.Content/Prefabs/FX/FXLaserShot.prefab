@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4444513399101466559}
   - component: {fileID: 3312015257527407060}
-  - component: {fileID: 4469434448957127851}
   - component: {fileID: 2050575622317352554}
   m_Layer: 0
   m_Name: FXLaserShot
@@ -58,28 +57,6 @@ MonoBehaviour:
   retainOffset: 0
   continousFollow: 1
   hideIfNoTarget: 0
---- !u!114 &4469434448957127851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3741013819364029791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535773388f1f4534bdad2a70960d5503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: 1
-  actorWithComponentName: 
-  targetTag: 
-  strategy: 0
-  followX: 0
-  followY: 1
-  followZ: 0
-  retainRotationOffset: 0
-  hideIfNoTarget: 0
-  target: {fileID: 0}
 --- !u!114 &2050575622317352554
 MonoBehaviour:
   m_ObjectHideFlags: 0

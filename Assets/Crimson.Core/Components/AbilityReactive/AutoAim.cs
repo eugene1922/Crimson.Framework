@@ -149,10 +149,10 @@ namespace Crimson.Core.Components.AbilityReactive
 
         private void SpawnMarkIfNull()
         {
-            if (SpawnedObjects == null || SpawnedObjects.Count == 0)
+            if (SpawnedObjects.Count == 0)
             {
                 SpawnedObjects = ActorSpawn.Spawn(MarkSpawnData, Actor, Actor);
-                if (SpawnedObjects.Count > 0)
+                if (SpawnedObjects != null && SpawnedObjects.Count > 0)
                 {
                     SpawnedAimingPrefab = SpawnedObjects[0];
                 }

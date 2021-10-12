@@ -251,6 +251,7 @@ namespace Crimson.Core.Common
                             IActor owner = null)
         {
             var spawnItems = GenerateData(spawnSettings, spawner, owner);
+            if (spawnItems == null) return new List<GameObject>();
             var results = new List<GameObject>();
             for (var i = 0; i < spawnItems.Count; i++)
             {
