@@ -11,7 +11,7 @@ namespace Crimson.Core.Common
             get
             {
                 if (this == null || this.gameObject == null) return null;
-                return _timer = this?.gameObject.GetOrCreateTimer(_timer);
+                return _timer = this.gameObject.GetOrCreateTimer(_timer);
             }
         }
 

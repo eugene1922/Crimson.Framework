@@ -11,7 +11,7 @@ namespace Crimson.Core.Loading
     {
         private int _currentItemIndex = 0;
         private TimerDelays _delays;
-        private List<SpawnItemData> _spawnItems;
+        private List<SpawnItemData> _spawnItems = new List<SpawnItemData>();
         private TimerComponent _timer;
 
         public SpawnTimerCollection()
@@ -36,14 +36,14 @@ namespace Crimson.Core.Loading
 
         private void SpawnCurrentItem()
         {
-            Add(ActorSpawn.Spawn(_spawnItems[_currentItemIndex]));
-            _currentItemIndex++;
-
-            if (_currentItemIndex >= _spawnItems.Count - 1)
+            if (_currentItemIndex >= _spawnItems.Count)
             {
                 return;
             }
             
+            Add(ActorSpawn.Spawn(_spawnItems[_currentItemIndex]));
+            _currentItemIndex++;
+
             _timer.TimedActions.AddAction(SpawnCurrentItem, _delays.Delay*_currentItemIndex);
         }
 

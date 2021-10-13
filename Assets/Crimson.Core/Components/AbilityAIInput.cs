@@ -55,8 +55,12 @@ namespace Crimson.Core.Components
         {
             this.RemoveAction(EvaluateAll);
 
-            _dstManager.RemoveComponent<SetupAIData>(_entity);
-            _dstManager.AddComponent<EvaluateAIData>(_entity);
+            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            if (_dstManager.Exists(_entity))
+            {
+                _dstManager.RemoveComponent<SetupAIData>(_entity);
+                _dstManager.AddComponent<EvaluateAIData>(_entity);   
+            }
 
             if (this.TimerActive)
             {

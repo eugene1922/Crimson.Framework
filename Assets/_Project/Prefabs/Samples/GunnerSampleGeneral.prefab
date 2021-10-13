@@ -13,12 +13,11 @@ GameObject:
   - component: {fileID: -1330729215862922913}
   - component: {fileID: -3678600976375478634}
   - component: {fileID: 8170466036268861975}
-  - component: {fileID: -8760103647376991612}
   - component: {fileID: 6430768560650811411}
   - component: {fileID: -1924274504665356381}
   - component: {fileID: -8540745754969349028}
   m_Layer: 0
-  m_Name: CharacterSampleEnemyBot
+  m_Name: GunnerSampleGeneral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +52,7 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
-    spawnerDisabled: 0
+    spawnerDisabled: 1
     objectsToSpawn:
     - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
     spawnPosition: 2
@@ -62,8 +61,7 @@ MonoBehaviour:
     x: 1
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 1407048474267818, guid: ccfa9fa1b0aa068489c832a5d1746048, type: 3}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 3
     parentOfSpawns: 2
@@ -99,9 +97,6 @@ MonoBehaviour:
   - index: 1
     actions:
     - {fileID: 8170466036268861975}
-  - index: 2
-    actions:
-    - {fileID: -8760103647376991612}
   - index: 3
     actions:
     - {fileID: -1924274504665356381}
@@ -146,7 +141,7 @@ MonoBehaviour:
     curveMinSample: 0
     curveMaxSample: 20
     basePriority: 0.1
-    additionalMode: 'Strict mode: distance to priority'
+    additionalMode: 'Random mode: priority as probability'
     executeCustomInput: 0
     targetFilterMode: 0
     targetFilterTags:
@@ -195,49 +190,6 @@ MonoBehaviour:
     targetFilterTags:
     - Player
     - Ally
-  - behaviourType: AttackBehaviour
-    priorityCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: -0.003957478
-        outSlope: -0.003957478
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.6603614
-      - serializedVersion: 3
-        time: 0.99
-        value: 0.5
-        inSlope: -1.4543452
-        outSlope: -1.4543452
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    curveMinSample: 0
-    curveMaxSample: 3
-    basePriority: 2.5
-    additionalMode: 
-    executeCustomInput: 2
-    targetFilterMode: 0
-    targetFilterTags:
-    - Player
-    - Ally
   - behaviourType: RandomActionBehaviour
     priorityCurve:
       serializedVersion: 2
@@ -270,49 +222,6 @@ MonoBehaviour:
     executeCustomInput: 3
     targetFilterMode: 0
     targetFilterTags: []
-  - behaviourType: FollowLeaderBehaviour
-    priorityCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.036373034
-        value: 0.8175832
-        inSlope: 0.59527653
-        outSlope: 0.59527653
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.09165659
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    curveMinSample: 1
-    curveMaxSample: 150
-    basePriority: 2
-    additionalMode: 
-    executeCustomInput: 1
-    targetFilterMode: 0
-    targetFilterTags:
-    - Player
-    - Ally
   behaviourUpdatePeriod: {x: 5, y: 7}
   activeBehaviour:
     behaviourType: 
@@ -380,6 +289,7 @@ MonoBehaviour:
     sightPrefab: {fileID: 0}
     circlePrefab: {fileID: 0}
     sightDistance: 0
+    reverseControls: 0
   aimingAnimProperties:
     HasActorAimingAnimation: 0
     ActorAimingAnimationName: 
@@ -393,7 +303,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 0
     parentOfSpawns: 0
@@ -408,75 +318,6 @@ MonoBehaviour:
     randomSeed: 0
   projectileStartupDelay: 0
   cooldownTime: 1
-  projectileClipCapacity: 0
-  clipReloadTime: 1
-  reloadDisplayToggle: []
-  clipReloadDisplayToggle: []
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
-  suppressWeaponSpawn: 0
-  appliedPerksNames: []
---- !u!114 &-8760103647376991612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322200569230309113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: BurningWeaponPerk
-  primaryProjectile: 0
-  aimingAvailable: 0
-  deactivateAimingOnCooldown: 0
-  onClickAttackType: 0
-  attackDirectionType: 0
-  findTargetProperties:
-    targetType: 0
-    actorWithComponentName: 
-    targetTag: 
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 0
-  aimingProperties:
-    evaluateActionOptions: 0
-    aimingType: 0
-    aimingAreaPrefab: {fileID: 0}
-    sightPrefab: {fileID: 0}
-    circlePrefab: {fileID: 0}
-    sightDistance: 0
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
-  projectileSpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    spawnPoints: []
-    spawnPointTag: 
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-  projectileStartupDelay: 0
-  cooldownTime: 3
   projectileClipCapacity: 0
   clipReloadTime: 1
   reloadDisplayToggle: []
@@ -518,7 +359,7 @@ MonoBehaviour:
   projectileEffectPrefab: {fileID: 6882162225140268797, guid: f893d1d01ba5e7f4fa277438606c89d6,
     type: 3}
   perkRelatedComponents:
-  - {fileID: -8760103647376991612}
+  - {fileID: 0}
   levelablePropertiesList: []
 --- !u!114 &-1924274504665356381
 MonoBehaviour:
@@ -545,6 +386,7 @@ MonoBehaviour:
     sightPrefab: {fileID: 0}
     circlePrefab: {fileID: 0}
     sightDistance: 0
+    reverseControls: 0
   aimingAnimProperties:
     HasActorAimingAnimation: 0
     ActorAimingAnimationName: 
@@ -569,4 +411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTag: Enemy
+  alsoSetLayer: 0
+  newLayer: 
   applyOnStart: 1

@@ -15,6 +15,8 @@ namespace Crimson.Core.Utils
 
         public static void AddAction(this TimerBaseBehaviour obj, Action action, float delay)
         {
+            var t = obj.Timer;
+            if (t == null) return;
             obj.Timer.TimedActions.Add(CreateAction(action, delay));
         }
 
@@ -73,7 +75,9 @@ namespace Crimson.Core.Utils
         public static List<int> FindActionIndexes(this TimerBaseBehaviour obj, Action action)
         {
             var result = new List<int>();
-            var actions = obj.Timer.TimedActions;
+            var t = obj.Timer;
+            if (t == null) return result;
+            var actions = t.TimedActions;
             for (var i = 0; i < actions.Count; i++)
             {
                 if (!actions[i].Act.Equals(action))

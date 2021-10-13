@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Crimson.Core.Common
 {
     [NetworkSimObject]
-    public class TimerComponent : MonoBehaviour
+    public class TimerComponent : MonoBehaviour, IConvertGameObjectToEntity
     {
         [NetworkSimData]
         public List<TimerAction> TimedActions = new List<TimerAction>();
@@ -18,7 +18,9 @@ namespace Crimson.Core.Common
         [NetworkSimData]
         public IActor actor;
 
-        private void Awake()
+        
+        
+        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             actor = this.gameObject.GetComponent<IActor>();
             if (actor == null)
@@ -26,11 +28,11 @@ namespace Crimson.Core.Common
                 Debug.LogError("[TIMER COMPONENT] No IActor component found, aborting!");
                 return;
             }
-
-            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            
             dstManager.AddComponent<TimerData>(actor.ActorEntity);
-        }
 
+        }
+        
 #if UNITY_EDITOR
 
         [ShowInInspector]
@@ -58,6 +60,7 @@ namespace Crimson.Core.Common
         }
 
 #endif
+        
     }
 
     public struct TimerAction

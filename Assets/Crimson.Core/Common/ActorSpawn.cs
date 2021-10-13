@@ -22,7 +22,7 @@ namespace Crimson.Core.Common
         {
             if (spawnSettings.SpawnerDisabled)
             {
-                return null;
+                return new List<SpawnItemData>();
             }
 
             int spawnCount;

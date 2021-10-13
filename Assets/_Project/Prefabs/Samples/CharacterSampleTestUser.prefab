@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -7136897725198441121}
   - component: {fileID: 9054062468200216802}
   - component: {fileID: 8733997711401153921}
+  - component: {fileID: 4499761472529401423}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MonoBehaviour:
   customBindings:
   - index: 1
     actions:
-    - {fileID: 2000508641564710722}
+    - {fileID: 4499761472529401423}
 --- !u!114 &2000508641564710722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +303,75 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   ResetAimTime: 0.15
+--- !u!114 &4499761472529401423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  primaryProjectile: 1
+  aimingAvailable: 1
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 1
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 3
+    actorWithComponentName: 
+    targetTag: Enemy
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  aimingProperties:
+    evaluateActionOptions: 1
+    aimingType: 0
+    aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
+      type: 3}
+    sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
+    sightDistance: 0
+    reverseControls: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
+  projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: d6b4eda4410534643b1da9bb708d2c5a, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 1
+    _spawnPoints:
+    - {fileID: 0}
+    spawnPointTag: WeaponPoint
+    rotationOfSpawns: 4
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+  projectileStartupDelay: 0
+  cooldownTime: 0.2
+  projectileClipCapacity: 0
+  clipReloadTime: 1
+  reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
+  suppressWeaponSpawn: 0
+  appliedPerksNames: []

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2866327413141821552}
   - component: {fileID: -4054787997842051503}
   - component: {fileID: 4982581319709082897}
+  - component: {fileID: 1177973882340684263}
   m_Layer: 10
   m_Name: vfx_staff_projectile_blue_a
   m_TagString: Untagged
@@ -54,8 +55,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
-  _actorId: 0
-  _actorStateId: 0
 --- !u!114 &8666833390926517759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,28 +139,32 @@ MonoBehaviour:
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 311
+      m_Bits: 8503
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Player
+    - Enemy
+    - DestructibleObject
+    - CollisionObjects
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
     - {fileID: -4054787997842051503}
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 311
+      m_Bits: 8503
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Player
+    - Enemy
     - DestructibleObject
+    - CollisionObjects
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
+    destroyAfterAction: 1
     actions:
     - {fileID: -1026498150765288097}
     - {fileID: 2866327413141821552}
+  debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &-1026498150765288097
 MonoBehaviour:
@@ -191,7 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perkLevel: 1
   damageValue: 50
+  levelablePropertiesList: []
 --- !u!114 &-4054787997842051503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,16 +210,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 2939668755688441488, guid: b0e7c5fbd639cd6419d74d536a13fb07, type: 3}
-    spawnPosition: 0
+    spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
-    spawnPoints:
-    - {fileID: 4113400451937363668}
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
     rotationOfSpawns: 4
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -226,7 +234,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  ExecuteOnAwake: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!114 &4982581319709082897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +251,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 3
   startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}
+--- !u!114 &1177973882340684263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090190289803064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816478409737304
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +317,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -309,6 +337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -321,16 +354,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
         type: 3}
@@ -354,12 +377,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9597397a86f53244182264156d111af4, type: 3}
---- !u!1 &4113400451937363668 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9080345818242838081, guid: 9597397a86f53244182264156d111af4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5122393242225674389}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1489231802885550043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6033897628495521614, guid: 9597397a86f53244182264156d111af4,
