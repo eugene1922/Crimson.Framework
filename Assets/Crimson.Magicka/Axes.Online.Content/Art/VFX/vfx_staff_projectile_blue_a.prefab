@@ -147,7 +147,7 @@ MonoBehaviour:
     - DestructibleObject
     - CollisionObjects
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
+    destroyAfterAction: 0
     actions:
     - {fileID: -4054787997842051503}
   - collisionLayerMask:
@@ -160,7 +160,7 @@ MonoBehaviour:
     - DestructibleObject
     - CollisionObjects
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
+    destroyAfterAction: 0
     actions:
     - {fileID: -1026498150765288097}
     - {fileID: 2866327413141821552}
@@ -236,7 +236,7 @@ MonoBehaviour:
     randomSeed: 0
   SpawnDelays:
     Delay: 0
-    StartupDelay: 0
+    StartupDelay: 0.1
 --- !u!114 &4982581319709082897
 MonoBehaviour:
   m_ObjectHideFlags: 0

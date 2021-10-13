@@ -376,10 +376,13 @@ namespace Crimson.Core.Components
             DisposableSpawnCallback = go =>
             {
                 var targetActor = go.GetComponent<Actor>();
-                if (targetActor == null) return;
+                if (targetActor == null)
+                {
+                    return;
+                }
 
                 var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
-
+                
                 targetActor.ChangeActorForceMovementData(
                     projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
             };

@@ -12,7 +12,7 @@ namespace Crimson.Core.Utils
             if (target == null) return;
 
             if (!World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<ActorForceMovementData>(target.ActorEntity)) return;
-
+            
             var actorForceMovementData = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<ActorForceMovementData>(target.ActorEntity);
 
             actorForceMovementData.MoveDirection = MoveDirection.UseDirection;

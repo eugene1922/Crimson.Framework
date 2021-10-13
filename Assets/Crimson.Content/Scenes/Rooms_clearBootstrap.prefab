@@ -153,7 +153,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 5084568887535205523, guid: 8f0e2183d34d36d43b0cb558d94bbc89, type: 3}
+    - {fileID: 3262676482833563216, guid: 89aa5e10162a330458f87730e76842de, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0

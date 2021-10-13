@@ -135,7 +135,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 20
-    basePriority: 0.1
+    basePriority: 0.29
     additionalMode: 'Random mode: priority as probability'
     executeCustomInput: 0
     targetFilterMode: 0
@@ -176,8 +176,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 10
-    basePriority: 1.54
+    curveMaxSample: 20
+    basePriority: 2.52
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 0.45
+    basePriority: 0.27
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 1
+    basePriority: 0.49
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 1
+  cooldownTime: 0.2
   projectileClipCapacity: 0
   clipReloadTime: 1
   reloadDisplayToggle: []

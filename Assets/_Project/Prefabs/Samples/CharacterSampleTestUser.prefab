@@ -333,7 +333,8 @@ MonoBehaviour:
     aimingType: 0
     aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
       type: 3}
-    sightPrefab: {fileID: 0}
+    sightPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
+      type: 3}
     circlePrefab: {fileID: 0}
     sightDistance: 0
     reverseControls: 0
@@ -344,16 +345,16 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1090190289803064, guid: d6b4eda4410534643b1da9bb708d2c5a, type: 3}
-    spawnPosition: 0
+    spawnPosition: 2
     spawnPointsFillingMode: 0
-    fillSpawnPoints: 1
+    fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
-    spawnPointsFrom: 1
+    spawnPointsFrom: 0
     _spawnPoints:
     - {fileID: 0}
     spawnPointTag: WeaponPoint
-    rotationOfSpawns: 4
+    rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: 
