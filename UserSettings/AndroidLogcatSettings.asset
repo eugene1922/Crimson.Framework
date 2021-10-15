@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "f92437a1",
         "name": "com.GarageWhale.Crimson",
-        "processId": 9690,
+        "processId": 5118,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -72,6 +72,12 @@
             "deviceId": "f92437a1",
             "name": "com.GarageWhale.Crimson",
             "processId": 9690,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 5118,
             "exited": false
         }
     ],

@@ -47,8 +47,8 @@ namespace Crimson.Core.Systems
                         {
                             metricaEventDict.Clear();
                             metricaEventDict.Add("level", 1);
-                            state.metrica.ReportEvent("level_start", metricaEventDict);
-                            state.metrica.SendEventsBuffer();
+                            //state.metrica.ReportEvent("level_start", metricaEventDict);
+                            //state.metrica.SendEventsBuffer();
                             Debug.Log("[GAMESTATE] Appmetrica level start");
                             var panels = ActorSpawn.Spawn(state.sampleSpawner, state.userPlayer.Actor);
 
@@ -89,8 +89,8 @@ namespace Crimson.Core.Systems
                                 metricaEventDict.Add("result", "lose");
                                 metricaEventDict.Add("time", (int)(Time.ElapsedTime - state.startTime));
                                 metricaEventDict.Add("progress", 100);
-                                state.metrica.ReportEvent("level_finish", metricaEventDict);
-                                state.metrica.SendEventsBuffer();
+                                //state.metrica.ReportEvent("level_finish", metricaEventDict);
+                                //state.metrica.SendEventsBuffer();
                                 Debug.Log("[GAMESTATE] Appmetrica Finish event lose");
                                 dstManager.DestroyEntity(dstManager.UniversalQuery);
                                 SceneManager.LoadScene(0);
@@ -159,8 +159,8 @@ namespace Crimson.Core.Systems
             metricaEventDict.Add("result", "win");
             metricaEventDict.Add("time", (int)(Time.ElapsedTime - state.startTime));
             metricaEventDict.Add("progress", 100);
-            state.metrica.ReportEvent("level_finish", metricaEventDict);
-            state.metrica.SendEventsBuffer();
+            //state.metrica.ReportEvent("level_finish", metricaEventDict);
+            //state.metrica.SendEventsBuffer();
             Debug.LogFormat(resultLogMessage, endResult.ToString().ToLower());
             targetPanel.SetActive(true);
         }

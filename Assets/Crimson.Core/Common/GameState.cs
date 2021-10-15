@@ -24,8 +24,8 @@ namespace Crimson.Core.Common
         public GameObject losePanel;
         public int maxDeathCount = 1;
 
-        [HideInInspector]
-        public IYandexAppMetrica metrica;
+        //[HideInInspector]
+        //public IYandexAppMetrica metrica;
 
         [HideInInspector]
         public List<AbilityActorPlayer> players;
@@ -80,7 +80,7 @@ namespace Crimson.Core.Common
                 winPanel,
                 losePanel
             };
-            metrica = AppMetrica.Instance;
+            //metrica = AppMetrica.Instance;
             //Setup();
             
         }
