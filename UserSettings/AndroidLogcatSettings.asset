@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "f92437a1",
         "name": "com.GarageWhale.Crimson",
-        "processId": 22491,
+        "processId": 9690,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -48,6 +48,30 @@
             "deviceId": "f92437a1",
             "name": "com.GarageWhale.Crimson",
             "processId": 22491,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 4483,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 5310,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 8322,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 9690,
             "exited": false
         }
     ],

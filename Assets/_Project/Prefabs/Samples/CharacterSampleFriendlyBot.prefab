@@ -14,6 +14,11 @@ GameObject:
   - component: {fileID: -3678600976375478634}
   - component: {fileID: 8170466036268861975}
   - component: {fileID: -1322401185430875244}
+  - component: {fileID: 417071673562370844}
+  - component: {fileID: 166878072425561186}
+  - component: {fileID: 5225921026794927161}
+  - component: {fileID: 6535472178547726346}
+  - component: {fileID: 4420840340207979218}
   m_Layer: 0
   m_Name: CharacterSampleFriendlyBot
   m_TagString: Untagged
@@ -135,7 +140,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 20
-    basePriority: 0.29
+    basePriority: 0.21
     additionalMode: 'Random mode: priority as probability'
     executeCustomInput: 0
     targetFilterMode: 0
@@ -155,8 +160,8 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.6603614
       - serializedVersion: 3
-        time: 0.99
-        value: 0.5
+        time: 0.915
+        value: 0.1273585
         inSlope: -1.4543452
         outSlope: -1.4543452
         tangentMode: 0
@@ -177,7 +182,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 20
-    basePriority: 2.52
+    basePriority: 2.76
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -219,7 +224,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 4
     curveMaxSample: 150
-    basePriority: 1
+    basePriority: 0.43
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -252,7 +257,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 0.27
+    basePriority: 0.1
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -284,12 +289,12 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 0.49
+    basePriority: 0.26
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
     targetFilterTags: []
-  behaviourUpdatePeriod: {x: 1, y: 2}
+  behaviourUpdatePeriod: {x: 0.64968157, y: 2}
   activeBehaviour:
     behaviourType: 
     priorityCurve:
@@ -372,7 +377,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
-    rotationOfSpawns: 0
+    rotationOfSpawns: 4
     parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: 
@@ -384,9 +389,9 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.2
+  cooldownTime: 0.3
   projectileClipCapacity: 0
-  clipReloadTime: 1
+  clipReloadTime: 0
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -410,3 +415,195 @@ MonoBehaviour:
   alsoSetLayer: 1
   newLayer: Allies
   applyOnStart: 1
+--- !u!114 &417071673562370844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efab744802f94701bdb0b235b75b3f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerName: Ally
+  MaxHealth: 100
+  CurrentHealth: 0
+  CurrentExperience: 0
+  LevelUpRequiredExperience: 0
+  CurrentLevel: 1
+  TotalDamageApplied: 0
+  deathCount: 0
+  levelUpAction: {fileID: 4420840340207979218}
+  healAction: {fileID: 6535472178547726346}
+  deadActorBehaviour:
+    RemoveTag: 0
+    RemoveRigidbody: 1
+    RemoveColliders: 1
+    RemoveInput: 1
+    OnDeathActionsComponentNames:
+    - Spawn Healing Potion
+  corpseCleanupDelay: 5
+  targetMarkActorComponentName: Aim Enemy Mark
+  actorDeathAnimProperties:
+    HasActorDeathAnimation: 1
+    ActorDeathAnimationName: Dead
+  actorTakeDamageAnimProperties:
+    HasActorTakeDamageAnimation: 0
+    ActorTakeDamageName: 
+  ExplicitUIChannel: 0
+  UIChannelID: 0
+  levelablePropertiesList:
+  - propertyName: MaxHealth
+    levelablePropertyAction: 1
+    modifier: 20
+    levelablePropertiesInfo:
+    - MaxHealth
+    - LevelUpRequiredExperience
+  - propertyName: CurrentHealth
+    levelablePropertyAction: 1
+    modifier: 20
+    levelablePropertiesInfo:
+    - MaxHealth
+    - CurrentHealth
+    - LevelUpRequiredExperience
+  - propertyName: LevelUpRequiredExperience
+    levelablePropertyAction: 1
+    modifier: 300
+    levelablePropertiesInfo:
+    - MaxHealth
+    - LevelUpRequiredExperience
+  isEnabled: 1
+  actorToUI: 0
+--- !u!114 &166878072425561186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  useDynamics: 0
+  movementStart:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0028305054
+        value: 0.33374023
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    timeScale: 0.1
+  movementEnd:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    timeScale: 0.1
+  movementAnimationProperties:
+    HasMovementAnimation: 1
+    MovementAnimationName: Run
+    MovementAnimationSpeedFactorName: SpeedFactor
+    MovementAnimationSpeedFactorMultiplier: 1.5
+--- !u!114 &5225921026794927161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Spawn Healing Potion
+  objectToSpawn: {fileID: 6775260570760619785, guid: 799f0947368ed4346a68b563835878f6,
+    type: 3}
+  spawnerType: 0
+  ownerType: 2
+  ExecuteOnAwake: 0
+  DestroyAfterSpawn: 1
+  spawnedObject: {fileID: 0}
+--- !u!114 &6535472178547726346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Heal FX
+  objectToSpawn: {fileID: 8138075922688704790, guid: baa7f026666d5c748bc6d46413c95734,
+    type: 3}
+  spawnerType: 0
+  ownerType: 2
+  ExecuteOnAwake: 0
+  DestroyAfterSpawn: 0
+  spawnedObject: {fileID: 0}
+--- !u!114 &4420840340207979218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: LevelUp FX
+  objectToSpawn: {fileID: 3785936709122220605, guid: e988b14cc79d8d24eb0faf6fa75dd507,
+    type: 3}
+  spawnerType: 0
+  ownerType: 2
+  ExecuteOnAwake: 0
+  DestroyAfterSpawn: 0
+  spawnedObject: {fileID: 0}

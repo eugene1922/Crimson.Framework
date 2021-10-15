@@ -2,6 +2,7 @@
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
+using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
@@ -55,6 +56,7 @@ namespace Crimson.Core.Systems
                     if (!actorPlayer.UIReceiverList.Any()) return;
                     
                     var perksPresets = GameMeta.PresetPerksList.Select(p => p.GetComponent<IPerkUpgrade>()).ToList();
+                    
                     perksPresets.ForEach(p => p.SpawnPerk(actorPlayer.Actor));
                     
                     PostUpdateCommands.RemoveComponent<ApplyPresetPerksData>(playerEntity);

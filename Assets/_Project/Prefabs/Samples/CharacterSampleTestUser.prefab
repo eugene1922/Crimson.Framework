@@ -18,6 +18,11 @@ GameObject:
   - component: {fileID: 9054062468200216802}
   - component: {fileID: 8733997711401153921}
   - component: {fileID: 4499761472529401423}
+  - component: {fileID: -1969340818193211531}
+  - component: {fileID: -5360728394872650663}
+  - component: {fileID: 4166300824754732120}
+  - component: {fileID: -8052119949386301436}
+  - component: {fileID: -8075305533220201676}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -118,7 +123,7 @@ MonoBehaviour:
     randomSeed: 0
   SpawnDelays:
     Delay: 0
-    StartupDelay: 0
+    StartupDelay: 0.1
 --- !u!114 &-136997334286632821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +165,7 @@ MonoBehaviour:
     randomSeed: 0
   SpawnDelays:
     Delay: 0
-    StartupDelay: 0
+    StartupDelay: 0.1
 --- !u!114 &-5199557533950553967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,9 +322,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   primaryProjectile: 1
-  aimingAvailable: 1
+  aimingAvailable: 0
   deactivateAimingOnCooldown: 0
-  onClickAttackType: 1
+  onClickAttackType: 0
   attackDirectionType: 0
   findTargetProperties:
     targetType: 3
@@ -366,7 +371,7 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.2
+  cooldownTime: 0.5
   projectileClipCapacity: 0
   clipReloadTime: 1
   reloadDisplayToggle: []
@@ -376,3 +381,187 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+--- !u!114 &-1969340818193211531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efab744802f94701bdb0b235b75b3f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerName: Player
+  MaxHealth: 100
+  CurrentHealth: 0
+  CurrentExperience: 0
+  LevelUpRequiredExperience: 0
+  CurrentLevel: 1
+  TotalDamageApplied: 0
+  deathCount: 0
+  levelUpAction: {fileID: -8052119949386301436}
+  healAction: {fileID: 4166300824754732120}
+  deadActorBehaviour:
+    RemoveTag: 0
+    RemoveRigidbody: 1
+    RemoveColliders: 1
+    RemoveInput: 1
+    OnDeathActionsComponentNames:
+    - Spawn Healing Potion
+  corpseCleanupDelay: 5
+  targetMarkActorComponentName: Aim Enemy Mark
+  actorDeathAnimProperties:
+    HasActorDeathAnimation: 1
+    ActorDeathAnimationName: Dead
+  actorTakeDamageAnimProperties:
+    HasActorTakeDamageAnimation: 0
+    ActorTakeDamageName: 
+  ExplicitUIChannel: 0
+  UIChannelID: 0
+  levelablePropertiesList:
+  - propertyName: MaxHealth
+    levelablePropertyAction: 1
+    modifier: 20
+    levelablePropertiesInfo:
+    - MaxHealth
+    - LevelUpRequiredExperience
+  - propertyName: CurrentHealth
+    levelablePropertyAction: 1
+    modifier: 20
+    levelablePropertiesInfo:
+    - MaxHealth
+    - CurrentHealth
+    - LevelUpRequiredExperience
+  - propertyName: LevelUpRequiredExperience
+    levelablePropertyAction: 1
+    modifier: 300
+    levelablePropertiesInfo:
+    - MaxHealth
+    - LevelUpRequiredExperience
+  isEnabled: 1
+  actorToUI: 0
+--- !u!114 &-5360728394872650663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  useDynamics: 0
+  movementStart:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0028305054
+        value: 0.33374023
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    timeScale: 0.1
+  movementEnd:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    timeScale: 0.1
+  movementAnimationProperties:
+    HasMovementAnimation: 1
+    MovementAnimationName: Run
+    MovementAnimationSpeedFactorName: SpeedFactor
+    MovementAnimationSpeedFactorMultiplier: 1.5
+--- !u!114 &4166300824754732120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Heal FX
+  objectToSpawn: {fileID: 8138075922688704790, guid: baa7f026666d5c748bc6d46413c95734,
+    type: 3}
+  spawnerType: 0
+  ownerType: 2
+  ExecuteOnAwake: 0
+  DestroyAfterSpawn: 0
+  spawnedObject: {fileID: 0}
+--- !u!114 &-8052119949386301436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: LevelUp FX
+  objectToSpawn: {fileID: 3785936709122220605, guid: e988b14cc79d8d24eb0faf6fa75dd507,
+    type: 3}
+  spawnerType: 0
+  ownerType: 2
+  ExecuteOnAwake: 0
+  DestroyAfterSpawn: 0
+  spawnedObject: {fileID: 0}
+--- !u!114 &-8075305533220201676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

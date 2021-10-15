@@ -1226,7 +1226,7 @@ MonoBehaviour:
   buttonImage: {fileID: 7437932903540807592}
   cooldownProgressBar: {fileID: 1593143261292280831}
   reverseProgressBarDirection: 0
-  cooldownTimerRoot: {fileID: 0}
+  cooldownTimerRoot: {fileID: 1593143261292280768}
   cooldownTimerText: {fileID: 0}
   onScreenStickComponent: {fileID: 6630160520163108338}
   onScreenButtonComponent: {fileID: 6697711360647926699}

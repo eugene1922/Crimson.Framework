@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8802586809504653326}
   - component: {fileID: -7484853190416408497}
   - component: {fileID: -545139303555207117}
+  - component: {fileID: -3459722507842696765}
   m_Layer: 10
   m_Name: vfx_frost_arrow_projectile_a
   m_TagString: Untagged
@@ -163,8 +164,9 @@ MonoBehaviour:
     filterTags:
     - Player
     - DestructibleObject
+    - Ally
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
+    destroyAfterAction: 0
     actions:
     - {fileID: -9136214588343567339}
     - {fileID: 8802586809504653326}
@@ -177,6 +179,7 @@ MonoBehaviour:
     - Player
     - CollisionObjects
     - DestructibleObject
+    - Ally
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -256,7 +259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 7430887200127099503, guid: 9214c66a86847794092de36e6766b045, type: 3}
     spawnPosition: 2
@@ -265,8 +270,7 @@ MonoBehaviour:
     x: 1
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 0}
+    _spawnPoints: []
     spawnPointTag: 
     rotationOfSpawns: 4
     parentOfSpawns: 0
@@ -279,7 +283,9 @@ MonoBehaviour:
     runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
-  ExecuteOnAwake: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0.1
 --- !u!114 &-545139303555207117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +306,18 @@ MonoBehaviour:
   Horizontal: 0
   Vertical: 0
   invertVertical: 0
+--- !u!114 &-3459722507842696765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818218211170410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &381261470768808687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,6 +329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: vfx_frost_arrow_projectile_big
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}
@@ -329,6 +352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -341,16 +369,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}

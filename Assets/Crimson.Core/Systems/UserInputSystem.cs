@@ -145,7 +145,7 @@ namespace Crimson.Core.Systems
             }
         }
 
-        [BurstCompile]
+        //[BurstCompile]
 #pragma warning disable 618
         private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
 #pragma warning restore 618
@@ -160,6 +160,8 @@ namespace Crimson.Core.Systems
 
             public void Execute(Entity entity, int index, ref PlayerInputData inputData, ref UserInputData u)
             {
+                
+                if (Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent(entity, typeof(DeadActorData))) return;
                 inputData.Move = MoveInput;
                 inputData.Mouse = MouseInput;
                 inputData.Look = LookInput;

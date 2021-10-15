@@ -35,6 +35,7 @@ namespace Crimson.Core.Common
         {
             get
             {
+                if (_abilities.Count == 0) _abilities = GetComponents<IActorAbility>().ToList();
                 _abilities.RemoveAll(a => a.Equals(null));
                 return _abilities;
             }
@@ -111,7 +112,7 @@ namespace Crimson.Core.Common
             WorldEntityManager = dstManager;
             WorldEntityManager.AddComponent<NetworkSyncReceive>(ActorEntity);
             if (!ComponentName.Equals(string.Empty)) ComponentNames.Add(this.ComponentName);
-            
+
             PostConvert();
 
             HandleAbilities(entity);
@@ -119,8 +120,6 @@ namespace Crimson.Core.Common
 
         public virtual void HandleAbilities(Entity entity)
         {
-            Abilities = GetComponents<IActorAbility>().ToList();
-            
             foreach (var ability in Abilities)
             {
                 ability.AddComponentData(ref entity, this);

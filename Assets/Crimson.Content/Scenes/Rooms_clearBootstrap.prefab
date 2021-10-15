@@ -75,9 +75,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AvailablePerksList:
-  - {fileID: 6882162225140268797, guid: f874015fabdd1d9469b76283538ed73e, type: 3}
-  - {fileID: 6882162225140268797, guid: b8d7e42a9ab24b74d9d193977ca29ebe, type: 3}
-  - {fileID: 6882162225140268797, guid: 58cfcdb00f8f8c448929ccd4e99a3e71, type: 3}
   - {fileID: 6882162225140268797, guid: 744a53dce51153040b5db5aa391a54ac, type: 3}
   - {fileID: 6882162225140268797, guid: 21bf8fa53bf752645bfeacacd801f2a7, type: 3}
   - {fileID: 6882162225140268797, guid: 9fb43811482d6334eae0a76d52776902, type: 3}

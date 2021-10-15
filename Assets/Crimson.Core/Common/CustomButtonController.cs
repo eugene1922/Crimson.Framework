@@ -23,6 +23,7 @@ namespace Crimson.Core.Common
         public void SetupCustomButton(string perkName, Sprite perkSprite, bool stickControlAvailable, bool repeatedInvokingOnHold)
         {
             //buttonName.SetText(perkName);
+            
             buttonImage.sprite = perkSprite;
 
             SetupCustomButton(stickControlAvailable, repeatedInvokingOnHold);

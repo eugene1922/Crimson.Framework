@@ -20,7 +20,8 @@ namespace Crimson.Core.Systems
         {
             _query = GetEntityQuery(
                 ComponentType.ReadOnly<PlayerInputData>(),
-                ComponentType.ReadOnly<AbilityPlayerInput>());
+                ComponentType.ReadOnly<AbilityPlayerInput>(),
+                ComponentType.Exclude<DeadActorData>());
         }
 
         protected override void OnUpdate()
