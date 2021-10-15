@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 4166300824754732120}
   - component: {fileID: -8052119949386301436}
   - component: {fileID: -8075305533220201676}
+  - component: {fileID: -1626559676057499026}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -142,7 +143,6 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
-    - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
     - {fileID: 6649478402526264423, guid: f4ca641f063b44e1b925e77b0052c736, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
     randomSeed: 0
   SpawnDelays:
     Delay: 0
-    StartupDelay: 0.1
+    StartupDelay: 0.2
 --- !u!114 &-5199557533950553967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Player
-  MaxHealth: 10
+  MaxHealth: 100
   CurrentHealth: 0
   CurrentExperience: 0
   LevelUpRequiredExperience: 0
@@ -566,3 +566,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1626559676057499026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnAwake: 1
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 1
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
+    actorWithComponentName: UIRoot
+    parentTag: UIRoot
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0.4

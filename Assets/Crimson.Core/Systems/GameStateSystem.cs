@@ -120,8 +120,6 @@ namespace Crimson.Core.Systems
                     {
                         state.players.Add(player);
                     });
-                    
-                    //Debug.Log(state.players.Count + " --- " + state.players.FindAll(p => p.gameObject.CompareTag("Player")).Count);
 
                     if (!state.userPlayer.IsAlive)
                     {
@@ -140,7 +138,7 @@ namespace Crimson.Core.Systems
 
                     if (state.NeedCheckEndGame
                         && state.players.Count(s => s.CompareTag(state.enemyTag)) == 0
-                        && state.players.First() == state.userPlayer)
+                        && state.players.Contains(state.userPlayer))
                     {
                         ShowEndPanel(state, EndResultType.Win);
                     }
