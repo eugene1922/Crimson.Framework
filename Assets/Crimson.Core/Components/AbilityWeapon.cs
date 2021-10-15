@@ -71,6 +71,9 @@ namespace Crimson.Core.Components
         public bool suppressWeaponSpawn = false;
 
         [HideInInspector] public List<string> appliedPerksNames = new List<string>();
+
+        [HideInInspector]
+        public bool aimingByInput;
         public List<GameObject> SpawnedObjects { get; private set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public Action<GameObject> DisposableSpawnCallback { get; set; }
@@ -84,7 +87,7 @@ namespace Crimson.Core.Components
 
         public int BindingIndex { get; set; } = -1;
 
-        public Transform SpawnPointsRoot { get; private set; }
+        public Transform SpawnPointsRoot { get; private set; } 
 
         public bool AimingAvailable
         {
@@ -218,6 +221,7 @@ namespace Crimson.Core.Components
 
         public void EvaluateAim(Vector2 pos)
         {
+            aimingByInput = true;
             this.EvaluateAim(Actor as Actor, pos);
         }
 
@@ -281,6 +285,8 @@ namespace Crimson.Core.Components
 
         public void ResetAiming()
         {
+            aimingByInput = false;
+            
             this.ResetAiming(Actor);
             _circlePrefabScaled = false;
 
@@ -291,6 +297,8 @@ namespace Crimson.Core.Components
 
         public void ResetSpawnPointRootRotation()
         {
+            if (SpawnPointsRoot == null) return;
+            
             if (attackDirectionType == AttackDirectionType.Forward)
             {
                 SpawnPointsRoot.localRotation = Quaternion.identity;
@@ -304,15 +312,14 @@ namespace Crimson.Core.Components
         {
             if (!suppressWeaponSpawn)
             {
-                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive &&
-                    _actorToUi && !findTargetProperties.SearchCompleted)
+                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive )
                 {
                     _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
                     {
                         WeaponComponentName = ComponentName
                     });
 
-                    return;
+                    //return;
                 }
 
                 SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
@@ -365,8 +372,11 @@ namespace Crimson.Core.Components
 
         public void EvaluateAimByArea(Vector2 pos)
         {
-            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos);
+            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos * -1);
 
+            Actor.GameObject.GetComponent<Rigidbody>().rotation = 
+                Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
+            
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
                 SpawnPointsRoot.rotation =

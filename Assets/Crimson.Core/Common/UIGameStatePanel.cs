@@ -28,7 +28,6 @@ namespace Crimson.Core.Common
         {
             if (Actor == null) return;
 
-
             DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1f, fadeInTime);
         }
 

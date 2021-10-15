@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 1.5
+  lifespan: 3
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
 --- !u!114 &8802586809504653326
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkLevel: 1
-  damageValue: 20
+  damageValue: 30
   levelablePropertiesList: []
 --- !u!114 &-7484853190416408497
 MonoBehaviour:

@@ -115,7 +115,7 @@ namespace Crimson.Core.Systems
 
                     var targetTransform =
                         FindActorsUtils.ChooseActor(weapon.gameObject.transform, targets, properties.strategy);
-
+                    
                     if (targetTransform == null || properties.strategy == ChooseTargetStrategy.Nearest
                         && properties.maxDistanceThreshold > 0f
                         && math.distancesq(targetTransform.position, weapon.Actor.GameObject.transform.position) >
@@ -124,7 +124,7 @@ namespace Crimson.Core.Systems
                         properties.SearchCompleted = true;
                         PostUpdateCommands.RemoveComponent<FindAutoAimTargetData>(entity);
 
-                        weapon.Spawn();
+                        //weapon.Spawn();
                         return;
                     }
 
@@ -136,10 +136,10 @@ namespace Crimson.Core.Systems
                         targetActor.ChangeActorForceMovementData(go.transform.forward);
                         weapon.DisposableSpawnCallback = null;
                     };
-
-                    weapon.SpawnPointsRoot.LookAt(targetTransform.position);
+                    if (!weapon.aimingByInput) actor.GameObject.transform.LookAt(targetTransform.position);
+                    //weapon.SpawnPointsRoot.LookAt(targetTransform.position);
                     properties.SearchCompleted = true;
-                    weapon.Spawn();
+                    //weapon.Spawn();
                     PostUpdateCommands.RemoveComponent<FindAutoAimTargetData>(entity);
                 }
             );

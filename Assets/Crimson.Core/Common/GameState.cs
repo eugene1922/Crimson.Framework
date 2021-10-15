@@ -1,3 +1,4 @@
+using System;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
@@ -63,6 +64,11 @@ namespace Crimson.Core.Common
 
         public bool NeedCheckEndGame;
 
+        private void Awake()
+        {
+            Setup();
+        }
+
         public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             base.Convert(entity, dstManager, conversionSystem);
@@ -75,7 +81,7 @@ namespace Crimson.Core.Common
                 losePanel
             };
             metrica = AppMetrica.Instance;
-            Setup();
+            //Setup();
             
         }
         public override void PostConvert()

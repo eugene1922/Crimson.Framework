@@ -120,6 +120,8 @@ namespace Crimson.Core.Systems
                     {
                         state.players.Add(player);
                     });
+                    
+                    //Debug.Log(state.players.Count + " --- " + state.players.FindAll(p => p.gameObject.CompareTag("Player")).Count);
 
                     if (!state.userPlayer.IsAlive)
                     {

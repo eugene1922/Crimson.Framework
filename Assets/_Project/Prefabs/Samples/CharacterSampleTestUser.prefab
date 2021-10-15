@@ -320,11 +320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: 
+  componentName: primary weapon
   primaryProjectile: 1
-  aimingAvailable: 0
+  aimingAvailable: 1
   deactivateAimingOnCooldown: 0
-  onClickAttackType: 0
+  onClickAttackType: 1
   attackDirectionType: 0
   findTargetProperties:
     targetType: 3
@@ -381,6 +381,7 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &-1969340818193211531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Player
-  MaxHealth: 100
+  MaxHealth: 10
   CurrentHealth: 0
   CurrentExperience: 0
   LevelUpRequiredExperience: 0
