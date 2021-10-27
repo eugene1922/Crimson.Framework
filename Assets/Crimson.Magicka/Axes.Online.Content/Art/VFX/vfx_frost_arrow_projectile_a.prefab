@@ -165,7 +165,7 @@ MonoBehaviour:
     - DestructibleObject
     - Ally
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
+    destroyAfterAction: 1
     actions:
     - {fileID: -9136214588343567339}
     - {fileID: 8802586809504653326}

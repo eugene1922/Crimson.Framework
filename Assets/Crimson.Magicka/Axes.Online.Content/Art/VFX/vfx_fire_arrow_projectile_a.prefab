@@ -143,11 +143,11 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Ally
     - CollisionObjects
-    - Player
+    - Enemy
+    - DestructibleObject
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
+    destroyAfterAction: 0
     actions:
     - {fileID: -4054787997842051503}
   - collisionLayerMask:
@@ -156,10 +156,9 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Ally
+    - Enemy
     - DestructibleObject
     - CollisionObjects
-    - Player
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -252,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 3
   startOnSpawn: 1
-  actionOnDestroy: {fileID: 0}
+  actionOnDestroy: {fileID: -4054787997842051503}
 --- !u!114 &-5741780165934898135
 MonoBehaviour:
   m_ObjectHideFlags: 0

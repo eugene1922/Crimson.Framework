@@ -86,6 +86,7 @@ MonoBehaviour:
     circlePrefab: {fileID: 1656821406925937767, guid: 3617ea4485c8ab14dba0f88283703494,
       type: 3}
     sightDistance: 10
+    reverseControls: 0
   aimingAnimProperties:
     HasActorAimingAnimation: 0
     ActorAimingAnimationName: 
@@ -99,7 +100,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
+    _spawnPoints:
     - {fileID: 0}
     spawnPointTag: 
     rotationOfSpawns: 0
@@ -124,6 +125,7 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &15902049461981918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Player
+    - Enemy
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 0
   spawnTargetEffect: 1

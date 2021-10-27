@@ -74,13 +74,29 @@ namespace Crimson.Core.Systems
             Entities.With(_immediateActorDestructionTransformQuery).ForEach(
                 (Entity entity, Transform obj) =>
                 {
-                    obj.gameObject.DestroyWithEntity(entity);
+                    if (dstManager.HasComponent<TimerComponent>(entity))
+                    {
+                        var t = dstManager.GetComponentObject<TimerComponent>(entity);
+                        t.TimedActions.Add(TimerUtils.CreateAction(t.DestroyWithEntity,0.1f));
+                    }
+                    else
+                    {
+                        obj.gameObject.DestroyWithEntity(entity);   
+                    }
                 });
             
             Entities.With(_immediateActorDestructionRectTransformQuery).ForEach(
                 (Entity entity, RectTransform obj) =>
                 {
-                    obj.gameObject.DestroyWithEntity(entity);
+                    if (dstManager.HasComponent<TimerComponent>(entity))
+                    {
+                        var t = dstManager.GetComponentObject<TimerComponent>(entity);
+                        t.TimedActions.Add(TimerUtils.CreateAction(t.DestroyWithEntity,0.1f));
+                    }
+                    else
+                    {
+                        obj.gameObject.DestroyWithEntity(entity);   
+                    }
                 });
         }
     }

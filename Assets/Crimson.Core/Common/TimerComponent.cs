@@ -31,6 +31,11 @@ namespace Crimson.Core.Common
             dstManager.AddComponentObject(actor.ActorEntity,this);
         }
 
+        public void DestroyWithEntity()
+        {
+            this.gameObject.DestroyWithEntity(actor.ActorEntity);
+        }
+
 #if UNITY_EDITOR
 
         [ShowInInspector]
