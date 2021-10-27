@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Crimson.Core.Common
 {
     [NetworkSimObject]
-    public class TimerComponent : MonoBehaviour, IConvertGameObjectToEntity
+    public class TimerComponent : MonoBehaviour
     {
         [NetworkSimData]
         public List<TimerAction> TimedActions = new List<TimerAction>();
@@ -20,7 +20,7 @@ namespace Crimson.Core.Common
 
         
         
-        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        public void Start()
         {
             actor = this.gameObject.GetComponent<IActor>();
             if (actor == null)
@@ -29,10 +29,10 @@ namespace Crimson.Core.Common
                 return;
             }
             
-            dstManager.AddComponent<TimerData>(actor.ActorEntity);
-
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponent<TimerData>(actor.ActorEntity);
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentObject(actor.ActorEntity,this);
         }
-        
+
 #if UNITY_EDITOR
 
         [ShowInInspector]

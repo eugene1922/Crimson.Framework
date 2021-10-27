@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2866327413141821552}
   - component: {fileID: -4054787997842051503}
   - component: {fileID: 4982581319709082897}
-  - component: {fileID: 1177973882340684263}
   m_Layer: 10
   m_Name: vfx_staff_projectile_blue_a
   m_TagString: Untagged
@@ -252,18 +251,6 @@ MonoBehaviour:
   lifespan: 3
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
---- !u!114 &1177973882340684263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090190289803064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1816478409737304
 GameObject:
   m_ObjectHideFlags: 0

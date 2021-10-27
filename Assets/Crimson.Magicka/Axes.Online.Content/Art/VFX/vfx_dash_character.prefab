@@ -19522,7 +19522,6 @@ GameObject:
   - component: {fileID: 8814278930614163769}
   - component: {fileID: 7464062090321584709}
   - component: {fileID: 6652018187358182597}
-  - component: {fileID: 6564967890464941286}
   m_Layer: 10
   m_Name: vfx_dash_character
   m_TagString: Untagged
@@ -19653,18 +19652,6 @@ MonoBehaviour:
     MovementAnimationName: 
     MovementAnimationSpeedFactorName: 
     MovementAnimationSpeedFactorMultiplier: 1
---- !u!114 &6564967890464941286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2154348514870167830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2154348515307849167
 GameObject:
   m_ObjectHideFlags: 0

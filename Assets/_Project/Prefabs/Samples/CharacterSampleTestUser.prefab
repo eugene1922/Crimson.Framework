@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: -5360728394872650663}
   - component: {fileID: 4166300824754732120}
   - component: {fileID: -8052119949386301436}
-  - component: {fileID: -8075305533220201676}
   - component: {fileID: -1626559676057499026}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
@@ -554,18 +553,6 @@ MonoBehaviour:
   ExecuteOnAwake: 0
   DestroyAfterSpawn: 0
   spawnedObject: {fileID: 0}
---- !u!114 &-8075305533220201676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1626559676057499026
 MonoBehaviour:
   m_ObjectHideFlags: 0

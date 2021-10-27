@@ -309,7 +309,6 @@ namespace Crimson.Core.Common
 
                 targetActor.Spawner = data.Spawner;
                 targetActor.Owner = data.Owner ?? data.Spawner ?? targetActor;
-                targetActor.Setup();
                 targetActor.PerformSpawnActions();
             }
 

@@ -64,11 +64,6 @@ namespace Crimson.Core.Common
 
         public bool NeedCheckEndGame;
 
-        private void Awake()
-        {
-            Setup();
-        }
-
         public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             base.Convert(entity, dstManager, conversionSystem);

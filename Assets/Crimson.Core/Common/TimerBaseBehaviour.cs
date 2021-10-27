@@ -1,5 +1,6 @@
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Common
@@ -34,5 +35,6 @@ namespace Crimson.Core.Common
         {
             Timer.TimedActions.Clear();
         }
+        
     }
 }

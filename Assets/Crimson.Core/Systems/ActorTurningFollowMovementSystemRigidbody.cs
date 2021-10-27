@@ -1,3 +1,4 @@
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils.LowLevel;
 using Unity.Entities;
@@ -28,7 +29,14 @@ namespace Crimson.Core.Systems
                 ref ActorRotationFollowMovementData rotation) =>
             {
                 if (rigidBody == null) return;
-                
+
+                var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+                if (dstManager.HasComponent(entity, typeof(ActorEvaluateAimingAnimData)))
+                {
+                    var c = dstManager.GetComponentData<ActorEvaluateAimingAnimData>(entity);
+                    if (c.AimingActive) return;
+                }
                 var dir = new Vector3(movement.MovementCache.x, 0, movement.MovementCache.z);
 
                 if (dir == Vector3.zero) return;

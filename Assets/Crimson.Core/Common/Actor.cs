@@ -118,6 +118,8 @@ namespace Crimson.Core.Common
             HandleAbilities(entity);
         }
 
+        
+
         public virtual void HandleAbilities(Entity entity)
         {
             foreach (var ability in Abilities)
@@ -141,8 +143,7 @@ namespace Crimson.Core.Common
                 WorldEntityManager.AddComponentData(ActorEntity, new NetworkSyncSend());
             }
         }
-
-        public void Setup()
+        private void Awake()
         {
             if (World.DefaultGameObjectInjectionWorld == null)
             {
@@ -156,10 +157,6 @@ namespace Crimson.Core.Common
                 return;
             
             this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
-
-            //ConvertAndInjectOriginal(this.gameObject);
-
-            //PostConvert();
         }
         
         private void OnDestroy()
@@ -181,13 +178,13 @@ namespace Crimson.Core.Common
         {
             foreach (var component in ExecuteOnSpawn)
             {
-                if (!(component is IActorAbility))
+                if (!(component is IActorAbility ability))
                 {
                     Debug.LogError($"[ACTOR ABILITY EXECUTION] \"{component.name}\" is not an ability!");
                     continue;
                 }
 
-                (component as IActorAbility).Execute();
+                ability.Execute();
             }
         }
 

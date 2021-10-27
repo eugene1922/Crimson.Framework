@@ -53,7 +53,6 @@ GameObject:
   - component: {fileID: 6129244124255665757}
   - component: {fileID: 3723064435821760873}
   - component: {fileID: 1841932561203585522}
-  - component: {fileID: 3023185238910920246}
   m_Layer: 0
   m_Name: HealingPotion
   m_TagString: Untagged
@@ -162,18 +161,6 @@ MonoBehaviour:
   lifespan: 7
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
---- !u!114 &3023185238910920246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6775260570760619785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4793548044039198126
 PrefabInstance:
   m_ObjectHideFlags: 0

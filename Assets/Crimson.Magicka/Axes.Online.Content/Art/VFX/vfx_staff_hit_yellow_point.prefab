@@ -34192,7 +34192,6 @@ GameObject:
   - component: {fileID: 4805522676638062848}
   - component: {fileID: 6436781556231517310}
   - component: {fileID: 1663674989837679056}
-  - component: {fileID: 1032540908529343139}
   m_Layer: 0
   m_Name: vfx_staff_hit_yellow_point
   m_TagString: Untagged
@@ -34244,15 +34243,3 @@ MonoBehaviour:
   lifespan: 2
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
---- !u!114 &1032540908529343139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9089498789839737983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
