@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7000065631651558721}
   - component: {fileID: 1534405312631001067}
   - component: {fileID: 5731363824123775451}
-  - component: {fileID: -1111791861683740380}
   m_Layer: 5
   m_Name: vfx_burn_a
   m_TagString: Untagged
@@ -128,18 +127,6 @@ MonoBehaviour:
     - HealthDecrement
     - ApplyPeriod
     - LifeSpan
---- !u!114 &-1111791861683740380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6882162225140268797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8393049769957120689
 PrefabInstance:
   m_ObjectHideFlags: 0

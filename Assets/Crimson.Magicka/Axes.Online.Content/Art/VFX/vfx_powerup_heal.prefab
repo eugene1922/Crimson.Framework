@@ -4901,7 +4901,6 @@ GameObject:
   - component: {fileID: 8138075922688704791}
   - component: {fileID: 7702825839480804895}
   - component: {fileID: 4694117534854534493}
-  - component: {fileID: 1697283539615695856}
   m_Layer: 10
   m_Name: vfx_powerup_heal
   m_TagString: Untagged
@@ -4953,18 +4952,6 @@ MonoBehaviour:
   lifespan: 1.5
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
---- !u!114 &1697283539615695856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8138075922688704790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8138075923004019204
 GameObject:
   m_ObjectHideFlags: 0

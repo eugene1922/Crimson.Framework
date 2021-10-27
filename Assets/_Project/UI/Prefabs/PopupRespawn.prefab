@@ -693,7 +693,6 @@ GameObject:
   - component: {fileID: -1955276211975853944}
   - component: {fileID: 355103093836100409}
   - component: {fileID: 5830896937104388733}
-  - component: {fileID: -2441161287125167759}
   m_Layer: 5
   m_Name: PopupRespawn
   m_TagString: Untagged
@@ -765,18 +764,6 @@ MonoBehaviour:
   secondActionButton: {fileID: 5359275533296267985}
   canvasGroup: {fileID: 355103093836100409}
   fadeInTime: 1.5
---- !u!114 &-2441161287125167759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8696230764928413656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8696230764994907474
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,5 @@ namespace Crimson.Core.Common
         List<IActorAbility> Abilities { get; }
         List<IPerkAbility> AppliedPerks { get; }
         void PerformSpawnActions();
-        void Setup();
     }
 }
