@@ -17,8 +17,6 @@ namespace Crimson.Core.Common
         
         [NetworkSimData]
         public IActor actor;
-
-        
         
         public void Start()
         {
@@ -28,9 +26,9 @@ namespace Crimson.Core.Common
                 Debug.LogError("[TIMER COMPONENT] No IActor component found, aborting!");
                 return;
             }
-            
-            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponent<TimerData>(actor.ActorEntity);
-            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentObject(actor.ActorEntity,this);
+            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            dstManager.AddComponent<TimerData>(actor.ActorEntity);
+            dstManager.AddComponentObject(actor.ActorEntity,this);
         }
 
 #if UNITY_EDITOR
@@ -57,6 +55,12 @@ namespace Crimson.Core.Common
         {
             var t = this.gameObject.GetComponent<ITimer>();
             t?.StartTimer();
+        }
+
+        private void Reset()
+        {
+            Debug.LogError("[TIMER COMPONENT] Timer Component is not allowed to add manually in the editor!");
+            DestroyImmediate(this);
         }
 
 #endif
