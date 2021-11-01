@@ -21,7 +21,7 @@ namespace Crimson.Core.Components.Perks
 
         public void Execute()
         {
-            _abilityWeapon = (AbilityWeapon) Actor.Spawner.Abilities.FirstOrDefault(ability => ability is AbilityWeapon);
+            _abilityWeapon = (AbilityWeapon) Actor.Abilities.FirstOrDefault(ability => ability is AbilityWeapon);
 
             if (_abilityWeapon == null) return;
 
@@ -39,6 +39,8 @@ namespace Crimson.Core.Components.Perks
                 Debug.LogError("[PERK MODIFY WEAPON RELOAD SPEED] Error copying perk to Actor!");
                 return;
             }
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
             
             if (!Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
             

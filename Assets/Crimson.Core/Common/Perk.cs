@@ -31,20 +31,15 @@ namespace Crimson.Core.Common
                 }
             }
         }
-        
+
         public override void PostConvert()
         {
-            if (Spawner == null) return;
-            
-            if (WorldEntityManager.HasComponent(Spawner.ActorEntity, typeof(NetworkSyncSend)))
-            {
-                WorldEntityManager.AddComponentData(ActorEntity, new NetworkSyncSend ());
-            }
-            
             foreach (var p in PerksToApply)
             {
                 p.Apply(Spawner);
             }
+            
+            base.PostConvert();
         }
     }
 }

@@ -198,6 +198,8 @@ namespace Crimson.Core.Components.Perks
                 Debug.LogError("[PERK WEAPONS HIT EFFECT] Error copying perk to Actor!");
                 return;
             }
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
             
             if (!Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
 
@@ -217,6 +219,13 @@ namespace Crimson.Core.Components.Perks
             
             if (perk == null) return;
 
+            var a = target.GetComponent<IActor>();
+            if (a != null)
+            {
+                var e = a.ActorEntity;
+                perk.AddComponentData(ref e,a);
+            }
+            
             perk.AddCollision(perk.gameObject);
         }
         

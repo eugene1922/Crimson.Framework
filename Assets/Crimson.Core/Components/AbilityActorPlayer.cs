@@ -180,6 +180,7 @@ namespace Crimson.Core.Components
             if (!actorToUI) return;
 
             _dstManager.AddComponent<ApplyPresetPerksData>(Actor.ActorEntity);
+            _dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
         }
 
         public void ForceUpdatePlayerUIData()
@@ -282,6 +283,9 @@ namespace Crimson.Core.Components
             if (actorToUI)
             {
                 SetLevel(Level + 1);
+                var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+                playerState.Level = Level;
+                _dstManager.SetComponentData(_entity, playerState);
                 _dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
             }
             else

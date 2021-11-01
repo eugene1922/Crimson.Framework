@@ -50,7 +50,9 @@ namespace Crimson.Core.Components.Perks
         {
             var abilityActorPlayer = Actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
             
+            Debug.Log(Actor.GameObject.name);
             if (abilityActorPlayer == null) return;
+            
             abilityActorPlayer.UpdateMaxHealthData((int) healthModifier);
         }
 
@@ -63,6 +65,9 @@ namespace Crimson.Core.Components.Perks
                 Debug.LogError("[PERK MODIFY MAX HEALTH] Error copying perk to Actor!");
                 return;
             }
+
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
             
             if (Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
             

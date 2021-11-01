@@ -138,8 +138,16 @@ namespace Crimson.Core.Components.Perks
         public void AddCollisionAction(GameObject target)
         {
             var p = target.CopyComponent(this) as PerkProjectilesHitEffect;
-
-            p?.AddCollision(p.gameObject);
+            if (p == null) return;
+            
+            var a = target.GetComponent<IActor>();
+            if (a != null)
+            {
+                var e = a.ActorEntity;
+                p.AddComponentData(ref e,a);
+            }
+            
+            p.AddCollision(p.gameObject);
         }
 
         public void AddCollision(GameObject target)

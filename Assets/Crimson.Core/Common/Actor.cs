@@ -113,9 +113,8 @@ namespace Crimson.Core.Common
             WorldEntityManager.AddComponent<NetworkSyncReceive>(ActorEntity);
             if (!ComponentName.Equals(string.Empty)) ComponentNames.Add(this.ComponentName);
 
-            PostConvert();
-
             HandleAbilities(entity);
+            PostConvert();
         }
 
         

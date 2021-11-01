@@ -99,7 +99,8 @@ namespace Crimson.Core.Components.Perks
                 Debug.LogError("[PERK PERIODIC DAMAGE] Error copying perk to Actor!");
                 return;
             }
-
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
             if (!Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
 
             copy.AbilityOwnerActor = this.Actor.Owner;

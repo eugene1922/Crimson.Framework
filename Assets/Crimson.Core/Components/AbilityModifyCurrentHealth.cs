@@ -69,7 +69,8 @@ namespace Crimson.Core.Components
                 Debug.LogError("[PERK CURRENT MAX HEALTH] Error copying perk to Actor!");
                 return;
             }
-            
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
             if (Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
             
             copy.Execute();
