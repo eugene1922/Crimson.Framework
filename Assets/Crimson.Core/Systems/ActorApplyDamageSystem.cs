@@ -13,7 +13,8 @@ namespace Crimson.Core.Systems
             Entities.WithAll<DamageData>().ForEach((Entity damageEntity, ref DamageData damageData) =>
             {
                 if (!(dstManager.Exists(damageData.TargetEntity) &&
-                      dstManager.Exists(damageData.AbilityOwnerEntity))) return;
+                      dstManager.Exists(damageData.AbilityOwnerEntity) &&
+                      dstManager.HasComponent(damageData.AbilityOwnerEntity, typeof(AbilityActorPlayer)))) return;
 
                 var abilityOwner = dstManager.GetComponentObject<AbilityActorPlayer>(damageData.AbilityOwnerEntity);
 

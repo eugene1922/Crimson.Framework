@@ -115,7 +115,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 20
+    curveMaxSample: 40
     basePriority: 2.75
     additionalMode: 'Random mode: priority as probability'
     executeCustomInput: 0
@@ -170,55 +170,12 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 0.43
+    basePriority: 0.49
     additionalMode: 
     executeCustomInput: 3
     targetFilterMode: 0
     targetFilterTags: []
-  - behaviourType: FollowLeaderBehaviour
-    priorityCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.036373034
-        value: 0.8175832
-        inSlope: 0.59527653
-        outSlope: 0.59527653
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.09165659
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    curveMinSample: 1
-    curveMaxSample: 150
-    basePriority: 1.31
-    additionalMode: 
-    executeCustomInput: 1
-    targetFilterMode: 0
-    targetFilterTags:
-    - Player
-    - Ally
-  behaviourUpdatePeriod: {x: 5, y: 7}
+  behaviourUpdatePeriod: {x: 0, y: 2.3312101}
   activeBehaviour:
     behaviourType: 
     priorityCurve:
@@ -342,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1.5
+  movementSpeed: 2.5
   useDynamics: 0
   movementStart:
     curve:
@@ -448,7 +405,22 @@ MonoBehaviour:
     actions:
     - {fileID: -4166381054128957909}
   debugCollisions: 0
-  ExistentCollisions: []
+  ExistentCollisions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &-4166381054128957909
 MonoBehaviour:
   m_ObjectHideFlags: 0

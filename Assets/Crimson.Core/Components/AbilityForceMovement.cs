@@ -56,6 +56,7 @@ namespace Crimson.Core.Components
     {
         SpawnerForward = 0,
         UseDirection = 1,
-        GuidedBySpawner = 2
+        GuidedBySpawner = 2,
+        SelfForward = 3
     }
 }

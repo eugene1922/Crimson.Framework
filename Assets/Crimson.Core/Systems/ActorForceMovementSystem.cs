@@ -44,6 +44,9 @@ namespace Crimson.Core.Systems
                             if (forceMovement.Actor.Spawner == null) return;
                             forceMovementData.ForwardVector = forceMovement.Spawner.forward;
                             break;
+                        case MoveDirection.SelfForward:
+                            forceMovementData.ForwardVector = forceMovement.transform.forward;
+                            break;
                         default:
                             throw new ArgumentOutOfRangeException();
                     }

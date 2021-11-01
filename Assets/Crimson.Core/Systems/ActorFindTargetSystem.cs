@@ -123,8 +123,8 @@ namespace Crimson.Core.Systems
                     {
                         properties.SearchCompleted = true;
                         PostUpdateCommands.RemoveComponent<FindAutoAimTargetData>(entity);
-
-                        //weapon.Spawn();
+                        
+                        weapon.Spawn();
                         return;
                     }
 
@@ -139,7 +139,7 @@ namespace Crimson.Core.Systems
                     if (!weapon.aimingByInput) actor.GameObject.transform.LookAt(targetTransform.position);
                     //weapon.SpawnPointsRoot.LookAt(targetTransform.position);
                     properties.SearchCompleted = true;
-                    //weapon.Spawn();
+                    weapon.Spawn();
                     PostUpdateCommands.RemoveComponent<FindAutoAimTargetData>(entity);
                 }
             );

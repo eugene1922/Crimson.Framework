@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: primary weapon
+  componentName: PrimaryProjectile
   primaryProjectile: 1
   aimingAvailable: 1
   deactivateAimingOnCooldown: 0
@@ -354,8 +354,9 @@ MonoBehaviour:
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
+    spawnPointsFrom: 1
     _spawnPoints:
+    - {fileID: 0}
     - {fileID: 0}
     spawnPointTag: WeaponPoint
     rotationOfSpawns: 0

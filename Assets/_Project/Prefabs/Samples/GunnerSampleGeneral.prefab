@@ -320,7 +320,7 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.1
+  cooldownTime: 0.3
   projectileClipCapacity: 0
   clipReloadTime: 1
   reloadDisplayToggle: []
@@ -330,6 +330,7 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &6430768560650811411
 MonoBehaviour:
   m_ObjectHideFlags: 0

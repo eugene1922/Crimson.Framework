@@ -139,8 +139,6 @@ namespace Crimson.Core.Components
 
             Enabled = true;
 
-            _dstManager.AddComponent<TimerData>(entity);
-
             if (actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
             {
                 _dstManager.AddComponentData(entity, new ActorProjectileAnimData
@@ -163,8 +161,8 @@ namespace Crimson.Core.Components
             _actorToUi = playerActor != null && playerActor.actorToUI;
 
             if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
-
-            if (!_actorToUi) return;
+            
+            //if (!_actorToUi) return;
 
             SpawnPointsRoot = new GameObject("spawn points root").transform;
             SpawnPointsRoot.SetParent(gameObject.transform);
@@ -175,9 +173,14 @@ namespace Crimson.Core.Components
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
             {
                 projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+                projectileSpawnData.spawnPointsFrom = SpawnPointsSource.Manually;
+                projectileSpawnData.rotationOfSpawns = RotationOfSpawns.UseSpawnPointRotation;
             }
 
-            if (projectileSpawnData.SpawnPoints.Any()) projectileSpawnData.SpawnPoints.Clear();
+            if (projectileSpawnData.SpawnPoints.Any())
+            {
+                projectileSpawnData.SpawnPoints = new List<GameObject>();
+            }
 
             var baseSpawnPoint = new GameObject("Base Spawn Point");
             baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
@@ -194,6 +197,7 @@ namespace Crimson.Core.Components
             if (Enabled && projectileStartupDelay == 0 &&
                 World.DefaultGameObjectInjectionWorld.EntityManager.Exists(_entity))
             {
+                findTargetProperties.SearchCompleted = false;
                 Spawn();
 
                 World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
@@ -312,16 +316,15 @@ namespace Crimson.Core.Components
         {
             if (!suppressWeaponSpawn)
             {
-                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive )
+                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive && !findTargetProperties.SearchCompleted)
                 {
                     _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
                     {
                         WeaponComponentName = ComponentName
                     });
 
-                    //return;
+                    return;
                 }
-
                 SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
             }
 

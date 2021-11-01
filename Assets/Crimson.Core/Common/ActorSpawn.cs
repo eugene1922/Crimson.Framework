@@ -97,7 +97,7 @@ namespace Crimson.Core.Common
                     {
                         if (spawnSettings.SpawnPoints.Count == 0)
                         {
-                            throw new UnityException($"[ACTOR SPAWNER] In Use Spawn Points mode you have to provide some spawning points! \n" +
+                            Debug.LogError($"[ACTOR SPAWNER] In Use Spawn Points mode you have to provide some spawning points! \n" +
                                 $"Spawner is {spawner}, and object is {spawnSettings.ObjectsToSpawn[0]}");
                         }
                         var point = spawnSettings.SpawnPoints[i % spawnSettings.SpawnPoints.Count];

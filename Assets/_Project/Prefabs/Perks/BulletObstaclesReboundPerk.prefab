@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 3
   startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}
 --- !u!114 &3029725144369781933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,10 +83,9 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Ground
+    - CollisionObjects
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 0
-  changeCollisionMovement: 1
   collisionMovementSettings:
     reaction: 2
     alsoStopRotation: 1
