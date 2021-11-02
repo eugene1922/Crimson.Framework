@@ -345,7 +345,7 @@ namespace Crimson.Core.Components
                 DisposableSpawnCallback = null;
             });
 
-            if (!_actorToUi) return;
+            //if (!_actorToUi) return;
 
             ResetSpawnPointRootRotation();
             OnHoldAttackActive = false;

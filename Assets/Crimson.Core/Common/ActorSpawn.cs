@@ -41,6 +41,21 @@ namespace Crimson.Core.Common
                 }
             }
 
+            if (spawnSettings.SpawnPosition == SpawnPosition.UseSpawnPoints && spawnSettings.UseChildrenObjects)
+            {
+                var newSpawnPoints = new List<GameObject>();
+                
+                foreach (var point in spawnSettings.SpawnPoints)
+                {
+                    foreach (Transform t in point.transform)
+                    {
+                        newSpawnPoints.Add(t.gameObject);
+                    }
+                }
+
+                spawnSettings.SpawnPoints = newSpawnPoints;
+            }
+
             switch (spawnSettings.FillSpawnPoints)
             {
                 case FillMode.UseEachObjectOnce:

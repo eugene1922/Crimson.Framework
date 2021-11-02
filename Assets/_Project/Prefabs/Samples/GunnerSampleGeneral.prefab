@@ -66,6 +66,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 2
     actorWithComponentName: UIRoot
@@ -185,8 +186,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 20
-    basePriority: 2.12
+    curveMaxSample: 40
+    basePriority: 2.36
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 1
+    basePriority: 1.31
     additionalMode: 
     executeCustomInput: 3
     targetFilterMode: 0
@@ -306,8 +307,10 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints: []
+    _spawnPoints:
+    - {fileID: 0}
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 

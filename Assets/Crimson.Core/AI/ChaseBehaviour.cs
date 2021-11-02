@@ -124,8 +124,7 @@ namespace Crimson.Core.AI
                 _currentWaypoint++;
             }
 
-            if (_currentWaypoint >= _path.corners.Length ||
-                 distSq < FINISH_CHASE_DISTSQ)
+            if (_currentWaypoint >= _path.corners.Length )
             {
                 inputData.Move = float2.zero;
                 return false;

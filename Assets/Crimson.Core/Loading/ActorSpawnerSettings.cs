@@ -46,6 +46,9 @@ namespace Crimson.Core.Loading
         [ValueDropdown("Tags")]
         public string spawnPointTag;
 
+        [ShowIf("spawnPosition", SpawnPosition.UseSpawnPoints)]
+        public bool useChildrenObjects;
+
         public RotationOfSpawns rotationOfSpawns;
 
         [EnumToggleButtons] public TargetType parentOfSpawns;
@@ -139,6 +142,11 @@ namespace Crimson.Core.Loading
         {
             get => spawnPointsFrom;
             set => spawnPointsFrom = value;
+        }
+
+        public bool UseChildrenObjects {
+            get => useChildrenObjects;
+            set => useChildrenObjects = value;
         }
 
         public string SpawnPointTag

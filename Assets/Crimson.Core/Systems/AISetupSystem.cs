@@ -32,8 +32,6 @@ namespace Crimson.Core.Systems
             Entities.With(_queryAI).ForEach(
                 (Entity entity, Transform transform, AbilityAIInput ai) =>
                 {
-                    
-                    
                     if (ai.activeBehaviour == null)
                     {
                         Debug.LogError(
@@ -50,7 +48,7 @@ namespace Crimson.Core.Systems
                     {
                         ai.EvaluateAll();
                     }
-
+                    
                     World.EntityManager.RemoveComponent<SetupAIData>(entity);
                 }
             );

@@ -65,6 +65,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 2
     actorWithComponentName: UIRoot
@@ -124,7 +125,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0.5
+        value: 0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -135,8 +136,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 40
-    basePriority: 2.75
+    curveMaxSample: 10
+    basePriority: 1.34
     additionalMode: 'Random mode: priority as probability'
     executeCustomInput: 0
     targetFilterMode: 0
@@ -170,7 +171,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     curveMinSample: 0
     curveMaxSample: 100
-    basePriority: 0.49
+    basePriority: 0.88
     additionalMode: 
     executeCustomInput: 3
     targetFilterMode: 0
@@ -239,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Player5
-  MaxHealth: 100
+  MaxHealth: 120
   CurrentHealth: 0
   CurrentExperience: 0
   LevelUpRequiredExperience: 0
@@ -299,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2.5
+  movementSpeed: 1
   useDynamics: 0
   movementStart:
     curve:

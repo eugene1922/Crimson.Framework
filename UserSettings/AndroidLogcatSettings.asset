@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "f92437a1",
         "name": "com.GarageWhale.Crimson",
-        "processId": 17604,
+        "processId": 13315,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -54,6 +54,18 @@
             "deviceId": "f92437a1",
             "name": "com.GarageWhale.Crimson",
             "processId": 17604,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 11676,
+            "exited": false
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 13315,
             "exited": false
         }
     ],
@@ -124,6 +136,14 @@
         },
         {
             "Name": "/Users/user/Documents/crimson.framework/Builds/1-0.01-v1.symbols",
+            "Enabled": true
+        },
+        {
+            "Name": "/Applications/Unity/2021.1.15f1/PlaybackEngines/AndroidPlayer/Variations/il2cpp/Development/Symbols",
+            "Enabled": true
+        },
+        {
+            "Name": "/Users/user/Documents/crimson.framework/Builds/7-0.01-v1.symbols",
             "Enabled": true
         }
     ]

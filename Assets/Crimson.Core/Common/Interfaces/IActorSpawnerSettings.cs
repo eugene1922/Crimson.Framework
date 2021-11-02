@@ -15,6 +15,7 @@ namespace Crimson.Core.Common
         bool SkipBusySpawnPoints { get; set; }
         List<GameObject> SpawnPoints { get; set; }
         SpawnPointsSource SpawnPointsFrom { get; set; }
+        bool UseChildrenObjects { get; set; }
         string SpawnPointTag { get; set; }
         RotationOfSpawns RotationOfSpawns { get; set; }
         TargetType ParentOfSpawns { get; set; }

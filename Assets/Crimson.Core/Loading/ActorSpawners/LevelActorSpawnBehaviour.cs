@@ -25,7 +25,7 @@ namespace Crimson.Core.Loading.ActorSpawners
         public void Spawn()
         {
             var spawnItems = ActorSpawn.GenerateData(SpawnData);
-            SpawnedObjects.Clear();
+            SpawnedObjects = new List<GameObject>();
             for (var i = 0; i < spawnItems.Count; i++)
             {
                 SpawnedObjects.Add(ActorSpawn.Spawn(spawnItems[i]));

@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -21,6 +26,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
         type: 3}
@@ -39,16 +49,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 676015688358587132, guid: fca315dc9d291f54b84c321f69af9f76,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -62,10 +62,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1196065774640145206, guid: fca315dc9d291f54b84c321f69af9f76,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4556210671299238127, guid: fca315dc9d291f54b84c321f69af9f76,
         type: 3}
       propertyPath: m_Name
-      value: Zombie-Base
+      value: Zombie-BusinessMan
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fca315dc9d291f54b84c321f69af9f76, type: 3}

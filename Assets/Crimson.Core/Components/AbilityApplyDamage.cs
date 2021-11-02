@@ -55,7 +55,7 @@ namespace Crimson.Core.Components
             if (TargetActor == null) return;
             
             var ownerActorPlayer =
-                AbilityOwnerActor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+                AbilityOwnerActor?.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
                 
             if (ownerActorPlayer == null) return;
                 
