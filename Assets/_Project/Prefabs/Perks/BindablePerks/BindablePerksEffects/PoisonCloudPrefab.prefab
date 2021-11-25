@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkLevel: 1
-  healthDecrement: 25
+  healthDecrement: 50
   applyPeriod: 1
   limitedLifespan: 1
   lifespan: 3

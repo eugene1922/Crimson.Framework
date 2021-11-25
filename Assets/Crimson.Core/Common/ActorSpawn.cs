@@ -132,7 +132,8 @@ namespace Crimson.Core.Common
                     case SpawnPosition.UseSpawnerPosition:
                         if (spawner == null || spawner.GameObject == null)
                         {
-                            throw new UnityException("[ACTOR SPAWNER] You are using Use Spawner Position, but Spawner is NULL!");
+                            Debug.LogError("[ACTOR SPAWNER] You are using Use Spawner Position, but Spawner is NULL!");
+                            continue;
                         }
 
                         data.Position = spawner.GameObject.transform.position;

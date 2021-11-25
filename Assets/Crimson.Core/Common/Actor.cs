@@ -35,8 +35,8 @@ namespace Crimson.Core.Common
         {
             get
             {
-                if (_abilities.Count == 0) _abilities = GetComponents<IActorAbility>().ToList();
-                _abilities.RemoveAll(a => a.Equals(null));
+                if (_abilities.Count == 0) _abilities = GetComponents<IActorAbility>()?.ToList();
+                _abilities?.RemoveAll(a => a.Equals(null));
                 return _abilities;
             }
             set => _abilities = value;

@@ -3,69 +3,45 @@
     "m_SelectedPackage": {
         "deviceId": "f92437a1",
         "name": "com.GarageWhale.Crimson",
-        "processId": 13315,
+        "processId": 1542,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "f92437a1",
-            "name": "com.GarageWhale.Crimson",
-            "processId": 5118,
-            "exited": true
-        },
-        {
-            "deviceId": "f92437a1",
-            "name": "com.GarageWhale.Crimson",
-            "processId": 5856,
-            "exited": true
-        },
-        {
-            "deviceId": "f92437a1",
-            "name": "com.GarageWhale.Crimson",
-            "processId": 6023,
-            "exited": true
-        },
-        {
-            "deviceId": "f92437a1",
-            "name": "com.GarageWhale.Crimson",
-            "processId": 7561,
-            "exited": true
-        },
-        {
-            "deviceId": "f92437a1",
-            "name": "com.GarageWhale.Crimson",
-            "processId": 8928,
-            "exited": true
-        },
-        {
-            "deviceId": "f92437a1",
-            "name": "com.mi.android.globallauncher",
-            "processId": 16306,
-            "exited": false
-        },
-        {
-            "deviceId": "f92437a1",
             "name": "com.android.settings",
             "processId": 16289,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "f92437a1",
             "name": "com.GarageWhale.Crimson",
             "processId": 17604,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "f92437a1",
             "name": "com.GarageWhale.Crimson",
             "processId": 11676,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "f92437a1",
             "name": "com.GarageWhale.Crimson",
             "processId": 13315,
+            "exited": true
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 31070,
+            "exited": true
+        },
+        {
+            "deviceId": "f92437a1",
+            "name": "com.GarageWhale.Crimson",
+            "processId": 1542,
             "exited": false
         }
     ],
@@ -144,6 +120,10 @@
         },
         {
             "Name": "/Users/user/Documents/crimson.framework/Builds/7-0.01-v1.symbols",
+            "Enabled": true
+        },
+        {
+            "Name": "/Users/user/Documents/crimson.framework/Builds/9-0.01-v1.symbols/arm64-v8a",
             "Enabled": true
         }
     ]
