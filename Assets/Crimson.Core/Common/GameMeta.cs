@@ -5,7 +5,7 @@ namespace Crimson.Core.Common
 {
     public static class GameMeta
     {
-        public static int PointsToLevelUp = 200;
+        public static int PointsToLevelUp = 300;
         public static int PointsForKill = 25;
         
         public static List<GameObject> AvailablePerksList

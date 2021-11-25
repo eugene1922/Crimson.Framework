@@ -22,7 +22,7 @@ namespace Crimson.Core.AI
         private const float AIM_MAX_DIST = 40f;
         private const float SHOOTING_ANGLE_THRESH = 10f;
         private const float ATTACK_DELAY = 6f;
-        private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 1f, 0f);
+        private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
 
         private Transform _target = null;
         private Transform _transform = null;
@@ -115,20 +115,23 @@ namespace Crimson.Core.AI
 
         public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
         {
-
+            
             if (!_abilities.ActionPossible()) return false;
 
             if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
                 AIM_MAX_DIST) && hit.transform == _target)
             {
-                var dir = _target.position - _transform.position;
-                var angle = Vector2.Angle(new Vector2(dir.x, dir.z),
-                    new Vector2(_transform.forward.x, _transform.forward.z));
+                // var dir = _target.position - _transform.position;
+                // var angle = Vector2.Angle(new Vector2(dir.x, dir.z),
+                //     new Vector2(_transform.forward.x, _transform.forward.z));
+                //
+                // inputData.CustomInput[_behaviour.executeCustomInput] = angle < SHOOTING_ANGLE_THRESH ? 1f : 0f;
+                //
+                // Debug.Log(inputData.CustomInput[_behaviour.executeCustomInput] + " === " + angle);
+                // inputData.Move = math.normalize(new float2(dir.x, dir.z));
+                //
 
-                inputData.CustomInput[_behaviour.executeCustomInput] = angle < SHOOTING_ANGLE_THRESH ? 1f : 0f;
-
-                inputData.Move = math.normalize(new float2(dir.x, dir.z));
-
+                inputData.CustomInput[_behaviour.executeCustomInput] = 1f;
                 return true;
             }
 

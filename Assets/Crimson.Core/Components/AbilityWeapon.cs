@@ -10,6 +10,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Crimson.Core.Components
 {
@@ -57,6 +58,12 @@ namespace Crimson.Core.Components
         public int projectileClipCapacity = 0;
 
         [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+
+        [InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
+        public bool forceBursts;
+
+        [ShowIf("forceBursts")] [MinMaxSlider(1, 20)]
+        public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
 
         [InfoBox("Put here IEnable implementation to display reload")]
         [Space]
@@ -205,10 +212,22 @@ namespace Crimson.Core.Components
 
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (CooldownTime == 0) return;
-
+                
                 StartTimer();
-                Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
-
+                
+                if (!forceBursts)
+                {
+                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
+                }
+                else
+                {
+                    var _additionalShotsNum = Random.Range(burstShotCountRange.x, burstShotCountRange.y) - 1;
+                    for (var i = 1; i <= _additionalShotsNum; i++ )
+                    {
+                        Timer.TimedActions.AddAction(Spawn, CooldownTime * i);
+                    }
+                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
+                }
                 if (projectileClipCapacity == 0) return;
 
                 _projectileClip--;

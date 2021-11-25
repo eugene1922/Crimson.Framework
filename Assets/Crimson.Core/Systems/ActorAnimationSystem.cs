@@ -122,7 +122,7 @@ namespace Crimson.Core.Systems
                         return;
                     }
 
-                    animator.SetBool(animation.AnimHash, true);
+                    animator.SetTrigger(animation.AnimHash);
                     dstManager.RemoveComponent<DamagedActorData>(entity);
                 });
             

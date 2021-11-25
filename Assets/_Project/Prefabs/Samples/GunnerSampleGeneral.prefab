@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5988897775269100673}
   - component: {fileID: -4180792042419223512}
   - component: {fileID: -8646335452286455090}
+  - component: {fileID: 3741422180328167376}
   m_Layer: 0
   m_Name: GunnerSampleGeneral
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
-    spawnerDisabled: 1
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
     spawnPosition: 2
@@ -186,8 +187,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 40
-    basePriority: 2.36
+    curveMaxSample: 50
+    basePriority: 2.68
     additionalMode: 
     executeCustomInput: 1
     targetFilterMode: 0
@@ -323,9 +324,11 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.3
+  cooldownTime: 0.2
   projectileClipCapacity: 0
   clipReloadTime: 1
+  forceBursts: 1
+  burstShotCountRange: {x: 1, y: 9}
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -570,6 +573,48 @@ MonoBehaviour:
     type: 3}
   spawnerType: 0
   ownerType: 2
+  executeProbability: 0.4
   ExecuteOnAwake: 0
   DestroyAfterSpawn: 1
   spawnedObject: {fileID: 0}
+--- !u!114 &3741422180328167376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnAwake: 1
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 1
+    randomSeed: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0

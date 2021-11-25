@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using System;
+using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
@@ -6,6 +7,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Crimson.Core.Components
 {
@@ -22,8 +24,10 @@ namespace Crimson.Core.Components
 
         [EnumToggleButtons] public OwnerType ownerType;
 
+        [MaxValue(1.0f)] public float executeProbability = 1.0f;
+
         [Space] public bool ExecuteOnAwake = false;
-        [Space] public bool DestroyAfterSpawn = false;
+        public bool DestroyAfterSpawn = false;
 
         [HideInInspector] public GameObject spawnedObject;
 
@@ -65,9 +69,11 @@ namespace Crimson.Core.Components
                 destroyAbilityAfterSpawn = true
             };
 
-            var spawnItems = ActorSpawn.GenerateData(spawnData, _currentSpawner, _currentOwner);
-            spawnedObject = ActorSpawn.Spawn(spawnItems[0]);
-
+            if (Random.value <= executeProbability)
+            {
+                var spawnItems = ActorSpawn.GenerateData(spawnData, _currentSpawner, _currentOwner);
+                spawnedObject = ActorSpawn.Spawn(spawnItems[0]);
+            }
             if (DestroyAfterSpawn) Destroy(this);
         }
     }

@@ -955,6 +955,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2166440062110431893, guid: fc535984954016e44b4336dba2773808,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 54ee2e9039261e6448ad70780ad9b340,
+        type: 3}
     - target: {fileID: 2245185254357721107, guid: fc535984954016e44b4336dba2773808,
         type: 3}
       propertyPath: cooldownProgressBar
@@ -965,6 +971,18 @@ PrefabInstance:
       propertyPath: cooldownProgressBar
       value: 
       objectReference: {fileID: 4225081199136265557}
+    - target: {fileID: 5315206578378404618, guid: fc535984954016e44b4336dba2773808,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3bfc7e5d3ceda074cba7584359e1f467,
+        type: 3}
+    - target: {fileID: 5361125592906980118, guid: fc535984954016e44b4336dba2773808,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aa736d7dfc8211e4eb502c4c20536f1a,
+        type: 3}
     - target: {fileID: 5740160127092804298, guid: fc535984954016e44b4336dba2773808,
         type: 3}
       propertyPath: cooldownProgressBar

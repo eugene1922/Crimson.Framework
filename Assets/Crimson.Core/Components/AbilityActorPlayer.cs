@@ -180,7 +180,7 @@ namespace Crimson.Core.Components
             if (!actorToUI) return;
 
             _dstManager.AddComponent<ApplyPresetPerksData>(Actor.ActorEntity);
-            _dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
+            //_dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
         }
 
         public void ForceUpdatePlayerUIData()
@@ -236,6 +236,7 @@ namespace Crimson.Core.Components
             _dstManager.SetComponentData(_entity, playerState);
 
             UpdateUIData(nameof(MaxHealth));
+            UpdateUIData(nameof(CurrentHealth));
         }
 
         public void UpdateExperienceData(int delta)

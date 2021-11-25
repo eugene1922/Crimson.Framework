@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 4098585114710412302}
   - component: {fileID: 8104460044487187730}
   - component: {fileID: -4166381054128957909}
+  - component: {fileID: -1660482124880579045}
+  - component: {fileID: 7440159293158877815}
   m_Layer: 0
   m_Name: ZombieSampleGeneral
   m_TagString: Untagged
@@ -54,7 +56,7 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
-    spawnerDisabled: 1
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
     spawnPosition: 2
@@ -240,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Player5
-  MaxHealth: 120
+  MaxHealth: 100
   CurrentHealth: 0
   CurrentExperience: 0
   LevelUpRequiredExperience: 0
@@ -256,14 +258,14 @@ MonoBehaviour:
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
-  corpseCleanupDelay: 5
+  corpseCleanupDelay: 2
   targetMarkActorComponentName: Aim Enemy Mark
   actorDeathAnimProperties:
     HasActorDeathAnimation: 1
     ActorDeathAnimationName: Dead
   actorTakeDamageAnimProperties:
-    HasActorTakeDamageAnimation: 0
-    ActorTakeDamageName: 
+    HasActorTakeDamageAnimation: 1
+    ActorTakeDamageName: Hit
   ExplicitUIChannel: 0
   UIChannelID: 0
   levelablePropertiesList:
@@ -376,6 +378,7 @@ MonoBehaviour:
     type: 3}
   spawnerType: 0
   ownerType: 2
+  executeProbability: 0.3
   ExecuteOnAwake: 0
   DestroyAfterSpawn: 1
   spawnedObject: {fileID: 0}
@@ -405,6 +408,7 @@ MonoBehaviour:
     destroyAfterAction: 0
     actions:
     - {fileID: -4166381054128957909}
+    - {fileID: 7440159293158877815}
   debugCollisions: 0
   ExistentCollisions:
   - {fileID: 0}
@@ -437,3 +441,65 @@ MonoBehaviour:
   perkLevel: 1
   damageValue: 15
   levelablePropertiesList: []
+--- !u!114 &-1660482124880579045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnAwake: 1
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 1
+    randomSeed: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &7440159293158877815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  objectToSpawn: {fileID: 431257179778231269, guid: b108e8d0549005145a83a08e685a07ab,
+    type: 3}
+  spawnerType: 0
+  ownerType: 1
+  executeProbability: 1
+  ExecuteOnAwake: 0
+  DestroyAfterSpawn: 0
+  spawnedObject: {fileID: 0}

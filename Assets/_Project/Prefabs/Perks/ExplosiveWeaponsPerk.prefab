@@ -59,8 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a273676651e124d8f3395034a512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ApplyToAllProjectiles: 1
-  componentName: 
+  perkLevel: 1
+  applyToAllProjectiles: 0
+  componentName: PrimaryProjectile
   collisionSettings:
     collisionLayerMask:
       serializedVersion: 2
@@ -68,16 +69,18 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Player
     - Enemy
+    - CollisionObjects
+    - DestructibleObject
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
+    destroyAfterAction: 1
   spawnTargetEffect: 1
   targetEffectPrefab: {fileID: 6882162225140268797, guid: e654ab5f4157d0642b20c9ef09cebb38,
     type: 3}
-  spawnWeaponEffect: 1
-  weaponEffectPrefab: {fileID: 6882162225140268797, guid: 29123b2c95560f54babf6b301bc4f968,
-    type: 3}
+  spawnProjectileEffect: 0
+  projectileEffectPrefab: {fileID: 0}
+  perkRelatedComponents: []
+  levelablePropertiesList: []
 --- !u!114 &8552751085755904656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,3 +95,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 10
   startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}

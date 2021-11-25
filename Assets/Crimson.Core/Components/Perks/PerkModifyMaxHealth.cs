@@ -51,7 +51,8 @@ namespace Crimson.Core.Components.Perks
             var abilityActorPlayer = Actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
             
             if (abilityActorPlayer == null) return;
-            
+
+            abilityActorPlayer.CurrentHealth = abilityActorPlayer.MaxHealth + (int) healthModifier;
             abilityActorPlayer.UpdateMaxHealthData((int) healthModifier);
         }
 

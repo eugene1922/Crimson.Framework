@@ -110,6 +110,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -151,6 +152,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 0
     actorWithComponentName: UIRoot
@@ -217,6 +219,7 @@ MonoBehaviour:
     _spawnPoints:
     - {fileID: 0}
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 1
     actorWithComponentName: 
@@ -295,6 +298,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -348,7 +352,7 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1090190289803064, guid: d6b4eda4410534643b1da9bb708d2c5a, type: 3}
+    - {fileID: 1090190289803064, guid: 839f716811d3c4597a848c4a6af4679d, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -357,8 +361,8 @@ MonoBehaviour:
     spawnPointsFrom: 1
     _spawnPoints:
     - {fileID: 0}
-    - {fileID: 0}
     spawnPointTag: WeaponPoint
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -371,9 +375,11 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.5
+  cooldownTime: 0.2
   projectileClipCapacity: 0
   clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -531,6 +537,7 @@ MonoBehaviour:
     type: 3}
   spawnerType: 0
   ownerType: 2
+  executeProbability: 1
   ExecuteOnAwake: 0
   DestroyAfterSpawn: 0
   spawnedObject: {fileID: 0}
@@ -551,6 +558,7 @@ MonoBehaviour:
     type: 3}
   spawnerType: 0
   ownerType: 2
+  executeProbability: 1
   ExecuteOnAwake: 0
   DestroyAfterSpawn: 0
   spawnedObject: {fileID: 0}
@@ -580,6 +588,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 0
     actorWithComponentName: UIRoot
