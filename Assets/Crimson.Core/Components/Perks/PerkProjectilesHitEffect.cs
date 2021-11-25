@@ -180,6 +180,8 @@ namespace Crimson.Core.Components.Perks
                 destroyAbilityAfterSpawn = true
             };
 
+            if (target == null || target.GameObject == null) return;
+            
             ActorSpawn.Spawn(effectData, target, Actor);
         }
 

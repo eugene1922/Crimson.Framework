@@ -216,6 +216,7 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -258,6 +259,7 @@ MonoBehaviour:
     spawnPointsFrom: 1
     _spawnPoints: []
     spawnPointTag: PlayerSpawn
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -296,6 +298,7 @@ MonoBehaviour:
     spawnPointsFrom: 1
     _spawnPoints: []
     spawnPointTag: AllySpawn
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -404,6 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4559352662638657774}
   - component: {fileID: 6741896019138017440}
+  - component: {fileID: 2339071778636490836}
   m_Layer: 0
   m_Name: FPS
   m_TagString: Untagged
@@ -437,6 +441,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5a052115384ffcbbdb0e227c33325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2339071778636490836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410582098008254895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983dbb733537647208ab83d9cfa7f6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limit: 2
 --- !u!1 &9173056185145076089
 GameObject:
   m_ObjectHideFlags: 0

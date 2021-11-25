@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Ally
-  MaxHealth: 100
+  MaxHealth: 200
   CurrentHealth: 0
   CurrentExperience: 0
   LevelUpRequiredExperience: 0
