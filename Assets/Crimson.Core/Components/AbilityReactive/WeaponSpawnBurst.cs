@@ -115,10 +115,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
             if (!_actorToUi) return;
 
-            SpawnPointsRoot = new GameObject("spawn points root").transform;
-            SpawnPointsRoot.SetParent(gameObject.transform);
-
-            SpawnPointsRoot.localPosition = Vector3.zero;
+            CreateSpawnPointsRoot();
             ResetSpawnPointRootRotation();
 
             if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
@@ -166,12 +163,12 @@ namespace Crimson.Core.Components.AbilityReactive
         public void Spawn()
         {
             LookAtTargetIfAimExist();
-            
+
             if (SpawnedObjects.Count != 0)
             {
                 return;
             }
-            
+
             SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
 
             if (SpawnedObjects == null)
@@ -196,6 +193,14 @@ namespace Crimson.Core.Components.AbilityReactive
             OnHoldAttackActive = false;
         }
 
+        private void CreateSpawnPointsRoot()
+        {
+            SpawnPointsRoot = new GameObject("spawn points root").transform;
+            SpawnPointsRoot.SetParent(gameObject.transform);
+
+            SpawnPointsRoot.localPosition = Vector3.zero;
+        }
+
         private void InvokeSpawnCallbacks()
         {
             Action<GameObject> callback;
@@ -211,6 +216,10 @@ namespace Crimson.Core.Components.AbilityReactive
             var aimTarget = Aim?.SpawnedAimingPrefab;
             if (aimTarget != null)
             {
+                if (SpawnPointsRoot == null)
+                {
+                    CreateSpawnPointsRoot();
+                }
                 SpawnPointsRoot.LookAt(aimTarget.transform);
                 for (var i = 0; i < SpawnedObjects.Count; i++)
                 {

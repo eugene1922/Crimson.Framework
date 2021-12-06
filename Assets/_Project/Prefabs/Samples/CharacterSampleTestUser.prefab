@@ -63,7 +63,7 @@ MonoBehaviour:
   customBindings:
   - index: 1
     actions:
-    - {fileID: 4499761472529401423}
+    - {fileID: 2000508641564710722}
 --- !u!114 &2000508641564710722
 MonoBehaviour:
   m_ObjectHideFlags: 0
