@@ -411,19 +411,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: 
-  primaryProjectile: 1
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   aimingAvailable: 0
-  deactivateAimingOnCooldown: 0
-  onClickAttackType: 0
-  attackDirectionType: 0
-  findTargetProperties:
-    targetType: 0
-    actorWithComponentName: 
-    targetTag: 
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 0
+  aimingByInput: 0
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
@@ -432,9 +427,27 @@ MonoBehaviour:
     circlePrefab: {fileID: 0}
     sightDistance: 0
     reverseControls: 0
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
+  appliedPerksNames: []
+  attackDirectionType: 0
+  burstShotCountRange: {x: 1, y: 1}
+  clipReloadDisplayToggle: []
+  clipReloadTime: 1
+  componentName: 
+  cooldownTime: 1
+  deactivateAimingOnCooldown: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  forceBursts: 0
+  level: 1
+  levelablePropertiesList: []
+  onClickAttackType: 0
+  primaryProjectile: 1
+  projectileClipCapacity: 0
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -460,19 +473,8 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 1
-  projectileClipCapacity: 0
-  clipReloadTime: 1
-  forceBursts: 0
-  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
-  clipReloadDisplayToggle: []
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
-  appliedPerksNames: []
-  aimingByInput: 0
 --- !u!114 &-8760103647376991612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,19 +487,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: BurningWeaponPerk
-  primaryProjectile: 0
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   aimingAvailable: 0
-  deactivateAimingOnCooldown: 0
-  onClickAttackType: 0
-  attackDirectionType: 0
-  findTargetProperties:
-    targetType: 0
-    actorWithComponentName: 
-    targetTag: 
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 0
+  aimingByInput: 0
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
@@ -506,9 +503,27 @@ MonoBehaviour:
     circlePrefab: {fileID: 0}
     sightDistance: 0
     reverseControls: 0
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
+  appliedPerksNames: []
+  attackDirectionType: 0
+  burstShotCountRange: {x: 1, y: 1}
+  clipReloadDisplayToggle: []
+  clipReloadTime: 1
+  componentName: BurningWeaponPerk
+  cooldownTime: 3
+  deactivateAimingOnCooldown: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  forceBursts: 0
+  level: 1
+  levelablePropertiesList: []
+  onClickAttackType: 1
+  primaryProjectile: 0
+  projectileClipCapacity: 0
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -534,19 +549,8 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 3
-  projectileClipCapacity: 0
-  clipReloadTime: 1
-  forceBursts: 0
-  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
-  clipReloadDisplayToggle: []
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
-  appliedPerksNames: []
-  aimingByInput: 0
 --- !u!114 &6430768560650811411
 MonoBehaviour:
   m_ObjectHideFlags: 0

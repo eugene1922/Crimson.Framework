@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -14,11 +15,155 @@ using Random = UnityEngine.Random;
 
 namespace Crimson.Core.Components
 {
+    public enum AimingType
+    {
+        AimingArea = 0,
+        SightControl = 1,
+        Circle = 2
+    }
+
+    public enum AttackDirectionType
+    {
+        Forward = 0,
+        Backward = 1
+    }
+
+    public enum EvaluateActionOptions
+    {
+        EvaluateOnce = 0,
+        RepeatingEvaluation = 1
+    }
+
+    public enum OnClickAttackType
+    {
+        DirectAttack = 0,
+        AutoAim = 1
+    }
+
+    public struct ActorProjectileAnimData : IComponentData
+    {
+        public int AnimHash;
+    }
+
+    public struct ActorProjectileThrowAnimData : IComponentData
+    {
+    }
+
+    public struct BindedActionsCooldownData : IComponentData
+    {
+        public FixedList32<int> OnCooldownBindingIndexes;
+        public FixedList32<int> ReadyToUseBindingIndexes;
+    }
+
+    public struct DestroyProjectileInPointData : IComponentData
+    {
+        public float2 Point;
+    }
+
+    public struct FindAutoAimTargetData : IComponentData
+    {
+        public FixedString128 WeaponComponentName;
+    }
+
     [HideMonoScript]
     public class AbilityWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable,
-        ICooldownable, IBindable, IAimable
+        ICooldownable, IBindable, IAimable, ILevelable
     {
+        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+        public AimingAnimationProperties aimingAnimProperties;
+        public bool aimingAvailable;
+
+        [HideInInspector]
+        public bool aimingByInput;
+
+        public AimingProperties aimingProperties;
+        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
+        [EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
+
+        [ShowIf("forceBursts")]
+        [MinMaxSlider(1, 20)]
+        public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
+
+        [HideIf("projectileClipCapacity", 0f)]
+        [Space]
+        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+
+        [LevelableValue] [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+
+        [Space]
+        [ShowInInspector]
+        [SerializeField]
+        public string componentName = "";
+
+        [LevelableValue] public float cooldownTime = 0.3f;
+        public bool deactivateAimingOnCooldown;
+
+        [ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
+        public FindTargetProperties findTargetProperties;
+
+        [InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
+        public bool forceBursts;
+
+        [Sirenix.OdinInspector.ReadOnly] public int level = 1;
+
+        [Space]
+        [TitleGroup("Levelable properties")]
+        [OnValueChanged(nameof(SetLevelableProperty))]
+        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+
+        [EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
+
+        public bool primaryProjectile;
+
+        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+        public int projectileClipCapacity = 0;
+
+        [Space] public ActorSpawnerSettings projectileSpawnData;
+
+        [Space] public float projectileStartupDelay = 0f;
+
+        //TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
+        [InfoBox("Put here IEnable implementation to display reload")]
+        [Space]
+        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+
+        public bool suppressWeaponSpawn = false;
+
+        private bool _actorToUi;
+
+        private bool _circlePrefabScaled;
+
+        private EntityManager _dstManager;
+
+        private Entity _entity;
+
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+
+        private int _projectileClip;
+
+        public bool ActionExecutionAllowed { get; set; }
+
         public IActor Actor { get; set; }
+
+        public AimingAnimationProperties AimingAnimProperties
+        {
+            get => aimingAnimProperties;
+            set => aimingAnimProperties = value;
+        }
+
+        public bool AimingAvailable
+        {
+            get => aimingAvailable;
+            set => aimingAvailable = value;
+        }
+
+        public AimingProperties AimingProperties
+        {
+            get => aimingProperties;
+            set => aimingProperties = value;
+        }
+
+        public int BindingIndex { get; set; } = -1;
 
         public string ComponentName
         {
@@ -26,80 +171,10 @@ namespace Crimson.Core.Components
             set => componentName = value;
         }
 
-        [Space]
-        [ShowInInspector]
-        [SerializeField]
-        public string componentName = "";
-
-        public bool primaryProjectile;
-
-        public bool aimingAvailable;
-        public bool deactivateAimingOnCooldown;
-
-        [EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
-
-        [EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
-
-        [ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
-        public FindTargetProperties findTargetProperties;
-
-        public AimingProperties aimingProperties;
-        public AimingAnimationProperties aimingAnimProperties;
-
-        [Space] public ActorSpawnerSettings projectileSpawnData;
-
-        //TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
-
-        [Space] public float projectileStartupDelay = 0f;
-
-        public float cooldownTime = 0.3f;
-
-        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-        public int projectileClipCapacity = 0;
-
-        [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
-
-        [InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
-        public bool forceBursts;
-
-        [ShowIf("forceBursts")] [MinMaxSlider(1, 20)]
-        public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
-
-        [InfoBox("Put here IEnable implementation to display reload")]
-        [Space]
-        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
-
-        [HideIf("projectileClipCapacity", 0f)]
-        [Space]
-        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
-
-        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-
-        public bool suppressWeaponSpawn = false;
-
-        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
-
-        [HideInInspector]
-        public bool aimingByInput;
-        public List<GameObject> SpawnedObjects { get; private set; }
-        public List<Action<GameObject>> SpawnCallbacks { get; set; }
-        public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
-
         public float CooldownTime
         {
             get => cooldownTime;
             set => cooldownTime = value;
-        }
-
-        public int BindingIndex { get; set; } = -1;
-
-        public Transform SpawnPointsRoot { get; private set; } 
-
-        public bool AimingAvailable
-        {
-            get => aimingAvailable;
-            set => aimingAvailable = value;
         }
 
         public bool DeactivateAimingOnCooldown
@@ -108,29 +183,41 @@ namespace Crimson.Core.Components
             set => deactivateAimingOnCooldown = value;
         }
 
-        public bool ActionExecutionAllowed { get; set; }
-        public GameObject SpawnedAimingPrefab { get; set; }
+        public Action<GameObject> DisposableSpawnCallback { get; set; }
 
-        public AimingProperties AimingProperties
+        public bool Enabled { get; set; }
+
+        public int Level
         {
-            get => aimingProperties;
-            set => aimingProperties = value;
+            get => level;
+            set => level = value;
         }
 
-        public AimingAnimationProperties AimingAnimProperties
+        public List<FieldInfo> LevelablePropertiesInfoCached
         {
-            get => aimingAnimProperties;
-            set => aimingAnimProperties = value;
+            get
+            {
+                return _levelablePropertiesInfoCached.Any()
+                    ? _levelablePropertiesInfoCached
+                    : (_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>());
+            }
+        }
+
+        public List<LevelableProperties> LevelablePropertiesList
+        {
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
         }
 
         public bool OnHoldAttackActive { get; set; }
 
-        private Entity _entity;
-        private EntityManager _dstManager;
-        private int _projectileClip;
-        private bool _actorToUi;
+        public List<Action<GameObject>> SpawnCallbacks { get; set; }
 
-        private bool _circlePrefabScaled;
+        public GameObject SpawnedAimingPrefab { get; set; }
+
+        public List<GameObject> SpawnedObjects { get; private set; }
+
+        public Transform SpawnPointsRoot { get; private set; }
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -168,7 +255,7 @@ namespace Crimson.Core.Components
             _actorToUi = playerActor != null && playerActor.actorToUI;
 
             if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
-            
+
             //if (!_actorToUi) return;
 
             SpawnPointsRoot = new GameObject("spawn points root").transform;
@@ -198,70 +285,38 @@ namespace Crimson.Core.Components
             projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
         }
 
-        public void Execute()
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-            if (Enabled && projectileStartupDelay == 0 &&
-                World.DefaultGameObjectInjectionWorld.EntityManager.Exists(_entity))
-            {
-                findTargetProperties.SearchCompleted = false;
-                Spawn();
-
-                World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
-                    new ActorProjectileThrowAnimData());
-
-                // ReSharper disable once CompareOfFloatsByEqualityOperator
-                if (CooldownTime == 0) return;
-                
-                StartTimer();
-                
-                if (!forceBursts)
-                {
-                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
-                }
-                else
-                {
-                    var _additionalShotsNum = Random.Range(burstShotCountRange.x, burstShotCountRange.y) - 1;
-                    for (var i = 1; i <= _additionalShotsNum; i++ )
-                    {
-                        Timer.TimedActions.AddAction(Spawn, CooldownTime * i);
-                    }
-                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
-                }
-                if (projectileClipCapacity == 0) return;
-
-                _projectileClip--;
-                if (_projectileClip < 1)
-                {
-                    Timer.TimedActions.AddAction(Reload, clipReloadTime);
-                }
-            }
-            else if (Enabled && Timer != null)
-            {
-                Timer.TimedActions.AddAction(Spawn, projectileStartupDelay);
-            }
-        }
-
         public void EvaluateAim(Vector2 pos)
         {
             aimingByInput = true;
             this.EvaluateAim(Actor as Actor, pos);
         }
 
-        public void EvaluateAimBySelectedType(Vector2 pos)
+        public void EvaluateAimByArea(Vector2 pos)
         {
-            switch (AimingProperties.aimingType)
+            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos * -1);
+
+            Actor.GameObject.GetComponent<Rigidbody>().rotation =
+                Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
+
+            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
-                case AimingType.AimingArea:
-                    EvaluateAimByArea(pos);
-                    break;
-                case AimingType.SightControl:
-                    EvaluateAimBySight(pos);
-                    break;
-                case AimingType.Circle:
-                    EvaluateAimByCircle();
-                    break;
+                SpawnPointsRoot.rotation =
+                    Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
             }
+
+            DisposableSpawnCallback = go =>
+            {
+                var targetActor = go.GetComponent<Actor>();
+                if (targetActor == null)
+                {
+                    return;
+                }
+
+                var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
+
+                targetActor.ChangeActorForceMovementData(
+                    projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
+            };
         }
 
         public void EvaluateAimByCircle()
@@ -288,6 +343,7 @@ namespace Crimson.Core.Components
                 case SphereCollider sphere:
                     colliderRadius = sphere.radius;
                     break;
+
                 case CapsuleCollider capsule:
                     var direction = capsule.direction;
 
@@ -295,6 +351,7 @@ namespace Crimson.Core.Components
                         ? capsule.height * 0.5f
                         : capsule.radius;
                     break;
+
                 case BoxCollider box:
                     var size = box.size;
                     colliderRadius = Math.Max(size.x, size.z) * 0.5f;
@@ -306,10 +363,112 @@ namespace Crimson.Core.Components
             _circlePrefabScaled = true;
         }
 
+        public void EvaluateAimBySelectedType(Vector2 pos)
+        {
+            switch (AimingProperties.aimingType)
+            {
+                case AimingType.AimingArea:
+                    EvaluateAimByArea(pos);
+                    break;
+
+                case AimingType.SightControl:
+                    EvaluateAimBySight(pos);
+                    break;
+
+                case AimingType.Circle:
+                    EvaluateAimByCircle();
+                    break;
+            }
+        }
+
+        public void EvaluateAimBySight(Vector2 pos)
+        {
+            var lastSpawnedAimingPrefabPos = this.EvaluateAimBySight(Actor, pos);
+
+            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
+            {
+                SpawnPointsRoot.LookAt(SpawnedAimingPrefab.transform);
+            }
+
+            DisposableSpawnCallback = go =>
+            {
+                var targetActor = go.GetComponent<Actor>();
+                if (targetActor == null) return;
+
+                var vector = lastSpawnedAimingPrefabPos - Actor.GameObject.transform.position;
+
+                targetActor.ChangeActorForceMovementData(
+                    projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
+
+                _dstManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
+                {
+                    Point = new float2(lastSpawnedAimingPrefabPos.x,
+                        lastSpawnedAimingPrefabPos.z)
+                });
+            };
+        }
+
+        public void Execute()
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
+            if (Enabled && projectileStartupDelay == 0 &&
+                World.DefaultGameObjectInjectionWorld.EntityManager.Exists(_entity))
+            {
+                findTargetProperties.SearchCompleted = false;
+                Spawn();
+
+                World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
+                    new ActorProjectileThrowAnimData());
+
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (CooldownTime == 0) return;
+
+                StartTimer();
+
+                if (!forceBursts)
+                {
+                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
+                }
+                else
+                {
+                    var _additionalShotsNum = Random.Range(burstShotCountRange.x, burstShotCountRange.y) - 1;
+                    for (var i = 1; i <= _additionalShotsNum; i++)
+                    {
+                        Timer.TimedActions.AddAction(Spawn, CooldownTime * i);
+                    }
+                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
+                }
+                if (projectileClipCapacity == 0) return;
+
+                _projectileClip--;
+                if (_projectileClip < 1)
+                {
+                    Timer.TimedActions.AddAction(Reload, clipReloadTime);
+                }
+            }
+            else if (Enabled && Timer != null)
+            {
+                Timer.TimedActions.AddAction(Spawn, projectileStartupDelay);
+            }
+        }
+
+        public override void FinishTimer()
+        {
+            base.FinishTimer();
+            Enabled = true;
+
+            this.FinishAbilityCooldownTimer(Actor);
+        }
+
+        public void Reload()
+        {
+            _projectileClip = projectileClipCapacity;
+        }
+
         public void ResetAiming()
         {
             aimingByInput = false;
-            
+
             this.ResetAiming(Actor);
             _circlePrefabScaled = false;
 
@@ -321,7 +480,7 @@ namespace Crimson.Core.Components
         public void ResetSpawnPointRootRotation()
         {
             if (SpawnPointsRoot == null) return;
-            
+
             if (attackDirectionType == AttackDirectionType.Forward)
             {
                 SpawnPointsRoot.localRotation = Quaternion.identity;
@@ -329,6 +488,16 @@ namespace Crimson.Core.Components
             }
 
             SpawnPointsRoot.localRotation = Quaternion.Euler(0, -180, 0);
+        }
+
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+        }
+
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
         }
 
         public void Spawn()
@@ -371,19 +540,6 @@ namespace Crimson.Core.Components
             findTargetProperties.SearchCompleted = false;
         }
 
-        public void Reload()
-        {
-            _projectileClip = projectileClipCapacity;
-        }
-
-        public override void FinishTimer()
-        {
-            base.FinishTimer();
-            Enabled = true;
-
-            this.FinishAbilityCooldownTimer(Actor);
-        }
-
         public override void StartTimer()
         {
             base.StartTimer();
@@ -391,111 +547,5 @@ namespace Crimson.Core.Components
 
             this.StartAbilityCooldownTimer(Actor);
         }
-
-        public void EvaluateAimByArea(Vector2 pos)
-        {
-            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos * -1);
-
-            Actor.GameObject.GetComponent<Rigidbody>().rotation = 
-                Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
-            
-            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
-            {
-                SpawnPointsRoot.rotation =
-                    Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
-            }
-
-            DisposableSpawnCallback = go =>
-            {
-                var targetActor = go.GetComponent<Actor>();
-                if (targetActor == null)
-                {
-                    return;
-                }
-
-                var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
-                
-                targetActor.ChangeActorForceMovementData(
-                    projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
-            };
-        }
-
-        public void EvaluateAimBySight(Vector2 pos)
-        {
-            var lastSpawnedAimingPrefabPos = this.EvaluateAimBySight(Actor, pos);
-
-            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
-            {
-                SpawnPointsRoot.LookAt(SpawnedAimingPrefab.transform);
-            }
-
-            DisposableSpawnCallback = go =>
-            {
-                var targetActor = go.GetComponent<Actor>();
-                if (targetActor == null) return;
-
-                var vector = lastSpawnedAimingPrefabPos - Actor.GameObject.transform.position;
-
-                targetActor.ChangeActorForceMovementData(
-                    projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
-
-                _dstManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
-                {
-                    Point = new float2(lastSpawnedAimingPrefabPos.x,
-                        lastSpawnedAimingPrefabPos.z)
-                });
-            };
-        }
-    }
-
-    public enum OnClickAttackType
-    {
-        DirectAttack = 0,
-        AutoAim = 1
-    }
-
-    public enum AttackDirectionType
-    {
-        Forward = 0,
-        Backward = 1
-    }
-
-
-    public enum AimingType
-    {
-        AimingArea = 0,
-        SightControl = 1,
-        Circle = 2
-    }
-
-    public enum EvaluateActionOptions
-    {
-        EvaluateOnce = 0,
-        RepeatingEvaluation = 1
-    }
-
-    public struct DestroyProjectileInPointData : IComponentData
-    {
-        public float2 Point;
-    }
-
-    public struct ActorProjectileAnimData : IComponentData
-    {
-        public int AnimHash;
-    }
-
-    public struct ActorProjectileThrowAnimData : IComponentData
-    {
-    }
-
-    public struct BindedActionsCooldownData : IComponentData
-    {
-        public FixedList32<int> ReadyToUseBindingIndexes;
-        public FixedList32<int> OnCooldownBindingIndexes;
-    }
-
-    public struct FindAutoAimTargetData : IComponentData
-    {
-        public FixedString128 WeaponComponentName;
     }
 }
