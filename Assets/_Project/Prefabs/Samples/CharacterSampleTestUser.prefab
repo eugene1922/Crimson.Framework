@@ -323,12 +323,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: PrimaryProjectile
-  primaryProjectile: 1
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   aimingAvailable: 1
-  deactivateAimingOnCooldown: 0
-  onClickAttackType: 1
+  aimingByInput: 0
+  aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 1
+    aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
+      type: 3}
+    sightPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
+      type: 3}
+    circlePrefab: {fileID: 0}
+    sightDistance: 7
+    reverseControls: 0
+  appliedPerksNames: []
   attackDirectionType: 0
+  burstShotCountRange: {x: 1, y: 1}
+  clipReloadDisplayToggle: []
+  clipReloadTime: 1
+  componentName: PrimaryProjectile
+  cooldownTime: 0.2
+  deactivateAimingOnCooldown: 0
   findTargetProperties:
     targetType: 3
     actorWithComponentName: 
@@ -336,19 +356,12 @@ MonoBehaviour:
     ignoreSpawner: 0
     strategy: 0
     maxDistanceThreshold: 0
-  aimingProperties:
-    evaluateActionOptions: 1
-    aimingType: 0
-    aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
-      type: 3}
-    sightPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
-      type: 3}
-    circlePrefab: {fileID: 0}
-    sightDistance: 0
-    reverseControls: 0
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
+  forceBursts: 0
+  level: 1
+  levelablePropertiesList: []
+  onClickAttackType: 1
+  primaryProjectile: 1
+  projectileClipCapacity: 0
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -375,19 +388,8 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.2
-  projectileClipCapacity: 0
-  clipReloadTime: 1
-  forceBursts: 0
-  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
-  clipReloadDisplayToggle: []
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
-  appliedPerksNames: []
-  aimingByInput: 0
 --- !u!114 &-1969340818193211531
 MonoBehaviour:
   m_ObjectHideFlags: 0
