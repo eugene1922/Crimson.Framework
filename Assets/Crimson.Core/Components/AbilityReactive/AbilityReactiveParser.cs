@@ -58,7 +58,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public void Parse(int index, PlayerInputData inputData)
         {
-            Debug.Log($"{nameof(AbilityReactiveParser)} try parse input");
             var input = inputData.CustomInput[index];
             var stickInput = inputData.CustomSticksInput[index];
             foreach (var key in bindingsDict.Keys)

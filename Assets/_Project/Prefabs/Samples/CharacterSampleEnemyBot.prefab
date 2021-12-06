@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 2791762632663953111}
   - component: {fileID: 8452881097323733006}
   - component: {fileID: -1330729215862922913}
+  - component: {fileID: 1315755116092809341}
+  - component: {fileID: 9134544295611078513}
+  - component: {fileID: 4038005308669278241}
   - component: {fileID: -3678600976375478634}
   - component: {fileID: 8170466036268861975}
   - component: {fileID: -8760103647376991612}
@@ -62,9 +65,9 @@ MonoBehaviour:
     x: 1
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints:
-    - {fileID: 1407048474267818, guid: ccfa9fa1b0aa068489c832a5d1746048, type: 3}
+    _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 3
     parentOfSpawns: 2
     actorWithComponentName: UIRoot
@@ -98,13 +101,61 @@ MonoBehaviour:
   customBindings:
   - index: 1
     actions:
-    - {fileID: 8170466036268861975}
+    - {fileID: 4038005308669278241}
   - index: 2
     actions:
-    - {fileID: -8760103647376991612}
+    - {fileID: 9134544295611078513}
   - index: 3
     actions:
+    - {fileID: 1315755116092809341}
+--- !u!114 &1315755116092809341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f565b7c09b33d499979c29272fd01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputBehaviours:
+  - InputType: 1
+    Actions:
     - {fileID: -1924274504665356381}
+--- !u!114 &9134544295611078513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f565b7c09b33d499979c29272fd01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputBehaviours:
+  - InputType: 1
+    Actions:
+    - {fileID: -8760103647376991612}
+--- !u!114 &4038005308669278241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322200569230309113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f565b7c09b33d499979c29272fd01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputBehaviours:
+  - InputType: 1
+    Actions:
+    - {fileID: 8170466036268861975}
 --- !u!114 &-3678600976375478634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +431,7 @@ MonoBehaviour:
     sightPrefab: {fileID: 0}
     circlePrefab: {fileID: 0}
     sightDistance: 0
+    reverseControls: 0
   aimingAnimProperties:
     HasActorAimingAnimation: 0
     ActorAimingAnimationName: 
@@ -393,8 +445,9 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -410,6 +463,8 @@ MonoBehaviour:
   cooldownTime: 1
   projectileClipCapacity: 0
   clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -417,6 +472,7 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &-8760103647376991612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +505,7 @@ MonoBehaviour:
     sightPrefab: {fileID: 0}
     circlePrefab: {fileID: 0}
     sightDistance: 0
+    reverseControls: 0
   aimingAnimProperties:
     HasActorAimingAnimation: 0
     ActorAimingAnimationName: 
@@ -462,8 +519,9 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    spawnPoints: []
+    _spawnPoints: []
     spawnPointTag: 
+    useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
@@ -479,6 +537,8 @@ MonoBehaviour:
   cooldownTime: 3
   projectileClipCapacity: 0
   clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -486,6 +546,7 @@ MonoBehaviour:
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &6430768560650811411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +606,7 @@ MonoBehaviour:
     sightPrefab: {fileID: 0}
     circlePrefab: {fileID: 0}
     sightDistance: 0
+    reverseControls: 0
   aimingAnimProperties:
     HasActorAimingAnimation: 0
     ActorAimingAnimationName: 
@@ -569,4 +631,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTag: Enemy
+  alsoSetLayer: 0
+  newLayer: 
   applyOnStart: 1
