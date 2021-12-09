@@ -97,13 +97,18 @@ namespace Crimson.Core.Utils
             if (!dstManager.HasComponent<ActorEvaluateAimingAnimData>(actor.ActorEntity))
             {
                 dstManager.AddComponentData(actor.ActorEntity, new ActorEvaluateAimingAnimData { AimingActive = true });
+                dstManager.AddComponentData(actor.ActorEntity, new AimingData { Direction = new Vector3(pos.x, 0, pos.y) });
             }
             else
             {
                 var existingComponent = dstManager.GetComponentData<ActorEvaluateAimingAnimData>(actor.ActorEntity);
                 existingComponent.AimingActive = true;
 
+                var aimData = dstManager.GetComponentData<AimingData>(actor.ActorEntity);
+                aimData.Direction = new Vector3(pos.x, 0, pos.y);
+
                 dstManager.SetComponentData(actor.ActorEntity, existingComponent);
+                dstManager.SetComponentData(actor.ActorEntity, aimData);
             }
 
             aiming.EvaluateAimBySelectedType(pos);

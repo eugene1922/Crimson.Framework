@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils.LowLevel;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -19,20 +19,16 @@ namespace Crimson.Core.Systems
     {
         private EntityCommandBufferSystem _barrier;
 
-        private InputAction _moveAction;
-        private InputAction _mouseAction;
-        private InputAction _lookAction;
-
         private List<InputAction> _customActions = new List<InputAction>();
-        private List<InputAction> _customSticksInputActions = new List<InputAction>();
-
-        private float2 _moveInput;
-        private float2 _mouseInput;
-        private float2 _lookInput;
-        
         private NativeArray<float> _customInputs;
+        private List<InputAction> _customSticksInputActions = new List<InputAction>();
         private NativeArray<float2> _customSticksInputs;
-
+        private InputAction _lookAction;
+        private float2 _lookInput;
+        private InputAction _mouseAction;
+        private float2 _mouseInput;
+        private InputAction _moveAction;
+        private float2 _moveInput;
         protected override void OnCreate()
         {
             _barrier = World.GetOrCreateSystem<EntityCommandBufferSystem>();
@@ -43,7 +39,7 @@ namespace Crimson.Core.Systems
         {
             _customInputs = new NativeArray<float>(Constants.INPUT_BUFFER_CAPACITY, Allocator.Persistent);
             _customSticksInputs = new NativeArray<float2>(Constants.INPUT_BUFFER_CAPACITY, Allocator.Persistent);
-            
+
             _moveAction = new InputAction("move", binding: "<Gamepad>/leftStick");
             _moveAction.AddCompositeBinding("Dpad")
                 .With("Up", "<Keyboard>/w")
@@ -93,7 +89,7 @@ namespace Crimson.Core.Systems
                 _customActions.Last().canceled += context => { _customInputs[j] = context.ReadValue<float>(); };
                 _customActions.Last().Enable();
             }
-            
+
             RegisterCustomSticks();
         }
 
@@ -102,7 +98,7 @@ namespace Crimson.Core.Systems
             _mouseAction.Disable();
             //_lookAction.Disable();
             _moveAction.Disable();
-            
+
             foreach (var c in _customActions)
             {
                 c.Disable();
@@ -122,62 +118,6 @@ namespace Crimson.Core.Systems
                 InputSystem.RemoveDevice(perkStickControls);
         }
 
-        private void RegisterCustomSticks()
-        {
-            if (InputSystem.devices.FirstOrDefault(x => x is CustomDevice) == null)
-            {
-                InputSystem.AddDevice(new InputDeviceDescription
-                {
-                    interfaceName = "CustomDevice",
-                    product = "Custom Device"
-                });
-            }
-
-            for (var k = 0; k <= 4; k++)
-            {
-                var j = k;
-                
-                _customSticksInputActions.Add(new InputAction($"customStick_{j}", binding: $"<CustomDevice>/customStick_{j}"));
-                
-                _customSticksInputActions.Last().performed += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
-                _customSticksInputActions.Last().canceled += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
-                _customSticksInputActions.Last().Enable();
-            }
-        }
-
-        //[BurstCompile]
-#pragma warning disable 618
-        private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
-#pragma warning restore 618
-        {
-            public EntityCommandBuffer.ParallelWriter Ecb;
-
-            [ReadOnly] public float2 MoveInput;
-            [ReadOnly] public float2 MouseInput;
-            [ReadOnly] public float2 LookInput;
-            [ReadOnly] public NativeArray<float> CustomInputs;
-            [ReadOnly] public NativeArray<float2> CustomSticksInputs;
-
-            public void Execute(Entity entity, int index, ref PlayerInputData inputData, ref UserInputData u)
-            {
-                
-                if (Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent(entity, typeof(DeadActorData))) return;
-                inputData.Move = MoveInput;
-                inputData.Mouse = MouseInput;
-                inputData.Look = LookInput;
-
-                for (var i = 0; i < CustomInputs.Length; i++)
-                {
-                    inputData.CustomInput[i] = CustomInputs[i];
-                }
-
-                for (var i = 0; i < CustomSticksInputs.Length; i++)
-                {
-                    inputData.CustomSticksInput[i] = CustomSticksInputs[i];
-                }
-            }
-        }
-
         [BurstCompile]
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
@@ -193,6 +133,61 @@ namespace Crimson.Core.Systems
             inputDeps = job.Schedule(this, inputDeps);
             _barrier.AddJobHandleForProducer(inputDeps);
             return inputDeps;
+        }
+
+        private void RegisterCustomSticks()
+        {
+            if (InputSystem.devices.FirstOrDefault(x => x is CustomDevice) == null)
+            {
+                InputSystem.AddDevice(new InputDeviceDescription
+                {
+                    interfaceName = "CustomDevice",
+                    product = "Custom Device"
+                });
+            }
+
+            for (var k = 0; k <= 4; k++)
+            {
+                var j = k;
+
+                _customSticksInputActions.Add(new InputAction($"customStick_{j}", binding: $"<CustomDevice>/customStick_{j}"));
+
+                _customSticksInputActions.Last().performed += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
+                _customSticksInputActions.Last().canceled += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
+                _customSticksInputActions.Last().Enable();
+            }
+        }
+
+        //[BurstCompile]
+#pragma warning disable 618
+        private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
+#pragma warning restore 618
+        {
+            [ReadOnly] public NativeArray<float> CustomInputs;
+            [ReadOnly] public NativeArray<float2> CustomSticksInputs;
+            public EntityCommandBuffer.ParallelWriter Ecb;
+
+            [ReadOnly] public float2 LookInput;
+            [ReadOnly] public float2 MouseInput;
+            [ReadOnly] public float2 MoveInput;
+            public void Execute(Entity entity, int index, ref PlayerInputData inputData, ref UserInputData u)
+            {
+
+                if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent(entity, typeof(DeadActorData))) return;
+                inputData.Move = MoveInput;
+                inputData.Mouse = MouseInput;
+                inputData.Look = LookInput;
+
+                for (var i = 0; i < CustomInputs.Length; i++)
+                {
+                    inputData.CustomInput[i] = CustomInputs[i];
+                }
+
+                for (var i = 0; i < CustomSticksInputs.Length; i++)
+                {
+                    inputData.CustomSticksInput[i] = CustomSticksInputs[i];
+                }
+            }
         }
     }
 }

@@ -12,24 +12,65 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
+    public struct AIInputData : IComponentData
+    {
+        public byte foo;
+    }
+
+    public struct CompensateCameraRotation : IComponentData
+    {
+    }
+
+    public struct NetworkInputData : IComponentData
+    {
+        public byte foo;
+    }
+
+    [NetworkSimObject]
+    public struct PlayerInputData : IComponentData
+    {
+        [NetworkSimData] public float CompensateAngle;
+        [NetworkSimData] public FixedList512<float> CustomInput;
+        [NetworkSimData] public FixedList512<float2> CustomSticksInput;
+        [NetworkSimData] public float2 Look;
+        public float MinMagnitude;
+        [NetworkSimData] public float2 Mouse;
+        [NetworkSimData] public float2 Move;
+
+        public override string ToString()
+        {
+            var results = $"Move:{Move}\n" +
+                          $"Mouse:{Mouse}\n" +
+                          $"Look:{Look}\n";
+
+            results += $"CustomInput:\n";
+            for (var i = 0; i < CustomInput.Length; i++)
+            {
+                results += $"\t{CustomInput[i]}:{CustomSticksInput[i]}\n";
+            }
+
+            return results;
+        }
+    }
+
+    public struct UserInputData : IComponentData
+    {
+        public byte foo;
+    }
+
     [HideMonoScript]
     public class AbilityPlayerInput : MonoBehaviour, IActorAbility
     {
-        public IActor Actor { get; set; }
-
-        [EnumToggleButtons] public InputSource inputSource;
-
-        [ShowIfGroup("inputSource", InputSource.UserInput)]
-        public bool compensateCameraRotation = true;
-
-        [ShowIfGroup("inputSource", InputSource.UserInput)]
-        public float minMoveInputMagnitude = 0f;
-
         [ShowIf("inputSource", InputSource.AIInput)]
         [InfoBox("Additional AI Ability Component is needed to use AI Input")]
         [ValidateInput("MustBeAI", "AI MonoBehaviour must exist and derive from IAISettings!")]
         [LabelText("AI Behaviour Component")]
         public MonoBehaviour AIBehaviour;
+
+        [HideInInspector] public Dictionary<int, List<IActorAbility>> bindingsDict;
+
+        [ShowIfGroup("inputSource", InputSource.UserInput)]
+        public bool compensateCameraRotation = true;
 
         [Space]
         [InfoBox(
@@ -37,7 +78,12 @@ namespace Crimson.Core.Components
             "Further bindings are as set in User Input")]
         public List<CustomBinding> customBindings = new List<CustomBinding>();
 
-        [HideInInspector] public Dictionary<int, List<IActorAbility>> bindingsDict;
+        [EnumToggleButtons] public InputSource inputSource;
+
+        [ShowIfGroup("inputSource", InputSource.UserInput)]
+        public float minMoveInputMagnitude = 0f;
+
+        public IActor Actor { get; set; }
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -68,6 +114,7 @@ namespace Crimson.Core.Components
             {
                 case InputSource.Default:
                     break;
+
                 case InputSource.UserInput:
                     dstManager.AddComponentData(entity, new UserInputData());
                     dstManager.AddComponentData(entity, new NetworkSyncSend());
@@ -77,20 +124,19 @@ namespace Crimson.Core.Components
                     }
 
                     break;
+
                 case InputSource.NetworkInput:
                     dstManager.AddComponentData(entity, new NetworkInputData());
                     break;
+
                 case InputSource.AIInput:
                     dstManager.AddComponentData(entity, new AIInputData());
                     dstManager.AddComponentData(entity, new NetworkSyncSend());
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        public void Execute()
-        {
         }
 
         public void AddCustomBinding(CustomBinding binding)
@@ -107,6 +153,10 @@ namespace Crimson.Core.Components
             }
         }
 
+        public void Execute()
+        {
+        }
+
         public void RemoveCustomBinding(int indexToRemove)
         {
             var bindingToRemove = customBindings.FirstOrDefault(b => b.index == indexToRemove);
@@ -119,51 +169,5 @@ namespace Crimson.Core.Components
         {
             return a is IAIModule;
         }
-    }
-
-    [NetworkSimObject]
-    public struct PlayerInputData : IComponentData
-    {
-        [NetworkSimData] public float2 Move;
-        [NetworkSimData] public float2 Mouse;
-        [NetworkSimData] public float2 Look;
-        [NetworkSimData] public float CompensateAngle;
-        public float MinMagnitude;
-        [NetworkSimData] public FixedList512<float> CustomInput;
-        [NetworkSimData] public FixedList512<float2> CustomSticksInput;
-
-        public override string ToString()
-        {
-            var results = $"Move:{Move}\n" +
-                          $"Mouse:{Mouse}\n" +
-                          $"Look:{Look}\n";
-
-            results += $"CustomInput:\n";
-            for (var i = 0; i < CustomInput.Length; i++)
-            {
-                results += $"\t{CustomInput[i]}:{CustomSticksInput[i]}\n";
-            }
-
-            return results;
-        }
-    }
-
-    public struct UserInputData : IComponentData
-    {
-        public byte foo;
-    }
-
-    public struct NetworkInputData : IComponentData
-    {
-        public byte foo;
-    }
-
-    public struct AIInputData : IComponentData
-    {
-        public byte foo;
-    }
-
-    public struct CompensateCameraRotation : IComponentData
-    {
     }
 }

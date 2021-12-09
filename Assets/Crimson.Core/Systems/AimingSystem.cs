@@ -13,15 +13,14 @@ namespace Crimson.Core.Systems
     [UpdateInGroup(typeof(FixedUpdateGroup))]
     public class AimingSystem : ComponentSystem
     {
-        private EntityQuery _evaluateActionQuery;
         private EntityQuery _aimingQuery;
+        private EntityQuery _evaluateActionQuery;
         private EntityQuery _projectileToDestroyQuery;
-
 
         protected override void OnCreate()
         {
             _aimingQuery = GetEntityQuery(
-                ComponentType.ReadOnly<PlayerInputData>(),
+                ComponentType.ReadWrite<PlayerInputData>(),
                 ComponentType.ReadOnly<AbilityPlayerInput>(),
                 ComponentType.Exclude<DeadActorData>(),
                 ComponentType.Exclude<DestructionPendingData>());

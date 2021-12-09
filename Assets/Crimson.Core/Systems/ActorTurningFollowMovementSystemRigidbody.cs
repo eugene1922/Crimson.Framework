@@ -14,7 +14,6 @@ namespace Crimson.Core.Systems
         protected override void OnCreate()
         {
             _query = GetEntityQuery(
-                ComponentType.ReadOnly<Transform>(),
                 ComponentType.ReadOnly<ActorMovementData>(),
                 ComponentType.ReadOnly<ActorRotationFollowMovementData>(),
                 ComponentType.ReadOnly<Rigidbody>(),
@@ -24,26 +23,50 @@ namespace Crimson.Core.Systems
         protected override void OnUpdate()
         {
             var dt = Time.fixedDeltaTime;
-            
-            Entities.With(_query).ForEach((Entity entity, Rigidbody rigidBody, ref ActorMovementData movement,
-                ref ActorRotationFollowMovementData rotation) =>
+
+            Entities.With(_query).ForEach((Entity entity,
+                                           Rigidbody rigidBody,
+                                           ref ActorMovementData movement,
+                                           ref ActorRotationFollowMovementData rotation) =>
             {
-                if (rigidBody == null) return;
+                if (rigidBody == null)
+                {
+                    return;
+                }
 
                 var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
+                var direction = Vector3.zero;
                 if (dstManager.HasComponent(entity, typeof(ActorEvaluateAimingAnimData)))
                 {
                     var c = dstManager.GetComponentData<ActorEvaluateAimingAnimData>(entity);
-                    if (c.AimingActive) return;
+                    if (c.AimingActive)
+                    {
+                        var aimData = dstManager.GetComponentData<AimingData>(entity);
+                        direction = aimData.Direction;
+                    }
+                    else
+                    {
+                        direction = new Vector3(movement.MovementCache.x, 0, movement.MovementCache.z);
+                    }
                 }
-                var dir = new Vector3(movement.MovementCache.x, 0, movement.MovementCache.z);
+                else
+                {
+                    direction = new Vector3(movement.MovementCache.x, 0, movement.MovementCache.z);
+                }
 
-                if (dir == Vector3.zero) return;
-                
+                if (direction == Vector3.zero)
+                {
+                    return;
+                }
+
                 var rot = rigidBody.rotation;
-                var newRot = Quaternion.LookRotation(Vector3.Normalize(dir));
-                if (newRot == rot) return;
+                var newRot = Quaternion.LookRotation(Vector3.Normalize(direction));
+                if (newRot == rot)
+                {
+                    return;
+                }
+
                 rigidBody.MoveRotation(Quaternion.Lerp(rot, newRot, dt * rotation.RotationSpeed));
             });
         }

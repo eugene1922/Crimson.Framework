@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Components.AbilityReactive
@@ -60,11 +61,11 @@ namespace Crimson.Core.Components.AbilityReactive
         }
 
         public Action<GameObject> DisposableSpawnCallback { get; set; }
+        public bool OnHoldAttackActive { get; set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public GameObject SpawnedAimingPrefab { get; set; }
         public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
         public Transform SpawnPointsRoot { get; private set; }
-        public bool OnHoldAttackActive { get; set; }
         protected Entity CurrentEntity { get; private set; }
         protected EntityManager CurrentEntityManager { get; private set; }
 
@@ -92,13 +93,63 @@ namespace Crimson.Core.Components.AbilityReactive
             this.EvaluateAim(Actor as Actor, pos);
         }
 
+        public void EvaluateAimByArea(Vector2 pos)
+        {
+            var aimPosition = AbilityUtils.EvaluateAimByArea(this, pos);
+
+            DisposableSpawnCallback = go =>
+            {
+                var targetActor = go.GetComponent<Actor>();
+                if (targetActor == null)
+                {
+                    return;
+                }
+
+                var vector = Quaternion.Euler(0, -180, 0) * aimPosition;
+            };
+        }
+
         public void EvaluateAimBySelectedType(Vector2 pos)
         {
             EvaluateAimTarget(pos);
         }
 
+        public void EvaluateAimBySight(Vector2 pos)
+        {
+            var aimPosition = this.EvaluateAimBySight(Actor, pos);
+
+            DisposableSpawnCallback = go =>
+            {
+                var targetActor = go.GetComponent<Actor>();
+                if (targetActor == null)
+                {
+                    return;
+                }
+
+                var vector = aimPosition - Actor.GameObject.transform.position;
+
+                CurrentEntityManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
+                {
+                    Point = new float2(aimPosition.x, aimPosition.z)
+                });
+            };
+        }
+
         public void EvaluateAimTarget(Vector2 input)
         {
+            switch (AimingProperties.aimingType)
+            {
+                case AimingType.AimingArea:
+                    EvaluateAimByArea(input);
+                    break;
+
+                case AimingType.SightControl:
+                    EvaluateAimBySight(input);
+                    break;
+
+                default:
+                    throw new NotImplementedException("No aim type");
+            }
         }
 
         public void Execute()

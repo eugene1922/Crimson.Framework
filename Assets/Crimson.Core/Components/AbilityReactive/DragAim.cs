@@ -17,6 +17,7 @@ namespace Crimson.Core.Components.AbilityReactive
         IAimable,
         IDragable
     {
+        public AimingProperties _aimingProperties;
         public AimingAnimationProperties aimingAnimProperties;
         public bool aimingAvailable;
 
@@ -25,8 +26,6 @@ namespace Crimson.Core.Components.AbilityReactive
         public string componentName = "";
 
         public bool deactivateAimingOnCooldown;
-
-        public AimingProperties _aimingProperties;
 
         [SerializeField, InfoBox("Time when aim disable (Seconds)")]
         private float _resetAimTime = 0.15f;
@@ -166,6 +165,8 @@ namespace Crimson.Core.Components.AbilityReactive
                     EvaluateAimBySight(input);
                     break;
 
+                default:
+                    throw new NotImplementedException("No aim type");
             }
         }
 
@@ -194,6 +195,7 @@ namespace Crimson.Core.Components.AbilityReactive
             }
             OnHoldAttackActive = false;
         }
+
         public override void StartTimer()
         {
             base.StartTimer();
