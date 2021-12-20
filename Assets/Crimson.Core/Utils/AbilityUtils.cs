@@ -7,7 +7,6 @@ using System.Reflection;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Crimson.Core.Utils
 {
@@ -199,7 +198,7 @@ namespace Crimson.Core.Utils
                 dstManager.SetComponentData(actor.ActorEntity, existingComponent);
             }
 
-            Object.Destroy(aiming.SpawnedAimingPrefab);
+            UnityEngine.Object.Destroy(aiming.SpawnedAimingPrefab);
         }
 
         public static void SetAbilityLevel(this ILevelable ability, int level,

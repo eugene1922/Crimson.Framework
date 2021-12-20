@@ -1,7 +1,6 @@
 using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
 using Crimson.Core.Loading;
-using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -35,16 +34,22 @@ namespace Crimson.Core.Components
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
+            InitPool();
             Actor = actor;
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponent<TimerData>(entity);
             if (ExecuteOnAwake) Execute();
         }
 
-        [ContextMenu("Execute")]
+        [ContextMenu(nameof(Execute))]
         public void Execute()
         {
             Spawn();
             DestroyAbilityAfterSpawn();
+        }
+
+        public void InitPool()
+        {
+            SpawnData.InitPool();
         }
 
         public void Spawn()
@@ -52,13 +57,11 @@ namespace Crimson.Core.Components
             _spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor?.Owner));
             _spawnedObjectCollection.Clear();
             _spawnedObjectCollection.SpawnWithOptions(Timer, SpawnDelays);
-            
         }
 
         private void DestroyAbilityAfterSpawn()
         {
             if (SpawnData.DestroyAbilityAfterSpawn) Destroy(this);
         }
-
     }
 }

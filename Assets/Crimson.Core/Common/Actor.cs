@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Crimson.Core.Components;
+using Crimson.Core.Utils;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
-using Crimson.Core.Components;
-using Crimson.Core.Utils;
-using Crimson.Core.Utils.LowLevel;
-using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
 
@@ -21,7 +19,8 @@ namespace Crimson.Core.Common
 
         [Space] [SerializeField] public string componentName = "";
 
-        [Space] [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+        [Space]
+        [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
         public List<MonoBehaviour> ExecuteOnSpawn = new List<MonoBehaviour>();
 
         private int _actorId;
@@ -70,10 +69,7 @@ namespace Crimson.Core.Common
 
                 return _actorId;
             }
-            set
-            {
-                _actorId = value;
-            }
+            set => _actorId = value;
         }
 
         [NetworkSimData]
@@ -117,7 +113,7 @@ namespace Crimson.Core.Common
             PostConvert();
         }
 
-        
+
 
         public virtual void HandleAbilities(Entity entity)
         {
@@ -133,7 +129,7 @@ namespace Crimson.Core.Common
 
         public virtual void PostConvert()
         {
-            WorldEntityManager.AddComponentData(ActorEntity, new ActorData {ActorId = ActorId, StateId = ActorStateId});
+            WorldEntityManager.AddComponentData(ActorEntity, new ActorData { ActorId = ActorId, StateId = ActorStateId });
 
             if (Spawner == null) return;
 
@@ -154,10 +150,10 @@ namespace Crimson.Core.Common
             // Root ConvertToEntity is responsible for converting the whole hierarchy
             if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
                 return;
-            
+
             this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
         }
-        
+
         private void OnDestroy()
         {
             try

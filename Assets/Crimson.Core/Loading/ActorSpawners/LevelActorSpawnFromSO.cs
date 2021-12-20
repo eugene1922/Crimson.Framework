@@ -1,5 +1,4 @@
 using Crimson.Core.Common;
-using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +9,23 @@ namespace Crimson.Core.Loading.ActorSpawners
     [HideMonoScript]
     public class LevelActorSpawnFromSO : MonoBehaviour, IActorSpawner, IComponentName
     {
+        [Space] [SerializeField] public string componentName = "";
+
+        [Space]
+        public LevelActorSpawnerDataSO spawnDataFile;
+
         public string ComponentName
         {
             get => componentName;
             set => componentName = value;
         }
 
-        [Space] [SerializeField] public string componentName = "";
-        [Space]
-
-        public LevelActorSpawnerDataSO spawnDataFile;
-
         public List<GameObject> SpawnedObjects { get; private set; }
+
+        public void InitPool()
+        {
+            spawnDataFile.SpawnData.InitPool();
+        }
 
         public void Spawn()
         {
@@ -33,6 +37,11 @@ namespace Crimson.Core.Loading.ActorSpawners
             {
                 SpawnedObjects.Add(ActorSpawn.Spawn(spawnItems[i]));
             }
+        }
+
+        private void Awake()
+        {
+            InitPool();
         }
     }
 }

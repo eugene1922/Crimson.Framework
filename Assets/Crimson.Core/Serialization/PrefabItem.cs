@@ -22,7 +22,7 @@ namespace Crimson.Core.Serialization
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
 #if UNITY_EDITOR
-            if (asset == null) 
+            if (asset == null)
             {
                 return;
             }
@@ -32,7 +32,7 @@ namespace Crimson.Core.Serialization
 #endif
         }
 
-        void ISerializationCallbackReceiver.OnAfterDeserialize() { } 
+        void ISerializationCallbackReceiver.OnAfterDeserialize() { }
 
     }
 }

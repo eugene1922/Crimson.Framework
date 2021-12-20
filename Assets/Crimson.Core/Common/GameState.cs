@@ -1,7 +1,7 @@
-using System;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
+using Crimson.Core.Loading.Repositories;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -26,6 +26,8 @@ namespace Crimson.Core.Common
 
         //[HideInInspector]
         //public IYandexAppMetrica metrica;
+
+        public bool NeedCheckEndGame;
 
         [HideInInspector]
         public List<AbilityActorPlayer> players;
@@ -62,12 +64,12 @@ namespace Crimson.Core.Common
 
         public GameObject winPanel;
 
-        public bool NeedCheckEndGame;
+        [SerializeField] private PrefabRepositoryFromScriptableObject _prefabRepository;
 
         public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             base.Convert(entity, dstManager, conversionSystem);
-            
+
             sampleSpawner.SpawnPoints = new List<GameObject> { this.gameObject };
             sampleSpawner.objectsToSpawn = new List<GameObject>
             {
@@ -77,8 +79,8 @@ namespace Crimson.Core.Common
             };
             //metrica = AppMetrica.Instance;
             //Setup();
-            
         }
+
         public override void PostConvert()
         {
             WorldEntityManager.AddComponentData(ActorEntity, new GameStateData());

@@ -17,10 +17,10 @@ namespace Crimson.Core.Common
     public class ActorSpawn
     {
         [CanBeNull]
-        public static List<SpawnItemData> GenerateData(IActorSpawnerSettings spawnSettings, IActor spawner = null,
+        public static List<SpawnItemData> GenerateData(IActorSpawnerSettings settings, IActor spawner = null,
             IActor owner = null)
         {
-            if (spawnSettings.SpawnerDisabled)
+            if (settings.SpawnerDisabled)
             {
                 return new List<SpawnItemData>();
             }
@@ -29,23 +29,23 @@ namespace Crimson.Core.Common
 
             var sampledComponents = new List<Component>();
 
-            if (spawnSettings.SpawnPosition == SpawnPosition.UseSpawnPoints &&
-                spawnSettings.SpawnPointsFrom == SpawnPointsSource.FindByTag)
+            if (settings.SpawnPosition == SpawnPosition.UseSpawnPoints &&
+                settings.SpawnPointsFrom == SpawnPointsSource.FindByTag)
             {
-                spawnSettings.SpawnPoints = GameObject.FindGameObjectsWithTag(spawnSettings.SpawnPointTag).ToList();
-                if (spawnSettings.SpawnPoints.Count == 0)
+                settings.SpawnPoints = GameObject.FindGameObjectsWithTag(settings.SpawnPointTag).ToList();
+                if (settings.SpawnPoints.Count == 0)
                 {
                     Debug.LogError("[LEVEL ACTOR SPAWNER] No spawn points found with tag: " +
-                                   spawnSettings.SpawnPointTag + ". Aborting!");
+                                   settings.SpawnPointTag + ". Aborting!");
                     return null;
                 }
             }
 
-            if (spawnSettings.SpawnPosition == SpawnPosition.UseSpawnPoints && spawnSettings.UseChildrenObjects)
+            if (settings.SpawnPosition == SpawnPosition.UseSpawnPoints && settings.UseChildrenObjects)
             {
                 var newSpawnPoints = new List<GameObject>();
-                
-                foreach (var point in spawnSettings.SpawnPoints)
+
+                foreach (var point in settings.SpawnPoints)
                 {
                     foreach (Transform t in point.transform)
                     {
@@ -53,48 +53,48 @@ namespace Crimson.Core.Common
                     }
                 }
 
-                spawnSettings.SpawnPoints = newSpawnPoints;
+                settings.SpawnPoints = newSpawnPoints;
             }
 
-            switch (spawnSettings.FillSpawnPoints)
+            switch (settings.FillSpawnPoints)
             {
                 case FillMode.UseEachObjectOnce:
-                    spawnCount = spawnSettings.ObjectsToSpawn.Count;
+                    spawnCount = settings.ObjectsToSpawn.Count;
                     break;
 
                 case FillMode.FillAllSpawnPoints:
-                    spawnCount = spawnSettings.SpawnPoints.Count;
+                    spawnCount = settings.SpawnPoints.Count;
                     break;
 
                 case FillMode.PlaceEachObjectXTimes:
-                    spawnCount = spawnSettings.ObjectsToSpawn.Count * spawnSettings.X;
+                    spawnCount = settings.ObjectsToSpawn.Count * settings.X;
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (spawnSettings.SkipBusySpawnPoints && spawnSettings.SpawnPosition == SpawnPosition.UseSpawnPoints)
+            if (settings.SkipBusySpawnPoints && settings.SpawnPosition == SpawnPosition.UseSpawnPoints)
             {
-                for (var i = 0; i < spawnSettings.SpawnPoints.Count; i++)
+                for (var i = 0; i < settings.SpawnPoints.Count; i++)
                 {
-                    var actorSpawnedOnPoint = spawnSettings.SpawnPoints[i].GetComponent<ActorSpawnedOnPoint>();
+                    var actorSpawnedOnPoint = settings.SpawnPoints[i].GetComponent<ActorSpawnedOnPoint>();
 
                     if (actorSpawnedOnPoint != null && actorSpawnedOnPoint.actor != null)
                     {
-                        spawnSettings.SpawnPoints.RemoveAt(i);
+                        settings.SpawnPoints.RemoveAt(i);
                         spawnCount--;
                         i--;
                     }
                 }
             }
 
-            if (spawnSettings.SpawnPointsFillingMode == FillOrder.RandomOrder)
+            if (settings.SpawnPointsFillingMode == FillOrder.RandomOrder)
             {
-                spawnSettings.ObjectsToSpawn =
-                    spawnSettings.ObjectsToSpawn.OrderBy(item => spawnSettings.Rnd.Next()).ToList();
-                spawnSettings.SpawnPoints =
-                    spawnSettings.SpawnPoints.OrderBy(item => spawnSettings.Rnd.Next()).ToList();
+                settings.ObjectsToSpawn =
+                    settings.ObjectsToSpawn.OrderBy(item => settings.Rnd.Next()).ToList();
+                settings.SpawnPoints =
+                    settings.SpawnPoints.OrderBy(item => settings.Rnd.Next()).ToList();
             }
 
             var results = new List<SpawnItemData>(spawnCount);
@@ -106,18 +106,18 @@ namespace Crimson.Core.Common
                     Position = Vector3.zero,
                     Rotation = Quaternion.identity
                 };
-                switch (spawnSettings.SpawnPosition)
+                switch (settings.SpawnPosition)
                 {
                     case SpawnPosition.UseSpawnPoints:
                     {
-                        if (spawnSettings.SpawnPoints.Count == 0)
+                        if (settings.SpawnPoints.Count == 0)
                         {
                             Debug.LogError($"[ACTOR SPAWNER] In Use Spawn Points mode you have to provide some spawning points! \n" +
-                                $"Spawner is {spawner}, and object is {spawnSettings.ObjectsToSpawn[0]}");
+                                $"Spawner is {spawner}, and object is {settings.ObjectsToSpawn[0]}");
                         }
-                        var point = spawnSettings.SpawnPoints[i % spawnSettings.SpawnPoints.Count];
+                        var point = settings.SpawnPoints[i % settings.SpawnPoints.Count];
                         data.Position = point.transform.position;
-                        if (spawnSettings.RotationOfSpawns == RotationOfSpawns.UseSpawnPointRotation)
+                        if (settings.RotationOfSpawns == RotationOfSpawns.UseSpawnPointRotation)
                         {
                             data.Rotation = point.transform.rotation;
                         }
@@ -142,23 +142,24 @@ namespace Crimson.Core.Common
                     case SpawnPosition.UseZeroPosition:
                         data.Position = Vector3.zero;
                         break;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                switch (spawnSettings.RotationOfSpawns)
+                switch (settings.RotationOfSpawns)
                 {
                     case RotationOfSpawns.UseRandomRotationY:
-                        data.Rotation = Quaternion.Euler(0f, spawnSettings.Rnd.Next() % 360f, 0f);
+                        data.Rotation = Quaternion.Euler(0f, settings.Rnd.Next() % 360f, 0f);
                         break;
 
                     case RotationOfSpawns.UseRandomRotationXYZ:
-                        data.Rotation = Quaternion.Euler(spawnSettings.Rnd.Next() % 360f, spawnSettings.Rnd.Next() % 360f,
-                            spawnSettings.Rnd.Next() % 360f);
+                        data.Rotation = Quaternion.Euler(settings.Rnd.Next() % 360f, settings.Rnd.Next() % 360f,
+                            settings.Rnd.Next() % 360f);
                         break;
 
                     case RotationOfSpawns.UseSpawnPointRotation:
-                        if (spawnSettings.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+                        if (settings.SpawnPosition == SpawnPosition.UseSpawnerPosition)
                         {
                             data.Rotation = spawner.GameObject.transform.rotation;
                         }
@@ -190,18 +191,18 @@ namespace Crimson.Core.Common
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (spawnSettings.CopyComponentsFromSamples.Count > 0)
+                if (settings.CopyComponentsFromSamples.Count > 0)
                 {
                     sampledComponents = new List<Component>();
 
-                    foreach (var sample in spawnSettings.CopyComponentsFromSamples)
+                    foreach (var sample in settings.CopyComponentsFromSamples)
                     {
                         if (sample == null) continue;
 
                         foreach (var component in sample.GetComponents<Component>())
                         {
                             if (component == null || component is Transform || component is IActor) continue;
-                            switch (spawnSettings.CopyComponentsOfType)
+                            switch (settings.CopyComponentsOfType)
                             {
                                 case ComponentsOfType.OnlyAbilities when !(component is IActorAbility):
                                     continue;
@@ -219,20 +220,21 @@ namespace Crimson.Core.Common
                         Debug.LogError("[LEVEL ACTOR SPAWNER] No suitable components found in sample game objects!");
                 }
 
-                data.Prefab = spawnSettings.ObjectsToSpawn[i % spawnSettings.ObjectsToSpawn.Count];
+                var index = i % settings.ObjectsToSpawn.Count;
+                data.Prefab = settings.ObjectsToSpawn[index];
                 data.SampledComponents = sampledComponents.ToArray();
                 data.Spawner = spawner;
                 data.Owner = owner;
-                data.DeleteExistingComponents = spawnSettings.DeleteExistingComponents;
+                data.DeleteExistingComponents = settings.DeleteExistingComponents;
 
-                if (spawnSettings.ParentOfSpawns != TargetType.None)
+                if (settings.ParentOfSpawns != TargetType.None)
                 {
                     var parentData = new SpawnParentData
                     {
-                        Target = spawnSettings.ParentOfSpawns,
-                        ComponentName = spawnSettings.ActorWithComponentName,
-                        Tag = spawnSettings.ParentTag,
-                        TargetStrategy = spawnSettings.ChooseStrategy
+                        Target = settings.ParentOfSpawns,
+                        ComponentName = settings.ActorWithComponentName,
+                        Tag = settings.ParentTag,
+                        TargetStrategy = settings.ChooseStrategy
                     };
 
                     data.Parent = parentData;
@@ -242,25 +244,6 @@ namespace Crimson.Core.Common
             }
 
             return results;
-        }
-
-        private static List<IActor> RunSpawnActions(IEnumerable<GameObject> objects)
-        {
-            if (objects == null) return null;
-
-            var objectList = objects.ToList();
-
-            if (!objectList.Any()) return null;
-
-            var actors = objectList.Select(o => o.GetComponent<IActor>()).Where(actorComponent => actorComponent != null)
-                .ToList();
-
-            foreach (var a in actors)
-            {
-                a.PerformSpawnActions();
-            }
-
-            return actors;
         }
 
         public static List<GameObject> Spawn(IActorSpawnerSettings spawnSettings, IActor spawner = null,
@@ -278,7 +261,8 @@ namespace Crimson.Core.Common
 
         public static GameObject Spawn(SpawnItemData data)
         {
-            var result = Object.Instantiate(data.Prefab, data.Position, data.Rotation);
+            var result = data.Prefab.CreateFromPrefab();
+            result.transform.SetPositionAndRotation(data.Position, data.Rotation);
 
             var actors = result.GetComponents<IActor>();
 

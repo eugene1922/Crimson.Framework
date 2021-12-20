@@ -24,15 +24,16 @@ namespace Crimson.Core.Components.AbilityReactive
     {
         public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
 
-        public IAimable Aim => AimComponent as IAimable;
+        [ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
+        public MonoBehaviour AimComponent;
 
         [HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
-        [HideIf("projectileClipCapacity", 0f)]
+        [HideIf(nameof(projectileClipCapacity), 0f)]
         [Space]
         public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
 
-        [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+        [HideIf(nameof(projectileClipCapacity), 0f)] public float clipReloadTime = 1f;
         public string componentName = "";
 
         [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
@@ -50,13 +51,9 @@ namespace Crimson.Core.Components.AbilityReactive
         private bool _actorToUi;
         [SerializeField] private float _cooldownTime = 0.3f;
         private EntityManager _dstManager;
-
-        [ValidateInput("MustBeAimable", "Ability MonoBehaviours must derive from IAimable!")]
-        public MonoBehaviour AimComponent;
-
         public bool ActionExecutionAllowed { get; set; }
         public IActor Actor { get; set; }
-
+        public IAimable Aim => AimComponent as IAimable;
         public int BindingIndex { get; set; } = -1;
 
         public string ComponentName
@@ -132,6 +129,8 @@ namespace Crimson.Core.Components.AbilityReactive
             baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
             projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+
+            InitPool();
         }
 
         public void Execute()
@@ -159,6 +158,11 @@ namespace Crimson.Core.Components.AbilityReactive
             Enabled = true;
 
             this.FinishAbilityCooldownTimer(Actor);
+        }
+
+        public void InitPool()
+        {
+            projectileSpawnData.InitPool();
         }
 
         public void ResetSpawnPointRootRotation()

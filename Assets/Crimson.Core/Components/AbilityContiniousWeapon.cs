@@ -12,10 +12,56 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.Components
 {
-    public class AbilityContiniousWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable,
-        ICooldownable, IBindable
+    public class AbilityContiniousWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable, ICooldownable, IBindable
     {
+        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+        public bool aimingAvailable;
+        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
+        [EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
+
+        [HideIf("projectileClipCapacity", 0f)]
+        [Space]
+        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+
+        [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+
+        [Space]
+        [ShowInInspector]
+        [SerializeField]
+        public string componentName = "";
+
+        public float cooldownTime = 0.3f;
+        public bool deactivateAimingOnCooldown;
+        public bool primaryProjectile;
+
+        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+        public int projectileClipCapacity = 0;
+
+        [InfoBox("Put here IEnable implementation to display reload")]
+        [Space]
+        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+
+        [Space] public float startupDelay = 0f;
+
+        //TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
+        public bool suppressWeaponSpawn = false;
+
+        [Space] public ActorSpawnerSettings weaponSpawnItem;
+        private bool _actorToUi;
+        private bool _circlePrefabScaled;
+        private EntityManager _dstManager;
+        private Entity _entity;
+        private int _projectileClip;
+        public bool ActionExecutionAllowed { get; set; }
         public IActor Actor { get; set; }
+
+        public bool AimingAvailable
+        {
+            get => aimingAvailable;
+            set => aimingAvailable = value;
+        }
+
+        public int BindingIndex { get; set; } = -1;
 
         public string ComponentName
         {
@@ -23,63 +69,10 @@ namespace Assets.Crimson.Core.Components
             set => componentName = value;
         }
 
-        [Space]
-        [ShowInInspector]
-        [SerializeField]
-        public string componentName = "";
-
-        public bool primaryProjectile;
-
-        public bool aimingAvailable;
-        public bool deactivateAimingOnCooldown;
-
-        [EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
-
-        [Space] public ActorSpawnerSettings weaponSpawnItem;
-
-        //TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
-
-        [Space] public float startupDelay = 0f;
-
-        public float cooldownTime = 0.3f;
-
-        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-        public int projectileClipCapacity = 0;
-
-        [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
-
-        [InfoBox("Put here IEnable implementation to display reload")]
-        [Space]
-        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
-
-        [HideIf("projectileClipCapacity", 0f)]
-        [Space]
-        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
-
-        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-
-        public bool suppressWeaponSpawn = false;
-
-        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
-        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
-        public List<Action<GameObject>> SpawnCallbacks { get; set; }
-        public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
-
         public float CooldownTime
         {
             get => cooldownTime;
             set => cooldownTime = value;
-        }
-
-        public int BindingIndex { get; set; } = -1;
-
-        public Transform SpawnPointsRoot { get; private set; }
-
-        public bool AimingAvailable
-        {
-            get => aimingAvailable;
-            set => aimingAvailable = value;
         }
 
         public bool DeactivateAimingOnCooldown
@@ -88,15 +81,12 @@ namespace Assets.Crimson.Core.Components
             set => deactivateAimingOnCooldown = value;
         }
 
-        public bool ActionExecutionAllowed { get; set; }
+        public Action<GameObject> DisposableSpawnCallback { get; set; }
+        public bool Enabled { get; set; }
+        public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public GameObject SpawnedAimingPrefab { get; set; }
-
-        private Entity _entity;
-        private EntityManager _dstManager;
-        private int _projectileClip;
-        private bool _actorToUi;
-
-        private bool _circlePrefabScaled;
+        public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
+        public Transform SpawnPointsRoot { get; private set; }
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -151,6 +141,8 @@ namespace Assets.Crimson.Core.Components
             baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
             weaponSpawnItem.SpawnPoints.Add(baseSpawnPoint);
+
+            InitPool();
         }
 
         public void Execute()
@@ -167,16 +159,24 @@ namespace Assets.Crimson.Core.Components
             }
         }
 
-        private void InstantExecute()
+        public override void FinishTimer()
         {
-            Spawn();
+            base.FinishTimer();
+            for (var i = 0; i < SpawnedObjects.Count; i++)
+            {
+                SpawnedObjects[i].Destroy();
+            }
+            SpawnedObjects.Clear();
+        }
 
-            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
-                new ActorProjectileThrowAnimData());
+        public void InitPool()
+        {
+            weaponSpawnItem.InitPool();
+        }
 
-            StartTimer();
-            Timer.TimedActions.Clear();
-            Timer.TimedActions.AddAction(FinishTimer, .15f);
+        public void Reload()
+        {
+            _projectileClip = projectileClipCapacity;
         }
 
         public void ResetSpawnPointRootRotation()
@@ -221,24 +221,21 @@ namespace Assets.Crimson.Core.Components
             ResetSpawnPointRootRotation();
         }
 
-        public void Reload()
-        {
-            _projectileClip = projectileClipCapacity;
-        }
-
-        public override void FinishTimer()
-        {
-            base.FinishTimer();
-            for (var i = 0; i < SpawnedObjects.Count; i++)
-            {
-                Destroy(SpawnedObjects[i]);
-            }
-            SpawnedObjects.Clear();
-        }
-
         public override void StartTimer()
         {
             base.StartTimer();
+        }
+
+        private void InstantExecute()
+        {
+            Spawn();
+
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
+                new ActorProjectileThrowAnimData());
+
+            StartTimer();
+            Timer.TimedActions.Clear();
+            Timer.TimedActions.AddAction(FinishTimer, .15f);
         }
     }
 }

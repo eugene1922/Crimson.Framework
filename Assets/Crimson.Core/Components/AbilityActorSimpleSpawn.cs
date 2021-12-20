@@ -1,8 +1,6 @@
-﻿using System;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
-using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Unity.Entities;
@@ -41,7 +39,7 @@ namespace Crimson.Core.Components
 
         private IActor _currentSpawner;
         private IActor _currentOwner;
-        
+
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
@@ -74,7 +72,10 @@ namespace Crimson.Core.Components
                 var spawnItems = ActorSpawn.GenerateData(spawnData, _currentSpawner, _currentOwner);
                 spawnedObject = ActorSpawn.Spawn(spawnItems[0]);
             }
-            if (DestroyAfterSpawn) Destroy(this);
+            if (DestroyAfterSpawn)
+            {
+                Destroy(this);
+            }
         }
     }
 

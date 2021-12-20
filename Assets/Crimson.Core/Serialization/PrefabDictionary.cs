@@ -11,9 +11,8 @@ namespace Crimson.Core.Serialization
     {
         public List<PrefabItem> items;
 
-        public Dictionary<ushort, PrefabItem> UShortDictionary { get; } = new Dictionary<ushort, PrefabItem>();
-
         public Dictionary<string, PrefabItem> StringDictionary { get; } = new Dictionary<string, PrefabItem>();
+        public Dictionary<ushort, PrefabItem> UShortDictionary { get; } = new Dictionary<ushort, PrefabItem>();
 
         public static implicit operator PrefabDictionary(List<Object> prefabs)
         {
@@ -32,8 +31,6 @@ namespace Crimson.Core.Serialization
         {
             items.Clear();
         }
-
-        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
@@ -55,9 +52,22 @@ namespace Crimson.Core.Serialization
                         UShortDictionary.Add(item.id, item);
                     }
 
-                    StringDictionary.Add(item.name, item);
+                    if (StringDictionary.TryGetValue(item.name, out var otherStringItem))
+                    {
+                        Debug.LogWarning($"Prefab name collision: hash = {item.id}, " +
+                                         $"item = {item.name}, " +
+                                         $"otherItem = {otherStringItem.name}");
+                    }
+                    else
+                    {
+                        StringDictionary.Add(item.name, item);
+                    }
                 }
             }
+        }
+
+        void ISerializationCallbackReceiver.OnBeforeSerialize()
+        {
         }
     }
 }

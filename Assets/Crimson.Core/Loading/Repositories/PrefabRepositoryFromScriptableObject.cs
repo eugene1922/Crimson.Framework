@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Serialization;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -13,6 +13,7 @@ namespace Crimson.Core.Loading.Repositories
         public PrefabDictionary items = new PrefabDictionary();
 
 #if UNITY_EDITOR
+
         [Button]
         public void Fill()
         {
@@ -22,6 +23,7 @@ namespace Crimson.Core.Loading.Repositories
 
             UnityEditor.EditorUtility.SetDirty(this);
         }
+
 #endif
 
         T IPrefabRepository.Get<T>(string name)

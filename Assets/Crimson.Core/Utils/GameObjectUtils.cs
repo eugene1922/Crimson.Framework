@@ -1,13 +1,24 @@
-﻿using Unity.Entities;
+﻿using Assets.Crimson.Core.Loading;
+using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Utils
 {
     public static class GameObjectUtils
     {
+        public static GameObject CreateFromPrefab(this GameObject go)
+        {
+            return PoolDictionary.Instance.Get(go);
+        }
+
+        public static void Destroy(this GameObject go)
+        {
+            PoolDictionary.Instance.Release(go);
+        }
+
         public static void DestroyWithEntity(this GameObject go, Entity entity)
         {
-            Object.Destroy(go);
+            go.Destroy();
             World.DefaultGameObjectInjectionWorld.EntityManager.DestroyEntity(entity);
         }
 

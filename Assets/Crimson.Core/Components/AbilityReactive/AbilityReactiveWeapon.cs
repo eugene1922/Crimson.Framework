@@ -22,7 +22,39 @@ namespace Crimson.Core.Components.AbilityReactive
         IBindable,
         IUseAimable
     {
+        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
+
+        [HideIf(nameof(projectileClipCapacity), 0f)]
+        [Space]
+        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+
+        [HideIf(nameof(projectileClipCapacity), 0f)] public float clipReloadTime = 1f;
+        public string componentName = "";
+
+        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+        public int projectileClipCapacity = 0;
+
+        public ActorSpawnerSettings projectileSpawnData;
+
+        [InfoBox("Put here IEnable implementation to display reload")]
+        [Space]
+        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+
+        public Transform SpawnPoint;
+        public bool suppressWeaponSpawn = false;
+        protected Entity _entity;
+        private bool _actorToUi;
+        [SerializeField] private IAimable _aimComponent;
+        [SerializeField] private float _cooldownTime = 0.3f;
+        private EntityManager _dstManager;
+        public IActor AbilityOwnerActor { get; set; }
+        public bool ActionExecutionAllowed { get; set; }
         public IActor Actor { get; set; }
+
+        public IAimable Aim => _aimComponent;
+
+        public int BindingIndex { get; set; } = -1;
 
         public string ComponentName
         {
@@ -30,58 +62,20 @@ namespace Crimson.Core.Components.AbilityReactive
             set => componentName = value;
         }
 
-        public string componentName = "";
-
-        public Transform SpawnPoint;
-
-        public ActorSpawnerSettings projectileSpawnData;
-
-        [SerializeField] private float _cooldownTime = 0.3f;
-
-        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-        public int projectileClipCapacity = 0;
-
-        [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
-
-        [InfoBox("Put here IEnable implementation to display reload")]
-        [Space]
-        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
-
-        [HideIf("projectileClipCapacity", 0f)]
-        [Space]
-        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
-
-        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-
-        public bool suppressWeaponSpawn = false;
-
-        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
-        public List<GameObject> SpawnedObjects { get; private set; }
-        public List<Action<GameObject>> SpawnCallbacks { get; set; }
-        public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
-
         public float CooldownTime
         {
             get => _cooldownTime;
             set => _cooldownTime = value;
         }
 
-        public int BindingIndex { get; set; } = -1;
-
-        public Transform SpawnPointsRoot { get; private set; }
-        public bool ActionExecutionAllowed { get; set; }
-        public GameObject SpawnedAimingPrefab { get; set; }
+        public Action<GameObject> DisposableSpawnCallback { get; set; }
+        public bool Enabled { get; set; }
         public bool OnHoldAttackActive { get; set; }
+        public List<Action<GameObject>> SpawnCallbacks { get; set; }
+        public GameObject SpawnedAimingPrefab { get; set; }
+        public List<GameObject> SpawnedObjects { get; private set; }
+        public Transform SpawnPointsRoot { get; private set; }
         public IActor TargetActor { get; set; }
-        public IActor AbilityOwnerActor { get; set; }
-
-        public IAimable Aim => _aimComponent;
-
-        protected Entity _entity;
-        private EntityManager _dstManager;
-        private bool _actorToUi;
-        [SerializeField] private IAimable _aimComponent;
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -135,9 +129,23 @@ namespace Crimson.Core.Components.AbilityReactive
             baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
             projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+            InitPool();
         }
 
         public abstract void Execute();
+
+        public override void FinishTimer()
+        {
+            base.FinishTimer();
+            Enabled = true;
+
+            this.FinishAbilityCooldownTimer(Actor);
+        }
+
+        public void InitPool()
+        {
+            projectileSpawnData.InitPool();
+        }
 
         public void ResetSpawnPointRootRotation()
         {
@@ -178,14 +186,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
             ResetSpawnPointRootRotation();
             OnHoldAttackActive = false;
-        }
-
-        public override void FinishTimer()
-        {
-            base.FinishTimer();
-            Enabled = true;
-
-            this.FinishAbilityCooldownTimer(Actor);
         }
 
         public override void StartTimer()

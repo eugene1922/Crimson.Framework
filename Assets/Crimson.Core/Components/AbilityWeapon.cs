@@ -256,8 +256,6 @@ namespace Crimson.Core.Components
 
             if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
 
-            //if (!_actorToUi) return;
-
             SpawnPointsRoot = new GameObject("spawn points root").transform;
             SpawnPointsRoot.SetParent(gameObject.transform);
 
@@ -283,6 +281,7 @@ namespace Crimson.Core.Components
             baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
             projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+            InitPool();
         }
 
         public void EvaluateAim(Vector2 pos)
@@ -458,6 +457,11 @@ namespace Crimson.Core.Components
             Enabled = true;
 
             this.FinishAbilityCooldownTimer(Actor);
+        }
+
+        public void InitPool()
+        {
+            projectileSpawnData.InitPool();
         }
 
         public void Reload()

@@ -28,16 +28,16 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
 
-        [ValidateInput("MustBeAimable", "Ability MonoBehaviours must derive from IAimable!")]
+        [ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
         public MonoBehaviour AimComponent;
 
         [HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
-        [HideIf("projectileClipCapacity", 0f)]
+        [HideIf(nameof(projectileClipCapacity), 0f)]
         [Space]
         public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
 
-        [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+        [HideIf(nameof(projectileClipCapacity), 0f)] public float clipReloadTime = 1f;
         public string componentName = "";
 
         [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
@@ -88,6 +88,7 @@ namespace Crimson.Core.Components.AbilityReactive
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
+            InitPool();
 
             _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -136,7 +137,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public void Execute()
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
             if (CurrentEntityManager.Exists(_entity))
             {
                 Spawn();
@@ -153,6 +153,11 @@ namespace Crimson.Core.Components.AbilityReactive
         {
             base.FinishTimer();
             RemoveSpawned();
+        }
+
+        public void InitPool()
+        {
+            projectileSpawnData.InitPool();
         }
 
         public void ResetSpawnPointRootRotation()
@@ -244,7 +249,7 @@ namespace Crimson.Core.Components.AbilityReactive
         {
             for (var i = 0; i < SpawnedObjects.Count; i++)
             {
-                Destroy(SpawnedObjects[i]);
+                SpawnedObjects[i].Destroy();
             }
             SpawnedObjects.Clear();
         }

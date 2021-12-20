@@ -30,6 +30,7 @@ namespace Crimson.Core.Components.AbilityReactive
         [InfoBox("Time when aim disable (Seconds)")]
         public float ResetAimTime = 0.15f;
 
+        public Entity _entity { get; set; }
         public bool ActionExecutionAllowed { get; set; }
         public IActor Actor { get; set; }
 
@@ -71,6 +72,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
+            _entity = entity;
             Actor = actor;
 
             CurrentEntityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -86,6 +88,7 @@ namespace Crimson.Core.Components.AbilityReactive
             {
                 MarkSpawnData.SpawnPoints.Clear();
             }
+            InitPool();
         }
 
         public void EvaluateAim(Vector2 pos)
@@ -170,12 +173,17 @@ namespace Crimson.Core.Components.AbilityReactive
             ResetAiming();
         }
 
+        public void InitPool()
+        {
+            MarkSpawnData.InitPool();
+        }
+
         public virtual void ResetAiming()
         {
             this.ResetAiming(Actor);
             for (var i = 0; i < SpawnedObjects.Count; i++)
             {
-                Destroy(SpawnedObjects[i]);
+                SpawnedObjects[i].Destroy();
             }
             SpawnedObjects.Clear();
             SpawnedAimingPrefab = null;
