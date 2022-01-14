@@ -29,11 +29,11 @@ namespace Crimson.Core.Systems
         private float2 _mouseInput;
         private InputAction _moveAction;
         private float2 _moveInput;
+
         protected override void OnCreate()
         {
             _barrier = World.GetOrCreateSystem<EntityCommandBufferSystem>();
         }
-
 
         protected override void OnStartRunning()
         {
@@ -80,6 +80,7 @@ namespace Crimson.Core.Systems
                     case 0:
                         _customActions.Last().AddBinding(new InputBinding("<Mouse>/leftButton"));
                         break;
+
                     case 1:
                         _customActions.Last().AddBinding(new InputBinding("<Mouse>/rightButton"));
                         break;
@@ -96,7 +97,6 @@ namespace Crimson.Core.Systems
         protected override void OnStopRunning()
         {
             _mouseAction.Disable();
-            //_lookAction.Disable();
             _moveAction.Disable();
 
             foreach (var c in _customActions)
@@ -146,10 +146,9 @@ namespace Crimson.Core.Systems
                 });
             }
 
-            for (var k = 0; k <= 4; k++)
+            for (var k = 0; k <= 5; k++)
             {
                 var j = k;
-
                 _customSticksInputActions.Add(new InputAction($"customStick_{j}", binding: $"<CustomDevice>/customStick_{j}"));
 
                 _customSticksInputActions.Last().performed += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
@@ -160,6 +159,7 @@ namespace Crimson.Core.Systems
 
         //[BurstCompile]
 #pragma warning disable 618
+
         private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
 #pragma warning restore 618
         {
@@ -170,9 +170,9 @@ namespace Crimson.Core.Systems
             [ReadOnly] public float2 LookInput;
             [ReadOnly] public float2 MouseInput;
             [ReadOnly] public float2 MoveInput;
+
             public void Execute(Entity entity, int index, ref PlayerInputData inputData, ref UserInputData u)
             {
-
                 if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent(entity, typeof(DeadActorData))) return;
                 inputData.Move = MoveInput;
                 inputData.Mouse = MouseInput;

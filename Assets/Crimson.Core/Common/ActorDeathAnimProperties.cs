@@ -1,5 +1,5 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
+using System;
 
 namespace Crimson.Core.Common
 {
@@ -11,7 +11,7 @@ namespace Crimson.Core.Common
         [ShowIf("@HasActorDeathAnimation == true")]
         public string ActorDeathAnimationName;
     }
-    
+
     [Serializable]
     public class ActorTakeDamageAnimProperties
     {

@@ -1,81 +1,163 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components
 {
+    public struct ActorDeathAnimData : IComponentData
+    {
+        public int AnimHash;
+    }
+
+    public struct ActorForceAnimData : IComponentData
+    {
+        public int AnimHash;
+    }
+
+    public struct ActorStafeAnimData : IComponentData
+    {
+        public int AnimHash;
+    }
+
+    public struct ActorTakeDamageAnimData : IComponentData
+    {
+        public int AnimHash;
+    }
+
+    public struct AdditionalForceActorData : IComponentData
+    { }
+
+    public struct DamagedActorData : IComponentData
+    {
+    }
+
+    public struct DeadActorData : IComponentData
+    {
+    }
+
+    public struct DestructionPendingData : IComponentData
+    {
+    }
+
+    public struct ImmediateActorDestructionData : IComponentData
+    {
+    }
+
+    public struct PerksSelectionAvailableData : IComponentData
+    {
+    }
+
+    public struct PlayerStateData : IComponentData
+    {
+        public int CurrentExperience;
+        public int CurrentHealth;
+        public int Level;
+        public int LevelUpRequiredExperience;
+        public int MaxHealth;
+        public int TotalDamageApplied;
+    }
+
+    public struct StrafeActorData : IComponentData
+    { }
+
     [HideMonoScript]
     [NetworkSimObject]
     public class AbilityActorPlayer : MonoBehaviour, IActorAbility, ITimer, ILevelable
     {
-        [ShowInInspector] public int ActorId => Actor?.ActorId ?? 0;
-
-        public IActor Actor { get; set; }
-
-        [TitleGroup("Player data")] [NetworkSimData] [CastToUI("Name")] [InfoBox("32 symbols max")]
-        public string PlayerName;
-
-        [NetworkSimData] [CastToUI("MaxHealth")] [LevelableValue]
-        public int MaxHealth;
-
-        [NetworkSimData] [ReadOnly] [CastToUI("CurrentHealth")] [LevelableValue]
-        public int CurrentHealth;
-
-        [NetworkSimData] [ReadOnly] [CastToUI("CurrentExperience")]
-        public int CurrentExperience;
-
-        [NetworkSimData] [ReadOnly] [CastToUI("LevelUpRequiredExperience")] [LevelableValue]
-        public int LevelUpRequiredExperience;
-
-        [NetworkSimData] [ReadOnly] [CastToUI("CurrentLevel")]
-        public int CurrentLevel = 1;
-
-        [NetworkSimData] [ReadOnly] [CastToUI("TotalDamageApplied")]
-        public int TotalDamageApplied;
-        
-        [ReadOnly]
-        public int deathCount;
-
-        [TitleGroup("External behaviours")]  [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
-        public MonoBehaviour levelUpAction;
-        [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
-        public MonoBehaviour healAction;
-
-        public DeadBehaviour deadActorBehaviour = new DeadBehaviour();
-
-        public float corpseCleanupDelay;
-
-        public string targetMarkActorComponentName;
-
         [TitleGroup("Player animation properties")]
         public ActorDeathAnimProperties actorDeathAnimProperties;
 
         public ActorTakeDamageAnimProperties actorTakeDamageAnimProperties;
+        [HideInInspector] public bool actorToUI;
+        public ActorGeneralAnimProperties additionalForceAnim;
+        public float corpseCleanupDelay;
 
-        [TitleGroup("UI channel info")] [OnValueChanged("UpdateUIChannelInfo")]
+        [NetworkSimData]
+        [ReadOnly]
+        [CastToUI("CurrentExperience")]
+        public int CurrentExperience;
+
+        [NetworkSimData]
+        [ReadOnly]
+        [CastToUI("CurrentHealth")]
+        [LevelableValue]
+        public int CurrentHealth;
+
+        [NetworkSimData]
+        [ReadOnly]
+        [CastToUI("CurrentLevel")]
+        public int CurrentLevel = 1;
+
+        public DeadBehaviour deadActorBehaviour = new DeadBehaviour();
+
+        [ReadOnly]
+        public int deathCount;
+
+        [TitleGroup("UI channel info")]
+        [OnValueChanged("UpdateUIChannelInfo")]
         public bool ExplicitUIChannel;
 
-        [ShowIf("ExplicitUIChannel")] public int UIChannelID = 0;
+        [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+        public MonoBehaviour healAction;
 
-        [Space] [TitleGroup("Levelable properties")] [OnValueChanged("SetLevelableProperty")]
+        [HideInInspector] public bool isEnabled = true;
+
+        [Space]
+        [TitleGroup("Levelable properties")]
+        [OnValueChanged("SetLevelableProperty")]
         public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
-        public bool TimerActive
-        {
-            get => isEnabled;
-            set => isEnabled = value;
-        }
+        [TitleGroup("External behaviours")]
+        [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+        public MonoBehaviour levelUpAction;
 
-        public List<LevelableProperties> LevelablePropertiesList
+        [NetworkSimData]
+        [ReadOnly]
+        [CastToUI("LevelUpRequiredExperience")]
+        [LevelableValue]
+        public int LevelUpRequiredExperience;
+
+        [NetworkSimData]
+        [CastToUI("MaxHealth")]
+        [LevelableValue]
+        public int MaxHealth;
+
+        [TitleGroup("Player data")]
+        [NetworkSimData]
+        [CastToUI("Name")]
+        [InfoBox("32 symbols max")]
+        public string PlayerName;
+
+        public string targetMarkActorComponentName;
+
+        [NetworkSimData]
+        [ReadOnly]
+        [CastToUI("TotalDamageApplied")]
+        public int TotalDamageApplied;
+
+        [ShowIf("ExplicitUIChannel")] public int UIChannelID = 0;
+        [HideInInspector] public List<IActor> UIReceiverList = new List<IActor>();
+        private EntityManager _dstManager;
+        private Entity _entity;
+        private Dictionary<string, FieldInfo> _fieldsInfo = new Dictionary<string, FieldInfo>();
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+        private IActorAbility _maxDistanceWeapon;
+        private TimerComponent _timer;
+        public IActor Actor { get; set; }
+        [ShowInInspector] public int ActorId => Actor?.ActorId ?? 0;
+        public bool IsAlive => CurrentHealth > 0;
+
+        public int Level
         {
-            get => levelablePropertiesList;
-            set => levelablePropertiesList = value;
+            get => CurrentLevel;
+            set => CurrentLevel = value;
         }
 
         public List<FieldInfo> LevelablePropertiesInfoCached
@@ -87,13 +169,10 @@ namespace Crimson.Core.Components
             }
         }
 
-        public TimerComponent Timer => _timer = this.gameObject.GetOrCreateTimer(_timer);
-        public bool IsAlive => CurrentHealth > 0;
-
-        public int Level
+        public List<LevelableProperties> LevelablePropertiesList
         {
-            get => CurrentLevel;
-            set => CurrentLevel = value;
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
         }
 
         public IActorAbility MaxDistanceWeapon
@@ -103,25 +182,18 @@ namespace Crimson.Core.Components
                 if (!ReferenceEquals(_maxDistanceWeapon, null)) return _maxDistanceWeapon;
 
                 return Actor.Abilities.Where(a => a is AbilityWeapon)
-                    .OrderByDescending(w => ((AbilityWeapon) w).findTargetProperties.maxDistanceThreshold)
+                    .OrderByDescending(w => ((AbilityWeapon)w).findTargetProperties.maxDistanceThreshold)
                     .FirstOrDefault();
             }
         }
 
-        [HideInInspector] public bool isEnabled = true;
-        [HideInInspector] public bool actorToUI;
-        [HideInInspector] public List<IActor> UIReceiverList = new List<IActor>();
+        public TimerComponent Timer => _timer = this.gameObject.GetOrCreateTimer(_timer);
 
-        private TimerComponent _timer;
-
-        private Entity _entity;
-
-        private EntityManager _dstManager;
-
-        private Dictionary<string, FieldInfo> _fieldsInfo = new Dictionary<string, FieldInfo>();
-        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
-
-        private IActorAbility _maxDistanceWeapon;
+        public bool TimerActive
+        {
+            get => isEnabled;
+            set => isEnabled = value;
+        }
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -135,7 +207,7 @@ namespace Crimson.Core.Components
 
             CurrentHealth = MaxHealth;
             LevelUpRequiredExperience = GameMeta.PointsToLevelUp;
-            
+
             UIReceiverList = new List<IActor>();
 
             _dstManager.AddComponentData(entity, new PlayerStateData
@@ -156,6 +228,14 @@ namespace Crimson.Core.Components
                 _dstManager.AddComponentData(entity, new ActorTakeDamageAnimData
                 {
                     AnimHash = Animator.StringToHash(actorTakeDamageAnimProperties.ActorTakeDamageName)
+                });
+            }
+
+            if (additionalForceAnim.HasAnimation)
+            {
+                _dstManager.AddComponentData(entity, new ActorForceAnimData
+                {
+                    AnimHash = additionalForceAnim.AnimationHash
                 });
             }
 
@@ -183,12 +263,96 @@ namespace Crimson.Core.Components
             //_dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
         }
 
+        public void Execute()
+        {
+        }
+
+        public void FinishTimer()
+        {
+            _dstManager.AddComponent<ImmediateActorDestructionData>(_entity);
+        }
+
         public void ForceUpdatePlayerUIData()
         {
             foreach (var field in _fieldsInfo)
             {
                 UpdateUIData(field.Key);
             }
+        }
+
+        public void LevelUp()
+        {
+            CurrentExperience -= LevelUpRequiredExperience;
+
+            if (levelUpAction != null)
+            {
+                ((IActorAbility)levelUpAction).Execute();
+            }
+
+            if (actorToUI)
+            {
+                SetLevel(Level + 1);
+                var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+                playerState.Level = Level;
+                _dstManager.SetComponentData(_entity, playerState);
+                _dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
+            }
+            else
+            {
+                Level++;
+            }
+
+            UpdateUIData(nameof(CurrentLevel));
+        }
+
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+
+            foreach (var ability in Actor.Abilities.Where(a => a is ILevelable && !ReferenceEquals(a, this)))
+            {
+                ((ILevelable)ability).SetLevel(Level);
+            }
+        }
+
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
+        }
+
+        public void StartDeathTimer()
+        {
+            foreach (var element in UIReceiverList)
+            {
+                _dstManager.AddComponent<ImmediateActorDestructionData>(element.ActorEntity);
+            }
+
+            StartTimer();
+        }
+
+        public void StartTimer()
+        {
+            Timer.TimedActions.AddAction(FinishTimer, corpseCleanupDelay);
+        }
+
+        public void UpdateExperienceData(int delta)
+        {
+            if (delta == 0) return;
+
+            var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+
+            CurrentExperience += delta;
+
+            while (CurrentExperience >= LevelUpRequiredExperience)
+            {
+                LevelUp();
+            }
+
+            playerState.CurrentExperience = CurrentExperience;
+            _dstManager.SetComponentData(_entity, playerState);
+
+            UpdateUIData(nameof(LevelUpRequiredExperience));
+            UpdateUIData(nameof(CurrentExperience));
         }
 
         public void UpdateHealthData(int delta)
@@ -239,26 +403,6 @@ namespace Crimson.Core.Components
             UpdateUIData(nameof(CurrentHealth));
         }
 
-        public void UpdateExperienceData(int delta)
-        {
-            if (delta == 0) return;
-
-            var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
-
-            CurrentExperience += delta;
-
-            while (CurrentExperience >= LevelUpRequiredExperience)
-            {
-                LevelUp();
-            }
-
-            playerState.CurrentExperience = CurrentExperience;
-            _dstManager.SetComponentData(_entity, playerState);
-
-            UpdateUIData(nameof(LevelUpRequiredExperience));
-            UpdateUIData(nameof(CurrentExperience));
-        }
-
         public void UpdateTotalDamageData(int delta)
         {
             if (delta == 0) return;
@@ -272,132 +416,24 @@ namespace Crimson.Core.Components
             UpdateUIData(nameof(TotalDamageApplied));
         }
 
-        public void LevelUp()
+        private bool MustBeAbility(MonoBehaviour a)
         {
-            CurrentExperience -= LevelUpRequiredExperience;
-
-            if (levelUpAction != null)
-            {
-                ((IActorAbility) levelUpAction).Execute();
-            }
-
-            if (actorToUI)
-            {
-                SetLevel(Level + 1);
-                var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
-                playerState.Level = Level;
-                _dstManager.SetComponentData(_entity, playerState);
-                _dstManager.AddComponent<PerksSelectionAvailableData>(_entity);
-            }
-            else
-            {
-                Level++;
-            }
-
-            UpdateUIData(nameof(CurrentLevel));
+            return (a is IActorAbility) || (a is null);
         }
-
-        public void SetLevel(int level)
-        {
-            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-            
-            foreach (var ability in Actor.Abilities.Where(a => a is ILevelable && !ReferenceEquals(a, this)))
-            {
-                ((ILevelable) ability).SetLevel(Level);
-            }
-        }
-
-        public void SetLevelableProperty()
-        {
-            this.SetLevelableProperty(LevelablePropertiesInfoCached);
-        }
-
-
-        private void UpdateUIData(string fieldName)
-        {
-            foreach (var receiver in UIReceiverList.Where(receiver => _fieldsInfo.ContainsKey(fieldName)))
-            {
-                ((UIReceiver) receiver)?.UpdateUIElementsData(
-                    _fieldsInfo[fieldName].GetCustomAttribute<CastToUI>(false).FieldId,
-                    _fieldsInfo[fieldName].GetValue(this));
-            }
-        }
-
-
-        public void Execute()
-        {
-        }
-
-        public void StartDeathTimer()
-        {
-            foreach (var element in UIReceiverList)
-            {
-                _dstManager.AddComponent<ImmediateActorDestructionData>(element.ActorEntity);
-            }
-
-            StartTimer();
-        }
-
-        public void FinishTimer()
-        {
-            _dstManager.AddComponent<ImmediateActorDestructionData>(_entity);
-        }
-
-        public void StartTimer()
-        {
-            Timer.TimedActions.AddAction(FinishTimer, corpseCleanupDelay);
-        }
-
 
         private void UpdateUIChannelInfo()
         {
             if (!ExplicitUIChannel) UIChannelID = 0;
         }
-        
-        private bool MustBeAbility(MonoBehaviour a)
+
+        private void UpdateUIData(string fieldName)
         {
-            return (a is IActorAbility)||(a is null);
+            foreach (var receiver in UIReceiverList.Where(receiver => _fieldsInfo.ContainsKey(fieldName)))
+            {
+                ((UIReceiver)receiver)?.UpdateUIElementsData(
+                    _fieldsInfo[fieldName].GetCustomAttribute<CastToUI>(false).FieldId,
+                    _fieldsInfo[fieldName].GetValue(this));
+            }
         }
-    }
-
-    public struct PlayerStateData : IComponentData
-    {
-        public int CurrentHealth;
-        public int MaxHealth;
-        public int CurrentExperience;
-        public int LevelUpRequiredExperience;
-        public int Level;
-
-        public int TotalDamageApplied;
-    }
-
-    public struct PerksSelectionAvailableData : IComponentData
-    {
-    }
-
-    public struct ActorDeathAnimData : IComponentData
-    {
-        public int AnimHash;
-    }
-
-    public struct ActorTakeDamageAnimData : IComponentData
-    {
-        public int AnimHash;
-    }
-
-    public struct DeadActorData : IComponentData
-    {
-    }
-
-    public struct DamagedActorData : IComponentData
-    {
-    }
-
-    public struct DestructionPendingData : IComponentData
-    {
-    }
-
-    public struct ImmediateActorDestructionData : IComponentData
-    {
     }
 }

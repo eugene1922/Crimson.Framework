@@ -8,28 +8,29 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
+    public struct ActorData : IComponentData
+    {
+        public int ActorId;
+        public int StateId;
+    }
+
     [NetworkSimObject]
     public class Actor : MonoBehaviour, IActor, IComponentName, IConvertGameObjectToEntity
     {
-        public string ComponentName
-        {
-            get => componentName;
-            set => componentName = value;
-        }
-
         [Space] [SerializeField] public string componentName = "";
 
         [Space]
         [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
         public List<MonoBehaviour> ExecuteOnSpawn = new List<MonoBehaviour>();
 
+        private List<IActorAbility> _abilities = new List<IActorAbility>();
+
         private int _actorId;
+
         private int _actorStateId;
 
-        [NetworkSimData] public Entity ActorEntity { get; set; }
-        public EntityManager WorldEntityManager { get; set; }
+        private List<IPerkAbility> _appliedPerks = new List<IPerkAbility>();
 
-        public List<string> ComponentNames { get; } = new List<string>();
         public List<IActorAbility> Abilities
         {
             get
@@ -41,21 +42,7 @@ namespace Crimson.Core.Common
             set => _abilities = value;
         }
 
-        public List<IPerkAbility> AppliedPerks
-        {
-            get
-            {
-                _appliedPerks.RemoveAll(a => a.Equals(null));
-                return _appliedPerks;
-            }
-            set => _appliedPerks = value;
-        }
-
-        [NetworkSimData] public IActor Spawner { get; set; }
-
-        [NetworkSimData] public IActor Owner { get; set; }
-
-        [NetworkSimData] public GameObject GameObject => this != null && gameObject != null ? gameObject : null;
+        [NetworkSimData] public Entity ActorEntity { get; set; }
 
         [NetworkSimData]
         public int ActorId
@@ -77,7 +64,11 @@ namespace Crimson.Core.Common
         {
             get
             {
-                if (_actorStateId != 0) return _actorStateId;
+                if (_actorStateId != 0)
+                {
+                    return _actorStateId;
+                }
+
                 if (ActorId == 0)
                 {
                     return 0;
@@ -97,10 +88,29 @@ namespace Crimson.Core.Common
             }
         }
 
+        public List<IPerkAbility> AppliedPerks
+        {
+            get
+            {
+                _appliedPerks.RemoveAll(a => a.Equals(null));
+                return _appliedPerks;
+            }
+            set => _appliedPerks = value;
+        }
+
         public ushort ChildrenSpawned { get; set; }
 
-        private List<IActorAbility> _abilities = new List<IActorAbility>();
-        private List<IPerkAbility> _appliedPerks = new List<IPerkAbility>();
+        public string ComponentName
+        {
+            get => componentName;
+            set => componentName = value;
+        }
+
+        public List<string> ComponentNames { get; } = new List<string>();
+        [NetworkSimData] public GameObject GameObject => this != null && gameObject != null ? gameObject : null;
+        [NetworkSimData] public IActor Owner { get; set; }
+        [NetworkSimData] public IActor Spawner { get; set; }
+        public EntityManager WorldEntityManager { get; set; }
 
         public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
@@ -113,8 +123,6 @@ namespace Crimson.Core.Common
             PostConvert();
         }
 
-
-
         public virtual void HandleAbilities(Entity entity)
         {
             foreach (var ability in Abilities)
@@ -124,48 +132,6 @@ namespace Crimson.Core.Common
                 {
                     ComponentNames.Add(compName.ComponentName);
                 }
-            }
-        }
-
-        public virtual void PostConvert()
-        {
-            WorldEntityManager.AddComponentData(ActorEntity, new ActorData { ActorId = ActorId, StateId = ActorStateId });
-
-            if (Spawner == null) return;
-
-            if (WorldEntityManager.HasComponent(Spawner.ActorEntity, typeof(NetworkSyncSend)))
-            {
-                WorldEntityManager.AddComponentData(ActorEntity, new NetworkSyncSend());
-            }
-        }
-        private void Awake()
-        {
-            if (World.DefaultGameObjectInjectionWorld == null)
-            {
-                Debug.LogError(
-                    "[ACTOR CONVERT TO ENTITY] Convert Entity failed because there was no Active World");
-                return;
-            }
-
-            // Root ConvertToEntity is responsible for converting the whole hierarchy
-            if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
-                return;
-
-            this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
-        }
-
-        private void OnDestroy()
-        {
-            try
-            {
-                if (ActorEntity.Index <= WorldEntityManager.EntityCapacity && WorldEntityManager.Exists(ActorEntity))
-                {
-                    WorldEntityManager.DestroyEntity(ActorEntity);
-                }
-            }
-            catch
-            {
-                // ignored
             }
         }
 
@@ -183,6 +149,33 @@ namespace Crimson.Core.Common
             }
         }
 
+        public virtual void PostConvert()
+        {
+            WorldEntityManager.AddComponentData(ActorEntity, new ActorData { ActorId = ActorId, StateId = ActorStateId });
+
+            if (Spawner == null) return;
+
+            if (WorldEntityManager.HasComponent(Spawner.ActorEntity, typeof(NetworkSyncSend)))
+            {
+                WorldEntityManager.AddComponentData(ActorEntity, new NetworkSyncSend());
+            }
+        }
+
+        private void Awake()
+        {
+            if (World.DefaultGameObjectInjectionWorld == null)
+            {
+                Debug.LogError(
+                    "[ACTOR CONVERT TO ENTITY] Convert Entity failed because there was no Active World");
+                return;
+            }
+
+            // Root ConvertToEntity is responsible for converting the whole hierarchy
+            if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
+                return;
+
+            this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
+        }
 
         private bool MustBeAbility(List<MonoBehaviour> actions)
         {
@@ -195,11 +188,20 @@ namespace Crimson.Core.Common
 
             return true;
         }
-    }
 
-    public struct ActorData : IComponentData
-    {
-        public int ActorId;
-        public int StateId;
+        private void OnDestroy()
+        {
+            try
+            {
+                if (ActorEntity.Index <= WorldEntityManager.EntityCapacity && WorldEntityManager.Exists(ActorEntity))
+                {
+                    WorldEntityManager.DestroyEntity(ActorEntity);
+                }
+            }
+            catch
+            {
+                // ignored
+            }
+        }
     }
 }

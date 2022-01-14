@@ -10,25 +10,21 @@ namespace Crimson.Core.Common
     public class CustomButtonController : TimerBaseBehaviour
     {
         public int bindingIndex;
-        //public TextMeshProUGUI buttonName;
         public Image buttonImage;
         public Image cooldownProgressBar;
         public bool reverseProgressBarDirection = false;
         public GameObject cooldownTimerRoot;
         public TextMeshProUGUI cooldownTimerText;
-        
+
         public OnScreenStick onScreenStickComponent;
         public OnScreenCustomButton onScreenButtonComponent;
 
         public void SetupCustomButton(string perkName, Sprite perkSprite, bool stickControlAvailable, bool repeatedInvokingOnHold)
         {
-            //buttonName.SetText(perkName);
-            
             buttonImage.sprite = perkSprite;
-
             SetupCustomButton(stickControlAvailable, repeatedInvokingOnHold);
         }
-        
+
         public void SetupCustomButton(bool stickControlAvailable, bool repeatedInvokingOnHold)
         {
             onScreenStickComponent.enabled = stickControlAvailable;
@@ -39,7 +35,7 @@ namespace Crimson.Core.Common
         {
             onScreenStickComponent.enabled = !onCooldown;
         }
-        
+
         public void SetCooldownProgressBar(float value)
         {
             cooldownProgressBar.fillAmount = value;
