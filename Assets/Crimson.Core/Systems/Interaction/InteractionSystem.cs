@@ -41,6 +41,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
                             var item = _results[i].GetComponent<InteractionItem>();
                             if (item != null)
                             {
+                                item.TargetActor = zone.Actor;
                                 item.Execute();
                             }
                         }
