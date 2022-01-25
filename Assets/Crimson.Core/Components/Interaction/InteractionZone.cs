@@ -14,9 +14,10 @@ namespace Assets.Crimson.Core.Components.Interaction
     public class InteractionZone : MonoBehaviour, IActorAbility
     {
         public EntityManager _dstManager;
-        public Vector3 Position;
-        public float Radius;
+        public Vector3 Offset;
+        public Vector3 Size = Vector3.one;
         public IActor Actor { get; set; }
+        public Vector3 Position => transform.position + Offset;
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -34,7 +35,7 @@ namespace Assets.Crimson.Core.Components.Interaction
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, Radius);
+            Gizmos.DrawWireCube(Position, Size);
         }
 
 #endif

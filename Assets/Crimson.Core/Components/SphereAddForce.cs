@@ -55,12 +55,7 @@ namespace Crimson.Core.Components
 
             _dstManager.AddComponent<AdditionalForceActorData>(Actor.ActorEntity);
 
-            var dashVector = Actor.GameObject.transform.position - targetActor.GameObject.transform.position;
-            var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var movement = entityManager.GetComponentData<ActorMovementData>(targetActor.ActorEntity);
-            movement.Input = dashVector;
-            entityManager.SetComponentData(targetActor.ActorEntity, movement);
-            targetRigidbody.AddForce(dashVector * Force, ForceMode.Impulse);
+            targetRigidbody.AddExplosionForce(Force, transform.position, Radius);
         }
 
         private IActor[] GetActorsInRadius(float radius)
@@ -71,8 +66,9 @@ namespace Crimson.Core.Components
 
 #if UNITY_EDITOR
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
+            Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, Radius);
         }
 

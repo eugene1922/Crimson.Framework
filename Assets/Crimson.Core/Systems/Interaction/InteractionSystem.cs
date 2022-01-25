@@ -28,7 +28,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
                 AbilityPlayerInput input,
                 InteractionZone zone) =>
                 {
-                    var result = Physics.OverlapSphereNonAlloc(transform.position, zone.Radius, _results);
+                    var result = Physics.OverlapBoxNonAlloc(zone.Position, zone.Size / 2, _results);
                     if (result > 0)
                     {
                         for (var i = 0; i < _results.Length; i++)

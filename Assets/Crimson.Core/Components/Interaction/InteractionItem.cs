@@ -1,5 +1,6 @@
 ﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Unity.Entities;
@@ -12,6 +13,7 @@ namespace Assets.Crimson.Core.Components.Interaction
     {
         [HideInInspector] public List<IActorAbilityTarget> _actions;
         public Entity _entity;
+        public bool DestroyAfterUse;
         public ActionReciver InteractionReciever;
         public IActor AbilityOwnerActor { get; set; }
         public IActor Actor { get; set; }
@@ -27,10 +29,18 @@ namespace Assets.Crimson.Core.Components.Interaction
 
         public void Execute()
         {
-            if (TargetActor == null)
+            if (TargetActor != null)
             {
-                return;
+                InvokeActions();
             }
+            if (DestroyAfterUse)
+            {
+                GameObjectUtils.DestroyWithEntity(gameObject, _entity);
+            }
+        }
+
+        private void InvokeActions()
+        {
             for (var i = 0; i < _actions.Count; i++)
             {
                 _actions[i].TargetActor = TargetActor;

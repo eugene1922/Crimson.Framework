@@ -675,6 +675,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd58f5e308600734dacb977020d25377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Activated: 0
-  Position: {x: 0, y: 0, z: 0}
-  Radius: 5
+  Offset: {x: 0, y: 0, z: 1}
+  Size: {x: 2, y: 5, z: 4}
