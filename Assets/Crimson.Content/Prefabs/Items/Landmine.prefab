@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1639136701007868
+--- !u!1 &4217169347761355644
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4950455036351470}
-  - component: {fileID: 33284799892915044}
-  - component: {fileID: 23508983087490028}
-  - component: {fileID: 94631889033916994}
-  - component: {fileID: 7659055494590472004}
-  - component: {fileID: 2184706704695843133}
-  - component: {fileID: 2883895389725628973}
-  - component: {fileID: 7049374221237637850}
+  - component: {fileID: 4220472691412266862}
+  - component: {fileID: 4248574216766488548}
+  - component: {fileID: 4237942977827413868}
+  - component: {fileID: 4310935328358403778}
+  - component: {fileID: 5821423139080889284}
+  - component: {fileID: 2653205983424751037}
+  - component: {fileID: 1334772443718215341}
+  - component: {fileID: 6581975008189099610}
   m_Layer: 0
-  m_Name: SM_Prop_Landmine_01
+  m_Name: Landmine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4950455036351470
+--- !u!4 &4220472691412266862
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33284799892915044
+--- !u!33 &4248574216766488548
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Mesh: {fileID: 4300000, guid: 628cf89629c0946498dc65a2893bb41f, type: 3}
---- !u!23 &23508983087490028
+--- !u!23 &4237942977827413868
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,13 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &94631889033916994
+--- !u!114 &4310935328358403778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
@@ -101,41 +101,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!65 &7659055494590472004
+--- !u!65 &5821423139080889284
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.47022706, y: 0.12906186, z: 0.53301907}
   m_Center: {x: 0.000000022351742, y: 0.06453093, z: 0.0429032}
---- !u!114 &2184706704695843133
+--- !u!114 &2653205983424751037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   perkLevel: 1
-  damageValue: 0
+  damageValue: 9999
   levelablePropertiesList: []
---- !u!114 &2883895389725628973
+--- !u!114 &1334772443718215341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0049dcfaa2c41b04c8a1dea72e4c71aa, type: 3}
@@ -143,19 +143,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Force: 1000
   Radius: 5
---- !u!114 &7049374221237637850
+--- !u!114 &6581975008189099610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639136701007868}
+  m_GameObject: {fileID: 4217169347761355644}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d055b42bf26644d89d2475d3cce69e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCollider: {fileID: 7659055494590472004}
+  useCollider: {fileID: 5821423139080889284}
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
@@ -167,7 +167,7 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 2883895389725628973}
-    - {fileID: 2184706704695843133}
+    - {fileID: 1334772443718215341}
+    - {fileID: 2653205983424751037}
   debugCollisions: 0
   ExistentCollisions: []

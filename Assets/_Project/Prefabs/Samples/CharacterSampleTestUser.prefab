@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: -7136897725198441121}
   - component: {fileID: 9054062468200216802}
   - component: {fileID: 8733997711401153921}
-  - component: {fileID: 4499761472529401423}
   - component: {fileID: -1969340818193211531}
   - component: {fileID: -5360728394872650663}
   - component: {fileID: 4166300824754732120}
@@ -231,7 +230,7 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     fillSpawnPoints: 0
     objectsToSpawn:
-    - {fileID: 3741013819364029791, guid: ef26af55fc60f48c1a6d7cac74bfd687, type: 3}
+    - {fileID: 1090190289803064, guid: 839f716811d3c4597a848c4a6af4679d, type: 3}
     parentOfSpawns: 1
     parentTag: 
     poolSettings:
@@ -241,7 +240,7 @@ MonoBehaviour:
       UsePool: 1
     randomSeed: 0
     rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
+    runSpawnActionsOnObjects: 1
     skipBusySpawnPoints: 0
     spawnerDisabled: 0
     spawnPointsFillingMode: 0
@@ -252,7 +251,7 @@ MonoBehaviour:
     x: 0
     _spawnPoints: []
   reloadDisplayToggle: []
-  suppressWeaponSpawn: 0
+  suppressWeaponSpawn: 1
 --- !u!114 &9054062468200216802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,90 +335,6 @@ MonoBehaviour:
     x: 0
     _spawnPoints: []
   ResetAimTime: 0.15
---- !u!114 &4499761472529401423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
-  aimingAvailable: 1
-  aimingByInput: 0
-  aimingProperties:
-    evaluateActionOptions: 0
-    aimingType: 1
-    aimingAreaPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
-      type: 3}
-    sightPrefab: {fileID: 7984529235724882834, guid: 23f37422f025a8d489abf3203438d5a9,
-      type: 3}
-    circlePrefab: {fileID: 0}
-    sightDistance: 7
-    reverseControls: 0
-  appliedPerksNames: []
-  attackDirectionType: 0
-  burstShotCountRange: {x: 1, y: 1}
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: PrimaryProjectile
-  cooldownTime: 0.2
-  deactivateAimingOnCooldown: 0
-  findTargetProperties:
-    targetType: 3
-    actorWithComponentName: 
-    targetTag: Enemy
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 0
-  forceBursts: 0
-  level: 1
-  levelablePropertiesList: []
-  onClickAttackType: 1
-  primaryProjectile: 1
-  projectileClipCapacity: 0
-  projectileSpawnData:
-    actorWithComponentName: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 839f716811d3c4597a848c4a6af4679d, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 1
-    spawnPointTag: WeaponPoint
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints:
-    - {fileID: 0}
-  projectileStartupDelay: 0
-  reloadDisplayToggle: []
-  suppressWeaponSpawn: 0
 --- !u!114 &-1969340818193211531
 MonoBehaviour:
   m_ObjectHideFlags: 0

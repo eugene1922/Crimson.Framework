@@ -12,7 +12,6 @@ namespace Crimson.Core.Loading
 
         public void CollectSpawners(List<IActorSpawner> spawners)
         {
-            spawners.AddRange(GetComponents<IActorSpawner>());
             spawners.AddRange(GetComponentsInChildren<IActorSpawner>());
         }
 

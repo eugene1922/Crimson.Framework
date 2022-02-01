@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Components;
+using Crimson.Core.Common;
 using Sirenix.OdinInspector;
 using System.Linq;
 using Unity.Entities;
@@ -6,9 +7,15 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
+    public struct ExplosionForceData : IComponentData
+    {
+        public float Force;
+        public float Radius;
+        public Vector3 SourcePosition;
+    }
+
     [HideMonoScript]
-    public class SphereAddForce : MonoBehaviour,
-        IActorAbility
+    public class SphereAddForce : MonoBehaviour, IActorAbility
     {
         public EntityManager _dstManager;
         public Entity _entity;
@@ -46,16 +53,14 @@ namespace Crimson.Core.Components
 
         private void AddForceTo(IActor targetActor)
         {
-            var targetRigidbody = targetActor.GameObject.GetComponent<Rigidbody>();
-
-            if (targetRigidbody == null)
+            _dstManager.AddComponent<AdditionalForceActorData>(targetActor.ActorEntity);
+            _dstManager.AddComponentData(targetActor.ActorEntity, new ExplosionForceData
             {
-                return;
-            }
-
-            _dstManager.AddComponent<AdditionalForceActorData>(Actor.ActorEntity);
-
-            targetRigidbody.AddExplosionForce(Force, transform.position, Radius);
+                Force = Force,
+                Radius = Radius,
+                SourcePosition = transform.position
+            });
+            _dstManager.AddComponentData(targetActor.ActorEntity, new ActivateRagdollData());
         }
 
         private IActor[] GetActorsInRadius(float radius)
