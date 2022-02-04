@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Crimson.Core.Serialization
 {
@@ -15,7 +14,7 @@ namespace Crimson.Core.Serialization
         public Dictionary<string, PrefabItem> StringDictionary { get; } = new Dictionary<string, PrefabItem>();
         public Dictionary<ushort, PrefabItem> UShortDictionary { get; } = new Dictionary<ushort, PrefabItem>();
 
-        public static implicit operator PrefabDictionary(List<Object> prefabs)
+        public static implicit operator PrefabDictionary(List<GameObject> prefabs)
         {
             return new PrefabDictionary
             {
@@ -23,7 +22,7 @@ namespace Crimson.Core.Serialization
             };
         }
 
-        public void Add(Object prefab)
+        public void Add(GameObject prefab)
         {
             items.Add(new PrefabItem(prefab));
         }
@@ -80,15 +79,16 @@ namespace Crimson.Core.Serialization
         [Button]
         private void Test()
         {
-            var assetInItems = items.Where(s => s.id == 25444);
+            var assetInItems = items.Where(s => s.id == 58889);
             foreach (var item in assetInItems)
             {
-                Debug.Log($"!-{item.asset.GetHashCode()}:{item.name}");
+                Debug.Log($"id={item.id}:name={item.name}");
             }
-            //var assetByID = UShortDictionary[25444];
-            //var assetByName = StringDictionary["SM_Prop_Road_Barrier_01"];
-            //Debug.Log($"{assetByID.id}:{assetByID.name}");
-            //Debug.Log($"{assetByName.id}:{assetByName.name}");
+            var groups = items.GroupBy(s => s.id);
+            foreach (var group in groups)
+            {
+                Debug.Log($"id={group.Key}:Count={group.Count()}");
+            }
         }
     }
 }

@@ -29,12 +29,12 @@ namespace Crimson.Core.Systems
             _queryPlayers = GetEntityQuery(
                 ComponentType.ReadOnly<AbilityActorPlayer>());
             metricaEventDict = new Dictionary<string, object>();
-            _spawnBuffers = GetBufferFromEntity<SpawnPrefabData>();
         }
 
         protected override void OnUpdate()
         {
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            _spawnBuffers = GetBufferFromEntity<SpawnPrefabData>();
 
             Entities.With(_queryGameState).ForEach(
                 (Entity entity, GameState state) =>
@@ -49,7 +49,7 @@ namespace Crimson.Core.Systems
                                 for (var i = 0; i < buffer.Length; i++)
                                 {
                                     var item = buffer[i];
-                                    var prefab = state.PrefabRepository.Get<GameObject>(item.ID);
+                                    var prefab = state.PrefabRepository.Get(item.ID);
                                     ActorSpawn.SimpleSpawn(prefab, item.Position, item.Rotation);
                                 }
 

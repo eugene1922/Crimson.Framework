@@ -13,7 +13,7 @@ namespace Assets.Crimson.Core.Components
         public Vector3 Offset;
 
         public IActor Actor { get; set; }
-        public Vector3 DropPoint => transform.position + Offset;
+        public Vector3 DropPoint => transform.TransformPoint(Offset);
         public Entity Entity { get; private set; }
         public EntityManager Manager { get; private set; }
 
@@ -38,7 +38,7 @@ namespace Assets.Crimson.Core.Components
             {
                 ID = item,
                 Position = DropPoint,
-                Rotation = Quaternion.identity
+                Rotation = Quaternion.LookRotation(DropPoint - transform.position)
             };
             buffer.Add(spawnPrefabData);
         }

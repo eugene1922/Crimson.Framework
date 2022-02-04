@@ -3,7 +3,6 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Crimson.Core.Loading.Repositories
 {
@@ -12,21 +11,21 @@ namespace Crimson.Core.Loading.Repositories
     {
         public PrefabDictionary items = new PrefabDictionary();
 
-        public T Get<T>(string name) where T : Object
+        public GameObject Get(string name)
         {
             if (items.StringDictionary.TryGetValue(name, out var item))
             {
-                return (T)item.asset;
+                return item.asset;
             }
 
             throw new KeyNotFoundException($"Prefab with name: {name}, not found at prefab repository!");
         }
 
-        public T Get<T>(ushort key) where T : Object
+        public GameObject Get(ushort key)
         {
             if (items.UShortDictionary.TryGetValue(key, out var item))
             {
-                return (T)item.asset;
+                return item.asset;
             }
 
             throw new KeyNotFoundException($"Prefab with key '{key}' not found at prefab repository!");
@@ -38,7 +37,7 @@ namespace Crimson.Core.Loading.Repositories
         private void Fill()
         {
             items = UnityEditor.AssetDatabase.FindAssets("t:Prefab").Select(UnityEditor.AssetDatabase.GUIDToAssetPath)
-                                                                    .Select(UnityEditor.AssetDatabase.LoadAssetAtPath<Object>)
+                                                                    .Select(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>)
                                                                     .OrderBy(s => s.name)
                                                                     .ToList();
 

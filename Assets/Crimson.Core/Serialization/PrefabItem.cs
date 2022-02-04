@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Crimson.Core.Serialization
 {
@@ -9,12 +8,12 @@ namespace Crimson.Core.Serialization
     {
         [Sirenix.OdinInspector.ReadOnly]
         public ushort id;
-        public Object asset;
+        public GameObject asset;
 
         [HideInInspector]
         public string name;
 
-        public PrefabItem(Object asset)
+        public PrefabItem(GameObject asset)
         {
             this.asset = asset;
         }
@@ -27,7 +26,7 @@ namespace Crimson.Core.Serialization
                 return;
             }
 
-            id = HashUtils.GetAssetHashUShort(asset);
+            id = HashUtils.GetAssetHash(asset);
             name = asset.name;
 #endif
         }
