@@ -14,7 +14,7 @@ namespace Crimson.Core.Common
         public override void SpawnPerk(IActor target)
         {
             var perk = perkPrefab.GetComponent<IPerkAbility>();
-            
+
             var newComponents = (perk as IPerkAbilityBindable)?.CopyBindablePerk(target);
 
             if (newComponents == null) return;
@@ -36,7 +36,7 @@ namespace Crimson.Core.Common
 
             var targetPlayerAbility =
                 target.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-            
+
             var addActionToInputAbility = copiedComponents.OfType<AbilityAddActionsToPlayerInput>().FirstOrDefault();
 
             if (addActionToInputAbility == null || targetPlayerAbility == null) return;
@@ -44,11 +44,11 @@ namespace Crimson.Core.Common
             var receivers = targetPlayerAbility.UIReceiverList;
             var customButtons = receivers.SelectMany(u => ((UIReceiver)u).customButtons);
             var buttonToUpdate = customButtons.FirstOrDefault(b => b.bindingIndex == addActionToInputAbility.customBinding.index);
-            
+
             var stickControlAvailable = copiedComponents.OfType<IAimable>().FirstOrDefault()?.AimingAvailable;
             var repeatedInvokingOnHold = copiedComponents.OfType<AbilityWeapon>().FirstOrDefault()?.aimingProperties
                 .evaluateActionOptions;
-            
+
             if (buttonToUpdate != null)
             {
                 buttonToUpdate.SetupCustomButton(perkName, perkImage, stickControlAvailable ?? false,

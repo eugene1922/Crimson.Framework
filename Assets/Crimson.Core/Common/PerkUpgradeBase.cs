@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Crimson.Core.Common
@@ -25,7 +25,7 @@ namespace Crimson.Core.Common
             var spawn = target.GameObject.AddComponent<AbilityActorSpawn>();
             var perkData = new ActorSpawnerSettings
             {
-                objectsToSpawn = new List<GameObject> {perkPrefab},
+                objectsToSpawn = new List<GameObject> { perkPrefab },
                 SpawnPosition = SpawnPosition.UseSpawnerPosition,
                 parentOfSpawns = TargetType.None,
                 runSpawnActionsOnObjects = true,
@@ -33,7 +33,7 @@ namespace Crimson.Core.Common
             };
             spawn.SpawnData = perkData;
             var targetActorEntity = target.ActorEntity;
-            spawn.AddComponentData(ref targetActorEntity,target);
+            spawn.AddComponentData(ref targetActorEntity, target);
             spawn.Execute();
         }
     }

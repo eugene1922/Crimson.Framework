@@ -1,29 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using Crimson.Core.Utils;
+﻿using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Crimson.Core.Common
 {
-    [HideMonoScript][RequireComponent(typeof(Image))]
+    [HideMonoScript]
+    [RequireComponent(typeof(Image))]
     public class UIProgressBar : MonoBehaviour, IUIProgressBar
     {
         [EnumToggleButtons] public ChangeType ProgressBarChangeType;
-        
+
         [ValueDropdown("UIAssociatedIds")]
         public string AssociatedValueID = "";
 
-        [ShowIf("@ProgressBarChangeType == ChangeType.ChangeByValue")][ValueDropdown("UIAssociatedIds")]
+        [ShowIf("@ProgressBarChangeType == ChangeType.ChangeByValue")]
+        [ValueDropdown("UIAssociatedIds")]
         public string MaxValueID = "";
+
         public string AssociatedID => AssociatedValueID;
         public string MaxValueAssociatedID => MaxValueID;
         public float MaxValue { get; set; }
-        
-        private UIReceiver _receiver  ;
+
+        private UIReceiver _receiver;
         private Image _progressBar;
-        
+
         private object _cachedCurrentProgressBarValue;
         private object _cachedInputValue;
 
@@ -38,17 +41,17 @@ namespace Crimson.Core.Common
             _progressBar = GetComponent<Image>();
             if (_progressBar == null) Debug.LogError("[UI Progress Bar] Image component is required!");
         }
-        
+
         public void SetMaxValue(object maxValue)
         {
             if (!maxValue.IsNumericType()) return;
-            
-            MaxValue = (float) Convert.ToDecimal(maxValue);
+
+            MaxValue = (float)Convert.ToDecimal(maxValue);
 
             RefreshProgressBarView();
 
             if (_cachedInputValue == null) return;
-            
+
             SetData(_cachedInputValue);
             _cachedInputValue = null;
         }
@@ -60,36 +63,35 @@ namespace Crimson.Core.Common
 
             if (_cachedCurrentProgressBarValue != null &&
                 Convert.ToDecimal(_cachedCurrentProgressBarValue) == Convert.ToDecimal(input)) return;
-            
+
             var inputValue = new object();
 
             switch (ProgressBarChangeType)
             {
                 case ChangeType.ChangeByValue:
                     _cachedInputValue = input;
-                    
+
                     if (MaxValue <= 0) return;
 
-                    var convertedInput = (float) Convert.ToDecimal(input);
+                    var convertedInput = (float)Convert.ToDecimal(input);
                     inputValue = convertedInput / MaxValue;
 
                     break;
+
                 case ChangeType.ChangeByTimer:
-                    inputValue = (float) input;
+                    inputValue = (float)input;
                     break;
             }
 
-            _progressBar.fillAmount = (float) Convert.ToDecimal(inputValue);
-            _cachedCurrentProgressBarValue =  Convert.ToDecimal(inputValue);
+            _progressBar.fillAmount = (float)Convert.ToDecimal(inputValue);
+            _cachedCurrentProgressBarValue = Convert.ToDecimal(inputValue);
         }
 
         private void RefreshProgressBarView()
         {
             if (_cachedInputValue == null) return;
-            _progressBar.fillAmount = (float) Convert.ToDecimal(_cachedInputValue) / MaxValue;
+            _progressBar.fillAmount = (float)Convert.ToDecimal(_cachedInputValue) / MaxValue;
         }
-        
-        
 
         private List<string> UIAssociatedIds()
         {

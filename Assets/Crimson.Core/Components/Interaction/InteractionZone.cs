@@ -32,10 +32,11 @@ namespace Assets.Crimson.Core.Components.Interaction
 
 #if UNITY_EDITOR
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(Position, Size);
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawWireCube(Offset, Size);
         }
 
 #endif

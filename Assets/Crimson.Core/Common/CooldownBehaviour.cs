@@ -1,6 +1,6 @@
-﻿using System;
-using Crimson.Core.Components;
+﻿using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using System;
 
 namespace Crimson.Core.Common
 {
@@ -11,7 +11,7 @@ namespace Crimson.Core.Common
         public void ApplyActionWithCooldown(float cooldownTime, Action action)
         {
             if (!Enabled) return;
-            
+
             action.Invoke();
 
             if (Math.Abs(cooldownTime) < 0.1f) return;
@@ -19,7 +19,7 @@ namespace Crimson.Core.Common
             StartTimer();
             Timer.TimedActions.AddAction(FinishTimer, cooldownTime);
         }
-        
+
         public override void FinishTimer()
         {
             base.FinishTimer();
@@ -31,6 +31,5 @@ namespace Crimson.Core.Common
             base.StartTimer();
             Enabled = false;
         }
-        
     }
 }

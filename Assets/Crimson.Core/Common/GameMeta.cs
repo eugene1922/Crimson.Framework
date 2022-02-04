@@ -7,7 +7,7 @@ namespace Crimson.Core.Common
     {
         public static int PointsToLevelUp = 300;
         public static int PointsForKill = 25;
-        
+
         public static List<GameObject> AvailablePerksList
         {
             get
@@ -22,10 +22,9 @@ namespace Crimson.Core.Common
                 return availablePerksList;
             }
         }
-        
 
         private static List<GameObject> availablePerksList = new List<GameObject>();
-        
+
         public static List<GameObject> PresetPerksList
         {
             get
@@ -40,7 +39,6 @@ namespace Crimson.Core.Common
                 return presetPerksList;
             }
         }
-        
 
         private static List<GameObject> presetPerksList = new List<GameObject>();
     }

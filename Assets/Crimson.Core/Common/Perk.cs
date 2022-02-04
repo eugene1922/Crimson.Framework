@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ namespace Crimson.Core.Common
     public class Perk : Actor
     {
         [HideInInspector] public List<IPerkAbility> PerksToApply = new List<IPerkAbility>();
-        
+
         public override void HandleAbilities(Entity entity)
         {
             Abilities = GetComponents<IActorAbility>().ToList();
@@ -38,7 +38,7 @@ namespace Crimson.Core.Common
             {
                 p.Apply(Spawner);
             }
-            
+
             base.PostConvert();
         }
     }

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Crimson.Core.Utils;
+﻿using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -38,7 +38,6 @@ namespace Crimson.Core.Common
             _textMeshPro.SetText($"{fieldText}{input}");
             _cachedFieldValue = input;
         }
-
 
         private List<string> UIAssociatedIds()
         {

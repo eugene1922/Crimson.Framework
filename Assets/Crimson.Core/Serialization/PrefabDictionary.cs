@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,26 @@ namespace Crimson.Core.Serialization
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
+        }
+
+        internal ushort GetKey(GameObject gameObject)
+        {
+            var target = items.First(s => s.name == gameObject.name);
+            return target.id;
+        }
+
+        [Button]
+        private void Test()
+        {
+            var assetInItems = items.Where(s => s.id == 25444);
+            foreach (var item in assetInItems)
+            {
+                Debug.Log($"!-{item.asset.GetHashCode()}:{item.name}");
+            }
+            //var assetByID = UShortDictionary[25444];
+            //var assetByName = StringDictionary["SM_Prop_Road_Barrier_01"];
+            //Debug.Log($"{assetByID.id}:{assetByID.name}");
+            //Debug.Log($"{assetByName.id}:{assetByName.name}");
         }
     }
 }

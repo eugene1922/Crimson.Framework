@@ -319,5 +319,17 @@ namespace Crimson.Core.Common
 
             return result;
         }
+
+        internal static void SimpleSpawn(GameObject prefab, Vector3 position, Quaternion rotation)
+        {
+            var spawnData = new SpawnItemData()
+            {
+                Prefab = prefab,
+                Position = position,
+                Rotation = rotation,
+                SampledComponents = new Component[0]
+            };
+            Spawn(spawnData);
+        }
     }
 }

@@ -9,10 +9,10 @@ namespace Crimson.Core.Common
     {
         [SerializeField, HideInInspector]
         private List<TKey> keyData = new List<TKey>();
-	   
+
         [SerializeField, HideInInspector]
         private List<TValue> valueData = new List<TValue>();
-    
+
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
             this.Clear();
@@ -21,12 +21,12 @@ namespace Crimson.Core.Common
                 this[this.keyData[i]] = this.valueData[i];
             }
         }
-    
+
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
             this.keyData.Clear();
             this.valueData.Clear();
-    
+
             foreach (var item in this)
             {
                 this.keyData.Add(item.Key);
@@ -35,7 +35,7 @@ namespace Crimson.Core.Common
         }
     }
 
-
     [Serializable]
-    public class StringGameObjectDictionary : SerializedDictionary<string, GameObject> { }
+    public class StringGameObjectDictionary : SerializedDictionary<string, GameObject>
+    { }
 }

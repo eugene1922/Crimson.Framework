@@ -1,31 +1,43 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components
 {
     [HideMonoScript]
-    public class AbilityApplyDamage : MonoBehaviour, IActorAbilityTarget,  ILevelable
+    public class AbilityApplyDamage : MonoBehaviour, IActorAbilityTarget, ILevelable
     {
-        [ReadOnly] public int perkLevel = 1;
-        
         [LevelableValue] public float damageValue = 0;
-        
-        [Space] [TitleGroup("Levelable properties")] [OnValueChanged("SetLevelableProperty")]
+
+        [Space]
+        [TitleGroup("Levelable properties")]
+        [OnValueChanged("SetLevelableProperty")]
         public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
-        public IActor TargetActor { get; set; }
+
+        [ReadOnly] public int perkLevel = 1;
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
         public IActor AbilityOwnerActor { get; set; }
         public IActor Actor { get; set; }
-        
+
         public int Level
         {
             get => perkLevel;
             set => perkLevel = value;
+        }
+
+        public List<FieldInfo> LevelablePropertiesInfoCached
+        {
+            get
+            {
+                return _levelablePropertiesInfoCached.Count > 0
+                    ? _levelablePropertiesInfoCached
+                    : (_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>());
+            }
         }
 
         public List<LevelableProperties> LevelablePropertiesList
@@ -34,16 +46,7 @@ namespace Crimson.Core.Components
             set => levelablePropertiesList = value;
         }
 
-        public List<FieldInfo> LevelablePropertiesInfoCached
-        {
-            get
-            {
-                if (_levelablePropertiesInfoCached.Any()) return _levelablePropertiesInfoCached;
-                return _levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
-            }
-        }
-
-        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+        public IActor TargetActor { get; set; }
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
@@ -53,27 +56,25 @@ namespace Crimson.Core.Components
         public void Execute()
         {
             if (TargetActor == null) return;
-            
+
             var ownerActorPlayer =
                 AbilityOwnerActor?.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-                
+
             if (ownerActorPlayer == null) return;
-                
+
             this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
-            
+
             TargetActor.ActorEntity.Damage(AbilityOwnerActor.ActorEntity, damageValue);
         }
-        
+
         public void SetLevel(int level)
         {
             this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
         }
-        
-        
+
         public void SetLevelableProperty()
         {
             this.SetLevelableProperty(LevelablePropertiesInfoCached);
         }
     }
-    
 }

@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Components;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils.LowLevel;
@@ -16,6 +17,7 @@ namespace Crimson.Core.Systems
         private EntityQuery _queryGameState;
         private EntityQuery _queryPlayers;
         private EntityQuery _queryUser;
+        private BufferFromEntity<SpawnPrefabData> _spawnBuffers;
         private Dictionary<string, object> metricaEventDict;
 
         protected override void OnCreate()
@@ -27,16 +29,33 @@ namespace Crimson.Core.Systems
             _queryPlayers = GetEntityQuery(
                 ComponentType.ReadOnly<AbilityActorPlayer>());
             metricaEventDict = new Dictionary<string, object>();
+            _spawnBuffers = GetBufferFromEntity<SpawnPrefabData>();
         }
 
         protected override void OnUpdate()
         {
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var metrica = AppMetrica.Instance;
 
             Entities.With(_queryGameState).ForEach(
                 (Entity entity, GameState state) =>
                 {
+                    Entities.WithAll<Actor>().ForEach(
+                        (Entity actorEntity) =>
+                        {
+                            if (_spawnBuffers.HasComponent(actorEntity))
+                            {
+                                var buffer = _spawnBuffers[actorEntity];
+
+                                for (var i = 0; i < buffer.Length; i++)
+                                {
+                                    var item = buffer[i];
+                                    var prefab = state.PrefabRepository.Get<GameObject>(item.ID);
+                                    ActorSpawn.SimpleSpawn(prefab, item.Position, item.Rotation);
+                                }
+
+                                buffer.Clear();
+                            }
+                        });
                     if (state.userPlayer == null)
                     {
                         Entities.With(_queryUser).ForEach((AbilityActorPlayer player) =>
@@ -47,8 +66,6 @@ namespace Crimson.Core.Systems
                         {
                             metricaEventDict.Clear();
                             metricaEventDict.Add("level", 1);
-                            //state.metrica.ReportEvent("level_start", metricaEventDict);
-                            //state.metrica.SendEventsBuffer();
                             Debug.Log("[GAMESTATE] Appmetrica level start");
                             var panels = ActorSpawn.Spawn(state.sampleSpawner, state.userPlayer.Actor);
 
@@ -89,8 +106,6 @@ namespace Crimson.Core.Systems
                                 metricaEventDict.Add("result", "lose");
                                 metricaEventDict.Add("time", (int)(Time.ElapsedTime - state.startTime));
                                 metricaEventDict.Add("progress", 100);
-                                //state.metrica.ReportEvent("level_finish", metricaEventDict);
-                                //state.metrica.SendEventsBuffer();
                                 Debug.Log("[GAMESTATE] Appmetrica Finish event lose");
                                 dstManager.DestroyEntity(dstManager.UniversalQuery);
                                 SceneManager.LoadScene(0);
@@ -157,8 +172,6 @@ namespace Crimson.Core.Systems
             metricaEventDict.Add("result", "win");
             metricaEventDict.Add("time", (int)(Time.ElapsedTime - state.startTime));
             metricaEventDict.Add("progress", 100);
-            //state.metrica.ReportEvent("level_finish", metricaEventDict);
-            //state.metrica.SendEventsBuffer();
             Debug.LogFormat(resultLogMessage, endResult.ToString().ToLower());
             targetPanel.SetActive(true);
         }

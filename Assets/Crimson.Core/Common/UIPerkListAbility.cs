@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +21,7 @@ namespace Crimson.Core.Common
 
         [HideInInspector]
         public List<GameObject> spawnedButtons = new List<GameObject>();
+
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             Actor = actor;
@@ -30,7 +31,7 @@ namespace Crimson.Core.Common
         public void Execute()
         {
             AvailablePerks.Shuffle();
-            
+
             for (var i = 0; i < NumberOfPerksToShow && i < AvailablePerks.Count; i++)
             {
                 var b = GameObject.Instantiate(PerkButtonPrefab, RootUIObject ?? transform);
@@ -47,7 +48,7 @@ namespace Crimson.Core.Common
                     Debug.LogError("[PERK UPGRADE SETUP] Perk Button Prefab must have Perk Upgrade Button Component!");
                     continue;
                 }
-                
+
                 if (p.PerkImage != null) perkUpgradeButton.SetImage(p.PerkImage);
                 perkUpgradeButton.SetText(p.PerkName);
 
@@ -57,13 +58,13 @@ namespace Crimson.Core.Common
                     Debug.LogError("[PERK UPGRADE SETUP] Perk Button Prefab must have Button Component!");
                     continue;
                 }
-                
+
                 button.onClick.AddListener(() =>
                 {
                     p.SpawnPerk(Actor.Spawner);
                     CleanUp(NumberOfPerksToShow);
                 });
-                
+
                 spawnedButtons.Add(b);
             }
         }
@@ -78,11 +79,11 @@ namespace Crimson.Core.Common
             {
                 Destroy(button);
             }
-            
+
             spawnedButtons.RemoveRange(0, amountToDestroy);
         }
     }
-    
+
     public struct UIAvailablePerksPanelData : IComponentData
     {
     }

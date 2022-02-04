@@ -1,5 +1,5 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
+using System;
 
 namespace Crimson.Core.Common
 {

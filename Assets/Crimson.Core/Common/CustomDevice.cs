@@ -15,25 +15,25 @@ namespace Crimson.Core.Common
         [InputControl(name = "customStick_1", format = "VEC2", layout = "Stick", displayName = "First Stick")]
         public Vector2 customStick_1;
 
-
         [InputControl(name = "customStick_2", format = "VEC2", layout = "Stick", displayName = "Second Stick")]
         public Vector2 customStick_2;
 
-
         [InputControl(name = "customStick_3", format = "VEC2", layout = "Stick", displayName = "Third Stick")]
         public Vector2 customStick_3;
-        
+
         [InputControl(name = "customStick_4", format = "VEC2", layout = "Stick", displayName = "Third Stick")]
         public Vector2 customStick_4;
     }
 
 #if UNITY_EDITOR
+
     [InitializeOnLoad]
 #endif
     [InputControlLayout(stateType = typeof(CustomDeviceState))]
     public class CustomDevice : InputDevice, IInputUpdateCallbackReceiver
     {
 #if UNITY_EDITOR
+
         static CustomDevice()
         {
             Initialize();

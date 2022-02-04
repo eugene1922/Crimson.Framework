@@ -7,7 +7,7 @@ namespace Crimson.Core.Common
     public struct MoveByInputData : IComponentData
     {
     }
-    
+
     public struct MoveDirectlyData : IComponentData
     {
         public float3 Position;
@@ -23,14 +23,16 @@ namespace Crimson.Core.Common
     public struct TimerData : IComponentData
     {
     }
-    
+
     [NetworkSimObject]
     public struct DamageData : IComponentData
     {
         [NetworkSimData]
         public float DamageValue;
+
         [NetworkSimData]
         public Entity AbilityOwnerEntity;
+
         [NetworkSimData]
         public Entity TargetEntity;
     }

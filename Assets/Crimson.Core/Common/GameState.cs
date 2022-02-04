@@ -24,14 +24,12 @@ namespace Crimson.Core.Common
         public GameObject losePanel;
         public int maxDeathCount = 1;
 
-        //[HideInInspector]
-        //public IYandexAppMetrica metrica;
-
         public bool NeedCheckEndGame;
 
         [HideInInspector]
         public List<AbilityActorPlayer> players;
 
+        public PrefabRepositoryFromScriptableObject PrefabRepository;
         public GameObject respawnPanel;
         public GameObject rootCanvas;
 
@@ -59,12 +57,10 @@ namespace Crimson.Core.Common
         [HideInInspector]
         public AbilityActorPlayer userPlayer;
 
-        [ValidateInput("MustBeSpawner", "Spawner MonoBehaviours must derive from IActorSpawner!!")]
+        [ValidateInput(nameof(MustBeSpawner), "Spawner MonoBehaviours must derive from IActorSpawner!!")]
         public MonoBehaviour userSpawner;
 
         public GameObject winPanel;
-
-        [SerializeField] private PrefabRepositoryFromScriptableObject _prefabRepository;
 
         public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
@@ -77,8 +73,6 @@ namespace Crimson.Core.Common
                 winPanel,
                 losePanel
             };
-            //metrica = AppMetrica.Instance;
-            //Setup();
         }
 
         public override void PostConvert()

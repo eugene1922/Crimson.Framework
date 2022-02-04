@@ -11,7 +11,7 @@ namespace Crimson.Core.Common
         public Button actionButton;
         public Button secondActionButton;
         public CanvasGroup canvasGroup;
-        
+
         public float fadeInTime = 2f;
         public IActor Actor { get; set; }
 

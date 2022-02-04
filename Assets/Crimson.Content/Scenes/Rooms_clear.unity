@@ -14769,10 +14769,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4944486513058016, guid: f362d010757f74245b8c808ea4fa814a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.571
-      objectReference: {fileID: 0}
-    - target: {fileID: 4944486513058016, guid: f362d010757f74245b8c808ea4fa814a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 68.96
       objectReference: {fileID: 0}
@@ -14814,54 +14810,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f362d010757f74245b8c808ea4fa814a, type: 3}
---- !u!1 &313521045 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1051232283986132, guid: f362d010757f74245b8c808ea4fa814a,
-    type: 3}
-  m_PrefabInstance: {fileID: 313521044}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &313521046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313521045}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.351774, y: 1.1723101, z: 0.3877945}
-  m_Center: {x: 0.18310511, y: 0.58615506, z: 0}
---- !u!114 &313521047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313521045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
---- !u!114 &313521048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313521045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34c579fafe658f0409a8070e1502d05e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyAfterUse: 1
-  InteractionReciever:
-    Actions: []
 --- !u!1001 &313603393
 PrefabInstance:
   m_ObjectHideFlags: 0

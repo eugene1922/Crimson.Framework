@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Crimson.Core.Common
@@ -9,7 +9,7 @@ namespace Crimson.Core.Common
     {
         public List<GameObject> AvailablePerksList = new List<GameObject>();
         public List<GameObject> PresetPerksList = new List<GameObject>();
-        
+
         public List<GameObject> CheatPerksList = new List<GameObject>();
     }
 }

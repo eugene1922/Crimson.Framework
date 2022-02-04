@@ -10,6 +10,7 @@ namespace Crimson.Core.Common
 
         public float delay = 4f;
         public IActor Actor { get; set; }
+
         public void AddComponentData(ref Entity entity, IActor actor)
         {
             if (gamestate == null) gamestate = FindObjectOfType<GameState>();

@@ -12,6 +12,7 @@ namespace Crimson.Core.Common
         [InputControl(layout = "Button")]
         [SerializeField]
         public string buttonControlPath;
+
         protected override string controlPathInternal
         {
             get => buttonControlPath;

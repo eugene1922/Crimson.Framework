@@ -203,6 +203,7 @@ MonoBehaviour:
   maxDeathCount: 1
   NeedCheckEndGame: 0
   players: []
+  PrefabRepository: {fileID: 11400000, guid: 7befa4e94cfe6c94c883e82f07efb4a7, type: 2}
   respawnPanel: {fileID: 8696230764928413656, guid: e0f5c098160a761478ad431ee30749b1,
     type: 3}
   rootCanvas: {fileID: 3737385966021714175}
@@ -239,7 +240,6 @@ MonoBehaviour:
   userSpawner: {fileID: 4600830946981902567}
   winPanel: {fileID: 2685741086020035726, guid: cedcb3d5745c0c741a3c4f539e162cef,
     type: 3}
-  _prefabRepository: {fileID: 11400000, guid: 7befa4e94cfe6c94c883e82f07efb4a7, type: 2}
 --- !u!114 &4600830946981902567
 MonoBehaviour:
   m_ObjectHideFlags: 0

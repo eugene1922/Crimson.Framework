@@ -8,7 +8,7 @@ namespace Crimson.Core.Common
     {
         public TextMeshProUGUI label;
         public Image image;
-        
+
         public void SetText(string text)
         {
             label.text = text;
@@ -18,6 +18,5 @@ namespace Crimson.Core.Common
         {
             image.sprite = img;
         }
-
     }
 }

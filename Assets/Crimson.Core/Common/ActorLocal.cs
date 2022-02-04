@@ -4,7 +4,6 @@ namespace Crimson.Core.Common
     {
         public override void PostConvert()
         {
-            
         }
     }
 }

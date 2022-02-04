@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
@@ -14,10 +14,10 @@ namespace Crimson.Core.Common
     {
         [NetworkSimData]
         public List<TimerAction> TimedActions = new List<TimerAction>();
-        
+
         [NetworkSimData]
         public IActor actor;
-        
+
         public void Start()
         {
             actor = this.gameObject.GetComponent<IActor>();
@@ -28,7 +28,7 @@ namespace Crimson.Core.Common
             }
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             dstManager.AddComponent<TimerData>(actor.ActorEntity);
-            dstManager.AddComponentObject(actor.ActorEntity,this);
+            dstManager.AddComponentObject(actor.ActorEntity, this);
         }
 
         public void DestroyWithEntity()
@@ -44,7 +44,7 @@ namespace Crimson.Core.Common
             get
             {
                 return TimedActions.Select(action => new TimerActionEditor
-                    {Act = action.Act.Method.Name, Delay = action.Delay}).ToList();
+                { Act = action.Act.Method.Name, Delay = action.Delay }).ToList();
             }
         }
 
@@ -69,7 +69,6 @@ namespace Crimson.Core.Common
         }
 
 #endif
-        
     }
 
     public struct TimerAction

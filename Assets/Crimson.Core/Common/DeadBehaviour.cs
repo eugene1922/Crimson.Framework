@@ -10,7 +10,7 @@ namespace Crimson.Core.Common
         public bool RemoveRigidbody = true;
         public bool RemoveColliders = true;
         public bool RemoveInput = true;
-        
+
         public List<string> OnDeathActionsComponentNames = new List<string>();
     }
 }
