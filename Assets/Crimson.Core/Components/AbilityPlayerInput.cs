@@ -36,6 +36,7 @@ namespace Crimson.Core.Components
         public float MinMagnitude;
         [NetworkSimData] public float2 Mouse;
         [NetworkSimData] public float2 Move;
+        internal bool InventoryState;
 
         public override string ToString()
         {

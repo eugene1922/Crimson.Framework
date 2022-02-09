@@ -8,7 +8,7 @@ namespace Crimson.Core.Serialization
     {
 #if UNITY_EDITOR
 
-        public static ushort GetAssetHash(GameObject prefab)
+        public static int GetAssetHash(GameObject prefab)
         {
             var components = prefab.GetComponents<Component>();
             int result = 0;
@@ -23,7 +23,7 @@ namespace Crimson.Core.Serialization
                 result += i;
             }
 
-            return (ushort)result;
+            return result;
         }
 
         public static ushort GetAssetHashUShort(GameObject prefab)

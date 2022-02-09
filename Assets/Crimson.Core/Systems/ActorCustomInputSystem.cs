@@ -9,9 +9,6 @@ using Unity.Entities;
 namespace Crimson.Core.Systems
 {
     [UpdateInGroup(typeof(FixedUpdateGroup))]
-    //[UpdateAfter(typeof(UserInputSystem))]
-    //[UpdateAfter(typeof(NetworkInputSystem))]
-    //[UpdateAfter(typeof(AIInputSystem))]
     public class ActorCustomInputSystem : ComponentSystem
     {
         private EntityQuery _query;
@@ -30,10 +27,6 @@ namespace Crimson.Core.Systems
                 (Entity entity, AbilityPlayerInput mapping, ref PlayerInputData input) =>
                 {
                     var playerInput = input;
-                    if (mapping.inputSource == InputSource.UserInput)
-                    {
-                        //Debug.Log($"Input:{input}");
-                    }
                     foreach (var b in mapping.bindingsDict)
                     {
                         b.Value.ForEach(a =>

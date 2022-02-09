@@ -6,9 +6,10 @@ namespace Crimson.Core.Serialization
     [Serializable]
     public sealed class PrefabItem : ISerializationCallbackReceiver
     {
-        [Sirenix.OdinInspector.ReadOnly]
-        public ushort id;
         public GameObject asset;
+
+        [Sirenix.OdinInspector.ReadOnly]
+        public int id;
 
         [HideInInspector]
         public string name;
@@ -16,6 +17,10 @@ namespace Crimson.Core.Serialization
         public PrefabItem(GameObject asset)
         {
             this.asset = asset;
+        }
+
+        void ISerializationCallbackReceiver.OnAfterDeserialize()
+        {
         }
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
@@ -30,8 +35,5 @@ namespace Crimson.Core.Serialization
             name = asset.name;
 #endif
         }
-
-        void ISerializationCallbackReceiver.OnAfterDeserialize() { }
-
     }
 }

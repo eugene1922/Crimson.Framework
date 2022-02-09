@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 484398431847593746}
   - component: {fileID: -7126598297091492315}
   - component: {fileID: 4824009499160723703}
+  - component: {fileID: 4074231723351004181}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -64,9 +65,6 @@ MonoBehaviour:
   - index: 1
     actions:
     - {fileID: 2000508641564710722}
-  - index: 9
-    actions:
-    - {fileID: -7126598297091492315}
   inputSource: 1
   minMoveInputMagnitude: 1
 --- !u!114 &2000508641564710722
@@ -537,6 +535,7 @@ MonoBehaviour:
     fillSpawnPoints: 0
     objectsToSpawn:
     - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
+    - {fileID: 2853118268380962624, guid: 543374d9217e61d44ae0fc2c01581451, type: 3}
     parentOfSpawns: 0
     parentTag: UIRoot
     poolSettings:
@@ -605,5 +604,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6eac391121829f43b0bf126904f4c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items: 
+  InventoryItems: []
   Offset: {x: 0, y: 0, z: 3}
+--- !u!114 &4074231723351004181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b741deb7bf7a92e448a934c7bdc5395f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: -7126598297091492315}
+  _input: {fileID: 5040436995964547475, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}

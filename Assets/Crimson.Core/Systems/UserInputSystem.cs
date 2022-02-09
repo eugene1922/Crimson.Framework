@@ -128,7 +128,7 @@ namespace Crimson.Core.Systems
                 MouseInput = _mouseInput,
                 LookInput = _lookInput,
                 CustomInputs = _customInputs,
-                CustomSticksInputs = _customSticksInputs
+                CustomSticksInputs = _customSticksInputs,
             };
             inputDeps = job.Schedule(this, inputDeps);
             _barrier.AddJobHandleForProducer(inputDeps);

@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Components;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -18,6 +19,7 @@ namespace Crimson.Core.Systems
         private EntityQuery _queryPlayers;
         private EntityQuery _queryUser;
         private BufferFromEntity<SpawnPrefabData> _spawnBuffers;
+        private EntityQuery _spawners;
         private Dictionary<string, object> metricaEventDict;
 
         protected override void OnCreate()
@@ -28,6 +30,8 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<UserInputData>());
             _queryPlayers = GetEntityQuery(
                 ComponentType.ReadOnly<AbilityActorPlayer>());
+            _spawners = GetEntityQuery(
+                ComponentType.ReadOnly<SpawnBuffer>());
             metricaEventDict = new Dictionary<string, object>();
         }
 
@@ -39,8 +43,8 @@ namespace Crimson.Core.Systems
             Entities.With(_queryGameState).ForEach(
                 (Entity entity, GameState state) =>
                 {
-                    Entities.WithAll<Actor>().ForEach(
-                        (Entity actorEntity) =>
+                    Entities.With(_spawners).ForEach(
+                        (Entity actorEntity, ref SpawnBuffer tag) =>
                         {
                             if (_spawnBuffers.HasComponent(actorEntity))
                             {

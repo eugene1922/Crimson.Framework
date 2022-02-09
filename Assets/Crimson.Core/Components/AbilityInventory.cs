@@ -1,7 +1,9 @@
 ﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
-using Sirenix.OdinInspector;
+using Crimson.Core.Utils;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
@@ -9,61 +11,42 @@ namespace Assets.Crimson.Core.Components
 {
     public class AbilityInventory : MonoBehaviour, IActorAbility
     {
-        public List<ushort> Items = new List<ushort>();
+        [CastToUI(nameof(InventoryItems))]
+        public List<InventoryItemData> InventoryItems = new List<InventoryItemData>();
+
         public Vector3 Offset;
 
+        [HideInInspector] public List<IActor> UIReceiverList = new List<IActor>();
+        private Dictionary<string, FieldInfo> _fieldsInfo = new Dictionary<string, FieldInfo>();
         public IActor Actor { get; set; }
         public Vector3 DropPoint => transform.TransformPoint(Offset);
         public Entity Entity { get; private set; }
         public EntityManager Manager { get; private set; }
 
-        public void Add(ushort item)
+        public void Add(InventoryItemData item)
         {
-            Items.Add(item);
+            InventoryItems.Add(item);
+            UpdateUIData(nameof(InventoryItems));
         }
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
-            Manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             Actor = actor;
             Entity = entity;
-            Manager.AddBuffer<SpawnPrefabData>(Entity);
-        }
-
-        public void Drop(ushort item)
-        {
-            var buffer = Manager.GetBuffer<SpawnPrefabData>(Entity);
-
-            var spawnPrefabData = new SpawnPrefabData()
+            foreach (var fieldInfo in typeof(AbilityInventory).GetFields()
+                .Where(field => field.GetCustomAttribute<CastToUI>(false) != null))
             {
-                ID = item,
-                Position = DropPoint,
-                Rotation = Quaternion.LookRotation(DropPoint - transform.position)
-            };
-            buffer.Add(spawnPrefabData);
+                _fieldsInfo.Add(fieldInfo.Name, fieldInfo);
+            }
         }
 
         public void Execute()
         { }
 
-        public void Remove(ushort item)
+        public void Remove(InventoryItemData item)
         {
-            Items.Remove(item);
-            Drop(item);
-        }
-
-        [Button]
-        private void DropFirstItem()
-        {
-            if (Items.Count == 0)
-            {
-                return;
-            }
-
-            var firstItem = Items[0];
-
-            var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            manager.AddComponentData(Actor.ActorEntity, new RemoveItemData() { ID = firstItem });
+            InventoryItems.Remove(item);
+            UpdateUIData(nameof(InventoryItems));
         }
 
 #if UNITY_EDITOR
@@ -76,5 +59,15 @@ namespace Assets.Crimson.Core.Components
         }
 
 #endif
+
+        private void UpdateUIData(string fieldName)
+        {
+            foreach (var receiver in UIReceiverList.Where(receiver => _fieldsInfo.ContainsKey(fieldName)))
+            {
+                ((UIReceiver)receiver)?.UpdateUIElementsData(
+                    _fieldsInfo[fieldName].GetCustomAttribute<CastToUI>(false).FieldId,
+                    _fieldsInfo[fieldName].GetValue(this));
+            }
+        }
     }
 }

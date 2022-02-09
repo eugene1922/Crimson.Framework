@@ -11,8 +11,7 @@ namespace Crimson.Core.Serialization
     {
         public List<PrefabItem> items;
 
-        public Dictionary<string, PrefabItem> StringDictionary { get; } = new Dictionary<string, PrefabItem>();
-        public Dictionary<ushort, PrefabItem> UShortDictionary { get; } = new Dictionary<ushort, PrefabItem>();
+        public Dictionary<int, PrefabItem> HashDictionary { get; } = new Dictionary<int, PrefabItem>();
 
         public static implicit operator PrefabDictionary(List<GameObject> prefabs)
         {
@@ -36,23 +35,9 @@ namespace Crimson.Core.Serialization
         {
             if (items != null)
             {
-                UShortDictionary.Clear();
-                StringDictionary.Clear();
-
                 foreach (var item in items)
                 {
-                    if (UShortDictionary.TryGetValue(item.id, out var otherItem))
-                    {
-                        Debug.LogWarning($"Prefab short hash collision: hash = {item.id}, " +
-                                         $"item = {item.name}, " +
-                                         $"otherItem = {otherItem.name}");
-                    }
-                    else
-                    {
-                        UShortDictionary.Add(item.id, item);
-                    }
-
-                    if (StringDictionary.TryGetValue(item.name, out var otherStringItem))
+                    if (HashDictionary.TryGetValue(item.id, out var otherStringItem))
                     {
                         Debug.LogWarning($"Prefab name collision: hash = {item.id}, " +
                                          $"item = {item.name}, " +
@@ -60,7 +45,7 @@ namespace Crimson.Core.Serialization
                     }
                     else
                     {
-                        StringDictionary.Add(item.name, item);
+                        HashDictionary.Add(item.id, item);
                     }
                 }
             }
@@ -70,7 +55,7 @@ namespace Crimson.Core.Serialization
         {
         }
 
-        internal ushort GetKey(GameObject gameObject)
+        internal int GetKey(GameObject gameObject)
         {
             var target = items.First(s => s.name == gameObject.name);
             return target.id;
@@ -80,14 +65,14 @@ namespace Crimson.Core.Serialization
         private void Test()
         {
             var assetInItems = items.Where(s => s.id == 58889);
-            foreach (var item in assetInItems)
-            {
-                Debug.Log($"id={item.id}:name={item.name}");
-            }
             var groups = items.GroupBy(s => s.id);
             foreach (var group in groups)
             {
                 Debug.Log($"id={group.Key}:Count={group.Count()}");
+                foreach (var item in group)
+                {
+                    Debug.Log($"id={item.id}:name={item.name}");
+                }
             }
         }
     }

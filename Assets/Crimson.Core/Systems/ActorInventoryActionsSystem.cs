@@ -1,7 +1,6 @@
 ﻿using Assets.Crimson.Core.Components;
 using Crimson.Core.Utils.LowLevel;
 using Unity.Entities;
-using UnityEngine;
 
 namespace Assets.Crimson.Core.Systems
 {
@@ -32,8 +31,7 @@ namespace Assets.Crimson.Core.Systems
                 (Entity entity, AbilityInventory inventory, ref AddItemData itemData) =>
                 {
                     Manager.RemoveComponent<AddItemData>(entity);
-                    inventory.Add(itemData.ID);
-                    Debug.Log($"Pickup item with id: {itemData.ID}");
+                    inventory.Add(itemData.Item);
                 }
             );
 
@@ -41,8 +39,7 @@ namespace Assets.Crimson.Core.Systems
                 (Entity entity, AbilityInventory inventory, ref RemoveItemData itemData) =>
                 {
                     Manager.RemoveComponent<RemoveItemData>(entity);
-                    inventory.Remove(itemData.ID);
-                    Debug.Log($"Dropped item with id: {itemData.ID}");
+                    inventory.Remove(itemData.Item);
                 }
             );
         }

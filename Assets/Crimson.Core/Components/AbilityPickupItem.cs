@@ -10,17 +10,17 @@ namespace Assets.Crimson.Core.Components
 {
     public struct AddItemData : IComponentData
     {
-        public ushort ID;
+        public InventoryItemData Item;
     }
 
     public struct RemoveItemData : IComponentData
     {
-        public ushort ID;
+        public InventoryItemData Item;
     }
 
     public class AbilityPickupItem : MonoBehaviour, IActorAbilityTarget
     {
-        public ushort ItemID;
+        public InventoryItemData ItemData;
         public IActor AbilityOwnerActor { get; set; }
         public IActor Actor { get; set; }
         public IActor TargetActor { get; set; }
@@ -40,10 +40,15 @@ namespace Assets.Crimson.Core.Components
             }
 
             var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            manager.AddComponentData(TargetActor.ActorEntity, new AddItemData() { ID = ItemID });
+            manager.AddComponentData(TargetActor.ActorEntity, new AddItemData() { Item = ItemData });
         }
 
 #if UNITY_EDITOR
+
+        private void OnValidate()
+        {
+            Setup();
+        }
 
         [Button]
         private void Setup()
@@ -56,7 +61,7 @@ namespace Assets.Crimson.Core.Components
             }
             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
             var repository = AssetDatabase.LoadAssetAtPath<PrefabRepositoryFromScriptableObject>(path);
-            ItemID = repository.items.GetKey(gameObject);
+            ItemData.ID = repository.items.GetKey(gameObject);
         }
 
 #endif

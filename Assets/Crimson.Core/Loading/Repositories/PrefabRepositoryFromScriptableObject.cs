@@ -11,24 +11,11 @@ namespace Crimson.Core.Loading.Repositories
     {
         public PrefabDictionary items = new PrefabDictionary();
 
-        public GameObject Get(string name)
+        public GameObject Get(int key)
         {
-            if (items.StringDictionary.TryGetValue(name, out var item))
-            {
-                return item.asset;
-            }
-
-            throw new KeyNotFoundException($"Prefab with name: {name}, not found at prefab repository!");
-        }
-
-        public GameObject Get(ushort key)
-        {
-            if (items.UShortDictionary.TryGetValue(key, out var item))
-            {
-                return item.asset;
-            }
-
-            throw new KeyNotFoundException($"Prefab with key '{key}' not found at prefab repository!");
+            return items.HashDictionary.TryGetValue(key, out var item)
+                ? item.asset
+                : throw new KeyNotFoundException($"Prefab with key '{key}' not found at prefab repository!");
         }
 
 #if UNITY_EDITOR

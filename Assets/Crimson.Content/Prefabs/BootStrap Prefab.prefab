@@ -198,6 +198,8 @@ MonoBehaviour:
   componentName: 
   ExecuteOnSpawn: []
   enemyTag: Enemy
+  InventoryView: {fileID: 2853118268380962624, guid: 543374d9217e61d44ae0fc2c01581451,
+    type: 3}
   losePanel: {fileID: 8244941744796162177, guid: 7f580cbd1607ec649a86ae0e70d3258a,
     type: 3}
   maxDeathCount: 1

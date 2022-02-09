@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Components;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
 
@@ -12,12 +13,15 @@ namespace Crimson.Core.Systems
 
         protected override void OnCreate()
         {
-            _newUIQuery = GetEntityQuery(ComponentType.ReadOnly<UIReceiver>(),
+            _newUIQuery = GetEntityQuery(
+                ComponentType.ReadOnly<UIReceiver>(),
                 ComponentType.ReadOnly<UIReceiverData>());
 
-            _playerDataQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>());
+            _playerDataQuery = GetEntityQuery(
+                ComponentType.ReadOnly<AbilityActorPlayer>());
 
-            _updateCustomButtonsQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
+            _updateCustomButtonsQuery = GetEntityQuery(
+                ComponentType.ReadOnly<AbilityActorPlayer>(),
                 ComponentType.ReadWrite<NotifyButtonActionExecutedData>());
         }
 
@@ -42,6 +46,10 @@ namespace Crimson.Core.Systems
                             actorPlayer.UIReceiverList.Add(uiReceiver);
                             actorPlayer.ForceUpdatePlayerUIData();
                         });
+                    Entities.WithAll<AbilityInventory>().ForEach((AbilityInventory inventory) =>
+                    {
+                        inventory.UIReceiverList.Add(uiReceiver);
+                    });
                 });
 
             Entities.With(_updateCustomButtonsQuery).ForEach(
@@ -51,7 +59,7 @@ namespace Crimson.Core.Systems
                     var data = notifyButtonActionExecutedData;
 
                     abilityActorPlayer.UIReceiverList.ForEach(r =>
-                        ((UIReceiver) r).NotifyButtonActionExecuted(data.ButtonIndex));
+                        ((UIReceiver)r).NotifyButtonActionExecuted(data.ButtonIndex));
                     PostUpdateCommands.RemoveComponent<NotifyButtonActionExecutedData>(entity);
                 });
         }
