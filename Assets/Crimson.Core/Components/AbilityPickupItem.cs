@@ -47,7 +47,7 @@ namespace Assets.Crimson.Core.Components
 
         private void OnValidate()
         {
-            Setup();
+            //Setup();
         }
 
         [Button]

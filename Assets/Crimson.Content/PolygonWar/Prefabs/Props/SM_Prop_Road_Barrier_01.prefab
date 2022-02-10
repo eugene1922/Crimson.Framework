@@ -143,8 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData:
-    Capacity: 1
-    ID: 58889
+    ID: -361665245
 --- !u!1 &1904739645973972
 GameObject:
   m_ObjectHideFlags: 0

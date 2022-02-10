@@ -10,7 +10,7 @@ namespace Crimson.Core.Serialization
 
         public static int GetAssetHash(GameObject prefab)
         {
-            var components = prefab.GetComponents<Component>();
+            var components = prefab.GetComponentsInChildren<Component>();
             int result = 0;
 
             for (var i = 0; i < components.Length; i++)

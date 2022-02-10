@@ -64,9 +64,8 @@ namespace Crimson.Core.Serialization
         [Button]
         private void Test()
         {
-            var assetInItems = items.Where(s => s.id == 58889);
             var groups = items.GroupBy(s => s.id);
-            foreach (var group in groups)
+            foreach (var group in groups.Where(s => s.Count() > 1))
             {
                 Debug.Log($"id={group.Key}:Count={group.Count()}");
                 foreach (var item in group)
