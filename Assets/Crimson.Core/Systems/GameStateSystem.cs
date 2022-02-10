@@ -20,6 +20,7 @@ namespace Crimson.Core.Systems
         private EntityQuery _queryUser;
         private BufferFromEntity<SpawnPrefabData> _spawnBuffers;
         private EntityQuery _spawners;
+        private EntityQuery _useItemQuery;
         private Dictionary<string, object> metricaEventDict;
 
         protected override void OnCreate()
@@ -32,6 +33,8 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<AbilityActorPlayer>());
             _spawners = GetEntityQuery(
                 ComponentType.ReadOnly<SpawnBuffer>());
+            _useItemQuery = GetEntityQuery(
+                ComponentType.ReadOnly<UseItemData>());
             metricaEventDict = new Dictionary<string, object>();
         }
 
@@ -58,6 +61,7 @@ namespace Crimson.Core.Systems
                                 }
 
                                 buffer.Clear();
+                                EntityManager.RemoveComponent<SpawnBuffer>(actorEntity);
                             }
                         });
                     if (state.userPlayer == null)
@@ -132,6 +136,19 @@ namespace Crimson.Core.Systems
                     }
 
                     if (state.userPlayer == null) return;
+
+                    Entities.With(_useItemQuery).ForEach(
+                        (Entity actorEntity, ref UseItemData data) =>
+                        {
+                            var prefab = state.PrefabRepository.Get(data.Item.ID);
+                            var perks = prefab.GetComponentsInChildren<IPerkAbility>();
+                            for (var i = 0; i < perks.Length; i++)
+                            {
+                                perks[i].Apply(state.userPlayer.Actor);
+                            }
+                            EntityManager.RemoveComponent<UseItemData>(actorEntity);
+                        }
+                    );
 
                     state.players.Clear();
 

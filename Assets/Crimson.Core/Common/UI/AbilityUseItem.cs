@@ -25,6 +25,13 @@ namespace Assets.Crimson.Core.Common.UI
 
         public void Use(InventoryItemData data)
         {
+            var itemData = new UseItemData()
+            {
+                Item = data
+            };
+
+            World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity, itemData);
+
             var ability = Actor.Owner.Abilities.FirstOrDefault(s => s is AbilityInventory);
 
             if (ability == null)
@@ -32,8 +39,6 @@ namespace Assets.Crimson.Core.Common.UI
                 return;
             }
             var inventory = ability as AbilityInventory;
-
-
             inventory.Remove(data);
         }
     }

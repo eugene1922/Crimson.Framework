@@ -31,6 +31,7 @@ namespace Assets.Crimson.Core.Components
 
         public void AddComponentData(ref Entity entity, IActor actor)
         {
+            InventoryItems.Clear();
             Actor = actor;
             Entity = entity;
             foreach (var fieldInfo in typeof(AbilityInventory).GetFields()

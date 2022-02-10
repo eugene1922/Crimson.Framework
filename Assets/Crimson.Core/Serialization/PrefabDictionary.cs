@@ -61,8 +61,16 @@ namespace Crimson.Core.Serialization
 #if !UNITY_EDITOR
             var target = items.First(s => s.name == gameObject.name);
 #else
-            var source = UnityEditor.PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject);
-            target = source == null ? items.First(s => s.name == gameObject.name) : items.First(s => s.asset == source);
+            var isEmptyScene = string.IsNullOrEmpty(gameObject.scene.name);
+            if (isEmptyScene)
+            {
+                target = items.First(s => s.name == gameObject.name);
+            }
+            else
+            {
+                var source = UnityEditor.PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject);
+                target = source == null ? items.First(s => s.name == gameObject.name) : items.First(s => s.asset == source);
+            }
 #endif
             return target.id;
         }

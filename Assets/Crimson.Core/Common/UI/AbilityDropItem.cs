@@ -20,7 +20,6 @@ namespace Assets.Crimson.Core.Common.UI
 
             Manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             Manager.AddBuffer<SpawnPrefabData>(entity);
-            Manager.AddComponentData(Entity, new SpawnBuffer());
         }
 
         public void Drop(InventoryItemData data)
@@ -43,6 +42,7 @@ namespace Assets.Crimson.Core.Common.UI
             };
             buffer.Add(spawnPrefabData);
             inventory.Remove(data);
+            Manager.AddComponentData(Entity, new SpawnBuffer());
         }
 
         public void Execute()
