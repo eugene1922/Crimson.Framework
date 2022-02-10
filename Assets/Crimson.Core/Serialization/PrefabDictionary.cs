@@ -57,7 +57,13 @@ namespace Crimson.Core.Serialization
 
         internal int GetKey(GameObject gameObject)
         {
+            PrefabItem target;
+#if !UNITY_EDITOR
             var target = items.First(s => s.name == gameObject.name);
+#else
+            var source = UnityEditor.PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject);
+            target = source == null ? items.First(s => s.name == gameObject.name) : items.First(s => s.asset == source);
+#endif
             return target.id;
         }
 

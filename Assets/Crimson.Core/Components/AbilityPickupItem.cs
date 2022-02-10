@@ -47,7 +47,10 @@ namespace Assets.Crimson.Core.Components
 
         private void OnValidate()
         {
-            //Setup();
+            if (ItemData.ID == default)
+            {
+                Setup();
+            }
         }
 
         [Button]

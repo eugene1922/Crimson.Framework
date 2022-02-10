@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 
 namespace Assets.Crimson.Core.Components
 {
     [Serializable]
     public struct InventoryItemData
     {
-        public int ID;
+        [ReadOnly] public int ID;
     }
 }
