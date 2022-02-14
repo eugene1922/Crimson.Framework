@@ -18,7 +18,7 @@ namespace Crimson.Core.Systems
         {
             _playerQuery = GetEntityQuery(
                 ComponentType.ReadOnly<AbilityActorPlayer>(),
-                ComponentType.ReadWrite<PerksSelectionAvailableData>(),
+                ComponentType.ReadWrite<PerksSelectionAvailableTag>(),
                 ComponentType.ReadOnly<UserInputData>());
 
             _uiAvailablePerksPanelQuery = GetEntityQuery(
@@ -46,7 +46,7 @@ namespace Crimson.Core.Systems
                             if ((_panelActor == null) || (_list == null) || (_panelActor.Spawner != actorPlayer.Actor)) return;
                             
                             _list.Execute();
-                            PostUpdateCommands.RemoveComponent<PerksSelectionAvailableData>(playerEntity);
+                            PostUpdateCommands.RemoveComponent<PerksSelectionAvailableTag>(playerEntity);
                         });
                 
             

@@ -48,7 +48,7 @@ namespace Crimson.Core.AI
 
             if (Time.timeSinceLevelLoad < ACTION_DELAY * Random.value) return 0f;
 
-            if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<DeadActorData>(entity)) return 0f;
+            if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<DeadActorTag>(entity)) return 0f;
 
             if (CustomInput == null)
             {

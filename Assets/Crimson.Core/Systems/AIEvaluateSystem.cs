@@ -21,14 +21,14 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<AIInputData>(),
                 ComponentType.ReadOnly<Transform>(),
                 ComponentType.ReadOnly<AbilityAIInput>(),
-                ComponentType.Exclude<DeadActorData>(),
-                ComponentType.Exclude<DestructionPendingData>(),
+                ComponentType.Exclude<DeadActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>(),
                 ComponentType.Exclude<SetupAIData>(),
                 ComponentType.Exclude<NetworkInputData>());
             _queryTargets = GetEntityQuery(
                 ComponentType.ReadOnly<Transform>(),
-                ComponentType.Exclude<DeadActorData>(),
-                ComponentType.Exclude<DestructionPendingData>(),
+                ComponentType.Exclude<DeadActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>(),
                 ComponentType.Exclude<UIReceiverData>());
         }
 

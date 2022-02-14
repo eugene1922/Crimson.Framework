@@ -19,8 +19,8 @@ namespace Crimson.Core.Systems
                 var abilityOwner = dstManager.GetComponentObject<AbilityActorPlayer>(damageData.AbilityOwnerEntity);
 
                 if (dstManager.HasComponent<AbilityActorPlayer>(damageData.TargetEntity) &&
-                    !dstManager.HasComponent<DeadActorData>(damageData.TargetEntity) &&
-                    !dstManager.HasComponent<DestructionPendingData>(damageData.TargetEntity))
+                    !dstManager.HasComponent<DeadActorTag>(damageData.TargetEntity) &&
+                    !dstManager.HasComponent<DestructionPendingTag>(damageData.TargetEntity))
                 {
                     var target = dstManager.GetComponentObject<AbilityActorPlayer>(damageData.TargetEntity);
 
@@ -28,7 +28,7 @@ namespace Crimson.Core.Systems
                     {
                         target.UpdateHealthData((int) -damageData.DamageValue);
                         abilityOwner.UpdateTotalDamageData((int) damageData.DamageValue);
-                        dstManager.AddComponent<DamagedActorData>(damageData.TargetEntity);
+                        dstManager.AddComponent<DamagedActorTag>(damageData.TargetEntity);
                     }
 
                     if (!target.IsAlive)

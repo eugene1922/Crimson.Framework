@@ -26,7 +26,7 @@ namespace Crimson.Core.Systems
 
                     if (ReferenceEquals(follow.Actor.Spawner.GameObject, null))
                     {
-                        World.EntityManager.AddComponent<ImmediateActorDestructionData>(follow.Actor.ActorEntity);
+                        World.EntityManager.AddComponent<ImmediateDestructionActorTag>(follow.Actor.ActorEntity);
                         return;
                     }
                     

@@ -102,7 +102,7 @@ namespace Crimson.Core.Systems
                             resp.actionButton.onClick.AddListener(() =>
                             {
                                 state.respawnPanel.SetActive(false);
-                                dstManager.RemoveComponent<DeadActorData>(state.userPlayer.Actor.ActorEntity);
+                                dstManager.RemoveComponent<DeadActorTag>(state.userPlayer.Actor.ActorEntity);
                                 state.userPlayer.UpdateHealthData(state.userPlayer.MaxHealth);
                                 var a = state.userPlayer.Actor.GameObject.GetComponent<Animator>();
                                 a.SetBool("Dead", false);

@@ -21,7 +21,7 @@ namespace Crimson.Core.Systems
                 ComponentType.Exclude<ActorNoFollowTargetMovementData>(),
                 ComponentType.ReadOnly<Rigidbody>(),
                 ComponentType.Exclude<StopMovementData>(),
-                ComponentType.Exclude<DeadActorData>());
+                ComponentType.Exclude<DeadActorTag>());
         }
 
         protected override void OnUpdate()

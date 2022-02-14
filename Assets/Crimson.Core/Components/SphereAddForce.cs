@@ -53,7 +53,7 @@ namespace Crimson.Core.Components
 
         private void AddForceTo(IActor targetActor)
         {
-            _dstManager.AddComponent<AdditionalForceActorData>(targetActor.ActorEntity);
+            _dstManager.AddComponent<AdditionalForceActorTag>(targetActor.ActorEntity);
             _dstManager.AddComponentData(targetActor.ActorEntity, new ExplosionForceData
             {
                 Force = Force,

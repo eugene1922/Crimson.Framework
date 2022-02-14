@@ -228,7 +228,7 @@ namespace Crimson.Core.Systems
 
                     if (destroyAfterActions)
                     {
-                        PostUpdateCommands.AddComponent<ImmediateActorDestructionData>(entity);
+                        PostUpdateCommands.AddComponent<ImmediateDestructionActorTag>(entity);
                     }
 
                     for (var i = abilityCollision.ExistentCollisions.Count - 1; i >= 0; i--)

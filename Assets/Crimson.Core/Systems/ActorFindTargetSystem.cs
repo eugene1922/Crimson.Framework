@@ -22,23 +22,23 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<ActorFollowMovementData>(),
                 ComponentType.ReadWrite<ActorNoFollowTargetMovementData>(),
                 ComponentType.ReadOnly<AbilityFollowMovement>(),
-                ComponentType.Exclude<DeadActorData>());
+                ComponentType.Exclude<DeadActorTag>());
 
             _queryFollowRotation = GetEntityQuery(
                 ComponentType.ReadOnly<ActorFollowRotationData>(),
                 ComponentType.ReadWrite<ActorNoFollowTargetRotationData>(),
                 ComponentType.ReadOnly<AbilityFollowRotation>(),
-                ComponentType.Exclude<DeadActorData>());
+                ComponentType.Exclude<DeadActorTag>());
 
             _queryAutoAim = GetEntityQuery(
                 ComponentType.ReadOnly<FindAutoAimTargetData>(),
                 ComponentType.ReadOnly<Actor>(),
-                ComponentType.Exclude<DeadActorData>());
+                ComponentType.Exclude<DeadActorTag>());
 
             _newAutoAimQuery = GetEntityQuery(
                 ComponentType.ReadOnly<AutoAimTargetData>(),
                 ComponentType.ReadOnly<Actor>(),
-                ComponentType.Exclude<DeadActorData>());
+                ComponentType.Exclude<DeadActorTag>());
         }
 
         protected override void OnUpdate()
@@ -194,7 +194,7 @@ namespace Crimson.Core.Systems
             switch (followTarget)
             {
                 case TargetType.ComponentName:
-                    Entities.WithAll<ActorData>().WithNone<DeadActorData, DestructionPendingData>().ForEach(
+                    Entities.WithAll<ActorData>().WithNone<DeadActorTag, DestructionPendingTag>().ForEach(
                         (Entity entity, Transform obj) =>
                         {
                             targets.AddRange(from component in obj.gameObject.GetComponents<IComponentName>()
@@ -204,7 +204,7 @@ namespace Crimson.Core.Systems
                     );
                     break;
                 case TargetType.ChooseByTag:
-                    Entities.WithAll<ActorData>().WithNone<DeadActorData, DestructionPendingData>().ForEach(
+                    Entities.WithAll<ActorData>().WithNone<DeadActorTag, DestructionPendingTag>().ForEach(
                         (Entity entity, Transform obj) =>
                         {
                             if (obj.tag.Equals(tag, StringComparison.Ordinal)) targets.Add(obj);

@@ -19,8 +19,8 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<AIInputData>(),
                 ComponentType.ReadOnly<AbilityAIInput>(),
                 ComponentType.ReadOnly<Transform>(),
-                ComponentType.Exclude<DeadActorData>(),
-                ComponentType.Exclude<DestructionPendingData>(),
+                ComponentType.Exclude<DeadActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>(),
                 ComponentType.Exclude<EvaluateAIData>(),
                 ComponentType.Exclude<NetworkInputData>());
         }

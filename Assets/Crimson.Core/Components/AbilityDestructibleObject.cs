@@ -45,7 +45,7 @@ namespace Crimson.Core.Components
 
             if (currentStrengthValue > 0) return;
 
-            _dstManager.AddComponent<ImmediateActorDestructionData>(Actor.ActorEntity);
+            _dstManager.AddComponent<ImmediateDestructionActorTag>(Actor.ActorEntity);
         }
 
         public void Execute()

@@ -19,22 +19,22 @@ namespace Crimson.Core.Systems
         {
             _deadUserQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
                 ComponentType.ReadOnly<UserInputData>(),
-                ComponentType.ReadWrite<DeadActorData>(),
-                ComponentType.Exclude<ImmediateActorDestructionData>(),
-                ComponentType.Exclude<DestructionPendingData>());
+                ComponentType.ReadWrite<DeadActorTag>(),
+                ComponentType.Exclude<ImmediateDestructionActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>());
             
             _deadUserUiQuery = GetEntityQuery(ComponentType.ReadOnly<Actor>(),
                 ComponentType.ReadOnly<UIRespawnScreenView>());
             
             _destructionActorByTimerQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
-                ComponentType.ReadWrite<DeadActorData>(),
-                ComponentType.Exclude<ImmediateActorDestructionData>(),
-                ComponentType.Exclude<DestructionPendingData>());
+                ComponentType.ReadWrite<DeadActorTag>(),
+                ComponentType.Exclude<ImmediateDestructionActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>());
 
-            _immediateActorDestructionTransformQuery = GetEntityQuery(ComponentType.ReadOnly<ImmediateActorDestructionData>(), 
+            _immediateActorDestructionTransformQuery = GetEntityQuery(ComponentType.ReadOnly<ImmediateDestructionActorTag>(), 
                 ComponentType.ReadOnly<Transform>());
             
-            _immediateActorDestructionRectTransformQuery = GetEntityQuery(ComponentType.ReadOnly<ImmediateActorDestructionData>(), 
+            _immediateActorDestructionRectTransformQuery = GetEntityQuery(ComponentType.ReadOnly<ImmediateDestructionActorTag>(), 
                 ComponentType.ReadOnly<RectTransform>());
         }
 
@@ -66,8 +66,8 @@ namespace Crimson.Core.Systems
                     
                     actorPlayer.StartDeathTimer();
 
-                    dstManager.AddComponent<DestructionPendingData>(entity);
-                    PostUpdateCommands.RemoveComponent<DeadActorData>(entity);
+                    dstManager.AddComponent<DestructionPendingTag>(entity);
+                    PostUpdateCommands.RemoveComponent<DeadActorTag>(entity);
                 }
             );
 

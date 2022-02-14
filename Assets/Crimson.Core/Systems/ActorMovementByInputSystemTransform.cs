@@ -20,7 +20,7 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<ActorMovementData>(),
                 ComponentType.Exclude<Rigidbody>(),
                 ComponentType.Exclude<StopMovementData>(),
-                ComponentType.Exclude<DeadActorData>());
+                ComponentType.Exclude<DeadActorTag>());
         }
 
         protected override void OnUpdate()

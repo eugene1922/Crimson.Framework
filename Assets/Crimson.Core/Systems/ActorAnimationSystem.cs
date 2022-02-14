@@ -28,22 +28,22 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<Animator>());
 
             _deadActorsQuery = GetEntityQuery(
-                ComponentType.ReadOnly<DeadActorData>(),
+                ComponentType.ReadOnly<DeadActorTag>(),
                 ComponentType.ReadWrite<ActorDeathAnimData>(),
                 ComponentType.ReadOnly<Animator>());
 
             _strafeActorsQuery = GetEntityQuery(
-                ComponentType.ReadOnly<StrafeActorData>(),
+                ComponentType.ReadOnly<StrafeActorTag>(),
                 ComponentType.ReadWrite<ActorStafeAnimData>(),
                 ComponentType.ReadOnly<Animator>());
 
             _forceActorsQuery = GetEntityQuery(
-                ComponentType.ReadOnly<AdditionalForceActorData>(),
+                ComponentType.ReadOnly<AdditionalForceActorTag>(),
                 ComponentType.ReadWrite<ActorForceAnimData>(),
                 ComponentType.ReadOnly<Animator>());
 
             _damagedActorsQuery = GetEntityQuery(
-                ComponentType.ReadWrite<DamagedActorData>(),
+                ComponentType.ReadWrite<DamagedActorTag>(),
                 ComponentType.ReadOnly<ActorTakeDamageAnimData>(),
                 ComponentType.ReadOnly<Animator>());
 
@@ -103,7 +103,7 @@ namespace Crimson.Core.Systems
                     {
                         Debug.LogError("[DEATH ANIMATION SYSTEM] No Animator found!");
 
-                        dstManager.AddComponent<ImmediateActorDestructionData>(entity);
+                        dstManager.AddComponent<ImmediateDestructionActorTag>(entity);
                         return;
                     }
 
@@ -111,7 +111,7 @@ namespace Crimson.Core.Systems
                     {
                         Debug.LogError("[DEATH ANIMATION SYSTEM] Some hash(es) not found, check your Actor Death Component Settings!");
 
-                        dstManager.AddComponent<ImmediateActorDestructionData>(entity);
+                        dstManager.AddComponent<ImmediateDestructionActorTag>(entity);
                         return;
                     }
 
@@ -158,7 +158,7 @@ namespace Crimson.Core.Systems
                 });
 
             Entities.With(_damagedActorsQuery).ForEach(
-                (Entity entity, Animator animator, ref ActorTakeDamageAnimData animation, ref DamagedActorData damagedActorData) =>
+                (Entity entity, Animator animator, ref ActorTakeDamageAnimData animation, ref DamagedActorTag damagedActorData) =>
                 {
                     if (animator == null)
                     {
@@ -173,7 +173,7 @@ namespace Crimson.Core.Systems
                     }
 
                     animator.SetTrigger(animation.AnimHash);
-                    dstManager.RemoveComponent<DamagedActorData>(entity);
+                    dstManager.RemoveComponent<DamagedActorTag>(entity);
                 });
 
             Entities.With(_aimingAnimationQuery).ForEach(

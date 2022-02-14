@@ -125,7 +125,7 @@ namespace Assets.Crimson.Core.Components.Perks
                 return;
             }
 
-            _dstManager.AddComponent<StrafeActorData>(Actor.ActorEntity);
+            _dstManager.AddComponent<StrafeActorTag>(Actor.ActorEntity);
 
             _previousVelocity = targetRigidbody.velocity;
             var dashVector = -1 * _target.GameObject.transform.forward;

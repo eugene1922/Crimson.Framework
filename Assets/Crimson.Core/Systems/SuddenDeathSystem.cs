@@ -75,7 +75,7 @@ namespace Crimson.Core.Systems
             var playerList = new List<Actor>();
 
             Entities.WithAll<ActorData, PlayerInputData, Actor>()
-                .WithNone<DeadActorData, DestructionPendingData>().ForEach(
+                .WithNone<DeadActorTag, DestructionPendingTag>().ForEach(
                     (Entity entity, Actor actorPlayer, Transform playerTransform) =>
                     {
                         var distancesq = math.distancesq(playerTransform.position, centerOfZone);

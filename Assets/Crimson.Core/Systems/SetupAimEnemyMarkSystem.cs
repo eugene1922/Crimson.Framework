@@ -51,8 +51,8 @@ namespace Crimson.Core.Systems
                     if (ReferenceEquals(markActor.Spawner, null)) return;
 
                     var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                    var spawnerAlive = !dstManager.HasComponent<DeadActorData>(markActor.Spawner.ActorEntity) &&
-                                       !dstManager.HasComponent<DestructionPendingData>(markActor.Spawner.ActorEntity);
+                    var spawnerAlive = !dstManager.HasComponent<DeadActorTag>(markActor.Spawner.ActorEntity) &&
+                                       !dstManager.HasComponent<DestructionPendingTag>(markActor.Spawner.ActorEntity);
 
                     var spawnerPlayerActor =
                         markActor.Spawner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as
@@ -101,7 +101,7 @@ namespace Crimson.Core.Systems
             var enemyDict = new Dictionary<Transform, float>();
 
             Entities.WithAll<ActorData, PlayerInputData>()
-                .WithNone<DeadActorData, DestructionPendingData, UserInputData>().ForEach(
+                .WithNone<DeadActorTag, DestructionPendingTag, UserInputData>().ForEach(
                     (Entity entity, Transform enemyTransform) =>
                     {
                         var distancesq = math.distancesq(playerPosition, enemyTransform.position);

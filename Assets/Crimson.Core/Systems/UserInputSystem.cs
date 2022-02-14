@@ -173,7 +173,7 @@ namespace Crimson.Core.Systems
 
             public void Execute(Entity entity, int index, ref PlayerInputData inputData, ref UserInputData u)
             {
-                if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent(entity, typeof(DeadActorData))) return;
+                if (World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent(entity, typeof(DeadActorTag))) return;
                 inputData.Move = MoveInput;
                 inputData.Mouse = MouseInput;
                 inputData.Look = LookInput;

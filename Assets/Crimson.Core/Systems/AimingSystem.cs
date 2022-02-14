@@ -22,14 +22,14 @@ namespace Crimson.Core.Systems
             _aimingQuery = GetEntityQuery(
                 ComponentType.ReadWrite<PlayerInputData>(),
                 ComponentType.ReadOnly<AbilityPlayerInput>(),
-                ComponentType.Exclude<DeadActorData>(),
-                ComponentType.Exclude<DestructionPendingData>());
+                ComponentType.Exclude<DeadActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>());
 
             _evaluateActionQuery = GetEntityQuery(
                 ComponentType.ReadOnly<PlayerInputData>(),
                 ComponentType.ReadOnly<AbilityPlayerInput>(),
-                ComponentType.Exclude<DeadActorData>(),
-                ComponentType.Exclude<DestructionPendingData>());
+                ComponentType.Exclude<DeadActorTag>(),
+                ComponentType.Exclude<DestructionPendingTag>());
 
             _projectileToDestroyQuery = GetEntityQuery(
                 ComponentType.ReadOnly<DestroyProjectileInPointData>(),
