@@ -1,24 +1,25 @@
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
+using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
-namespace Crimson.Core.Components.Perks
+namespace Assets.Crimson.Core.Components.Perks
 {
 	[HideMonoScript]
-	public class PerkModifyMaxHealth : MonoBehaviour, IActorAbility, IPerkAbility, ILevelable
+	public class PerkModifyEnergy : MonoBehaviour, IActorAbility, IPerkAbility, ILevelable
 	{
-		[LevelableValue] public int healthModifier = 15;
-
 		[Space]
 		[TitleGroup("Levelable properties")]
 		[OnValueChanged("SetLevelableProperty")]
 		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
 		[ReadOnly] public int perkLevel = 1;
+		[LevelableValue] public int Value = 15;
 		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 		public IActor Actor { get; set; }
 
@@ -46,6 +47,8 @@ namespace Crimson.Core.Components.Perks
 			set => levelablePropertiesList = value;
 		}
 
+		List<LevelableProperties> ILevelable.LevelablePropertiesList { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
@@ -53,11 +56,11 @@ namespace Crimson.Core.Components.Perks
 
 		public void Apply(IActor target)
 		{
-			var copy = target.GameObject.CopyComponent(this) as PerkModifyMaxHealth;
+			var copy = target.GameObject.CopyComponent(this) as PerkModifyEnergy;
 
 			if (copy == null)
 			{
-				Debug.LogError("[PERK MODIFY MAX HEALTH] Error copying perk to Actor!");
+				Debug.LogError("[PERK MODIFY ENERGY] Error copying perk to Actor!");
 				return;
 			}
 
@@ -74,14 +77,14 @@ namespace Crimson.Core.Components.Perks
 
 		public void Execute()
 		{
-			var player = GetComponent<AbilityActorPlayer>();
+			var abilityActorPlayer = Actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-			if (player == null)
+			if (abilityActorPlayer == null)
 			{
 				return;
 			}
 
-			player.UpdateMaxHealthData(healthModifier);
+			abilityActorPlayer.UpdateEnergy(Value);
 		}
 
 		public void Remove()
@@ -89,7 +92,7 @@ namespace Crimson.Core.Components.Perks
 			var player = GetComponent<AbilityActorPlayer>();
 			if (player != null)
 			{
-				player.UpdateMaxHealthData(-healthModifier);
+				player.UpdateEnergy(-Value);
 			}
 
 			Destroy(this);

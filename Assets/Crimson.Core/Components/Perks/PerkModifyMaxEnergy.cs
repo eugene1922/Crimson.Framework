@@ -1,4 +1,5 @@
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
+using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -6,19 +7,17 @@ using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
-namespace Crimson.Core.Components.Perks
+namespace Assets.Crimson.Core.Components.Perks
 {
 	[HideMonoScript]
-	public class PerkModifyMaxHealth : MonoBehaviour, IActorAbility, IPerkAbility, ILevelable
+	public class PerkModifyMaxEnergy : MonoBehaviour, IActorAbility, IPerkAbility, ILevelable
 	{
-		[LevelableValue] public int healthModifier = 15;
-
-		[Space]
 		[TitleGroup("Levelable properties")]
 		[OnValueChanged("SetLevelableProperty")]
 		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
 		[ReadOnly] public int perkLevel = 1;
+		[LevelableValue] public int Value = 15;
 		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 		public IActor Actor { get; set; }
 
@@ -53,11 +52,11 @@ namespace Crimson.Core.Components.Perks
 
 		public void Apply(IActor target)
 		{
-			var copy = target.GameObject.CopyComponent(this) as PerkModifyMaxHealth;
+			var copy = target.GameObject.CopyComponent(this) as PerkModifyMaxEnergy;
 
 			if (copy == null)
 			{
-				Debug.LogError("[PERK MODIFY MAX HEALTH] Error copying perk to Actor!");
+				Debug.LogError("[PERK MODIFY MAX ENERGY] Error copying perk to Actor!");
 				return;
 			}
 
@@ -81,7 +80,7 @@ namespace Crimson.Core.Components.Perks
 				return;
 			}
 
-			player.UpdateMaxHealthData(healthModifier);
+			player.UpdateMaxEnergy(Value);
 		}
 
 		public void Remove()
@@ -89,7 +88,7 @@ namespace Crimson.Core.Components.Perks
 			var player = GetComponent<AbilityActorPlayer>();
 			if (player != null)
 			{
-				player.UpdateMaxHealthData(-healthModifier);
+				player.UpdateMaxEnergy(-Value);
 			}
 
 			Destroy(this);

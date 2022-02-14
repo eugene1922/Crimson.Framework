@@ -58,7 +58,7 @@ namespace Crimson.Core.Components
             var abilityActorPlayer = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
             if (abilityActorPlayer == null) return;
-            abilityActorPlayer.UpdateHealthData((int)healthModifier);
+            abilityActorPlayer.UpdateHealth((int)healthModifier);
         }
 
         public void Apply(IActor target)
@@ -78,7 +78,7 @@ namespace Crimson.Core.Components
         public void Remove()
         {
             var player = GetComponent<AbilityActorPlayer>();
-            player.UpdateHealthData((int)-healthModifier);
+            player.UpdateHealth((int)-healthModifier);
 
             Destroy(this);
         }

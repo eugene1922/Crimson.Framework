@@ -56,10 +56,12 @@ namespace Crimson.Core.Components
 
 	public struct PlayerStateData : IComponentData
 	{
+		public int CurrentEnergy;
 		public int CurrentExperience;
 		public int CurrentHealth;
 		public int Level;
 		public int LevelUpRequiredExperience;
+		public int MaxEnergy;
 		public int MaxHealth;
 		public int TotalDamageApplied;
 	}
@@ -81,18 +83,23 @@ namespace Crimson.Core.Components
 
 		[NetworkSimData]
 		[ReadOnly]
+		[CastToUI(nameof(CurrentEnergy))]
+		public int CurrentEnergy;
+
+		[NetworkSimData]
+		[ReadOnly]
 		[CastToUI(nameof(CurrentExperience))]
 		public int CurrentExperience;
 
 		[NetworkSimData]
 		[ReadOnly]
-		[CastToUI("CurrentHealth")]
+		[CastToUI(nameof(CurrentHealth))]
 		[LevelableValue]
 		public int CurrentHealth;
 
 		[NetworkSimData]
 		[ReadOnly]
-		[CastToUI("CurrentLevel")]
+		[CastToUI(nameof(CurrentLevel))]
 		public int CurrentLevel = 1;
 
 		public DeadBehaviour deadActorBehaviour = new DeadBehaviour();
@@ -100,11 +107,17 @@ namespace Crimson.Core.Components
 		[ReadOnly]
 		public int deathCount;
 
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(Energy))]
+		[LevelableValue]
+		public float Energy;
+
 		[TitleGroup("UI channel info")]
 		[OnValueChanged(nameof(UpdateUIChannelInfo))]
 		public bool ExplicitUIChannel;
 
-		[ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour healAction;
 
 		[HideInInspector] public bool isEnabled = true;
@@ -125,6 +138,12 @@ namespace Crimson.Core.Components
 		public int LevelUpRequiredExperience;
 
 		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(MaxEnergy))]
+		[LevelableValue]
+		public int MaxEnergy;
+
+		[NetworkSimData]
 		[CastToUI(nameof(MaxHealth))]
 		[LevelableValue]
 		public int MaxHealth;
@@ -143,15 +162,25 @@ namespace Crimson.Core.Components
 		public int TotalDamageApplied;
 
 		[ShowIf(nameof(ExplicitUIChannel))] public int UIChannelID = 0;
+
 		[HideInInspector] public List<IActor> UIReceiverList = new List<IActor>();
+
 		private EntityManager _dstManager;
+
 		private Entity _entity;
+
 		private Dictionary<string, FieldInfo> _fieldsInfo = new Dictionary<string, FieldInfo>();
+
 		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+
 		private IActorAbility _maxDistanceWeapon;
+
 		private TimerComponent _timer;
+
 		public IActor Actor { get; set; }
+
 		[ShowInInspector] public int ActorId => Actor?.ActorId ?? 0;
+
 		public bool IsAlive => CurrentHealth > 0;
 
 		public int Level
@@ -327,8 +356,9 @@ namespace Crimson.Core.Components
 
 		public void StartDeathTimer()
 		{
-			foreach (var element in UIReceiverList)
+			for (var i = 0; i < UIReceiverList.Count; i++)
 			{
+				var element = UIReceiverList[i];
 				_dstManager.AddComponent<ImmediateDestructionActorTag>(element.ActorEntity);
 			}
 
@@ -338,6 +368,25 @@ namespace Crimson.Core.Components
 		public void StartTimer()
 		{
 			Timer.TimedActions.AddAction(FinishTimer, corpseCleanupDelay);
+		}
+
+		public void UpdateEnergy(int delta)
+		{
+			if (!IsAlive)
+			{
+				return;
+			}
+
+			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+			var newValue = playerState.CurrentEnergy + delta;
+
+			playerState.CurrentEnergy = Mathf.Clamp(newValue, 0, playerState.MaxEnergy);
+
+			CurrentEnergy = playerState.CurrentEnergy;
+
+			_dstManager.SetComponentData(_entity, playerState);
+
+			UpdateUIData(nameof(CurrentEnergy));
 		}
 
 		public void UpdateExperienceData(int delta)
@@ -363,20 +412,18 @@ namespace Crimson.Core.Components
 			UpdateUIData(nameof(CurrentExperience));
 		}
 
-		public void UpdateHealthData(int delta)
+		public void UpdateHealth(int delta)
 		{
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
-
 			if (delta == 0)
 			{
 				_dstManager.AddComponent<DeadActorTag>(Actor.ActorEntity);
 				return;
 			}
 
-			var newHealth = playerState.CurrentHealth + delta;
+			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+			var newValue = playerState.CurrentHealth + delta;
 
-			playerState.CurrentHealth =
-				newHealth < 0 ? 0 : newHealth > playerState.MaxHealth ? playerState.MaxHealth : newHealth;
+			playerState.CurrentHealth = Mathf.Clamp(newValue, 0, playerState.MaxHealth);
 
 			CurrentHealth = playerState.CurrentHealth;
 
@@ -396,22 +443,47 @@ namespace Crimson.Core.Components
 			}
 		}
 
-		public void UpdateMaxHealthData(int delta)
+		public void UpdateMaxEnergy(int delta)
 		{
+			if (!IsAlive)
+			{
+				return;
+			}
+
 			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
 
+			MaxEnergy += delta;
+			CurrentEnergy = Mathf.Clamp(CurrentEnergy, 0, MaxEnergy);
+			playerState.CurrentEnergy = CurrentEnergy;
+			playerState.MaxEnergy = MaxEnergy;
+
+			_dstManager.SetComponentData(_entity, playerState);
+
+			UpdateUIData(nameof(CurrentEnergy));
+			UpdateUIData(nameof(MaxEnergy));
+		}
+
+		public void UpdateMaxHealthData(int delta)
+		{
 			if (delta == 0)
 			{
 				return;
 			}
 
-			playerState.MaxHealth += delta;
+			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+
+			MaxHealth += delta;
 			MaxHealth = playerState.MaxHealth;
+
+			CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+
+			playerState.CurrentHealth = CurrentHealth;
+			playerState.MaxHealth = MaxHealth;
 
 			_dstManager.SetComponentData(_entity, playerState);
 
-			UpdateUIData(nameof(MaxHealth));
 			UpdateUIData(nameof(CurrentHealth));
+			UpdateUIData(nameof(MaxHealth));
 		}
 
 		public void UpdateTotalDamageData(int delta)
@@ -428,6 +500,11 @@ namespace Crimson.Core.Components
 			_dstManager.SetComponentData(_entity, playerState);
 
 			UpdateUIData(nameof(TotalDamageApplied));
+		}
+
+		internal void UpdateMaxEnergy(float value)
+		{
+			throw new System.NotImplementedException();
 		}
 
 		private bool MustBeAbility(MonoBehaviour a)

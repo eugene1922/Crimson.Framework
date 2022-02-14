@@ -26,7 +26,7 @@ namespace Crimson.Core.Systems
 
                     if (target.IsAlive)
                     {
-                        target.UpdateHealthData((int) -damageData.DamageValue);
+                        target.UpdateHealth((int) -damageData.DamageValue);
                         abilityOwner.UpdateTotalDamageData((int) damageData.DamageValue);
                         dstManager.AddComponent<DamagedActorTag>(damageData.TargetEntity);
                     }

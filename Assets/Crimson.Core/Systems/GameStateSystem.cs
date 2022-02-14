@@ -103,7 +103,7 @@ namespace Crimson.Core.Systems
                             {
                                 state.respawnPanel.SetActive(false);
                                 dstManager.RemoveComponent<DeadActorTag>(state.userPlayer.Actor.ActorEntity);
-                                state.userPlayer.UpdateHealthData(state.userPlayer.MaxHealth);
+                                state.userPlayer.UpdateHealth(state.userPlayer.MaxHealth);
                                 var a = state.userPlayer.Actor.GameObject.GetComponent<Animator>();
                                 a.SetBool("Dead", false);
                             });
