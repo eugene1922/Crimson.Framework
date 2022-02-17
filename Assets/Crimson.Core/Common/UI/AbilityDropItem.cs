@@ -1,52 +1,65 @@
 ﻿using Assets.Crimson.Core.Components;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Common.UI
 {
-    public class AbilityDropItem : MonoBehaviour, IActorAbility
-    {
-        public IActor Actor { get; set; }
-        public Entity Entity { get; private set; }
-        public EntityManager Manager { get; private set; }
+	public class AbilityDropItem : MonoBehaviour, IActorAbility
+	{
+		public Vector3 Offset;
+		public IActor Actor { get; set; }
+		public List<InventoryItemData> DropItems { get; private set; }
+		public Vector3 DropPosition => _ownerTransform.TransformPoint(Offset);
+		public Quaternion DropRotation => Quaternion.LookRotation(DropPosition - _ownerTransform.position);
+		public Entity Entity { get; private set; }
+		public EntityManager Manager { get; private set; }
 
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-            Entity = entity;
-            Actor = actor;
+		private Transform _ownerTransform => Actor.Owner.GameObject.transform;
 
-            Manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            Manager.AddBuffer<SpawnPrefabData>(entity);
-        }
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Entity = entity;
+			Actor = actor;
 
-        public void Drop(InventoryItemData data)
-        {
-            var ability = Actor.Owner.Abilities.FirstOrDefault(s => s is AbilityInventory);
+			Manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			DropItems = new List<InventoryItemData>();
+		}
 
-            if (ability == null)
-            {
-                return;
-            }
-            var inventory = ability as AbilityInventory;
+		public void Drop(InventoryItemData data)
+		{
+			var ability = Actor.Owner.Abilities.FirstOrDefault(s => s is AbilityInventory);
 
-            var buffer = Manager.GetBuffer<SpawnPrefabData>(Entity);
+			if (ability == null)
+			{
+				return;
+			}
+			var inventory = ability as AbilityInventory;
+			inventory.Remove(data);
 
-            var spawnPrefabData = new SpawnPrefabData()
-            {
-                ID = data.ID,
-                Position = inventory.DropPoint,
-                Rotation = Quaternion.LookRotation(inventory.DropPoint - inventory.transform.position)
-            };
-            buffer.Add(spawnPrefabData);
-            inventory.Remove(data);
-            Manager.AddComponentData(Entity, new SpawnBuffer());
-        }
+			DropItems.Add(data);
+			if (!Manager.HasComponent<NeedDropItemTag>(Entity))
+			{
+				Manager.AddComponentData(Entity, new NeedDropItemTag());
+			}
+		}
 
-        public void Execute()
-        {
-        }
-    }
+		public void Execute()
+		{
+		}
+
+#if UNITY_EDITOR
+
+		private void OnDrawGizmosSelected()
+		{
+			Gizmos.color = Color.green;
+			Gizmos.matrix = transform.localToWorldMatrix;
+			Gizmos.DrawWireSphere(Offset, 0.5f);
+		}
+
+#endif
+	}
 }

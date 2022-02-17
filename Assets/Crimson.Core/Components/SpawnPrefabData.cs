@@ -1,12 +1,12 @@
 ﻿using Unity.Entities;
-using UnityEngine;
+using Unity.Mathematics;
 
 namespace Assets.Crimson.Core.Components
 {
-    public struct SpawnPrefabData : IBufferElementData
-    {
-        public int ID;
-        public Vector3 Position;
-        public Quaternion Rotation;
-    }
+	public struct SpawnPrefabData
+	{
+		public int ID;
+		public float3 Position;
+		public quaternion Rotation;
+	}
 }

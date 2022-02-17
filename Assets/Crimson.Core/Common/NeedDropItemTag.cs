@@ -2,7 +2,7 @@
 
 namespace Assets.Crimson.Core.Common
 {
-    public struct SpawnBuffer : IComponentData
-    {
-    }
+	public struct NeedDropItemTag : IComponentData
+	{
+	}
 }
