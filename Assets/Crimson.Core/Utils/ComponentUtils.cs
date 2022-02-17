@@ -11,214 +11,213 @@ using Object = System.Object;
 
 namespace Crimson.Core.Utils
 {
-    public static class ComponentUtils
-    {
-        const BindingFlags Flags = BindingFlags.Public | BindingFlags.Instance |
-                                   BindingFlags.Default | BindingFlags.DeclaredOnly;
+	public static class ComponentUtils
+	{
+		private const BindingFlags Flags = BindingFlags.Public | BindingFlags.Instance |
+								   BindingFlags.Default | BindingFlags.DeclaredOnly;
 
-        public static T GetCopyOf<T>(this Component comp, T other) where T : Component
-        {
-            Type type = comp.GetType();
-            if (type != other.GetType()) return null; // type mis-match
-            PropertyInfo[] pInfos = type.GetProperties(Flags);
-            foreach (var pInfo in pInfos)
-            {
-                if (!pInfo.CanWrite) continue;
+		public static AIBehaviourSetting CopyBehaviour(this AIBehaviourSetting s)
+		{
+			return new AIBehaviourSetting
+			{
+				Actor = s.Actor,
+				additionalMode = s.additionalMode,
+				basePriority = s.basePriority,
+				behaviourType = s.behaviourType,
+				curveMaxSample = s.curveMaxSample,
+				curveMinSample = s.curveMinSample,
+				executeCustomInput = s.executeCustomInput,
+				priorityCurve = s.priorityCurve,
+				targetFilterMode = s.targetFilterMode,
+				targetFilterTags = s.targetFilterTags
+			};
+		}
 
-                try
-                {
-                    pInfo.SetValue(comp, pInfo.GetValue(other, null), null);
-                }
-                catch
-                {
-                    Debug.LogError($"[COMPONENT REPLICATOR] Error while copying properties. {comp.GetType().Name}");
-                } // In case of NotImplementedException being thrown. For some reason specifying that exception didn't seem to catch it, so I didn't catch anything specific.
-            }
+		public static Component CopyComponent(this GameObject go, Component sample)
+		{
+			return go.AddComponent(sample.GetType()).GetCopyOf(sample);
+		}
 
-            FieldInfo[] fInfos = type.GetFields(Flags);
-            foreach (var fInfo in fInfos)
-            {
-                fInfo.SetValue(comp, fInfo.GetValue(other));
-            }
+		public static List<Component> CopyComponentsWithLinks(this GameObject dest, params Component[] components)
+		{
+			var newComponents = new List<Component>();
+			var copies = new Dictionary<Component, Component>();
 
-            return comp as T;
-        }
+			Component component;
+			for (var i = 0; i < components.Length; i++)
+			{
+				component = components[i];
+				var newComponent = CopyComponent(dest, component);
+				copies.Add(component, newComponent);
+				newComponents.Add(newComponent);
+			}
 
-        public static AIBehaviourSetting CopyBehaviour(this AIBehaviourSetting s)
-        {
-            return new AIBehaviourSetting
-            {
-                Actor = s.Actor,
-                additionalMode = s.additionalMode,
-                basePriority = s.basePriority,
-                behaviourType = s.behaviourType,
-                curveMaxSample = s.curveMaxSample,
-                curveMinSample = s.curveMinSample,
-                executeCustomInput = s.executeCustomInput,
-                priorityCurve = s.priorityCurve,
-                targetFilterMode = s.targetFilterMode,
-                targetFilterTags = s.targetFilterTags
-            };
-        }
+			foreach (var newComponent in newComponents)
+			{
+				UpdateComponentFields(newComponent, copies);
+			}
 
-        public static Component CopyComponent(this GameObject go, Component sample)
-        {
-            return go.AddComponent(sample.GetType()).GetCopyOf(sample);
-        }
+			return newComponents;
+		}
 
-        public static List<Component> CopyComponentsWithLinks(this GameObject dest, params Component[] components)
-        {
-            var newComponents = new List<Component>();
-            var copies = new Dictionary<Component, Component>();
+		public static Entity Damage(this Entity targetEntity, Entity ownerEntity, float damage)
+		{
+			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-            Component component;
-            for (var i = 0; i < components.Length; i++)
-            {
-                component = components[i];
-                var newComponent = CopyComponent(dest, component);
-                copies.Add(component, newComponent);
-                newComponents.Add(newComponent);
-            }
+			var damageInstance = dstManager.CreateEntity();
+			//TODO: Figure out, why this crashes builds
+			//dstManager.SetName(damageInstance, "damage instance");
+			dstManager.AddComponentData(damageInstance, new DamageData
+			{
+				DamageValue = damage,
+				AbilityOwnerEntity = ownerEntity,
+				TargetEntity = targetEntity
+			});
 
-            foreach (var newComponent in newComponents)
-            {
-                UpdateComponentFields(newComponent, copies);
-            }
+			return damageInstance;
+		}
 
-            return newComponents;
-        }
+		public static T GetCopyOf<T>(this Component comp, T other) where T : Component
+		{
+			Type type = comp.GetType();
+			if (type != other.GetType()) return null; // type mis-match
+			PropertyInfo[] pInfos = type.GetProperties(Flags);
+			foreach (var pInfo in pInfos)
+			{
+				if (!pInfo.CanWrite) continue;
 
-        static Object UpdateComponentFields(Object obj, Dictionary<Component, Component> copies)
-        {
-            var type = obj.GetType();
+				try
+				{
+					pInfo.SetValue(comp, pInfo.GetValue(other, null), null);
+				}
+				catch (Exception ex)
+				{
+					Debug.LogError($"[COMPONENT REPLICATOR] Error while copying properties. {comp.GetType().Name}");
+					Debug.LogException(ex);
+				} // In case of NotImplementedException being thrown. For some reason specifying that exception didn't seem to catch it, so I didn't catch anything specific.
+			}
 
-            var fInfos = type.GetFields(Flags);
+			FieldInfo[] fInfos = type.GetFields(Flags);
+			foreach (var fInfo in fInfos)
+			{
+				fInfo.SetValue(comp, fInfo.GetValue(other));
+			}
 
-            foreach (var fInfo in fInfos)
-            {
-                var tempObj = fInfo.GetValue(obj);
-                var resultObj = UpdateObject(tempObj, copies);
+			return comp as T;
+		}
 
-                fInfo.SetValue(obj, resultObj);
-            }
+		public static List<FieldInfo> GetFieldsWithAttributeInfo<T>(this Component component) where T : Attribute
+		{
+			const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance |
+									   BindingFlags.Default | BindingFlags.DeclaredOnly;
 
-            return obj;
-        }
+			var fields = component.GetType().GetFields(flags).ToList();
 
-        static Object UpdateObject(Object obj, Dictionary<Component, Component> copies)
-        {
-            var newObj = obj;
+			return (from field in fields
+					let attrs = field.GetCustomAttributes(true)
+					from attr in attrs
+					where attr is T
+					select field).ToList();
+		}
 
-            if (newObj is MonoBehaviour)
-            {
-                var tempComponent = (Component)newObj;
+		public static bool IsNullOrEmpty(this IEnumerable source)
+		{
+			if (source != null)
+			{
+				foreach (object obj in source)
+				{
+					return false;
+				}
+			}
 
-                if (copies.ContainsKey(tempComponent))
-                {
-                    return copies[tempComponent] as MonoBehaviour;
-                }
-            }
-            else if (newObj != null && (newObj.GetType().IsClass || !newObj.GetType().IsPrimitive))
-            {
-                if (newObj is IEnumerable enumerable)
-                {
-                    if (enumerable.IsNullOrEmpty()) return enumerable;
+			return true;
+		}
 
-                    if (enumerable is IList tempList)
-                    {
-                        if (tempList.Count == 0) return enumerable;
+		private static Object UpdateComponentFields(Object obj, Dictionary<Component, Component> copies)
+		{
+			var type = obj.GetType();
 
-                        IList outEnumerable;
-                        if (enumerable.GetType().IsArray)
-                        {
-                            outEnumerable = tempList is MonoBehaviour[]? new MonoBehaviour[tempList.Count]
-                                : (IList)Array.CreateInstance(tempList.GetType().GenericTypeArguments[0], tempList.Count);
-                        }
-                        else
-                        {
-                            outEnumerable = tempList is List<MonoBehaviour>
-                                ? new List<MonoBehaviour>()
-                                : (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(tempList.GetType().GenericTypeArguments[0]));
-                        }
+			var fInfos = type.GetFields(Flags);
 
-                        for (var i = 0; i < tempList.Count; i++)
-                        {
-                            var outObj = UpdateObject(tempList[i], copies);
+			foreach (var fInfo in fInfos)
+			{
+				var tempObj = fInfo.GetValue(obj);
+				var resultObj = UpdateObject(tempObj, copies);
 
-                            if (outEnumerable.IsFixedSize)
-                            {
-                                outEnumerable[i] = outObj;
-                            }
-                            else
-                            {
-                                outEnumerable.Add(outObj);
-                            }
-                        }
+				fInfo.SetValue(obj, resultObj);
+			}
 
-                        return outEnumerable;
-                    }
+			return obj;
+		}
 
-                    foreach (var o in enumerable)
-                    {
-                        UpdateComponentFields(o, copies);
-                    }
+		private static Object UpdateObject(Object obj, Dictionary<Component, Component> copies)
+		{
+			var newObj = obj;
 
-                    return enumerable;
-                }
-                else
-                {
-                    newObj = UpdateComponentFields(newObj, copies);
-                    return newObj;
-                }
-            }
+			if (newObj is MonoBehaviour)
+			{
+				var tempComponent = (Component)newObj;
 
-            return newObj;
-        }
+				if (copies.ContainsKey(tempComponent))
+				{
+					return copies[tempComponent] as MonoBehaviour;
+				}
+			}
+			else if (newObj != null && (newObj.GetType().IsClass || !newObj.GetType().IsPrimitive))
+			{
+				if (newObj is IEnumerable enumerable)
+				{
+					if (enumerable.IsNullOrEmpty()) return enumerable;
 
-        public static bool IsNullOrEmpty(this IEnumerable source)
-        {
-            if (source != null)
-            {
-                foreach (object obj in source)
-                {
-                    return false;
-                }
-            }
+					if (enumerable is IList tempList)
+					{
+						if (tempList.Count == 0) return enumerable;
 
-            return true;
-        }
+						IList outEnumerable;
+						if (enumerable.GetType().IsArray)
+						{
+							outEnumerable = tempList is MonoBehaviour[]? new MonoBehaviour[tempList.Count]
+								: (IList)Array.CreateInstance(tempList.GetType().GenericTypeArguments[0], tempList.Count);
+						}
+						else
+						{
+							outEnumerable = tempList is List<MonoBehaviour>
+								? new List<MonoBehaviour>()
+								: (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(tempList.GetType().GenericTypeArguments[0]));
+						}
 
-        public static Entity Damage(this Entity targetEntity, Entity ownerEntity, float damage)
-        {
-            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+						for (var i = 0; i < tempList.Count; i++)
+						{
+							var outObj = UpdateObject(tempList[i], copies);
 
-            var damageInstance = dstManager.CreateEntity();
-            //TODO: Figure out, why this crashes builds
-            //dstManager.SetName(damageInstance, "damage instance");
-            dstManager.AddComponentData(damageInstance, new DamageData
-            {
-                DamageValue = damage,
-                AbilityOwnerEntity = ownerEntity,
-                TargetEntity = targetEntity
-            });
+							if (outEnumerable.IsFixedSize)
+							{
+								outEnumerable[i] = outObj;
+							}
+							else
+							{
+								outEnumerable.Add(outObj);
+							}
+						}
 
-            return damageInstance;
-        }
+						return outEnumerable;
+					}
 
-        public static List<FieldInfo> GetFieldsWithAttributeInfo<T>(this Component component) where T : Attribute
-        {
-            const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance |
-                                       BindingFlags.Default | BindingFlags.DeclaredOnly;
+					foreach (var o in enumerable)
+					{
+						UpdateComponentFields(o, copies);
+					}
 
-            var fields = component.GetType().GetFields(flags).ToList();
+					return enumerable;
+				}
+				else
+				{
+					newObj = UpdateComponentFields(newObj, copies);
+					return newObj;
+				}
+			}
 
-            return (from field in fields
-                    let attrs = field.GetCustomAttributes(true)
-                    from attr in attrs
-                    where attr is T
-                    select field).ToList();
-        }
-
-
-    }
+			return newObj;
+		}
+	}
 }

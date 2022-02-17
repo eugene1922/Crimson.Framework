@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Stats;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
@@ -31,87 +32,27 @@ namespace Crimson.Core.Components
 		public int AnimHash;
 	}
 
-	public struct AdditionalForceActorTag : IComponentData
-	{ }
-
-	public struct DamagedActorTag : IComponentData
-	{
-	}
-
-	public struct DeadActorTag : IComponentData
-	{
-	}
-
-	public struct DestructionPendingTag : IComponentData
-	{
-	}
-
-	public struct ImmediateDestructionActorTag : IComponentData
-	{
-	}
-
-	public struct PerksSelectionAvailableTag : IComponentData
-	{
-	}
-
-	public struct PlayerStateData : IComponentData
-	{
-		public int CurrentEnergy;
-		public int CurrentExperience;
-		public int CurrentHealth;
-		public int Level;
-		public int LevelUpRequiredExperience;
-		public int MaxEnergy;
-		public int MaxHealth;
-		public int TotalDamageApplied;
-	}
-
-	public struct StrafeActorTag : IComponentData
-	{ }
-
 	[HideMonoScript]
 	[NetworkSimObject]
 	public class AbilityActorPlayer : MonoBehaviour, IActorAbility, ITimer, ILevelable
 	{
+		[SerializeField] public PlayerStatsData _initStats;
+
 		[TitleGroup("Player animation properties")]
 		public ActorDeathAnimProperties actorDeathAnimProperties;
 
 		public ActorTakeDamageAnimProperties actorTakeDamageAnimProperties;
+
 		[HideInInspector] public bool actorToUI;
+
 		public ActorGeneralAnimProperties additionalForceAnim;
+
 		public float corpseCleanupDelay;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(CurrentEnergy))]
-		public int CurrentEnergy;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(CurrentExperience))]
-		public int CurrentExperience;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(CurrentHealth))]
-		[LevelableValue]
-		public int CurrentHealth;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(CurrentLevel))]
-		public int CurrentLevel = 1;
 
 		public DeadBehaviour deadActorBehaviour = new DeadBehaviour();
 
 		[ReadOnly]
 		public int deathCount;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(Energy))]
-		[LevelableValue]
-		public float Energy;
 
 		[TitleGroup("UI channel info")]
 		[OnValueChanged(nameof(UpdateUIChannelInfo))]
@@ -131,35 +72,7 @@ namespace Crimson.Core.Components
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour levelUpAction;
 
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(LevelUpRequiredExperience))]
-		[LevelableValue]
-		public int LevelUpRequiredExperience;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(MaxEnergy))]
-		[LevelableValue]
-		public int MaxEnergy;
-
-		[NetworkSimData]
-		[CastToUI(nameof(MaxHealth))]
-		[LevelableValue]
-		public int MaxHealth;
-
-		[TitleGroup("Player data")]
-		[NetworkSimData]
-		[CastToUI("Name")]
-		[InfoBox("32 symbols max")]
-		public string PlayerName;
-
 		public string targetMarkActorComponentName;
-
-		[NetworkSimData]
-		[ReadOnly]
-		[CastToUI(nameof(TotalDamageApplied))]
-		public int TotalDamageApplied;
 
 		[ShowIf(nameof(ExplicitUIChannel))] public int UIChannelID = 0;
 
@@ -169,24 +82,49 @@ namespace Crimson.Core.Components
 
 		private Entity _entity;
 
-		private Dictionary<string, FieldInfo> _fieldsInfo = new Dictionary<string, FieldInfo>();
-
 		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
-
 		private IActorAbility _maxDistanceWeapon;
-
+		private Dictionary<string, MemberInfo> _membersInfo = new Dictionary<string, MemberInfo>();
+		private string _playerName;
+		private PlayerStatsData _stats;
 		private TimerComponent _timer;
 
 		public IActor Actor { get; set; }
 
 		[ShowInInspector] public int ActorId => Actor?.ActorId ?? 0;
 
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(CurrentEnergy))]
+		public int CurrentEnergy => _stats.Energy.Current;
+
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(CurrentExperience))]
+		public int CurrentExperience => _stats.CurrentExperience;
+
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(CurrentHealth))]
+		[LevelableValue]
+		public int CurrentHealth => _stats.Health.Current;
+
 		public bool IsAlive => CurrentHealth > 0;
 
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(Level))]
 		public int Level
 		{
-			get => CurrentLevel;
-			set => CurrentLevel = value;
+			get => _stats.Level;
+			set
+			{
+				_stats.Level = value;
+				if (_entity != Entity.Null)
+				{
+					_dstManager.SetComponentData(_entity, _stats);
+				}
+			}
 		}
 
 		public List<FieldInfo> LevelablePropertiesInfoCached
@@ -207,6 +145,12 @@ namespace Crimson.Core.Components
 			set => levelablePropertiesList = value;
 		}
 
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(LevelUpRequiredExperience))]
+		[LevelableValue]
+		public int LevelUpRequiredExperience => _stats.LevelUpRequiredExperience;
+
 		public IActorAbility MaxDistanceWeapon
 		{
 			get
@@ -219,6 +163,51 @@ namespace Crimson.Core.Components
 			}
 		}
 
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(MaxEnergy))]
+		[LevelableValue]
+		public int MaxEnergy => _stats.Energy.MaxLimit;
+
+		[NetworkSimData]
+		[CastToUI(nameof(MaxHealth))]
+		[LevelableValue]
+		public int MaxHealth => _stats.Health.MaxLimit;
+
+		[TitleGroup("Player data")]
+		[NetworkSimData]
+		[CastToUI("Name")]
+		[InfoBox("32 symbols max")]
+		public string PlayerName
+		{
+			get => _playerName;
+			set
+			{
+				_playerName = value;
+				UpdateUIData("Name");
+			}
+		}
+
+		public PlayerStatsData Stats
+		{
+			get => _stats;
+			set
+			{
+				_stats = value;
+				if (_entity != Entity.Null)
+				{
+					if (_dstManager.HasComponent<PlayerStatsData>(_entity))
+					{
+						_dstManager.SetComponentData(_entity, value);
+					}
+					else
+					{
+						_dstManager.AddComponentData(_entity, value);
+					}
+				}
+			}
+		}
+
 		public TimerComponent Timer => _timer = this.gameObject.GetOrCreateTimer(_timer);
 
 		public bool TimerActive
@@ -227,31 +216,27 @@ namespace Crimson.Core.Components
 			set => isEnabled = value;
 		}
 
+		[NetworkSimData]
+		[ReadOnly]
+		[CastToUI(nameof(TotalDamageApplied))]
+		public int TotalDamageApplied => _stats.TotalDamageApplied;
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			_entity = entity;
 			Actor = actor;
 			Actor.Owner = Actor;
 
-			_fieldsInfo = new Dictionary<string, FieldInfo>();
+			_membersInfo = new Dictionary<string, MemberInfo>();
 
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-			CurrentHealth = MaxHealth;
-			LevelUpRequiredExperience = GameMeta.PointsToLevelUp;
+			var stats = _initStats;
+			stats.LevelUpRequiredExperience = GameMeta.PointsToLevelUp;
+			Stats = stats;
 
 			UIReceiverList = new List<IActor>();
 
-			_dstManager.AddComponentData(entity, new PlayerStateData
-			{
-				CurrentHealth = CurrentHealth,
-				MaxHealth = MaxHealth,
-				CurrentExperience = CurrentExperience,
-				LevelUpRequiredExperience = LevelUpRequiredExperience,
-				Level = CurrentLevel
-			});
-
-			_timer = this.gameObject.GetOrCreateTimer(_timer);
+			_timer = gameObject.GetOrCreateTimer(_timer);
 
 			_dstManager.AddComponent<TimerData>(entity);
 
@@ -279,10 +264,10 @@ namespace Crimson.Core.Components
 				});
 			}
 
-			foreach (var fieldInfo in typeof(AbilityActorPlayer).GetFields()
+			foreach (var info in typeof(AbilityActorPlayer).GetMembers()
 				.Where(field => field.GetCustomAttribute<CastToUI>(false) != null))
 			{
-				_fieldsInfo.Add(fieldInfo.Name, fieldInfo);
+				_membersInfo.Add(info.Name, info);
 			}
 
 			var playerInput = GetComponent<AbilityPlayerInput>();
@@ -308,15 +293,15 @@ namespace Crimson.Core.Components
 
 		public void ForceUpdatePlayerUIData()
 		{
-			foreach (var field in _fieldsInfo)
+			foreach (var memberInfo in _membersInfo)
 			{
-				UpdateUIData(field.Key);
+				UpdateUIData(memberInfo.Key);
 			}
 		}
 
 		public void LevelUp()
 		{
-			CurrentExperience -= LevelUpRequiredExperience;
+			_stats.CurrentExperience -= LevelUpRequiredExperience;
 
 			if (levelUpAction != null)
 			{
@@ -326,9 +311,6 @@ namespace Crimson.Core.Components
 			if (actorToUI)
 			{
 				SetLevel(Level + 1);
-				var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
-				playerState.Level = Level;
-				_dstManager.SetComponentData(_entity, playerState);
 				_dstManager.AddComponent<PerksSelectionAvailableTag>(_entity);
 			}
 			else
@@ -336,7 +318,8 @@ namespace Crimson.Core.Components
 				Level++;
 			}
 
-			UpdateUIData(nameof(CurrentLevel));
+			UpdateUIData(nameof(Level));
+			UpdateUIData(nameof(CurrentExperience));
 		}
 
 		public void SetLevel(int level)
@@ -377,36 +360,31 @@ namespace Crimson.Core.Components
 				return;
 			}
 
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
-			var newValue = playerState.CurrentEnergy + delta;
+			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
 
-			playerState.CurrentEnergy = Mathf.Clamp(newValue, 0, playerState.MaxEnergy);
+			playerStats.Energy.Current += delta;
 
-			CurrentEnergy = playerState.CurrentEnergy;
-
-			_dstManager.SetComponentData(_entity, playerState);
-
+			Stats = playerStats;
 			UpdateUIData(nameof(CurrentEnergy));
 		}
 
-		public void UpdateExperienceData(int delta)
+		public void UpdateExperience(int delta)
 		{
 			if (delta == 0)
 			{
 				return;
 			}
 
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
 
-			CurrentExperience += delta;
-
+			_stats.CurrentExperience += delta;
 			while (CurrentExperience >= LevelUpRequiredExperience)
 			{
 				LevelUp();
 			}
 
-			playerState.CurrentExperience = CurrentExperience;
-			_dstManager.SetComponentData(_entity, playerState);
+			playerStats.CurrentExperience = CurrentExperience;
+			Stats = playerStats;
 
 			UpdateUIData(nameof(LevelUpRequiredExperience));
 			UpdateUIData(nameof(CurrentExperience));
@@ -420,14 +398,11 @@ namespace Crimson.Core.Components
 				return;
 			}
 
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
-			var newValue = playerState.CurrentHealth + delta;
+			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
 
-			playerState.CurrentHealth = Mathf.Clamp(newValue, 0, playerState.MaxHealth);
+			playerStats.Health.Current += delta;
 
-			CurrentHealth = playerState.CurrentHealth;
-
-			_dstManager.SetComponentData(_entity, playerState);
+			Stats = playerStats;
 
 			if (delta > 0 && healAction != null)
 			{
@@ -450,14 +425,12 @@ namespace Crimson.Core.Components
 				return;
 			}
 
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
 
-			MaxEnergy += delta;
-			CurrentEnergy = Mathf.Clamp(CurrentEnergy, 0, MaxEnergy);
-			playerState.CurrentEnergy = CurrentEnergy;
-			playerState.MaxEnergy = MaxEnergy;
+			playerStats.Energy.MaxLimit += delta;
+			playerStats.Energy.Current += delta;
 
-			_dstManager.SetComponentData(_entity, playerState);
+			_dstManager.SetComponentData(_entity, playerStats);
 
 			UpdateUIData(nameof(CurrentEnergy));
 			UpdateUIData(nameof(MaxEnergy));
@@ -470,19 +443,12 @@ namespace Crimson.Core.Components
 				return;
 			}
 
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
 
-			MaxHealth += delta;
-			MaxHealth = playerState.MaxHealth;
+			playerStats.Health.MaxLimit += delta;
 
-			CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+			Stats = playerStats;
 
-			playerState.CurrentHealth = CurrentHealth;
-			playerState.MaxHealth = MaxHealth;
-
-			_dstManager.SetComponentData(_entity, playerState);
-
-			UpdateUIData(nameof(CurrentHealth));
 			UpdateUIData(nameof(MaxHealth));
 		}
 
@@ -493,12 +459,11 @@ namespace Crimson.Core.Components
 				return;
 			}
 
-			var playerState = _dstManager.GetComponentData<PlayerStateData>(_entity);
+			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
 
-			playerState.TotalDamageApplied += delta;
-			TotalDamageApplied = playerState.TotalDamageApplied;
-			_dstManager.SetComponentData(_entity, playerState);
+			playerStats.TotalDamageApplied += delta;
 
+			Stats = playerStats;
 			UpdateUIData(nameof(TotalDamageApplied));
 		}
 
@@ -520,13 +485,27 @@ namespace Crimson.Core.Components
 			}
 		}
 
-		private void UpdateUIData(string fieldName)
+		private void UpdateUIData(string memberName)
 		{
-			foreach (var receiver in UIReceiverList.Where(receiver => _fieldsInfo.ContainsKey(fieldName)))
+			foreach (UIReceiver receiver in UIReceiverList.Where(receiver => _membersInfo.ContainsKey(memberName) && receiver is UIReceiver))
 			{
-				((UIReceiver)receiver)?.UpdateUIElementsData(
-					_fieldsInfo[fieldName].GetCustomAttribute<CastToUI>(false).FieldId,
-					_fieldsInfo[fieldName].GetValue(this));
+				var info = _membersInfo[memberName];
+				object value;
+				switch (info.MemberType)
+				{
+					case MemberTypes.Field:
+						value = ((FieldInfo)info).GetValue(this);
+						break;
+
+					case MemberTypes.Property:
+						value = ((PropertyInfo)info).GetValue(this);
+						break;
+
+					default:
+						continue;
+				}
+				var id = info.GetCustomAttribute<CastToUI>(false).FieldId;
+				receiver.UpdateUIElementsData(id, value);
 			}
 		}
 	}

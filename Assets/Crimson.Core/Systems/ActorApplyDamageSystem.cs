@@ -33,7 +33,7 @@ namespace Crimson.Core.Systems
 
                     if (!target.IsAlive)
                     {
-                        abilityOwner.UpdateExperienceData(GameMeta.PointsForKill);
+                        abilityOwner.UpdateExperience(GameMeta.PointsForKill);
                     }
                 }
 

@@ -462,16 +462,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efab744802f94701bdb0b235b75b3f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: Ally
-  MaxHealth: 200
-  CurrentHealth: 0
-  CurrentExperience: 0
-  LevelUpRequiredExperience: 0
-  CurrentLevel: 1
-  TotalDamageApplied: 0
-  deathCount: 0
-  levelUpAction: {fileID: 4420840340207979218}
-  healAction: {fileID: 6535472178547726346}
+  _initStats:
+    CurrentExperience: 0
+    Energy:
+      _current: 100
+      _maxLimit: 100
+      _minLimit: 0
+    Health:
+      _current: 100
+      _maxLimit: 100
+      _minLimit: 0
+    Level: 1
+    LevelUpRequiredExperience: 100
+    TotalDamageApplied: 0
+  actorDeathAnimProperties:
+    HasActorDeathAnimation: 1
+    ActorDeathAnimationName: Dead
+  actorTakeDamageAnimProperties:
+    HasActorTakeDamageAnimation: 0
+    ActorTakeDamageName: 
+  actorToUI: 0
+  additionalForceAnim:
+    AnimationName: 
+    HasAnimation: 0
+  corpseCleanupDelay: 5
   deadActorBehaviour:
     RemoveTag: 0
     RemoveRigidbody: 1
@@ -479,16 +493,10 @@ MonoBehaviour:
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
-  corpseCleanupDelay: 5
-  targetMarkActorComponentName: Aim Enemy Mark
-  actorDeathAnimProperties:
-    HasActorDeathAnimation: 1
-    ActorDeathAnimationName: Dead
-  actorTakeDamageAnimProperties:
-    HasActorTakeDamageAnimation: 0
-    ActorTakeDamageName: 
+  deathCount: 0
   ExplicitUIChannel: 0
-  UIChannelID: 0
+  healAction: {fileID: 6535472178547726346}
+  isEnabled: 1
   levelablePropertiesList:
   - propertyName: MaxHealth
     levelablePropertyAction: 1
@@ -509,8 +517,9 @@ MonoBehaviour:
     levelablePropertiesInfo:
     - MaxHealth
     - LevelUpRequiredExperience
-  isEnabled: 1
-  actorToUI: 0
+  levelUpAction: {fileID: 4420840340207979218}
+  targetMarkActorComponentName: Aim Enemy Mark
+  UIChannelID: 0
 --- !u!114 &166878072425561186
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -56,29 +56,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 1
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 3
-    parentOfSpawns: 2
     actorWithComponentName: UIRoot
-    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
+    parentOfSpawns: 2
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
     randomSeed: 0
+    rotationOfSpawns: 3
+    runSpawnActionsOnObjects: 1
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 2
+    useChildrenObjects: 0
+    x: 1
+    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -94,11 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSource: 3
-  compensateCameraRotation: 1
-  minMoveInputMagnitude: 0
   AIBehaviour: {fileID: -3678600976375478634}
+  compensateCameraRotation: 1
   customBindings: []
+  inputSource: 3
+  minMoveInputMagnitude: 0
 --- !u!114 &-3678600976375478634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,16 +246,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efab744802f94701bdb0b235b75b3f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: Player5
-  MaxHealth: 100
-  CurrentHealth: 0
-  CurrentExperience: 0
-  LevelUpRequiredExperience: 0
-  CurrentLevel: 1
-  TotalDamageApplied: 0
-  deathCount: 0
-  levelUpAction: {fileID: 0}
-  healAction: {fileID: 0}
+  _initStats:
+    CurrentExperience: 0
+    Energy:
+      _current: 100
+      _maxLimit: 100
+      _minLimit: 0
+    Health:
+      _current: 100
+      _maxLimit: 100
+      _minLimit: 0
+    Level: 1
+    LevelUpRequiredExperience: 100
+    TotalDamageApplied: 0
+  actorDeathAnimProperties:
+    HasActorDeathAnimation: 1
+    ActorDeathAnimationName: Dead
+  actorTakeDamageAnimProperties:
+    HasActorTakeDamageAnimation: 1
+    ActorTakeDamageName: Hit
+  actorToUI: 0
+  additionalForceAnim:
+    AnimationName: 
+    HasAnimation: 0
+  corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
     RemoveRigidbody: 1
@@ -258,16 +277,10 @@ MonoBehaviour:
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
-  corpseCleanupDelay: 2
-  targetMarkActorComponentName: Aim Enemy Mark
-  actorDeathAnimProperties:
-    HasActorDeathAnimation: 1
-    ActorDeathAnimationName: Dead
-  actorTakeDamageAnimProperties:
-    HasActorTakeDamageAnimation: 1
-    ActorTakeDamageName: Hit
+  deathCount: 0
   ExplicitUIChannel: 0
-  UIChannelID: 0
+  healAction: {fileID: 0}
+  isEnabled: 1
   levelablePropertiesList:
   - propertyName: MaxHealth
     levelablePropertyAction: 1
@@ -288,8 +301,9 @@ MonoBehaviour:
     levelablePropertiesInfo:
     - MaxHealth
     - LevelUpRequiredExperience
-  isEnabled: 1
-  actorToUI: 0
+  levelUpAction: {fileID: 0}
+  targetMarkActorComponentName: Aim Enemy Mark
+  UIChannelID: 0
 --- !u!114 &1577040857332071559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,9 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkLevel: 1
   damageValue: 15
   levelablePropertiesList: []
+  perkLevel: 1
 --- !u!114 &-1660482124880579045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,29 +470,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
     actorWithComponentName: 
-    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 1
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 1791930136598424, guid: f1a1c60952b571c4fa485b0139d4a6b7, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
     randomSeed: 0
+    rotationOfSpawns: 0
+    runSpawnActionsOnObjects: 0
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 2
+    useChildrenObjects: 0
+    x: 0
+    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0

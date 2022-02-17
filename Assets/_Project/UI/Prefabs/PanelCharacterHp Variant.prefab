@@ -366,9 +366,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
-  UIBehaviours: []
   customButtons: []
   explicitUIChannel: 0
+  UIBehaviours: []
   UIChannelID: 0
 --- !u!114 &786138817058575914
 MonoBehaviour:
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 3962007294566890517}
   - component: {fileID: 2273460338277178911}
   - component: {fileID: 8985773237599748835}
-  - component: {fileID: 1988687522427570800}
+  - component: {fileID: 2840615452672494270}
   m_Layer: 5
   m_Name: NumberLvl
   m_TagString: Untagged
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1988687522427570800
+--- !u!114 &2840615452672494270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldText: 
-  associatedFieldID: CurrentLevel
+  associatedFieldID: Level
 --- !u!1 &5009018607109835618
 GameObject:
   m_ObjectHideFlags: 0

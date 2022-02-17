@@ -346,6 +346,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efab744802f94701bdb0b235b75b3f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initStats:
+    CurrentExperience: 0
+    Energy:
+      _current: 100
+      _maxLimit: 100
+      _minLimit: 0
+    Health:
+      _current: 100
+      _maxLimit: 100
+      _minLimit: 0
+    Level: 1
+    LevelUpRequiredExperience: 100
+    TotalDamageApplied: 0
   actorDeathAnimProperties:
     HasActorDeathAnimation: 1
     ActorDeathAnimationName: Dead
@@ -357,9 +370,6 @@ MonoBehaviour:
     AnimationName: 
     HasAnimation: 0
   corpseCleanupDelay: 5
-  CurrentExperience: 0
-  CurrentHealth: 0
-  CurrentLevel: 1
   deadActorBehaviour:
     RemoveTag: 0
     RemoveRigidbody: 1
@@ -392,11 +402,7 @@ MonoBehaviour:
     - MaxHealth
     - LevelUpRequiredExperience
   levelUpAction: {fileID: -8052119949386301436}
-  LevelUpRequiredExperience: 0
-  MaxHealth: 100
-  PlayerName: Player
   targetMarkActorComponentName: Aim Enemy Mark
-  TotalDamageApplied: 0
   UIChannelID: 0
 --- !u!114 &-5360728394872650663
 MonoBehaviour:
@@ -605,7 +611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryItems: []
-  Offset: {x: 0, y: 0, z: 3}
 --- !u!114 &4074231723351004181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b741deb7bf7a92e448a934c7bdc5395f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 5040436995964547475, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
   actions:
   - {fileID: -7126598297091492315}
-  _input: {fileID: 5040436995964547475, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}

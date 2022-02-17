@@ -15,7 +15,7 @@ namespace Crimson.Core.Systems
         {
             _newUIQuery = GetEntityQuery(
                 ComponentType.ReadOnly<UIReceiver>(),
-                ComponentType.ReadOnly<UIReceiverData>());
+                ComponentType.ReadOnly<UIReceiverTag>());
 
             _playerDataQuery = GetEntityQuery(
                 ComponentType.ReadOnly<AbilityActorPlayer>());
@@ -38,7 +38,7 @@ namespace Crimson.Core.Systems
 
                             if (uiReceiver.UIChannelID != actorPlayer.UIChannelID)
                             {
-                                PostUpdateCommands.RemoveComponent<UIReceiverData>(uiEntity);
+                                PostUpdateCommands.RemoveComponent<UIReceiverTag>(uiEntity);
                                 uiReceiver.gameObject.SetActive(false);
                                 return;
                             }

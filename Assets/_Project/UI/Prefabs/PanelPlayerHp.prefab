@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldText: 
-  associatedFieldID: CurrentLevel
+  associatedFieldID: Level
 --- !u!1 &2453647986418278907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,9 +1102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
-  UIBehaviours: []
   customButtons: []
   explicitUIChannel: 0
+  UIBehaviours: []
   UIChannelID: 0
 --- !u!114 &7330866262748886667
 MonoBehaviour:

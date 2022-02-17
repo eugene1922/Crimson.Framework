@@ -29,7 +29,7 @@ namespace Crimson.Core.Systems
                 ComponentType.ReadOnly<Transform>(),
                 ComponentType.Exclude<DeadActorTag>(),
                 ComponentType.Exclude<DestructionPendingTag>(),
-                ComponentType.Exclude<UIReceiverData>());
+                ComponentType.Exclude<UIReceiverTag>());
         }
 
         protected override void OnUpdate()
