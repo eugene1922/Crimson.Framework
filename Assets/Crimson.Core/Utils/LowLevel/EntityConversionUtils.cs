@@ -56,7 +56,7 @@
 //                     }, null)
 //                 ?.CreateDelegate(typeof(SetComponentObjectDelegate));*/
 //
-//         
+//
 //
 //         public static void ConvertAndInjectOriginal(GameObject root)
 //         {

@@ -1,65 +1,70 @@
 ﻿using System;
 using Unity.Entities;
-using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.OnScreen;
 
 namespace Crimson.Core.Common
 {
-    public class OnScreenCustomButton : OnScreenControl, IPointerDownHandler, IPointerUpHandler
-    {
-        [InputControl(layout = "Button")]
-        [SerializeField]
-        public string buttonControlPath;
+	public struct NotifyButtonActionExecutedData : IComponentData
+	{
+		public int ButtonIndex;
+	}
 
-        protected override string controlPathInternal
-        {
-            get => buttonControlPath;
-            set => buttonControlPath = value;
-        }
+	public class OnScreenCustomButton : OnScreenControl, IPointerDownHandler, IPointerUpHandler
+	{
+		[InputControl(layout = "Button")]
+		public string buttonControlPath;
 
-        private bool _repeatedInvokingOnHold = true;
+		private bool _repeatedInvokingOnHold = true;
 
-        public void SetupButton(bool repeatedInvokingOnHold)
-        {
-            _repeatedInvokingOnHold = true;// repeatedInvokingOnHold;
-        }
+		protected override string controlPathInternal
+		{
+			get => buttonControlPath;
+			set => buttonControlPath = value;
+		}
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if (eventData == null)
-                throw new ArgumentNullException(nameof(eventData));
+		public void ForceButtonRelease()
+		{
+			if (_repeatedInvokingOnHold)
+			{
+				return;
+			}
 
-            if (_repeatedInvokingOnHold)
-            {
-                SendValueToControl(1.0f);
-            }
-        }
+			SendValueToControl(0.0f);
+		}
 
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            if (eventData == null)
-                throw new ArgumentNullException(nameof(eventData));
+		public void OnPointerClick(PointerEventData eventData)
+		{
+			throw new NotImplementedException();
+		}
 
-            SendValueToControl(_repeatedInvokingOnHold ? 0.0f : 1.0f);
-        }
+		public void OnPointerDown(PointerEventData eventData)
+		{
+			if (eventData == null)
+			{
+				throw new ArgumentNullException(nameof(eventData));
+			}
 
-        public void ForceButtonRelease()
-        {
-            if (_repeatedInvokingOnHold) return;
+			if (_repeatedInvokingOnHold)
+			{
+				SendValueToControl(1.0f);
+			}
+		}
 
-            SendValueToControl(0.0f);
-        }
+		public void OnPointerUp(PointerEventData eventData)
+		{
+			if (eventData == null)
+			{
+				throw new ArgumentNullException(nameof(eventData));
+			}
 
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            throw new NotImplementedException();
-        }
-    }
+			SendValueToControl(_repeatedInvokingOnHold ? 0.0f : 1.0f);
+		}
 
-    public struct NotifyButtonActionExecutedData : IComponentData
-    {
-        public int ButtonIndex;
-    }
+		public void SetupButton(bool repeatedInvokingOnHold)
+		{
+			_repeatedInvokingOnHold = repeatedInvokingOnHold;
+		}
+	}
 }

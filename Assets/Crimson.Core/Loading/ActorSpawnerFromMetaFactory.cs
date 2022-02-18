@@ -1,8 +1,8 @@
 namespace Crimson.Core.Loading
 {
-    public sealed class ActorSpawnerFromMetaFactory : IActorSpawnerFromMetaFactory
-    {
-        /*
+	public sealed class ActorSpawnerFromMetaFactory : IActorSpawnerFromMetaFactory
+	{
+		/*
         private readonly IPrefabRepository _prefabRepository;
         private readonly IGameObjectRepository _gameObjectRepository;
         private readonly IConfigService _configService;
@@ -26,5 +26,5 @@ namespace Crimson.Core.Loading
         {
             return new LevelActorFromMeta(_prefabRepository, _gameObjectRepository, configService, matchPlayer);
         }*/
-    }
+	}
 }

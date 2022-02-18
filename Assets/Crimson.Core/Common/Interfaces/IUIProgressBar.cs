@@ -1,9 +1,9 @@
 ﻿namespace Crimson.Core.Common
 {
-    public interface IUIProgressBar : IUIElement
-    {
-        string MaxValueAssociatedID { get; }
+	public interface IUIProgressBar : IUIElement
+	{
+		string MaxValueAssociatedID { get; }
 
-        void SetMaxValue(object maxValue);
-    }
+		void SetMaxValue(object maxValue);
+	}
 }

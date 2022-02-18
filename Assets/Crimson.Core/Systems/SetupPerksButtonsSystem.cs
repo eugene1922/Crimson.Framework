@@ -1,66 +1,70 @@
-﻿using System.Linq;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
+using System.Linq;
 using Unity.Entities;
-using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
-    public class SetupPerksButtonsSystem : ComponentSystem
-    {
-        private EntityQuery _playerQuery;
-        private EntityQuery _uiAvailablePerksPanelQuery;
-        private EntityQuery _applyPresetPerksQuery;
-        private Actor _panelActor = null;
-        private UIPerkListAbility _list = null;
+	public class SetupPerksButtonsSystem : ComponentSystem
+	{
+		private EntityQuery _playerQuery;
+		private EntityQuery _uiAvailablePerksPanelQuery;
+		private EntityQuery _applyPresetPerksQuery;
+		private Actor _panelActor = null;
+		private UIPerkListAbility _list = null;
 
-        protected override void OnCreate()
-        {
-            _playerQuery = GetEntityQuery(
-                ComponentType.ReadOnly<AbilityActorPlayer>(),
-                ComponentType.ReadWrite<PerksSelectionAvailableTag>(),
-                ComponentType.ReadOnly<UserInputData>());
+		protected override void OnCreate()
+		{
+			_playerQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityActorPlayer>(),
+				ComponentType.ReadWrite<PerksSelectionAvailableTag>(),
+				ComponentType.ReadOnly<UserInputData>());
 
-            _uiAvailablePerksPanelQuery = GetEntityQuery(
-                ComponentType.ReadOnly<Actor>(),
-                ComponentType.ReadOnly<UIPerkListAbility>(),
-                ComponentType.ReadWrite<UIAvailablePerksPanelData>());
-            
-            _applyPresetPerksQuery = GetEntityQuery(
-                ComponentType.ReadOnly<AbilityActorPlayer>(),
-                ComponentType.ReadWrite<ApplyPresetPerksData>());
-        }
+			_uiAvailablePerksPanelQuery = GetEntityQuery(
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.ReadOnly<UIPerkListAbility>(),
+				ComponentType.ReadWrite<UIAvailablePerksPanelData>());
 
-        protected override void OnUpdate()
-        {
-                    Entities.With(_playerQuery).ForEach(
-                        (Entity playerEntity, AbilityActorPlayer actorPlayer) =>
-                        {
-                            Entities.With(_uiAvailablePerksPanelQuery).ForEach(
-                                (Entity panelEntity, Actor actor, UIPerkListAbility listAbility) =>
-                                {
-                                    _panelActor = actor;
-                                    _list = listAbility;
-                                });
-                            
-                            if ((_panelActor == null) || (_list == null) || (_panelActor.Spawner != actorPlayer.Actor)) return;
-                            
-                            _list.Execute();
-                            PostUpdateCommands.RemoveComponent<PerksSelectionAvailableTag>(playerEntity);
-                        });
-                
-            
-            Entities.With(_applyPresetPerksQuery).ForEach(
-                (Entity playerEntity, AbilityActorPlayer actorPlayer, ref ApplyPresetPerksData presetPerksData) =>
-                {
-                    if (!actorPlayer.UIReceiverList.Any()) return;
-                    
-                    var perksPresets = GameMeta.PresetPerksList.Select(p => p.GetComponent<IPerkUpgrade>()).ToList();
-                    
-                    perksPresets.ForEach(p => p.SpawnPerk(actorPlayer.Actor));
-                    
-                    PostUpdateCommands.RemoveComponent<ApplyPresetPerksData>(playerEntity);
-                });
-        }
-    }
+			_applyPresetPerksQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityActorPlayer>(),
+				ComponentType.ReadWrite<ApplyPresetPerksData>());
+		}
+
+		protected override void OnUpdate()
+		{
+			Entities.With(_playerQuery).ForEach(
+				(Entity playerEntity, AbilityActorPlayer actorPlayer) =>
+				{
+					Entities.With(_uiAvailablePerksPanelQuery).ForEach(
+						(Entity panelEntity, Actor actor, UIPerkListAbility listAbility) =>
+						{
+							_panelActor = actor;
+							_list = listAbility;
+						});
+
+					if ((_panelActor == null) || (_list == null) || (_panelActor.Spawner != actorPlayer.Actor))
+					{
+						return;
+					}
+
+					_list.Execute();
+					PostUpdateCommands.RemoveComponent<PerksSelectionAvailableTag>(playerEntity);
+				});
+
+			Entities.With(_applyPresetPerksQuery).ForEach(
+				(Entity playerEntity, AbilityActorPlayer actorPlayer, ref ApplyPresetPerksData presetPerksData) =>
+				{
+					if (!actorPlayer.UIReceiverList.Any())
+					{
+						return;
+					}
+
+					var perksPresets = GameMeta.PresetPerksList.Select(p => p.GetComponent<IPerkUpgrade>()).ToList();
+
+					perksPresets.ForEach(p => p.SpawnPerk(actorPlayer.Actor));
+
+					PostUpdateCommands.RemoveComponent<ApplyPresetPerksData>(playerEntity);
+				});
+		}
+	}
 }

@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using System;
+using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -10,85 +10,91 @@ using UnityEngine.AI;
 
 namespace Crimson.Core.AI
 {
-    [Serializable]
-    public class RunAwayBehaviour : IAIBehaviour
-    {
-        public string XAxis => "current health";
+	[Serializable]
+	public class RunAwayBehaviour : IAIBehaviour
+	{
+		public string XAxis => "current health";
 
-        public string[] AdditionalModes => new string[0];
+		public string[] AdditionalModes => new string[0];
 
-        public bool NeedCurve => true;
-        public bool NeedTarget => false;
-        public bool NeedActions => false;
+		public bool NeedCurve => true;
+		public bool NeedTarget => false;
+		public bool NeedActions => false;
 
-        private const float FINISH_ROAM_DISTSQ = 2f;
-        private const float PRIORITY_MULTIPLIER = 0.5f;
+		private const float FINISH_ROAM_DISTSQ = 2f;
+		private const float PRIORITY_MULTIPLIER = 0.5f;
 
-        private AIBehaviourSetting _behaviour = null;
-        private AbilityActorPlayer _player = null;
-        private Transform _transform = null;
-        private readonly NavMeshPath _path = new NavMeshPath();
-        
-        private int _currentWaypoint = 0;
+		private AIBehaviourSetting _behaviour = null;
+		private AbilityActorPlayer _player = null;
+		private Transform _transform = null;
+		private readonly NavMeshPath _path = new NavMeshPath();
 
-        public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
-        {
-            _behaviour = behaviour;
-            _transform = _behaviour.Actor.GameObject.transform;
-            _player = _behaviour.Actor.GameObject.GetComponent<AbilityActorPlayer>();
+		private int _currentWaypoint = 0;
 
-            if (_player == null) return 0f;
+		public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
+		{
+			_behaviour = behaviour;
+			_transform = _behaviour.Actor.GameObject.transform;
+			_player = _behaviour.Actor.GameObject.GetComponent<AbilityActorPlayer>();
 
-            var health = _player.CurrentHealth;
-            var sampleScale = behaviour.curveMaxSample - behaviour.curveMinSample;
-            var curveSample = math.clamp(
-                (health - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-            return behaviour.priorityCurve.Evaluate(curveSample) * PRIORITY_MULTIPLIER;
-        }
+			if (_player == null)
+			{
+				return 0f;
+			}
 
-        public bool SetUp(Entity entity, EntityManager dstManager)
-        {
-            Vector3 target;
-            float distSq;
+			var health = _player.CurrentHealth;
+			var sampleScale = behaviour.curveMaxSample - behaviour.curveMinSample;
+			var curveSample = math.clamp(
+				(health - behaviour.curveMinSample) / sampleScale, 0f, 1f);
+			return behaviour.priorityCurve.Evaluate(curveSample) * PRIORITY_MULTIPLIER;
+		}
 
-            _path.ClearCorners();
+		public bool SetUp(Entity entity, EntityManager dstManager)
+		{
+			Vector3 target;
+			float distSq;
 
-            _currentWaypoint = 1;
+			_path.ClearCorners();
 
-            do
-            {
-                target = NavMeshRandomPointUtil.GetRandomLocation();
-                distSq = math.distancesq(_transform.position, target);
-            } while (distSq < FINISH_ROAM_DISTSQ);
+			_currentWaypoint = 1;
 
-            var result = NavMesh.CalculatePath(_transform.position, target, NavMesh.AllAreas, _path);
+			do
+			{
+				target = NavMeshRandomPointUtil.GetRandomLocation();
+				distSq = math.distancesq(_transform.position, target);
+			} while (distSq < FINISH_ROAM_DISTSQ);
 
-            return result;
-        }
+			var result = NavMesh.CalculatePath(_transform.position, target, NavMesh.AllAreas, _path);
 
-        public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
-        {
-            if (_path.status == NavMeshPathStatus.PathInvalid) return false;
+			return result;
+		}
 
-            var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
+		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
+		{
+			if (_path.status == NavMeshPathStatus.PathInvalid)
+			{
+				return false;
+			}
 
-            if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
-            {
-                _currentWaypoint++;
-            }
+			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
 
-            if (_currentWaypoint >= _path.corners.Length ||
-                _currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ)
-            {
-                inputData.Move = float2.zero;
-                return false;
-            }
+			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
+			{
+				_currentWaypoint++;
+			}
 
-            var dir = math.normalize(_path.corners[_currentWaypoint] - _transform.position);
+			if (_currentWaypoint >= _path.corners.Length ||
+				(_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ))
+			{
+				inputData.Move = float2.zero;
+				return false;
+			}
 
-            inputData.Move = new float2(dir.x, dir.z);
+			var dir = math.normalize(_path.corners[_currentWaypoint] - _transform.position);
 
-            return true;
-        }
-    }
+			inputData.Move = new float2(dir.x, dir.z);
+
+			return true;
+		}
+	}
 }

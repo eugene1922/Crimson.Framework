@@ -1,124 +1,133 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
 using JetBrains.Annotations;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
-    [DisableAutoCreation]
-    public class SetupAimEnemyMarkSystem : ComponentSystem
-    {
-        private EntityQuery _actorToUiQuery, _findMarkQuery, _markQuery;
+	public struct TargetMarkData : IComponentData
+	{
+	}
 
-        protected override void OnCreate()
-        {
-            _actorToUiQuery = GetEntityQuery(
-                ComponentType.ReadOnly<UserInputData>(),
-                ComponentType.ReadOnly<AbilityActorPlayer>());
+	[DisableAutoCreation]
+	public class SetupAimEnemyMarkSystem : ComponentSystem
+	{
+		private EntityQuery _actorToUiQuery, _findMarkQuery, _markQuery;
 
-            _findMarkQuery = GetEntityQuery(
-                ComponentType.ReadOnly<Actor>(),
-                ComponentType.ReadOnly<AbilityFollowMovement>(),
-                ComponentType.Exclude<TargetMarkData>());
+		protected override void OnCreate()
+		{
+			_actorToUiQuery = GetEntityQuery(
+				ComponentType.ReadOnly<UserInputData>(),
+				ComponentType.ReadOnly<AbilityActorPlayer>());
 
-            _markQuery = GetEntityQuery(
-                ComponentType.ReadOnly<Actor>(),
-                ComponentType.ReadOnly<TargetMarkData>());
-        }
+			_findMarkQuery = GetEntityQuery(
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.ReadOnly<AbilityFollowMovement>(),
+				ComponentType.Exclude<TargetMarkData>());
 
-        protected override void OnUpdate()
-        {
-            Entities.With(_actorToUiQuery).ForEach(
-                (Entity actorToUiEntity, AbilityActorPlayer actorPlayer) =>
-                {
-                    Entities.With(_findMarkQuery).ForEach(
-                        (Entity markEntity, Actor actor) =>
-                        {
-                            if (actorPlayer.targetMarkActorComponentName != actor.ComponentName) return;
-                            PostUpdateCommands.AddComponent<TargetMarkData>(markEntity);
-                        }
-                    );
-                }
-            );
+			_markQuery = GetEntityQuery(
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.ReadOnly<TargetMarkData>());
+		}
 
-            Entities.With(_markQuery).ForEach(
-                (Entity markEntity, Actor markActor) =>
-                {
-                    if (ReferenceEquals(markActor.Spawner, null)) return;
+		protected override void OnUpdate()
+		{
+			Entities.With(_actorToUiQuery).ForEach(
+				(Entity actorToUiEntity, AbilityActorPlayer actorPlayer)
+					=> Entities.With(_findMarkQuery).ForEach(
+						(Entity markEntity, Actor actor) =>
+						{
+							if (actorPlayer.targetMarkActorComponentName != actor.ComponentName)
+							{
+								return;
+							}
 
-                    var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                    var spawnerAlive = !dstManager.HasComponent<DeadActorTag>(markActor.Spawner.ActorEntity) &&
-                                       !dstManager.HasComponent<DestructionPendingTag>(markActor.Spawner.ActorEntity);
+							PostUpdateCommands.AddComponent<TargetMarkData>(markEntity);
+						}
+					));
 
-                    var spawnerPlayerActor =
-                        markActor.Spawner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as
-                            AbilityActorPlayer;
+			Entities.With(_markQuery).ForEach(
+				(Entity markEntity, Actor markActor) =>
+				{
+					if (markActor.Spawner is null)
+					{
+						return;
+					}
 
-                    if (markActor.GameObject.activeSelf != spawnerAlive)
-                    {
-                        markActor.GameObject.SetActive(spawnerAlive);
-                    }
+					var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+					var spawnerAlive = !dstManager.HasComponent<DeadActorTag>(markActor.Spawner.ActorEntity) &&
+									   !dstManager.HasComponent<DestructionPendingTag>(markActor.Spawner.ActorEntity);
 
-                    if (!spawnerAlive || spawnerPlayerActor == null) return;
+					var spawnerPlayerActor =
+						markActor.Spawner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as
+							AbilityActorPlayer;
 
-                    var maxDistanceThreshold = ((AbilityWeapon) spawnerPlayerActor.MaxDistanceWeapon)
-                        .findTargetProperties.maxDistanceThreshold;
+					if (markActor.GameObject.activeSelf != spawnerAlive)
+					{
+						markActor.GameObject.SetActive(spawnerAlive);
+					}
 
-                    var targetPlayerTransform =
-                        GetNearestEnemy(spawnerPlayerActor.Actor.GameObject.transform.position,
-                            maxDistanceThreshold);
+					if (!spawnerAlive || spawnerPlayerActor == null)
+					{
+						return;
+					}
 
-                    var markActive = targetPlayerTransform != null;
+					var maxDistanceThreshold = ((AbilityWeapon)spawnerPlayerActor.MaxDistanceWeapon)
+						.findTargetProperties.maxDistanceThreshold;
 
-                    if (markActor.GameObject.activeSelf != markActive)
-                    {
-                        markActor.GameObject.SetActive(markActive);
-                    }
+					var targetPlayerTransform =
+						GetNearestEnemy(spawnerPlayerActor.Actor.GameObject.transform.position,
+							maxDistanceThreshold);
 
-                    if (targetPlayerTransform == null) return;
+					var markActive = targetPlayerTransform != null;
 
-                    markActor.GameObject.transform.position = targetPlayerTransform.position;
+					if (markActor.GameObject.activeSelf != markActive)
+					{
+						markActor.GameObject.SetActive(markActive);
+					}
 
-                    var followMovement =
-                        markActor.Abilities.FirstOrDefault(a =>
-                            a is AbilityFollowMovement) as AbilityFollowMovement;
+					if (targetPlayerTransform == null)
+					{
+						return;
+					}
 
-                    if (followMovement != null)
-                    {
-                        followMovement.Target = targetPlayerTransform;
-                    }
-                }
-            );
-        }
+					markActor.GameObject.transform.position = targetPlayerTransform.position;
 
-        [CanBeNull]
-        private Transform GetNearestEnemy(Vector3 playerPosition, float maxDistanceThreshold)
-        {
-            var enemyDict = new Dictionary<Transform, float>();
+					var followMovement =
+						markActor.Abilities.FirstOrDefault(a =>
+							a is AbilityFollowMovement) as AbilityFollowMovement;
 
-            Entities.WithAll<ActorData, PlayerInputData>()
-                .WithNone<DeadActorTag, DestructionPendingTag, UserInputData>().ForEach(
-                    (Entity entity, Transform enemyTransform) =>
-                    {
-                        var distancesq = math.distancesq(playerPosition, enemyTransform.position);
+					if (followMovement != null)
+					{
+						followMovement.Target = targetPlayerTransform;
+					}
+				}
+			);
+		}
 
-                        if (distancesq < maxDistanceThreshold * maxDistanceThreshold)
-                        {
-                            enemyDict.Add(enemyTransform, distancesq);
-                        }
-                    }
-                );
+		[CanBeNull]
+		private Transform GetNearestEnemy(Vector3 playerPosition, float maxDistanceThreshold)
+		{
+			var enemyDict = new Dictionary<Transform, float>();
 
-            return !enemyDict.Any() ? null : enemyDict.OrderBy(e => e.Value).FirstOrDefault().Key;
-        }
-    }
+			Entities.WithAll<ActorData, PlayerInputData>()
+				.WithNone<DeadActorTag, DestructionPendingTag, UserInputData>().ForEach(
+					(Entity entity, Transform enemyTransform) =>
+					{
+						var distancesq = math.distancesq(playerPosition, enemyTransform.position);
 
+						if (distancesq < maxDistanceThreshold * maxDistanceThreshold)
+						{
+							enemyDict.Add(enemyTransform, distancesq);
+						}
+					}
+				);
 
-    public struct TargetMarkData : IComponentData
-    {
-    }
+			return !enemyDict.Any() ? null : enemyDict.OrderBy(e => e.Value).FirstOrDefault().Key;
+		}
+	}
 }

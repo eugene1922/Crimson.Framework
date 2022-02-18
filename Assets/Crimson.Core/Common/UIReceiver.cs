@@ -93,15 +93,13 @@ namespace Crimson.Core.Common
 				actor.Spawner = Spawner;
 			}
 
-			if (_associatedIdsCache.Any())
+			if (_associatedIdsCache.Count == 0)
 			{
-				return;
+				_associatedIdsCache = GetUIFieldsIDs();
+				_associatedIdsCache.Insert(0, "No ID");
+
+				SetupAttackButton();
 			}
-
-			_associatedIdsCache = GetUIFieldsIDs();
-			_associatedIdsCache.Insert(0, "No ID");
-
-			SetupAttackButton();
 		}
 
 		public void SetCustomButtonOnCooldown(int index, bool onCooldown)

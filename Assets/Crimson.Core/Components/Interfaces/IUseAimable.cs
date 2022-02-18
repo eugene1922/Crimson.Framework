@@ -2,8 +2,8 @@
 
 namespace Crimson.Core.Components.Interfaces
 {
-    public interface IUseAimable
-    {
-        IAimable Aim { get; }
-    }
+	public interface IUseAimable
+	{
+		IAimable Aim { get; }
+	}
 }

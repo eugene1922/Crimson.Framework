@@ -1,199 +1,221 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
 {
-    [HideMonoScript]
-    public class PerkModifyMoveSpeed : CooldownBehaviour, IActorAbility, IPerkAbility, IPerkAbilityBindable,
-        ILevelable, ICooldownable
-    {
-        [ReadOnly] public int perkLevel = 1;
+	[HideMonoScript]
+	public class PerkModifyMoveSpeed : CooldownBehaviour, IActorAbility, IPerkAbility, IPerkAbilityBindable,
+		ILevelable, ICooldownable
+	{
+		public float cooldownTime;
 
-        public float moveSpeedMultiplier = 1.5f;
+		[Space]
+		[TitleGroup("Levelable properties")]
+		[OnValueChanged("SetLevelableProperty")]
+		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
-        public bool limitedLifespan;
+		[ShowIf("limitedLifespan")]
+		[LevelableValue]
+		public int lifespan;
 
-        [ShowIf("limitedLifespan")] [LevelableValue]
-        public int lifespan;
-        
-        public float cooldownTime;
-        
-        public GameObject moveFX;
+		public bool limitedLifespan;
+		public GameObject moveFX;
+		public float moveSpeedMultiplier = 1.5f;
+		[ReadOnly] public int perkLevel = 1;
+		public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
+		private EntityManager _dstManager;
+		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+		private IActor _target;
+		public IActor Actor { get; set; }
 
-        public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
+		public int BindingIndex { get; set; } = -1;
 
-        [Space] [TitleGroup("Levelable properties")] [OnValueChanged("SetLevelableProperty")]
-        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+		public float CooldownTime
+		{
+			get => cooldownTime;
+			set => cooldownTime = value;
+		}
 
-        public IActor Actor { get; set; }
+		public int Level
+		{
+			get => perkLevel;
+			set => perkLevel = value;
+		}
 
-        public List<MonoBehaviour> PerkRelatedComponents
-        {
-            get
-            {
-                perkRelatedComponents.RemoveAll(c => ReferenceEquals(c, null));
-                return perkRelatedComponents;
-            }
-            set => perkRelatedComponents = value;
-        }
+		public List<FieldInfo> LevelablePropertiesInfoCached
+		{
+			get
+			{
+				if (_levelablePropertiesInfoCached.Count == 0)
+				{
+					_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
+				}
+				return _levelablePropertiesInfoCached;
+			}
+		}
 
-        public int Level
-        {
-            get => perkLevel;
-            set => perkLevel = value;
-        }
+		public List<LevelableProperties> LevelablePropertiesList
+		{
+			get => levelablePropertiesList;
+			set => levelablePropertiesList = value;
+		}
 
-        public List<LevelableProperties> LevelablePropertiesList
-        {
-            get => levelablePropertiesList;
-            set => levelablePropertiesList = value;
-        }
+		public List<MonoBehaviour> PerkRelatedComponents
+		{
+			get
+			{
+				perkRelatedComponents.RemoveAll(c => c is null);
+				return perkRelatedComponents;
+			}
+			set => perkRelatedComponents = value;
+		}
 
-        public List<FieldInfo> LevelablePropertiesInfoCached
-        {
-            get
-            {
-                if (_levelablePropertiesInfoCached.Any()) return _levelablePropertiesInfoCached;
-                return _levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
-            }
-        }
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
 
-        public int BindingIndex { get; set; } = -1;
-        
-        public float CooldownTime
-        {
-            get => cooldownTime;
-            set => cooldownTime = value;
-        }
+			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+			if (!Actor.Abilities.Contains(this))
+			{
+				Actor.Abilities.Add(this);
+			}
+		}
 
-        private IActor _target;
+		public void Apply(IActor target)
+		{
+			_target = target;
 
-        private EntityManager _dstManager;
+			ApplyActionWithCooldown(cooldownTime, ApplyModifyMoveSpeedPerk);
+		}
 
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-            Actor = actor;
+		public void ApplyModifyMoveSpeedPerk()
+		{
+			if (_target == null || !_dstManager.HasComponent<ActorMovementData>(_target.ActorEntity))
+			{
+				return;
+			}
 
-            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			if (_target != Actor.Owner)
+			{
+				var ownerActorPlayer =
+					Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-            if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
-        }
+				if (ownerActorPlayer == null)
+				{
+					return;
+				}
 
-        public void Execute()
-        {
-            Apply(Actor);
-        }
+				this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, _target);
+				TryUpdateLifespan();
+			}
 
-        public void Apply(IActor target)
-        {
-            _target = target;
+			if (!_target.AppliedPerks.Contains(this))
+			{
+				_target.AppliedPerks.Add(this);
+			}
 
-            ApplyActionWithCooldown(cooldownTime, ApplyModifyMoveSpeedPerk);
-        }
+			if (moveFX != null)
+			{
+				var spawnData = new ActorSpawnerSettings
+				{
+					objectsToSpawn = new List<GameObject> { moveFX },
+					SpawnPosition = SpawnPosition.UseSpawnerPosition,
+					parentOfSpawns = TargetType.None,
+					runSpawnActionsOnObjects = true,
+					destroyAbilityAfterSpawn = true
+				};
 
-        public void ApplyModifyMoveSpeedPerk()
-        {
-            if (_target == null || !_dstManager.HasComponent<ActorMovementData>(_target.ActorEntity)) return;
+				var fx = ActorSpawn.Spawn(spawnData, Actor, null)?.First();
+			}
 
-            if (_target != Actor.Owner)
-            {
-                var ownerActorPlayer =
-                    Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+			var movementData = _dstManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
+			movementData.ExternalMultiplier *= moveSpeedMultiplier;
 
-                if (ownerActorPlayer == null) return;
+			_dstManager.SetComponentData(_target.ActorEntity, movementData);
 
-                this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, _target);
-                TryUpdateLifespan();
-            }
+			if (!limitedLifespan)
+			{
+				return;
+			}
 
-            if (!_target.AppliedPerks.Contains(this)) _target.AppliedPerks.Add(this);
-            
-            if (moveFX != null)
-            {
-                var spawnData = new ActorSpawnerSettings
-                {
-                    objectsToSpawn = new List<GameObject> {moveFX},
-                    SpawnPosition = SpawnPosition.UseSpawnerPosition,
-                    parentOfSpawns = TargetType.None,
-                    runSpawnActionsOnObjects = true,
-                    destroyAbilityAfterSpawn = true
-                };
+			Timer.TimedActions.AddAction(FinishSpeedUpTimer, lifespan);
+		}
 
-                var fx  = ActorSpawn.Spawn(spawnData, Actor, null)?.First();
-            }
+		public void Execute()
+		{
+			Apply(Actor);
+		}
 
-            var movementData = _dstManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
-            movementData.ExternalMultiplier *= moveSpeedMultiplier;
+		public override void FinishTimer()
+		{
+			base.FinishTimer();
+			this.FinishAbilityCooldownTimer(Actor);
+		}
 
-            _dstManager.SetComponentData(_target.ActorEntity, movementData);
+		public void Remove()
+		{
+			foreach (var component in perkRelatedComponents)
+			{
+				Destroy(component);
+			}
 
-            if (!limitedLifespan) return;
+			Destroy(this);
+		}
 
-            Timer.TimedActions.AddAction(FinishSpeedUpTimer, lifespan);
-        }
+		public void SetLevel(int level)
+		{
+			this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+		}
 
-        public void SetLevel(int level)
-        {
-            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-        }
+		public void SetLevelableProperty()
+		{
+			this.SetLevelableProperty(LevelablePropertiesInfoCached);
+		}
 
-        public void Remove()
-        {
-            foreach (var component in perkRelatedComponents)
-            {
-                Destroy(component);
-            }
+		public override void StartTimer()
+		{
+			base.StartTimer();
+			this.StartAbilityCooldownTimer(Actor);
+		}
 
-            Destroy(this);
-        }
+		private void FinishSpeedUpTimer()
+		{
+			if (_target == null || !_dstManager.HasComponent<ActorMovementData>(_target.ActorEntity) || moveSpeedMultiplier <= 0)
+			{
+				return;
+			}
 
-        private void FinishSpeedUpTimer()
-        {
-            if (_target == null || !_dstManager.HasComponent<ActorMovementData>(_target.ActorEntity) || moveSpeedMultiplier <= 0) return;
+			if (_target.AppliedPerks.Contains(this))
+			{
+				_target.AppliedPerks.Remove(this);
+			}
 
-            if (_target.AppliedPerks.Contains(this)) _target.AppliedPerks.Remove(this);
+			var movementData = _dstManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
 
-            var movementData = _dstManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
+			movementData.ExternalMultiplier /= moveSpeedMultiplier;
+			_dstManager.SetComponentData(_target.ActorEntity, movementData);
+		}
 
-            movementData.ExternalMultiplier /= moveSpeedMultiplier;
-            _dstManager.SetComponentData(_target.ActorEntity, movementData);
-        }
+		private void TryUpdateLifespan()
+		{
+			var lifespanAbility = Actor.Abilities.FirstOrDefault(a => a is AbilityLifespan) as AbilityLifespan;
+			if (lifespanAbility == null)
+			{
+				return;
+			}
 
-        private void TryUpdateLifespan()
-        {
-            var lifespanAbility = Actor.Abilities.FirstOrDefault(a => a is AbilityLifespan) as AbilityLifespan;
-            if (lifespanAbility == null) return;
-            lifespanAbility.lifespan = lifespan;
-            lifespanAbility.Timer.TimedActions.Clear();
-            lifespanAbility.Execute();
-        }
-        
-        public override void FinishTimer()
-        {
-            base.FinishTimer();
-            this.FinishAbilityCooldownTimer(Actor);
-        }
-
-        public override void StartTimer()
-        {
-            base.StartTimer();
-            this.StartAbilityCooldownTimer(Actor);
-        }
-
-
-        public void SetLevelableProperty()
-        {
-            this.SetLevelableProperty(LevelablePropertiesInfoCached);
-        }
-    }
+			lifespanAbility.lifespan = lifespan;
+			lifespanAbility.Timer.TimedActions.Clear();
+			lifespanAbility.Execute();
+		}
+	}
 }

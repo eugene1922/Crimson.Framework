@@ -2,6 +2,6 @@
 
 namespace Crimson.Core.Components.AbilityReactive
 {
-    public struct AutoAimTargetData : IComponentData
-    { }
+	public struct AutoAimTargetData : IComponentData
+	{ }
 }

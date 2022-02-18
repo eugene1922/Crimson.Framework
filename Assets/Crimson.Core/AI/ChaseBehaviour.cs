@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -12,136 +12,146 @@ using Random = UnityEngine.Random;
 
 namespace Crimson.Core.AI
 {
-    [Serializable]
-    public class ChaseBehaviour : IAIBehaviour
-    {
-        public string XAxis => "Target priority based on distance to it";
+	[Serializable]
+	public class ChaseBehaviour : IAIBehaviour
+	{
+		public string XAxis => "Target priority based on distance to it";
 
-        public string[] AdditionalModes => new[]
-            {"Strict mode: distance to priority", "Random mode: priority as probability"};
+		public string[] AdditionalModes => new[]
+			{"Strict mode: distance to priority", "Random mode: priority as probability"};
 
-        public bool NeedCurve => true;
-        public bool NeedTarget => true;
-        public bool NeedActions => false;
+		public bool NeedCurve => true;
+		public bool NeedTarget => true;
+		public bool NeedActions => false;
 
-        private const float FINISH_CHASE_DISTSQ = 5f;
-        private const float PRIORITY_MULTIPLIER = 0.5f;
-        
-        private Transform _target = null;
-        private Transform _transform = null;
-        private readonly NavMeshPath _path = new NavMeshPath();
+		private const float FINISH_CHASE_DISTSQ = 5f;
+		private const float PRIORITY_MULTIPLIER = 0.5f;
 
-        private int _currentWaypoint = 0;
+		private Transform _target = null;
+		private Transform _transform = null;
+		private readonly NavMeshPath _path = new NavMeshPath();
 
-        public float Evaluate(Entity entity, AIBehaviourSetting behaviour,AbilityAIInput ai,  List<Transform> targets)
-        {
-            _target = null;
-            _transform = behaviour.Actor?.GameObject.transform;
+		private int _currentWaypoint = 0;
 
-            if (_transform == null) return 0f;
+		public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
+		{
+			_target = null;
+			_transform = behaviour.Actor?.GameObject.transform;
 
-            List<Transform> filteredTargets = targets.Where(t => t.FilterTag(behaviour) && t != _transform).ToList();
-            if (filteredTargets.Count == 0) return 0f;
-            if (filteredTargets.Count == 1)
-            {
-                _target = filteredTargets.First();
-                return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ? 0f :
-                    behaviour.basePriority * PRIORITY_MULTIPLIER;
-            }
+			if (_transform == null)
+			{
+				return 0f;
+			}
 
-            var sampleScale = behaviour.curveMaxSample - behaviour.curveMinSample;
+			var filteredTargets = targets.Where(t => t.FilterTag(behaviour) && t != _transform).ToList();
+			if (filteredTargets.Count == 0)
+			{
+				return 0f;
+			}
 
-            switch (behaviour.additionalMode)
-            {
-                case "Random mode: priority as probability":
-                    var priorities = new List<MinMaxTarget>();
+			if (filteredTargets.Count == 1)
+			{
+				_target = filteredTargets.First();
+				return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ? 0f :
+					behaviour.basePriority * PRIORITY_MULTIPLIER;
+			}
 
-                    var priorityCache = 0f;
+			var sampleScale = behaviour.curveMaxSample - behaviour.curveMinSample;
 
-                    foreach (var target in filteredTargets)
-                    {
-                        var d = math.distance(_transform.position, target.position);
-                        var curveSample = math.clamp(
-                            (d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-                        var priority = behaviour.priorityCurve.Evaluate(curveSample);
+			switch (behaviour.additionalMode)
+			{
+				case "Random mode: priority as probability":
+					var priorities = new List<MinMaxTarget>();
 
-                        priorities.Add(new MinMaxTarget
-                        {
-                            Min = priorityCache,
-                            Max = priority + priorityCache,
-                            Target = target
-                        });
+					var priorityCache = 0f;
 
-                        priorityCache += priority;
-                    }
+					foreach (var target in filteredTargets)
+					{
+						var d = math.distance(_transform.position, target.position);
+						var curveSample = math.clamp(
+							(d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
+						var priority = behaviour.priorityCurve.Evaluate(curveSample);
 
-                    var randomNumber = Random.Range(0f, priorityCache);
+						priorities.Add(new MinMaxTarget
+						{
+							Min = priorityCache,
+							Max = priority + priorityCache,
+							Target = target
+						});
 
-                    _target = priorities.Find(t => t.Min < randomNumber && t.Max >= randomNumber).Target;
-                    break;
+						priorityCache += priority;
+					}
 
-                default: // ReSharper disable once RedundantCaseLabel
-                case "Strict mode: distance to priority":
-                    var orderedTargets = filteredTargets.OrderBy(t =>
-                    {
-                        var d = math.distance(_transform.position, t.position);
-                        var curveSample = math.clamp(
-                            (d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-                        return behaviour.priorityCurve.Evaluate(curveSample);
-                    }).ToList();
+					var randomNumber = Random.Range(0f, priorityCache);
 
-                    _target = orderedTargets.Last();
-                    break;
-            }
+					_target = priorities.Find(t => t.Min < randomNumber && t.Max >= randomNumber).Target;
+					break;
 
-            return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ? 0f :
-                behaviour.basePriority * PRIORITY_MULTIPLIER;
-        }
+				default: // ReSharper disable once RedundantCaseLabel
+				case "Strict mode: distance to priority":
+					var orderedTargets = filteredTargets.OrderBy(t =>
+					{
+						var d = math.distance(_transform.position, t.position);
+						var curveSample = math.clamp(
+							(d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
+						return behaviour.priorityCurve.Evaluate(curveSample);
+					}).ToList();
 
-        public bool SetUp(Entity entity, EntityManager dstManager)
-        {
-            _path.ClearCorners();
+					_target = orderedTargets.Last();
+					break;
+			}
 
-            if (_target == null || _transform == null) return false;
+			return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ? 0f :
+				behaviour.basePriority * PRIORITY_MULTIPLIER;
+		}
 
-            _currentWaypoint = 1;
-            var result = NavMesh.CalculatePath(_transform.position, _target.position, NavMesh.AllAreas, _path);
+		public bool SetUp(Entity entity, EntityManager dstManager)
+		{
+			_path.ClearCorners();
 
-            return result;
-        }
+			if (_target == null || _transform == null)
+			{
+				return false;
+			}
 
-        public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
-        {
-            if (_path.status == NavMeshPathStatus.PathInvalid)
-            {
-                return false;
-            }
+			_currentWaypoint = 1;
+			var result = NavMesh.CalculatePath(_transform.position, _target.position, NavMesh.AllAreas, _path);
 
-            var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
+			return result;
+		}
 
-            if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
-            {
-                _currentWaypoint++;
-            }
+		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
+		{
+			if (_path.status == NavMeshPathStatus.PathInvalid)
+			{
+				return false;
+			}
 
-            if (_currentWaypoint >= _path.corners.Length )
-            {
-                inputData.Move = float2.zero;
-                return false;
-            }
+			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
 
-            var dir = _path.corners[_currentWaypoint] - _transform.position;
+			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
+			{
+				_currentWaypoint++;
+			}
 
-            inputData.Move = math.normalize(new float2(dir.x, dir.z));
+			if (_currentWaypoint >= _path.corners.Length)
+			{
+				inputData.Move = float2.zero;
+				return false;
+			}
 
-            return true;
-        }
+			var dir = _path.corners[_currentWaypoint] - _transform.position;
 
-        private struct MinMaxTarget
-        {
-            public float Min;
-            public float Max;
-            public Transform Target;
-        }
-    }
+			inputData.Move = math.normalize(new float2(dir.x, dir.z));
+
+			return true;
+		}
+
+		private struct MinMaxTarget
+		{
+			public float Min;
+			public float Max;
+			public Transform Target;
+		}
+	}
 }

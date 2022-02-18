@@ -1,7 +1,6 @@
 namespace Crimson.Core.Loading
 {
-    public interface IGameModeBootstrap
-    {
-    
-    }
+	public interface IGameModeBootstrap
+	{
+	}
 }

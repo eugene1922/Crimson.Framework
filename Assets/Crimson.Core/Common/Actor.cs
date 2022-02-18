@@ -8,200 +8,206 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-    public struct ActorData : IComponentData
-    {
-        public int ActorId;
-        public int StateId;
-    }
+	public struct ActorData : IComponentData
+	{
+		public int ActorId;
+		public int StateId;
+	}
 
-    [NetworkSimObject]
-    public class Actor : MonoBehaviour, IActor, IComponentName, IConvertGameObjectToEntity
-    {
-        [Space] [SerializeField] public string componentName = "";
+	[NetworkSimObject]
+	public class Actor : MonoBehaviour, IActor, IComponentName, IConvertGameObjectToEntity
+	{
+		[Space] public string componentName = "";
 
-        [Space]
-        [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
-        public List<MonoBehaviour> ExecuteOnSpawn = new List<MonoBehaviour>();
+		[Space]
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public List<MonoBehaviour> ExecuteOnSpawn = new List<MonoBehaviour>();
 
-        private List<IActorAbility> _abilities = new List<IActorAbility>();
+		private List<IActorAbility> _abilities = new List<IActorAbility>();
 
-        private int _actorId;
+		private int _actorId;
 
-        private int _actorStateId;
+		private int _actorStateId;
 
-        private List<IPerkAbility> _appliedPerks = new List<IPerkAbility>();
+		private List<IPerkAbility> _appliedPerks = new List<IPerkAbility>();
 
-        public List<IActorAbility> Abilities
-        {
-            get
-            {
-                if (_abilities == null || _abilities.Count == 0) _abilities = GetComponents<IActorAbility>()?.ToList();
-                _abilities?.RemoveAll(a => a.Equals(null));
-                return _abilities;
-            }
-            set => _abilities = value;
-        }
+		public List<IActorAbility> Abilities
+		{
+			get
+			{
+				if (_abilities == null || _abilities.Count == 0)
+				{
+					_abilities = GetComponents<IActorAbility>()?.ToList();
+				}
 
-        [NetworkSimData] public Entity ActorEntity { get; set; }
+				_abilities?.RemoveAll(a => a.Equals(null));
+				return _abilities;
+			}
+			set => _abilities = value;
+		}
 
-        [NetworkSimData]
-        public int ActorId
-        {
-            get
-            {
-                if (_actorId == 0)
-                {
-                    _actorId = Spawner?.ActorId ?? 0;
-                }
+		[NetworkSimData] public Entity ActorEntity { get; set; }
 
-                return _actorId;
-            }
-            set => _actorId = value;
-        }
+		[NetworkSimData]
+		public int ActorId
+		{
+			get
+			{
+				if (_actorId == 0)
+				{
+					_actorId = Spawner?.ActorId ?? 0;
+				}
 
-        [NetworkSimData]
-        public int ActorStateId
-        {
-            get
-            {
-                if (_actorStateId != 0)
-                {
-                    return _actorStateId;
-                }
+				return _actorId;
+			}
+			set => _actorId = value;
+		}
 
-                if (ActorId == 0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    if (Spawner != null)
-                    {
-                        _actorStateId = Spawner.ActorStateId + Spawner.ChildrenSpawned + 1;
-                    }
-                    else
-                    {
-                        _actorStateId = ActorId * 1000;
-                    }
-                    return _actorStateId;
-                }
-            }
-        }
+		[NetworkSimData]
+		public int ActorStateId
+		{
+			get
+			{
+				var result = _actorStateId;
 
-        public List<IPerkAbility> AppliedPerks
-        {
-            get
-            {
-                _appliedPerks.RemoveAll(a => a.Equals(null));
-                return _appliedPerks;
-            }
-            set => _appliedPerks = value;
-        }
+				if (ActorId != 0 && result == 0)
+				{
+					_actorStateId = Spawner != null ? Spawner.ActorStateId + Spawner.ChildrenSpawned + 1 : ActorId * 1000;
+					result = _actorStateId;
+				}
+				else
+				{
+					result = 0;
+				}
+				return result;
+			}
+		}
 
-        public ushort ChildrenSpawned { get; set; }
+		public List<IPerkAbility> AppliedPerks
+		{
+			get
+			{
+				_appliedPerks.RemoveAll(a => a.Equals(null));
+				return _appliedPerks;
+			}
+			set => _appliedPerks = value;
+		}
 
-        public string ComponentName
-        {
-            get => componentName;
-            set => componentName = value;
-        }
+		public ushort ChildrenSpawned { get; set; }
 
-        public List<string> ComponentNames { get; } = new List<string>();
-        [NetworkSimData] public GameObject GameObject => this != null && gameObject != null ? gameObject : null;
-        [NetworkSimData] public IActor Owner { get; set; }
-        [NetworkSimData] public IActor Spawner { get; set; }
-        public EntityManager WorldEntityManager { get; set; }
+		public string ComponentName
+		{
+			get => componentName;
+			set => componentName = value;
+		}
 
-        public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-        {
-            ActorEntity = entity;
-            WorldEntityManager = dstManager;
-            WorldEntityManager.AddComponent<NetworkSyncReceive>(ActorEntity);
-            if (!ComponentName.Equals(string.Empty)) ComponentNames.Add(this.ComponentName);
+		public List<string> ComponentNames { get; } = new List<string>();
+		[NetworkSimData] public GameObject GameObject => this != null && gameObject != null ? gameObject : null;
+		[NetworkSimData] public IActor Owner { get; set; }
+		[NetworkSimData] public IActor Spawner { get; set; }
+		public EntityManager WorldEntityManager { get; set; }
 
-            HandleAbilities(entity);
-            PostConvert();
-        }
+		public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+		{
+			ActorEntity = entity;
+			WorldEntityManager = dstManager;
+			WorldEntityManager.AddComponent<NetworkSyncReceive>(ActorEntity);
+			if (!ComponentName.Equals(string.Empty))
+			{
+				ComponentNames.Add(this.ComponentName);
+			}
 
-        public virtual void HandleAbilities(Entity entity)
-        {
-            foreach (var ability in Abilities)
-            {
-                ability.AddComponentData(ref entity, this);
-                if (ability is IComponentName compName && !compName.ComponentName.Equals(string.Empty))
-                {
-                    ComponentNames.Add(compName.ComponentName);
-                }
-            }
-        }
+			HandleAbilities(entity);
+			PostConvert();
+		}
 
-        public void PerformSpawnActions()
-        {
-            foreach (var component in ExecuteOnSpawn)
-            {
-                if (!(component is IActorAbility ability))
-                {
-                    Debug.LogError($"[ACTOR ABILITY EXECUTION] \"{component.name}\" is not an ability!");
-                    continue;
-                }
+		public virtual void HandleAbilities(Entity entity)
+		{
+			foreach (var ability in Abilities)
+			{
+				ability.AddComponentData(ref entity, this);
+				if (ability is IComponentName compName && !compName.ComponentName.Equals(string.Empty))
+				{
+					ComponentNames.Add(compName.ComponentName);
+				}
+			}
+		}
 
-                ability.Execute();
-            }
-        }
+		public void PerformSpawnActions()
+		{
+			foreach (var component in ExecuteOnSpawn)
+			{
+				if (!(component is IActorAbility ability))
+				{
+					Debug.LogError($"[ACTOR ABILITY EXECUTION] \"{component.name}\" is not an ability!");
+					continue;
+				}
 
-        public virtual void PostConvert()
-        {
-            WorldEntityManager.AddComponentData(ActorEntity, new ActorData { ActorId = ActorId, StateId = ActorStateId });
+				ability.Execute();
+			}
+		}
 
-            if (Spawner == null) return;
+		public virtual void PostConvert()
+		{
+			WorldEntityManager.AddComponentData(ActorEntity, new ActorData { ActorId = ActorId, StateId = ActorStateId });
 
-            if (WorldEntityManager.HasComponent(Spawner.ActorEntity, typeof(NetworkSyncSend)))
-            {
-                WorldEntityManager.AddComponentData(ActorEntity, new NetworkSyncSend());
-            }
-        }
+			if (Spawner == null)
+			{
+				return;
+			}
 
-        private void Awake()
-        {
-            if (World.DefaultGameObjectInjectionWorld == null)
-            {
-                Debug.LogError(
-                    "[ACTOR CONVERT TO ENTITY] Convert Entity failed because there was no Active World");
-                return;
-            }
+			if (WorldEntityManager.HasComponent(Spawner.ActorEntity, typeof(NetworkSyncSend)))
+			{
+				WorldEntityManager.AddComponentData(ActorEntity, new NetworkSyncSend());
+			}
+		}
 
-            // Root ConvertToEntity is responsible for converting the whole hierarchy
-            if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
-                return;
+		private void Awake()
+		{
+			if (World.DefaultGameObjectInjectionWorld == null)
+			{
+				Debug.LogError(
+					"[ACTOR CONVERT TO ENTITY] Convert Entity failed because there was no Active World");
+				return;
+			}
 
-            this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
-        }
+			// Root ConvertToEntity is responsible for converting the whole hierarchy
+			if (transform.parent != null && transform.parent.GetComponentInParent<ConvertToEntity>() != null)
+			{
+				return;
+			}
 
-        private bool MustBeAbility(List<MonoBehaviour> actions)
-        {
-            foreach (var action in actions)
-            {
-                if (action is IActorAbility || action is null) continue;
+			this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
+		}
 
-                return false;
-            }
+		private bool MustBeAbility(List<MonoBehaviour> actions)
+		{
+			foreach (var action in actions)
+			{
+				if (action is IActorAbility || action is null)
+				{
+					continue;
+				}
 
-            return true;
-        }
+				return false;
+			}
 
-        private void OnDestroy()
-        {
-            try
-            {
-                if (ActorEntity.Index <= WorldEntityManager.EntityCapacity && WorldEntityManager.Exists(ActorEntity))
-                {
-                    WorldEntityManager.DestroyEntity(ActorEntity);
-                }
-            }
-            catch
-            {
-                // ignored
-            }
-        }
-    }
+			return true;
+		}
+
+		private void OnDestroy()
+		{
+			try
+			{
+				if (ActorEntity.Index <= WorldEntityManager.EntityCapacity && WorldEntityManager.Exists(ActorEntity))
+				{
+					WorldEntityManager.DestroyEntity(ActorEntity);
+				}
+			}
+			catch
+			{
+				// ignored
+			}
+		}
+	}
 }

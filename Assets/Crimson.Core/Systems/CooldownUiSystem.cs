@@ -1,110 +1,127 @@
-﻿using System.Collections.Generic;
+﻿using Crimson.Core.Common;
+using Crimson.Core.Components;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Crimson.Core.Common;
-using Crimson.Core.Components;
-using Unity.Entities;
 using Unity.Collections;
+using Unity.Entities;
 
 namespace Crimson.Core.Systems
 {
-    public class CooldownUiSystem : ComponentSystem
-    {
-        private EntityQuery _cooldownQuery;
+	public class CooldownUiSystem : ComponentSystem
+	{
+		private EntityQuery _cooldownQuery;
 
-        protected override void OnCreate()
-        {
-            _cooldownQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
-                ComponentType.ReadWrite<BindedActionsCooldownData>());
-        }
+		protected override void OnCreate()
+		{
+			_cooldownQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
+				ComponentType.ReadWrite<BindedActionsCooldownData>());
+		}
 
-        protected override void OnUpdate()
-        {
-            Entities.With(_cooldownQuery).ForEach(
-                (Entity entity, AbilityActorPlayer abilityActorPlayer,
-                    ref BindedActionsCooldownData cooldownData) =>
-                {
-                    if (cooldownData.OnCooldownBindingIndexes.Length == 0 &&
-                        cooldownData.ReadyToUseBindingIndexes.Length == 0) return;
+		protected override void OnUpdate()
+		{
+			Entities.With(_cooldownQuery).ForEach(
+				(Entity entity, AbilityActorPlayer abilityActorPlayer,
+					ref BindedActionsCooldownData cooldownData) =>
+				{
+					if (cooldownData.OnCooldownBindingIndexes.Length == 0 &&
+						cooldownData.ReadyToUseBindingIndexes.Length == 0)
+					{
+						return;
+					}
 
-                    var data = cooldownData;
+					var data = cooldownData;
 
-                    var cooldownable = abilityActorPlayer.Actor.Abilities
-                        .Where(p => p is ICooldownable && p is IBindable && p is ITimer)
-                        .Where(c => data.OnCooldownBindingIndexes.Contains(((IBindable) c).BindingIndex) ||
-                                    data.ReadyToUseBindingIndexes.Contains(((IBindable) c).BindingIndex))
-                        .ToList();
+					var cooldownable = abilityActorPlayer.Actor.Abilities
+						.Where(p => p is ICooldownable && p is IBindable && p is ITimer)
+						.Where(c => data.OnCooldownBindingIndexes.Contains(((IBindable)c).BindingIndex) ||
+									data.ReadyToUseBindingIndexes.Contains(((IBindable)c).BindingIndex))
+						.ToList();
 
-                    foreach (var ability in cooldownable)
-                    {
-                        for (var i = 0; i < cooldownData.OnCooldownBindingIndexes.Length; i++)
-                        {
-                            if (((IBindable) ability).BindingIndex != cooldownData.OnCooldownBindingIndexes[i])
-                                continue;
+					foreach (var ability in cooldownable)
+					{
+						for (var i = 0; i < cooldownData.OnCooldownBindingIndexes.Length; i++)
+						{
+							if (((IBindable)ability).BindingIndex != cooldownData.OnCooldownBindingIndexes[i])
+							{
+								continue;
+							}
 
-                            var currentCooldownData = cooldownData;
-                            var index = i;
+							var currentCooldownData = cooldownData;
+							var index = i;
 
-                            abilityActorPlayer.UIReceiverList.ForEach(r =>
-                            {
-                                var currentUiElement = ((UIReceiver) r).customButtons.FirstOrDefault(b =>
-                                    b.bindingIndex == currentCooldownData.OnCooldownBindingIndexes[index]);
-                                if (currentUiElement == null) return;
+							abilityActorPlayer.UIReceiverList.ForEach(r =>
+							{
+								var currentUiElement = ((UIReceiver)r).customButtons.FirstOrDefault(b =>
+								   b.bindingIndex == currentCooldownData.OnCooldownBindingIndexes[index]);
+								if (currentUiElement == null)
+								{
+									return;
+								}
 
-                                var currentTimer = ((ITimer) ability).Timer.TimedActions
-                                    .Where(t => ReferenceEquals(t.Act.Target, ability)).OrderByDescending(a => a.Delay)
-                                    .FirstOrDefault();
+								var currentTimer = ((ITimer)ability).Timer.TimedActions
+									.Where(t => ReferenceEquals(t.Act.Target, ability)).OrderByDescending(a => a.Delay)
+									.FirstOrDefault();
 
-                                if (currentTimer.Equals(new TimerAction())) return;
-                                var cooldownValue = currentUiElement.reverseProgressBarDirection
-                                    ? currentTimer.Delay / ((ICooldownable) ability).CooldownTime
-                                    : 1 - currentTimer.Delay / ((ICooldownable) ability).CooldownTime;
-                                currentUiElement.SetCooldownProgressBar(cooldownValue);
-                                currentUiElement.SetCooldownText((int)(currentTimer.Delay +1));
-                            });
-                        }
+								if (currentTimer.Equals(new TimerAction()))
+								{
+									return;
+								}
 
-                        var indexesToRemove = new List<int>();
+								var cooldownValue = currentUiElement.reverseProgressBarDirection
+									? currentTimer.Delay / ((ICooldownable)ability).CooldownTime
+									: 1 - (currentTimer.Delay / ((ICooldownable)ability).CooldownTime);
+								currentUiElement.SetCooldownProgressBar(cooldownValue);
+								currentUiElement.SetCooldownText((int)(currentTimer.Delay + 1));
+							});
+						}
 
-                        for (var i = 0; i < cooldownData.ReadyToUseBindingIndexes.Length; i++)
-                        {
-                            if (((IBindable) ability).BindingIndex != cooldownData.ReadyToUseBindingIndexes[i])
-                                continue;
+						var indexesToRemove = new List<int>();
 
-                            var currentCooldownData = cooldownData;
-                            var index = i;
+						for (var i = 0; i < cooldownData.ReadyToUseBindingIndexes.Length; i++)
+						{
+							if (((IBindable)ability).BindingIndex != cooldownData.ReadyToUseBindingIndexes[i])
+							{
+								continue;
+							}
 
-                            abilityActorPlayer.UIReceiverList.ForEach(r =>
-                            {
-                                var currentUiElement = ((UIReceiver) r).customButtons.FirstOrDefault(b =>
-                                    b.bindingIndex == currentCooldownData.ReadyToUseBindingIndexes[index]);
-                                if (currentUiElement == null) return;
+							var currentCooldownData = cooldownData;
+							var index = i;
 
-                                currentUiElement.SetCooldownProgressBar(currentUiElement.reverseProgressBarDirection?0f:1f);
-                                currentUiElement.HideCoolDownText();
-                                indexesToRemove.Add(currentCooldownData.ReadyToUseBindingIndexes[index]);
-                            });
+							abilityActorPlayer.UIReceiverList.ForEach(r =>
+							{
+								var currentUiElement = ((UIReceiver)r).customButtons.FirstOrDefault(b =>
+								   b.bindingIndex == currentCooldownData.ReadyToUseBindingIndexes[index]);
+								if (currentUiElement == null)
+								{
+									return;
+								}
 
-                            foreach (var idx in indexesToRemove)
-                            {
-                                currentCooldownData.ReadyToUseBindingIndexes.Remove(idx);
-                            }
+								currentUiElement.SetCooldownProgressBar(currentUiElement.reverseProgressBarDirection ? 0f : 1f);
+								currentUiElement.HideCoolDownText();
+								indexesToRemove.Add(currentCooldownData.ReadyToUseBindingIndexes[index]);
+							});
 
-                            cooldownData = currentCooldownData;
-                        }
+							foreach (var idx in indexesToRemove)
+							{
+								currentCooldownData.ReadyToUseBindingIndexes.Remove(idx);
+							}
 
-                        var cooldown = cooldownData;
+							cooldownData = currentCooldownData;
+						}
 
-                        foreach (var idxToRemove in from idx in indexesToRemove
-                            where cooldown.OnCooldownBindingIndexes.Contains(idx)
-                            select cooldown.OnCooldownBindingIndexes.IndexOf(idx))
-                        {
-                            cooldownData.OnCooldownBindingIndexes.RemoveAt(idxToRemove);
-                        }
+						var cooldown = cooldownData;
 
-                        PostUpdateCommands.SetComponent(entity, cooldownData);
-                    }
-                });
-        }
-    }
+						foreach (var idxToRemove in from idx in indexesToRemove
+													where cooldown.OnCooldownBindingIndexes.Contains(idx)
+													select cooldown.OnCooldownBindingIndexes.IndexOf(idx))
+						{
+							cooldownData.OnCooldownBindingIndexes.RemoveAt(idxToRemove);
+						}
+
+						PostUpdateCommands.SetComponent(entity, cooldownData);
+					}
+				});
+		}
+	}
 }

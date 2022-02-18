@@ -6,37 +6,38 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-    [HideMonoScript]
-    public class AbilityForceRotation : MonoBehaviour, IActorAbility
-    {
-        public IActor Actor { get; set; }
-        
-        public Vector3 rotationDelta;
-        public float rotationSpeed;
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+	[HideMonoScript]
+	public class AbilityForceRotation : MonoBehaviour, IActorAbility
+	{
+		public IActor Actor { get; set; }
 
-            dstManager.AddComponentData(entity, new ActorForceRotationData
-            {
-                RotationDelta = rotationDelta,
-                RotationSpeed = rotationSpeed
-            });
+		public Vector3 rotationDelta;
+		public float rotationSpeed;
 
-            dstManager.AddComponentData(entity, new RotateDirectlyData
-            {
-                Constraints = new bool3(!rotationDelta.x.Equals(0),!rotationDelta.y.Equals(0),!rotationDelta.z.Equals(0))
-            });
-        }
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-        public void Execute()
-        {
-        }
-    }
+			dstManager.AddComponentData(entity, new ActorForceRotationData
+			{
+				RotationDelta = rotationDelta,
+				RotationSpeed = rotationSpeed
+			});
 
-    public struct ActorForceRotationData : IComponentData
-    {
-        public Vector3 RotationDelta;
-        public float RotationSpeed;
-    }
+			dstManager.AddComponentData(entity, new RotateDirectlyData
+			{
+				Constraints = new bool3(!rotationDelta.x.Equals(0), !rotationDelta.y.Equals(0), !rotationDelta.z.Equals(0))
+			});
+		}
+
+		public void Execute()
+		{
+		}
+	}
+
+	public struct ActorForceRotationData : IComponentData
+	{
+		public Vector3 RotationDelta;
+		public float RotationSpeed;
+	}
 }

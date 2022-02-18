@@ -7,39 +7,42 @@ using UnityEngine.UI;
 
 namespace Crimson.Core.Common
 {
-    [HideMonoScript]
-    public class UIRespawnScreenView : MonoBehaviour
-    {
-        [SerializeField] private Button respawnButton;
-        [SerializeField] private Actor actor;
+	[HideMonoScript]
+	public class UIRespawnScreenView : MonoBehaviour
+	{
+		[SerializeField] private Button respawnButton;
+		[SerializeField] private Actor actor;
 
-        private LevelActorSpawnBehaviour _levelActorSpawnBehaviour;
+		private LevelActorSpawnBehaviour _levelActorSpawnBehaviour;
 
-        public void Start()
-        {
-            gameObject.SetActive(false);
+		public void Start()
+		{
+			gameObject.SetActive(false);
 
-            _levelActorSpawnBehaviour = FindObjectOfType<LevelActorSpawnBehaviour>();
-        }
+			_levelActorSpawnBehaviour = FindObjectOfType<LevelActorSpawnBehaviour>();
+		}
 
-        public void ShowRespawnWindow(Action onRespawnAction)
-        {
-            gameObject.SetActive(true);
+		public void ShowRespawnWindow(Action onRespawnAction)
+		{
+			gameObject.SetActive(true);
 
-            respawnButton.onClick.AddListener(() =>
-            {
-                PlayerRespawn();
-                onRespawnAction.Invoke();
+			respawnButton.onClick.AddListener(() =>
+			{
+				PlayerRespawn();
+				onRespawnAction.Invoke();
 
-                gameObject.DestroyWithEntity(actor.ActorEntity);
-            });
-        }
+				gameObject.DestroyWithEntity(actor.ActorEntity);
+			});
+		}
 
-        private void PlayerRespawn()
-        {
-            if (_levelActorSpawnBehaviour == null) return;
+		private void PlayerRespawn()
+		{
+			if (_levelActorSpawnBehaviour == null)
+			{
+				return;
+			}
 
-            _levelActorSpawnBehaviour.Spawn();
-        }
-    }
+			_levelActorSpawnBehaviour.Spawn();
+		}
+	}
 }

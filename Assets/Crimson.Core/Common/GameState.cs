@@ -11,83 +11,83 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-    public struct GameStateData : IComponentData
-    {
-        public byte foo;
-    }
+	public struct GameStateData : IComponentData
+	{
+		public byte foo;
+	}
 
-    public class GameState : Actor
-    {
-        [ValueDropdown("Tags")]
-        public string enemyTag;
+	public class GameState : Actor
+	{
+		[ValueDropdown("Tags")]
+		public string enemyTag;
 
-        public GameObject losePanel;
-        public int maxDeathCount = 1;
+		public GameObject losePanel;
+		public int maxDeathCount = 1;
 
-        public bool NeedCheckEndGame;
+		public bool NeedCheckEndGame;
 
-        [HideInInspector]
-        public List<AbilityActorPlayer> players;
+		[HideInInspector]
+		public List<AbilityActorPlayer> players;
 
-        public PrefabRepositoryFromScriptableObject PrefabRepository;
-        public GameObject respawnPanel;
-        public GameObject rootCanvas;
+		public PrefabRepositoryFromScriptableObject PrefabRepository;
+		public GameObject respawnPanel;
+		public GameObject rootCanvas;
 
-        [HideInInspector]
-        public ActorSpawnerSettings sampleSpawner = new ActorSpawnerSettings
-        {
-            ObjectsToSpawn = null,
-            SpawnPosition = SpawnPosition.UseSpawnerPosition,
-            SpawnPointsFillingMode = FillOrder.SequentialOrder,
-            FillSpawnPoints = FillMode.UseEachObjectOnce,
-            SkipBusySpawnPoints = false,
-            SpawnPoints = new List<GameObject>(),
-            RotationOfSpawns = RotationOfSpawns.UseZeroRotation,
-            ParentOfSpawns = TargetType.None,
-            chooseParentStrategy = ChooseTargetStrategy.Nearest,
-            RunSpawnActionsOnObjects = true,
-            DestroyAbilityAfterSpawn = false,
-            CopyComponentsFromSamples = new List<GameObject>(),
-            CopyComponentsOfType = ComponentsOfType.AllComponents
-        };
+		[HideInInspector]
+		public ActorSpawnerSettings sampleSpawner = new ActorSpawnerSettings
+		{
+			ObjectsToSpawn = null,
+			SpawnPosition = SpawnPosition.UseSpawnerPosition,
+			SpawnPointsFillingMode = FillOrder.SequentialOrder,
+			FillSpawnPoints = FillMode.UseEachObjectOnce,
+			SkipBusySpawnPoints = false,
+			SpawnPoints = new List<GameObject>(),
+			RotationOfSpawns = RotationOfSpawns.UseZeroRotation,
+			ParentOfSpawns = TargetType.None,
+			chooseParentStrategy = ChooseTargetStrategy.Nearest,
+			RunSpawnActionsOnObjects = true,
+			DestroyAbilityAfterSpawn = false,
+			CopyComponentsFromSamples = new List<GameObject>(),
+			CopyComponentsOfType = ComponentsOfType.AllComponents
+		};
 
-        [HideInInspector]
-        public double startTime;
+		[HideInInspector]
+		public double startTime;
 
-        [HideInInspector]
-        public AbilityActorPlayer userPlayer;
+		[HideInInspector]
+		public AbilityActorPlayer userPlayer;
 
-        [ValidateInput(nameof(MustBeSpawner), "Spawner MonoBehaviours must derive from IActorSpawner!!")]
-        public MonoBehaviour userSpawner;
+		[ValidateInput(nameof(MustBeSpawner), "Spawner MonoBehaviours must derive from IActorSpawner!!")]
+		public MonoBehaviour userSpawner;
 
-        public GameObject winPanel;
+		public GameObject winPanel;
 
-        public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-        {
-            base.Convert(entity, dstManager, conversionSystem);
+		public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+		{
+			base.Convert(entity, dstManager, conversionSystem);
 
-            sampleSpawner.SpawnPoints = new List<GameObject> { this.gameObject };
-            sampleSpawner.objectsToSpawn = new List<GameObject>
-            {
-                respawnPanel,
-                winPanel,
-                losePanel
-            };
-        }
+			sampleSpawner.SpawnPoints = new List<GameObject> { this.gameObject };
+			sampleSpawner.objectsToSpawn = new List<GameObject>
+			{
+				respawnPanel,
+				winPanel,
+				losePanel
+			};
+		}
 
-        public override void PostConvert()
-        {
-            WorldEntityManager.AddComponentData(ActorEntity, new GameStateData());
-        }
+		public override void PostConvert()
+		{
+			WorldEntityManager.AddComponentData(ActorEntity, new GameStateData());
+		}
 
-        private static IEnumerable Tags()
-        {
-            return EditorUtils.GetEditorTags();
-        }
+		private static IEnumerable Tags()
+		{
+			return EditorUtils.GetEditorTags();
+		}
 
-        private bool MustBeSpawner(MonoBehaviour a)
-        {
-            return (a is IActorSpawner) || (a is null);
-        }
-    }
+		private bool MustBeSpawner(MonoBehaviour a)
+		{
+			return (a is IActorSpawner) || (a is null);
+		}
+	}
 }

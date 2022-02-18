@@ -5,21 +5,27 @@ using UnityEngine;
 
 namespace Crimson.Core.Utils
 {
-    public static class ActorUtils
-    {
-        public static void ChangeActorForceMovementData(this IActor target, Vector3 forwardVector)
-        {
-            if (target == null) return;
+	public static class ActorUtils
+	{
+		public static void ChangeActorForceMovementData(this IActor target, Vector3 forwardVector)
+		{
+			if (target == null)
+			{
+				return;
+			}
 
-            if (!World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<ActorForceMovementData>(target.ActorEntity)) return;
-            
-            var actorForceMovementData = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<ActorForceMovementData>(target.ActorEntity);
+			if (!World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<ActorForceMovementData>(target.ActorEntity))
+			{
+				return;
+			}
 
-            actorForceMovementData.MoveDirection = MoveDirection.UseDirection;
-            actorForceMovementData.ForwardVector = forwardVector;
-            actorForceMovementData.CompensateSpawnerRotation = false;
+			var actorForceMovementData = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<ActorForceMovementData>(target.ActorEntity);
 
-            World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(target.ActorEntity, actorForceMovementData);
-        }
-    }
+			actorForceMovementData.MoveDirection = MoveDirection.UseDirection;
+			actorForceMovementData.ForwardVector = forwardVector;
+			actorForceMovementData.CompensateSpawnerRotation = false;
+
+			World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(target.ActorEntity, actorForceMovementData);
+		}
+	}
 }

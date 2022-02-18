@@ -4,14 +4,12 @@ namespace Crimson.Core.Utils
 						   System.AttributeTargets.Property)]
 	public class CastToUI : System.Attribute
 	{
-		private string _fieldId;
-
 		public CastToUI(string fieldId)
 		{
-			_fieldId = fieldId;
+			FieldId = fieldId;
 		}
 
-		public string FieldId => _fieldId;
+		public string FieldId { get; }
 	}
 
 	[System.AttributeUsage(System.AttributeTargets.Field |

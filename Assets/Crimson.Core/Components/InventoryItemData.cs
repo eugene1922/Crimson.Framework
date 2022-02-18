@@ -3,9 +3,9 @@ using System;
 
 namespace Assets.Crimson.Core.Components
 {
-    [Serializable]
-    public struct InventoryItemData
-    {
-        [ReadOnly] public int ID;
-    }
+	[Serializable]
+	public struct InventoryItemData
+	{
+		[ReadOnly] public int ID;
+	}
 }

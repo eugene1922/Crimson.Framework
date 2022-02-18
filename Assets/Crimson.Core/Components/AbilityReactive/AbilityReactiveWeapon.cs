@@ -12,188 +12,200 @@ using UnityEngine;
 
 namespace Crimson.Core.Components.AbilityReactive
 {
-    [HideMonoScript]
-    public abstract class AbilityReactiveWeapon : TimerBaseBehaviour,
-        IActorAbilityTarget,
-        IActorSpawnerAbility,
-        IComponentName,
-        IEnableable,
-        ICooldownable,
-        IBindable,
-        IUseAimable
-    {
-        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
+	[HideMonoScript]
+	public abstract class AbilityReactiveWeapon : TimerBaseBehaviour,
+		IActorAbilityTarget,
+		IActorSpawnerAbility,
+		IComponentName,
+		IEnableable,
+		ICooldownable,
+		IBindable,
+		IUseAimable
+	{
+		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
-        [HideIf(nameof(projectileClipCapacity), 0f)]
-        [Space]
-        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+		[HideIf(nameof(projectileClipCapacity), 0f)]
+		[Space]
+		public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
 
-        [HideIf(nameof(projectileClipCapacity), 0f)] public float clipReloadTime = 1f;
-        public string componentName = "";
+		[HideIf(nameof(projectileClipCapacity), 0f)] public float clipReloadTime = 1f;
+		public string componentName = "";
 
-        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-        public int projectileClipCapacity = 0;
+		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+		public int projectileClipCapacity = 0;
 
-        public ActorSpawnerSettings projectileSpawnData;
+		public ActorSpawnerSettings projectileSpawnData;
 
-        [InfoBox("Put here IEnable implementation to display reload")]
-        [Space]
-        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+		[InfoBox("Put here IEnable implementation to display reload")]
+		[Space]
+		public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
 
-        public Transform SpawnPoint;
-        public bool suppressWeaponSpawn = false;
-        protected Entity _entity;
-        private bool _actorToUi;
-        [SerializeField] private IAimable _aimComponent;
-        [SerializeField] private float _cooldownTime = 0.3f;
-        private EntityManager _dstManager;
-        public IActor AbilityOwnerActor { get; set; }
-        public bool ActionExecutionAllowed { get; set; }
-        public IActor Actor { get; set; }
+		public Transform SpawnPoint;
+		public bool suppressWeaponSpawn = false;
+		protected Entity _entity;
+		private bool _actorToUi;
+		[SerializeField] private IAimable _aimComponent;
+		[SerializeField] private float _cooldownTime = 0.3f;
+		private EntityManager _dstManager;
+		public IActor AbilityOwnerActor { get; set; }
+		public bool ActionExecutionAllowed { get; set; }
+		public IActor Actor { get; set; }
 
-        public IAimable Aim => _aimComponent;
+		public IAimable Aim => _aimComponent;
 
-        public int BindingIndex { get; set; } = -1;
+		public int BindingIndex { get; set; } = -1;
 
-        public string ComponentName
-        {
-            get => componentName;
-            set => componentName = value;
-        }
+		public string ComponentName
+		{
+			get => componentName;
+			set => componentName = value;
+		}
 
-        public float CooldownTime
-        {
-            get => _cooldownTime;
-            set => _cooldownTime = value;
-        }
+		public float CooldownTime
+		{
+			get => _cooldownTime;
+			set => _cooldownTime = value;
+		}
 
-        public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
-        public bool OnHoldAttackActive { get; set; }
-        public List<Action<GameObject>> SpawnCallbacks { get; set; }
-        public GameObject SpawnedAimingPrefab { get; set; }
-        public List<GameObject> SpawnedObjects { get; private set; }
-        public Transform SpawnPointsRoot { get; private set; }
-        public IActor TargetActor { get; set; }
+		public Action<GameObject> DisposableSpawnCallback { get; set; }
+		public bool Enabled { get; set; }
+		public bool OnHoldAttackActive { get; set; }
+		public List<Action<GameObject>> SpawnCallbacks { get; set; }
+		public GameObject SpawnedAimingPrefab { get; set; }
+		public List<GameObject> SpawnedObjects { get; private set; }
+		public Transform SpawnPointsRoot { get; private set; }
+		public IActor TargetActor { get; set; }
 
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-            Actor = actor;
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
 
-            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-            _entity = entity;
+			_entity = entity;
 
-            SpawnCallbacks = new List<Action<GameObject>>();
+			SpawnCallbacks = new List<Action<GameObject>>();
 
-            Enabled = true;
+			Enabled = true;
 
-            _dstManager.AddComponent<TimerData>(entity);
+			_dstManager.AddComponent<TimerData>(entity);
 
-            if (actorProjectileSpawnAnimProperties != null
-                && actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
-            {
-                _dstManager.AddComponentData(entity, new ActorProjectileAnimData
-                {
-                    AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
-                });
-            }
+			if (actorProjectileSpawnAnimProperties != null
+				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
+			{
+				_dstManager.AddComponentData(entity, new ActorProjectileAnimData
+				{
+					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
+				});
+			}
 
-            appliedPerksNames = new List<string>();
+			appliedPerksNames = new List<string>();
 
-            var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-            _actorToUi = playerActor != null && playerActor.actorToUI;
+			var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+			_actorToUi = playerActor != null && playerActor.actorToUI;
 
-            if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
+			if (!Actor.Abilities.Contains(this))
+			{
+				Actor.Abilities.Add(this);
+			}
 
-            if (!_actorToUi) return;
+			if (!_actorToUi)
+			{
+				return;
+			}
 
-            SpawnPointsRoot = new GameObject("spawn points root").transform;
-            SpawnPointsRoot.SetParent(gameObject.transform);
+			SpawnPointsRoot = new GameObject("spawn points root").transform;
+			SpawnPointsRoot.SetParent(gameObject.transform);
 
-            SpawnPointsRoot.localPosition = Vector3.zero;
-            ResetSpawnPointRootRotation();
+			SpawnPointsRoot.localPosition = Vector3.zero;
+			ResetSpawnPointRootRotation();
 
-            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
-            {
-                projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
-            }
+			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+			{
+				projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+			}
 
-            if (projectileSpawnData.SpawnPoints.Any()) projectileSpawnData.SpawnPoints.Clear();
+			if (projectileSpawnData.SpawnPoints.Any())
+			{
+				projectileSpawnData.SpawnPoints.Clear();
+			}
 
-            var baseSpawnPoint = new GameObject("Base Spawn Point");
-            baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
+			var baseSpawnPoint = new GameObject("Base Spawn Point");
+			baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
 
-            baseSpawnPoint.transform.localPosition = Vector3.zero;
-            baseSpawnPoint.transform.localRotation = Quaternion.identity;
+			baseSpawnPoint.transform.localPosition = Vector3.zero;
+			baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
-            projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
-            InitPool();
-        }
+			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+			InitPool();
+		}
 
-        public abstract void Execute();
+		public abstract void Execute();
 
-        public override void FinishTimer()
-        {
-            base.FinishTimer();
-            Enabled = true;
+		public override void FinishTimer()
+		{
+			base.FinishTimer();
+			Enabled = true;
 
-            this.FinishAbilityCooldownTimer(Actor);
-        }
+			this.FinishAbilityCooldownTimer(Actor);
+		}
 
-        public void InitPool()
-        {
-            projectileSpawnData.InitPool();
-        }
+		public void InitPool()
+		{
+			projectileSpawnData.InitPool();
+		}
 
-        public void ResetSpawnPointRootRotation()
-        {
-            SpawnPointsRoot.localRotation = Quaternion.identity;
-        }
+		public void ResetSpawnPointRootRotation()
+		{
+			SpawnPointsRoot.localRotation = Quaternion.identity;
+		}
 
-        public virtual void Spawn()
-        {
-            if (Aim != null)
-            {
-                SpawnPointsRoot.LookAt(Aim.SpawnedAimingPrefab.transform);
-            }
-            SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
-            if (SpawnedObjects == null)
-            {
-                return;
-            }
+		public virtual void Spawn()
+		{
+			if (Aim != null)
+			{
+				SpawnPointsRoot.LookAt(Aim.SpawnedAimingPrefab.transform);
+			}
+			SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
+			if (SpawnedObjects == null)
+			{
+				return;
+			}
 
-            var objectsToSpawn = SpawnedObjects;
+			var objectsToSpawn = SpawnedObjects;
 
-            if (SpawnedObjects == null)
-            {
-                return;
-            }
+			if (SpawnedObjects == null)
+			{
+				return;
+			}
 
-            foreach (var callback in SpawnCallbacks)
-            {
-                objectsToSpawn.ForEach(go => callback.Invoke(go));
-            }
+			foreach (var callback in SpawnCallbacks)
+			{
+				objectsToSpawn.ForEach(go => callback.Invoke(go));
+			}
 
-            objectsToSpawn.ForEach(go =>
-            {
-                DisposableSpawnCallback?.Invoke(go);
-                DisposableSpawnCallback = null;
-            });
+			objectsToSpawn.ForEach(go =>
+			{
+				DisposableSpawnCallback?.Invoke(go);
+				DisposableSpawnCallback = null;
+			});
 
-            if (!_actorToUi) return;
+			if (!_actorToUi)
+			{
+				return;
+			}
 
-            ResetSpawnPointRootRotation();
-            OnHoldAttackActive = false;
-        }
+			ResetSpawnPointRootRotation();
+			OnHoldAttackActive = false;
+		}
 
-        public override void StartTimer()
-        {
-            base.StartTimer();
-            Enabled = false;
+		public override void StartTimer()
+		{
+			base.StartTimer();
+			Enabled = false;
 
-            this.StartAbilityCooldownTimer(Actor);
-        }
-    }
+			this.StartAbilityCooldownTimer(Actor);
+		}
+	}
 }

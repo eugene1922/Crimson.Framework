@@ -55,11 +55,17 @@ namespace Crimson.Core.Components
 
 		public void Execute()
 		{
-			if (TargetActor == null) return;
+			if (TargetActor == null)
+			{
+				return;
+			}
 
 			var ownerActorPlayer = TargetActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-			if (ownerActorPlayer == null) return;
+			if (ownerActorPlayer == null)
+			{
+				return;
+			}
 
 			this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
 
