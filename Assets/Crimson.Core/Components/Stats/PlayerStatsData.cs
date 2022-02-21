@@ -1,11 +1,13 @@
 ﻿using Unity.Entities;
+using UnityEngine;
 
 namespace Crimson.Core.Components.Stats
 {
 	[System.Serializable]
 	public struct PlayerStatsData : IComponentData
 	{
-		public int CriticalDamageMultiplier;
+		[Range(0, 1)] public float CriticalDamageChance;
+		public float CriticalDamageMultiplier;
 		public int CurrentExperience;
 		public MinMaxStat<int> Energy;
 		public MinMaxStat<int> Health;

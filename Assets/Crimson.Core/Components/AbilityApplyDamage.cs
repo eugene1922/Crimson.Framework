@@ -12,8 +12,8 @@ namespace Crimson.Core.Components
 	[HideMonoScript]
 	public class AbilityApplyDamage : MonoBehaviour, IActorAbilityTarget, ILevelable
 	{
-		[LevelableValue] public float CriticalDamageChance = .1f;
-		[LevelableValue] public float CriticalDamageMultiplyer = 1;
+		[LevelableValue, Range(0, 1)] public float CriticalDamageChance = .1f;
+		[LevelableValue] public float CriticalDamageMultiplier = 1;
 		[LevelableValue] public float Damage = 10;
 
 		[Space]
@@ -62,24 +62,17 @@ namespace Crimson.Core.Components
 				return;
 			}
 
-			var ownerActorPlayer = TargetActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+			var ownerActorPlayer = AbilityOwnerActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+			var targetActor = TargetActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-			if (ownerActorPlayer == null)
+			if (ownerActorPlayer == null || targetActor == null)
 			{
 				return;
 			}
 
 			this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
-
-			var damage = Damage;
-			var randomValue = Random.Range(0, 100);
-			var hasCritDamage = randomValue <= (1 - CriticalDamageChance);
-			if (hasCritDamage)
-			{
-				damage *= CriticalDamageMultiplyer;
-			}
-
-			ownerActorPlayer.UpdateHealth(-(int)damage);
+			var damage = CalculateDamage(ownerActorPlayer);
+			targetActor.UpdateHealth(-(int)damage);
 		}
 
 		public void SetLevel(int level)
@@ -90,6 +83,22 @@ namespace Crimson.Core.Components
 		public void SetLevelableProperty()
 		{
 			this.SetLevelableProperty(LevelablePropertiesInfoCached);
+		}
+
+		private float CalculateDamage(AbilityActorPlayer owner)
+		{
+			var damage = Damage;
+			var randomValue = Random.Range(0.0f, 1.0f);
+			var critChance = Mathf.Max(owner.Stats.CriticalDamageChance, CriticalDamageChance);
+			var hasCritDamage = randomValue >= (1 - critChance);
+			if (hasCritDamage)
+			{
+				var critMultiplier = owner.Stats.CriticalDamageMultiplier + CriticalDamageMultiplier;
+				damage *= critMultiplier;
+				Debug.LogWarning($"Crit {Damage}:{randomValue}:{damage}");
+			}
+
+			return damage;
 		}
 	}
 }

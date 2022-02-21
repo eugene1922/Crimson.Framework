@@ -22,12 +22,12 @@ namespace Crimson.Core.Components.Stats
 				{
 					return;
 				}
-				var newValue = _current;
-				if (value.CompareTo(MinLimit) == -1)
+				var newValue = value;
+				if (newValue.CompareTo(MinLimit) == -1)
 				{
 					newValue = MinLimit;
 				}
-				else if (value.CompareTo(MaxLimit) == 1)
+				else if (newValue.CompareTo(MaxLimit) == 1)
 				{
 					newValue = MaxLimit;
 				}

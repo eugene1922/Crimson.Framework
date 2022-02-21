@@ -392,9 +392,8 @@ namespace Crimson.Core.Components
 
 		public void UpdateHealth(int delta)
 		{
-			if (delta == 0)
+			if (!IsAlive)
 			{
-				_dstManager.AddComponent<DeadActorTag>(Actor.ActorEntity);
 				return;
 			}
 

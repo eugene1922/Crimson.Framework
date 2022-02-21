@@ -293,7 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initStats:
-    CriticalDamageMultiplier: 0
+    CriticalDamageChance: 0.1
+    CriticalDamageMultiplier: 2
     CurrentExperience: 0
     Energy:
       _current: 100

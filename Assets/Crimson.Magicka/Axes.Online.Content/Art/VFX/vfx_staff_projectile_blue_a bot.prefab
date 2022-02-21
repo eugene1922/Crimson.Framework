@@ -137,32 +137,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 135107355229724922}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: -4054787997842051503}
+    - {fileID: -1026498150765288097}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8503
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Enemy
     - DestructibleObject
     - CollisionObjects
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: -4054787997842051503}
-    - {fileID: -1026498150765288097}
-  - collisionLayerMask:
+    useTagFilter: 1
+  - actions:
+    - {fileID: -2695837271602740154}
+    - {fileID: 2866327413141821552}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8503
-    useTagFilter: 1
+    destroyAfterAction: 1
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Enemy
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
-    - {fileID: -2695837271602740154}
-    - {fileID: 2866327413141821552}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &-1026498150765288097
@@ -193,9 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkLevel: 1
-  damageValue: 15
+  CriticalDamageChance: 0.1
+  CriticalDamageMultiplier: 3
+  Damage: 10
   levelablePropertiesList: []
+  perkLevel: 1
 --- !u!114 &-4054787997842051503
 MonoBehaviour:
   m_ObjectHideFlags: 0
