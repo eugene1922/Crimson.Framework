@@ -95,7 +95,6 @@ namespace Crimson.Core.Components
 			{
 				var critMultiplier = owner.Stats.CriticalDamageMultiplier + CriticalDamageMultiplier;
 				damage *= critMultiplier;
-				Debug.LogWarning($"Crit {Damage}:{randomValue}:{damage}");
 			}
 
 			return damage;
