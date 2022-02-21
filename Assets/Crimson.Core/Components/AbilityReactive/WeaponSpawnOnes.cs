@@ -45,7 +45,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		[Space]
 		public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
 
-		public Transform SpawnPoint;
 		public bool suppressWeaponSpawn = false;
 		protected Entity _entity;
 		private bool _actorToUi;
@@ -74,21 +73,16 @@ namespace Crimson.Core.Components.AbilityReactive
 		public List<Action<GameObject>> SpawnCallbacks { get; set; }
 		public GameObject SpawnedAimingPrefab { get; set; }
 		public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
-		public Transform SpawnPointsRoot { get; private set; }
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
+		private Transform SpawnPointsRoot { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
-
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
 			_entity = entity;
-
+			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
-
 			Enabled = true;
-
 			_dstManager.AddComponent<TimerData>(entity);
 
 			if (actorProjectileSpawnAnimProperties != null
@@ -147,7 +141,6 @@ namespace Crimson.Core.Components.AbilityReactive
 			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
 			if (Enabled && CurrentEntityManager.Exists(_entity))
 			{
-				Debug.Log("WeaponSpawnOnes");
 				Spawn();
 
 				CurrentEntityManager.AddComponentData(_entity,

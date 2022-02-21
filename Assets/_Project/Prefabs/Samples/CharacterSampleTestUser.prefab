@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -4939348821489114762}
   - component: {fileID: -136997334286632821}
   - component: {fileID: -5199557533950553967}
-  - component: {fileID: -7136897725198441121}
   - component: {fileID: 9054062468200216802}
   - component: {fileID: 8733997711401153921}
   - component: {fileID: -1969340818193211531}
@@ -26,6 +25,7 @@ GameObject:
   - component: {fileID: -7126598297091492315}
   - component: {fileID: 4824009499160723703}
   - component: {fileID: 4074231723351004181}
+  - component: {fileID: 8250595443253147906}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -62,9 +62,9 @@ MonoBehaviour:
   AIBehaviour: {fileID: 0}
   compensateCameraRotation: 1
   customBindings:
-  - index: 1
-    actions:
+  - actions:
     - {fileID: 2000508641564710722}
+    index: 1
   inputSource: 1
   minMoveInputMagnitude: 1
 --- !u!114 &2000508641564710722
@@ -82,12 +82,12 @@ MonoBehaviour:
   InputBehaviours:
   - InputType: 1
     Actions:
-    - {fileID: -7136897725198441121}
+    - {fileID: 8250595443253147906}
     - {fileID: 8733997711401153921}
-    - {fileID: 484398431847593746}
   - InputType: 0
     Actions:
     - {fileID: 9054062468200216802}
+    - {fileID: 8250595443253147906}
 --- !u!114 &-4939348821489114762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,64 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTag: Player
   alsoSetLayer: 1
-  newLayer: Allies
   applyOnStart: 1
---- !u!114 &-7136897725198441121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d029a305833285747ab6a38f45bf474d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cooldownTime: 0.3
-  _weaponFinishTime: 0.15
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
-  AimComponent: {fileID: 9054062468200216802}
-  appliedPerksNames: []
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: 
-  projectileClipCapacity: 0
-  projectileSpawnData:
-    actorWithComponentName: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 839f716811d3c4597a848c4a6af4679d, type: 3}
-    parentOfSpawns: 1
-    parentTag: 
-    poolSettings:
-      CollectionCheck: 1
-      InitSize: 5
-      MaxSize: 10
-      UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
-  reloadDisplayToggle: []
-  suppressWeaponSpawn: 1
+  newLayer: Allies
+  newTag: Player
 --- !u!114 &9054062468200216802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initStats:
+    CriticalDamageMultiplier: 0
     CurrentExperience: 0
     Energy:
       _current: 100
@@ -610,7 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6eac391121829f43b0bf126904f4c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryItems: []
+  InventoryItems:
+  - ID: 1824091016
+  - ID: 1824091016
 --- !u!114 &4074231723351004181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,3 +575,57 @@ MonoBehaviour:
   _input: {fileID: 5040436995964547475, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
   actions:
   - {fileID: -7126598297091492315}
+--- !u!114 &8250595443253147906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 0
+    ActorProjectileAnimationName: 
+  AimComponent: {fileID: 9054062468200216802}
+  appliedPerksNames: []
+  clipReloadDisplayToggle: []
+  clipReloadTime: 0.2
+  componentName: 
+  projectileClipCapacity: 0
+  projectileSpawnData:
+    actorWithComponentName: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: d6b4eda4410534643b1da9bb708d2c5a, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+    randomSeed: 0
+    rotationOfSpawns: 0
+    runSpawnActionsOnObjects: 0
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 0
+    useChildrenObjects: 0
+    x: 0
+    _spawnPoints:
+    - {fileID: 0}
+  reloadDisplayToggle: []
+  suppressWeaponSpawn: 0
+  _cooldownTime: 0.1

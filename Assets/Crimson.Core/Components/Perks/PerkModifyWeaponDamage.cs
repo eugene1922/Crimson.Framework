@@ -16,37 +16,23 @@ namespace Crimson.Core.Components.Perks
 	{
 		public bool ApplyToAllProjectiles = true;
 
+		public CollisionSettings collisionSettings;
 		[HideIf("ApplyToAllProjectiles")] public string componentName = "";
 
-		public float weaponDamageModifier = 1.5f;
-		public CollisionSettings collisionSettings;
-
 		public bool spawnTargetEffect;
+		public bool spawnWeaponEffect;
 
 		[ShowIf("spawnTargetEffect")]
 		public GameObject targetEffectPrefab;
 
-		public bool spawnWeaponEffect;
+		public float weaponDamageModifier = 1.5f;
 
 		[ShowIf("spawnWeaponEffect")]
 		public GameObject weaponEffectPrefab;
 
+		public IActor AbilityOwnerActor { get; set; }
 		public IActor Actor { get; set; }
 		public IActor TargetActor { get; set; }
-		public IActor AbilityOwnerActor { get; set; }
-
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
-		}
-
-		public void Execute()
-		{
-			if (spawnTargetEffect)
-			{
-				SpawnEffect(TargetActor, targetEffectPrefab);
-			}
-		}
 
 		public void AddCollision(GameObject target)
 		{
@@ -65,6 +51,30 @@ namespace Crimson.Core.Components.Perks
 					actions = new List<MonoBehaviour> { this }
 				});
 			}
+		}
+
+		public void AddCollisionAction(GameObject target)
+		{
+			var p = target.CopyComponent(this) as PerkModifyWeaponDamage;
+
+			if (p == null)
+			{
+				return;
+			}
+
+			var a = target.GetComponent<IActor>();
+			if (a != null)
+			{
+				var e = a.ActorEntity;
+				p.AddComponentData(ref e, a);
+			}
+
+			p.AddCollision(p.gameObject);
+		}
+
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
 		}
 
 		public void Apply(IActor target)
@@ -117,23 +127,22 @@ namespace Crimson.Core.Components.Perks
 			}
 		}
 
-		public void AddCollisionAction(GameObject target)
+		public void Execute()
 		{
-			var p = target.CopyComponent(this) as PerkModifyWeaponDamage;
-
-			if (p == null)
+			if (spawnTargetEffect)
 			{
-				return;
+				SpawnEffect(TargetActor, targetEffectPrefab);
+			}
+		}
+
+		public void Remove()
+		{
+			if (Actor.Spawner.AppliedPerks.Contains(this))
+			{
+				Actor.Spawner.AppliedPerks.Remove(this);
 			}
 
-			var a = target.GetComponent<IActor>();
-			if (a != null)
-			{
-				var e = a.ActorEntity;
-				p.AddComponentData(ref e, a);
-			}
-
-			p.AddCollision(p.gameObject);
+			Destroy(this);
 		}
 
 		private void ApplyWeaponDamageModifier(GameObject target)
@@ -149,7 +158,7 @@ namespace Crimson.Core.Components.Perks
 
 			if (applyDamageAbility != null)
 			{
-				applyDamageAbility.damageValue = (int)(applyDamageAbility.damageValue * weaponDamageModifier);
+				applyDamageAbility.Damage = (int)(applyDamageAbility.Damage * weaponDamageModifier);
 			}
 		}
 
@@ -165,16 +174,6 @@ namespace Crimson.Core.Components.Perks
 			};
 
 			ActorSpawn.Spawn(effectData, target, Actor);
-		}
-
-		public void Remove()
-		{
-			if (Actor.Spawner.AppliedPerks.Contains(this))
-			{
-				Actor.Spawner.AppliedPerks.Remove(this);
-			}
-
-			Destroy(this);
 		}
 	}
 }

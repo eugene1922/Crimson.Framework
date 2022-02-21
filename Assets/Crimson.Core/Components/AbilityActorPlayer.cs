@@ -1,6 +1,6 @@
 ﻿using Assets.Crimson.Core.Common;
-using Assets.Crimson.Core.Components.Stats;
 using Crimson.Core.Common;
+using Crimson.Core.Components.Stats;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;

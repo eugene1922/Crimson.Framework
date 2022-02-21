@@ -12,7 +12,9 @@ namespace Crimson.Core.Components
 	[HideMonoScript]
 	public class AbilityApplyDamage : MonoBehaviour, IActorAbilityTarget, ILevelable
 	{
-		[LevelableValue] public float damageValue = 0;
+		[LevelableValue] public float CriticalDamageChance = .1f;
+		[LevelableValue] public float CriticalDamageMultiplyer = 1;
+		[LevelableValue] public float Damage = 10;
 
 		[Space]
 		[TitleGroup("Levelable properties")]
@@ -69,7 +71,15 @@ namespace Crimson.Core.Components
 
 			this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
 
-			ownerActorPlayer.UpdateHealth(-(int)damageValue);
+			var damage = Damage;
+			var randomValue = Random.Range(0, 100);
+			var hasCritDamage = randomValue <= (1 - CriticalDamageChance);
+			if (hasCritDamage)
+			{
+				damage *= CriticalDamageMultiplyer;
+			}
+
+			ownerActorPlayer.UpdateHealth(-(int)damage);
 		}
 
 		public void SetLevel(int level)

@@ -27709,17 +27709,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 1761508709}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: 655484596}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Player
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: 655484596}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &656564046
@@ -46490,17 +46490,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 2085622788}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: 1071256857}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8192
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Player
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: 1071256857}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1 &1072499816
@@ -65394,17 +65394,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 308238698}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: 1568445583}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Player
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: 1568445583}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &1568445583
@@ -78906,17 +78906,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 799520419}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: 1884346114}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Player
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: 1884346114}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &1884671686
@@ -80436,19 +80436,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 1725538062}
   collisionActions:
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 16183
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
-    - Player
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
+  - actions:
     - {fileID: 1916594706}
     - {fileID: 1916594708}
     - {fileID: 1916594710}
+    collisionLayerMask:
+      serializedVersion: 2
+      m_Bits: 16183
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
+    filterMode: 0
+    filterTags:
+    - Player
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &1916594708
@@ -88993,17 +88993,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 993061738}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: 2077329062}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8192
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Player
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: 2077329062}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &2083051117

@@ -138,32 +138,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 135107355229724922}
   collisionActions:
-  - collisionLayerMask:
+  - actions:
+    - {fileID: -4054787997842051503}
+    - {fileID: -1026498150765288097}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8503
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Enemy
     - DestructibleObject
     - CollisionObjects
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-    actions:
-    - {fileID: -4054787997842051503}
-    - {fileID: -1026498150765288097}
-  - collisionLayerMask:
+    useTagFilter: 1
+  - actions:
+    - {fileID: 624828122741978645}
+    - {fileID: 2866327413141821552}
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8503
-    useTagFilter: 1
+    destroyAfterAction: 1
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Enemy
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
-    - {fileID: 624828122741978645}
-    - {fileID: 2866327413141821552}
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &-1026498150765288097
@@ -194,9 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkLevel: 1
-  damageValue: 15
+  CriticalDamageChance: 0
+  CriticalDamageMultiplyer: 1.2
+  Damage: 10
   levelablePropertiesList: []
+  perkLevel: 1
 --- !u!114 &-4054787997842051503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,29 +214,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 2939668755688441488, guid: b0e7c5fbd639cd6419d74d536a13fb07, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 4
-    parentOfSpawns: 0
     actorWithComponentName: 
-    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 2939668755688441488, guid: b0e7c5fbd639cd6419d74d536a13fb07, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
     randomSeed: 0
+    rotationOfSpawns: 4
+    runSpawnActionsOnObjects: 1
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 2
+    useChildrenObjects: 0
+    x: 0
+    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.1
@@ -268,29 +275,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 431257179778231269, guid: 8ad987304ff244752a11607442e98ca8, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 4
-    parentOfSpawns: 0
     actorWithComponentName: 
-    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 431257179778231269, guid: 8ad987304ff244752a11607442e98ca8, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
     randomSeed: 0
+    rotationOfSpawns: 4
+    runSpawnActionsOnObjects: 1
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 2
+    useChildrenObjects: 0
+    x: 0
+    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0

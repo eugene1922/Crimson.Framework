@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Crimson.Core.Components.Stats
+namespace Crimson.Core.Components.Stats
 {
 	[Serializable]
 	public struct MinMaxStat<T> where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
