@@ -1,4 +1,6 @@
-﻿using Assets.Crimson.Core.Components.Interaction;
+﻿using Assets.Crimson.Core.Components;
+using Assets.Crimson.Core.Components.Interaction;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
@@ -8,6 +10,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
 {
 	public class InteractionSystem : ComponentSystem
 	{
+		private EntityQuery _buttonQuery;
 		private EntityQuery _interactiveEntitiesQuery;
 		private Collider[] _results = new Collider[Constants.COLLISION_BUFFER_CAPACITY];
 
@@ -18,6 +21,11 @@ namespace Assets.Crimson.Core.Systems.Interaction
 				ComponentType.ReadOnly<AbilityPlayerInput>(),
 				ComponentType.ReadOnly<ActivatedInteractionZone>(),
 				ComponentType.ReadOnly<InteractionZone>());
+
+			_buttonQuery = GetEntityQuery(
+				ComponentType.ReadOnly<InputExecuteTag>(),
+				ComponentType.ReadOnly<AbilityButtonInputRef>()
+				);
 		}
 
 		protected override void OnUpdate()
@@ -47,6 +55,20 @@ namespace Assets.Crimson.Core.Systems.Interaction
 						}
 					}
 					EntityManager.RemoveComponent<ActivatedInteractionZone>(entity);
+				}
+			);
+			Entities.With(_buttonQuery).ForEach(
+				(AbilityButtonInputRef buttonInput) =>
+				{
+					if (!buttonInput.IsActivated)
+					{
+						return;
+					}
+					var actions = buttonInput._actions;
+					for (var i = 0; i < actions.Count; i++)
+					{
+						actions[i]?.Execute();
+					}
 				}
 			);
 		}

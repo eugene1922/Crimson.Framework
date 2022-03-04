@@ -1185,7 +1185,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593143260817354934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 684005351808651823}
@@ -1199,9 +1199,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -194, y: 199}
+  m_AnchoredPosition: {x: -40, y: 40}
   m_SizeDelta: {x: 222, y: 222}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &1593143260817354933
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1222,13 +1222,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30519c546b849d7b2e030f5f1c14b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bindingIndex: 1
+  bindingIndex: 0
   buttonImage: {fileID: 7437932903540807592}
   cooldownProgressBar: {fileID: 1593143261292280831}
   reverseProgressBarDirection: 0
   cooldownTimerRoot: {fileID: 1593143261292280768}
   cooldownTimerText: {fileID: 0}
-  onScreenStickComponent: {fileID: 6630160520163108338}
   onScreenButtonComponent: {fileID: 6697711360647926699}
 --- !u!114 &6697711360647926699
 MonoBehaviour:
@@ -1242,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081daabd9c524efe9b757b5761e18944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonControlPath: <Keyboard>/1
+  buttonControlPath: <Keyboard>/0
 --- !u!114 &6630160520163108338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementRange: 40
-  m_ControlPath: <CustomDevice>/customStick_1
+  m_ControlPath: 
 --- !u!114 &2319678026527745434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,8 +2612,6 @@ GameObject:
   - component: {fileID: 7271892464039203679}
   - component: {fileID: 2537085220044934352}
   - component: {fileID: 2245185254357721107}
-  - component: {fileID: 7937431815449748257}
-  - component: {fileID: 1463956321934592495}
   - component: {fileID: 3550770867631387875}
   m_Layer: 5
   m_Name: ButtonAttackEvolutionSkill3
@@ -2643,11 +2640,11 @@ RectTransform:
   m_Father: {fileID: 1593143261333199177}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -202, y: 448}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 200, y: 40}
   m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2537085220044934352
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2668,41 +2665,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30519c546b849d7b2e030f5f1c14b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bindingIndex: 4
+  bindingIndex: 3
   buttonImage: {fileID: 5315206578378404618}
   cooldownProgressBar: {fileID: 6694644706452304732}
   reverseProgressBarDirection: 1
   cooldownTimerRoot: {fileID: 4362321655839246316}
   cooldownTimerText: {fileID: 731208751622471536}
-  onScreenStickComponent: {fileID: 1463956321934592495}
-  onScreenButtonComponent: {fileID: 7937431815449748257}
---- !u!114 &7937431815449748257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4055062832810577614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081daabd9c524efe9b757b5761e18944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonControlPath: <Keyboard>/4
---- !u!114 &1463956321934592495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4055062832810577614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementRange: 20
-  m_ControlPath: <CustomDevice>/customStick_4
+  onScreenButtonComponent: {fileID: 0}
 --- !u!114 &3550770867631387875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3225,8 +3194,6 @@ GameObject:
   - component: {fileID: 8052917652090114223}
   - component: {fileID: 8573049791979757543}
   - component: {fileID: 2734883248595594709}
-  - component: {fileID: 3488489450929369531}
-  - component: {fileID: 245033532894732246}
   - component: {fileID: 3906349224322568652}
   m_Layer: 5
   m_Name: ButtonAttackEvolutionSkill1
@@ -3255,11 +3222,11 @@ RectTransform:
   m_Father: {fileID: 1593143261333199177}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -450, y: 108}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -200, y: 40}
   m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8573049791979757543
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3280,41 +3247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30519c546b849d7b2e030f5f1c14b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bindingIndex: 2
+  bindingIndex: 1
   buttonImage: {fileID: 2166440062110431893}
   cooldownProgressBar: {fileID: 8796319230313892172}
   reverseProgressBarDirection: 1
   cooldownTimerRoot: {fileID: 2561824561564424231}
   cooldownTimerText: {fileID: 7053290348123689654}
-  onScreenStickComponent: {fileID: 245033532894732246}
-  onScreenButtonComponent: {fileID: 3488489450929369531}
---- !u!114 &3488489450929369531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5069689324283740514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081daabd9c524efe9b757b5761e18944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonControlPath: <Keyboard>/2
---- !u!114 &245033532894732246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5069689324283740514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementRange: 20
-  m_ControlPath: <CustomDevice>/customStick_2
+  onScreenButtonComponent: {fileID: 0}
 --- !u!114 &3906349224322568652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3974,8 +3913,6 @@ GameObject:
   - component: {fileID: 4058584391497403839}
   - component: {fileID: 8674372343147539643}
   - component: {fileID: 5740160127092804298}
-  - component: {fileID: 397161480672368911}
-  - component: {fileID: 3085073252186872639}
   - component: {fileID: 7768183547585843002}
   m_Layer: 5
   m_Name: ButtonAttackEvolutionSkill2
@@ -4004,11 +3941,11 @@ RectTransform:
   m_Father: {fileID: 1593143261333199177}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -399, y: 335}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8674372343147539643
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4029,41 +3966,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30519c546b849d7b2e030f5f1c14b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bindingIndex: 3
+  bindingIndex: 2
   buttonImage: {fileID: 5361125592906980118}
   cooldownProgressBar: {fileID: 5065372543724786884}
   reverseProgressBarDirection: 1
   cooldownTimerRoot: {fileID: 5478540006009832261}
   cooldownTimerText: {fileID: 2056558141886398357}
-  onScreenStickComponent: {fileID: 3085073252186872639}
-  onScreenButtonComponent: {fileID: 397161480672368911}
---- !u!114 &397161480672368911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6123133016768133917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081daabd9c524efe9b757b5761e18944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonControlPath: <Keyboard>/3
---- !u!114 &3085073252186872639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6123133016768133917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementRange: 20
-  m_ControlPath: <CustomDevice>/customStick_3
+  onScreenButtonComponent: {fileID: 0}
 --- !u!114 &7768183547585843002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4173,7 +4082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cfae4400bc478b2459edfa1edf8e8f04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bfc7e5d3ceda074cba7584359e1f467, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5285,7 +5194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cfae4400bc478b2459edfa1edf8e8f04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa736d7dfc8211e4eb502c4c20536f1a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5360,7 +5269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cfae4400bc478b2459edfa1edf8e8f04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54ee2e9039261e6448ad70780ad9b340, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

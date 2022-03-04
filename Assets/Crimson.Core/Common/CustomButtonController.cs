@@ -16,7 +16,6 @@ namespace Crimson.Core.Common
 		public GameObject cooldownTimerRoot;
 		public TextMeshProUGUI cooldownTimerText;
 
-		public OnScreenStick onScreenStickComponent;
 		public OnScreenCustomButton onScreenButtonComponent;
 
 		public void SetupCustomButton(string perkName, Sprite perkSprite, bool stickControlAvailable, bool repeatedInvokingOnHold)
@@ -27,13 +26,11 @@ namespace Crimson.Core.Common
 
 		public void SetupCustomButton(bool stickControlAvailable, bool repeatedInvokingOnHold)
 		{
-			onScreenStickComponent.enabled = stickControlAvailable;
-			onScreenButtonComponent.SetupButton(repeatedInvokingOnHold);
+			//onScreenButtonComponent.SetupButton(repeatedInvokingOnHold);
 		}
 
 		public void SetButtonOnCooldown(bool onCooldown)
 		{
-			onScreenStickComponent.enabled = !onCooldown;
 		}
 
 		public void SetCooldownProgressBar(float value)

@@ -1,3 +1,4 @@
+#if false
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils.LowLevel;
@@ -180,4 +181,5 @@ namespace Crimson.Core.Systems
 			}
 		}
 	}
-}
+} 
+#endif

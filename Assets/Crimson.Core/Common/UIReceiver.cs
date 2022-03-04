@@ -68,7 +68,7 @@ namespace Crimson.Core.Common
 		{
 			foreach (var button in customButtons.Where(button => button.bindingIndex == index))
 			{
-				button.onScreenButtonComponent.ForceButtonRelease();
+				button.onScreenButtonComponent?.ForceButtonRelease();
 			}
 		}
 

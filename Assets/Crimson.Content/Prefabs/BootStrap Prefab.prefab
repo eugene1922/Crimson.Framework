@@ -198,8 +198,6 @@ MonoBehaviour:
   componentName: 
   ExecuteOnSpawn: []
   enemyTag: Enemy
-  InventoryView: {fileID: 2853118268380962624, guid: 543374d9217e61d44ae0fc2c01581451,
-    type: 3}
   losePanel: {fileID: 8244941744796162177, guid: 7f580cbd1607ec649a86ae0e70d3258a,
     type: 3}
   maxDeathCount: 1
@@ -259,7 +257,7 @@ MonoBehaviour:
     actorWithComponentName: 
     chooseParentStrategy: 0
     copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 7670242131266225950, guid: b066d472f10fc5f4d919e4e86e10da84, type: 3}
     - {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
@@ -284,7 +282,7 @@ MonoBehaviour:
     spawnPointTag: PlayerSpawn
     spawnPosition: 0
     useChildrenObjects: 0
-    x: 20
+    x: 1
     _spawnPoints: []
 --- !u!114 &4600830946981902564
 MonoBehaviour:

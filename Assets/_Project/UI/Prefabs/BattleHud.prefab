@@ -120,13 +120,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
-  UIBehaviours: []
   customButtons:
   - {fileID: 2006490637951637407}
   - {fileID: 7296971144006611404}
   - {fileID: 1088015624514606803}
   - {fileID: 6888481428784364554}
   explicitUIChannel: 0
+  UIBehaviours: []
   UIChannelID: 0
 --- !u!1001 &141662532590564690
 PrefabInstance:
@@ -835,16 +835,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6245285495443716078}
     m_Modifications:
-    - target: {fileID: 1593143260817354930, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1593143260817354930, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -186
-      objectReference: {fileID: 0}
     - target: {fileID: 1593143261333199176, guid: fc535984954016e44b4336dba2773808,
         type: 3}
       propertyPath: m_Name
@@ -955,42 +945,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2166440062110431893, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 54ee2e9039261e6448ad70780ad9b340,
-        type: 3}
-    - target: {fileID: 5315206578378404618, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 3bfc7e5d3ceda074cba7584359e1f467,
-        type: 3}
-    - target: {fileID: 5361125592906980118, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: aa736d7dfc8211e4eb502c4c20536f1a,
-        type: 3}
     - target: {fileID: 6586569230898940806, guid: fc535984954016e44b4336dba2773808,
         type: 3}
-      propertyPath: cooldownProgressBar
+      propertyPath: onScreenButtonComponent
       value: 
-      objectReference: {fileID: 6245285495863830502}
-    - target: {fileID: 7147432825016179818, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 02f56ec6fc45dd245976439d39757e8c,
-        type: 3}
-    - target: {fileID: 7437932903540807592, guid: fc535984954016e44b4336dba2773808,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b8a1f92658d9ce04dacebd4cba54191b,
-        type: 3}
-    m_RemovedComponents: []
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6697711360647926699, guid: fc535984954016e44b4336dba2773808, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fc535984954016e44b4336dba2773808, type: 3}
 --- !u!224 &6245285495638345040 stripped
 RectTransform:
@@ -1008,18 +969,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b30519c546b849d7b2e030f5f1c14b5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6245285495863830502 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1593143261292280831, guid: fc535984954016e44b4336dba2773808,
-    type: 3}
-  m_PrefabInstance: {fileID: 4661310599794187289}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7296971144006611404 stripped
@@ -1069,6 +1018,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PanelJoystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296750350598851114, guid: caa38fd854fa65943973c25d745d5fd0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4296750350598851115, guid: caa38fd854fa65943973c25d745d5fd0,
         type: 3}

@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customBinding:
-    index: 2
     actions:
     - {fileID: -2746983838447942580}
+    index: 1
   destroyAfterActions: 1
   removeSameIndexBindings: 1
 --- !u!114 &-2746983838447942580
@@ -63,19 +63,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: BurningWeaponPerk
-  primaryProjectile: 0
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   aimingAvailable: 1
-  deactivateAimingOnCooldown: 1
-  onClickAttackType: 1
-  attackDirectionType: 0
-  findTargetProperties:
-    targetType: 3
-    actorWithComponentName: 
-    targetTag: Enemy
-    ignoreSpawner: 1
-    strategy: 0
-    maxDistanceThreshold: 20
+  aimingByInput: 0
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
@@ -87,45 +82,60 @@ MonoBehaviour:
       type: 3}
     sightDistance: 10
     reverseControls: 0
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
-  projectileSpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 0}
-    spawnPointTag: 
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
+  appliedPerksNames: []
+  attackDirectionType: 0
+  burstShotCountRange: {x: 1, y: 1}
+  clipReloadDisplayToggle: []
+  clipReloadTime: 1
+  componentName: BurningWeaponPerk
+  cooldownTime: 3
+  deactivateAimingOnCooldown: 1
+  findTargetProperties:
+    targetType: 3
     actorWithComponentName: 
-    parentTag: 
+    targetTag: Enemy
+    ignoreSpawner: 1
+    strategy: 0
+    maxDistanceThreshold: 20
+  forceBursts: 0
+  level: 1
+  levelablePropertiesList: []
+  onClickAttackType: 1
+  primaryProjectile: 0
+  projectileClipCapacity: 0
+  projectileSpawnData:
+    actorWithComponentName: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
     randomSeed: 0
+    rotationOfSpawns: 0
+    runSpawnActionsOnObjects: 0
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 2
+    useChildrenObjects: 0
+    x: 0
+    _spawnPoints:
+    - {fileID: 0}
   projectileStartupDelay: 0
-  cooldownTime: 3
-  projectileClipCapacity: 0
-  clipReloadTime: 1
   reloadDisplayToggle: []
-  clipReloadDisplayToggle: []
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
-  appliedPerksNames: []
-  aimingByInput: 0
 --- !u!114 &15902049461981918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,26 +148,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a273676651e124d8f3395034a512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkLevel: 1
   applyToAllProjectiles: 0
-  componentName: BurningWeaponPerk
   collisionSettings:
     collisionLayerMask:
       serializedVersion: 2
       m_Bits: 311
-    useTagFilter: 1
+    destroyAfterAction: 0
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
     - Enemy
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
-  spawnTargetEffect: 1
-  targetEffectPrefab: {fileID: 6882162225140268797, guid: b12e1b0cbb3bb38468157baa21780c50,
-    type: 3}
-  spawnProjectileEffect: 1
-  projectileEffectPrefab: {fileID: 6882162225140268797, guid: f893d1d01ba5e7f4fa277438606c89d6,
-    type: 3}
+    useTagFilter: 1
+  componentName: BurningWeaponPerk
+  levelablePropertiesList: []
+  perkLevel: 1
   perkRelatedComponents:
   - {fileID: -2746983838447942580}
   - {fileID: -1201467966035257858}
-  levelablePropertiesList: []
+  projectileEffectPrefab: {fileID: 6882162225140268797, guid: f893d1d01ba5e7f4fa277438606c89d6,
+    type: 3}
+  spawnProjectileEffect: 1
+  spawnTargetEffect: 1
+  targetEffectPrefab: {fileID: 6882162225140268797, guid: b12e1b0cbb3bb38468157baa21780c50,
+    type: 3}
