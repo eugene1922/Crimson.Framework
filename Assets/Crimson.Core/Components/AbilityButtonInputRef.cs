@@ -52,8 +52,8 @@ namespace Assets.Crimson.Core.Components
 
 		private void StopAction(InputAction.CallbackContext context)
 		{
-			IsActivated = false;
 			_dstManager.RemoveComponent<InputExecuteTag>(Entity);
+			IsActivated = false;
 		}
 	}
 }
