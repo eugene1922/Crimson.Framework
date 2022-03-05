@@ -39,6 +39,8 @@ namespace Assets.Crimson.Core.Systems.Interaction
 					var result = Physics.OverlapBoxNonAlloc(zone.Position, zone.Size / 2, _results);
 					if (result > 0)
 					{
+						InteractionItem nearest = null;
+						float minimalDistance = -1;
 						for (var i = 0; i < _results.Length; i++)
 						{
 							if (_results[i] == null)
@@ -46,12 +48,31 @@ namespace Assets.Crimson.Core.Systems.Interaction
 								continue;
 							}
 
+							if (nearest == null)
+							{
+								nearest = _results[i].GetComponent<InteractionItem>();
+								if (nearest != null)
+								{
+									minimalDistance = (transform.position - nearest.transform.position).magnitude;
+								}
+								continue;
+							}
+
 							var item = _results[i].GetComponent<InteractionItem>();
 							if (item != null)
 							{
-								item.TargetActor = zone.Actor;
-								item.Execute();
+								var distance = (transform.position - item.transform.position).magnitude;
+								if (distance < minimalDistance)
+								{
+									nearest = item;
+									minimalDistance = distance;
+								}
 							}
+						}
+						if (nearest != null)
+						{
+							nearest.TargetActor = zone.Actor;
+							nearest.Execute();
 						}
 					}
 					EntityManager.RemoveComponent<ActivatedInteractionZone>(entity);

@@ -4873,7 +4873,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2134414380}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &109403009
 PrefabInstance:
@@ -7599,7 +7599,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2134414380}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &152667837
 PrefabInstance:
@@ -34987,36 +34987,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 872841171}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &873754019
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 873754020}
-  m_Layer: 0
-  m_Name: Spawn-point_Boss
-  m_TagString: Zone-3-Boss
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &873754020
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873754019}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 89.09, y: 1.57, z: 119.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2134414380}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &874341916
 GameObject:
   m_ObjectHideFlags: 0
@@ -49106,7 +49076,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2134414380}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1200058399
 PrefabInstance:
@@ -50880,7 +50850,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2134414380}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1238607634
 PrefabInstance:
@@ -60361,7 +60331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2134414380}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1481371148
 PrefabInstance:
@@ -77276,7 +77246,6 @@ GameObject:
   - component: {fileID: 1916594707}
   - component: {fileID: 1916594706}
   - component: {fileID: 1916594705}
-  - component: {fileID: 1916594708}
   - component: {fileID: 1916594710}
   m_Layer: 0
   m_Name: Collider-Entrance-Zone-3
@@ -77380,7 +77349,6 @@ MonoBehaviour:
   collisionActions:
   - actions:
     - {fileID: 1916594706}
-    - {fileID: 1916594708}
     - {fileID: 1916594710}
     collisionLayerMask:
       serializedVersion: 2
@@ -77393,54 +77361,6 @@ MonoBehaviour:
     useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
---- !u!114 &1916594708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916594703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnAwake: 0
-  SpawnData:
-    actorWithComponentName: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 1322200569230309113, guid: 0b3128ef1e33bf5428e22683a4352174, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 4044576612685437395, guid: 4513bab7a58b79a49b25007667ad3a76, type: 3}
-    parentOfSpawns: 0
-    parentTag: Zone-3-Boss
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 1
-    spawnPointTag: Zone-3-Boss
-    spawnPosition: 0
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
 --- !u!114 &1916594710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87448,7 +87368,6 @@ Transform:
   - {fileID: 626352556}
   - {fileID: 311274168}
   - {fileID: 1900069610}
-  - {fileID: 873754020}
   - {fileID: 146512801}
   - {fileID: 1198519399}
   - {fileID: 1238408204}
@@ -88005,7 +87924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370702230727255555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.14, y: 1.39, z: 75.59}
+  m_LocalPosition: {x: 78.14, y: 1.39, z: 12.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 370702228954068716}

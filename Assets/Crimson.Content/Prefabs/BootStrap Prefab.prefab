@@ -264,7 +264,7 @@ MonoBehaviour:
     destroyAbilityAfterSpawn: 0
     fillSpawnPoints: 0
     objectsToSpawn:
-    - {fileID: 3262676482833563216, guid: 89aa5e10162a330458f87730e76842de, type: 3}
+    - {fileID: 1132238362247284, guid: 4f7f4a16de8f8484192ea25cea9d4db3, type: 3}
     parentOfSpawns: 0
     parentTag: 
     poolSettings:
