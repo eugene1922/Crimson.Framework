@@ -59,7 +59,7 @@ namespace Crimson.Core.Serialization
 		{
 			PrefabItem target;
 #if !UNITY_EDITOR
-			var target = items.First(s => s.name == gameObject.name);
+			target = items.First(s => s.name == gameObject.name);
 #else
 			var isEmptyScene = string.IsNullOrEmpty(gameObject.scene.name);
 			if (isEmptyScene)

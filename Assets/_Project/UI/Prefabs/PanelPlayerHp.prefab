@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5577062314834950954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25da4ddbcbe347849e8d13b405a60186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldText: 
   associatedFieldID: Name
+  fieldText: 
 --- !u!1 &729457299532795475
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,8 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25da4ddbcbe347849e8d13b405a60186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldText: 
   associatedFieldID: Level
+  fieldText: 
 --- !u!1 &2453647986418278907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,9 +1024,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702594c4a21649ef91273f2aff0ce644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProgressBarChangeType: 0
   AssociatedValueID: CurrentHealth
   MaxValueID: MaxHealth
+  ProgressBarChangeType: 0
 --- !u!1 &9021903524027786950
 GameObject:
   m_ObjectHideFlags: 0

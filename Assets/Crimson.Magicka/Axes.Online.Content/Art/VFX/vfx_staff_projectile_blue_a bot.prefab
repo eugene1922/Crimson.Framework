@@ -451,6 +451,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8474739860551391380, guid: 9597397a86f53244182264156d111af4,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9080345818242838081, guid: 9597397a86f53244182264156d111af4,
         type: 3}
       propertyPath: m_Name
