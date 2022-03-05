@@ -61,7 +61,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AIBehaviour: {fileID: 0}
   compensateCameraRotation: 1
-  customBindings: []
+  customBindings:
+  - actions:
+    - {fileID: 0}
+    index: 1
+  - actions:
+    - {fileID: 0}
+    index: 2
+  - actions:
+    - {fileID: 0}
+    index: 3
   inputSource: 1
   minMoveInputMagnitude: 1
 --- !u!114 &-4939348821489114762
