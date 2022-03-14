@@ -475,6 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _reloadActionRef: {fileID: -6915801995376133989, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 0
     ActorProjectileAnimationName: 
@@ -483,7 +485,7 @@ MonoBehaviour:
   clipReloadDisplayToggle: []
   clipReloadTime: 0.2
   componentName: 
-  projectileClipCapacity: 0
+  projectileClipCapacity: 10
   projectileSpawnData:
     actorWithComponentName: 
     chooseParentStrategy: 0

@@ -1,4 +1,6 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Tags;
+using Crimson.Core.Common;
 using Crimson.Core.Components.Interfaces;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Crimson.Core.Components.AbilityReactive
 {
@@ -40,6 +43,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		public int projectileClipCapacity = 0;
 
 		public ActorSpawnerSettings projectileSpawnData;
+		public InputActionReference reloadActionRef;
+		public ActorGeneralAnimProperties reloadAnimProps;
 
 		[InfoBox("Put here IEnable implementation to display reload")]
 		[Space]
@@ -50,6 +55,7 @@ namespace Crimson.Core.Components.AbilityReactive
 		private bool _actorToUi;
 		[SerializeField] private float _cooldownTime = 0.3f;
 		private EntityManager _dstManager;
+		private int _projectileClip;
 		public bool ActionExecutionAllowed { get; set; }
 		public IActor Actor { get; set; }
 		public IAimable Aim => AimComponent as IAimable;
@@ -83,7 +89,13 @@ namespace Crimson.Core.Components.AbilityReactive
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
 			Enabled = true;
+			_projectileClip = projectileClipCapacity;
 			_dstManager.AddComponent<TimerData>(entity);
+
+			if (reloadActionRef != null)
+			{
+				reloadActionRef.action.performed += ReloadAction;
+			}
 
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
@@ -91,6 +103,14 @@ namespace Crimson.Core.Components.AbilityReactive
 				_dstManager.AddComponentData(entity, new ActorProjectileAnimData
 				{
 					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
+				});
+			}
+
+			if (reloadAnimProps.HasAnimation)
+			{
+				_dstManager.AddComponentData(entity, new ReloadAnimationData
+				{
+					AnimHash = reloadAnimProps.AnimationHash
 				});
 			}
 
@@ -139,13 +159,14 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void Execute()
 		{
 			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if (Enabled && CurrentEntityManager.Exists(_entity))
+			if (Enabled && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
 			{
 				Spawn();
 
 				CurrentEntityManager.AddComponentData(_entity,
 					new ActorProjectileThrowAnimData());
 
+				_projectileClip--;
 				// ReSharper disable once CompareOfFloatsByEqualityOperator
 				if (CooldownTime == 0)
 				{
@@ -168,6 +189,12 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void InitPool()
 		{
 			projectileSpawnData.InitPool();
+		}
+
+		public void Reload()
+		{
+			CurrentEntityManager.AddComponentData(_entity, new ReloadTag());
+			_projectileClip = projectileClipCapacity;
 		}
 
 		public void ResetSpawnPointRootRotation()
@@ -225,6 +252,11 @@ namespace Crimson.Core.Components.AbilityReactive
 		private bool MustBeAimable(MonoBehaviour behaviour)
 		{
 			return behaviour is IActorAbility;
+		}
+
+		private void ReloadAction(InputAction.CallbackContext obj)
+		{
+			Reload();
 		}
 	}
 }

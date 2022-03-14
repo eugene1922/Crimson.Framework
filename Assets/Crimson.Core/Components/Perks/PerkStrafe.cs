@@ -46,7 +46,7 @@ namespace Assets.Crimson.Core.Components.Perks
 			{
 				_dstManager.AddComponentData(entity, new ActorStafeAnimData
 				{
-					AnimHash = Animator.StringToHash(AnimProperties.AnimationName)
+					AnimHash = AnimProperties.AnimationHash
 				});
 			}
 

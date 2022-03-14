@@ -1,3 +1,5 @@
+using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using System;
@@ -14,6 +16,7 @@ namespace Crimson.Core.Systems
 		private EntityQuery _forceActorsQuery;
 		private EntityQuery _movementQuery;
 		private EntityQuery _projectileQuery;
+		private EntityQuery _reloadAnimationsQuery;
 		private EntityQuery _strafeActorsQuery;
 
 		protected override void OnCreate()
@@ -25,6 +28,11 @@ namespace Crimson.Core.Systems
 			_projectileQuery = GetEntityQuery(
 				ComponentType.ReadOnly<ActorProjectileAnimData>(),
 				ComponentType.ReadWrite<ActorProjectileThrowAnimData>(),
+				ComponentType.ReadOnly<Animator>());
+
+			_reloadAnimationsQuery = GetEntityQuery(
+				ComponentType.ReadOnly<ReloadTag>(),
+				ComponentType.ReadWrite<ReloadAnimationData>(),
 				ComponentType.ReadOnly<Animator>());
 
 			_deadActorsQuery = GetEntityQuery(
@@ -192,6 +200,25 @@ namespace Crimson.Core.Systems
 					}
 
 					animator.SetBool(animation.AnimHash, aimingAnimData.AimingActive);
+				});
+
+			Entities.With(_reloadAnimationsQuery).ForEach(
+				(Entity entity, Animator animator, ref ReloadAnimationData data) =>
+				{
+					if (animator == null)
+					{
+						Debug.LogError("[RELOAD ANIMATION SYSTEM] No Animator found!");
+						return;
+					}
+
+					if (data.AnimHash == 0)
+					{
+						Debug.LogError("[RELOAD ANIMATION SYSTEM] Some hash(es) not found, check your Actor Weapon Component Settings!");
+						return;
+					}
+
+					animator.SetTrigger(data.AnimHash);
+					dstManager.RemoveComponent<ReloadTag>(entity);
 				});
 		}
 	}
