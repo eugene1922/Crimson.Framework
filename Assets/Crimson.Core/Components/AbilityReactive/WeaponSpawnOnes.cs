@@ -1,5 +1,6 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components.Interfaces;
 using Crimson.Core.Enums;
@@ -17,7 +18,7 @@ namespace Crimson.Core.Components.AbilityReactive
 {
 	[HideMonoScript]
 	public class WeaponSpawnOnes : TimerBaseBehaviour,
-		IActorAbility,
+		IWeapon,
 		IActorSpawnerAbility,
 		IComponentName,
 		IEnableable,
@@ -43,7 +44,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		public int projectileClipCapacity = 0;
 
 		public ActorSpawnerSettings projectileSpawnData;
-		public InputActionReference reloadActionRef;
 		public ActorGeneralAnimProperties reloadAnimProps;
 
 		[InfoBox("Put here IEnable implementation to display reload")]
@@ -91,11 +91,6 @@ namespace Crimson.Core.Components.AbilityReactive
 			Enabled = true;
 			_projectileClip = projectileClipCapacity;
 			_dstManager.AddComponent<TimerData>(entity);
-
-			if (reloadActionRef != null)
-			{
-				reloadActionRef.action.performed += ReloadAction;
-			}
 
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
@@ -252,11 +247,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		private bool MustBeAimable(MonoBehaviour behaviour)
 		{
 			return behaviour is IActorAbility;
-		}
-
-		private void ReloadAction(InputAction.CallbackContext obj)
-		{
-			Reload();
 		}
 	}
 }

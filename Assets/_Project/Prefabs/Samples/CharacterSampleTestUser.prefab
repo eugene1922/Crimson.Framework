@@ -25,7 +25,11 @@ GameObject:
   - component: {fileID: 8256079418673208729}
   - component: {fileID: 1657955151746243340}
   - component: {fileID: 3756407391955540221}
-  - component: {fileID: 5033294406890263051}
+  - component: {fileID: 7093220250429794912}
+  - component: {fileID: 6240531552640210222}
+  - component: {fileID: 2882395864524943774}
+  - component: {fileID: 8015066055255851586}
+  - component: {fileID: 6658854133462469266}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -534,7 +538,113 @@ MonoBehaviour:
   _input: {fileID: 5040436995964547475, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
   actions:
   - {fileID: -7126598297091492315}
---- !u!114 &5033294406890263051
+--- !u!114 &7093220250429794912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c774fff41177e4e9994d67dec249c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _executeAction: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
+  _reloadAction: {fileID: -6915801995376133989, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
+  Weapon: {fileID: 6658854133462469266}
+--- !u!114 &6240531552640210222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae1f671db4958142b8714b9ed808ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activateAction: {fileID: 8499406344986960131, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
+  _slot: {fileID: 7093220250429794912}
+  Weapon: {fileID: 2882395864524943774}
+--- !u!114 &2882395864524943774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 0
+    ActorProjectileAnimationName: 
+  AimComponent: {fileID: 0}
+  appliedPerksNames: []
+  clipReloadDisplayToggle: []
+  clipReloadTime: 1
+  componentName: 
+  projectileClipCapacity: 100
+  projectileSpawnData:
+    actorWithComponentName: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+    randomSeed: 0
+    rotationOfSpawns: 0
+    runSpawnActionsOnObjects: 0
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 0
+    useChildrenObjects: 0
+    x: 0
+    _spawnPoints:
+    - {fileID: 0}
+  reloadAnimProps:
+    AnimationName: 
+    HasAnimation: 0
+  reloadDisplayToggle: []
+  suppressWeaponSpawn: 0
+  _cooldownTime: 0.3
+--- !u!114 &8015066055255851586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae1f671db4958142b8714b9ed808ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activateAction: {fileID: 4291827903331515788, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
+  _slot: {fileID: 7093220250429794912}
+  Weapon: {fileID: 6658854133462469266}
+--- !u!114 &6658854133462469266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -546,7 +656,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ba32469b7c8543978274af00285f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activateActionReference: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
-    type: 3}
-  _maxDistance: 50
-  MagnetOffset: {x: 0, y: 0, z: 2}
+  _maxDistance: 10
+  MagnetOffset: {x: 0, y: 0, z: 1}

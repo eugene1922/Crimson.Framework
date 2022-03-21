@@ -1,16 +1,14 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
-using Crimson.Core.Components;
 using Unity.Entities;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Crimson.Core.Components
 {
-	public class GravityWeapon : MonoBehaviour, IActorAbility
+	public class GravityWeapon : MonoBehaviour, IWeapon
 	{
-		public InputActionReference _activateActionReference;
 		public Entity _entity;
 		public float _maxDistance = 10;
 		public Vector3 MagnetOffset = Vector3.forward;
@@ -30,9 +28,6 @@ namespace Assets.Crimson.Core.Components
 			_entity = entity;
 			Actor = actor;
 
-			_activateActionReference.action.performed += ActivateActionHandler;
-			_activateActionReference.action.canceled += DeactivateActionHandler;
-
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_entityManager.AddComponentData(_entity, new MagnetPointData());
 		}
@@ -44,6 +39,7 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
+			Activate();
 			var ray = new Ray(transform.position, transform.forward);
 			var resultsCount = Physics.RaycastNonAlloc(ray, _raycastResults, _maxDistance);
 			if (resultsCount == 0)
@@ -63,15 +59,8 @@ namespace Assets.Crimson.Core.Components
 			}
 		}
 
-		private void ActivateActionHandler(InputAction.CallbackContext context)
+		public void Reload()
 		{
-			Activate();
-			Execute();
-		}
-
-		private void DeactivateActionHandler(InputAction.CallbackContext context)
-		{
-			Deactivate();
 		}
 
 #if UNITY_EDITOR
