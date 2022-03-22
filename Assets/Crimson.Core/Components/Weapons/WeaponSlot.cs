@@ -43,6 +43,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Execute()
 		{
+			_weapon?.Execute();
 		}
 
 		private bool MustBeWeapon(MonoBehaviour item)
@@ -57,7 +58,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ShootActionHandler(InputAction.CallbackContext obj)
 		{
-			_weapon?.Execute();
+			Execute();
 		}
 	}
 }
