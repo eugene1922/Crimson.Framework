@@ -1,14 +1,16 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Components.Tags;
-using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
+using Crimson.Core.Components;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Crimson.Core.Components
 {
-	public class GravityWeapon : MonoBehaviour, IWeapon
+	public class GravityWeapon : MonoBehaviour, IActorAbility
 	{
+		public InputActionReference _activationAction;
 		public Entity _entity;
 		public float _maxDistance = 10;
 		public Vector3 MagnetOffset = Vector3.forward;
@@ -16,6 +18,7 @@ namespace Assets.Crimson.Core.Components
 		private RaycastHit[] _raycastResults = new RaycastHit[25];
 
 		public IActor Actor { get; set; }
+		public bool IsEnable { get; set; }
 		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
 
 		public void Activate()
@@ -30,6 +33,9 @@ namespace Assets.Crimson.Core.Components
 
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_entityManager.AddComponentData(_entity, new MagnetPointData());
+
+			_activationAction.action.performed += ActivateActionHandler;
+			_activationAction.action.canceled += DeactivateActionHandler;
 		}
 
 		public void Deactivate()
@@ -39,6 +45,10 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
+			if (!IsEnable)
+			{
+				return;
+			}
 			Activate();
 			var ray = new Ray(transform.position, transform.forward);
 			var resultsCount = Physics.RaycastNonAlloc(ray, _raycastResults, _maxDistance);
@@ -59,8 +69,22 @@ namespace Assets.Crimson.Core.Components
 			}
 		}
 
-		public void Reload()
+		private void ActivateActionHandler(InputAction.CallbackContext obj)
 		{
+			if (!IsEnable)
+			{
+				return;
+			}
+			Execute();
+		}
+
+		private void DeactivateActionHandler(InputAction.CallbackContext obj)
+		{
+			if (!IsEnable)
+			{
+				return;
+			}
+			Deactivate();
 		}
 
 #if UNITY_EDITOR

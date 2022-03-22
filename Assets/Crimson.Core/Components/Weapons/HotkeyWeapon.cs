@@ -1,6 +1,8 @@
 ﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,45 +11,76 @@ namespace Assets.Crimson.Core.Components.Weapons
 {
 	public class HotkeyWeapon : MonoBehaviour, IActorAbility
 	{
-		public InputActionReference _activateAction;
+		public InputActionReference _activateGravigunAction;
+		public InputActionReference _changeAction;
 		public WeaponSlot _slot;
+		public GravityWeapon GravityWeapon;
 
 		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
-		public MonoBehaviour Weapon;
+		public List<MonoBehaviour> Weapons;
 
-		private IWeapon _weapon;
+		private List<IWeapon> _weapons;
 
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
-			if (Weapon != null)
+			_weapons = new List<IWeapon>(Weapons.Cast<IWeapon>());
+			if (_changeAction != null)
 			{
-				_weapon = (IWeapon)Weapon;
+				_changeAction.action.performed += ChangeActionHandler;
 			}
-			if (_activateAction != null)
+			if (_activateGravigunAction != null)
 			{
-				_activateAction.action.performed += ActivateActionHandler;
+				_activateGravigunAction.action.performed += ToggleGravigunHandler;
 			}
+			_slot.IsEnable = true;
+			GravityWeapon.IsEnable = false;
 		}
 
 		public void Execute()
 		{
-			if (_weapon != null)
+		}
+
+		private void ChangeActionHandler(InputAction.CallbackContext obj)
+		{
+			SelectNextWeapon();
+		}
+
+		private bool MustBeWeapon(List<MonoBehaviour> actions)
+		{
+			foreach (var action in actions)
 			{
-				_slot.Change(_weapon);
+				if (action is IWeapon || action is null)
+				{
+					continue;
+				}
+
+				return false;
+			}
+
+			return true;
+		}
+
+		private void SelectNextWeapon()
+		{
+			var currentIndex = _weapons.IndexOf(_slot._weapon);
+			if (currentIndex == -1)
+			{
+				_slot.Change(_weapons[0]);
+			}
+			else
+			{
+				var newWeaponIndex = currentIndex + 1;
+				_slot.Change(_weapons[newWeaponIndex % _weapons.Count]);
 			}
 		}
 
-		private void ActivateActionHandler(InputAction.CallbackContext obj)
+		private void ToggleGravigunHandler(InputAction.CallbackContext obj)
 		{
-			Execute();
-		}
-
-		private bool MustBeWeapon(MonoBehaviour item)
-		{
-			return item == null || item is IWeapon;
+			GravityWeapon.IsEnable = _slot.IsEnable;
+			_slot.IsEnable = !_slot.IsEnable;
 		}
 	}
 }

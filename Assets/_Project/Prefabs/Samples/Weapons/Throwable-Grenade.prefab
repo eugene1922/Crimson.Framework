@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 606495008889479710}
   - component: {fileID: 1061563932870894275}
   - component: {fileID: 2014260872880424890}
+  - component: {fileID: 3440323470143058404}
   m_Layer: 0
   m_Name: Throwable-Grenade
   m_TagString: Untagged
@@ -72,6 +73,7 @@ MonoBehaviour:
   - actions:
     - {fileID: 2636071318529099767}
     - {fileID: 2636071318529099766}
+    - {fileID: 3440323470143058404}
     collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
@@ -110,7 +112,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2636071318529099767
 MonoBehaviour:
@@ -257,6 +259,20 @@ MonoBehaviour:
     reaction: 2
     alsoStopRotation: 1
     force2DBounce: 0
+--- !u!114 &3440323470143058404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636071318529099774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0049dcfaa2c41b04c8a1dea72e4c71aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Force: 25
+  Radius: 3
 --- !u!1001 &4836241702347248632
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: 0
-  forwardVector: {x: 0, y: 0, z: 0}
   compensateSpawnerRotation: 1
+  forwardVector: {x: 0, y: 0, z: 0}
+  moveDirection: 0
 --- !u!114 &5150210801761906177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,35 +155,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: -3209572696311438871}
   collisionActions:
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 311
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
-    - Player
-    - DestructibleObject
-    - Ally
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
+  - actions:
     - {fileID: -9136214588343567339}
     - {fileID: 8802586809504653326}
-  - collisionLayerMask:
+    collisionLayerMask:
       serializedVersion: 2
       m_Bits: 311
-    useTagFilter: 1
+    destroyAfterAction: 1
+    executeOnCollisionWithSpawner: 0
     filterMode: 0
     filterTags:
-    - Player
-    - CollisionObjects
+    - Enemy
     - DestructibleObject
-    - Ally
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
+    useTagFilter: 1
+  - actions:
     - {fileID: -7484853190416408497}
     - {fileID: -9136214588343567339}
+    collisionLayerMask:
+      serializedVersion: 2
+      m_Bits: 311
+    destroyAfterAction: 1
+    executeOnCollisionWithSpawner: 0
+    filterMode: 0
+    filterTags:
+    - Enemy
+    - CollisionObjects
+    - DestructibleObject
+    useTagFilter: 1
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!135 &-3209572696311438871
@@ -242,9 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkLevel: 1
-  damageValue: 30
+  CriticalDamageChance: 0.1
+  CriticalDamageMultiplier: 1
+  Damage: 10
   levelablePropertiesList: []
+  perkLevel: 1
 --- !u!114 &-7484853190416408497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,28 +260,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 7430887200127099503, guid: 9214c66a86847794092de36e6766b045, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 1
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    rotationOfSpawns: 4
-    parentOfSpawns: 0
     actorWithComponentName: 
-    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
+    fillSpawnPoints: 0
+    objectsToSpawn:
+    - {fileID: 7430887200127099503, guid: 9214c66a86847794092de36e6766b045, type: 3}
+    parentOfSpawns: 0
+    parentTag: 
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
     randomSeed: 0
+    rotationOfSpawns: 4
+    runSpawnActionsOnObjects: 1
+    skipBusySpawnPoints: 0
+    spawnerDisabled: 0
+    spawnPointsFillingMode: 0
+    spawnPointsFrom: 0
+    spawnPointTag: 
+    spawnPosition: 2
+    useChildrenObjects: 0
+    x: 1
+    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.1
@@ -316,6 +322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: vfx_frost_arrow_projectile_big
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163128651838284578, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}
@@ -371,6 +382,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414885366887635438, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358489585005666527, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358489585205443759, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358489586127472033, guid: 1f8238caa02d7464db3f78e469b97b1f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f8238caa02d7464db3f78e469b97b1f, type: 3}
