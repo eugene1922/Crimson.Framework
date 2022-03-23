@@ -12,6 +12,9 @@ namespace Assets.Crimson.Core.Common.UI
 		[SerializeField] private T _prefab;
 		[SerializeField] private Transform _root;
 
+		public int Count => _instances.Count;
+		public T this[int index] => _instances[index];
+
 		public T Get()
 		{
 			var instance = _instances.Find(s => !s.gameObject.activeSelf);

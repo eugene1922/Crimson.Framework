@@ -9,12 +9,18 @@ namespace Assets.Crimson.Core.Common.UI.Widgets
 {
 	public class InventoryItemView : MonoBehaviour, IPointerClickHandler
 	{
+		[SerializeField] private CanvasGroup _canvasGroup;
 		[SerializeField] private Image _icon;
 		[SerializeField] private TMP_Text _label;
 
 		public event Action<InventoryItemView> OnClick;
 
 		public InventoryItemData Data { get; private set; }
+
+		public void ClearAllListeners()
+		{
+			OnClick = null;
+		}
 
 		public void OnPointerClick(PointerEventData eventData)
 		{

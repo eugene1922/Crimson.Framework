@@ -3,6 +3,7 @@ using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,7 @@ namespace Assets.Crimson.Core.Common.UI.Widgets
 
 		[SerializeField] private Button _dropButton;
 
+		private List<int> _itemsID = new List<int>();
 		[SerializeField] private PoolSpawner<InventoryItemView> _pool;
 
 		[ReadOnly, SerializeField] private InventoryItemView _selectedItem;
@@ -57,6 +59,11 @@ namespace Assets.Crimson.Core.Common.UI.Widgets
 
 		public void Refresh(List<InventoryItemData> items)
 		{
+			if (!IsNeedToRefresh(items))
+			{
+				return;
+			}
+			_itemsID = new List<int>(items.Select(s => s.ID));
 			SelectedItem = null;
 			_pool.ReleaseAll();
 			for (var i = 0; i < items.Count; i++)
@@ -81,6 +88,18 @@ namespace Assets.Crimson.Core.Common.UI.Widgets
 				return;
 			}
 			OnDrop?.Invoke(_selectedItem.Data);
+		}
+
+		private bool IsNeedToRefresh(List<InventoryItemData> items)
+		{
+			var allInCollection = true;
+
+			for (var i = 0; i < items.Count; i++)
+			{
+				allInCollection &= _itemsID.Contains(items[i].ID);
+			}
+
+			return !allInCollection;
 		}
 
 		private void OnChangeSelected(InventoryItemView value)
