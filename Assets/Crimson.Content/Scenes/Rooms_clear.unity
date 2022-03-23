@@ -18081,7 +18081,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400495798}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -26863,15 +26863,7 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
-    actorWithComponentName: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 1
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 6709606558096413722, guid: 39b186a062cd38841877bedb88dadee9, type: 3}
     - {fileID: 3631584107432802808, guid: 930b2749a3ec57c45931fdb75b60571c, type: 3}
@@ -26879,26 +26871,34 @@ MonoBehaviour:
     - {fileID: 1390265400807741638, guid: 08574e98d49f11e48bbf07efeb5a1c27, type: 3}
     - {fileID: 2371338478115067045, guid: afd5e8e188e772143a6d153e1b705c44, type: 3}
     - {fileID: 1272629935327173736, guid: 6a9ee27fe978ca049b6269fdef517dff, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 894612696}
+    spawnPointTag: Zone-1-Spawn
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
     parentOfSpawns: 0
+    actorWithComponentName: 
     parentTag: Zone-1-Spawn
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 1
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 1
-    spawnPointsFrom: 0
-    spawnPointTag: Zone-1-Spawn
-    spawnPosition: 0
-    useChildrenObjects: 1
-    x: 0
-    _spawnPoints:
-    - {fileID: 894612696}
   SpawnDelays:
     Delay: 0.02
     StartupDelay: 0
@@ -26930,17 +26930,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 1761508709}
   collisionActions:
-  - actions:
-    - {fileID: 655484596}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    destroyAfterAction: 0
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Player
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 655484596}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &656564046
@@ -45020,39 +45020,39 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 8141989793100626403, guid: d8015e07338a0fb4bad3a25273dabca6, type: 3}
+    - {fileID: 3789632212319050918, guid: c931cb050b311a6429da1902879bb881, type: 3}
+    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 289948007}
+    spawnPointTag: Zone-2-Spawn
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: Zone-1-Spawn
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
     - {fileID: 1322200569230309113, guid: 3b5b124c840e2634aaebe3f9dacb9ac0, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 1
-    objectsToSpawn:
-    - {fileID: 8141989793100626403, guid: d8015e07338a0fb4bad3a25273dabca6, type: 3}
-    - {fileID: 3789632212319050918, guid: c931cb050b311a6429da1902879bb881, type: 3}
-    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
-    parentOfSpawns: 0
-    parentTag: Zone-1-Spawn
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 1
-    spawnPointsFrom: 0
-    spawnPointTag: Zone-2-Spawn
-    spawnPosition: 0
-    useChildrenObjects: 1
-    x: 0
-    _spawnPoints:
-    - {fileID: 289948007}
   SpawnDelays:
     Delay: 0.02
     StartupDelay: 0
@@ -45084,17 +45084,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 2085622788}
   collisionActions:
-  - actions:
-    - {fileID: 1071256857}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8192
-    destroyAfterAction: 0
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Player
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 1071256857}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &1075821265
@@ -63300,17 +63300,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 308238698}
   collisionActions:
-  - actions:
-    - {fileID: 1568445583}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    destroyAfterAction: 0
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Player
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 1568445583}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &1568445583
@@ -63328,15 +63328,7 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
-    actorWithComponentName: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 1
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 6709606558096413722, guid: 39b186a062cd38841877bedb88dadee9, type: 3}
     - {fileID: 3631584107432802808, guid: 930b2749a3ec57c45931fdb75b60571c, type: 3}
@@ -63344,26 +63336,34 @@ MonoBehaviour:
     - {fileID: 1390265400807741638, guid: 08574e98d49f11e48bbf07efeb5a1c27, type: 3}
     - {fileID: 2371338478115067045, guid: afd5e8e188e772143a6d153e1b705c44, type: 3}
     - {fileID: 1272629935327173736, guid: 6a9ee27fe978ca049b6269fdef517dff, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 984025589}
+    spawnPointTag: Zone-1-Spawn
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
     parentOfSpawns: 0
+    actorWithComponentName: 
     parentTag: Zone-1-Spawn
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 1
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 10
       MaxSize: 100
       UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 1
-    spawnPointsFrom: 0
-    spawnPointTag: Zone-1-Spawn
-    spawnPosition: 0
-    useChildrenObjects: 1
-    x: 0
-    _spawnPoints:
-    - {fileID: 984025589}
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -76175,15 +76175,7 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
-    actorWithComponentName: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 1
+    spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 6709606558096413722, guid: 39b186a062cd38841877bedb88dadee9, type: 3}
     - {fileID: 3631584107432802808, guid: 930b2749a3ec57c45931fdb75b60571c, type: 3}
@@ -76191,26 +76183,34 @@ MonoBehaviour:
     - {fileID: 1390265400807741638, guid: 08574e98d49f11e48bbf07efeb5a1c27, type: 3}
     - {fileID: 2371338478115067045, guid: afd5e8e188e772143a6d153e1b705c44, type: 3}
     - {fileID: 1272629935327173736, guid: 6a9ee27fe978ca049b6269fdef517dff, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 1491384772}
+    spawnPointTag: Zone-1-Spawn
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
     parentOfSpawns: 0
+    actorWithComponentName: 
     parentTag: Zone-1-Spawn
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 1322200569230309113, guid: 4f5c4104b109af446a8d44c28c061d0d, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 1
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 1
-    spawnPointsFrom: 0
-    spawnPointTag: Zone-1-Spawn
-    spawnPosition: 0
-    useChildrenObjects: 1
-    x: 0
-    _spawnPoints:
-    - {fileID: 1491384772}
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -76242,17 +76242,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 799520419}
   collisionActions:
-  - actions:
-    - {fileID: 1884346114}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    destroyAfterAction: 0
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Player
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 1884346114}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &1884671686
@@ -77602,38 +77602,38 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 8141989793100626403, guid: d8015e07338a0fb4bad3a25273dabca6, type: 3}
+    - {fileID: 3789632212319050918, guid: c931cb050b311a6429da1902879bb881, type: 3}
+    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 1
+    _spawnPoints: []
+    spawnPointTag: Zone-3-Spawn
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: Zone-1-Spawn
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
     - {fileID: 1322200569230309113, guid: 3b5b124c840e2634aaebe3f9dacb9ac0, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 1
-    objectsToSpawn:
-    - {fileID: 8141989793100626403, guid: d8015e07338a0fb4bad3a25273dabca6, type: 3}
-    - {fileID: 3789632212319050918, guid: c931cb050b311a6429da1902879bb881, type: 3}
-    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
-    parentOfSpawns: 0
-    parentTag: Zone-1-Spawn
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 1
-    spawnPointTag: Zone-3-Spawn
-    spawnPosition: 0
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -77651,18 +77651,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 1725538062}
   collisionActions:
-  - actions:
-    - {fileID: 1916594706}
-    - {fileID: 1916594710}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 16183
-    destroyAfterAction: 0
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Player
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 1916594706}
+    - {fileID: 1916594710}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &1916594710
@@ -86019,39 +86019,39 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 8141989793100626403, guid: d8015e07338a0fb4bad3a25273dabca6, type: 3}
+    - {fileID: 3789632212319050918, guid: c931cb050b311a6429da1902879bb881, type: 3}
+    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 1086131735}
+    spawnPointTag: Zone-2-Spawn
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: Zone-1-Spawn
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
     - {fileID: 1322200569230309113, guid: 3b5b124c840e2634aaebe3f9dacb9ac0, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 1
-    fillSpawnPoints: 1
-    objectsToSpawn:
-    - {fileID: 8141989793100626403, guid: d8015e07338a0fb4bad3a25273dabca6, type: 3}
-    - {fileID: 3789632212319050918, guid: c931cb050b311a6429da1902879bb881, type: 3}
-    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
-    parentOfSpawns: 0
-    parentTag: Zone-1-Spawn
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 1
-    spawnPointsFrom: 0
-    spawnPointTag: Zone-2-Spawn
-    spawnPosition: 0
-    useChildrenObjects: 1
-    x: 0
-    _spawnPoints:
-    - {fileID: 1086131735}
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -86069,17 +86069,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 993061738}
   collisionActions:
-  - actions:
-    - {fileID: 2077329062}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8192
-    destroyAfterAction: 0
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Player
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 2077329062}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!1001 &2083051117

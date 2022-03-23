@@ -68,15 +68,15 @@ MonoBehaviour:
   AIBehaviour: {fileID: 0}
   compensateCameraRotation: 1
   customBindings:
-  - actions:
+  - index: 1
+    actions:
     - {fileID: 0}
-    index: 1
-  - actions:
+  - index: 2
+    actions:
     - {fileID: 0}
-    index: 2
-  - actions:
+  - index: 3
+    actions:
     - {fileID: 0}
-    index: 3
   inputSource: 1
   minMoveInputMagnitude: 1
 --- !u!114 &-4939348821489114762
@@ -94,34 +94,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 8908091917784543394, guid: 98ab9143ccfb34348ba1f2f67304b347, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 20
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 8908091917784543394, guid: 98ab9143ccfb34348ba1f2f67304b347, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 10
       MaxSize: 15
       UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 3
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 20
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.1
@@ -140,35 +140,35 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
+    - {fileID: 6649478402526264423, guid: f4ca641f063b44e1b925e77b0052c736, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 1
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
     actorWithComponentName: UIRoot
+    parentTag: UIRoot
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
-    - {fileID: 6649478402526264423, guid: f4ca641f063b44e1b925e77b0052c736, type: 3}
-    parentOfSpawns: 0
-    parentTag: UIRoot
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 3
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 1
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.2
@@ -184,10 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alsoSetLayer: 1
-  applyOnStart: 1
-  newLayer: Allies
   newTag: Player
+  alsoSetLayer: 1
+  newLayer: Allies
+  applyOnStart: 1
 --- !u!114 &-1969340818193211531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,35 +388,35 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
+    - {fileID: 2853118268380962624, guid: 543374d9217e61d44ae0fc2c01581451, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 1
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
     actorWithComponentName: UIRoot
+    parentTag: UIRoot
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
-    - {fileID: 2853118268380962624, guid: 543374d9217e61d44ae0fc2c01581451, type: 3}
-    parentOfSpawns: 0
-    parentTag: UIRoot
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 3
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 1
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.4
@@ -579,34 +579,35 @@ MonoBehaviour:
   componentName: 
   projectileClipCapacity: 100
   projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 0}
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0
@@ -627,8 +628,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _activationAction: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
-  _maxDistance: 10
-  MagnetOffset: {x: 0, y: 0, z: 1}
+  _maxDistance: 20
+  MagnetOffset: {x: 0, y: 1.5, z: 2}
+  _force: 200
 --- !u!114 &-93229221922767859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,35 +665,35 @@ MonoBehaviour:
   componentName: 
   projectileClipCapacity: 1000
   projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 2636071318529099774, guid: 3e97291a9c0f0f9489a9ef804813af89, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 1
+    _spawnPoints:
+    - {fileID: 0}
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 2636071318529099774, guid: 3e97291a9c0f0f9489a9ef804813af89, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 10
       MaxSize: 10
       UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 1
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints:
-    - {fileID: 0}
   SpawnPointOffset: {x: 0, y: 1.5, z: 1.5}
   _cooldownTime: 1
 --- !u!114 &3834946692048838755
@@ -737,34 +739,35 @@ MonoBehaviour:
   componentName: 
   projectileClipCapacity: 10
   projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1818218211170410, guid: e0010223075b2f848854338d1599df09, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 0}
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1818218211170410, guid: e0010223075b2f848854338d1599df09, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 10
       MaxSize: 10
       UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0

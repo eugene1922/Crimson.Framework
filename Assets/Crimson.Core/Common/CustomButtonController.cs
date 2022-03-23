@@ -27,13 +27,25 @@ namespace Crimson.Core.Common
 
         public void SetupCustomButton(bool stickControlAvailable, bool repeatedInvokingOnHold)
         {
-            onScreenStickComponent.enabled = stickControlAvailable;
-            onScreenButtonComponent.SetupButton(repeatedInvokingOnHold);
+            SetStickState(stickControlAvailable);
+
+            if (onScreenButtonComponent != null)
+            {
+                onScreenButtonComponent.SetupButton(repeatedInvokingOnHold);
+            }
         }
 
         public void SetButtonOnCooldown(bool onCooldown)
         {
-            onScreenStickComponent.enabled = !onCooldown;
+            SetStickState(!onCooldown);
+        }
+
+        private void SetStickState(bool state)
+		{
+            if (onScreenStickComponent != null)
+            {
+                onScreenStickComponent.enabled = state;
+            }
         }
 
         public void SetCooldownProgressBar(float value)

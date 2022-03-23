@@ -1,6 +1,6 @@
 ﻿using Assets.Crimson.Core.Common;
-using Assets.Crimson.Core.Components;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Utils.LowLevel;
 using Unity.Entities;
 using UnityEngine;
@@ -24,16 +24,21 @@ namespace Assets.Crimson.Core.Systems
 		private void MagnetObjectsToPoints()
 		{
 			Entities.WithAll<MagnetRigidbodyData>().ForEach(
-				(Entity entity, Rigidbody rigidbody, ref MagnetRigidbodyData tag) =>
+				(Entity entity, Rigidbody rigidbody, ref MagnetRigidbodyData data) =>
 				{
-					if (!IsActivated(tag.Target))
+					var point = EntityManager.GetComponentData<MagnetPointData>(data.Target);
+					if (!IsActivated(data.Target))
 					{
+						rigidbody.isKinematic = false;
+						rigidbody.velocity = point.Force * point.Direction;
 						EntityManager.RemoveComponent<MagnetRigidbodyData>(entity);
 						return;
 					}
-
-					var point = EntityManager.GetComponentData<MagnetPointData>(tag.Target);
-					rigidbody.position = Vector3.Lerp(rigidbody.position, point.Position, Time.DeltaTime * 2f);
+					var newPosition = Vector3.Distance(point.Position, rigidbody.position) > 1f ?
+						Vector3.Lerp(rigidbody.position, point.Position, Time.DeltaTime * 20f)
+						: (Vector3)point.Position;
+					rigidbody.isKinematic = true;
+					rigidbody.position = newPosition;
 				});
 		}
 
@@ -43,6 +48,7 @@ namespace Assets.Crimson.Core.Systems
 				(Entity entity, ref MagnetPointData data, GravityWeapon weapon) =>
 				{
 					data.Position = weapon.MagnetPoint;
+					data.Direction = weapon.transform.forward;
 					EntityManager.SetComponentData(entity, data);
 				});
 		}

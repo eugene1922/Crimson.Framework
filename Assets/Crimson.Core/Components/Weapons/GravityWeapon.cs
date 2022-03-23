@@ -6,7 +6,7 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Crimson.Core.Components
+namespace Assets.Crimson.Core.Components.Weapons
 {
 	public class GravityWeapon : MonoBehaviour, IActorAbility
 	{
@@ -14,11 +14,26 @@ namespace Assets.Crimson.Core.Components
 		public Entity _entity;
 		public float _maxDistance = 10;
 		public Vector3 MagnetOffset = Vector3.forward;
-		private EntityManager _entityManager;
-		private RaycastHit[] _raycastResults = new RaycastHit[25];
 
+		private EntityManager _entityManager;
+		[SerializeField] private float _force = 10;
+		private bool _isEnable;
+		private RaycastHit[] _raycastResults = new RaycastHit[25];
 		public IActor Actor { get; set; }
-		public bool IsEnable { get; set; }
+
+		public bool IsEnable
+		{
+			get => _isEnable;
+			set
+			{
+				_isEnable = value;
+				if (!value)
+				{
+					Deactivate();
+				}
+			}
+		}
+
 		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
 
 		public void Activate()
@@ -32,15 +47,21 @@ namespace Assets.Crimson.Core.Components
 			Actor = actor;
 
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-			_entityManager.AddComponentData(_entity, new MagnetPointData());
+			var data = new MagnetPointData()
+			{
+				Force = _force,
+			};
+			_entityManager.AddComponentData(_entity, data);
 
 			_activationAction.action.performed += ActivateActionHandler;
-			_activationAction.action.canceled += DeactivateActionHandler;
 		}
 
 		public void Deactivate()
 		{
-			_entityManager.RemoveComponent<MagnetWeaponActivated>(_entity);
+			if (_entity != Entity.Null && _entityManager != null)
+			{
+				_entityManager.RemoveComponent<MagnetWeaponActivated>(_entity);
+			}
 		}
 
 		public void Execute()
@@ -49,7 +70,39 @@ namespace Assets.Crimson.Core.Components
 			{
 				return;
 			}
-			Activate();
+			if (_entityManager.HasComponent<MagnetWeaponActivated>(_entity))
+			{
+				Deactivate();
+			}
+			else
+			{
+				Activate();
+				TryGrabObject();
+			}
+		}
+
+		private void ActivateActionHandler(InputAction.CallbackContext obj)
+		{
+			if (!IsEnable)
+			{
+				return;
+			}
+			Execute();
+		}
+
+#if UNITY_EDITOR
+
+		private void OnDrawGizmosSelected()
+		{
+			Gizmos.color = Color.yellow;
+			Gizmos.matrix = transform.localToWorldMatrix;
+			Gizmos.DrawWireSphere(MagnetOffset, 1);
+		}
+
+#endif
+
+		private void TryGrabObject()
+		{
 			var ray = new Ray(transform.position, transform.forward);
 			var resultsCount = Physics.RaycastNonAlloc(ray, _raycastResults, _maxDistance);
 			if (resultsCount == 0)
@@ -68,34 +121,5 @@ namespace Assets.Crimson.Core.Components
 				abilityMagnet.MagnetTo(_entity);
 			}
 		}
-
-		private void ActivateActionHandler(InputAction.CallbackContext obj)
-		{
-			if (!IsEnable)
-			{
-				return;
-			}
-			Execute();
-		}
-
-		private void DeactivateActionHandler(InputAction.CallbackContext obj)
-		{
-			if (!IsEnable)
-			{
-				return;
-			}
-			Deactivate();
-		}
-
-#if UNITY_EDITOR
-
-		private void OnDrawGizmosSelected()
-		{
-			Gizmos.color = Color.yellow;
-			Gizmos.matrix = transform.localToWorldMatrix;
-			Gizmos.DrawWireSphere(MagnetOffset, 1);
-		}
-
-#endif
 	}
 }
