@@ -1,259 +1,238 @@
-﻿using Crimson.Core.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
 {
-	[HideMonoScript]
-	public class PerkChangeBulletCollisionMovement : MonoBehaviour, IActorAbility, IPerkAbilityForSpawned
-	{
-		public bool ApplyToAllProjectiles = true;
+    [HideMonoScript]
+    public class PerkChangeBulletCollisionMovement : MonoBehaviour, IActorAbility, IPerkAbilityForSpawned
+    {
+        public bool ApplyToAllProjectiles = true;
 
-		[HideIf("ApplyToAllProjectiles")] public string componentName = "";
+        [HideIf("ApplyToAllProjectiles")] public string componentName = "";
 
-		public CollisionSettings collisionSettings;
+        public CollisionSettings collisionSettings;
 
-		public CollisionMovementSettings collisionMovementSettings;
-		public IActor Actor { get; set; }
+        public CollisionMovementSettings collisionMovementSettings;
+        public IActor Actor { get; set; }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
-		}
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+        }
 
-		public void Execute()
-		{
-		}
+        public void Execute()
+        {
+        }
 
-		public void AddCollision(GameObject target)
-		{
-			var collision = target.GetComponent<AbilityCollision>();
+        public void AddCollision(GameObject target)
+        {
+            var collision = target.GetComponent<AbilityCollision>();
 
-			if (collision == null)
-			{
-				return;
-			}
+            if (collision == null) return;
 
-			if (!collisionSettings.useTagFilter || !collision.collisionActions.Any())
-			{
-				collision.collisionActions.Add(AddNewCollisionAction());
-				return;
-			}
+            if (!collisionSettings.useTagFilter || !collision.collisionActions.Any())
+            {
+                collision.collisionActions.Add(AddNewCollisionAction());
+                return;
+            }
 
-			var modifiedCollisionActionList = new List<CollisionAction>();
-			var perkApplied = false;
+            var modifiedCollisionActionList = new List<CollisionAction>();
+            var perkApplied = false;
 
-			foreach (var action in collision.collisionActions)
-			{
-				var currentAction = action;
 
-				var abilityCollisionMovement =
-					(AbilityCollisionMovement)currentAction.actions.FirstOrDefault(act =>
-					   act is AbilityCollisionMovement);
+            foreach (var action in collision.collisionActions)
+            {
+                var currentAction = action;
 
-				if (!currentAction.useTagFilter)
-				{
-					if (abilityCollisionMovement != null)
-					{
-						currentAction.useTagFilter = true;
-						currentAction.filterMode = collisionSettings.filterMode == TagFilterMode.IncludeOnly
-							? TagFilterMode.Exclude
-							: TagFilterMode.IncludeOnly;
-						currentAction.filterTags.Clear();
-						currentAction.filterTags.AddRange(collisionSettings.filterTags);
-					}
+                var abilityCollisionMovement =
+                    (AbilityCollisionMovement) currentAction.actions.FirstOrDefault(act =>
+                        act is AbilityCollisionMovement);
 
-					modifiedCollisionActionList.Add(currentAction);
-					continue;
-				}
+                if (!currentAction.useTagFilter)
+                {
+                    if (abilityCollisionMovement != null)
+                    {
+                        currentAction.useTagFilter = true;
+                        currentAction.filterMode = collisionSettings.filterMode == TagFilterMode.IncludeOnly
+                            ? TagFilterMode.Exclude
+                            : TagFilterMode.IncludeOnly;
+                        currentAction.filterTags.Clear();
+                        currentAction.filterTags.AddRange(collisionSettings.filterTags);
+                    }
 
-				if (abilityCollisionMovement == null)
-				{
-					if (collisionSettings.filterTags.ContainsItems(currentAction.filterTags))
-					{
-						currentAction.destroyAfterAction = collisionSettings.destroyAfterAction;
-					}
+                    modifiedCollisionActionList.Add(currentAction);
+                    continue;
+                }
 
-					modifiedCollisionActionList.Add(currentAction);
-					continue;
-				}
+                if (abilityCollisionMovement == null)
+                {
+                    if (collisionSettings.filterTags.ContainsItems(currentAction.filterTags))
+                    {
+                        currentAction.destroyAfterAction = collisionSettings.destroyAfterAction;
+                    }
 
-				if (currentAction.filterTags.SequenceEqual(collisionSettings.filterTags) &&
-					currentAction.actions.All(act => act is AbilityCollisionMovement))
-				{
-					var updatedActions = currentAction.actions;
+                    modifiedCollisionActionList.Add(currentAction);
+                    continue;
+                }
 
-					for (var i = 0; i < currentAction.actions.Count; ++i)
-					{
-						((AbilityCollisionMovement)updatedActions[i]).collisionMovementSettings =
-							collisionMovementSettings;
-					}
+                if (currentAction.filterTags.SequenceEqual(collisionSettings.filterTags) &&
+                    currentAction.actions.All(act => act is AbilityCollisionMovement))
+                {
+                    var updatedActions = currentAction.actions;
 
-					currentAction.actions = updatedActions;
+                    for (var i = 0; i < currentAction.actions.Count; ++i)
+                    {
+                        ((AbilityCollisionMovement) updatedActions[i]).collisionMovementSettings =
+                            collisionMovementSettings;
+                    }
 
-					modifiedCollisionActionList.Add(currentAction);
-					perkApplied = true;
+                    currentAction.actions = updatedActions;
 
-					continue;
-				}
+                    modifiedCollisionActionList.Add(currentAction);
+                    perkApplied = true;
 
-				if (currentAction.filterTags.ContainsItems(collisionSettings.filterTags))
-				{
-					currentAction.filterTags.RemoveAll(t => collisionSettings.filterTags.Contains(t));
+                    continue;
+                }
 
-					if (currentAction.filterTags.Any())
-					{
-						modifiedCollisionActionList.Add(currentAction);
-						continue;
-					}
-				}
 
-				if (currentAction.filterMode != collisionSettings.filterMode)
-				{
-					continue;
-				}
+                if (currentAction.filterTags.ContainsItems(collisionSettings.filterTags))
+                {
+                    currentAction.filterTags.RemoveAll(t => collisionSettings.filterTags.Contains(t));
 
-				switch (currentAction.filterMode)
-				{
-					case TagFilterMode.IncludeOnly:
-						if (collisionSettings.filterMode == currentAction.filterMode)
-						{
-							if (currentAction.actions.Any(act => !(act is AbilityCollisionMovement)))
-							{
-								currentAction.filterMode = TagFilterMode.Exclude;
-								currentAction.filterTags.AddRange(collisionSettings.filterTags);
-								modifiedCollisionActionList.Add(currentAction);
-								continue;
-							}
-						}
+                    if (currentAction.filterTags.Any())
+                    {
+                        modifiedCollisionActionList.Add(currentAction);
+                        continue;
+                    }
+                }
 
-						break;
+                if (currentAction.filterMode != collisionSettings.filterMode) continue;
 
-					case TagFilterMode.Exclude:
-						if (collisionSettings.filterMode == currentAction.filterMode)
-						{
-							if (currentAction.actions.Any(act => !(act is AbilityCollisionMovement)))
-							{
-								currentAction.filterMode = TagFilterMode.IncludeOnly;
-								currentAction.filterTags.AddRange(collisionSettings.filterTags);
-								modifiedCollisionActionList.Add(currentAction);
-								continue;
-							}
-						}
+                switch (currentAction.filterMode)
+                {
+                    case TagFilterMode.IncludeOnly:
+                        if (collisionSettings.filterMode == currentAction.filterMode)
+                        {
+                            if (currentAction.actions.Any(act => !(act is AbilityCollisionMovement)))
+                            {
+                                currentAction.filterMode = TagFilterMode.Exclude;
+                                currentAction.filterTags.AddRange(collisionSettings.filterTags);
+                                modifiedCollisionActionList.Add(currentAction);
+                                continue;
+                            }
+                        }
 
-						break;
-				}
+                        break;
+                    case TagFilterMode.Exclude:
+                        if (collisionSettings.filterMode == currentAction.filterMode)
+                        {
+                            if (currentAction.actions.Any(act => !(act is AbilityCollisionMovement)))
+                            {
+                                currentAction.filterMode = TagFilterMode.IncludeOnly;
+                                currentAction.filterTags.AddRange(collisionSettings.filterTags);
+                                modifiedCollisionActionList.Add(currentAction);
+                                continue;
+                            }
+                        }
 
-				if (abilityCollisionMovement.collisionMovementSettings == collisionMovementSettings)
-				{
-					currentAction.collisionLayerMask = collisionSettings.collisionLayerMask;
-					currentAction.executeOnCollisionWithSpawner = collisionSettings.executeOnCollisionWithSpawner;
-					currentAction.destroyAfterAction = collisionSettings.destroyAfterAction;
+                        break;
+                }
 
-					modifiedCollisionActionList.Add(currentAction);
-					perkApplied = true;
-				}
-			}
+                if (abilityCollisionMovement.collisionMovementSettings == collisionMovementSettings)
+                {
+                    currentAction.collisionLayerMask = collisionSettings.collisionLayerMask;
+                    currentAction.executeOnCollisionWithSpawner = collisionSettings.executeOnCollisionWithSpawner;
+                    currentAction.destroyAfterAction = collisionSettings.destroyAfterAction;
 
-			if (!perkApplied)
-			{
-				modifiedCollisionActionList.Add(AddNewCollisionAction());
-			}
+                    modifiedCollisionActionList.Add(currentAction);
+                    perkApplied = true;
+                }
+            }
 
-			collision.collisionActions = modifiedCollisionActionList;
+            if (!perkApplied)
+            {
+                modifiedCollisionActionList.Add(AddNewCollisionAction());
+            }
 
-			CollisionAction AddNewCollisionAction()
-			{
-				var targetActor = target.GetComponent<Actor>();
+            collision.collisionActions = modifiedCollisionActionList;
 
-				if (targetActor == null)
-				{
-					return new CollisionAction();
-				}
+            CollisionAction AddNewCollisionAction()
+            {
+                var targetActor = target.GetComponent<Actor>();
 
-				var newComp = target.AddComponent<AbilityCollisionMovement>();
-				newComp.collisionMovementSettings = collisionMovementSettings;
+                if (targetActor == null) return new CollisionAction();
 
-				var targetActorActorEntity = targetActor.ActorEntity;
+                var newComp = target.AddComponent<AbilityCollisionMovement>();
+                newComp.collisionMovementSettings = collisionMovementSettings;
 
-				newComp.AddComponentData(ref targetActorActorEntity, targetActor);
+                var targetActorActorEntity = targetActor.ActorEntity;
 
-				return new CollisionAction
-				{
-					collisionLayerMask = collisionSettings.collisionLayerMask,
-					useTagFilter = collisionSettings.useTagFilter,
-					filterMode = collisionSettings.filterMode,
-					filterTags = collisionSettings.filterTags,
-					actions = new List<MonoBehaviour> { newComp },
-					executeOnCollisionWithSpawner = collisionSettings.executeOnCollisionWithSpawner,
-					destroyAfterAction = collisionSettings.destroyAfterAction
-				};
-			}
-		}
+                newComp.AddComponentData(ref targetActorActorEntity, targetActor);
 
-		public void Apply(IActor target)
-		{
-			var copy = target.GameObject.CopyComponent(this) as PerkChangeBulletCollisionMovement;
+                return new CollisionAction
+                {
+                    collisionLayerMask = collisionSettings.collisionLayerMask,
+                    useTagFilter = collisionSettings.useTagFilter,
+                    filterMode = collisionSettings.filterMode,
+                    filterTags = collisionSettings.filterTags,
+                    actions = new List<MonoBehaviour> {newComp},
+                    executeOnCollisionWithSpawner = collisionSettings.executeOnCollisionWithSpawner,
+                    destroyAfterAction = collisionSettings.destroyAfterAction
+                };
+            }
+        }
 
-			if (copy == null)
-			{
-				Debug.LogError("[PERK WEAPONS HIT EFFECT] Error copying perk to Actor!");
-				return;
-			}
-			var e = target.ActorEntity;
-			copy.AddComponentData(ref e, target);
+        public void Apply(IActor target)
+        {
+            var copy = target.GameObject.CopyComponent(this) as PerkChangeBulletCollisionMovement;
+            
+            if (copy == null)
+            {
+                Debug.LogError("[PERK WEAPONS HIT EFFECT] Error copying perk to Actor!");
+                return;
+            }
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
+            
+            if (!Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
 
-			if (!Actor.Spawner.AppliedPerks.Contains(copy))
-			{
-				Actor.Spawner.AppliedPerks.Add(copy);
-			}
+            var projectiles = target.GameObject.GetComponents<AbilityWeapon>().ToList();
+            if (!ApplyToAllProjectiles)
+                projectiles = projectiles.Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
+                    .ToList();
+            foreach (var p in projectiles)
+            {
+                p.SpawnCallbacks.Add(copy.AddCollisionAction);
+            }
+        }
 
-			var projectiles = target.GameObject.GetComponents<AbilityWeapon>().ToList();
-			if (!ApplyToAllProjectiles)
-			{
-				projectiles = projectiles.Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
-					.ToList();
-			}
+        public void AddCollisionAction(GameObject target)
+        {
+            var perk = target.CopyComponent(this) as PerkChangeBulletCollisionMovement;
+            
+            if (perk == null) return;
 
-			foreach (var p in projectiles)
-			{
-				p.SpawnCallbacks.Add(copy.AddCollisionAction);
-			}
-		}
-
-		public void AddCollisionAction(GameObject target)
-		{
-			var perk = target.CopyComponent(this) as PerkChangeBulletCollisionMovement;
-
-			if (perk == null)
-			{
-				return;
-			}
-
-			var a = target.GetComponent<IActor>();
-			if (a != null)
-			{
-				var e = a.ActorEntity;
-				perk.AddComponentData(ref e, a);
-			}
-
-			perk.AddCollision(perk.gameObject);
-		}
-
-		public void Remove()
-		{
-			if (Actor.Spawner.AppliedPerks.Contains(this))
-			{
-				Actor.Spawner.AppliedPerks.Remove(this);
-			}
-
-			Destroy(this);
-		}
-	}
+            var a = target.GetComponent<IActor>();
+            if (a != null)
+            {
+                var e = a.ActorEntity;
+                perk.AddComponentData(ref e,a);
+            }
+            
+            perk.AddCollision(perk.gameObject);
+        }
+        
+        public void Remove()
+        {
+            if (Actor.Spawner.AppliedPerks.Contains(this)) Actor.Spawner.AppliedPerks.Remove(this);
+            Destroy(this);
+        }
+    }
 }

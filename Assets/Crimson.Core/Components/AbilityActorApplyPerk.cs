@@ -5,98 +5,87 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	public enum DuplicateHandling
-	{
-		Abort = 0,
-		Replace = 1
-	}
+    [HideMonoScript]
+    public class AbilityActorApplyPerk : TimerBaseBehaviour, IActorAbilityTarget
+    {
+        [ValidateInput("MustBePerk", "Perk MonoBehaviours must derive from IPerkAbility!")]
+        public MonoBehaviour perkToApply;
 
-	[HideMonoScript]
-	public class AbilityActorApplyPerk : TimerBaseBehaviour, IActorAbilityTarget
-	{
-		[EnumToggleButtons] public DuplicateHandling perkDuplicateHandling;
+        [EnumToggleButtons] public DuplicateHandling perkDuplicateHandling;
+        public IActor Actor { get; set; }
+        public IActor TargetActor { get; set; }
+        public IActor AbilityOwnerActor { get; set; }
 
-		[ValidateInput(nameof(MustBePerk), "Perk MonoBehaviours must derive from IPerkAbility!")]
-		public MonoBehaviour perkToApply;
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+        }
 
-		public IActor AbilityOwnerActor { get; set; }
-		public IActor Actor { get; set; }
-		public IActor TargetActor { get; set; }
+        public void Execute()
+        {
+            if (perkToApply == null || TargetActor == null) return;
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
-		}
+            ApplyPerk();
+        }
 
-		public void Execute()
-		{
-			if (perkToApply == null || TargetActor == null)
-			{
-				return;
-			}
+        private void ApplyPerk()
+        {
+            var existingPerk = TargetActor.AppliedPerks.Find(perk => perk.GetType() == perkToApply.GetType());
+            
+            if (existingPerk != null)
+            {
+                switch (perkDuplicateHandling)
+                {
+                    case DuplicateHandling.Abort:
+                        return;
+                    case DuplicateHandling.Replace:
+                        if (existingPerk is TimerBaseBehaviour timerBaseBehaviour)
+                        {
+                            timerBaseBehaviour.ResetTimer();
+                            var perkActor = (existingPerk as IActorAbility)?.Actor;
+                            if (perkActor == null) return;
+                            TryResetPerkGameObjectLifespan(perkActor.GameObject);
+                            
+                            return;
+                        }
+                        
+                        existingPerk.Remove();
+                        break;
+                }
+            }
 
-			ApplyPerk();
-		}
+            var spawnAbility = gameObject.AddComponent<AbilityActorSimpleSpawn>();
 
-		private void ApplyPerk()
-		{
-			var existingPerk = TargetActor.AppliedPerks.Find(perk => perk.GetType() == perkToApply.GetType());
+            spawnAbility.Actor = TargetActor;
 
-			if (existingPerk != null)
-			{
-				switch (perkDuplicateHandling)
-				{
-					case DuplicateHandling.Abort:
-						return;
+            spawnAbility.objectToSpawn = perkToApply.gameObject;
+            spawnAbility.ownerType = OwnerType.CurrentActorOwner;
+            spawnAbility.spawnerType = SpawnerType.CurrentActor;
+            spawnAbility.DestroyAfterSpawn = true;
+            
+            spawnAbility.Execute();
+        }
 
-					case DuplicateHandling.Replace:
-						if (existingPerk is TimerBaseBehaviour timerBaseBehaviour)
-						{
-							timerBaseBehaviour.ResetTimer();
-							var perkActor = (existingPerk as IActorAbility)?.Actor;
-							if (perkActor == null)
-							{
-								return;
-							}
+        private void TryResetPerkGameObjectLifespan(GameObject perkGameObject)
+        {
+            var abilityLifespan = perkGameObject.GetComponent<AbilityLifespan>();
+            
+            if (abilityLifespan == null) return;
 
-							TryResetPerkGameObjectLifespan(perkActor.GameObject);
+            abilityLifespan.Timer.TimedActions.Clear();
+            abilityLifespan.Execute();
+        }
 
-							return;
-						}
 
-						existingPerk.Remove();
-						break;
-				}
-			}
+        private bool MustBePerk(MonoBehaviour perk)
+        {
+            return perk == null || perk is IPerkAbility;
+        }
+    }
 
-			var spawnAbility = gameObject.AddComponent<AbilityActorSimpleSpawn>();
-
-			spawnAbility.Actor = TargetActor;
-
-			spawnAbility.objectToSpawn = perkToApply.gameObject;
-			spawnAbility.ownerType = OwnerType.CurrentActorOwner;
-			spawnAbility.spawnerType = SpawnerType.CurrentActor;
-			spawnAbility.DestroyAfterSpawn = true;
-
-			spawnAbility.Execute();
-		}
-
-		private bool MustBePerk(MonoBehaviour perk)
-		{
-			return perk == null || perk is IPerkAbility;
-		}
-
-		private void TryResetPerkGameObjectLifespan(GameObject perkGameObject)
-		{
-			var abilityLifespan = perkGameObject.GetComponent<AbilityLifespan>();
-
-			if (abilityLifespan == null)
-			{
-				return;
-			}
-
-			abilityLifespan.Timer.TimedActions.Clear();
-			abilityLifespan.Execute();
-		}
-	}
+    public enum DuplicateHandling
+    {
+        Abort = 0,
+        Replace = 1
+    }
 }

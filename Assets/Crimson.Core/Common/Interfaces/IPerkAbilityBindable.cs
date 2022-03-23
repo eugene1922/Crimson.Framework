@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-	public interface IPerkAbilityBindable : IBindable
-	{
-		List<MonoBehaviour> PerkRelatedComponents { get; set; }
-	}
+    public interface IPerkAbilityBindable : IBindable
+    {
+        List<MonoBehaviour> PerkRelatedComponents { get; set; }
+    }
 }

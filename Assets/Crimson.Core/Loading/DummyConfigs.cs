@@ -2,9 +2,9 @@
 
 namespace Crimson.Core.Loading
 {
-	[CreateAssetMenu(fileName = "Dummy Configs", menuName = "Game.Framework/Create Dummy Configs", order = 1)]
-	public sealed class DummyConfigs : ScriptableObject
-	{/*
+    [CreateAssetMenu(fileName = "Dummy Configs", menuName = "Game.Framework/Create Dummy Configs", order = 1)]
+    public sealed class DummyConfigs : ScriptableObject
+    {/*
         public DummyConfigService configService;
         public TextAsset[] configTables;
 
@@ -31,5 +31,5 @@ namespace Crimson.Core.Loading
             configService.weaponConfigs = weaponConfigs.ToArray();
             configService.ringConfigs = ringConfigs.ToArray();
         }*/
-	}
+    }
 }

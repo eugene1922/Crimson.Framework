@@ -9,96 +9,90 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	[HideMonoScript]
-	public class AbilityModifyCurrentHealth : MonoBehaviour, IActorAbilityTarget, IPerkAbility, ILevelable
-	{
-		[LevelableValue] public float healthModifier = 15;
+    [HideMonoScript]
+    public class AbilityModifyCurrentHealth : MonoBehaviour, IActorAbilityTarget, IPerkAbility, ILevelable
+    {
+        [ReadOnly] public int perkLevel = 1;
+        [LevelableValue] public float healthModifier = 15;
+        public IActor Actor { get; set; }
+        public int Level
+        {
+            get => perkLevel;
+            set => perkLevel = value;
+        }
 
-		[Space]
-		[TitleGroup("Levelable properties")]
-		[OnValueChanged("SetLevelableProperty")]
-		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+        public IActor TargetActor { get; set; }
+        public IActor AbilityOwnerActor { get; set; }
 
-		[ReadOnly] public int perkLevel = 1;
-		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
-		public IActor AbilityOwnerActor { get; set; }
-		public IActor Actor { get; set; }
+        [Space]
+        [TitleGroup("Levelable properties")]
+        [OnValueChanged("SetLevelableProperty")]
+        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
-		public int Level
-		{
-			get => perkLevel;
-			set => perkLevel = value;
-		}
+        public List<FieldInfo> LevelablePropertiesInfoCached
+        {
+            get
+            {
+                if (_levelablePropertiesInfoCached.Any()) return _levelablePropertiesInfoCached;
+                return _levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
+            }
+        }
 
-		public List<FieldInfo> LevelablePropertiesInfoCached
-		{
-			get
-			{
-				if (_levelablePropertiesInfoCached.Count == 0)
-				{
-					_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
-				}
-				return _levelablePropertiesInfoCached;
-			}
-		}
+        public List<LevelableProperties> LevelablePropertiesList
+        {
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
+        }
 
-		public List<LevelableProperties> LevelablePropertiesList
-		{
-			get => levelablePropertiesList;
-			set => levelablePropertiesList = value;
-		}
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 
-		public IActor TargetActor { get; set; }
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+        }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
-		}
+        public void Execute()
+        {
+            var actor = TargetActor ?? Actor;
 
-		public void Apply(IActor target)
-		{
-			var copy = target.GameObject.CopyComponent(this) as AbilityModifyCurrentHealth;
+            var abilityActorPlayer = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-			if (copy == null)
-			{
-				Debug.LogError("[PERK CURRENT MAX HEALTH] Error copying perk to Actor!");
-				return;
-			}
-			var e = target.ActorEntity;
-			copy.AddComponentData(ref e, target);
-			copy.Execute();
-		}
+            if (abilityActorPlayer == null) return;
+            abilityActorPlayer.UpdateHealth((int)healthModifier);
+        }
 
-		public void Execute()
-		{
-			var actor = TargetActor ?? Actor;
+        public void Apply(IActor target)
+        {
+            var copy = target.GameObject.CopyComponent(this) as AbilityModifyCurrentHealth;
 
-			var abilityActorPlayer = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+            if (copy == null)
+            {
+                Debug.LogError("[PERK CURRENT MAX HEALTH] Error copying perk to Actor!");
+                return;
+            }
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e, target);
+            copy.Execute();
+        }
 
-			if (abilityActorPlayer == null)
-			{
-				return;
-			}
+        public void Remove()
+        {
+            var player = GetComponent<AbilityActorPlayer>();
+            player.UpdateHealth((int)-healthModifier);
 
-			abilityActorPlayer.UpdateHealth((int)healthModifier);
-		}
+            Destroy(this);
+        }
 
-		public void Remove()
-		{
-			var player = GetComponent<AbilityActorPlayer>();
-			player.UpdateHealth((int)-healthModifier);
 
-			Destroy(this);
-		}
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+        }
 
-		public void SetLevel(int level)
-		{
-			this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-		}
 
-		public void SetLevelableProperty()
-		{
-			this.SetLevelableProperty(LevelablePropertiesInfoCached);
-		}
-	}
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
+        }
+    }
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-	public interface IActorSpawner
-	{
-		List<GameObject> SpawnedObjects { get; }
+    public interface IActorSpawner
+    {
+        List<GameObject> SpawnedObjects { get; }
 
-		void InitPool();
+        void InitPool();
 
-		void Spawn();
-	}
+        void Spawn();
+    }
 }

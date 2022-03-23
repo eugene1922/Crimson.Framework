@@ -1,38 +1,39 @@
-﻿using Sirenix.OdinInspector;
-using System;
+﻿using System;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Crimson.Core.Components
 {
-	[HideMonoScript]
-	public class CheatButton : MonoBehaviour
-	{
-		public Button button;
+    [HideMonoScript]
+    public class CheatButton : MonoBehaviour
+    {
+        public Button button;
+        
+        [SerializeField] private TextMeshProUGUI _buttonName;
 
-		[SerializeField] private TextMeshProUGUI _buttonName;
+        public string ButtonName
+        {
+            set => SetButtonName(value);
+        }
 
-		public string ButtonName
-		{
-			set => SetButtonName(value);
-		}
+        public Action ButtonAction
+        {
+            set => SetButtonAction(value);
+        }
 
-		public Action ButtonAction
-		{
-			set => SetButtonAction(value);
-		}
 
-		private void SetButtonName(string value)
-		{
-			_buttonName.SetText(value);
-			gameObject.name = value;
-		}
+        private void SetButtonName(string value)
+        {
+            _buttonName.SetText(value);
+            gameObject.name = value;
+        }
 
-		private void SetButtonAction(Action action)
-		{
-			button.onClick.RemoveAllListeners();
-			button.onClick.AddListener(action.Invoke);
-		}
-	}
+        private void SetButtonAction(Action action)
+        {
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(action.Invoke);
+        }
+    }
 }

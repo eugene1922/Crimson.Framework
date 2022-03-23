@@ -36,7 +36,7 @@ namespace Crimson.Core.Components
 	[NetworkSimObject]
 	public class AbilityActorPlayer : MonoBehaviour, IActorAbility, ITimer, ILevelable
 	{
-		public PlayerStatsData _initStats;
+		[SerializeField] public PlayerStatsData _initStats;
 
 		[TitleGroup("Player animation properties")]
 		public ActorDeathAnimProperties actorDeathAnimProperties;
@@ -78,12 +78,12 @@ namespace Crimson.Core.Components
 
 		[HideInInspector] public List<IActor> UIReceiverList = new List<IActor>();
 
-		private readonly IActorAbility _maxDistanceWeapon = null;
 		private EntityManager _dstManager;
 
 		private Entity _entity;
 
 		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+		private IActorAbility _maxDistanceWeapon;
 		private Dictionary<string, MemberInfo> _membersInfo = new Dictionary<string, MemberInfo>();
 		private string _playerName;
 		private PlayerStatsData _stats;
@@ -155,7 +155,7 @@ namespace Crimson.Core.Components
 		{
 			get
 			{
-				return _maxDistanceWeapon is object
+				return !ReferenceEquals(_maxDistanceWeapon, null)
 					? _maxDistanceWeapon
 					: Actor.Abilities.Where(a => a is AbilityWeapon)
 					.OrderByDescending(w => ((AbilityWeapon)w).findTargetProperties.maxDistanceThreshold)

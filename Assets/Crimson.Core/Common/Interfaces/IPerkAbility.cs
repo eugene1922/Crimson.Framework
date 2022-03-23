@@ -1,9 +1,9 @@
 namespace Crimson.Core.Common
 {
-	public interface IPerkAbility
-	{
-		void Apply(IActor target);
+    public interface IPerkAbility
+    {
+        void Apply(IActor target);
 
-		void Remove();
-	}
+        void Remove();
+    }
 }

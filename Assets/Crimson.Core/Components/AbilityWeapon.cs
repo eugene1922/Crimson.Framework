@@ -15,574 +15,541 @@ using Random = UnityEngine.Random;
 
 namespace Crimson.Core.Components
 {
-	public enum AimingType
-	{
-		AimingArea = 0,
-		SightControl = 1,
-		Circle = 2
-	}
-
-	public enum AttackDirectionType
-	{
-		Forward = 0,
-		Backward = 1
-	}
-
-	public enum EvaluateActionOptions
-	{
-		EvaluateOnce = 0,
-		RepeatingEvaluation = 1
-	}
+    public enum AimingType
+    {
+        AimingArea = 0,
+        SightControl = 1,
+        Circle = 2
+    }
+
+    public enum AttackDirectionType
+    {
+        Forward = 0,
+        Backward = 1
+    }
+
+    public enum EvaluateActionOptions
+    {
+        EvaluateOnce = 0,
+        RepeatingEvaluation = 1
+    }
 
-	public enum OnClickAttackType
-	{
-		DirectAttack = 0,
-		AutoAim = 1
-	}
+    public enum OnClickAttackType
+    {
+        DirectAttack = 0,
+        AutoAim = 1
+    }
 
-	public struct ActorProjectileAnimData : IComponentData
-	{
-		public int AnimHash;
-	}
+    public struct ActorProjectileAnimData : IComponentData
+    {
+        public int AnimHash;
+    }
 
-	public struct ActorProjectileThrowAnimData : IComponentData
-	{
-	}
+    public struct ActorProjectileThrowAnimData : IComponentData
+    {
+    }
 
-	public struct BindedActionsCooldownData : IComponentData
-	{
-		public FixedList32<int> OnCooldownBindingIndexes;
-		public FixedList32<int> ReadyToUseBindingIndexes;
-	}
+    public struct BindedActionsCooldownData : IComponentData
+    {
+        public FixedList32<int> OnCooldownBindingIndexes;
+        public FixedList32<int> ReadyToUseBindingIndexes;
+    }
 
-	public struct DestroyProjectileInPointData : IComponentData
-	{
-		public float2 Point;
-	}
+    public struct DestroyProjectileInPointData : IComponentData
+    {
+        public float2 Point;
+    }
 
-	public struct FindAutoAimTargetData : IComponentData
-	{
-		public FixedString128 WeaponComponentName;
-	}
+    public struct FindAutoAimTargetData : IComponentData
+    {
+        public FixedString128 WeaponComponentName;
+    }
 
-	[HideMonoScript]
-	public class AbilityWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable,
-		ICooldownable, IBindable, IAimable, ILevelable
-	{
-		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-		public AimingAnimationProperties aimingAnimProperties;
-		public bool aimingAvailable;
+    [HideMonoScript]
+    public class AbilityWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable,
+        ICooldownable, IBindable, IAimable, ILevelable
+    {
+        public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+        public AimingAnimationProperties aimingAnimProperties;
+        public bool aimingAvailable;
 
-		[HideInInspector]
-		public bool aimingByInput;
+        [HideInInspector]
+        public bool aimingByInput;
 
-		public AimingProperties aimingProperties;
-		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
-		[EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
+        public AimingProperties aimingProperties;
+        [HideInInspector] public List<string> appliedPerksNames = new List<string>();
+        [EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
 
-		[ShowIf("forceBursts")]
-		[MinMaxSlider(1, 20)]
-		public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
+        [ShowIf("forceBursts")]
+        [MinMaxSlider(1, 20)]
+        public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
 
-		[HideIf("projectileClipCapacity", 0f)]
-		[Space]
-		public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+        [HideIf("projectileClipCapacity", 0f)]
+        [Space]
+        public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
 
-		[LevelableValue] [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+        [LevelableValue] [HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
 
-		[Space]
-		[ShowInInspector]
-		public string componentName = "";
+        [Space]
+        [ShowInInspector]
+        [SerializeField]
+        public string componentName = "";
 
-		[LevelableValue] public float cooldownTime = 0.3f;
-		public bool deactivateAimingOnCooldown;
+        [LevelableValue] public float cooldownTime = 0.3f;
+        public bool deactivateAimingOnCooldown;
 
-		[ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
-		public FindTargetProperties findTargetProperties;
+        [ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
+        public FindTargetProperties findTargetProperties;
+
+        [InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
+        public bool forceBursts;
 
-		[InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
-		public bool forceBursts;
+        [Sirenix.OdinInspector.ReadOnly] public int level = 1;
+
+        [Space]
+        [TitleGroup("Levelable properties")]
+        [OnValueChanged(nameof(SetLevelableProperty))]
+        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+
+        [EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
+
+        public bool primaryProjectile;
 
-		[Sirenix.OdinInspector.ReadOnly] public int level = 1;
-
-		[Space]
-		[TitleGroup("Levelable properties")]
-		[OnValueChanged(nameof(SetLevelableProperty))]
-		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
-
-		[EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
+        [InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+        public int projectileClipCapacity = 0;
 
-		public bool primaryProjectile;
+        [Space] public ActorSpawnerSettings projectileSpawnData;
 
-		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-		public int projectileClipCapacity = 0;
+        [Space] public float projectileStartupDelay = 0f;
 
-		[Space] public ActorSpawnerSettings projectileSpawnData;
+        //TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
+        [InfoBox("Put here IEnable implementation to display reload")]
+        [Space]
+        public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
 
-		[Space] public float projectileStartupDelay = 0f;
+        public bool suppressWeaponSpawn = false;
 
-		//TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
-		[InfoBox("Put here IEnable implementation to display reload")]
-		[Space]
-		public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+        private bool _actorToUi;
 
-		public bool suppressWeaponSpawn = false;
+        private bool _circlePrefabScaled;
 
-		private bool _actorToUi;
+        private EntityManager _dstManager;
 
-		private bool _circlePrefabScaled;
+        private Entity _entity;
 
-		private EntityManager _dstManager;
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 
-		private Entity _entity;
+        private int _projectileClip;
 
-		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+        public bool ActionExecutionAllowed { get; set; }
 
-		private int _projectileClip;
+        public IActor Actor { get; set; }
 
-		public bool ActionExecutionAllowed { get; set; }
+        public AimingAnimationProperties AimingAnimProperties
+        {
+            get => aimingAnimProperties;
+            set => aimingAnimProperties = value;
+        }
 
-		public IActor Actor { get; set; }
+        public bool AimingAvailable
+        {
+            get => aimingAvailable;
+            set => aimingAvailable = value;
+        }
 
-		public AimingAnimationProperties AimingAnimProperties
-		{
-			get => aimingAnimProperties;
-			set => aimingAnimProperties = value;
-		}
+        public AimingProperties AimingProperties
+        {
+            get => aimingProperties;
+            set => aimingProperties = value;
+        }
 
-		public bool AimingAvailable
-		{
-			get => aimingAvailable;
-			set => aimingAvailable = value;
-		}
+        public int BindingIndex { get; set; } = -1;
 
-		public AimingProperties AimingProperties
-		{
-			get => aimingProperties;
-			set => aimingProperties = value;
-		}
+        public string ComponentName
+        {
+            get => componentName;
+            set => componentName = value;
+        }
 
-		public int BindingIndex { get; set; } = -1;
+        public float CooldownTime
+        {
+            get => cooldownTime;
+            set => cooldownTime = value;
+        }
 
-		public string ComponentName
-		{
-			get => componentName;
-			set => componentName = value;
-		}
+        public bool DeactivateAimingOnCooldown
+        {
+            get => deactivateAimingOnCooldown;
+            set => deactivateAimingOnCooldown = value;
+        }
 
-		public float CooldownTime
-		{
-			get => cooldownTime;
-			set => cooldownTime = value;
-		}
+        public Action<GameObject> DisposableSpawnCallback { get; set; }
 
-		public bool DeactivateAimingOnCooldown
-		{
-			get => deactivateAimingOnCooldown;
-			set => deactivateAimingOnCooldown = value;
-		}
+        public bool Enabled { get; set; }
 
-		public Action<GameObject> DisposableSpawnCallback { get; set; }
+        public int Level
+        {
+            get => level;
+            set => level = value;
+        }
 
-		public bool Enabled { get; set; }
+        public List<FieldInfo> LevelablePropertiesInfoCached
+        {
+            get
+            {
+                return _levelablePropertiesInfoCached.Any()
+                    ? _levelablePropertiesInfoCached
+                    : (_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>());
+            }
+        }
 
-		public int Level
-		{
-			get => level;
-			set => level = value;
-		}
+        public List<LevelableProperties> LevelablePropertiesList
+        {
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
+        }
 
-		public List<FieldInfo> LevelablePropertiesInfoCached
-		{
-			get
-			{
-				return _levelablePropertiesInfoCached.Any()
-					? _levelablePropertiesInfoCached
-					: (_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>());
-			}
-		}
+        public bool OnHoldAttackActive { get; set; }
 
-		public List<LevelableProperties> LevelablePropertiesList
-		{
-			get => levelablePropertiesList;
-			set => levelablePropertiesList = value;
-		}
+        public List<Action<GameObject>> SpawnCallbacks { get; set; }
 
-		public bool OnHoldAttackActive { get; set; }
+        public GameObject SpawnedAimingPrefab { get; set; }
 
-		public List<Action<GameObject>> SpawnCallbacks { get; set; }
+        public List<GameObject> SpawnedObjects { get; private set; }
 
-		public GameObject SpawnedAimingPrefab { get; set; }
+        public Transform SpawnPointsRoot { get; private set; }
 
-		public List<GameObject> SpawnedObjects { get; private set; }
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
 
-		public Transform SpawnPointsRoot { get; private set; }
+            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+            _entity = entity;
 
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            _projectileClip = projectileClipCapacity;
 
-			_entity = entity;
+            SpawnCallbacks = new List<Action<GameObject>>();
 
-			_projectileClip = projectileClipCapacity;
+            Enabled = true;
 
-			SpawnCallbacks = new List<Action<GameObject>>();
+            if (actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
+            {
+                _dstManager.AddComponentData(entity, new ActorProjectileAnimData
+                {
+                    AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
+                });
+            }
 
-			Enabled = true;
+            if (AimingAnimProperties.HasActorAimingAnimation)
+            {
+                _dstManager.AddComponentData(entity, new AimingAnimProperties
+                {
+                    AnimHash = Animator.StringToHash(AimingAnimProperties.ActorAimingAnimationName)
+                });
+            }
 
-			if (actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
-			{
-				_dstManager.AddComponentData(entity, new ActorProjectileAnimData
-				{
-					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
-				});
-			}
+            appliedPerksNames = new List<string>();
 
-			if (AimingAnimProperties.HasActorAimingAnimation)
-			{
-				_dstManager.AddComponentData(entity, new AimingAnimProperties
-				{
-					AnimHash = Animator.StringToHash(AimingAnimProperties.ActorAimingAnimationName)
-				});
-			}
+            var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+            _actorToUi = playerActor != null && playerActor.actorToUI;
 
-			appliedPerksNames = new List<string>();
+            if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
 
-			var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-			_actorToUi = playerActor != null && playerActor.actorToUI;
+            SpawnPointsRoot = new GameObject("spawn points root").transform;
+            SpawnPointsRoot.SetParent(gameObject.transform);
 
-			if (!Actor.Abilities.Contains(this))
-			{
-				Actor.Abilities.Add(this);
-			}
+            SpawnPointsRoot.localPosition = Vector3.zero;
+            ResetSpawnPointRootRotation();
 
-			SpawnPointsRoot = new GameObject("spawn points root").transform;
-			SpawnPointsRoot.SetParent(gameObject.transform);
+            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+            {
+                projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+                projectileSpawnData.spawnPointsFrom = SpawnPointsSource.Manually;
+                projectileSpawnData.rotationOfSpawns = RotationOfSpawns.UseSpawnPointRotation;
+            }
 
-			SpawnPointsRoot.localPosition = Vector3.zero;
-			ResetSpawnPointRootRotation();
+            if (projectileSpawnData.SpawnPoints.Any())
+            {
+                projectileSpawnData.SpawnPoints = new List<GameObject>();
+            }
 
-			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
-			{
-				projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
-				projectileSpawnData.spawnPointsFrom = SpawnPointsSource.Manually;
-				projectileSpawnData.rotationOfSpawns = RotationOfSpawns.UseSpawnPointRotation;
-			}
+            var baseSpawnPoint = new GameObject("Base Spawn Point");
+            baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
 
-			if (projectileSpawnData.SpawnPoints.Any())
-			{
-				projectileSpawnData.SpawnPoints = new List<GameObject>();
-			}
+            baseSpawnPoint.transform.localPosition = Vector3.zero;
+            baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
-			var baseSpawnPoint = new GameObject("Base Spawn Point");
-			baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
+            projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+            InitPool();
+        }
 
-			baseSpawnPoint.transform.localPosition = Vector3.zero;
-			baseSpawnPoint.transform.localRotation = Quaternion.identity;
+        public void EvaluateAim(Vector2 pos)
+        {
+            aimingByInput = true;
+            this.EvaluateAim(Actor as Actor, pos);
+        }
 
-			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
-			InitPool();
-		}
+        public void EvaluateAimByArea(Vector2 pos)
+        {
+            var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos * -1);
 
-		public void EvaluateAim(Vector2 pos)
-		{
-			aimingByInput = true;
-			this.EvaluateAim(Actor as Actor, pos);
-		}
+            Actor.GameObject.GetComponent<Rigidbody>().rotation =
+                Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
 
-		public void EvaluateAimByArea(Vector2 pos)
-		{
-			var lastSpawnedAimingPrefabPos = AbilityUtils.EvaluateAimByArea(this, pos * -1);
+            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
+            {
+                SpawnPointsRoot.rotation =
+                    Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
+            }
 
-			Actor.GameObject.GetComponent<Rigidbody>().rotation =
-				Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
+            DisposableSpawnCallback = go =>
+            {
+                var targetActor = go.GetComponent<Actor>();
+                if (targetActor == null)
+                {
+                    return;
+                }
 
-			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
-			{
-				SpawnPointsRoot.rotation =
-					Quaternion.Euler(0, -180, 0) * SpawnedAimingPrefab.transform.rotation;
-			}
+                var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
 
-			DisposableSpawnCallback = go =>
-			{
-				var targetActor = go.GetComponent<Actor>();
-				if (targetActor == null)
-				{
-					return;
-				}
+                targetActor.ChangeActorForceMovementData(
+                    projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
+            };
+        }
 
-				var vector = Quaternion.Euler(0, -180, 0) * lastSpawnedAimingPrefabPos;
+        public void EvaluateAimByCircle()
+        {
+            if (_circlePrefabScaled) return;
 
-				targetActor.ChangeActorForceMovementData(
-					projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
-			};
-		}
+            var objectsToSpawn = projectileSpawnData.ObjectsToSpawn;
+            if (!objectsToSpawn.Any() || objectsToSpawn.Count > 1) return;
 
-		public void EvaluateAimByCircle()
-		{
-			if (_circlePrefabScaled)
-			{
-				return;
-			}
+            var objectToSpawn = objectsToSpawn.First();
 
-			var objectsToSpawn = projectileSpawnData.ObjectsToSpawn;
-			if (!objectsToSpawn.Any() || objectsToSpawn.Count > 1)
-			{
-				return;
-			}
-
-			var objectToSpawn = objectsToSpawn.First();
-
-			var abilityCollision = objectToSpawn.GetComponent<AbilityCollision>();
-
-			if (abilityCollision == null)
-			{
-				return;
-			}
-
-			var coll = abilityCollision.useCollider;
-
-			if (coll == null)
-			{
-				return;
-			}
-
-			var colliderRadius = 0f;
-
-			switch (coll)
-			{
-				case SphereCollider sphere:
-					colliderRadius = sphere.radius;
-					break;
-
-				case CapsuleCollider capsule:
-					var direction = capsule.direction;
-
-					colliderRadius = (direction == 0 || direction == 2)
-						? capsule.height * 0.5f
-						: capsule.radius;
-					break;
-
-				case BoxCollider box:
-					var size = box.size;
-					colliderRadius = Math.Max(size.x, size.z) * 0.5f;
-					break;
-			}
-
-			SpawnedAimingPrefab.transform.localScale *= colliderRadius;
-
-			_circlePrefabScaled = true;
-		}
-
-		public void EvaluateAimBySelectedType(Vector2 pos)
-		{
-			switch (AimingProperties.aimingType)
-			{
-				case AimingType.AimingArea:
-					EvaluateAimByArea(pos);
-					break;
-
-				case AimingType.SightControl:
-					EvaluateAimBySight(pos);
-					break;
-
-				case AimingType.Circle:
-					EvaluateAimByCircle();
-					break;
-			}
-		}
-
-		public void EvaluateAimBySight(Vector2 pos)
-		{
-			var lastSpawnedAimingPrefabPos = this.EvaluateAimBySight(Actor, pos);
-
-			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
-			{
-				SpawnPointsRoot.LookAt(SpawnedAimingPrefab.transform);
-			}
-
-			DisposableSpawnCallback = go =>
-			{
-				var targetActor = go.GetComponent<Actor>();
-				if (targetActor == null)
-				{
-					return;
-				}
-
-				var vector = lastSpawnedAimingPrefabPos - Actor.GameObject.transform.position;
-
-				targetActor.ChangeActorForceMovementData(
-					projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
-
-				_dstManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
-				{
-					Point = new float2(lastSpawnedAimingPrefabPos.x,
-						lastSpawnedAimingPrefabPos.z)
-				});
-			};
-		}
-
-		public void Execute()
-		{
-			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if (Enabled && projectileStartupDelay == 0 &&
-				World.DefaultGameObjectInjectionWorld.EntityManager.Exists(_entity))
-			{
-				findTargetProperties.SearchCompleted = false;
-				Spawn();
-
-				World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
-					new ActorProjectileThrowAnimData());
-
-				// ReSharper disable once CompareOfFloatsByEqualityOperator
-				if (CooldownTime == 0)
-				{
-					return;
-				}
-
-				StartTimer();
-
-				if (!forceBursts)
-				{
-					Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
-				}
-				else
-				{
-					var _additionalShotsNum = Random.Range(burstShotCountRange.x, burstShotCountRange.y) - 1;
-					for (var i = 1; i <= _additionalShotsNum; i++)
-					{
-						Timer.TimedActions.AddAction(Spawn, CooldownTime * i);
-					}
-					Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
-				}
-				if (projectileClipCapacity == 0)
-				{
-					return;
-				}
-
-				_projectileClip--;
-				if (_projectileClip < 1)
-				{
-					Timer.TimedActions.AddAction(Reload, clipReloadTime);
-				}
-			}
-			else if (Enabled && Timer != null)
-			{
-				Timer.TimedActions.AddAction(Spawn, projectileStartupDelay);
-			}
-		}
-
-		public override void FinishTimer()
-		{
-			base.FinishTimer();
-			Enabled = true;
-
-			this.FinishAbilityCooldownTimer(Actor);
-		}
-
-		public void InitPool()
-		{
-			projectileSpawnData.InitPool();
-		}
-
-		public void Reload()
-		{
-			_projectileClip = projectileClipCapacity;
-		}
-
-		public void ResetAiming()
-		{
-			aimingByInput = false;
-
-			this.ResetAiming(Actor);
-			_circlePrefabScaled = false;
-
-			if (AimingProperties.evaluateActionOptions != EvaluateActionOptions.RepeatingEvaluation)
-			{
-				return;
-			}
-
-			OnHoldAttackActive = false;
-			ResetSpawnPointRootRotation();
-		}
-
-		public void ResetSpawnPointRootRotation()
-		{
-			if (SpawnPointsRoot == null)
-			{
-				return;
-			}
-
-			if (attackDirectionType == AttackDirectionType.Forward)
-			{
-				SpawnPointsRoot.localRotation = Quaternion.identity;
-				return;
-			}
-
-			SpawnPointsRoot.localRotation = Quaternion.Euler(0, -180, 0);
-		}
-
-		public void SetLevel(int level)
-		{
-			this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-		}
-
-		public void SetLevelableProperty()
-		{
-			this.SetLevelableProperty(LevelablePropertiesInfoCached);
-		}
-
-		public void Spawn()
-		{
-			if (!suppressWeaponSpawn)
-			{
-				if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive && !findTargetProperties.SearchCompleted)
-				{
-					_dstManager.AddComponentData(_entity, new FindAutoAimTargetData
-					{
-						WeaponComponentName = ComponentName
-					});
-
-					return;
-				}
-				SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
-			}
-
-			var objectsToSpawn = suppressWeaponSpawn
-				? projectileSpawnData.ObjectsToSpawn
-				: SpawnedObjects;
-
-			if (objectsToSpawn == null)
-			{
-				return;
-			}
-
-			foreach (var callback in SpawnCallbacks)
-			{
-				objectsToSpawn.ForEach(go => callback.Invoke(go));
-			}
-
-			objectsToSpawn.ForEach(go =>
-			{
-				DisposableSpawnCallback?.Invoke(go);
-				DisposableSpawnCallback = null;
-			});
-
-			//if (!_actorToUi) return;
-
-			ResetSpawnPointRootRotation();
-			OnHoldAttackActive = false;
-			findTargetProperties.SearchCompleted = false;
-		}
-
-		public override void StartTimer()
-		{
-			base.StartTimer();
-			Enabled = false;
-
-			this.StartAbilityCooldownTimer(Actor);
-		}
-	}
+            var abilityCollision = objectToSpawn.GetComponent<AbilityCollision>();
+
+            if (abilityCollision == null) return;
+
+            var coll = abilityCollision.useCollider;
+
+            if (coll == null) return;
+
+            var colliderRadius = 0f;
+
+            switch (coll)
+            {
+                case SphereCollider sphere:
+                    colliderRadius = sphere.radius;
+                    break;
+
+                case CapsuleCollider capsule:
+                    var direction = capsule.direction;
+
+                    colliderRadius = (direction == 0 || direction == 2)
+                        ? capsule.height * 0.5f
+                        : capsule.radius;
+                    break;
+
+                case BoxCollider box:
+                    var size = box.size;
+                    colliderRadius = Math.Max(size.x, size.z) * 0.5f;
+                    break;
+            }
+
+            SpawnedAimingPrefab.transform.localScale *= colliderRadius;
+
+            _circlePrefabScaled = true;
+        }
+
+        public void EvaluateAimBySelectedType(Vector2 pos)
+        {
+            switch (AimingProperties.aimingType)
+            {
+                case AimingType.AimingArea:
+                    EvaluateAimByArea(pos);
+                    break;
+
+                case AimingType.SightControl:
+                    EvaluateAimBySight(pos);
+                    break;
+
+                case AimingType.Circle:
+                    EvaluateAimByCircle();
+                    break;
+            }
+        }
+
+        public void EvaluateAimBySight(Vector2 pos)
+        {
+            var lastSpawnedAimingPrefabPos = this.EvaluateAimBySight(Actor, pos);
+
+            if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints)
+            {
+                SpawnPointsRoot.LookAt(SpawnedAimingPrefab.transform);
+            }
+
+            DisposableSpawnCallback = go =>
+            {
+                var targetActor = go.GetComponent<Actor>();
+                if (targetActor == null) return;
+
+                var vector = lastSpawnedAimingPrefabPos - Actor.GameObject.transform.position;
+
+                targetActor.ChangeActorForceMovementData(
+                    projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnPoints ? go.transform.forward : vector);
+
+                _dstManager.AddComponentData(targetActor.ActorEntity, new DestroyProjectileInPointData
+                {
+                    Point = new float2(lastSpawnedAimingPrefabPos.x,
+                        lastSpawnedAimingPrefabPos.z)
+                });
+            };
+        }
+
+        public void Execute()
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
+            if (Enabled && projectileStartupDelay == 0 &&
+                World.DefaultGameObjectInjectionWorld.EntityManager.Exists(_entity))
+            {
+                findTargetProperties.SearchCompleted = false;
+                Spawn();
+
+                World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
+                    new ActorProjectileThrowAnimData());
+
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (CooldownTime == 0) return;
+
+                StartTimer();
+
+                if (!forceBursts)
+                {
+                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
+                }
+                else
+                {
+                    var _additionalShotsNum = Random.Range(burstShotCountRange.x, burstShotCountRange.y) - 1;
+                    for (var i = 1; i <= _additionalShotsNum; i++)
+                    {
+                        Timer.TimedActions.AddAction(Spawn, CooldownTime * i);
+                    }
+                    Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
+                }
+                if (projectileClipCapacity == 0) return;
+
+                _projectileClip--;
+                if (_projectileClip < 1)
+                {
+                    Timer.TimedActions.AddAction(Reload, clipReloadTime);
+                }
+            }
+            else if (Enabled && Timer != null)
+            {
+                Timer.TimedActions.AddAction(Spawn, projectileStartupDelay);
+            }
+        }
+
+        public override void FinishTimer()
+        {
+            base.FinishTimer();
+            Enabled = true;
+
+            this.FinishAbilityCooldownTimer(Actor);
+        }
+
+        public void InitPool()
+        {
+            projectileSpawnData.InitPool();
+        }
+
+        public void Reload()
+        {
+            _projectileClip = projectileClipCapacity;
+        }
+
+        public void ResetAiming()
+        {
+            aimingByInput = false;
+
+            this.ResetAiming(Actor);
+            _circlePrefabScaled = false;
+
+            if (AimingProperties.evaluateActionOptions != EvaluateActionOptions.RepeatingEvaluation) return;
+            OnHoldAttackActive = false;
+            ResetSpawnPointRootRotation();
+        }
+
+        public void ResetSpawnPointRootRotation()
+        {
+            if (SpawnPointsRoot == null) return;
+
+            if (attackDirectionType == AttackDirectionType.Forward)
+            {
+                SpawnPointsRoot.localRotation = Quaternion.identity;
+                return;
+            }
+
+            SpawnPointsRoot.localRotation = Quaternion.Euler(0, -180, 0);
+        }
+
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+        }
+
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
+        }
+
+        public void Spawn()
+        {
+            if (!suppressWeaponSpawn)
+            {
+                if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive && !findTargetProperties.SearchCompleted)
+                {
+                    _dstManager.AddComponentData(_entity, new FindAutoAimTargetData
+                    {
+                        WeaponComponentName = ComponentName
+                    });
+
+                    return;
+                }
+                SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
+            }
+
+            var objectsToSpawn = suppressWeaponSpawn
+                ? projectileSpawnData.ObjectsToSpawn
+                : SpawnedObjects;
+
+            if (objectsToSpawn == null) return;
+
+            foreach (var callback in SpawnCallbacks)
+            {
+                objectsToSpawn.ForEach(go => callback.Invoke(go));
+            }
+
+            objectsToSpawn.ForEach(go =>
+            {
+                DisposableSpawnCallback?.Invoke(go);
+                DisposableSpawnCallback = null;
+            });
+
+            //if (!_actorToUi) return;
+
+            ResetSpawnPointRootRotation();
+            OnHoldAttackActive = false;
+            findTargetProperties.SearchCompleted = false;
+        }
+
+        public override void StartTimer()
+        {
+            base.StartTimer();
+            Enabled = false;
+
+            this.StartAbilityCooldownTimer(Actor);
+        }
+    }
 }

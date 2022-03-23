@@ -5,60 +5,58 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	public class AbilityDestructibleObject : MonoBehaviour, IActorAbility
-	{
-		[ReadOnly] public int currentStrengthValue;
-		public int maxStrengthValue;
-		public IActor Actor { get; set; }
+    public class AbilityDestructibleObject : MonoBehaviour, IActorAbility
+    {
+        [ReadOnly] public int currentStrengthValue;
+        public int maxStrengthValue;
+        public IActor Actor { get; set; }
+        
+        private EntityManager _dstManager;
+        
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+            
+            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-		private EntityManager _dstManager;
+            currentStrengthValue = maxStrengthValue;
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+            _dstManager.AddComponentData(entity, new DestructibleObjectStateData
+            {
+                CurrentStrengthValue = currentStrengthValue,
+                MaxStrengthValue = maxStrengthValue
+            });
+        }
 
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        public void UpdateStrengthValue(int delta)
+        {
+            var objectState = _dstManager.GetComponentData<DestructibleObjectStateData>(Actor.ActorEntity);
 
-			currentStrengthValue = maxStrengthValue;
+            var newStrength = objectState.CurrentStrengthValue + delta;
 
-			_dstManager.AddComponentData(entity, new DestructibleObjectStateData
-			{
-				CurrentStrengthValue = currentStrengthValue,
-				MaxStrengthValue = maxStrengthValue
-			});
-		}
+            objectState.CurrentStrengthValue =
+                newStrength < 0 ? 0 : newStrength > objectState.MaxStrengthValue ? objectState.MaxStrengthValue : newStrength;
+            
+            currentStrengthValue = objectState.CurrentStrengthValue;
 
-		public void UpdateStrengthValue(int delta)
-		{
-			var objectState = _dstManager.GetComponentData<DestructibleObjectStateData>(Actor.ActorEntity);
+            _dstManager.SetComponentData(Actor.ActorEntity, objectState);
 
-			var newStrength = objectState.CurrentStrengthValue + delta;
+            //UpdateUIData(nameof(CurrentHealth));
 
-			objectState.CurrentStrengthValue =
-				newStrength < 0 ? 0 : newStrength > objectState.MaxStrengthValue ? objectState.MaxStrengthValue : newStrength;
+            if (currentStrengthValue > 0) return;
 
-			currentStrengthValue = objectState.CurrentStrengthValue;
+            _dstManager.AddComponent<ImmediateDestructionActorTag>(Actor.ActorEntity);
+        }
 
-			_dstManager.SetComponentData(Actor.ActorEntity, objectState);
-
-			//UpdateUIData(nameof(CurrentHealth));
-
-			if (currentStrengthValue > 0)
-			{
-				return;
-			}
-
-			_dstManager.AddComponent<ImmediateDestructionActorTag>(Actor.ActorEntity);
-		}
-
-		public void Execute()
-		{
-		}
-	}
-
-	public struct DestructibleObjectStateData : IComponentData
-	{
-		public int CurrentStrengthValue;
-		public int MaxStrengthValue;
-	}
+        public void Execute()
+        {
+            
+        }
+    }
+    
+    public struct DestructibleObjectStateData : IComponentData
+    {
+        public int CurrentStrengthValue;
+        public int MaxStrengthValue;
+    }
 }

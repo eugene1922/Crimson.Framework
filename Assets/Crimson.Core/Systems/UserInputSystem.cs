@@ -15,139 +15,153 @@ using UnityEngine.InputSystem.Layouts;
 
 namespace Crimson.Core.Systems
 {
-	[UpdateBefore(typeof(FixedUpdateGroup))]
-	public class UserInputSystem : JobComponentSystem
-	{
-		private readonly List<InputAction> _customActions = new List<InputAction>();
-		private readonly List<InputAction> _customSticksInputActions = new List<InputAction>();
-		private EntityCommandBufferSystem _barrier;
-		private NativeArray<float> _customInputs;
-		private NativeArray<float2> _customSticksInputs;
-		private float2 _lookInput;
-		private InputAction _mouseAction;
-		private float2 _mouseInput;
-		private InputAction _moveAction;
-		private float2 _moveInput;
+    [UpdateBefore(typeof(FixedUpdateGroup))]
+    public class UserInputSystem : JobComponentSystem
+    {
+        private EntityCommandBufferSystem _barrier;
 
-		protected override void OnCreate()
-		{
-			_barrier = World.GetOrCreateSystem<EntityCommandBufferSystem>();
-		}
+        private List<InputAction> _customActions = new List<InputAction>();
+        private NativeArray<float> _customInputs;
+        private List<InputAction> _customSticksInputActions = new List<InputAction>();
+        private NativeArray<float2> _customSticksInputs;
+        private InputAction _lookAction;
+        private float2 _lookInput;
+        private InputAction _mouseAction;
+        private float2 _mouseInput;
+        private InputAction _moveAction;
+        private float2 _moveInput;
 
-		protected override void OnStartRunning()
-		{
-			_customInputs = new NativeArray<float>(Constants.INPUT_BUFFER_CAPACITY, Allocator.Persistent);
-			_customSticksInputs = new NativeArray<float2>(Constants.INPUT_BUFFER_CAPACITY, Allocator.Persistent);
+        protected override void OnCreate()
+        {
+            _barrier = World.GetOrCreateSystem<EntityCommandBufferSystem>();
+        }
 
-			_moveAction = new InputAction("move", binding: "<Gamepad>/leftStick");
-			_moveAction.AddCompositeBinding("Dpad")
-				.With("Up", "<Keyboard>/w")
-				.With("Down", "<Keyboard>/s")
-				.With("Left", "<Keyboard>/a")
-				.With("Right", "<Keyboard>/d");
+        protected override void OnStartRunning()
+        {
+            _customInputs = new NativeArray<float>(Constants.INPUT_BUFFER_CAPACITY, Allocator.Persistent);
+            _customSticksInputs = new NativeArray<float2>(Constants.INPUT_BUFFER_CAPACITY, Allocator.Persistent);
 
-			_moveAction.performed += context => _moveInput = context.ReadValue<Vector2>();
-			_moveAction.started += context => _moveInput = context.ReadValue<Vector2>();
-			_moveAction.canceled += context => _moveInput = context.ReadValue<Vector2>();
-			_moveAction.Enable();
+            _moveAction = new InputAction("move", binding: "<Gamepad>/leftStick");
+            _moveAction.AddCompositeBinding("Dpad")
+                .With("Up", "<Keyboard>/w")
+                .With("Down", "<Keyboard>/s")
+                .With("Left", "<Keyboard>/a")
+                .With("Right", "<Keyboard>/d");
 
-			_mouseAction = new InputAction("mouse", binding: "<Mouse>/position");
-			_mouseAction.performed += context => _mouseInput = context.ReadValue<Vector2>();
-			_mouseAction.canceled += context => _mouseInput = context.ReadValue<Vector2>();
-			_mouseAction.Enable();
+            _moveAction.performed += context => { _moveInput = context.ReadValue<Vector2>(); };
+            _moveAction.started += context => { _moveInput = context.ReadValue<Vector2>(); };
+            _moveAction.canceled += context => { _moveInput = context.ReadValue<Vector2>(); };
+            _moveAction.Enable();
 
-			for (var i = 0; i <= 9; i++)
-			{
-				var j = i;
-				_customActions.Add(new InputAction($"CustomAction{j}", binding: $"<Keyboard>/{j}"));
-				switch (j)
-				{
-					case 0:
-						_customActions.Last().AddBinding(new InputBinding("<Mouse>/leftButton"));
-						break;
+            _mouseAction = new InputAction("mouse", binding: "<Mouse>/position");
+            _mouseAction.performed += context => { _mouseInput = context.ReadValue<Vector2>(); };
+            _mouseAction.canceled += context => { _mouseInput = context.ReadValue<Vector2>(); };
+            _mouseAction.Enable();
 
-					case 1:
-						_customActions.Last().AddBinding(new InputBinding("<Mouse>/rightButton"));
-						break;
-				}
+            // _lookAction = new InputAction("look", binding: "<Gamepad>/rightStick");
+            // _lookAction.AddCompositeBinding("Dpad")
+            //     .With("Up", "<Keyboard>/upArrow")
+            //     .With("Down", "<Keyboard>/downArrow")
+            //     .With("Left", "<Keyboard>/leftArrow")
+            //     .With("Right", "<Keyboard>/rightArrow");
+            //
+            // _lookAction.AddBinding(new InputBinding("<Pointer>/delta"));
+            //
+            // _lookAction.performed += context => { _lookInput = context.ReadValue<Vector2>(); };
+            // _lookAction.canceled += context => { _lookInput = context.ReadValue<Vector2>(); };
+            // _lookAction.Enable();
 
-				_customActions.Last().performed += context => _customInputs[j] = context.ReadValue<float>();
-				_customActions.Last().canceled += context => _customInputs[j] = context.ReadValue<float>();
-				_customActions.Last().Enable();
-			}
+            //Here goes custom Actions for virtual keys 0..9
+            for (var i = 0; i <= 9; i++)
+            {
+                var j = i;
+                _customActions.Add(new InputAction($"CustomAction{j}", binding: $"<Keyboard>/{j}"));
+                switch (j)
+                {
+                    case 0:
+                        _customActions.Last().AddBinding(new InputBinding("<Mouse>/leftButton"));
+                        break;
 
-			RegisterCustomSticks();
-		}
+                    case 1:
+                        _customActions.Last().AddBinding(new InputBinding("<Mouse>/rightButton"));
+                        break;
+                }
 
-		protected override void OnStopRunning()
-		{
-			_mouseAction.Disable();
-			_moveAction.Disable();
+                _customActions.Last().performed += context => { _customInputs[j] = context.ReadValue<float>(); };
+                _customActions.Last().canceled += context => { _customInputs[j] = context.ReadValue<float>(); };
+                _customActions.Last().Enable();
+            }
 
-			foreach (var c in _customActions)
-			{
-				c.Disable();
-			}
+            RegisterCustomSticks();
+        }
 
-			_customInputs.Dispose();
+        protected override void OnStopRunning()
+        {
+            _mouseAction.Disable();
+            _moveAction.Disable();
 
-			foreach (var c in _customSticksInputActions)
-			{
-				c.Disable();
-			}
+            foreach (var c in _customActions)
+            {
+                c.Disable();
+            }
 
-			_customSticksInputs.Dispose();
+            _customInputs.Dispose();
 
-			var perkStickControls = InputSystem.devices.FirstOrDefault(x => x is CustomDevice);
-			if (perkStickControls != null)
-			{
-				InputSystem.RemoveDevice(perkStickControls);
-			}
-		}
+            foreach (var c in _customSticksInputActions)
+            {
+                c.Disable();
+            }
 
-		[BurstCompile]
-		protected override JobHandle OnUpdate(JobHandle inputDeps)
-		{
-			var job = new PlayerInputJob
-			{
-				Ecb = _barrier.CreateCommandBuffer().AsParallelWriter(),
-				MoveInput = _moveInput,
-				MouseInput = _mouseInput,
-				LookInput = _lookInput,
-				CustomInputs = _customInputs,
-				CustomSticksInputs = _customSticksInputs,
-			};
-			inputDeps = job.Schedule(this, inputDeps);
-			_barrier.AddJobHandleForProducer(inputDeps);
-			return inputDeps;
-		}
+            _customSticksInputs.Dispose();
 
-		private void RegisterCustomSticks()
-		{
-			if (InputSystem.devices.FirstOrDefault(x => x is CustomDevice) == null)
-			{
-				InputSystem.AddDevice(new InputDeviceDescription
-				{
-					interfaceName = "CustomDevice",
-					product = "Custom Device"
-				});
-			}
+            var perkStickControls = InputSystem.devices.FirstOrDefault(x => x is CustomDevice);
+            if (perkStickControls != null)
+                InputSystem.RemoveDevice(perkStickControls);
+        }
 
-			for (var k = 0; k <= 5; k++)
-			{
-				var j = k;
-				_customSticksInputActions.Add(new InputAction($"customStick_{j}", binding: $"<CustomDevice>/customStick_{j}"));
+        [BurstCompile]
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        {
+            var job = new PlayerInputJob
+            {
+                Ecb = _barrier.CreateCommandBuffer().AsParallelWriter(),
+                MoveInput = _moveInput,
+                MouseInput = _mouseInput,
+                LookInput = _lookInput,
+                CustomInputs = _customInputs,
+                CustomSticksInputs = _customSticksInputs,
+            };
+            inputDeps = job.Schedule(this, inputDeps);
+            _barrier.AddJobHandleForProducer(inputDeps);
+            return inputDeps;
+        }
 
-				_customSticksInputActions.Last().performed += context => _customSticksInputs[j] = context.ReadValue<Vector2>();
-				_customSticksInputActions.Last().canceled += context => _customSticksInputs[j] = context.ReadValue<Vector2>();
-				_customSticksInputActions.Last().Enable();
-			}
-		}
+        private void RegisterCustomSticks()
+        {
+            if (InputSystem.devices.FirstOrDefault(x => x is CustomDevice) == null)
+            {
+                InputSystem.AddDevice(new InputDeviceDescription
+                {
+                    interfaceName = "CustomDevice",
+                    product = "Custom Device"
+                });
+            }
 
-		//[BurstCompile]
+            for (var k = 0; k <= 5; k++)
+            {
+                var j = k;
+                _customSticksInputActions.Add(new InputAction($"customStick_{j}", binding: $"<CustomDevice>/customStick_{j}"));
+
+                _customSticksInputActions.Last().performed += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
+                _customSticksInputActions.Last().canceled += context => { _customSticksInputs[j] = context.ReadValue<Vector2>(); };
+                _customSticksInputActions.Last().Enable();
+            }
+        }
+
+        //[BurstCompile]
 #pragma warning disable 618
 
-		private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
+        private struct PlayerInputJob : IJobForEachWithEntity<PlayerInputData, UserInputData>
 #pragma warning restore 618
 		{
 			[ReadOnly] public NativeArray<float> CustomInputs;

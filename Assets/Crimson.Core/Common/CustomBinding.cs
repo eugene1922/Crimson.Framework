@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-	[Serializable]
-	public struct CustomBinding
-	{
-		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
-		public List<MonoBehaviour> actions;
+    [Serializable]
+    public struct CustomBinding
+    {
+        public int index;
 
-		public int index;
+        [ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+        public List<MonoBehaviour> actions;
 
-		private bool MustBeAbility(List<MonoBehaviour> a)
-		{
-			return !a.Exists(t => !(t is IActorAbility)) || a.Count == 0;
-		}
-	}
+        private bool MustBeAbility(List<MonoBehaviour> a)
+        {
+            return !a.Exists(t => !(t is IActorAbility)) || a.Count == 0;
+        }
+    }
 }

@@ -1,86 +1,78 @@
+using System;
 using Crimson.Core.Common;
 using Sirenix.OdinInspector;
-using System;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	[HideMonoScript]
-	public class AbilityCollisionMovement : MonoBehaviour, IActorAbility
-	{
-		public IActor Actor { get; set; }
+    [HideMonoScript]
+    public class AbilityCollisionMovement : MonoBehaviour, IActorAbility
+    {
+        public IActor Actor { get; set; }
 
-		public CollisionMovementSettings collisionMovementSettings;
+        public CollisionMovementSettings collisionMovementSettings;
+        
+        private Entity _entity;
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            _entity = entity;
+            Actor = actor;
+        }
 
-		private Entity _entity;
+        public void Execute()
+        {
+            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            switch (collisionMovementSettings.reaction)
+            {
+                case CollisionMovementReaction.Ignore:
+                    break;
+                case CollisionMovementReaction.Stop:
+                    dstManager.AddComponent<StopMovementData>(_entity);
+                    if (collisionMovementSettings.alsoStopRotation) dstManager.AddComponent<StopRotationData>(_entity);
+                    break;
+                case CollisionMovementReaction.Bounce:
+                    dstManager.AddComponentData(_entity, new BounceData
+                    {
+                        Force2DBounce = collisionMovementSettings.force2DBounce
+                    });
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			_entity = entity;
-			Actor = actor;
-		}
+    [Serializable]
+    public class CollisionMovementSettings
+    {
+        [EnumToggleButtons]
+        public CollisionMovementReaction reaction;
 
-		public void Execute()
-		{
-			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-			switch (collisionMovementSettings.reaction)
-			{
-				case CollisionMovementReaction.Ignore:
-					break;
+        [ShowIf("reaction", CollisionMovementReaction.Stop)]
+        public bool alsoStopRotation = true;
+        
+        [ShowIf("reaction", CollisionMovementReaction.Bounce)]
+        public bool force2DBounce = true;
+    }
 
-				case CollisionMovementReaction.Stop:
-					dstManager.AddComponent<StopMovementData>(_entity);
-					if (collisionMovementSettings.alsoStopRotation)
-					{
-						dstManager.AddComponent<StopRotationData>(_entity);
-					}
+    public enum CollisionMovementReaction
+    {
+        Ignore = 0,
+        Stop = 1,
+        Bounce =2
+    }
 
-					break;
+    public struct StopMovementData : IComponentData
+    {
+    }
 
-				case CollisionMovementReaction.Bounce:
-					dstManager.AddComponentData(_entity, new BounceData
-					{
-						Force2DBounce = collisionMovementSettings.force2DBounce
-					});
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
-	}
-
-	[Serializable]
-	public class CollisionMovementSettings
-	{
-		[EnumToggleButtons]
-		public CollisionMovementReaction reaction;
-
-		[ShowIf("reaction", CollisionMovementReaction.Stop)]
-		public bool alsoStopRotation = true;
-
-		[ShowIf("reaction", CollisionMovementReaction.Bounce)]
-		public bool force2DBounce = true;
-	}
-
-	public enum CollisionMovementReaction
-	{
-		Ignore = 0,
-		Stop = 1,
-		Bounce = 2
-	}
-
-	public struct StopMovementData : IComponentData
-	{
-	}
-
-	public struct StopRotationData : IComponentData
-	{
-	}
-
-	public struct BounceData : IComponentData
-	{
-		public bool Force2DBounce;
-	}
+    public struct StopRotationData : IComponentData
+    {
+    }
+    
+    public struct BounceData : IComponentData
+    {
+        public bool Force2DBounce;
+    }
 }

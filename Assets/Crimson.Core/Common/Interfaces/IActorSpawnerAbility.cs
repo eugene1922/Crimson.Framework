@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-	public interface IActorSpawnerAbility : IActorSpawner
-	{
-		List<Action<GameObject>> SpawnCallbacks { get; set; }
-		Action<GameObject> DisposableSpawnCallback { get; set; }
-	}
+    public interface IActorSpawnerAbility : IActorSpawner
+    {
+        List<Action<GameObject>> SpawnCallbacks { get; set; }
+        Action<GameObject> DisposableSpawnCallback { get; set; }
+    }
 }

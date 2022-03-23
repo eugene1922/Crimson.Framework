@@ -1,4 +1,5 @@
-﻿using Unity.Mathematics;
+﻿using Unity.Entities;
+using Unity.Mathematics;
 
 namespace Assets.Crimson.Core.Components
 {

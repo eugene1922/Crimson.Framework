@@ -1,259 +1,248 @@
-﻿using Crimson.Core.Common;
-using Crimson.Core.Utils;
-using Sirenix.OdinInspector;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Crimson.Core.Common;
+using Crimson.Core.Utils;
+using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
 {
-	[HideMonoScript]
-	public class PerkTeleport : CooldownBehaviour, IActorAbility, IPerkAbility, IPerkAbilityBindable, ILevelable,
-		ICooldownable, IAimable
-	{
-		public AimingAnimationProperties aimingAnimProperties;
-		public bool aimingAvailable;
-		public AimingProperties aimingProperties;
-		public float cooldownTime;
-		public bool deactivateAimingOnCooldown;
+    [HideMonoScript]
+    public class PerkTeleport : CooldownBehaviour, IActorAbility, IPerkAbility, IPerkAbilityBindable, ILevelable,
+        ICooldownable, IAimable
+    {
+        [ReadOnly] public int perkLevel = 1;
 
-		[Space]
-		[TitleGroup("Levelable properties")]
-		[OnValueChanged("SetLevelableProperty")]
-		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+        [LevelableValue] public float teleportDistance;
 
-		[ReadOnly] public int perkLevel = 1;
+        public float cooldownTime;
 
-		public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
-		[LevelableValue] public float teleportDistance;
-		private bool _aimingActive;
-		private EntityManager _dstManager;
-		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
-		private IActor _target;
-		private Vector3 _teleportVector = new Vector3();
-		public bool ActionExecutionAllowed { get; set; }
-		public IActor Actor { get; set; }
+        public bool aimingAvailable;
+        public bool deactivateAimingOnCooldown;
+        
+        public AimingProperties aimingProperties;
+        public AimingAnimationProperties aimingAnimProperties;
 
-		public AimingAnimationProperties AimingAnimProperties
-		{
-			get => aimingAnimProperties;
-			set => aimingAnimProperties = value;
-		}
+        public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
 
-		public bool AimingAvailable
-		{
-			get => aimingAvailable;
-			set => aimingAvailable = value;
-		}
+        [Space] [TitleGroup("Levelable properties")] [OnValueChanged("SetLevelableProperty")]
+        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
-		public AimingProperties AimingProperties
-		{
-			get => aimingProperties;
-			set => aimingProperties = value;
-		}
+        public IActor Actor { get; set; }
 
-		public int BindingIndex { get; set; } = -1;
+        public List<MonoBehaviour> PerkRelatedComponents
+        {
+            get
+            {
+                perkRelatedComponents.RemoveAll(c => ReferenceEquals(c, null));
+                return perkRelatedComponents;
+            }
+            set => perkRelatedComponents = value;
+        }
 
-		public float CooldownTime
-		{
-			get => cooldownTime;
-			set => cooldownTime = value;
-		}
+        public int Level
+        {
+            get => perkLevel;
+            set => perkLevel = value;
+        }
 
-		public bool DeactivateAimingOnCooldown
-		{
-			get => deactivateAimingOnCooldown;
-			set => deactivateAimingOnCooldown = value;
-		}
+        public List<LevelableProperties> LevelablePropertiesList
+        {
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
+        }
 
-		public int Level
-		{
-			get => perkLevel;
-			set => perkLevel = value;
-		}
+        public List<FieldInfo> LevelablePropertiesInfoCached
+        {
+            get
+            {
+                if (_levelablePropertiesInfoCached.Any()) return _levelablePropertiesInfoCached;
+                return _levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
+            }
+        }
 
-		public List<FieldInfo> LevelablePropertiesInfoCached
-		{
-			get
-			{
-				if (_levelablePropertiesInfoCached.Count == 0)
-				{
-					_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
-				}
-				return _levelablePropertiesInfoCached;
-			}
-		}
+        public bool ActionExecutionAllowed { get; set; }
+        public GameObject SpawnedAimingPrefab { get; set; }
 
-		public List<LevelableProperties> LevelablePropertiesList
-		{
-			get => levelablePropertiesList;
-			set => levelablePropertiesList = value;
-		}
+        public int BindingIndex { get; set; } = -1;
 
-		public bool OnHoldAttackActive { get; set; }
+        public float CooldownTime
+        {
+            get => cooldownTime;
+            set => cooldownTime = value;
+        }
 
-		public List<MonoBehaviour> PerkRelatedComponents
-		{
-			get
-			{
-				perkRelatedComponents.RemoveAll(c => c is null);
-				return perkRelatedComponents;
-			}
-			set => perkRelatedComponents = value;
-		}
+        public bool AimingAvailable
+        {
+            get => aimingAvailable;
+            set => aimingAvailable = value;
+        }
 
-		public GameObject SpawnedAimingPrefab { get; set; }
+        public bool DeactivateAimingOnCooldown
+        {
+            get => deactivateAimingOnCooldown;
+            set => deactivateAimingOnCooldown = value;
+        }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+        public bool OnHoldAttackActive { get; set; }
 
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        public AimingProperties AimingProperties
+        {
+            get => aimingProperties;
+            set => aimingProperties = value;
+        }
 
-			if (AimingAnimProperties.HasActorAimingAnimation)
-			{
-				_dstManager.AddComponentData(entity, new AimingAnimProperties
-				{
-					AnimHash = Animator.StringToHash(AimingAnimProperties.ActorAimingAnimationName)
-				});
-			}
+        public AimingAnimationProperties AimingAnimProperties
+        {
+            get => aimingAnimProperties;
+            set => aimingAnimProperties = value;
+        }
 
-			if (!Actor.Abilities.Contains(this))
-			{
-				Actor.Abilities.Add(this);
-			}
-		}
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 
-		public void Apply(IActor target)
-		{
-			_target = target;
+        private IActor _target;
+        private bool _aimingActive;
+        private Vector3 _teleportVector = new Vector3();
+        
+        private EntityManager _dstManager;
 
-			ApplyActionWithCooldown(cooldownTime, ApplyTeleportPerk);
-		}
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+            
+            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            
+            if (AimingAnimProperties.HasActorAimingAnimation)
+            {
+                _dstManager.AddComponentData(entity, new AimingAnimProperties
+                {
+                    AnimHash = Animator.StringToHash(AimingAnimProperties.ActorAimingAnimationName)
+                });
+            }
 
-		public void ApplyTeleportPerk()
-		{
-			if (!_target.AppliedPerks.Contains(this))
-			{
-				_target.AppliedPerks.Add(this);
-			}
+            if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
+        }
 
-			if (_target != Actor.Owner)
-			{
-				var ownerActorPlayer =
-					Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+        public void Execute()
+        {
+            Apply(Actor);
+        }
 
-				if (ownerActorPlayer == null)
-				{
-					return;
-				}
+        public void Apply(IActor target)
+        {
+            _target = target;
 
-				this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, _target);
-			}
+            ApplyActionWithCooldown(cooldownTime, ApplyTeleportPerk);
+        }
 
-			var teleportVector = new Vector3();
+        public void ApplyTeleportPerk()
+        {
+            if (!_target.AppliedPerks.Contains(this)) _target.AppliedPerks.Add(this);
 
-			if (_aimingActive)
-			{
-				switch (AimingProperties.aimingType)
-				{
-					case AimingType.AimingArea:
-						teleportVector = _teleportVector;
-						break;
+            if (_target != Actor.Owner)
+            {
+                var ownerActorPlayer =
+                    Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-					case AimingType.SightControl:
-						transform.LookAt(SpawnedAimingPrefab.transform);
-						teleportVector = _target.GameObject.transform.forward;
-						break;
-				}
-			}
-			else
-			{
-				teleportVector = _target.GameObject.transform.forward;
-			}
+                if (ownerActorPlayer == null) return;
 
-			_target.GameObject.transform.position += teleportVector * teleportDistance;
+                this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, _target);
+            }
 
-			_aimingActive = false;
-		}
+            var teleportVector = new Vector3();
 
-		public void EvaluateAim(Vector2 pos)
-		{
-			_aimingActive = true;
-			this.EvaluateAim(Actor as Actor, pos);
-		}
+            if (_aimingActive)
+            {
+                switch (AimingProperties.aimingType)
+                {
+                    case AimingType.AimingArea:
+                        teleportVector = _teleportVector;
+                        break;
+                    case AimingType.SightControl:
+                        transform.LookAt(SpawnedAimingPrefab.transform);
+                        teleportVector = _target.GameObject.transform.forward;
+                        break;
+                }
+            }
+            else
+            {
+                teleportVector = _target.GameObject.transform.forward;
+            }
 
-		public void EvaluateAimByArea(Vector2 pos)
-		{
-			_teleportVector = Quaternion.Euler(0, -180, 0) * AbilityUtils.EvaluateAimByArea(this, pos);
-		}
+            _target.GameObject.transform.position += teleportVector * teleportDistance;
 
-		public void EvaluateAimBySelectedType(Vector2 pos)
-		{
-			switch (AimingProperties.aimingType)
-			{
-				case AimingType.AimingArea:
-					EvaluateAimByArea(pos);
-					break;
+            _aimingActive = false;
+        }
 
-				case AimingType.SightControl:
-					EvaluateAimBySight(pos);
-					break;
-			}
-		}
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+        }
 
-		public void EvaluateAimBySight(Vector2 pos)
-		{
-			this.ResetAiming(Actor);
-		}
+        public void Remove()
+        {
+            if (Actor.AppliedPerks.Contains(this)) Actor.AppliedPerks.Remove(this);
 
-		public void Execute()
-		{
-			Apply(Actor);
-		}
+            foreach (var component in perkRelatedComponents)
+            {
+                Destroy(component);
+            }
 
-		public override void FinishTimer()
-		{
-			base.FinishTimer();
-			this.FinishAbilityCooldownTimer(Actor);
-		}
+            Destroy(this);
+        }
 
-		public void Remove()
-		{
-			if (Actor.AppliedPerks.Contains(this))
-			{
-				Actor.AppliedPerks.Remove(this);
-			}
+        public override void FinishTimer()
+        {
+            base.FinishTimer();
+            this.FinishAbilityCooldownTimer(Actor);
+        }
 
-			foreach (var component in perkRelatedComponents)
-			{
-				Destroy(component);
-			}
+        public override void StartTimer()
+        {
+            base.StartTimer();
+            this.StartAbilityCooldownTimer(Actor);
+        }
 
-			Destroy(this);
-		}
 
-		public void ResetAiming()
-		{
-			this.ResetAiming(Actor);
-		}
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
+        }
 
-		public void SetLevel(int level)
-		{
-			this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-		}
+        public void EvaluateAim(Vector2 pos)
+        {
+            _aimingActive = true;
+            this.EvaluateAim(Actor as Actor, pos);
+        }
+        
+        public void EvaluateAimBySelectedType(Vector2 pos)
+        {
+            switch (AimingProperties.aimingType)
+            {
+                case AimingType.AimingArea:
+                    EvaluateAimByArea(pos);
+                    break;
+                case AimingType.SightControl:
+                    EvaluateAimBySight(pos);
+                    break;
+            }
+        }
 
-		public void SetLevelableProperty()
-		{
-			this.SetLevelableProperty(LevelablePropertiesInfoCached);
-		}
+        public void EvaluateAimByArea(Vector2 pos)
+        {
+            _teleportVector = Quaternion.Euler(0, -180, 0) * AbilityUtils.EvaluateAimByArea(this, pos);
+        }
 
-		public override void StartTimer()
-		{
-			base.StartTimer();
-			this.StartAbilityCooldownTimer(Actor);
-		}
-	}
+        public void EvaluateAimBySight(Vector2 pos)
+        {
+            this.ResetAiming(Actor);
+        }
+
+        public void ResetAiming()
+        {
+            this.ResetAiming(Actor);
+        }
+    }
 }

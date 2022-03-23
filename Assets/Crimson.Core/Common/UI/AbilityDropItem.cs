@@ -13,12 +13,12 @@ namespace Assets.Crimson.Core.Common.UI
 		public Vector3 Offset;
 		public IActor Actor { get; set; }
 		public List<InventoryItemData> DropItems { get; private set; }
-		public Vector3 DropPosition => OwnerTransform.TransformPoint(Offset);
-		public Quaternion DropRotation => Quaternion.LookRotation(DropPosition - OwnerTransform.position);
+		public Vector3 DropPosition => _ownerTransform.TransformPoint(Offset);
+		public Quaternion DropRotation => Quaternion.LookRotation(DropPosition - _ownerTransform.position);
 		public Entity Entity { get; private set; }
 		public EntityManager Manager { get; private set; }
 
-		private Transform OwnerTransform => Actor.Owner.GameObject.transform;
+		private Transform _ownerTransform => Actor.Owner.GameObject.transform;
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{

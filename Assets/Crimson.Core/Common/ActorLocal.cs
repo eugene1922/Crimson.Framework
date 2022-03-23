@@ -1,9 +1,9 @@
 namespace Crimson.Core.Common
 {
-	public class ActorLocal : Actor
-	{
-		public override void PostConvert()
-		{
-		}
-	}
+    public class ActorLocal : Actor
+    {
+        public override void PostConvert()
+        {
+        }
+    }
 }

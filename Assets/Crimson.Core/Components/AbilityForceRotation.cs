@@ -6,38 +6,37 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	[HideMonoScript]
-	public class AbilityForceRotation : MonoBehaviour, IActorAbility
-	{
-		public IActor Actor { get; set; }
+    [HideMonoScript]
+    public class AbilityForceRotation : MonoBehaviour, IActorAbility
+    {
+        public IActor Actor { get; set; }
+        
+        public Vector3 rotationDelta;
+        public float rotationSpeed;
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-		public Vector3 rotationDelta;
-		public float rotationSpeed;
+            dstManager.AddComponentData(entity, new ActorForceRotationData
+            {
+                RotationDelta = rotationDelta,
+                RotationSpeed = rotationSpeed
+            });
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            dstManager.AddComponentData(entity, new RotateDirectlyData
+            {
+                Constraints = new bool3(!rotationDelta.x.Equals(0),!rotationDelta.y.Equals(0),!rotationDelta.z.Equals(0))
+            });
+        }
 
-			dstManager.AddComponentData(entity, new ActorForceRotationData
-			{
-				RotationDelta = rotationDelta,
-				RotationSpeed = rotationSpeed
-			});
+        public void Execute()
+        {
+        }
+    }
 
-			dstManager.AddComponentData(entity, new RotateDirectlyData
-			{
-				Constraints = new bool3(!rotationDelta.x.Equals(0), !rotationDelta.y.Equals(0), !rotationDelta.z.Equals(0))
-			});
-		}
-
-		public void Execute()
-		{
-		}
-	}
-
-	public struct ActorForceRotationData : IComponentData
-	{
-		public Vector3 RotationDelta;
-		public float RotationSpeed;
-	}
+    public struct ActorForceRotationData : IComponentData
+    {
+        public Vector3 RotationDelta;
+        public float RotationSpeed;
+    }
 }

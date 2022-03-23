@@ -7,66 +7,72 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	public struct ActorFollowMovementData : IComponentData
-	{
-		public float3 Origin;
-	}
+    [HideMonoScript]
+    public class AbilityFollowMovement : MonoBehaviour, IActorAbility
+    {
+        public IActor Actor { get; set; }
 
-	public struct ActorNoFollowTargetMovementData : IComponentData
-	{
-	}
+        public FindTargetProperties findTargetProperties;
+        
+        [Space] [EnumToggleButtons] public FollowType followMovementType;
 
-	[HideMonoScript]
-	public class AbilityFollowMovement : MonoBehaviour, IActorAbility
-	{
-		[ShowIf("followMovementType", FollowType.UseMovementComponent)]
-		public bool continousFollow = true;
+        [ShowIf("followMovementType", FollowType.Simple)]
+        [InfoBox("Speed of 0 results in unconstrained speed")]
+        [MinValue(0)]
+        public float movementSpeed = 0;
 
-		public FindTargetProperties findTargetProperties;
-		[Space] [EnumToggleButtons] public FollowType followMovementType;
-		public bool hideIfNoTarget = false;
+        [ShowIf("followMovementType", FollowType.Simple)]
+        public bool retainOffset = false;
 
-		[ShowIf("followMovementType", FollowType.Simple)]
-		[InfoBox("Speed of 0 results in unconstrained speed")]
-		[MinValue(0)]
-		public float movementSpeed = 0;
+        [ShowIf("followMovementType", FollowType.UseMovementComponent)]
+        public bool continousFollow = true;
 
-		[ShowIf("followMovementType", FollowType.Simple)]
-		public bool retainOffset = false;
+        public bool hideIfNoTarget = false;
+        
+        public Transform Target
+        {
+            get => _target;
+            set => _target = value;
+        }
+        
+        private Transform _target;
 
-		public IActor Actor { get; set; }
-		public Transform Target { get; set; }
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            dstManager.AddComponentData(entity, new ActorFollowMovementData());
 
-			dstManager.AddComponentData(entity, new ActorFollowMovementData());
+            dstManager.AddComponentData(entity, new ActorNoFollowTargetMovementData());
 
-			dstManager.AddComponentData(entity, new ActorNoFollowTargetMovementData());
+            if (followMovementType == FollowType.UseMovementComponent)
+            {
+                dstManager.AddComponentData(entity, new MoveByInputData());
+            }
+            else
+            {
+                dstManager.AddComponentData(entity, new MoveDirectlyData
+                {
+                    Speed = movementSpeed
+                });
+            }
+            
+            if (hideIfNoTarget) gameObject.SetActive(false);
+        }
 
-			if (followMovementType == FollowType.UseMovementComponent)
-			{
-				dstManager.AddComponentData(entity, new MoveByInputData());
-			}
-			else
-			{
-				dstManager.AddComponentData(entity, new MoveDirectlyData
-				{
-					Speed = movementSpeed
-				});
-			}
+        public void Execute()
+        {
+        }
+    }
 
-			if (hideIfNoTarget)
-			{
-				gameObject.SetActive(false);
-			}
-		}
+    public struct ActorFollowMovementData : IComponentData
+    {
+        public float3 Origin;
+    }
 
-		public void Execute()
-		{
-		}
-	}
+    public struct ActorNoFollowTargetMovementData : IComponentData
+    {
+    }
 }

@@ -1,9 +1,9 @@
 namespace Crimson.Core.Common
 {
-	public interface IUIElement
-	{
-		string AssociatedID { get; }
+    public interface IUIElement
+    {
+        string AssociatedID { get; }
 
-		void SetData(object input);
-	}
+        void SetData(object input);
+    }
 }

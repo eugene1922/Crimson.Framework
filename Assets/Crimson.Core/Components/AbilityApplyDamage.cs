@@ -57,10 +57,7 @@ namespace Crimson.Core.Components
 
 		public void Execute()
 		{
-			if (TargetActor == null)
-			{
-				return;
-			}
+			if (TargetActor == null) return;
 
 			var ownerActorPlayer = AbilityOwnerActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 			var targetActor = TargetActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
@@ -69,6 +66,7 @@ namespace Crimson.Core.Components
 			{
 				return;
 			}
+			if (ownerActorPlayer == null) return;
 
 			this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
 			var damage = CalculateDamage(ownerActorPlayer);

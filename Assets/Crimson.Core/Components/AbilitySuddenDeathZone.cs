@@ -1,109 +1,93 @@
-﻿using Crimson.Core.Common;
+﻿using System;
+using Crimson.Core.Common;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
-using System;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-	[RequireComponent(typeof(SphereCollider))]
-	public class AbilitySuddenDeathZone : TimerBaseBehaviour, IActorAbility
-	{
-		public Transform deathZoneTransform;
+    [RequireComponent(typeof(SphereCollider))]
+    public class AbilitySuddenDeathZone : TimerBaseBehaviour, IActorAbility
+    {
+        public Transform deathZoneTransform;
+        
+        public float initialDelay;
+        public float reductionDelay = 1;
+        
+        public float speedOfRadiusReduction;
+        public float minimumRadius;
+        
+        [TitleGroup("Outside Zone Players Settings")]
+        public float healthDecrement = 20;
+        public float applyPeriod = 2;
 
-		public float initialDelay;
-		public float reductionDelay = 1;
+        [TitleGroup("")]
+        public bool executeOnStart;
 
-		public float speedOfRadiusReduction;
-		public float minimumRadius;
+        public IActor Actor { get; set; }
 
-		[TitleGroup("Outside Zone Players Settings")]
-		public float healthDecrement = 20;
+        public SphereCollider ZoneCollider
+        {
+            get
+            {
+                if (_collider != null) return _collider;
+                
+                _collider = gameObject.GetComponent<SphereCollider>();
+                return _collider;
+            }
+        }
 
-		public float applyPeriod = 2;
+        private SphereCollider _collider;
+        private Vector3 _scaleCoefficient;
 
-		[TitleGroup("")]
-		public bool executeOnStart;
+        private EntityManager _dstManager;
 
-		public IActor Actor { get; set; }
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+            
+            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            if (executeOnStart) Execute();
+        }
 
-		public SphereCollider ZoneCollider
-		{
-			get
-			{
-				if (_collider != null)
-				{
-					return _collider;
-				}
+        public void Execute()
+        {
+            if (Actor == null || ZoneCollider == null) return;
 
-				_collider = gameObject.GetComponent<SphereCollider>();
-				return _collider;
-			}
-		}
+            if (Math.Abs(initialDelay) < 0.01f)
+            {
+                ReduceDeathZoneRadius();
+                _dstManager.AddComponent<ApplySuddenDeathData>(Actor.ActorEntity);
+                return;
+            }
+            
+            if (Timer == null) return;
 
-		private SphereCollider _collider;
-		private Vector3 _scaleCoefficient;
+            _scaleCoefficient = deathZoneTransform.localScale / ZoneCollider.radius;
 
-		private EntityManager _dstManager;
+            Timer.TimedActions.AddAction(() =>
+            {
+                ReduceDeathZoneRadius();
+                _dstManager.AddComponent<ApplySuddenDeathData>(Actor.ActorEntity);
+            }, initialDelay);
+        }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+        private void ReduceDeathZoneRadius()
+        {
+            var colliderRadius = ZoneCollider.radius;
+            if (colliderRadius <= minimumRadius) return;
 
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-			if (executeOnStart)
-			{
-				Execute();
-			}
-		}
+            colliderRadius -= speedOfRadiusReduction;
+            deathZoneTransform.localScale = _scaleCoefficient * colliderRadius;
 
-		public void Execute()
-		{
-			if (Actor == null || ZoneCollider == null)
-			{
-				return;
-			}
+            ZoneCollider.radius = colliderRadius;
+            
+            Timer.TimedActions.AddAction(ReduceDeathZoneRadius, reductionDelay);
+        }
+    }
 
-			if (Math.Abs(initialDelay) < 0.01f)
-			{
-				ReduceDeathZoneRadius();
-				_dstManager.AddComponent<ApplySuddenDeathData>(Actor.ActorEntity);
-				return;
-			}
-
-			if (Timer == null)
-			{
-				return;
-			}
-
-			_scaleCoefficient = deathZoneTransform.localScale / ZoneCollider.radius;
-
-			Timer.TimedActions.AddAction(() =>
-			{
-				ReduceDeathZoneRadius();
-				_dstManager.AddComponent<ApplySuddenDeathData>(Actor.ActorEntity);
-			}, initialDelay);
-		}
-
-		private void ReduceDeathZoneRadius()
-		{
-			var colliderRadius = ZoneCollider.radius;
-			if (colliderRadius <= minimumRadius)
-			{
-				return;
-			}
-
-			colliderRadius -= speedOfRadiusReduction;
-			deathZoneTransform.localScale = _scaleCoefficient * colliderRadius;
-
-			ZoneCollider.radius = colliderRadius;
-
-			Timer.TimedActions.AddAction(ReduceDeathZoneRadius, reductionDelay);
-		}
-	}
-
-	public struct ApplySuddenDeathData : IComponentData
-	{
-	}
+    public struct ApplySuddenDeathData : IComponentData
+    {
+    }
 }

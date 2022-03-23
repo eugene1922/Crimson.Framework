@@ -1,6 +1,7 @@
 namespace Crimson.Core.Loading
 {
-	public interface IActorDataRepository
-	{
-	}
+    public interface IActorDataRepository
+    {
+
+    }
 }

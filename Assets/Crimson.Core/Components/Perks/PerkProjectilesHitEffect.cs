@@ -1,239 +1,211 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
 {
-	[HideMonoScript]
-	public class PerkProjectilesHitEffect : TimerBaseBehaviour, IActorAbilityTarget, IPerkAbilityForSpawned, IPerkAbilityBindable, ILevelable
-	{
-		public bool applyToAllProjectiles = true;
-		public CollisionSettings collisionSettings;
-		[HideIf("applyToAllProjectiles")] public string componentName = "";
+    [HideMonoScript]
+    public class PerkProjectilesHitEffect : TimerBaseBehaviour, IActorAbilityTarget, IPerkAbilityForSpawned, IPerkAbilityBindable, ILevelable
+    {
+        [ReadOnly] public int perkLevel = 1;
+        
+        public bool applyToAllProjectiles = true;
 
-		[Space]
-		[TitleGroup("Levelable properties")]
-		[OnValueChanged("SetLevelableProperty")]
-		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+        [HideIf("applyToAllProjectiles")] public string componentName = "";
 
-		[ReadOnly] public int perkLevel = 1;
-		public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
+        public CollisionSettings collisionSettings;
 
-		[ShowIf("spawnProjectileEffect")]
-		public GameObject projectileEffectPrefab;
+        public bool spawnTargetEffect;
 
-		public bool spawnProjectileEffect;
-		public bool spawnTargetEffect;
+        [ShowIf("spawnTargetEffect")]
+        public GameObject targetEffectPrefab;
 
-		[ShowIf("spawnTargetEffect")]
-		public GameObject targetEffectPrefab;
+        public bool spawnProjectileEffect;
 
-		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
+        [ShowIf("spawnProjectileEffect")]
+        public GameObject projectileEffectPrefab;
 
-		private IActor _target;
+        public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
 
-		public IActor AbilityOwnerActor { get; set; }
+        [Space] [TitleGroup("Levelable properties")] [OnValueChanged("SetLevelableProperty")]
+        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
-		public IActor Actor { get; set; }
+        public List<MonoBehaviour> PerkRelatedComponents
+        {
+            get
+            {
+                perkRelatedComponents.RemoveAll(c => ReferenceEquals(c, null));
+                return perkRelatedComponents;
+            }
+            set => perkRelatedComponents = value;
+        }
 
-		public int BindingIndex { get; set; } = -1;
+        public List<FieldInfo> LevelablePropertiesInfoCached
+        {
+            get
+            {
+                if (_levelablePropertiesInfoCached.Any()) return _levelablePropertiesInfoCached;
+                return _levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
+            }
+        }
 
-		public int Level
-		{
-			get => perkLevel;
-			set => perkLevel = value;
-		}
 
-		public List<FieldInfo> LevelablePropertiesInfoCached
-		{
-			get
-			{
-				if (_levelablePropertiesInfoCached.Count == 0)
-				{
-					_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
-				}
-				return _levelablePropertiesInfoCached;
-			}
-		}
+        public IActor Actor { get; set; }
+        public IActor TargetActor { get; set; }
+        public IActor AbilityOwnerActor { get; set; }
 
-		public List<LevelableProperties> LevelablePropertiesList
-		{
-			get => levelablePropertiesList;
-			set => levelablePropertiesList = value;
-		}
+        public int Level
+        {
+            get => perkLevel;
+            set => perkLevel = value;
+        }
 
-		public List<MonoBehaviour> PerkRelatedComponents
-		{
-			get
-			{
-				perkRelatedComponents.RemoveAll(c => c is null);
-				return perkRelatedComponents;
-			}
-			set => perkRelatedComponents = value;
-		}
+        public List<LevelableProperties> LevelablePropertiesList
+        {
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
+        }
+        
+        public int BindingIndex { get; set; } = -1;
 
-		public IActor TargetActor { get; set; }
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 
-		public void AddCollision(GameObject target)
-		{
-			var collision = target.GetComponent<AbilityCollision>();
+        private IActor _target;
 
-			if (collision != null)
-			{
-				collision.collisionActions.Add(new CollisionAction
-				{
-					collisionLayerMask = collisionSettings.collisionLayerMask,
-					useTagFilter = collisionSettings.useTagFilter,
-					filterMode = collisionSettings.filterMode,
-					filterTags = collisionSettings.filterTags,
-					executeOnCollisionWithSpawner = collisionSettings.executeOnCollisionWithSpawner,
-					destroyAfterAction = collisionSettings.destroyAfterAction,
-					actions = new List<MonoBehaviour> { this }
-				});
-			}
-		}
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
 
-		public void AddCollisionAction(GameObject target)
-		{
-			var p = target.CopyComponent(this) as PerkProjectilesHitEffect;
-			if (p == null)
-			{
-				return;
-			}
+            if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
+            Apply(Actor);
+        }
 
-			var a = target.GetComponent<IActor>();
-			if (a != null)
-			{
-				var e = a.ActorEntity;
-				p.AddComponentData(ref e, a);
-			}
+        public void Execute()
+        {
+            if (spawnTargetEffect)
+            {
+                SpawnEffect(TargetActor, targetEffectPrefab);
+            }
+        }
 
-			p.AddCollision(p.gameObject);
-		}
+        public void Apply(IActor target)
+        {
+            _target = target;
+            
+            if (target != Actor.Owner)
+            {
+                var ownerActorPlayer =
+                    Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+                
+                if (ownerActorPlayer == null) return;
+                
+                this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, _target);
+            }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+            if (!_target.AppliedPerks.Contains(this)) _target.AppliedPerks.Add(this);
 
-			if (!Actor.Abilities.Contains(this))
-			{
-				Actor.Abilities.Add(this);
-			}
+            var projectiles = target.GameObject.GetComponents<AbilityWeapon>().ToList();
 
-			Apply(Actor);
-		}
+            if (!applyToAllProjectiles)
+                projectiles = projectiles.Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
+                    .ToList();
+            
+            foreach (var p in projectiles.Where(p => p.Enabled))
+            {
+                p.SpawnCallbacks.Add(AddCollisionAction);
 
-		public void Apply(IActor target)
-		{
-			_target = target;
+                p.SpawnCallbacks.Add(go =>
+                {
+                    if (!spawnProjectileEffect) return;
 
-			if (target != Actor.Owner)
-			{
-				var ownerActorPlayer =
-					Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+                    var targetActor = go.GetComponent<Actor>();
 
-				if (ownerActorPlayer == null)
-				{
-					return;
-				}
+                    if (targetActor == null) return;
 
-				this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, _target);
-			}
+                    SpawnEffect(targetActor, projectileEffectPrefab);
+                });
+            }
+        }
 
-			if (!_target.AppliedPerks.Contains(this))
-			{
-				_target.AppliedPerks.Add(this);
-			}
+        public void AddCollisionAction(GameObject target)
+        {
+            var p = target.CopyComponent(this) as PerkProjectilesHitEffect;
+            if (p == null) return;
+            
+            var a = target.GetComponent<IActor>();
+            if (a != null)
+            {
+                var e = a.ActorEntity;
+                p.AddComponentData(ref e,a);
+            }
+            
+            p.AddCollision(p.gameObject);
+        }
 
-			var projectiles = target.GameObject.GetComponents<AbilityWeapon>().ToList();
+        public void AddCollision(GameObject target)
+        {
+            var collision = target.GetComponent<AbilityCollision>();
 
-			if (!applyToAllProjectiles)
-			{
-				projectiles = projectiles.Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
-					.ToList();
-			}
+            if (collision != null)
+            {
+                collision.collisionActions.Add(new CollisionAction
+                {
+                    collisionLayerMask = collisionSettings.collisionLayerMask,
+                    useTagFilter = collisionSettings.useTagFilter,
+                    filterMode = collisionSettings.filterMode,
+                    filterTags = collisionSettings.filterTags,
+                    executeOnCollisionWithSpawner = collisionSettings.executeOnCollisionWithSpawner,
+                    destroyAfterAction = collisionSettings.destroyAfterAction,
+                    actions = new List<MonoBehaviour> {this}
+                });
+            }
+        }
 
-			foreach (var p in projectiles.Where(p => p.Enabled))
-			{
-				p.SpawnCallbacks.Add(AddCollisionAction);
+        private void SpawnEffect(IActor target, GameObject prefab)
+        {
+            var effectData = new ActorSpawnerSettings
+            {
+                objectsToSpawn = new List<GameObject> {prefab},
+                SpawnPosition = SpawnPosition.UseSpawnerPosition,
+                parentOfSpawns = TargetType.None,
+                runSpawnActionsOnObjects = true,
+                destroyAbilityAfterSpawn = true
+            };
 
-				p.SpawnCallbacks.Add(go =>
-				{
-					if (!spawnProjectileEffect)
-					{
-						return;
-					}
+            if (target == null || target.GameObject == null) return;
+            
+            ActorSpawn.Spawn(effectData, target, Actor);
+        }
 
-					var targetActor = go.GetComponent<Actor>();
+        public void Remove()
+        {
+            if (_target != null && _target.AppliedPerks.Contains(this)) _target.AppliedPerks.Remove(this);
 
-					if (targetActor == null)
-					{
-						return;
-					}
+            foreach (var component in perkRelatedComponents)
+            {
+                Destroy(component);
+            }
 
-					SpawnEffect(targetActor, projectileEffectPrefab);
-				});
-			}
-		}
+            Destroy(this);
+        }
 
-		public void Execute()
-		{
-			if (spawnTargetEffect)
-			{
-				SpawnEffect(TargetActor, targetEffectPrefab);
-			}
-		}
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+        }
 
-		public void Remove()
-		{
-			if (_target != null && _target.AppliedPerks.Contains(this))
-			{
-				_target.AppliedPerks.Remove(this);
-			}
 
-			foreach (var component in perkRelatedComponents)
-			{
-				Destroy(component);
-			}
-
-			Destroy(this);
-		}
-
-		public void SetLevel(int level)
-		{
-			this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-		}
-
-		public void SetLevelableProperty()
-		{
-			this.SetLevelableProperty(LevelablePropertiesInfoCached);
-		}
-
-		private void SpawnEffect(IActor target, GameObject prefab)
-		{
-			var effectData = new ActorSpawnerSettings
-			{
-				objectsToSpawn = new List<GameObject> { prefab },
-				SpawnPosition = SpawnPosition.UseSpawnerPosition,
-				parentOfSpawns = TargetType.None,
-				runSpawnActionsOnObjects = true,
-				destroyAbilityAfterSpawn = true
-			};
-
-			if (target == null || target.GameObject == null)
-			{
-				return;
-			}
-
-			ActorSpawn.Spawn(effectData, target, Actor);
-		}
-	}
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
+        }
+    }
 }

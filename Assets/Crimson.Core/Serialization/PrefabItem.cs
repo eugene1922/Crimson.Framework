@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace Crimson.Core.Serialization
 {
-	[Serializable]
-	public sealed class PrefabItem
-	{
-		public GameObject asset;
+    [Serializable]
+    public sealed class PrefabItem
+    {
+        public GameObject asset;
 
-		[Sirenix.OdinInspector.ReadOnly]
-		public int id;
+        [Sirenix.OdinInspector.ReadOnly]
+        public int id;
 
-		public PrefabItem(GameObject asset)
-		{
-			id = Guid.NewGuid().GetHashCode();
-			this.asset = asset;
-		}
+        public PrefabItem(GameObject asset)
+        {
+            id = Guid.NewGuid().GetHashCode();
+            this.asset = asset;
+        }
 
-		[HideInInspector]
-		public string name => asset.name;
-	}
+        [HideInInspector]
+        public string name => asset.name;
+    }
 }

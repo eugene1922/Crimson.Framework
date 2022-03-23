@@ -30,22 +30,18 @@ namespace Crimson.Core.Systems
 				ComponentType.Exclude<StopRotationData>());
 		}
 
-		protected override void OnUpdate()
-		{
-			Entities.With(_query).ForEach(
-				(Entity entity, AbilityFollowRotation follow, ref RotateDirectlyData rotation,
-					ref ActorFollowRotationData data) =>
-				{
-					if (follow.target == null)
-					{
-						PostUpdateCommands.AddComponent<ActorNoFollowTargetRotationData>(entity);
-						if (follow.hideIfNoTarget)
-						{
-							follow.gameObject.SetActive(false);
-						}
-
-						return;
-					}
+        protected override void OnUpdate()
+        {
+            Entities.With(_query).ForEach(
+                (Entity entity, AbilityFollowRotation follow, ref RotateDirectlyData rotation,
+                    ref ActorFollowRotationData data) =>
+                {
+                    if (follow.target == null)
+                    {
+                        PostUpdateCommands.AddComponent<ActorNoFollowTargetRotationData>(entity);
+                        if (follow.hideIfNoTarget) follow.gameObject.SetActive(false);
+                        return;
+                    }
 
 					if (follow.hideIfNoTarget)
 					{

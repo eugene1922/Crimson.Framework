@@ -2,8 +2,8 @@
 
 namespace Crimson.Core.Components.AbilityReactive
 {
-	public class UserReactiveInput : IComponentData
-	{
-		public byte foo;
-	}
+    public class UserReactiveInput : IComponentData
+    {
+        public byte foo;
+    }
 }

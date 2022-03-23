@@ -1,173 +1,147 @@
-using Crimson.Core.Common;
-using Crimson.Core.Utils;
-using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Crimson.Core.Common;
+using Crimson.Core.Utils;
+using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
 {
-	[HideMonoScript]
-	public class PerkPeriodicDamage : TimerBaseBehaviour, IActorAbilityTarget, IPerkAbility, ILevelable
-	{
-		[LevelableValue] public float applyPeriod = 1;
-		[LevelableValue] public float healthDecrement = 10;
+    [HideMonoScript]
+    public class PerkPeriodicDamage : TimerBaseBehaviour, IActorAbilityTarget, IPerkAbility, ILevelable
+    {
+        [ReadOnly] public int perkLevel = 1;
 
-		[Space]
-		[TitleGroup("Levelable properties")]
-		[OnValueChanged(nameof(SetLevelableProperty))]
-		public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
+        [LevelableValue] public float healthDecrement = 10;
+        [LevelableValue] public float applyPeriod = 1;
 
-		[ShowIf("limitedLifespan")]
-		[LevelableValue] public float lifespan = 5;
+        public bool limitedLifespan = true;
+        
+        [ShowIf("limitedLifespan")]
+        [LevelableValue] public float lifespan = 5;
 
-		public bool limitedLifespan = true;
-		[ReadOnly] public int perkLevel = 1;
-		private IActor _effectInstance;
-		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
-		public IActor AbilityOwnerActor { get; set; }
-		public IActor Actor { get; set; }
+        [Space] [TitleGroup("Levelable properties")] [OnValueChanged("SetLevelableProperty")]
+        public List<LevelableProperties> levelablePropertiesList = new List<LevelableProperties>();
 
-		public int Level
-		{
-			get => perkLevel;
-			set => perkLevel = value;
-		}
+        public IActor Actor { get; set; }
+        public IActor TargetActor { get; set; }
+        public IActor AbilityOwnerActor { get; set; }
 
-		public List<FieldInfo> LevelablePropertiesInfoCached
-		{
-			get
-			{
-				if (_levelablePropertiesInfoCached.Count == 0)
-				{
-					_levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
-				}
-				return _levelablePropertiesInfoCached;
-			}
-		}
+        public int Level
+        {
+            get => perkLevel;
+            set => perkLevel = value;
+        }
 
-		public List<LevelableProperties> LevelablePropertiesList
-		{
-			get => levelablePropertiesList;
-			set => levelablePropertiesList = value;
-		}
+        public List<LevelableProperties> LevelablePropertiesList
+        {
+            get => levelablePropertiesList;
+            set => levelablePropertiesList = value;
+        }
 
-		public IActor TargetActor { get; set; }
+        public List<FieldInfo> LevelablePropertiesInfoCached
+        {
+            get
+            {
+                if (_levelablePropertiesInfoCached.Any()) return _levelablePropertiesInfoCached;
+                return _levelablePropertiesInfoCached = this.GetFieldsWithAttributeInfo<LevelableValue>();
+            }
+        }
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
+        private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 
-			if (!Actor.Abilities.Contains(this))
-			{
-				Actor.Abilities.Add(this);
-			}
-		}
+        private IActor _effectInstance;
+        
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+            
+            if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
+        }
 
-		public void Apply(IActor target)
-		{
-			var copy = target.GameObject.CopyComponent(this) as PerkPeriodicDamage;
+        public void Execute()
+        {
+            if (TargetActor != Actor.Owner)
+            {
+                var ownerActorPlayer =
+                    Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 
-			if (copy == null)
-			{
-				Debug.LogError("[PERK PERIODIC DAMAGE] Error copying perk to Actor!");
-				return;
-			}
-			var e = target.ActorEntity;
-			copy.AddComponentData(ref e, target);
-			if (!Actor.Spawner.AppliedPerks.Contains(copy))
-			{
-				Actor.Spawner.AppliedPerks.Add(copy);
-			}
+                if (ownerActorPlayer == null) return;
 
-			copy.AbilityOwnerActor = this.Actor.Owner;
-			copy.TargetActor = Actor.Spawner;
-			copy._effectInstance = Actor;
-			var targetActorEntity = target.ActorEntity;
-			copy.AddComponentData(ref targetActorEntity, target);
-			copy.Execute();
-		}
+                this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
+                TryUpdateLifespan();
+            }
 
-		public void Execute()
-		{
-			if (TargetActor != Actor.Owner)
-			{
-				var ownerActorPlayer =
-					Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+            ApplyPeriodicDamage();
+            
+            if (!limitedLifespan) return;
+            
+            Timer.TimedActions.AddAction(Remove, lifespan);
+        }
 
-				if (ownerActorPlayer == null)
-				{
-					return;
-				}
+        void ApplyPeriodicDamage()
+        {
+            if (TargetActor == null || Timer == null) return;
 
-				this.SetAbilityLevel(ownerActorPlayer.Level, LevelablePropertiesInfoCached, Actor, TargetActor);
-				TryUpdateLifespan();
-			}
+            TargetActor.ActorEntity.Damage(AbilityOwnerActor.ActorEntity, healthDecrement);
 
-			ApplyPeriodicDamage();
+            Timer.TimedActions.AddAction(ApplyPeriodicDamage, applyPeriod);
+        }
 
-			if (!limitedLifespan)
-			{
-				return;
-			}
+        public void Apply(IActor target)
+        {
+            var copy = target.GameObject.CopyComponent(this) as PerkPeriodicDamage;
 
-			Timer.TimedActions.AddAction(Remove, lifespan);
-		}
+            if (copy == null)
+            {
+                Debug.LogError("[PERK PERIODIC DAMAGE] Error copying perk to Actor!");
+                return;
+            }
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
+            if (!Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
 
-		public void Remove()
-		{
-			if (Actor == null)
-			{
-				return;
-			}
+            copy.AbilityOwnerActor = this.Actor.Owner;
+            copy.TargetActor = Actor.Spawner;
+            copy._effectInstance = Actor;
+            var targetActorEntity = target.ActorEntity;
+            copy.AddComponentData(ref targetActorEntity, target);
+            copy.Execute();
+        }
 
-			if (this.ContainsAction(ApplyPeriodicDamage))
-			{
-				this.RemoveAction(ApplyPeriodicDamage);
-			}
+        public void SetLevel(int level)
+        {
+            this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
+        }
 
-			Destroy(this);
-			if (Actor.AppliedPerks.Contains(this))
-			{
-				Actor.AppliedPerks.Remove(this);
-			}
-		}
+        public void Remove()
+        {
+            if (Actor == null) return;
 
-		public void SetLevel(int level)
-		{
-			this.SetAbilityLevel(level, LevelablePropertiesInfoCached, Actor);
-		}
+            if (this.ContainsAction(ApplyPeriodicDamage))
+            {
+                this.RemoveAction(ApplyPeriodicDamage);
+            }
 
-		public void SetLevelableProperty()
-		{
-			this.SetLevelableProperty(LevelablePropertiesInfoCached);
-		}
+            Destroy(this);
+            if (Actor.AppliedPerks.Contains(this)) Actor.AppliedPerks.Remove(this);
+        }
+        
+        private void TryUpdateLifespan()
+        {
+            var lifespanAbility = Actor.Abilities.FirstOrDefault(a => a is AbilityLifespan) as AbilityLifespan;
+            if (lifespanAbility == null) return;
+            lifespanAbility.lifespan = lifespan;
+            lifespanAbility.Timer.TimedActions.Clear();
+            lifespanAbility.Execute();
+        }
 
-		private void ApplyPeriodicDamage()
-		{
-			if (TargetActor == null || Timer == null)
-			{
-				return;
-			}
 
-			TargetActor.ActorEntity.Damage(AbilityOwnerActor.ActorEntity, healthDecrement);
-
-			Timer.TimedActions.AddAction(ApplyPeriodicDamage, applyPeriod);
-		}
-
-		private void TryUpdateLifespan()
-		{
-			var lifespanAbility = Actor.Abilities.FirstOrDefault(a => a is AbilityLifespan) as AbilityLifespan;
-			if (lifespanAbility == null)
-			{
-				return;
-			}
-
-			lifespanAbility.lifespan = lifespan;
-			lifespanAbility.Timer.TimedActions.Clear();
-			lifespanAbility.Execute();
-		}
-	}
+        public void SetLevelableProperty()
+        {
+            this.SetLevelableProperty(LevelablePropertiesInfoCached);
+        }
+    }
 }

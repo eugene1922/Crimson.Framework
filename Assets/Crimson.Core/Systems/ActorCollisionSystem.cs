@@ -12,184 +12,165 @@ using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
-	[UpdateInGroup(typeof(FixedUpdateGroup))]
-	public class ActorCollisionSystem : ComponentSystem
-	{
-		private readonly Dictionary<int, IActor> _localColliders = new Dictionary<int, IActor>();
-		private readonly Dictionary<int, List<int>> _networkCollisions = new Dictionary<int, List<int>>();
-		private readonly Collider[] _results = new Collider[Constants.COLLISION_BUFFER_CAPACITY];
-		private EntityQuery _actorsQuery;
-		private EntityQuery _collisionQuery;
-		private EntityQuery _networkQuery;
+    [UpdateInGroup(typeof(FixedUpdateGroup))]
+    public class ActorCollisionSystem : ComponentSystem
+    {
+        private EntityQuery _collisionQuery;
+        private EntityQuery _networkQuery;
+        private EntityQuery _actorsQuery;
 
-		protected override void OnCreate()
-		{
-			_collisionQuery = GetEntityQuery(
-				ComponentType.ReadOnly<ActorColliderData>(),
-				ComponentType.ReadOnly<Transform>());
-			_networkQuery = GetEntityQuery(ComponentType.ReadOnly<CollisionReceiveData>());
-			_actorsQuery = GetEntityQuery(ComponentType.ReadOnly<ActorData>());
-		}
+        private Collider[] _results = new Collider[Constants.COLLISION_BUFFER_CAPACITY];
+        private Dictionary<int, List<int>> _networkCollisions = new Dictionary<int, List<int>>();
+        private Dictionary<int, IActor> _localColliders = new Dictionary<int, IActor>();
 
-		protected override void OnUpdate()
-		{
-			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        protected override void OnCreate()
+        {
+            _collisionQuery = GetEntityQuery(
+                ComponentType.ReadOnly<ActorColliderData>(),
+                ComponentType.ReadOnly<Transform>());
+            _networkQuery = GetEntityQuery(ComponentType.ReadOnly<CollisionReceiveData>());
+            _actorsQuery = GetEntityQuery(ComponentType.ReadOnly<ActorData>());
+        }
 
-			_networkCollisions.Clear();
-			Entities.With(_networkQuery).ForEach((Entity entity, ref CollisionReceiveData collision) =>
-			{
-				if (_networkCollisions.ContainsKey(collision.ActorStateId))
-				{
-					_networkCollisions[collision.ActorStateId].Add(collision.HitStateId);
-				}
-				else
-				{
-					_networkCollisions.Add(collision.ActorStateId, new List<int> { collision.HitStateId });
-				}
+        protected override void OnUpdate()
+        {
+            var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-				PostUpdateCommands.DestroyEntity(entity);
-			});
+            _networkCollisions.Clear();
+            Entities.With(_networkQuery).ForEach((Entity entity, ref CollisionReceiveData collision) =>
+            {
+                if (_networkCollisions.ContainsKey(collision.ActorStateId))
+                {
+                    _networkCollisions[collision.ActorStateId].Add(collision.HitStateId);
+                }
+                else
+                {
+                    _networkCollisions.Add(collision.ActorStateId, new List<int> { collision.HitStateId });
+                }
 
-			_localColliders.Clear();
+                PostUpdateCommands.DestroyEntity(entity);
+            });
 
-			if (_networkCollisions.Count > 0)
-			{
-				Entities.With(_actorsQuery).ForEach((Entity entity, ref ActorData id) =>
-				{
-					var actor = dstManager.GetComponentObject<Actor>(entity);
-					if (actor != null)
-					{
-						_localColliders.Add(id.StateId, actor);
-					}
-				});
-			}
+            _localColliders.Clear();
 
-			Entities.With(_collisionQuery).ForEach(
-				(Entity entity, AbilityCollision abilityCollision, ref ActorColliderData colliderData) =>
-				{
-					var gameObject = abilityCollision.gameObject;
-					float3 position = gameObject.transform.position;
-					var rotation = gameObject.transform.rotation;
-					var destroyAfterActions = false;
+            if (_networkCollisions.Count > 0)
+            {
+                Entities.With(_actorsQuery).ForEach((Entity entity, ref ActorData id) =>
+                {
+                    var actor = dstManager.GetComponentObject<Actor>(entity);
+                    if (actor != null) _localColliders.Add(id.StateId, actor);
+                });
+            }
 
-					var size = 0;
+            Entities.With(_collisionQuery).ForEach(
+                (Entity entity, AbilityCollision abilityCollision, ref ActorColliderData colliderData) =>
+                {
+                    var gameObject = abilityCollision.gameObject;
+                    float3 position = gameObject.transform.position;
+                    Quaternion rotation = gameObject.transform.rotation;
+                    bool destroyAfterActions = false;
 
-					switch (colliderData.ColliderType)
-					{
-						case ColliderType.Sphere:
-							size = Physics.OverlapSphereNonAlloc(colliderData.SphereCenter + position,
-								colliderData.SphereRadius, _results);
-							break;
+                    int size = 0;
 
-						case ColliderType.Capsule:
-							var center =
-								(colliderData.CapsuleStart + position + (colliderData.CapsuleEnd + position)) / 2f;
-							var point1 = colliderData.CapsuleStart + position;
-							var point2 = colliderData.CapsuleEnd + position;
-							point1 = (float3)(rotation * (point1 - center)) + center;
-							point2 = (float3)(rotation * (point2 - center)) + center;
-							size = Physics.OverlapCapsuleNonAlloc(point1,
-								point2,
-								colliderData.CapsuleRadius, _results);
-							break;
+                    switch (colliderData.ColliderType)
+                    {
+                        case ColliderType.Sphere:
+                            size = Physics.OverlapSphereNonAlloc(colliderData.SphereCenter + position,
+                                colliderData.SphereRadius, _results);
+                            break;
+                        case ColliderType.Capsule:
+                            var center =
+                                ((colliderData.CapsuleStart + position) + (colliderData.CapsuleEnd + position)) / 2f;
+                            var point1 = colliderData.CapsuleStart + position;
+                            var point2 = colliderData.CapsuleEnd + position;
+                            point1 = (float3)(rotation * (point1 - center)) + center;
+                            point2 = (float3)(rotation * (point2 - center)) + center;
+                            size = Physics.OverlapCapsuleNonAlloc(point1,
+                                point2,
+                                colliderData.CapsuleRadius, _results);
+                            break;
+                        case ColliderType.Box:
+                            size = Physics.OverlapBoxNonAlloc(colliderData.BoxCenter + position,
+                                colliderData.BoxHalfExtents, _results, colliderData.BoxOrientation * rotation);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
 
-						case ColliderType.Box:
-							size = Physics.OverlapBoxNonAlloc(colliderData.BoxCenter + position,
-								colliderData.BoxHalfExtents, _results, colliderData.BoxOrientation * rotation);
-							break;
+                    if (size == 0 && !_networkCollisions.ContainsKey(abilityCollision.Actor.ActorStateId))
+                    {
+                        abilityCollision.ExistentCollisions.Clear();
+                        return;
+                    }
 
-						default:
-							throw new ArgumentOutOfRangeException();
-					}
+                    int selfHit = 0;
 
-					if (size == 0 && !_networkCollisions.ContainsKey(abilityCollision.Actor.ActorStateId))
-					{
-						abilityCollision.ExistentCollisions.Clear();
-						return;
-					}
+                    if (abilityCollision.SpawnerColliders == null)
+                    {
+                        var spawner = abilityCollision.Actor.Spawner;
+                        if ((spawner == null) ||
+                        ((abilityCollision.SpawnerColliders = spawner.GameObject.GetAllColliders()) == null))
+                        {
+                            abilityCollision.SpawnerColliders = new List<Collider>();
+                        }
+                    }
 
-					var selfHit = 0;
+                    if (abilityCollision.OwnColliders == null &&
+                        (abilityCollision.OwnColliders = abilityCollision.gameObject.GetAllColliders()) == null)
+                        return;
 
-					if (abilityCollision.SpawnerColliders == null)
-					{
-						var spawner = abilityCollision.Actor.Spawner;
-						if ((spawner == null) ||
-						((abilityCollision.SpawnerColliders = spawner.GameObject.GetAllColliders()) == null))
-						{
-							abilityCollision.SpawnerColliders = new List<Collider>();
-						}
-					}
+                    _networkCollisions.TryGetValue(abilityCollision.Actor.ActorStateId, out var receivedCollisions);
+                    var networkCollisionActors = new List<IActor>();
+                    if (receivedCollisions != null)
+                        foreach (var col in receivedCollisions)
+                        {
+                            _localColliders.TryGetValue(col, out var hitActor);
+                            if (hitActor != null) networkCollisionActors.Add(hitActor);
+                        }
 
-					if (abilityCollision.OwnColliders == null &&
-						(abilityCollision.OwnColliders = abilityCollision.gameObject.GetAllColliders()) == null)
-					{
-						return;
-					}
+                    for (var i = 0; i <= size; i++)
+                    {
+                        Collider hit;
+                        IActor hitActor;
+                        if (i == size && networkCollisionActors.Count > 0)
+                        {
+                            hitActor = networkCollisionActors.First();
+                            hit = hitActor.GameObject.GetComponent<Collider>();
+                            i--;
+                            networkCollisionActors.RemoveAt(0);
+                        }
+                        else if (i < size)
+                        {
+                            hit = _results[i];
+                            hitActor = hit.GetComponent<IActor>();
+                        }
+                        else continue;
 
-					_networkCollisions.TryGetValue(abilityCollision.Actor.ActorStateId, out var receivedCollisions);
-					var networkCollisionActors = new List<IActor>();
-					if (receivedCollisions != null)
-					{
-						foreach (var col in receivedCollisions)
-						{
-							_localColliders.TryGetValue(col, out var hitActor);
-							if (hitActor != null)
-							{
-								networkCollisionActors.Add(hitActor);
-							}
-						}
-					}
 
-					for (var i = 0; i <= size; i++)
-					{
-						Collider hit;
-						IActor hitActor;
-						if (i == size && networkCollisionActors.Count > 0)
-						{
-							hitActor = networkCollisionActors.First();
-							hit = hitActor.GameObject.GetComponent<Collider>();
-							i--;
-							networkCollisionActors.RemoveAt(0);
-						}
-						else if (i < size)
-						{
-							hit = _results[i];
-							hitActor = hit.GetComponent<IActor>();
-						}
-						else
-						{
-							continue;
-						}
 
-						if (abilityCollision.OwnColliders.Count > 0 &&
-							abilityCollision.OwnColliders.FirstOrDefault(c => c == hit))
-						{
-							continue;
-						}
+                        if (abilityCollision.OwnColliders.Count > 0 &&
+                            abilityCollision.OwnColliders.FirstOrDefault(c => c == hit)) continue;
 
-						if (colliderData.initialTakeOff)
-						{
-							if (abilityCollision.SpawnerColliders.Count > 0 &&
-								abilityCollision.SpawnerColliders.FirstOrDefault(c => c == hit))
-							{
-								selfHit++;
-								continue;
-							}
-						}
+                        if (colliderData.initialTakeOff)
+                        {
+                            if (abilityCollision.SpawnerColliders.Count > 0 &&
+                                abilityCollision.SpawnerColliders.FirstOrDefault(c => c == hit))
+                            {
+                                selfHit++;
+                                continue;
+                            }
+                        }
 
-						if (abilityCollision.debugCollisions && Application.isEditor)
-						{
-							Debug.Log($"[COLLISION] HIT] {hit.gameObject} into {abilityCollision.Actor.GameObject} and collision exists: {abilityCollision.ExistentCollisions.Contains(hit)}");
-						}
+                        if (abilityCollision.debugCollisions && Application.isEditor)
+                        {
+                            Debug.Log($"[COLLISION] HIT] {hit.gameObject} into {abilityCollision.Actor.GameObject} and collision exists: {abilityCollision.ExistentCollisions.Contains(hit)}");
+                        }
 
-						if (abilityCollision.ExistentCollisions.Exists(c => c == hit))
-						{
-							continue;
-						}
+                        if (abilityCollision.ExistentCollisions.Exists(c => c == hit)) continue;
 
-						abilityCollision.ExistentCollisions.Add(hit);
+                        abilityCollision.ExistentCollisions.Add(hit);
 
-						/*
+                        /*
                         if (dstManager.HasComponent<NetworkSyncSend>(abilityCollision.Actor.ActorEntity) &&
                             !dstManager.HasComponent<NetworkInputData>(abilityCollision.Actor.ActorEntity))
                         {
@@ -201,86 +182,64 @@ namespace Crimson.Core.Systems
                             });
                         }*/
 
-						foreach (var action in abilityCollision.collisionActions)
-						{
-							if (!action.collisionLayerMask.Contains(hit.gameObject.layer))
-							{
-								continue;
-							}
+                        foreach (var action in abilityCollision.collisionActions)
+                        {
+                            if (!action.collisionLayerMask.Contains(hit.gameObject.layer)) continue;
+                            if (action.useTagFilter)
+                            {
+                                switch (action.filterMode)
+                                {
+                                    case TagFilterMode.IncludeOnly:
+                                        if (!action.filterTags.Contains(hit.gameObject.tag)) continue;
+                                        break;
+                                    case TagFilterMode.Exclude:
+                                        if (action.filterTags.Contains(hit.gameObject.tag)) continue;
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+                            }
 
-							if (action.useTagFilter)
-							{
-								switch (action.filterMode)
-								{
-									case TagFilterMode.IncludeOnly:
-										if (!action.filterTags.Contains(hit.gameObject.tag))
-										{
-											continue;
-										}
+                            if (!action.executeOnCollisionWithSpawner &&
+                                abilityCollision.SpawnerColliders.Contains(hit))
+                                continue;
 
-										break;
 
-									case TagFilterMode.Exclude:
-										if (action.filterTags.Contains(hit.gameObject.tag))
-										{
-											continue;
-										}
+                            foreach (var a in action.actions.Where(s => s != null))
+                            {
+                                switch (a)
+                                {
+                                    case IActorAbilityTarget exchange:
+                                        exchange.TargetActor = hitActor;
+                                        exchange.AbilityOwnerActor = abilityCollision.Actor.Owner;
+                                        exchange.Execute();
+                                        break;
+                                    case IActorAbility ability:
+                                        ability.Execute();
+                                        break;
+                                }
+                            }
 
-										break;
+                            if (action.destroyAfterAction) destroyAfterActions = true;
+                        }
+                    }
 
-									default:
-										throw new ArgumentOutOfRangeException();
-								}
-							}
+                    if (selfHit == 0) colliderData.initialTakeOff = false;
 
-							if (!action.executeOnCollisionWithSpawner &&
-								abilityCollision.SpawnerColliders.Contains(hit))
-							{
-								continue;
-							}
+                    if (destroyAfterActions)
+                    {
+                        PostUpdateCommands.AddComponent<ImmediateDestructionActorTag>(entity);
+                    }
 
-							foreach (var a in action.actions.Where(s => s != null))
-							{
-								switch (a)
-								{
-									case IActorAbilityTarget exchange:
-										exchange.TargetActor = hitActor;
-										exchange.AbilityOwnerActor = abilityCollision.Actor.Owner;
-										exchange.Execute();
-										break;
-
-									case IActorAbility ability:
-										ability.Execute();
-										break;
-								}
-							}
-
-							if (action.destroyAfterAction)
-							{
-								destroyAfterActions = true;
-							}
-						}
-					}
-
-					if (selfHit == 0)
-					{
-						colliderData.initialTakeOff = false;
-					}
-
-					if (destroyAfterActions)
-					{
-						PostUpdateCommands.AddComponent<ImmediateDestructionActorTag>(entity);
-					}
-
-					for (var i = abilityCollision.ExistentCollisions.Count - 1; i >= 0; i--)
-					{
-						var c = abilityCollision.ExistentCollisions[i];
-						if (!_results.Contains(c))
-						{
-							abilityCollision.ExistentCollisions.RemoveAt(i);
-						}
-					}
-				});
-		}
-	}
+                    for (var i = abilityCollision.ExistentCollisions.Count - 1; i >= 0; i--)
+                    {
+                        var c = abilityCollision.ExistentCollisions[i];
+                        if (!_results.Contains(c))
+                        {
+                            abilityCollision.ExistentCollisions.RemoveAt(i);
+                        }
+                    }
+                });
+        }
+    }
 }

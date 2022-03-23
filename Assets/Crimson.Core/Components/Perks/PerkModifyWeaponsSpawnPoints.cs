@@ -1,145 +1,128 @@
-﻿using Crimson.Core.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
 {
-	public class PerkModifyWeaponsSpawnPoints : MonoBehaviour, IActorAbilityTarget, IPerkAbility
-	{
-		[SerializeField] private string _perkName;
+    public class PerkModifyWeaponsSpawnPoints : MonoBehaviour, IActorAbilityTarget, IPerkAbility
+    {
+        [SerializeField] private string _perkName;
 
-		public bool ApplyToAllProjectiles = true;
+        public bool ApplyToAllProjectiles = true;
 
-		[HideIf("ApplyToAllProjectiles")] public string componentName = "";
+        [HideIf("ApplyToAllProjectiles")] public string componentName = "";
 
-		public List<GameObject> spawnPoints = new List<GameObject>();
+        public List<GameObject> spawnPoints = new List<GameObject>();
 
-		public bool suppressOriginalWeaponSpawn = false;
+        public bool suppressOriginalWeaponSpawn = false;
 
-		public IActor Actor { get; set; }
-		public IActor TargetActor { get; set; }
-		public IActor AbilityOwnerActor { get; set; }
+        public IActor Actor { get; set; }
+        public IActor TargetActor { get; set; }
+        public IActor AbilityOwnerActor { get; set; }
 
-		private List<GameObject> _copiedToTargetSpawnPoints { get; } = new List<GameObject>();
+        private List<GameObject> _copiedToTargetSpawnPoints { get; } = new List<GameObject>();
 
-		public void AddComponentData(ref Entity entity, IActor actor)
-		{
-			Actor = actor;
-		}
+        public void AddComponentData(ref Entity entity, IActor actor)
+        {
+            Actor = actor;
+        }
 
-		public void Execute()
-		{
-		}
+        public void Execute()
+        {
+        }
 
-		public void Apply(IActor target)
-		{
-			if (target == null)
-			{
-				return;
-			}
+        public void Apply(IActor target)
+        {
+            if (target == null) return;
 
-			TargetActor = target;
+            TargetActor = target;
 
-			var copy = target.GameObject.CopyComponent(this) as PerkModifyWeaponsSpawnPoints;
+            var copy = target.GameObject.CopyComponent(this) as PerkModifyWeaponsSpawnPoints;
 
-			if (copy == null)
-			{
-				Debug.LogError("[PERK MODIFY WEAPONS SPAWN POINTS] Error copying perk to Actor!");
-				return;
-			}
-			var e = target.ActorEntity;
-			copy.AddComponentData(ref e, target);
+            if (copy == null)
+            {
+                Debug.LogError("[PERK MODIFY WEAPONS SPAWN POINTS] Error copying perk to Actor!");
+                return;
+            }
+            var e = target.ActorEntity;
+            copy.AddComponentData(ref e,target);
+            
+            if (!Actor.Spawner.AppliedPerks.Contains(copy)) Actor.Spawner.AppliedPerks.Add(copy);
 
-			if (!Actor.Spawner.AppliedPerks.Contains(copy))
-			{
-				Actor.Spawner.AppliedPerks.Add(copy);
-			}
+            foreach (var spawnPoint in spawnPoints)
+            {
+                var newSpawnPoint = Instantiate(spawnPoint.gameObject, target.GameObject.transform);
+                newSpawnPoint.transform.localPosition = spawnPoint.transform.localPosition;
 
-			foreach (var spawnPoint in spawnPoints)
-			{
-				var newSpawnPoint = Instantiate(spawnPoint.gameObject, target.GameObject.transform);
-				newSpawnPoint.transform.localPosition = spawnPoint.transform.localPosition;
+                _copiedToTargetSpawnPoints.Add(newSpawnPoint);
+            }
 
-				_copiedToTargetSpawnPoints.Add(newSpawnPoint);
-			}
+            var projectiles = target.GameObject.GetComponents<AbilityWeapon>().ToList();
 
-			var projectiles = target.GameObject.GetComponents<AbilityWeapon>().ToList();
+            if (!ApplyToAllProjectiles)
+                projectiles = projectiles
+                    .Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
+                    .ToList();
 
-			if (!ApplyToAllProjectiles)
-			{
-				projectiles = projectiles
-					.Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
-					.ToList();
-			}
+            foreach (var p in projectiles)
+            {
+                if (p.appliedPerksNames.Contains(_perkName)) continue;
 
-			foreach (var p in projectiles)
-			{
-				if (p.appliedPerksNames.Contains(_perkName))
-				{
-					continue;
-				}
+                var spawnData = p.projectileSpawnData;
+                spawnData.SpawnPosition = SpawnPosition.UseSpawnPoints; 
+                spawnData.SpawnPointsFillingMode = FillOrder.SequentialOrder;
+                spawnData.FillSpawnPoints = FillMode.FillAllSpawnPoints;
+                
+                var weaponTransform = p.gameObject.transform;
+                
+                var existingBaseSpawnPoint = spawnData.SpawnPoints.FirstOrDefault(point =>
+                    point.transform.position == weaponTransform.position &&
+                    point.transform.rotation == weaponTransform.rotation);
+                
 
-				var spawnData = p.projectileSpawnData;
-				spawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
-				spawnData.SpawnPointsFillingMode = FillOrder.SequentialOrder;
-				spawnData.FillSpawnPoints = FillMode.FillAllSpawnPoints;
+                if (!suppressOriginalWeaponSpawn && existingBaseSpawnPoint == null && !p.appliedPerksNames.Any())
+                {
+                    var baseSpawnPoint = new GameObject("Base Spawn Point");
+                    baseSpawnPoint.transform.SetParent(p.SpawnPointsRoot);
 
-				var weaponTransform = p.gameObject.transform;
+                    baseSpawnPoint.transform.localPosition = Vector3.zero;
+                    baseSpawnPoint.transform.localRotation = Quaternion.identity;
+                
+                    spawnData.SpawnPoints.Add(baseSpawnPoint);
+                }
 
-				var existingBaseSpawnPoint = spawnData.SpawnPoints.FirstOrDefault(point =>
-					point.transform.position == weaponTransform.position &&
-					point.transform.rotation == weaponTransform.rotation);
+                if (suppressOriginalWeaponSpawn && existingBaseSpawnPoint != null)
+                {
+                    spawnData.SpawnPoints.Remove(existingBaseSpawnPoint);
+                }
 
-				if (!suppressOriginalWeaponSpawn && existingBaseSpawnPoint == null && !p.appliedPerksNames.Any())
-				{
-					var baseSpawnPoint = new GameObject("Base Spawn Point");
-					baseSpawnPoint.transform.SetParent(p.SpawnPointsRoot);
+                foreach (var spawnPoint in _copiedToTargetSpawnPoints)
+                {
+                    spawnPoint.transform.SetParent(p.SpawnPointsRoot);
+                    spawnData.SpawnPoints.Add(spawnPoint);
+                }
 
-					baseSpawnPoint.transform.localPosition = Vector3.zero;
-					baseSpawnPoint.transform.localRotation = Quaternion.identity;
+                p.projectileSpawnData = spawnData;
+                p.appliedPerksNames.Add(_perkName);
 
-					spawnData.SpawnPoints.Add(baseSpawnPoint);
-				}
+                p.SpawnCallbacks.Add(go =>
+                {
+                    var targetActor = go.GetComponent<Actor>();
+                    if (targetActor == null) return;
+                    targetActor.ChangeActorForceMovementData(go.transform.forward);
+                });
+            }
+        }
 
-				if (suppressOriginalWeaponSpawn && existingBaseSpawnPoint != null)
-				{
-					spawnData.SpawnPoints.Remove(existingBaseSpawnPoint);
-				}
-
-				foreach (var spawnPoint in _copiedToTargetSpawnPoints)
-				{
-					spawnPoint.transform.SetParent(p.SpawnPointsRoot);
-					spawnData.SpawnPoints.Add(spawnPoint);
-				}
-
-				p.projectileSpawnData = spawnData;
-				p.appliedPerksNames.Add(_perkName);
-
-				p.SpawnCallbacks.Add(go =>
-				{
-					var targetActor = go.GetComponent<Actor>();
-					if (targetActor == null)
-					{
-						return;
-					}
-
-					targetActor.ChangeActorForceMovementData(go.transform.forward);
-				});
-			}
-		}
-
-		public void Remove()
-		{
-			if (Actor.Spawner.AppliedPerks.Contains(this))
-			{
-				Actor.Spawner.AppliedPerks.Remove(this);
-			}
-		}
-	}
+        public void Remove()
+        {
+            if (Actor.Spawner.AppliedPerks.Contains(this)) Actor.Spawner.AppliedPerks.Remove(this);
+        }
+    }
 }

@@ -2,9 +2,10 @@ using System;
 
 namespace Crimson.Core.Loading
 {
-	[Serializable]
-	public sealed class DummyConfigService
-	{/*
+    [Serializable]
+    //public sealed class DummyConfigService : IConfigService
+    public sealed class DummyConfigService 
+    {/*
         public CharacterConfig[] characterConfigs;
         public ArmorConfig[] armorConfigs;
         public WeaponConfig[] weaponConfigs;
@@ -65,5 +66,5 @@ namespace Crimson.Core.Loading
 
             return foundItemConfig;
         }*/
-	}
+    }
 }

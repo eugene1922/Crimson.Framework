@@ -58,7 +58,10 @@ namespace Crimson.Core.Systems
 						});
 					if (state.userPlayer == null)
 					{
-						Entities.With(_queryUser).ForEach((AbilityActorPlayer player) => state.userPlayer = player);
+						Entities.With(_queryUser).ForEach((AbilityActorPlayer player) =>
+						{
+							state.userPlayer = player;
+						});
 						if (state.userPlayer != null)
 						{
 							metricaEventDict.Clear();
@@ -67,10 +70,7 @@ namespace Crimson.Core.Systems
 							var panels = ActorSpawn.Spawn(state.sampleSpawner, state.userPlayer.Actor);
 
 							state.startTime = Time.ElapsedTime;
-							if (panels == null)
-							{
-								return;
-							}
+							if (panels == null) return;
 
 							foreach (var panel in panels)
 							{
@@ -127,10 +127,7 @@ namespace Crimson.Core.Systems
 						}
 					}
 
-					if (state.userPlayer == null)
-					{
-						return;
-					}
+					if (state.userPlayer == null) return;
 
 					Entities.With(_useItemQuery).ForEach(
 						(Entity actorEntity, ref UseItemData data) =>
@@ -147,7 +144,10 @@ namespace Crimson.Core.Systems
 
 					state.players.Clear();
 
-					Entities.With(_queryPlayers).ForEach((AbilityActorPlayer player) => state.players.Add(player));
+					Entities.With(_queryPlayers).ForEach((AbilityActorPlayer player) =>
+					{
+						state.players.Add(player);
+					});
 
 					if (!state.userPlayer.IsAlive)
 					{

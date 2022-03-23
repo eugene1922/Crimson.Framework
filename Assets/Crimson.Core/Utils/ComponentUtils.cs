@@ -79,19 +79,12 @@ namespace Crimson.Core.Utils
 
 		public static T GetCopyOf<T>(this Component comp, T other) where T : Component
 		{
-			var type = comp.GetType();
-			if (type != other.GetType())
-			{
-				return null; // type mis-match
-			}
-
-			var pInfos = type.GetProperties(Flags);
+			Type type = comp.GetType();
+			if (type != other.GetType()) return null; // type mis-match
+			PropertyInfo[] pInfos = type.GetProperties(Flags);
 			foreach (var pInfo in pInfos)
 			{
-				if (!pInfo.CanWrite)
-				{
-					continue;
-				}
+				if (!pInfo.CanWrite) continue;
 
 				try
 				{
@@ -104,7 +97,7 @@ namespace Crimson.Core.Utils
 				} // In case of NotImplementedException being thrown. For some reason specifying that exception didn't seem to catch it, so I didn't catch anything specific.
 			}
 
-			var fInfos = type.GetFields(Flags);
+			FieldInfo[] fInfos = type.GetFields(Flags);
 			foreach (var fInfo in fInfos)
 			{
 				fInfo.SetValue(comp, fInfo.GetValue(other));
@@ -131,7 +124,7 @@ namespace Crimson.Core.Utils
 		{
 			if (source != null)
 			{
-				foreach (var obj in source)
+				foreach (object obj in source)
 				{
 					return false;
 				}
@@ -174,24 +167,25 @@ namespace Crimson.Core.Utils
 			{
 				if (newObj is IEnumerable enumerable)
 				{
-					if (enumerable.IsNullOrEmpty())
-					{
-						return enumerable;
-					}
+					if (enumerable.IsNullOrEmpty()) return enumerable;
 
 					if (enumerable is IList tempList)
 					{
-						if (tempList.Count == 0)
-						{
-							return enumerable;
-						}
+						if (tempList.Count == 0) return enumerable;
 
-						var outEnumerable = enumerable.GetType().IsArray
-							? tempList is MonoBehaviour[]? new MonoBehaviour[tempList.Count]
-								: Array.CreateInstance(tempList.GetType().GenericTypeArguments[0], tempList.Count)
-							: tempList is List<MonoBehaviour>
+						IList outEnumerable;
+						if (enumerable.GetType().IsArray)
+						{
+							outEnumerable = tempList is MonoBehaviour[]? new MonoBehaviour[tempList.Count]
+								: (IList)Array.CreateInstance(tempList.GetType().GenericTypeArguments[0], tempList.Count);
+						}
+						else
+						{
+							outEnumerable = tempList is List<MonoBehaviour>
 								? new List<MonoBehaviour>()
 								: (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(tempList.GetType().GenericTypeArguments[0]));
+						}
+
 						for (var i = 0; i < tempList.Count; i++)
 						{
 							var outObj = UpdateObject(tempList[i], copies);

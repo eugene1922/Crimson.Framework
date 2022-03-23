@@ -4,42 +4,38 @@ using Unity.Entities;
 
 namespace Crimson.Core.Systems
 {
-	[UpdateInGroup(typeof(FixedUpdateGroup))]
-	public class TimersSystem : ComponentSystem
-	{
-		private EntityQuery _query;
+    [UpdateInGroup(typeof(FixedUpdateGroup))]
+    public class TimersSystem : ComponentSystem
+    {
+        private EntityQuery _query;
 
-		protected override void OnCreate()
-		{
-			_query = GetEntityQuery(
-				ComponentType.ReadOnly<TimerData>(),
-				ComponentType.ReadOnly<TimerComponent>());
-		}
+        protected override void OnCreate()
+        {
+            _query = GetEntityQuery(
+                ComponentType.ReadOnly<TimerData>(),
+                ComponentType.ReadOnly<TimerComponent>());
+        }
 
-		protected override void OnUpdate()
-		{
-			var dt = Time.DeltaTime;
+        protected override void OnUpdate()
+        {
+            var dt = Time.DeltaTime;
 
-			Entities.With(_query).ForEach(
-				(Entity entity, TimerComponent timer) =>
-				{
-					for (var i = timer.TimedActions.Count - 1; i >= 0; i--)
-					{
-						var timerAction = timer.TimedActions[i];
-						timerAction.Delay -= dt;
-						timer.TimedActions[i] = timerAction;
+            Entities.With(_query).ForEach(
+                (Entity entity, TimerComponent timer) =>
+                {
+                    for (var i = timer.TimedActions.Count - 1; i >= 0; i--)
+                    {
+                        var timerAction = timer.TimedActions[i];
+                        timerAction.Delay -= dt;
+                        timer.TimedActions[i] = timerAction;
 
-						if (!(timerAction.Delay <= 0f))
-						{
-							continue;
-						}
+                        if (!(timerAction.Delay <= 0f)) continue;
+                        var a = timer.TimedActions[i].Act;
+                        timer.TimedActions.RemoveAt(i);
 
-						var a = timer.TimedActions[i].Act;
-						timer.TimedActions.RemoveAt(i);
-
-						a?.Invoke();
-					}
-				});
-		}
-	}
+                        a?.Invoke();
+                    }
+                });
+        }
+    }
 }

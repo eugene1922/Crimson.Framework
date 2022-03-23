@@ -1,97 +1,93 @@
-﻿using Crimson.Core.Common;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Components.Perks;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
-	public class SuddenDeathSystem : ComponentSystem
-	{
-		private EntityQuery _suddenDeathZoneQuery;
+    public class SuddenDeathSystem : ComponentSystem
+    {
+        private EntityQuery _suddenDeathZoneQuery;
+        
+        private Dictionary<Actor, IActorAbility> _outZonePlayersWithDamagePerks = new Dictionary<Actor, IActorAbility>();
 
-		private Dictionary<Actor, IActorAbility> _outZonePlayersWithDamagePerks = new Dictionary<Actor, IActorAbility>();
+        protected override void OnCreate()
+        {
+            _suddenDeathZoneQuery = GetEntityQuery(
+                ComponentType.ReadOnly<Actor>(),
+                ComponentType.ReadWrite<AbilitySuddenDeathZone>(),
+                ComponentType.ReadOnly<ApplySuddenDeathData>());
+        }
 
-		protected override void OnCreate()
-		{
-			_suddenDeathZoneQuery = GetEntityQuery(
-				ComponentType.ReadOnly<Actor>(),
-				ComponentType.ReadWrite<AbilitySuddenDeathZone>(),
-				ComponentType.ReadOnly<ApplySuddenDeathData>());
-		}
+        protected override void OnUpdate()
+        {
+            Entities.With(_suddenDeathZoneQuery).ForEach(
+                (Entity zoneEntity, AbilitySuddenDeathZone abilitySuddenDeath) =>
+                {
+                    var outsideZonePlayers = OutsideZonePlayers(abilitySuddenDeath.ZoneCollider.radius,
+                        abilitySuddenDeath.deathZoneTransform.position);
 
-		protected override void OnUpdate()
-		{
-			Entities.With(_suddenDeathZoneQuery).ForEach(
-				(Entity zoneEntity, AbilitySuddenDeathZone abilitySuddenDeath) =>
-				{
-					var outsideZonePlayers = OutsideZonePlayers(abilitySuddenDeath.ZoneCollider.radius,
-						abilitySuddenDeath.deathZoneTransform.position);
+                    if (!outsideZonePlayers.Any() && _outZonePlayersWithDamagePerks.Count == 0) return;
+                    
+                    var newPlayersInZone = _outZonePlayersWithDamagePerks.Keys.Except(outsideZonePlayers).ToList();
 
-					if (!outsideZonePlayers.Any() && _outZonePlayersWithDamagePerks.Count == 0)
-					{
-						return;
-					}
+                    foreach (var player in newPlayersInZone)
+                    {
+                        if (!_outZonePlayersWithDamagePerks.ContainsKey(player) ||
+                            _outZonePlayersWithDamagePerks[player] == null ||
+                            !(_outZonePlayersWithDamagePerks[player] is IPerkAbility)) return;
+                        
+                        (_outZonePlayersWithDamagePerks[player] as IPerkAbility)?.Remove();
 
-					var newPlayersInZone = _outZonePlayersWithDamagePerks.Keys.Except(outsideZonePlayers).ToList();
+                        _outZonePlayersWithDamagePerks.Remove(player);
+                    }
 
-					foreach (var player in newPlayersInZone)
-					{
-						if (!_outZonePlayersWithDamagePerks.ContainsKey(player) ||
-							_outZonePlayersWithDamagePerks[player] == null ||
-							!(_outZonePlayersWithDamagePerks[player] is IPerkAbility))
-						{
-							return;
-						} (_outZonePlayersWithDamagePerks[player] as IPerkAbility)?.Remove();
+                    var newPlayersOutsideZone = outsideZonePlayers.Except(_outZonePlayersWithDamagePerks.Keys);
 
-						_outZonePlayersWithDamagePerks.Remove(player);
-					}
+                    foreach (var player in newPlayersOutsideZone)
+                    {
+                        var periodicDamagePerk = player.GameObject.AddComponent<PerkPeriodicDamage>();
 
-					var newPlayersOutsideZone = outsideZonePlayers.Except(_outZonePlayersWithDamagePerks.Keys);
+                        periodicDamagePerk.TargetActor = player;
+                        periodicDamagePerk.AbilityOwnerActor = player;
 
-					foreach (var player in newPlayersOutsideZone)
-					{
-						var periodicDamagePerk = player.GameObject.AddComponent<PerkPeriodicDamage>();
+                        periodicDamagePerk.limitedLifespan = false;
 
-						periodicDamagePerk.TargetActor = player;
-						periodicDamagePerk.AbilityOwnerActor = player;
+                        periodicDamagePerk.healthDecrement = abilitySuddenDeath.healthDecrement;
+                        periodicDamagePerk.applyPeriod = abilitySuddenDeath.applyPeriod;
 
-						periodicDamagePerk.limitedLifespan = false;
+                        var playerEntity = player.ActorEntity;
+                        periodicDamagePerk.AddComponentData(ref playerEntity, player);
+                        periodicDamagePerk.Execute();
+                        
+                        _outZonePlayersWithDamagePerks.Add(player, periodicDamagePerk);
+                    }
+                }
+            );
+        }
 
-						periodicDamagePerk.healthDecrement = abilitySuddenDeath.healthDecrement;
-						periodicDamagePerk.applyPeriod = abilitySuddenDeath.applyPeriod;
+        private List<Actor> OutsideZonePlayers(float zoneRadius, Vector3 centerOfZone)
+        {
+            var playerList = new List<Actor>();
 
-						var playerEntity = player.ActorEntity;
-						periodicDamagePerk.AddComponentData(ref playerEntity, player);
-						periodicDamagePerk.Execute();
+            Entities.WithAll<ActorData, PlayerInputData, Actor>()
+                .WithNone<DeadActorTag, DestructionPendingTag>().ForEach(
+                    (Entity entity, Actor actorPlayer, Transform playerTransform) =>
+                    {
+                        var distancesq = math.distancesq(playerTransform.position, centerOfZone);
 
-						_outZonePlayersWithDamagePerks.Add(player, periodicDamagePerk);
-					}
-				}
-			);
-		}
+                        if (distancesq > zoneRadius * zoneRadius)
+                        {
+                            playerList.Add(actorPlayer);
+                        }
+                    }
+                );
 
-		private List<Actor> OutsideZonePlayers(float zoneRadius, Vector3 centerOfZone)
-		{
-			var playerList = new List<Actor>();
-
-			Entities.WithAll<ActorData, PlayerInputData, Actor>()
-				.WithNone<DeadActorTag, DestructionPendingTag>().ForEach(
-					(Entity entity, Actor actorPlayer, Transform playerTransform) =>
-					{
-						var distancesq = math.distancesq(playerTransform.position, centerOfZone);
-
-						if (distancesq > zoneRadius * zoneRadius)
-						{
-							playerList.Add(actorPlayer);
-						}
-					}
-				);
-
-			return playerList;
-		}
-	}
+            return playerList;
+        }
+    }
 }

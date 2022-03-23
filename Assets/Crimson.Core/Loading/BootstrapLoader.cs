@@ -1,31 +1,33 @@
-using Crimson.Core.Loading;
-using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Crimson.Core.Loading;
 using UnityEngine;
+
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 public class BootstrapLoader : MonoBehaviour
 {
-	[ValueDropdown(nameof(GetBootstraps))]
-	public GameObject bootstrapPrefab = null;
+    [ValueDropdown("GetBootstraps")]
+    public GameObject bootstrapPrefab = null;
+    
+    void Start()
+    {
+        if (bootstrapPrefab == null)
+        {
+            Debug.LogException(new Exception("[LEVEL LOAD] No valid LevelBootstrap Prefab specified!"));
+        }
 
-	private static IEnumerable<GameObject> GetBootstraps()
-	{
-		GameObject[] results;
-		var scripts = Resources.FindObjectsOfTypeAll<LevelBootstrap>().Where(b => (b.gameObject.scene.rootCount == 0) && b.gameObject.CompareTag("BootstrapPrefab"));
-		results = scripts.Convert((b) => ((LevelBootstrap)b).gameObject).ToArray();
-		return results;
-	}
+        GameObject.Instantiate(bootstrapPrefab, this.gameObject.transform);
+    }
 
-	private void Start()
-	{
-		if (bootstrapPrefab == null)
-		{
-			Debug.LogException(new Exception("[LEVEL LOAD] No valid LevelBootstrap Prefab specified!"));
-		}
-
-		GameObject.Instantiate(bootstrapPrefab, this.gameObject.transform);
-	}
+    private static IEnumerable<GameObject> GetBootstraps()
+    {
+        GameObject[] results;
+        var scripts = Resources.FindObjectsOfTypeAll<LevelBootstrap>().Where(b => (b.gameObject.scene.rootCount == 0) && (b.gameObject.tag.Equals("BootstrapPrefab")));
+        results = scripts.Convert((b) => ((LevelBootstrap)b).gameObject).ToArray();
+        return results;
+    }
 }
