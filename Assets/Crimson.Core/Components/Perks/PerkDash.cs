@@ -7,6 +7,7 @@ using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Components.Perks
@@ -23,6 +24,7 @@ namespace Crimson.Core.Components.Perks
         public float cooldownTime;
         
         public bool aimingAvailable;
+        [HideIf("aimingAvailable")] public bool useMovementVector = true;
         public bool deactivateAimingOnCooldown;
         
         public AimingProperties aimingProperties;
@@ -164,6 +166,8 @@ namespace Crimson.Core.Components.Perks
 
             var dashVector = new Vector3();
 
+            var movement = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
+            
             if (_aimingActive)
             {
                 switch (AimingProperties.aimingType)
@@ -179,9 +183,9 @@ namespace Crimson.Core.Components.Perks
             }
             else
             {
-                dashVector = _target.GameObject.transform.forward;
+                dashVector = useMovementVector ? (Vector3)movement.MovementCache : _target.GameObject.transform.forward;
             }
-            var movement = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
+            
             movement.Input = dashVector * force;
             World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(_target.ActorEntity, movement);
             
@@ -193,6 +197,7 @@ namespace Crimson.Core.Components.Perks
                 {
                     objectsToSpawn = dashFX,
                     SpawnPosition = SpawnPosition.UseSpawnerPosition,
+                    RotationOfSpawns = useMovementVector ? RotationOfSpawns.SpawnerMovement : RotationOfSpawns.UseSpawnPointRotation,
                     parentOfSpawns = TargetType.None,
                     runSpawnActionsOnObjects = true,
                     destroyAbilityAfterSpawn = true
