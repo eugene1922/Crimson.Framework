@@ -231,7 +231,7 @@ namespace Assets.Crimson.Core.Components
             Spawn();
 
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
-                new ActorProjectileThrowAnimData());
+                new ActorProjectileThrowAnimTag());
 
             StartTimer();
             Timer.TimedActions.Clear();

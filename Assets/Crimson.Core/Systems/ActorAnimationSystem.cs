@@ -27,7 +27,7 @@ namespace Crimson.Core.Systems
 
 			_projectileQuery = GetEntityQuery(
 				ComponentType.ReadOnly<ActorProjectileAnimData>(),
-				ComponentType.ReadWrite<ActorProjectileThrowAnimData>(),
+				ComponentType.ReadWrite<ActorProjectileThrowAnimTag>(),
 				ComponentType.ReadOnly<Animator>());
 
 			_reloadAnimationsQuery = GetEntityQuery(
@@ -101,7 +101,7 @@ namespace Crimson.Core.Systems
 					}
 
 					animator.SetTrigger(animation.AnimHash);
-					PostUpdateCommands.RemoveComponent<ActorProjectileThrowAnimData>(entity);
+					PostUpdateCommands.RemoveComponent<ActorProjectileThrowAnimTag>(entity);
 				});
 
 			Entities.With(_deadActorsQuery).ForEach(

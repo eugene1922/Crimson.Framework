@@ -25,7 +25,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 			Actor = actor;
 			if (_executeAction != null)
 			{
-				_executeAction.action.performed += ShootActionHandler;
+				_executeAction.action.performed += ExectionActionPerformed;
+				_executeAction.action.canceled += ExectionActionCanceled;
 			}
 			if (_reloadAction != null)
 			{
@@ -53,7 +54,25 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				return;
 			}
-			_weapon?.Execute();
+			_weapon?.StartFire();
+		}
+
+		private void ExectionActionCanceled(InputAction.CallbackContext obj)
+		{
+			if (!IsEnable)
+			{
+				return;
+			}
+			_weapon?.StopFire();
+		}
+
+		private void ExectionActionPerformed(InputAction.CallbackContext obj)
+		{
+			if (!IsEnable)
+			{
+				return;
+			}
+			Execute();
 		}
 
 		private bool MustBeWeapon(MonoBehaviour item)
@@ -68,15 +87,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 				return;
 			}
 			_weapon?.Reload();
-		}
-
-		private void ShootActionHandler(InputAction.CallbackContext obj)
-		{
-			if (!IsEnable)
-			{
-				return;
-			}
-			Execute();
 		}
 	}
 }

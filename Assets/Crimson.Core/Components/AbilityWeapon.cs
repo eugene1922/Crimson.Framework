@@ -45,7 +45,7 @@ namespace Crimson.Core.Components
         public int AnimHash;
     }
 
-    public struct ActorProjectileThrowAnimData : IComponentData
+    public struct ActorProjectileThrowAnimTag : IComponentData
     {
     }
 
@@ -417,7 +417,7 @@ namespace Crimson.Core.Components
                 Spawn();
 
                 World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(_entity,
-                    new ActorProjectileThrowAnimData());
+                    new ActorProjectileThrowAnimTag());
 
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (CooldownTime == 0) return;

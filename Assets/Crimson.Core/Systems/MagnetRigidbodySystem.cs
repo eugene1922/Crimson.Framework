@@ -44,9 +44,13 @@ namespace Assets.Crimson.Core.Systems
 
 		private void UpdatePointsPositions()
 		{
-			Entities.WithAll<MagnetPointData, MagnetWeaponActivated>().ForEach(
+			Entities.WithAll<MagnetPointData>().ForEach(
 				(Entity entity, ref MagnetPointData data, GravityWeapon weapon) =>
 				{
+					if (!IsActivated(entity))
+					{
+						return;
+					}
 					data.Position = weapon.MagnetPoint;
 					data.Direction = weapon.transform.forward;
 					EntityManager.SetComponentData(entity, data);

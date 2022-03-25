@@ -88,7 +88,6 @@ namespace Crimson.Core.Components.AbilityReactive
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
-			Enabled = true;
 			_projectileClip = projectileClipCapacity;
 			_dstManager.AddComponent<TimerData>(entity);
 
@@ -159,7 +158,7 @@ namespace Crimson.Core.Components.AbilityReactive
 				Spawn();
 
 				CurrentEntityManager.AddComponentData(_entity,
-					new ActorProjectileThrowAnimData());
+					new ActorProjectileThrowAnimTag());
 
 				_projectileClip--;
 				// ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -176,8 +175,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		public override void FinishTimer()
 		{
 			base.FinishTimer();
-			Enabled = true;
-
 			this.FinishAbilityCooldownTimer(Actor);
 		}
 
@@ -236,12 +233,21 @@ namespace Crimson.Core.Components.AbilityReactive
 			OnHoldAttackActive = false;
 		}
 
+		public void StartFire()
+		{
+			Enabled = true;
+			Execute();
+			Enabled = false;
+		}
+
 		public override void StartTimer()
 		{
-			Enabled = false;
 			base.StartTimer();
-
 			this.StartAbilityCooldownTimer(Actor);
+		}
+
+		public void StopFire()
+		{
 		}
 
 		private bool MustBeAimable(MonoBehaviour behaviour)

@@ -122,7 +122,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 				Spawn();
 
 				CurrentEntityManager.AddComponentData(_entity,
-					new ActorProjectileThrowAnimData());
+					new ActorProjectileThrowAnimTag());
 
 				_projectileClip--;
 				// ReSharper disable once CompareOfFloatsByEqualityOperator

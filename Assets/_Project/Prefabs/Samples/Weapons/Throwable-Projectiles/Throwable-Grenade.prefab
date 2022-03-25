@@ -17,9 +17,8 @@ GameObject:
   - component: {fileID: 2636071318529099766}
   - component: {fileID: -2148172205551416633}
   - component: {fileID: 606495008889479710}
-  - component: {fileID: 1061563932870894275}
   - component: {fileID: 2014260872880424890}
-  - component: {fileID: 3440323470143058404}
+  - component: {fileID: 5674475685950854885}
   m_Layer: 0
   m_Name: Throwable-Grenade
   m_TagString: Untagged
@@ -70,19 +69,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 2636071318529099760}
   collisionActions:
-  - actions:
-    - {fileID: 2636071318529099767}
-    - {fileID: 2636071318529099766}
-    - {fileID: 3440323470143058404}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 16183
-    destroyAfterAction: 1
-    executeOnCollisionWithSpawner: 0
+      m_Bits: 7991
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Enemy
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 1
+    actions:
+    - {fileID: 2636071318529099767}
+    - {fileID: 2636071318529099766}
+  - collisionLayerMask:
+      serializedVersion: 2
+      m_Bits: 7991
     useTagFilter: 1
+    filterMode: 1
+    filterTags:
+    - Enemy
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 2014260872880424890}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!54 &2636071318529099761
@@ -146,35 +155,35 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1822773341328252, guid: 8aea2a892ad46aa439b8be49adccdcad, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 6300336675488890471, guid: 162b2d65ef809464b85e35b590846ed9, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1822773341328252, guid: 8aea2a892ad46aa439b8be49adccdcad, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -192,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 5
   startOnSpawn: 1
-  actionOnDestroy: {fileID: 2636071318529099766}
+  actionOnDestroy: {fileID: 2636071318529099767}
 --- !u!114 &606495008889479710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,21 +237,6 @@ MonoBehaviour:
     MovementAnimationName: 
     MovementAnimationSpeedFactorName: 
     MovementAnimationSpeedFactorMultiplier: 1
---- !u!114 &1061563932870894275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636071318529099774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  compensateSpawnerRotation: 1
-  forwardVector: {x: 0, y: 0.25, z: -1}
-  moveDirection: 0
 --- !u!114 &2014260872880424890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,10 +250,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMovementSettings:
-    reaction: 2
     alsoStopRotation: 1
+    inputMultiplier: 0.25
     force2DBounce: 0
---- !u!114 &3440323470143058404
+    reaction: 2
+--- !u!114 &5674475685950854885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,11 +263,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2636071318529099774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0049dcfaa2c41b04c8a1dea72e4c71aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 25
-  Radius: 3
+  moveDirection: 0
+  forwardVector: {x: 0, y: 1, z: 1}
+  compensateSpawnerRotation: 0
+  OffsetDirection: {x: 0, y: 0.4, z: 0}
 --- !u!1001 &4836241702347248632
 PrefabInstance:
   m_ObjectHideFlags: 0

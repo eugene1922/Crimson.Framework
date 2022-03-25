@@ -1,6 +1,7 @@
 ﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
+using System;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,6 +50,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 		private void ThrowActionHandler(InputAction.CallbackContext obj)
 		{
 			Execute();
+		}
+
+		internal void Add(IThrowable item)
+		{
+			_weapon = item;
 		}
 	}
 }

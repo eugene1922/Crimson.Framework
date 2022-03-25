@@ -26,12 +26,9 @@ GameObject:
   - component: {fileID: 1657955151746243340}
   - component: {fileID: 3756407391955540221}
   - component: {fileID: 7093220250429794912}
-  - component: {fileID: 2882395864524943774}
-  - component: {fileID: 6658854133462469266}
   - component: {fileID: -93229221922767859}
-  - component: {fileID: -2290580614720060380}
   - component: {fileID: 3834946692048838755}
-  - component: {fileID: 7765964516479597820}
+  - component: {fileID: 1417423824385474969}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -556,81 +553,7 @@ MonoBehaviour:
     type: 3}
   _reloadAction: {fileID: -6915801995376133989, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
-  Weapon: {fileID: 2882395864524943774}
---- !u!114 &2882395864524943774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
-  AimComponent: {fileID: 0}
-  appliedPerksNames: []
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: 
-  projectileClipCapacity: 100
-  projectileSpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 0}
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  reloadAnimProps:
-    AnimationName: 
-    HasAnimation: 0
-  reloadDisplayToggle: []
-  suppressWeaponSpawn: 0
-  _cooldownTime: 0.3
---- !u!114 &6658854133462469266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 827ba32469b7c8543978274af00285f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activationAction: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
-    type: 3}
-  _maxDistance: 20
-  MagnetOffset: {x: 0, y: 1.5, z: 2}
-  _force: 200
+  Weapon: {fileID: 0}
 --- !u!114 &-93229221922767859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,57 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _executeAction: {fileID: 219931780237195390, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
-  ThrowableWeapon: {fileID: -2290580614720060380}
---- !u!114 &-2290580614720060380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbc22e1b126e62b459b1159007f850c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
-  clipReloadDisplayToggle: []
-  componentName: 
-  projectileClipCapacity: 1000
-  projectileSpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 2636071318529099774, guid: 3e97291a9c0f0f9489a9ef804813af89, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 1
-    _spawnPoints:
-    - {fileID: 0}
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 10
-      MaxSize: 10
-      UsePool: 1
-  SpawnPointOffset: {x: 0, y: 1.5, z: 1.5}
-  _cooldownTime: 1
+  ThrowableWeapon: {fileID: 0}
 --- !u!114 &3834946692048838755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,11 +586,9 @@ MonoBehaviour:
   _changeAction: {fileID: -9094400888386443425, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
   _slot: {fileID: 7093220250429794912}
-  GravityWeapon: {fileID: 6658854133462469266}
-  Weapons:
-  - {fileID: 7765964516479597820}
-  - {fileID: 2882395864524943774}
---- !u!114 &7765964516479597820
+  GravityWeapon: {fileID: 1417423824385474969}
+  Weapons: []
+--- !u!114 &1417423824385474969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -726,51 +597,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5854924350193893075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
+  m_Script: {fileID: 11500000, guid: 827ba32469b7c8543978274af00285f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
-  AimComponent: {fileID: 0}
-  appliedPerksNames: []
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: 
-  projectileClipCapacity: 10
-  projectileSpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1818218211170410, guid: e0010223075b2f848854338d1599df09, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 0}
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 10
-      MaxSize: 10
-      UsePool: 1
-  reloadAnimProps:
-    AnimationName: 
-    HasAnimation: 0
-  reloadDisplayToggle: []
-  suppressWeaponSpawn: 0
-  _cooldownTime: 0.3
+  _activationAction: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
+  _maxDistance: 10
+  MagnetOffset: {x: 0, y: 1.5, z: 2}
+  _force: 1000
