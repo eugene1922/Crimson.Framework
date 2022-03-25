@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customBinding:
+    index: 3
     actions:
     - {fileID: 328192306876815148}
-    index: 3
   destroyAfterActions: 1
   removeSameIndexBindings: 1
 --- !u!114 &328192306876815148
@@ -62,10 +62,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e77814d3934c9a8e2ec977d5998f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
-  aimingAvailable: 1
+  perkLevel: 0
+  force: 100
+  timer: 0.1
+  cooldownTime: 5
+  aimingAvailable: 0
+  deactivateAimingOnCooldown: 1
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
@@ -76,19 +78,17 @@ MonoBehaviour:
     circlePrefab: {fileID: 0}
     sightDistance: 5
     reverseControls: 0
-  cooldownTime: 5
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   dashFX:
   - {fileID: 8575838153484086779, guid: 1fdfdd2c1c4a1b74280496a8b40cf8da, type: 3}
   - {fileID: 2154348514870167830, guid: b381f5f18673d7849a50b48f8131c7a5, type: 3}
-  deactivateAimingOnCooldown: 1
-  force: 100
+  perkRelatedComponents:
+  - {fileID: -1201467966035257858}
   levelablePropertiesList:
   - propertyName: force
     levelablePropertyAction: 1
     modifier: 1
     levelablePropertiesInfo:
     - force
-  perkLevel: 0
-  perkRelatedComponents:
-  - {fileID: -1201467966035257858}
-  timer: 0.1
