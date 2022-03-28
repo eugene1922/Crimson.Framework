@@ -43,14 +43,18 @@ namespace Assets.Crimson.Core.Components.Weapons
 		{
 		}
 
-		internal void Add(IWeapon copy)
+		internal void Add(IWeapon weapon)
 		{
-			_weapons.Add(copy);
-			if (copy is GravityWeapon)
+			if (weapon is GravityWeapon)
 			{
-				_gravityGun = copy;
+				_gravityGun = weapon;
+				_slot.Change(weapon);
 			}
-			SelectNextWeapon();
+			else
+			{
+				_weapons.Add(weapon);
+				SelectNextWeapon();
+			}
 		}
 
 		private void ChangeActionHandler(InputAction.CallbackContext obj)
@@ -76,15 +80,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 		private void SelectNextWeapon()
 		{
 			var currentIndex = _weapons.IndexOf(_slot._weapon);
-			if (currentIndex == -1)
-			{
-				_slot.Change(_weapons[0]);
-			}
-			else
-			{
-				var newWeaponIndex = currentIndex + 1;
-				_slot.Change(_weapons[newWeaponIndex % _weapons.Count]);
-			}
+			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _weapons.Count;
+			_slot.Change(_weapons[index]);
 		}
 
 		private void ToggleGravigunHandler(InputAction.CallbackContext obj)
