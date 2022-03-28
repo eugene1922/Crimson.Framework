@@ -76,7 +76,8 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public Action<GameObject> DisposableSpawnCallback { get; set; }
 
-		public bool Enable { get; private set; }
+		public bool IsActivated { get; private set; }
+		public bool IsEnable { get; set; }
 		public bool OnHoldAttackActive { get; set; }
 
 		public List<Action<GameObject>> SpawnCallbacks { get; set; }
@@ -140,7 +141,12 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
-			if (Enable && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
+			if (!IsEnable)
+			{
+				return;
+			}
+
+			if (IsActivated && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
 			{
 				Spawn();
 
@@ -205,13 +211,13 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
-			Enable = true;
+			IsActivated = true;
 			Execute();
 		}
 
 		public void StopFire()
 		{
-			Enable = false;
+			IsActivated = false;
 		}
 
 		private void CreateSpawnPointsRoot()

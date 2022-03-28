@@ -14,19 +14,15 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public InputActionReference _activateGravigunAction;
 		public InputActionReference _changeAction;
 		public WeaponSlot _slot;
-		public GravityWeapon GravityWeapon;
 
 		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
 		public List<MonoBehaviour> Weapons;
 
 		private readonly List<IWeapon> _weapons = new List<IWeapon>();
 
-		public IActor Actor { get; set; }
+		private IWeapon _gravityGun;
 
-		public void Add(GravityWeapon gravityWeapon)
-		{
-			GravityWeapon = gravityWeapon;
-		}
+		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -41,10 +37,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 				_activateGravigunAction.action.performed += ToggleGravigunHandler;
 			}
 			_slot.IsEnable = true;
-			if (GravityWeapon != null)
-			{
-				GravityWeapon.IsEnable = false;
-			}
 		}
 
 		public void Execute()
@@ -54,6 +46,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 		internal void Add(IWeapon copy)
 		{
 			_weapons.Add(copy);
+			if (copy is GravityWeapon)
+			{
+				_gravityGun = copy;
+			}
 			SelectNextWeapon();
 		}
 
@@ -93,13 +89,12 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ToggleGravigunHandler(InputAction.CallbackContext obj)
 		{
-			if (GravityWeapon == null)
+			if (_gravityGun == null)
 			{
 				return;
 			}
 
-			GravityWeapon.IsEnable = _slot.IsEnable;
-			_slot.IsEnable = !_slot.IsEnable;
+			_slot.Change(_gravityGun);
 		}
 	}
 }

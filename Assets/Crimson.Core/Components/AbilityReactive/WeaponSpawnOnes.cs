@@ -21,7 +21,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		IWeapon,
 		IActorSpawnerAbility,
 		IComponentName,
-		IEnableable,
 		ICooldownable,
 		IBindable,
 		IUseAimable
@@ -74,11 +73,13 @@ namespace Crimson.Core.Components.AbilityReactive
 		}
 
 		public Action<GameObject> DisposableSpawnCallback { get; set; }
-		public bool Enabled { get; set; }
+		public bool IsActivated { get; set; }
 		public bool OnHoldAttackActive { get; set; }
 		public List<Action<GameObject>> SpawnCallbacks { get; set; }
 		public GameObject SpawnedAimingPrefab { get; set; }
 		public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
+		public bool IsEnable { get; set; }
+
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 		private Transform SpawnPointsRoot { get; set; }
 
@@ -152,8 +153,13 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
+			if (!IsEnable)
+			{
+				return;
+			}
+
 			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if (Enabled && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
+			if (IsActivated && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
 			{
 				Spawn();
 
@@ -235,9 +241,9 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
-			Enabled = true;
+			IsActivated = true;
 			Execute();
-			Enabled = false;
+			IsActivated = false;
 		}
 
 		public override void StartTimer()

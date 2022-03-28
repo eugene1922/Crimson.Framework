@@ -17,6 +17,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
+			Actor = actor;
 			if (actor.GameObject.GetComponent<ThrowableSlot>())
 			{
 				Equip(actor);

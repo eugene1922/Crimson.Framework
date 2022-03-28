@@ -45,7 +45,12 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				return;
 			}
+			if (_weapon != null)
+			{
+				_weapon.IsEnable = false;
+			}
 			_weapon = weapon;
+			weapon.IsEnable = true;
 		}
 
 		public void Execute()
