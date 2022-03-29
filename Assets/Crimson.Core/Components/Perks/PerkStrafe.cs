@@ -60,7 +60,7 @@ namespace Assets.Crimson.Core.Components.Perks
 		{
 			_target = target;
 
-			if (!Enabled)
+			if (!IsEnable)
 			{
 				return;
 			}

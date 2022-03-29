@@ -38,7 +38,7 @@ namespace Crimson.Core.Utils
             {
                 if (a is IEnableable enableable)
                 {
-                    possible |= enableable.Enabled;
+                    possible |= enableable.IsEnable;
                 }
                 else
                 {

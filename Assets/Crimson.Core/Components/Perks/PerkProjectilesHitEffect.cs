@@ -118,7 +118,7 @@ namespace Crimson.Core.Components.Perks
                 projectiles = projectiles.Where(p => p.ComponentName.Equals(componentName, StringComparison.Ordinal))
                     .ToList();
             
-            foreach (var p in projectiles.Where(p => p.Enabled))
+            foreach (var p in projectiles.Where(p => p.IsEnable))
             {
                 p.SpawnCallbacks.Add(AddCollisionAction);
 

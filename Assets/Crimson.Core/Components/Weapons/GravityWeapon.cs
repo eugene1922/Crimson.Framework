@@ -1,5 +1,4 @@
 ﻿using Assets.Crimson.Core.Common;
-using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
@@ -8,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Crimson.Core.Components.Weapons
 {
-	public class GravityWeapon : MonoBehaviour, IActorAbility
+	public class GravityWeapon : MonoBehaviour, IWeapon
 	{
 		public InputActionReference _activationAction;
 		public Entity _entity;
@@ -38,7 +37,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Activate()
 		{
-			_entityManager.AddComponentData(_entity, new MagnetWeaponActivated());
+			SetActivateState(true);
 		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -49,6 +48,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			var data = new MagnetPointData()
 			{
+				IsActive = false,
+				Offset = MagnetOffset,
 				Force = _force,
 			};
 			_entityManager.AddComponentData(_entity, data);
@@ -58,27 +59,26 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Deactivate()
 		{
-			if (_entity != Entity.Null && _entityManager != null)
-			{
-				_entityManager.RemoveComponent<MagnetWeaponActivated>(_entity);
-			}
+			SetActivateState(false);
 		}
 
 		public void Execute()
 		{
-			if (!IsEnable)
-			{
-				return;
-			}
-			if (_entityManager.HasComponent<MagnetWeaponActivated>(_entity))
-			{
-				Deactivate();
-			}
-			else
-			{
-				Activate();
-				TryGrabObject();
-			}
+		}
+
+		public void Reload()
+		{
+		}
+
+		public void StartFire()
+		{
+			Activate();
+			TryGrabObject();
+		}
+
+		public void StopFire()
+		{
+			Deactivate();
 		}
 
 		private void ActivateActionHandler(InputAction.CallbackContext obj)
@@ -100,6 +100,17 @@ namespace Assets.Crimson.Core.Components.Weapons
 		}
 
 #endif
+
+		private void SetActivateState(bool state)
+		{
+			if (_entity == Entity.Null || !_entityManager.HasComponent<MagnetPointData>(_entity))
+			{
+				return;
+			}
+			var pointData = _entityManager.GetComponentData<MagnetPointData>(_entity);
+			pointData.IsActive = state;
+			_entityManager.SetComponentData(_entity, pointData);
+		}
 
 		private void TryGrabObject()
 		{

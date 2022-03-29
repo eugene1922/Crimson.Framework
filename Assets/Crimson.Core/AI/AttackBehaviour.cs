@@ -110,6 +110,7 @@ namespace Crimson.Core.AI
 
         public bool SetUp(Entity entity, EntityManager dstManager)
         {
+            //Debug.Log("ATTACK");
             return true;
         }
 

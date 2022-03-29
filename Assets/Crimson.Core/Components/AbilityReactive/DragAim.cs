@@ -61,7 +61,7 @@ namespace Crimson.Core.Components.AbilityReactive
         }
 
         public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
+        public bool IsEnable { get; set; }
         public bool OnHoldAttackActive { get; set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public GameObject SpawnedAimingPrefab { get; set; }
@@ -79,7 +79,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
             SpawnCallbacks = new List<Action<GameObject>>();
 
-            Enabled = true;
+            IsEnable = true;
 
             CurrentEntityManager.AddComponent<TimerData>(entity);
 
@@ -173,7 +173,7 @@ namespace Crimson.Core.Components.AbilityReactive
         public void Execute()
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-            if (Enabled && CurrentEntityManager.Exists(CurrentEntity))
+            if (IsEnable && CurrentEntityManager.Exists(CurrentEntity))
             {
                 StartTimer();
                 this.RestartAction(FinishTimer, _resetAimTime);
@@ -183,7 +183,7 @@ namespace Crimson.Core.Components.AbilityReactive
         public override void FinishTimer()
         {
             base.FinishTimer();
-            Enabled = true;
+            IsEnable = true;
         }
 
         public void ResetAiming()
@@ -199,7 +199,7 @@ namespace Crimson.Core.Components.AbilityReactive
         public override void StartTimer()
         {
             base.StartTimer();
-            Enabled = false;
+            IsEnable = false;
         }
     }
 }

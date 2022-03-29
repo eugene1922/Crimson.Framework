@@ -2,12 +2,13 @@
 
 namespace Assets.Crimson.Core.Components.Weapons
 {
-	public interface IWeapon : IActorAbility
+	public interface IWeapon : IActorAbility, IEnableable
 	{
-		void StopFire();
 
 		void Reload();
 
 		void StartFire();
+
+		void StopFire();
 	}
 }

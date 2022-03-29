@@ -6,11 +6,11 @@ namespace Crimson.Core.Common
 {
     public class CooldownBehaviour : TimerBaseBehaviour, IEnableable
     {
-        public bool Enabled { get; set; } = true;
+        public bool IsEnable { get; set; } = true;
 
         public void ApplyActionWithCooldown(float cooldownTime, Action action)
         {
-            if (!Enabled) return;
+            if (!IsEnable) return;
 
             action.Invoke();
 
@@ -23,13 +23,13 @@ namespace Crimson.Core.Common
         public override void FinishTimer()
         {
             base.FinishTimer();
-            Enabled = true;
+            IsEnable = true;
         }
 
         public override void StartTimer()
         {
             base.StartTimer();
-            Enabled = false;
+            IsEnable = false;
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Assets.Crimson.Core.Components
         }
 
         public Action<GameObject> DisposableSpawnCallback { get; set; }
-        public bool Enabled { get; set; }
+        public bool IsEnable { get; set; }
         public List<Action<GameObject>> SpawnCallbacks { get; set; }
         public GameObject SpawnedAimingPrefab { get; set; }
         public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
@@ -100,7 +100,7 @@ namespace Assets.Crimson.Core.Components
 
             SpawnCallbacks = new List<Action<GameObject>>();
 
-            Enabled = true;
+            IsEnable = true;
 
             _dstManager.AddComponent<TimerData>(entity);
 
@@ -148,12 +148,12 @@ namespace Assets.Crimson.Core.Components
         public void Execute()
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-            if (Enabled && startupDelay == 0 &&
+            if (IsEnable && startupDelay == 0 &&
                 World.DefaultGameObjectInjectionWorld.EntityManager.Exists(_entity))
             {
                 InstantExecute();
             }
-            else if (Enabled && Timer != null)
+            else if (IsEnable && Timer != null)
             {
                 Timer.TimedActions.AddAction(Spawn, startupDelay);
             }

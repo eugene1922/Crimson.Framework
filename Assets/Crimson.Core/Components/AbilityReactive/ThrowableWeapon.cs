@@ -54,7 +54,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 		}
 
 		public Action<GameObject> DisposableSpawnCallback { get; set; }
-		public bool Enabled { get; set; }
+		public bool IsEnable { get; set; }
 		public List<Action<GameObject>> SpawnCallbacks { get; set; }
 		public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -66,7 +66,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
-			Enabled = true;
+			IsEnable = true;
 			_projectileClip = projectileClipCapacity;
 			_dstManager.AddComponent<TimerData>(entity);
 
@@ -117,7 +117,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 		public void Execute()
 		{
 			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if (Enabled && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
+			if (IsEnable && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
 			{
 				Spawn();
 
@@ -139,7 +139,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 		public override void FinishTimer()
 		{
 			base.FinishTimer();
-			Enabled = true;
+			IsEnable = true;
 
 			this.FinishAbilityCooldownTimer(Actor);
 		}
@@ -189,7 +189,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 
 		public override void StartTimer()
 		{
-			Enabled = false;
+			IsEnable = false;
 			base.StartTimer();
 
 			this.StartAbilityCooldownTimer(Actor);

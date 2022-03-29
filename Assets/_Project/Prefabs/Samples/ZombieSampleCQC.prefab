@@ -178,7 +178,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     curveMinSample: 0
-    curveMaxSample: 2
+    curveMaxSample: 1
     basePriority: 3
     additionalMode: 
     executeCustomInput: 1
@@ -465,7 +465,7 @@ MonoBehaviour:
   AimComponent: {fileID: 0}
   appliedPerksNames: []
   clipReloadDisplayToggle: []
-  clipReloadTime: 1
+  clipReloadTime: 0
   componentName: 
   projectileClipCapacity: 0
   projectileSpawnData:
