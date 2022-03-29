@@ -12,7 +12,8 @@ namespace Crimson.Core.Enums
     {
         Nearest = 0,
         Farthest = 1,
-        Random = 2
+        Random = 2, 
+        FirstInChildren = 3
     }
     
     public enum FollowType

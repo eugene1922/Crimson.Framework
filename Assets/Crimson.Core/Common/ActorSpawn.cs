@@ -268,8 +268,8 @@ namespace Crimson.Core.Common
 
             if (!data.Parent.IsEmpty)
             {
-                var parents = FindActorsUtils.GetActorsList(result, data.Parent.Target,
-                       data.Parent.ComponentName, data.Parent.Tag);
+                var parents = FindActorsUtils.GetActorsList(result, data.Spawner, data.Parent.Target,
+                       data.Parent.ComponentName, data.Parent.Tag, data.Parent.TargetStrategy == ChooseTargetStrategy.FirstInChildren);
 
                 var parent = FindActorsUtils.ChooseActor(result.transform, parents, data.Parent.TargetStrategy);
 

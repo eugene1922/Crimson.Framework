@@ -12,21 +12,42 @@ namespace Crimson.Core.Utils
 {
     public static class FindActorsUtils
     {
-        //Not used for now, consider delete it later
-        public static List<Transform> GetActorsList(GameObject source, TargetType targetType, string name, string tag)
+        public static List<Transform> GetActorsList(GameObject source, IActor spawner, TargetType targetType, string name, string tag, bool childrenOnly = false)
         {
             var targets = new List<Transform>();
-
+            var sourceTransform = source.transform;
+            Transform spawnerTransform = null;
             switch (targetType)
             {
                 case TargetType.ComponentName:
+                    if (childrenOnly)
+                    {
+                        spawnerTransform = spawner?.GameObject.transform;
+                    }
+                    
                     Object.FindObjectsOfType<MonoBehaviour>().OfType<IComponentName>()
                         .Where(n => n.ComponentName.Equals(name,
                             StringComparison.Ordinal))
-                        .ForEach(n => targets.Add((n as MonoBehaviour)?.gameObject.transform));
+                        .ForEach(n =>
+                        {
+                            var c = (n as MonoBehaviour)?.gameObject.transform;
+                            if (c == null) return;
+                            if (childrenOnly && (spawnerTransform == null || !c.IsChildOf(spawnerTransform))) return;
+                            
+                            targets.Add(c);
+                        });
                     break;
                 case TargetType.ChooseByTag:
-                    if(!tag.IsNullOrEmpty()) GameObject.FindGameObjectsWithTag(tag).ForEach(o => targets.Add(o.transform));
+                    if (childrenOnly)
+                    {
+                        spawnerTransform = spawner?.GameObject.transform;
+                    }
+                    if(!tag.IsNullOrEmpty()) GameObject.FindGameObjectsWithTag(tag).ForEach(o =>
+                    {
+                        var c = o.transform;
+                        if (childrenOnly && (spawnerTransform == null || !c.IsChildOf(spawnerTransform))) return;
+                        targets.Add(o.transform);
+                    });
                     break;
                 case TargetType.Spawner:
                     var t = source.GetComponent<IActor>()?.Spawner;
@@ -60,6 +81,7 @@ namespace Crimson.Core.Utils
                     float3 currentPosition = origin.position;
                     var currentDistance = math.distancesq(currentPosition, t.position);
 
+                    if (s == ChooseTargetStrategy.FirstInChildren) return t;
                     if (s == ChooseTargetStrategy.Random) return targets[UnityEngine.Random.Range(0, targets.Count)];
                     
                     for (var i = 1; i < targets.Count; i++)

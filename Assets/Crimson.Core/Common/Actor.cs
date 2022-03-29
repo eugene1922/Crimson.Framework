@@ -30,6 +30,7 @@ namespace Crimson.Core.Common
 		private int _actorStateId;
 
 		private List<IPerkAbility> _appliedPerks = new List<IPerkAbility>();
+		[SerializeField] private IActor _spawner;
 
 		public List<IActorAbility> Abilities
 		{
@@ -109,7 +110,14 @@ namespace Crimson.Core.Common
 		public List<string> ComponentNames { get; } = new List<string>();
 		[NetworkSimData] public GameObject GameObject => this != null && gameObject != null ? gameObject : null;
 		[NetworkSimData] public IActor Owner { get; set; }
-		[NetworkSimData] public IActor Spawner { get; set; }
+
+		[NetworkSimData]
+		public IActor Spawner
+		{
+			get => _spawner;
+			set => _spawner = value;
+		}
+
 		public EntityManager WorldEntityManager { get; set; }
 
 		public virtual void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)

@@ -90,6 +90,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			SpawnCallbacks = new List<Action<GameObject>>();
 			_projectileClip = projectileClipCapacity;
 			_dstManager.AddComponent<TimerData>(entity);
+			Enabled = true;
 
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
@@ -109,19 +110,6 @@ namespace Crimson.Core.Components.AbilityReactive
 			}
 
 			appliedPerksNames = new List<string>();
-
-			var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-			_actorToUi = playerActor != null && playerActor.actorToUI;
-
-			if (!Actor.Abilities.Contains(this))
-			{
-				Actor.Abilities.Add(this);
-			}
-
-			if (!_actorToUi)
-			{
-				return;
-			}
 
 			SpawnPointsRoot = new GameObject("spawn points root").transform;
 			SpawnPointsRoot.SetParent(gameObject.transform);
@@ -148,12 +136,20 @@ namespace Crimson.Core.Components.AbilityReactive
 			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 
 			InitPool();
+			
+			var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
+			_actorToUi = playerActor != null && playerActor.actorToUI;
+
+			if (!Actor.Abilities.Contains(this))
+			{
+				Actor.Abilities.Add(this);
+			}
 		}
 
 		public void Execute()
 		{
 			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if (Enabled && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
+			if (Enabled && (_projectileClip > 0 || projectileClipCapacity == 0) && CurrentEntityManager.Exists(_entity))
 			{
 				Spawn();
 
@@ -174,6 +170,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public override void FinishTimer()
 		{
+			Enabled = true;
 			base.FinishTimer();
 			this.FinishAbilityCooldownTimer(Actor);
 		}
@@ -235,13 +232,14 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
-			Enabled = true;
+			
 			Execute();
-			Enabled = false;
 		}
 
 		public override void StartTimer()
 		{
+			Enabled = false;
+			
 			base.StartTimer();
 			this.StartAbilityCooldownTimer(Actor);
 		}
