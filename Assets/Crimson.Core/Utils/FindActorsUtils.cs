@@ -25,7 +25,7 @@ namespace Crimson.Core.Utils
                         spawnerTransform = spawner?.GameObject.transform;
                     }
                     
-                    Object.FindObjectsOfType<MonoBehaviour>().OfType<IComponentName>()
+                    Object.FindObjectsOfType<MonoBehaviour>().OfType<IHasComponentName>()
                         .Where(n => n.ComponentName.Equals(name,
                             StringComparison.Ordinal))
                         .ForEach(n =>

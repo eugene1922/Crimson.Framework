@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 namespace Crimson.Core.Components
 {
     [HideMonoScript]
-    public class AbilityActorSimpleSpawn : MonoBehaviour, IActorAbility, IComponentName
+    public class AbilityActorSimpleSpawn : MonoBehaviour, IActorAbility, IHasComponentName
     {
         [Space]
         [SerializeField]

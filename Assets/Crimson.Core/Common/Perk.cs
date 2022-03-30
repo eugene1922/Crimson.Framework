@@ -25,7 +25,7 @@ namespace Crimson.Core.Common
             foreach (var ability in Abilities)
             {
                 ability.AddComponentData(ref entity, this);
-                if (ability is IComponentName componentName && !componentName.ComponentName.Equals(string.Empty))
+                if (ability is IHasComponentName componentName && !componentName.ComponentName.Equals(string.Empty))
                 {
                     ComponentNames.Add(componentName.ComponentName);
                 }

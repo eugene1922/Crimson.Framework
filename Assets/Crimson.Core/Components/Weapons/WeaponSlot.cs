@@ -1,5 +1,6 @@
 ﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
@@ -15,7 +16,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
 		public MonoBehaviour Weapon;
 
-		public IWeapon _weapon { get; private set; }
+		[HideInInspector] public UIReceiverList UIReceiverList = new UIReceiverList();
+
+		[CastToUI("CurrentWeapon")]
+		public IWeapon _weapon;
+
 		public IActor Actor { get; set; }
 
 		public bool IsEnable { get; set; }
@@ -23,6 +28,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			UIReceiverList.Init(this, entity);
 			if (_executeAction != null)
 			{
 				_executeAction.action.performed += ExectionActionPerformed;
@@ -35,7 +41,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 			if (Weapon != null)
 			{
-				_weapon = (IWeapon)Weapon;
+				Change((IWeapon)Weapon);
 			}
 		}
 
@@ -51,6 +57,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 			}
 			_weapon = weapon;
 			weapon.IsEnable = true;
+			UIReceiverList.UpdateUIData("CurrentWeapon");
 		}
 
 		public void Execute()

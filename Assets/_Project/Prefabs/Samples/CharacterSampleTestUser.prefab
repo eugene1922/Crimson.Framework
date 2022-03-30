@@ -21,14 +21,12 @@ GameObject:
   - component: {fileID: 484398431847593746}
   - component: {fileID: -7126598297091492315}
   - component: {fileID: 4824009499160723703}
-  - component: {fileID: 6920843112841527400}
   - component: {fileID: 8256079418673208729}
   - component: {fileID: 1657955151746243340}
   - component: {fileID: 3756407391955540221}
   - component: {fileID: 7093220250429794912}
   - component: {fileID: -93229221922767859}
   - component: {fileID: 3834946692048838755}
-  - component: {fileID: 1417423824385474969}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -389,6 +387,7 @@ MonoBehaviour:
     objectsToSpawn:
     - {fileID: 6245285496527516861, guid: 31f98be6f6dc3134cb72dd3bf3d663f0, type: 3}
     - {fileID: 2853118268380962624, guid: 543374d9217e61d44ae0fc2c01581451, type: 3}
+    - {fileID: 5096929382922552210, guid: dbfff72e3dd6abf4f9a52ea732ac9d98, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -464,23 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryItems:
-  - ID: 1824091016
-  - ID: 1824091016
---- !u!114 &6920843112841527400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b741deb7bf7a92e448a934c7bdc5395f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _input: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
-  actions:
-  - {fileID: 0}
+  - ID: 1646755040
 --- !u!114 &8256079418673208729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,22 +569,4 @@ MonoBehaviour:
   _changeAction: {fileID: -9094400888386443425, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
   _slot: {fileID: 7093220250429794912}
-  GravityWeapon: {fileID: 1417423824385474969}
   Weapons: []
---- !u!114 &1417423824385474969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 827ba32469b7c8543978274af00285f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activationAction: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
-    type: 3}
-  _maxDistance: 10
-  MagnetOffset: {x: 0, y: 1.5, z: 2}
-  _force: 1000

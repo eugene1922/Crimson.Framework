@@ -16,7 +16,7 @@ namespace Crimson.Core.Components.AbilityReactive
     public abstract class AbilityReactiveWeapon : TimerBaseBehaviour,
         IActorAbilityTarget,
         IActorSpawnerAbility,
-        IComponentName,
+        IHasComponentName,
         IEnableable,
         ICooldownable,
         IBindable,

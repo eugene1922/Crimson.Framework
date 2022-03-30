@@ -13,7 +13,7 @@ namespace Crimson.Core.Components.AbilityReactive
     public class AutoAim : TimerBaseBehaviour,
         IActorAbility,
         IActorSpawnerAbility,
-        IComponentName,
+        IHasComponentName,
         IAimable
     {
         public AimingAnimationProperties aimingAnimProperties;

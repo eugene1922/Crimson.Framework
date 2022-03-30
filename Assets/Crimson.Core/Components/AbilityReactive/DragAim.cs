@@ -12,7 +12,7 @@ namespace Crimson.Core.Components.AbilityReactive
 {
     public class DragAim : TimerBaseBehaviour,
         IActorAbility,
-        IComponentName,
+        IHasComponentName,
         IEnableable,
         IAimable,
         IDragable

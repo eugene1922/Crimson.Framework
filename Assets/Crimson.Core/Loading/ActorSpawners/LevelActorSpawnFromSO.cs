@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 namespace Crimson.Core.Loading.ActorSpawners
 {
     [HideMonoScript]
-    public class LevelActorSpawnFromSO : MonoBehaviour, IActorSpawner, IComponentName
+    public class LevelActorSpawnFromSO : MonoBehaviour, IActorSpawner, IHasComponentName
     {
         [Space] [SerializeField] public string componentName = "";
 

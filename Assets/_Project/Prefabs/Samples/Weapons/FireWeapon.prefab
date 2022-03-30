@@ -57,17 +57,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d029a305833285747ab6a38f45bf474d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldownTime: 0.3
-  _weaponFinishTime: 0.1
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
-  AimComponent: {fileID: 0}
-  appliedPerksNames: []
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: 
-  projectileClipCapacity: 1000
+  componentName: Fire Weapon
+  primaryProjectile: 0
+  aimingAvailable: 0
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 0
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 0
+    aimingAreaPrefab: {fileID: 0}
+    sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
+    sightDistance: 0
+    reverseControls: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -98,5 +111,18 @@ MonoBehaviour:
       InitSize: 0
       MaxSize: 0
       UsePool: 0
+  projectileStartupDelay: 0
+  cooldownTime: 0.3
+  projectileClipCapacity: 1000
+  clipReloadTime: 1
   reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 0
+    ActorProjectileAnimationName: 
   suppressWeaponSpawn: 0
+  appliedPerksNames: []
+  aimingByInput: 0
+  _cooldownTime: 0.3
+  _weaponFinishTime: 0.1
+  AimComponent: {fileID: 0}

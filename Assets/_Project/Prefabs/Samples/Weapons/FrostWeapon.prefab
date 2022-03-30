@@ -44,15 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
-  AimComponent: {fileID: 0}
-  appliedPerksNames: []
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: 
-  projectileClipCapacity: 10
+  componentName: Frost Weapon
+  primaryProjectile: 0
+  aimingAvailable: 0
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 0
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 0
+    aimingAreaPrefab: {fileID: 0}
+    sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
+    sightDistance: 0
+    reverseControls: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -83,11 +98,24 @@ MonoBehaviour:
       InitSize: 10
       MaxSize: 10
       UsePool: 1
+  projectileStartupDelay: 0
+  cooldownTime: 0.3
+  projectileClipCapacity: 10
+  clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
+  reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 0
+    ActorProjectileAnimationName: 
+  suppressWeaponSpawn: 0
+  appliedPerksNames: []
+  aimingByInput: 0
+  AimComponent: {fileID: 0}
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0
-  reloadDisplayToggle: []
-  suppressWeaponSpawn: 0
   _cooldownTime: 0.3
 --- !u!114 &594245501430399794
 MonoBehaviour:
@@ -101,4 +129,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6906d9727c88a3e45b426ff97a4dea9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 5022328837296299988}
+  TargetWeapon: {fileID: 5022328837296299988}

@@ -16,7 +16,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 	public class ThrowableWeapon : TimerBaseBehaviour,
 		IThrowable,
 		IActorSpawnerAbility,
-		IComponentName,
+		IHasComponentName,
 		IEnableable,
 		ICooldownable
 	{

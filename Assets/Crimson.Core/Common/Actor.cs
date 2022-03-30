@@ -15,7 +15,7 @@ namespace Crimson.Core.Common
 	}
 
 	[NetworkSimObject]
-	public class Actor : MonoBehaviour, IActor, IComponentName, IConvertGameObjectToEntity
+	public class Actor : MonoBehaviour, IActor, IHasComponentName, IConvertGameObjectToEntity
 	{
 		[Space][SerializeField] public string componentName = "";
 
@@ -137,7 +137,7 @@ namespace Crimson.Core.Common
 			{
 				var ability = Abilities[i];
 				ability.AddComponentData(ref entity, this);
-				if (ability is IComponentName compName && !compName.ComponentName.Equals(string.Empty))
+				if (ability is IHasComponentName compName && !compName.ComponentName.Equals(string.Empty))
 				{
 					ComponentNames.Add(compName.ComponentName);
 				}

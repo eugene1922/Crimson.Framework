@@ -197,7 +197,7 @@ namespace Crimson.Core.Systems
                     Entities.WithAll<ActorData>().WithNone<DeadActorTag, DestructionPendingTag>().ForEach(
                         (Entity entity, Transform obj) =>
                         {
-                            targets.AddRange(from component in obj.gameObject.GetComponents<IComponentName>()
+                            targets.AddRange(from component in obj.gameObject.GetComponents<IHasComponentName>()
                                              where component.ComponentName.Equals(name, StringComparison.Ordinal)
                                              select obj);
                         }

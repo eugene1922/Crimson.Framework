@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.Components
 {
-    public class AbilityContiniousWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName, IEnableable, ICooldownable, IBindable
+    public class AbilityContiniousWeapon : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IHasComponentName, IEnableable, ICooldownable, IBindable
     {
         public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
         public bool aimingAvailable;

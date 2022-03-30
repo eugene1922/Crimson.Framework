@@ -50,7 +50,7 @@ namespace Crimson.Core.Systems
                     foreach (var name in actorPlayer.deadActorBehaviour.OnDeathActionsComponentNames)
                     {
                         var ability = actorPlayer.Actor.Abilities.FirstOrDefault(a =>
-                            a is IComponentName componentName && componentName.ComponentName.Equals(name));
+                            a is IHasComponentName componentName && componentName.ComponentName.Equals(name));
 
                         ability?.Execute();
                     }

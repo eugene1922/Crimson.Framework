@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Crimson.Core.Components
 {
     [HideMonoScript]
-    public class AbilityActorSpawn : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IComponentName
+    public class AbilityActorSpawn : TimerBaseBehaviour, IActorAbility, IActorSpawnerAbility, IHasComponentName
     {
         [Space]
         [SerializeField]

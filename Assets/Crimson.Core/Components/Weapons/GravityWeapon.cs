@@ -1,14 +1,28 @@
 ﻿using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
-using Crimson.Core.Components;
+using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Assets.Crimson.Core.Components.Weapons
 {
-	public class GravityWeapon : MonoBehaviour, IWeapon
+	public class GravityWeapon :
+		MonoBehaviour,
+		IWeapon,
+		IHasComponentName
 	{
+		public string ComponentName
+		{
+			get => componentName;
+			set => componentName = value;
+		}
+
+		[Space]
+		[ShowInInspector]
+		[SerializeField]
+		public string componentName = "";
+
 		public InputActionReference _activationAction;
 		public Entity _entity;
 		public float _maxDistance = 10;
@@ -18,6 +32,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[SerializeField] private float _force = 10;
 		private bool _isEnable;
 		private RaycastHit[] _raycastResults = new RaycastHit[25];
+
+		public event System.Action OnShot;
+
+		public event System.Action OnReload;
+
 		public IActor Actor { get; set; }
 
 		public bool IsEnable

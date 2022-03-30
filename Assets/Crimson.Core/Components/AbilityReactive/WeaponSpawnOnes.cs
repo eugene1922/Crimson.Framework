@@ -20,45 +20,13 @@ namespace Crimson.Core.Components.AbilityReactive
 	public class WeaponSpawnOnes : TimerBaseBehaviour,
 		IWeapon,
 		IActorSpawnerAbility,
-		IComponentName,
+		IHasComponentName,
 		ICooldownable,
 		IBindable,
-		IUseAimable
+		IUseAimable,
+		IHasClip
 	{
-		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-
-		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
-		public MonoBehaviour AimComponent;
-
-		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
-
-		[HideIf(nameof(projectileClipCapacity), 0f)]
-		[Space]
-		public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
-
-		[HideIf(nameof(projectileClipCapacity), 0f)] public float clipReloadTime = 1f;
-		public string componentName = "";
-
-		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-		public int projectileClipCapacity = 0;
-
-		public ActorSpawnerSettings projectileSpawnData;
-		public ActorGeneralAnimProperties reloadAnimProps;
-
-		[InfoBox("Put here IEnable implementation to display reload")]
-		[Space]
-		public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
-
-		public bool suppressWeaponSpawn = false;
-		protected Entity _entity;
-		private bool _actorToUi;
-		[SerializeField] private float _cooldownTime = 0.3f;
-		private EntityManager _dstManager;
-		private int _projectileClip;
-		public bool ActionExecutionAllowed { get; set; }
 		public IActor Actor { get; set; }
-		public IAimable Aim => AimComponent as IAimable;
-		public int BindingIndex { get; set; } = -1;
 
 		public string ComponentName
 		{
@@ -66,21 +34,98 @@ namespace Crimson.Core.Components.AbilityReactive
 			set => componentName = value;
 		}
 
-		public float CooldownTime
-		{
-			get => _cooldownTime;
-			set => _cooldownTime = value;
-		}
+		[Space]
+		[ShowInInspector]
+		[SerializeField]
+		public string componentName = "";
+
+		public bool primaryProjectile;
+
+		public bool aimingAvailable;
+		public bool deactivateAimingOnCooldown;
+
+		[EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
+
+		[EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
+
+		[ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
+		public FindTargetProperties findTargetProperties;
+
+		public AimingProperties aimingProperties;
+		public AimingAnimationProperties aimingAnimProperties;
+
+		[Space] public ActorSpawnerSettings projectileSpawnData;
+
+		[Space] public float projectileStartupDelay = 0f;
+
+		public float cooldownTime = 0.3f;
+
+		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+		public int projectileClipCapacity = 0;
+
+		[HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+
+		[InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
+		public bool forceBursts;
+
+		[ShowIf("forceBursts")]
+		[MinMaxSlider(1, 20)]
+		public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
+
+		[InfoBox("Put here IEnable implementation to display reload")]
+		[Space]
+		public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+
+		[HideIf("projectileClipCapacity", 0f)]
+		[Space]
+		public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+
+		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+
+		public bool suppressWeaponSpawn = false;
+
+		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
+
+		[HideInInspector]
+		public bool aimingByInput;
+
+		public List<GameObject> SpawnedObjects { get; private set; }
+		public List<Action<GameObject>> SpawnCallbacks { get; set; }
 
 		public Action<GameObject> DisposableSpawnCallback { get; set; }
-		public bool OnHoldAttackActive { get; set; }
-		public List<Action<GameObject>> SpawnCallbacks { get; set; }
-		public GameObject SpawnedAimingPrefab { get; set; }
-		public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
 		public bool IsEnable { get; set; }
 
+		public float CooldownTime
+		{
+			get => cooldownTime;
+			set => cooldownTime = value;
+		}
+
+		public int BindingIndex { get; set; } = -1;
+
+		public Transform SpawnPointsRoot { get; private set; }
+
+		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
+		public MonoBehaviour AimComponent;
+
+		public ActorGeneralAnimProperties reloadAnimProps;
+
+		protected Entity _entity;
+		private bool _actorToUi;
+		private EntityManager _dstManager;
+
+		public event Action OnShot;
+
+		public event Action OnReload;
+
+		public bool ActionExecutionAllowed { get; set; }
+		public IAimable Aim => AimComponent as IAimable;
+		public bool OnHoldAttackActive { get; set; }
+		public GameObject SpawnedAimingPrefab { get; set; }
+
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
-		private Transform SpawnPointsRoot { get; set; }
+
+		public WeaponClip ClipData { get; private set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -88,7 +133,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
-			_projectileClip = projectileClipCapacity;
+			ClipData = new WeaponClip(projectileClipCapacity);
 			_dstManager.AddComponent<TimerData>(entity);
 			IsEnable = true;
 
@@ -136,7 +181,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 
 			InitPool();
-			
+
 			var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 			_actorToUi = playerActor != null && playerActor.actorToUI;
 
@@ -148,30 +193,37 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
-			if (!IsEnable)
+			if (!IsEnable || ClipData.IsEmpty)
 			{
 				return;
 			}
 
-			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if ((_projectileClip > 0 || projectileClipCapacity == 0) &&
-			    CurrentEntityManager.Exists(_entity))
+			if (projectileStartupDelay > 0)
 			{
-				Spawn();
-
-				CurrentEntityManager.AddComponentData(_entity,
-					new ActorProjectileThrowAnimTag());
-
-				_projectileClip--;
-				// ReSharper disable once CompareOfFloatsByEqualityOperator
-				if (CooldownTime == 0)
-				{
-					return;
-				}
-
-				StartTimer();
-				Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
+				Timer.TimedActions.AddAction(Shot, projectileStartupDelay);
 			}
+			else
+			{
+				Shot();
+			}
+		}
+
+		private void Shot()
+		{
+			Spawn();
+
+			CurrentEntityManager.AddComponentData(_entity,
+				new ActorProjectileThrowAnimTag());
+
+			ClipData.Decrease();
+			OnShot?.Invoke();
+			if (CooldownTime.Equals(0))
+			{
+				return;
+			}
+
+			StartTimer();
+			Timer.TimedActions.AddAction(FinishTimer, CooldownTime);
 		}
 
 		public override void FinishTimer()
@@ -189,7 +241,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void Reload()
 		{
 			CurrentEntityManager.AddComponentData(_entity, new ReloadTag());
-			_projectileClip = projectileClipCapacity;
+			ClipData.Reload();
+			OnReload?.Invoke();
 		}
 
 		public void ResetSpawnPointRootRotation()
@@ -244,7 +297,7 @@ namespace Crimson.Core.Components.AbilityReactive
 		public override void StartTimer()
 		{
 			IsEnable = false;
-			
+
 			base.StartTimer();
 			this.StartAbilityCooldownTimer(Actor);
 		}
