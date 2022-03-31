@@ -38,7 +38,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 			var slot = target.GameObject.GetComponent<ThrowableSlot>();
 			if (slot != null)
 			{
-				slot.Add(copy);
+				slot.Change(copy);
 			}
 		}
 

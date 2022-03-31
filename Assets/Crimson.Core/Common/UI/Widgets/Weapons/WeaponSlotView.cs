@@ -11,13 +11,13 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 		[ValueDropdown(nameof(UIAssociatedIds))]
 		public string AssociatedValueID = "";
 
-		[SerializeField] private Canvas _canvas;
+		[SerializeField] private CanvasGroup _canvas;
 		[SerializeField] private bool _hideOnAwake;
 		private UIReceiver _receiver;
 		[SerializeField] private WeaponClipView _weaponClipView;
 		[SerializeField] private WeaponNameLabel _weaponNameLabel;
 		public string AssociatedID => AssociatedValueID;
-		public bool IsVisible { get => _canvas.enabled; set => _canvas.enabled = value; }
+		public bool IsVisible { get => _canvas.alpha == 1; set => _canvas.alpha = value ? 1 : 0; }
 
 		public void SetData(object input)
 		{
@@ -29,13 +29,13 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 
 			IsVisible = true;
 
-			_weaponNameLabel.Set(weapon);
-			_weaponClipView.Set(weapon);
+			_weaponNameLabel.Set(weapon as IHasComponentName);
+			_weaponClipView.Set(weapon as IHasClip);
 		}
 
 		private void Awake()
 		{
-			IsVisible = _hideOnAwake;
+			IsVisible = !_hideOnAwake;
 		}
 
 		private List<string> UIAssociatedIds()

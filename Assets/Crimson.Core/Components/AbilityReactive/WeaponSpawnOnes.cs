@@ -133,7 +133,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
-			ClipData = new WeaponClip(projectileClipCapacity);
+			ClipData = new WeaponClip(projectileClipCapacity, projectileClipCapacity);
 			_dstManager.AddComponent<TimerData>(entity);
 			IsEnable = true;
 

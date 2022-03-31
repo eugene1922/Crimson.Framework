@@ -152,7 +152,7 @@ namespace Crimson.Core.Components
 
 			_entity = entity;
 
-			ClipData = new WeaponClip(projectileClipCapacity);
+			ClipData = new WeaponClip(projectileClipCapacity, projectileClipCapacity);
 
 			SpawnCallbacks = new List<Action<GameObject>>();
 
