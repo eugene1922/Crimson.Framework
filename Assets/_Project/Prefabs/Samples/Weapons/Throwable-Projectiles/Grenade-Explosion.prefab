@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4945427743926334028}
   - component: {fileID: 1526468508741065472}
   - component: {fileID: 8554245778113844356}
-  - component: {fileID: 7403991294733916961}
+  - component: {fileID: -860582596180290556}
+  - component: {fileID: 4343178701271225426}
   m_Layer: 0
   m_Name: Grenade-Explosion
   m_TagString: Untagged
@@ -71,10 +72,10 @@ MonoBehaviour:
     filterTags:
     - Enemy
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
+    destroyAfterAction: 1
     actions:
     - {fileID: 8554245778113844356}
-    - {fileID: 7403991294733916961}
+    - {fileID: 4343178701271225426}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!135 &1526468508741065472
@@ -107,7 +108,22 @@ MonoBehaviour:
   Damage: 40
   levelablePropertiesList: []
   perkLevel: 1
---- !u!114 &7403991294733916961
+--- !u!114 &-860582596180290556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593429760451260625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifespan: 1
+  startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}
+--- !u!114 &4343178701271225426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,11 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
-  ExecuteOnAwake: 1
+  ExecuteOnAwake: 0
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1822773341328252, guid: 8aea2a892ad46aa439b8be49adccdcad, type: 3}
+    - {fileID: 6300336675488890471, guid: 162b2d65ef809464b85e35b590846ed9, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -139,9 +155,8 @@ MonoBehaviour:
     actorWithComponentName: 
     parentTag: 
     chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 6300336675488890471, guid: 162b2d65ef809464b85e35b590846ed9, type: 3}
-    copyComponentsOfType: 2
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
