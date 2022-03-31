@@ -56,34 +56,34 @@ MonoBehaviour:
   componentName: 
   ExecuteOnAwake: 1
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 1
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
     actorWithComponentName: UIRoot
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 8994825095257699652, guid: ed1df120892365d4e9838ded8b367c64, type: 3}
-    parentOfSpawns: 2
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 1
       InitSize: 10
       MaxSize: 15
       UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 3
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 1
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -416,14 +416,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
+  componentName: 
+  primaryProjectile: 1
   aimingAvailable: 0
-  aimingByInput: 0
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 0
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
@@ -432,59 +437,52 @@ MonoBehaviour:
     circlePrefab: {fileID: 0}
     sightDistance: 0
     reverseControls: 0
-  appliedPerksNames: []
-  attackDirectionType: 0
-  burstShotCountRange: {x: 1, y: 1}
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: 
-  cooldownTime: 1
-  deactivateAimingOnCooldown: 0
-  findTargetProperties:
-    targetType: 0
-    actorWithComponentName: 
-    targetTag: 
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 0
-  forceBursts: 0
-  level: 1
-  levelablePropertiesList: []
-  onClickAttackType: 0
-  primaryProjectile: 1
-  projectileClipCapacity: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 9c3f051267bdf9e48ae4328d1b5e6d98, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 9c3f051267bdf9e48ae4328d1b5e6d98, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 1
       InitSize: 10
       MaxSize: 15
       UsePool: 1
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
   projectileStartupDelay: 0
+  cooldownTime: 1
+  projectileClipCapacity: 0
+  clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
+  appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &-8760103647376991612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,14 +495,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d15864b4ea84fc5bd98b70ce935a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
+  componentName: BurningWeaponPerk
+  primaryProjectile: 0
   aimingAvailable: 0
-  aimingByInput: 0
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 1
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
@@ -513,59 +516,52 @@ MonoBehaviour:
     circlePrefab: {fileID: 0}
     sightDistance: 0
     reverseControls: 0
-  appliedPerksNames: []
-  attackDirectionType: 0
-  burstShotCountRange: {x: 1, y: 1}
-  clipReloadDisplayToggle: []
-  clipReloadTime: 1
-  componentName: BurningWeaponPerk
-  cooldownTime: 3
-  deactivateAimingOnCooldown: 0
-  findTargetProperties:
-    targetType: 0
-    actorWithComponentName: 
-    targetTag: 
-    ignoreSpawner: 0
-    strategy: 0
-    maxDistanceThreshold: 0
-  forceBursts: 0
-  level: 1
-  levelablePropertiesList: []
-  onClickAttackType: 1
-  primaryProjectile: 0
-  projectileClipCapacity: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
   projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 4ad2faebbb958ed4998d99bdc87f89fe, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 0
-    runSpawnActionsOnObjects: 0
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 0
-    _spawnPoints: []
   projectileStartupDelay: 0
+  cooldownTime: 3
+  projectileClipCapacity: 0
+  clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
+  appliedPerksNames: []
+  aimingByInput: 0
 --- !u!114 &6430768560650811411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +613,7 @@ MonoBehaviour:
   timer: 0.1
   cooldownTime: 5
   aimingAvailable: 0
+  useMovementVector: 1
   deactivateAimingOnCooldown: 0
   aimingProperties:
     evaluateActionOptions: 0

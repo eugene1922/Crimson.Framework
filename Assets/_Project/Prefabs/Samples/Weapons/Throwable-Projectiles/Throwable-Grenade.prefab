@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteNow: 1
   ExecuteOnAwake: 0
   SpawnData:
     spawnerDisabled: 0

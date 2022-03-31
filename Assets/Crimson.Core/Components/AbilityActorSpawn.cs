@@ -16,6 +16,7 @@ namespace Crimson.Core.Components
 		[SerializeField]
 		public string componentName = "";
 
+		[Space] public bool ExecuteNow = false;
 		[Space] public bool ExecuteOnAwake = false;
 		[Space] public ActorSpawnerSettings SpawnData;
 		[Space] public TimerDelays SpawnDelays;
@@ -54,7 +55,7 @@ namespace Crimson.Core.Components
 
 		public void Spawn()
 		{
-			if (SpawnDelays.StartupDelay == 0)
+			if (SpawnDelays.StartupDelay == 0 && ExecuteNow)
 			{
 				ActorSpawn.Spawn(SpawnData, Actor, Actor.Owner);
 			}
