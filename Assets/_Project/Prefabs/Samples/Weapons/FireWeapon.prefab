@@ -91,8 +91,7 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 0}
+    _spawnPoints: []
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0

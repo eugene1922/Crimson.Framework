@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteNow: 0
   ExecuteOnAwake: 1
   SpawnData:
     spawnerDisabled: 0
@@ -323,24 +324,60 @@ MonoBehaviour:
   movementStart:
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0028305054
+        value: 0.33374023
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    timeScale: 1
+    timeScale: 0.1
   movementEnd:
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    timeScale: 1
+    timeScale: 0.1
   movementAnimationProperties:
-    HasMovementAnimation: 0
-    MovementAnimationName: 
-    MovementAnimationSpeedFactorName: 
-    MovementAnimationSpeedFactorMultiplier: 1
+    HasMovementAnimation: 1
+    MovementAnimationName: Run
+    MovementAnimationSpeedFactorName: SpeedFactor
+    MovementAnimationSpeedFactorMultiplier: 1.5
 --- !u!114 &4098585114710412302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteNow: 0
   ExecuteOnAwake: 1
   SpawnData:
     spawnerDisabled: 0
