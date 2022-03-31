@@ -85,14 +85,13 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1541125407894622608, guid: 917168ff3e5242047aad66fcaf17ccb8, type: 3}
-    spawnPosition: 0
+    spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 0}
+    _spawnPoints: []
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0
