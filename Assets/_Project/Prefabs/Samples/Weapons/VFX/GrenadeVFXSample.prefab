@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn:
-  - {fileID: 4456168659372121127}
+  componentName: Greanade VFX
+  ExecuteOnSpawn: []
 --- !u!114 &4456168659372121127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 3
+  lifespan: 2
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
 --- !u!1001 &7933480131258098831
