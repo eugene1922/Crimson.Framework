@@ -59,7 +59,7 @@ namespace Crimson.Core.Systems
 					movement.Input = data.ForwardVector;
 					if (data.UseVariance)
 					{
-						var vector = data.Variance.GeneratePosition().normalized;
+						var vector = data.Variance.GeneratePosition();
 						var rotation = data.Variance.GenerateRotation();
 						movement.Input += (float3)vector;
 						movement.Input = rotation * movement.Input;
