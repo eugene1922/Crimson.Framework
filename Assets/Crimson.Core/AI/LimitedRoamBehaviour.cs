@@ -1,4 +1,4 @@
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using System;
@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 namespace Crimson.Core.AI
 {
 	[Serializable]
-	public class RoamBehaviour : IAIBehaviour
+	public class LimitedRoamBehaviour : IAIBehaviour
 	{
 		public string XAxis => "";
 
@@ -22,10 +22,9 @@ namespace Crimson.Core.AI
 		public bool NeedTarget => false;
 		public bool NeedActions => false;
 
-		public bool HasDistanceLimit => false;
+		public bool HasDistanceLimit => true;
 
 		private const float FINISH_ROAM_DISTSQ = 2f;
-		private const float PRIORITY_MULTIPLIER = 0.5f;
 
 		private AIBehaviourSetting _behaviour = null;
 		private Transform _transform = null;
@@ -52,7 +51,7 @@ namespace Crimson.Core.AI
 
 			do
 			{
-				target = NavMeshRandomPointUtil.GetRandomLocation();
+				target = NavMeshRandomPointUtil.GetRandomLocation(_behaviour.LimitDistance);
 				distSq = math.distancesq(_transform.position, target);
 			} while (distSq < FINISH_ROAM_DISTSQ);
 
@@ -63,7 +62,10 @@ namespace Crimson.Core.AI
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null) return false;
+			if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null)
+			{
+				return false;
+			}
 
 			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
 
@@ -72,7 +74,8 @@ namespace Crimson.Core.AI
 				_currentWaypoint++;
 			}
 
-			if ((_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ) || _currentWaypoint >= _path.corners.Length)
+			if ((_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ)
+				|| _currentWaypoint >= _path.corners.Length)
 			{
 				inputData.Move = float2.zero;
 				return false;

@@ -26,7 +26,9 @@ namespace Crimson.Core.AI
         public bool NeedTarget => true;
         public string XAxis => "";
 
-        public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
+		public bool HasDistanceLimit => false;
+
+		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
         {
             if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null) return false;
 

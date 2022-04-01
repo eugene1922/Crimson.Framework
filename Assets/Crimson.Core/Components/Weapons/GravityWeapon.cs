@@ -133,6 +133,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void TryGrabObject()
 		{
+			OnShot?.Invoke();
 			var ray = new Ray(transform.position, transform.forward);
 			var resultsCount = Physics.RaycastNonAlloc(ray, _raycastResults, _maxDistance);
 			if (resultsCount == 0)
