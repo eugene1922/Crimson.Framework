@@ -35,8 +35,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public event System.Action OnShot;
 
-		public event System.Action OnReload;
-
 		public IActor Actor { get; set; }
 
 		public bool IsEnable

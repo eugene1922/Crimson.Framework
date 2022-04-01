@@ -91,7 +91,8 @@ MonoBehaviour:
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints: []
+    _spawnPoints:
+    - {fileID: 0}
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0
@@ -102,6 +103,9 @@ MonoBehaviour:
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    _userVariance: 1
+    _variancePositionOffset: {x: 1, y: 1, z: 0}
+    _varianceRotationOffset: {x: 14, y: 14, z: 0}
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
     randomSeed: 0

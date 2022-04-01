@@ -138,9 +138,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compensateSpawnerRotation: 1
-  forwardVector: {x: 0, y: 0, z: 0}
   moveDirection: 0
+  forwardVector: {x: 0, y: 0, z: 0}
+  compensateSpawnerRotation: 1
+  OffsetDirection: {x: 0, y: 0, z: 0}
+  _useVariance: 1
+  _transformVariance:
+    PostionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 5, y: 5, z: 0}
 --- !u!114 &5150210801761906177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,33 +160,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: -3209572696311438871}
   collisionActions:
-  - actions:
-    - {fileID: -9136214588343567339}
-    - {fileID: 8802586809504653326}
-    collisionLayerMask:
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 311
-    destroyAfterAction: 1
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Enemy
     - DestructibleObject
-    useTagFilter: 1
-  - actions:
-    - {fileID: -7484853190416408497}
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 1
+    actions:
     - {fileID: -9136214588343567339}
-    collisionLayerMask:
+    - {fileID: 8802586809504653326}
+  - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 311
-    destroyAfterAction: 1
-    executeOnCollisionWithSpawner: 0
+    useTagFilter: 1
     filterMode: 0
     filterTags:
     - Enemy
     - CollisionObjects
     - DestructibleObject
-    useTagFilter: 1
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 1
+    actions:
+    - {fileID: -7484853190416408497}
+    - {fileID: -9136214588343567339}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!135 &-3209572696311438871
@@ -210,9 +215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMovementSettings:
-    reaction: 1
     alsoStopRotation: 1
+    inputMultiplier: 0.75
     force2DBounce: 1
+    reaction: 1
 --- !u!114 &-8803990037051815588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,36 +264,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteNow: 0
   ExecuteOnAwake: 0
   SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 7430887200127099503, guid: 9214c66a86847794092de36e6766b045, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 1
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 4
+    parentOfSpawns: 0
     actorWithComponentName: 
+    parentTag: 
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
-    fillSpawnPoints: 0
-    objectsToSpawn:
-    - {fileID: 7430887200127099503, guid: 9214c66a86847794092de36e6766b045, type: 3}
-    parentOfSpawns: 0
-    parentTag: 
+    randomSeed: 0
     poolSettings:
       CollectionCheck: 0
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-    randomSeed: 0
-    rotationOfSpawns: 4
-    runSpawnActionsOnObjects: 1
-    skipBusySpawnPoints: 0
-    spawnerDisabled: 0
-    spawnPointsFillingMode: 0
-    spawnPointsFrom: 0
-    spawnPointTag: 
-    spawnPosition: 2
-    useChildrenObjects: 0
-    x: 1
-    _spawnPoints: []
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.1

@@ -116,8 +116,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public event Action OnShot;
 
-		public event Action OnReload;
-
 		public bool ActionExecutionAllowed { get; set; }
 		public IAimable Aim => AimComponent as IAimable;
 		public bool OnHoldAttackActive { get; set; }
@@ -242,7 +240,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		{
 			CurrentEntityManager.AddComponentData(_entity, new ReloadTag());
 			ClipData.Reload();
-			OnReload?.Invoke();
 		}
 
 		public void ResetSpawnPointRootRotation()

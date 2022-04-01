@@ -240,7 +240,10 @@ namespace Crimson.Core.Components
 					}
 					Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
 				}
-				if (projectileClipCapacity == 0) return;
+				if (projectileClipCapacity == 0)
+				{
+					return;
+				}
 
 				ClipData.Decrease();
 				if (ClipData.IsEmpty)
