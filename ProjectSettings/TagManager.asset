@@ -29,6 +29,8 @@ TagManager:
   - Zone-3-Boss
   - TestSpawn
   - Claws1
+  - CinemachineTarget
+  - MagnetObjects
   layers:
   - Default
   - TransparentFX
