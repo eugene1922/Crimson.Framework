@@ -9,7 +9,12 @@ namespace Assets.Crimson.Core.Components.Magnets
 {
 	public class AbilityMagnetSnap : MonoBehaviour, IActorAbilityTarget
 	{
-		public float _snapThreshold = .5f;
+		public float _distanceThreshold = .5f;
+
+		[Range(0, 180)]
+		public float _rotationTheshold = 5;
+
+		public float _snapSpeed = 5;
 		private Entity _entity;
 
 		private EntityManager _entityManager;
@@ -41,7 +46,14 @@ namespace Assets.Crimson.Core.Components.Magnets
 
 			if (!_entityManager.HasComponent<MagnetSnapData>(TargetActor.ActorEntity))
 			{
-				_entityManager.AddComponentData(TargetActor.ActorEntity, new MagnetSnapData(_entity, _snapThreshold));
+				var data = new MagnetSnapData
+				{
+					Target = _entity,
+					DistanceThreshold = _distanceThreshold,
+					RotationTheshold = _rotationTheshold,
+					SnapSpeed = _snapSpeed
+				};
+				_entityManager.AddComponentData(TargetActor.ActorEntity, data);
 			}
 		}
 	}
