@@ -28,6 +28,9 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public float _maxDistance = 10;
 		public Vector3 MagnetOffset = Vector3.forward;
 
+		public ActionsList ActionsOnEnable;
+		public ActionsList ActionsOnDisable;
+
 		private EntityManager _entityManager;
 		[SerializeField] private float _force = 10;
 		private bool _isEnable;
@@ -43,8 +46,13 @@ namespace Assets.Crimson.Core.Components.Weapons
 			set
 			{
 				_isEnable = value;
-				if (!value)
+				if (_isEnable)
 				{
+					ActionsOnEnable.Execute();
+				}
+				else
+				{
+					ActionsOnDisable.Execute();
 					Deactivate();
 				}
 			}
@@ -55,6 +63,12 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public void Activate()
 		{
 			SetActivateState(true);
+		}
+
+		private void Awake()
+		{
+			ActionsOnDisable.Init();
+			ActionsOnEnable.Init();
 		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)

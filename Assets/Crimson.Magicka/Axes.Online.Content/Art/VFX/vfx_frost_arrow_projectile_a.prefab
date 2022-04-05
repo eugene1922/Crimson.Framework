@@ -168,6 +168,10 @@ MonoBehaviour:
     filterTags:
     - Enemy
     - DestructibleObject
+    velocityFilter:
+      Use: 0
+      Mode: 0
+      Velocity: 0
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -182,6 +186,10 @@ MonoBehaviour:
     - Enemy
     - CollisionObjects
     - DestructibleObject
+    velocityFilter:
+      Use: 0
+      Mode: 0
+      Velocity: 0
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -201,7 +209,7 @@ SphereCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.18341617
-  m_Center: {x: -0.023950696, y: 0.8674042, z: -0.13213204}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-9136214588343567339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,12 +356,12 @@ PrefabInstance:
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.5
+      value: -1.295
       objectReference: {fileID: 0}
     - target: {fileID: 5565143816009385363, guid: 1f8238caa02d7464db3f78e469b97b1f,
         type: 3}

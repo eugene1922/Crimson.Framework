@@ -93,7 +93,23 @@ namespace Crimson.Core.Components.AbilityReactive
 		public List<Action<GameObject>> SpawnCallbacks { get; set; }
 
 		public Action<GameObject> DisposableSpawnCallback { get; set; }
-		public bool IsEnable { get; set; }
+
+		public bool IsEnable
+		{
+			get => isEnable;
+			set
+			{
+				isEnable = value;
+				if (isEnable)
+				{
+					ActionsOnEnable.Execute();
+				}
+				else
+				{
+					ActionsOnDisable.Execute();
+				}
+			}
+		}
 
 		public float CooldownTime
 		{
@@ -108,11 +124,16 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
+		public ActionsList ActionsOnEnable;
+
+		public ActionsList ActionsOnDisable;
+
 		public ActorGeneralAnimProperties reloadAnimProps;
 
 		protected Entity _entity;
 		private bool _actorToUi;
 		private EntityManager _dstManager;
+		private bool isEnable;
 
 		public event Action OnShot;
 
@@ -123,7 +144,13 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 
-		public WeaponClip ClipData { get; private set; }
+		public WeaponClip ClipData { get; private set; } = new WeaponClip();
+
+		private void Awake()
+		{
+			ActionsOnDisable.Init();
+			ActionsOnEnable.Init();
+		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -131,7 +158,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
-			ClipData = new WeaponClip(projectileClipCapacity, projectileClipCapacity);
+			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
 			_dstManager.AddComponent<TimerData>(entity);
 			IsEnable = true;
 
