@@ -26,7 +26,6 @@ namespace Assets.Crimson.Core.AI
 		private const float FINISH_CHASE_DISTSQ = 5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
-		private const float AIM_MAX_DIST = 2f;
 
 		private Transform _target = null;
 		private AIBehaviourSetting _behaviour;
@@ -128,7 +127,7 @@ namespace Assets.Crimson.Core.AI
 			}
 
 			if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
-				AIM_MAX_DIST) && hit.transform == _target)
+				_behaviour.LimitDistance) && hit.transform == _target)
 			{
 				inputData.Move = float2.zero;
 				inputData.CustomInput[_behaviour.executeCustomInput] = 1f;
