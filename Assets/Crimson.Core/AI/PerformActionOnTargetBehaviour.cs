@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.AI
 {
-	internal class ExecuteInputBehaviour : IAIBehaviour
+	internal class PerformActionOnTargetBehaviour : IAIBehaviour
 	{
 		public string XAxis => "Target priority based on distance to it";
 
