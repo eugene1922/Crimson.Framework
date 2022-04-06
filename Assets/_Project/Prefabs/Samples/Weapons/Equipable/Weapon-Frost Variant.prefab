@@ -258,7 +258,7 @@ MonoBehaviour:
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Aiming
+    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
   aimingByInput: 0

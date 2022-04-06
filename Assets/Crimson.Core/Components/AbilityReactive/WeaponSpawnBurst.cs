@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Crimson.Core.Components.AbilityReactive
 {
@@ -35,7 +34,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		[Space]
 		[ShowInInspector]
-		[SerializeField]
 		public string componentName = "";
 
 		public bool primaryProjectile;
@@ -167,7 +165,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
 			{
-				_dstManager.AddComponentData(entity, new ActorProjectileAnimData
+				_dstManager.AddComponentData(actor.Owner.ActorEntity, new ActorProjectileAnimData
 				{
 					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
 				});
@@ -178,9 +176,15 @@ namespace Crimson.Core.Components.AbilityReactive
 			var playerActor = actor.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 			_actorToUi = playerActor != null && playerActor.actorToUI;
 
-			if (!Actor.Abilities.Contains(this)) Actor.Abilities.Add(this);
+			if (!Actor.Abilities.Contains(this))
+			{
+				Actor.Abilities.Add(this);
+			}
 
-			if (!_actorToUi) return;
+			if (!_actorToUi)
+			{
+				return;
+			}
 
 			CreateSpawnPointsRoot();
 			ResetSpawnPointRootRotation();
@@ -247,7 +251,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Spawn()
 		{
-			CurrentEntityManager.AddComponentData(_entity,
+			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity,
 					new ActorProjectileThrowAnimTag());
 
 			LookAtTargetIfAimExist();

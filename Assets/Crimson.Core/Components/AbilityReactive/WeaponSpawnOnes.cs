@@ -165,7 +165,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
 			{
-				_dstManager.AddComponentData(entity, new ActorProjectileAnimData
+				_dstManager.AddComponentData(Actor.Owner.ActorEntity, new ActorProjectileAnimData
 				{
 					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
 				});
@@ -173,7 +173,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 			if (reloadAnimProps.HasAnimation)
 			{
-				_dstManager.AddComponentData(entity, new ReloadAnimationData
+				_dstManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadAnimationData
 				{
 					AnimHash = reloadAnimProps.AnimationHash
 				});
@@ -237,7 +237,7 @@ namespace Crimson.Core.Components.AbilityReactive
 		{
 			Spawn();
 
-			CurrentEntityManager.AddComponentData(_entity,
+			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity,
 				new ActorProjectileThrowAnimTag());
 
 			ClipData.Decrease();
