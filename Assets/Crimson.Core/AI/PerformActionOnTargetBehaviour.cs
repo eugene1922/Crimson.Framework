@@ -40,10 +40,17 @@ namespace Assets.Crimson.Core.AI
 			_behaviour = behaviour;
 			_transform = behaviour.Actor?.GameObject.transform;
 
-			if (_transform == null) return 0f;
+			if (_transform == null)
+			{
+				return 0f;
+			}
 
 			var filteredTargets = targets.Where(t => t.FilterTag(behaviour) && t != _transform).ToList();
-			if (filteredTargets.Count == 0) return 0f;
+			if (filteredTargets.Count == 0)
+			{
+				return 0f;
+			}
+
 			if (filteredTargets.Count == 1)
 			{
 				_target = filteredTargets.First();
@@ -104,7 +111,10 @@ namespace Assets.Crimson.Core.AI
 		{
 			_path.ClearCorners();
 
-			if (_target == null || _transform == null) return false;
+			if (_target == null || _transform == null)
+			{
+				return false;
+			}
 
 			_currentWaypoint = 1;
 			var result = UnityEngine.AI.NavMesh.CalculatePath(_transform.position, _target.position, UnityEngine.AI.NavMesh.AllAreas, _path);
@@ -147,13 +157,6 @@ namespace Assets.Crimson.Core.AI
 			inputData.Move = math.normalize(new float2(dir.x, dir.z));
 
 			return true;
-		}
-
-		private struct MinMaxTarget
-		{
-			public float Min;
-			public float Max;
-			public Transform Target;
 		}
 	}
 }

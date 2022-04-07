@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.AI;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Utils;
@@ -36,14 +37,14 @@ namespace Crimson.Core.Components
 
 			foreach (var t in behaviours)
 			{
-				tempBehaviours.Add(t.CopyBehaviour());
+				tempBehaviours.Add(t.CopyFields());
 			}
 
 			behaviours = tempBehaviours;
 
 			for (var i = 0; i < behaviours.Count; i++)
 			{
-				behaviours[i] = behaviours[i].CopyBehaviour();
+				behaviours[i] = behaviours[i].CopyFields();
 				behaviours[i].Actor = Actor;
 			}
 
@@ -70,6 +71,24 @@ namespace Crimson.Core.Components
 
 		public void Execute()
 		{
+		}
+
+		private void OnDrawGizmosSelected()
+		{
+			if (activeBehaviour == null || !(activeBehaviour.BehaviourInstance is FallbackBehaviour))
+			{
+				return;
+			}
+
+			var fallbackBehaviour = activeBehaviour.BehaviourInstance as FallbackBehaviour;
+			Gizmos.color = Color.green;
+			Gizmos.DrawSphere(fallbackBehaviour._fallbackPlace, .2f);
+			Gizmos.color = Color.yellow;
+			var points = fallbackBehaviour.positions;
+			for (var i = 0; i < points.Length; i++)
+			{
+				Gizmos.DrawWireSphere(points[i], .2f);
+			}
 		}
 	}
 }

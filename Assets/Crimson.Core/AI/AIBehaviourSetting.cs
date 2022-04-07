@@ -1,4 +1,3 @@
-using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Utils;
@@ -43,7 +42,7 @@ namespace Crimson.Core.AI
 		[ShowIf("@ShowLimitDistance(behaviourType)")
 		, Space
 		, ValidateInput(nameof(ValidateDistance), "Incorrect distance. Need more than 0")]
-		public float LimitDistance = 2.0f;
+		public float LimitDistance;
 
 		[ShowIf("@ShowFilters(behaviourType)")
 		, Space
