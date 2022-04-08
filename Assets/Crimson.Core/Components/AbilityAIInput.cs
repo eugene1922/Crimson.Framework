@@ -75,19 +75,16 @@ namespace Crimson.Core.Components
 
 		private void OnDrawGizmosSelected()
 		{
-			if (activeBehaviour == null || !(activeBehaviour.BehaviourInstance is FallbackBehaviour))
+			if (activeBehaviour != null && activeBehaviour.BehaviourInstance is FallbackBehaviour)
 			{
-				return;
+				var fallbackBehaviour = activeBehaviour.BehaviourInstance as FallbackBehaviour;
+				fallbackBehaviour.DrawGizmosSelected();
 			}
 
-			var fallbackBehaviour = activeBehaviour.BehaviourInstance as FallbackBehaviour;
-			Gizmos.color = Color.green;
-			Gizmos.DrawSphere(fallbackBehaviour._fallbackPlace, .2f);
-			Gizmos.color = Color.yellow;
-			var points = fallbackBehaviour.positions;
-			for (var i = 0; i < points.Length; i++)
+			if (activeBehaviour != null && activeBehaviour.BehaviourInstance is CircleRoamBehaviour)
 			{
-				Gizmos.DrawWireSphere(points[i], .2f);
+				var circleRoamBehaviour = activeBehaviour.BehaviourInstance as CircleRoamBehaviour;
+				circleRoamBehaviour.DrawGizmosSelected();
 			}
 		}
 	}

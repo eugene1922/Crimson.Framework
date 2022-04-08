@@ -3,6 +3,7 @@ using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
@@ -12,21 +13,20 @@ using UnityEngine.AI;
 
 namespace Assets.Crimson.Core.AI
 {
-	public class FallbackBehaviour : IAIBehaviour
+	public class CircleRoamBehaviour : IAIBehaviour
 	{
-		public Vector3 _fallbackPlace;
 		public Vector3[] positions = new Vector3[MaxPoints];
+		private const float FINISH_ROAM_DISTSQ = 2f;
 		private const int MaxPoints = 16;
+		private const float PositionThreshold = .5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 		private readonly NavMeshPath _path = new NavMeshPath();
-		private AIBehaviourSetting _behaviour;
+		private AIBehaviourSetting _behaviour = null;
 		private int _currentWaypoint = 0;
-		private Transform _target = null;
+		private Transform _target;
+		private Vector3 _targetPosition;
 		private Transform _transform = null;
-
-		public string[] AdditionalModes => new[]
-			{"Strict mode: distance to priority", "Random mode: priority as probability"};
-
+		public string[] AdditionalModes => new string[0];
 		public bool HasDistanceLimit => true;
 		public bool NeedActions => false;
 		public bool NeedCurve => true;
@@ -37,34 +37,32 @@ namespace Assets.Crimson.Core.AI
 		{
 			get
 			{
-				return math.distancesq(_transform.position, _fallbackPlace) <= .5f ? 0f :
-					_behaviour.basePriority * PRIORITY_MULTIPLIER;
+				return math.distancesq(_transform.position, _targetPosition) <= PositionThreshold ? 0f :
+					UnityEngine.Random.value * _behaviour.basePriority;
 			}
 		}
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid)
+			if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null)
 			{
 				return false;
 			}
 
 			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
-
 			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
 			{
 				_currentWaypoint++;
 			}
 
-			if (_currentWaypoint >= _path.corners.Length)
+			if ((_currentWaypoint == _path.corners.Length - 1 && distSq < PositionThreshold) || _currentWaypoint >= _path.corners.Length)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = _path.corners[_currentWaypoint] - _transform.position;
-
-			inputData.Move = math.normalize(new float2(dir.x, dir.z));
+			var dir = math.normalize(_path.corners[_currentWaypoint] - _transform.position);
+			inputData.Move = new float2(dir.x, dir.z);
 
 			return true;
 		}
@@ -89,7 +87,7 @@ namespace Assets.Crimson.Core.AI
 			if (filteredTargets.Count == 1)
 			{
 				_target = filteredTargets.First();
-				_fallbackPlace = CalculateBestPosition(_target);
+				_targetPosition = CalculateBestPosition(_target);
 				return Priority;
 			}
 
@@ -138,22 +136,17 @@ namespace Assets.Crimson.Core.AI
 					break;
 			}
 
-			_fallbackPlace = CalculateBestPosition(_target);
+			_targetPosition = CalculateBestPosition(_target);
 			return Priority;
 		}
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
 			_path.ClearCorners();
-
-			if (_target == null || _transform == null)
-			{
-				return false;
-			}
-
 			_currentWaypoint = 1;
-			_fallbackPlace = CalculateBestPosition(_target);
-			var result = NavMesh.CalculatePath(_transform.position, _fallbackPlace, NavMesh.AllAreas, _path);
+			_targetPosition = CalculateBestPosition(_target);
+
+			var result = NavMesh.CalculatePath(_transform.position, _targetPosition, NavMesh.AllAreas, _path);
 
 			return result;
 		}
@@ -161,7 +154,7 @@ namespace Assets.Crimson.Core.AI
 		internal void DrawGizmosSelected()
 		{
 			Gizmos.color = Color.green;
-			Gizmos.DrawSphere(_fallbackPlace, .2f);
+			Gizmos.DrawSphere(_targetPosition, .2f);
 			Gizmos.color = Color.yellow;
 			var points = positions;
 			for (var i = 0; i < points.Length; i++)
@@ -174,31 +167,25 @@ namespace Assets.Crimson.Core.AI
 		{
 			var sourcePosition = target.position;
 			positions = NavMeshUtils.CalculatePositionsOnCircle(sourcePosition, _behaviour.LimitDistance, MaxPoints);
-			var bestPosition = Vector3.zero;
-			var minimalPathLength = float.MaxValue;
+			var positionStats = new Tuple<float, Vector3>[MaxPoints];
+			var hasPosition = false;
 			for (var i = 0; i < positions.Length; i++)
 			{
 				var position = positions[i];
-				if (position == Vector3.zero)
+				if (position == Vector3.zero
+					|| !NavMesh.CalculatePath(_transform.position, position, NavMesh.AllAreas, _path))
 				{
-					continue;
-				}
-
-				var hasPath = NavMesh.CalculatePath(_transform.position, position, NavMesh.AllAreas, _path);
-				if (!hasPath)
-				{
+					positionStats[i] = new Tuple<float, Vector3>(float.MaxValue, position);
 					continue;
 				}
 
 				var pathLength = _path.Length();
-				if (pathLength < minimalPathLength)
-				{
-					bestPosition = position;
-					minimalPathLength = pathLength;
-				}
+				positionStats[i] = new Tuple<float, Vector3>(pathLength, position);
 			}
 
-			return bestPosition == Vector3.zero ? _transform.position : bestPosition;
+			var topPositions = positionStats.OrderBy(s => s.Item1).Skip(1).Take(2);
+			var bestPosition = UnityEngine.Random.value > .5f ? topPositions.ElementAt(0) : topPositions.ElementAt(1);
+			return bestPosition.Item1 != float.MaxValue ? bestPosition.Item2 : _transform.position;
 		}
 	}
 }

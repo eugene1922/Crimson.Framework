@@ -20,7 +20,6 @@ namespace Crimson.Core.AI
 		public bool NeedActions => true;
 
 		private const float AIM_MAX_DIST = 40f;
-		private const float SHOOTING_ANGLE_THRESH = 10f;
 		private const float ATTACK_DELAY = 6f;
 		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
 
@@ -86,7 +85,11 @@ namespace Crimson.Core.AI
 				if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, t.position - _transform.position, out var hit,
 					AIM_MAX_DIST))
 				{
-					if (hit.transform != t) continue;
+					if (hit.transform != t)
+					{
+						continue;
+					}
+
 					_target = t;
 
 					var dist = math.distance(_transform.position, _target.position);
@@ -109,7 +112,10 @@ namespace Crimson.Core.AI
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (!_abilities.ActionPossible()) return false;
+			if (!_abilities.ActionPossible())
+			{
+				return false;
+			}
 
 			if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
 				AIM_MAX_DIST) && hit.transform == _target)
