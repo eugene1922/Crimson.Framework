@@ -118,9 +118,9 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
-		public ActionsList ActionsOnEnable;
+		public ActionsList ActionsOnEnable = new ActionsList();
 
-		public ActionsList ActionsOnDisable;
+		public ActionsList ActionsOnDisable = new ActionsList();
 
 		protected Entity _entity;
 		private bool _actorToUi;
