@@ -1,5 +1,6 @@
 {
     "name": "Crimson.Core",
+    "rootNamespace": "",
     "references": [
         "GUID:0fa4b1bfbb6165b459df012614ddeb00",
         "GUID:734d92eba21c94caba915361bd5ac177",
