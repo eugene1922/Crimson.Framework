@@ -1,5 +1,9 @@
+using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.Common.Filters;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +14,21 @@ using Random = UnityEngine.Random;
 
 namespace Crimson.Core.AI
 {
-	[Serializable]
-	public class AttackBehaviour : IAIBehaviour
+	[Serializable, HideMonoScript]
+	public class AttackBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
 	{
-		public string XAxis => "distance to closest seen target";
-		public string[] AdditionalModes => new string[0];
-		public bool NeedCurve => true;
-		public bool NeedTarget => true;
-		public bool NeedActions => true;
+		public BasePriority Priority = new BasePriority
+		{
+			Value = 1
+		};
+
+		public CurvePriority CurvePriority = new CurvePriority(0)
+		{
+			XAxisTooltip = "distance to closest seen target"
+		};
+
+		public ExecutableCustomInput ExecutableCustomInput;
+		public TagFilter TagFilter;
 
 		private const float AIM_MAX_DIST = 40f;
 		private const float ATTACK_DELAY = 6f;
@@ -25,7 +36,6 @@ namespace Crimson.Core.AI
 
 		private Transform _target = null;
 		private Transform _transform = null;
-		private AIBehaviourSetting _behaviour = null;
 		private List<IActorAbility> _abilities = new List<IActorAbility>();
 		private AbilityPlayerInput _input;
 
@@ -35,49 +45,40 @@ namespace Crimson.Core.AI
 			{
 				if (_input == null)
 				{
-					_input = _behaviour.Actor.GameObject.GetComponent<AbilityPlayerInput>();
+					_input = Actor.GameObject.GetComponent<AbilityPlayerInput>();
 				}
 
 				return _input;
 			}
 		}
 
-		public bool HasDistanceLimit => false;
+		public IActor Actor { get; set; }
 
-		public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
+		public void AddComponentData(ref Entity entity, IActor actor)
 		{
-			if (this.GetType().ToString().Contains(ai.activeBehaviour.behaviourType))
-			{
-				return 0f;
-			}
+			Actor = actor;
+		}
 
+		public void Execute()
+		{
+		}
+
+		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
+		{
 			_target = null;
-			_behaviour = behaviour;
-			_transform = behaviour.Actor.GameObject.transform;
+			_transform = Actor.GameObject.transform;
 
 			if (Time.timeSinceLevelLoad < ATTACK_DELAY * Random.value
 				|| World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<DeadActorTag>(entity)
-				|| CustomInput == null)
-			{
-				return 0f;
-			}
-
-			if (CustomInput.bindingsDict.ContainsKey(_behaviour.executeCustomInput))
-			{
-				_abilities = CustomInput.bindingsDict[_behaviour.executeCustomInput];
-			}
-			else
-			{
-				return 0f;
-			}
-
-			if (!_abilities.ActionPossible())
+				|| CustomInput == null
+				|| !CustomInput.bindingsDict.TryGetValue(ExecutableCustomInput.CustomInputIndex, out _abilities)
+				|| !_abilities.ActionPossible())
 			{
 				return 0f;
 			}
 
 			var orderedTargets = targets
-				.Where(t => t.FilterTag(_behaviour) && t != _transform)
+				.Where(t => TagFilter.Filter(t) && t != _transform)
 				.OrderBy(t => math.distancesq(_transform.position, t.position));
 
 			foreach (var t in orderedTargets)
@@ -92,11 +93,8 @@ namespace Crimson.Core.AI
 
 					_target = t;
 
-					var dist = math.distance(_transform.position, _target.position);
-					var sampleScale = _behaviour.curveMaxSample - _behaviour.curveMinSample;
-					var curveSample = math.clamp(
-						(dist - _behaviour.curveMinSample) / sampleScale, 0f, 1f);
-					var result = _behaviour.priorityCurve.Evaluate(curveSample) * _behaviour.basePriority;
+					var distance = math.distance(_transform.position, _target.position);
+					var result = CurvePriority.Evaluate(distance) * Priority.Value;
 
 					return result;
 				}
@@ -120,7 +118,7 @@ namespace Crimson.Core.AI
 			if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
 				AIM_MAX_DIST) && hit.transform == _target)
 			{
-				inputData.CustomInput[_behaviour.executeCustomInput] = 1f;
+				inputData.CustomInput[ExecutableCustomInput.CustomInputIndex] = 1f;
 				return true;
 			}
 

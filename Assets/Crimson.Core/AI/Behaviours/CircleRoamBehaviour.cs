@@ -1,8 +1,10 @@
-﻿using Assets.Crimson.Core.Utils;
+﻿using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.Common.Filters;
+using Assets.Crimson.Core.Utils;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
-using Crimson.Core.Utils;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,34 +15,49 @@ using UnityEngine.AI;
 
 namespace Assets.Crimson.Core.AI
 {
-	public class CircleRoamBehaviour : IAIBehaviour
+	[HideMonoScript]
+	public class CircleRoamBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
 	{
+		public BasePriority BasePriority = new BasePriority
+		{
+			Value = 1
+		};
+
+		public CurvePriority CurvePriority = new CurvePriority(0)
+		{
+			XAxisTooltip = "Target priority based on distance to it"
+		};
+
+		public DistanceLimitation DistanceLimitation = new DistanceLimitation
+		{
+			MaxDistance = 5
+		};
+
+		public EvaluationMode EvaluationMode;
+
+		public TagFilter TagFilter;
+
 		public Vector3[] positions = new Vector3[MaxPoints];
-		private const float FINISH_ROAM_DISTSQ = 2f;
 		private const int MaxPoints = 16;
 		private const float PositionThreshold = .5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
-		private readonly NavMeshPath _path = new NavMeshPath();
-		private AIBehaviourSetting _behaviour = null;
+		private NavMeshPath _path;
 		private int _currentWaypoint = 0;
 		private Transform _target;
 		private Vector3 _targetPosition;
 		private Transform _transform = null;
-		public string[] AdditionalModes => new string[0];
-		public bool HasDistanceLimit => true;
-		public bool NeedActions => false;
-		public bool NeedCurve => true;
-		public bool NeedTarget => true;
-		public string XAxis => "Target priority based on distance to it";
 
 		private float Priority
 		{
 			get
 			{
-				return math.distancesq(_transform.position, _targetPosition) <= PositionThreshold ? 0f :
-					UnityEngine.Random.value * _behaviour.basePriority;
+				return math.distancesq(_transform.position, _targetPosition) <= PositionThreshold ?
+					0f :
+					UnityEngine.Random.value * BasePriority.Value * PRIORITY_MULTIPLIER;
 			}
 		}
+
+		public IActor Actor { get; set; }
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
@@ -67,18 +84,17 @@ namespace Assets.Crimson.Core.AI
 			return true;
 		}
 
-		public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
+		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
 			_target = null;
-			_behaviour = behaviour;
-			_transform = behaviour.Actor?.GameObject.transform;
+			_transform = Actor.GameObject.transform;
 
 			if (_transform == null)
 			{
 				return 0f;
 			}
 
-			var filteredTargets = targets.Where(t => t.FilterTag(behaviour) && t != _transform).ToList();
+			var filteredTargets = targets.Where(t => TagFilter.Filter(t) && t != _transform).ToList();
 			if (filteredTargets.Count == 0)
 			{
 				return 0f;
@@ -91,21 +107,17 @@ namespace Assets.Crimson.Core.AI
 				return Priority;
 			}
 
-			var sampleScale = behaviour.curveMaxSample - behaviour.curveMinSample;
-
-			switch (behaviour.additionalMode)
+			switch (EvaluationMode)
 			{
-				case "Random mode: priority as probability":
+				case EvaluationMode.Random:
 					var priorities = new List<MinMaxTarget>();
 
 					var priorityCache = 0f;
 
 					foreach (var target in filteredTargets)
 					{
-						var d = math.distance(_transform.position, target.position);
-						var curveSample = math.clamp(
-							(d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-						var priority = behaviour.priorityCurve.Evaluate(curveSample);
+						var distance = math.distance(_transform.position, target.position);
+						var priority = CurvePriority.Evaluate(distance);
 
 						priorities.Add(new MinMaxTarget
 						{
@@ -123,13 +135,11 @@ namespace Assets.Crimson.Core.AI
 					break;
 
 				default: // ReSharper disable once RedundantCaseLabel
-				case "Strict mode: distance to priority":
+				case EvaluationMode.Strict:
 					var orderedTargets = filteredTargets.OrderBy(t =>
 					{
-						var d = math.distance(_transform.position, t.position);
-						var curveSample = math.clamp(
-							(d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-						return behaviour.priorityCurve.Evaluate(curveSample);
+						var distance = math.distance(_transform.position, t.position);
+						return CurvePriority.Evaluate(distance);
 					}).ToList();
 
 					_target = orderedTargets.Last();
@@ -142,6 +152,11 @@ namespace Assets.Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
+			if (_path == null)
+			{
+				_path = new NavMeshPath();
+			}
+
 			_path.ClearCorners();
 			_currentWaypoint = 1;
 			_targetPosition = CalculateBestPosition(_target);
@@ -166,9 +181,8 @@ namespace Assets.Crimson.Core.AI
 		private Vector3 CalculateBestPosition(Transform target)
 		{
 			var sourcePosition = target.position;
-			positions = NavMeshUtils.CalculatePositionsOnCircle(sourcePosition, _behaviour.LimitDistance, MaxPoints);
+			positions = NavMeshUtils.CalculatePositionsOnCircle(sourcePosition, DistanceLimitation.MaxDistance, MaxPoints);
 			var positionStats = new Tuple<float, Vector3>[MaxPoints];
-			var hasPosition = false;
 			for (var i = 0; i < positions.Length; i++)
 			{
 				var position = positions[i];
@@ -186,6 +200,15 @@ namespace Assets.Crimson.Core.AI
 			var topPositions = positionStats.OrderBy(s => s.Item1).Skip(1).Take(2);
 			var bestPosition = UnityEngine.Random.value > .5f ? topPositions.ElementAt(0) : topPositions.ElementAt(1);
 			return bestPosition.Item1 != float.MaxValue ? bestPosition.Item2 : _transform.position;
+		}
+
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
+		}
+
+		public void Execute()
+		{
 		}
 	}
 }

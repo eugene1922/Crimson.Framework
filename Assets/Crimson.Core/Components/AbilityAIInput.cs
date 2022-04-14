@@ -1,4 +1,3 @@
-using Assets.Crimson.Core.AI;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Utils;
@@ -15,11 +14,11 @@ namespace Crimson.Core.Components
 	{
 		public IActor Actor { get; set; }
 
-		public List<AIBehaviourSetting> behaviours;
+		public List<IAIBehaviour> Behaviours = new List<IAIBehaviour>();
 
 		[MinMaxSlider(0, 30, true)] public Vector2 behaviourUpdatePeriod = new Vector2(2f, 6f);
 
-		[HideInInspector] public AIBehaviourSetting activeBehaviour;
+		[HideInInspector] public IAIBehaviour activeBehaviour;
 		[HideInInspector] public float activeBehaviourPriority = 0;
 
 		private Entity _entity;
@@ -33,20 +32,21 @@ namespace Crimson.Core.Components
 
 			_dstManager.AddComponent<NetworkSyncReceive>(entity);
 
-			var tempBehaviours = new List<AIBehaviourSetting>();
+			Behaviours = new List<IAIBehaviour>();
+			//var tempBehaviours = new List<IAIBehaviour>();
 
-			foreach (var t in behaviours)
-			{
-				tempBehaviours.Add(t.CopyFields());
-			}
+			//foreach (var t in Behaviours)
+			//{
+			//	tempBehaviours.Add(t.CopyFields());
+			//}
 
-			behaviours = tempBehaviours;
+			//Behaviours = tempBehaviours;
 
-			for (var i = 0; i < behaviours.Count; i++)
-			{
-				behaviours[i] = behaviours[i].CopyFields();
-				behaviours[i].Actor = Actor;
-			}
+			//for (var i = 0; i < Behaviours.Count; i++)
+			//{
+			//	Behaviours[i] = Behaviours[i].CopyFields();
+			//	Behaviours[i].Actor = Actor;
+			//}
 
 			StartTimer();
 			EvaluateAll();
@@ -71,21 +71,6 @@ namespace Crimson.Core.Components
 
 		public void Execute()
 		{
-		}
-
-		private void OnDrawGizmosSelected()
-		{
-			if (activeBehaviour != null && activeBehaviour.BehaviourInstance is FallbackBehaviour)
-			{
-				var fallbackBehaviour = activeBehaviour.BehaviourInstance as FallbackBehaviour;
-				fallbackBehaviour.DrawGizmosSelected();
-			}
-
-			if (activeBehaviour != null && activeBehaviour.BehaviourInstance is CircleRoamBehaviour)
-			{
-				var circleRoamBehaviour = activeBehaviour.BehaviourInstance as CircleRoamBehaviour;
-				circleRoamBehaviour.DrawGizmosSelected();
-			}
 		}
 	}
 }

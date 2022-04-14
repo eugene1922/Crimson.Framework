@@ -1,7 +1,9 @@
 using Assets.Crimson.Core.AI;
+using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.Common.Filters;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
-using Crimson.Core.Utils;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,40 +15,45 @@ using Random = UnityEngine.Random;
 
 namespace Crimson.Core.AI
 {
-	[Serializable]
-	public class ChaseBehaviour : IAIBehaviour
+	[Serializable, HideMonoScript]
+	public class ChaseBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
 	{
-		public string XAxis => "Target priority based on distance to it";
+		public BasePriority Priority = new BasePriority
+		{
+			Value = 1
+		};
 
-		public string[] AdditionalModes => new[]
-			{"Strict mode: distance to priority", "Random mode: priority as probability"};
+		public CurvePriority CurvePriority = new CurvePriority(0)
+		{
+			XAxisTooltip = "Target priority based on distance to it"
+		};
 
-		public bool NeedCurve => true;
-		public bool NeedTarget => true;
-		public bool NeedActions => false;
+		public EvaluationMode EvaluationMode;
 
-		public bool HasDistanceLimit => false;
+		public TagFilter TagFilter;
+
+		public IActor Actor { get; set; }
 
 		private const float FINISH_CHASE_DISTSQ = 5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 
 		private Transform _target = null;
 		private Transform _transform = null;
-		private readonly NavMeshPath _path = new NavMeshPath();
+		private NavMeshPath _path;
 
 		private int _currentWaypoint = 0;
 
-		public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
+		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
 			_target = null;
-			_transform = behaviour.Actor?.GameObject.transform;
+			_transform = Actor?.GameObject.transform;
 
 			if (_transform == null)
 			{
 				return 0f;
 			}
 
-			var filteredTargets = targets.Where(t => t.FilterTag(behaviour) && t != _transform).ToList();
+			var filteredTargets = targets.Where(t => TagFilter.Filter(t) && t != _transform).ToList();
 			if (filteredTargets.Count == 0)
 			{
 				return 0f;
@@ -55,25 +62,23 @@ namespace Crimson.Core.AI
 			if (filteredTargets.Count == 1)
 			{
 				_target = filteredTargets.First();
-				return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ? 0f :
-					behaviour.basePriority * PRIORITY_MULTIPLIER;
+				return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ
+					? 0f :
+					Priority.Value * PRIORITY_MULTIPLIER;
 			}
 
-			var sampleScale = behaviour.curveMaxSample - behaviour.curveMinSample;
+			var sampleScale = CurvePriority.SampleScale;
 
-			switch (behaviour.additionalMode)
+			switch (EvaluationMode)
 			{
-				case "Random mode: priority as probability":
+				case EvaluationMode.Random:
 					var priorities = new List<MinMaxTarget>();
 
 					var priorityCache = 0f;
 
 					foreach (var target in filteredTargets)
 					{
-						var d = math.distance(_transform.position, target.position);
-						var curveSample = math.clamp(
-							(d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-						var priority = behaviour.priorityCurve.Evaluate(curveSample);
+						var priority = CalculatePriorityFor(target.position);
 
 						priorities.Add(new MinMaxTarget
 						{
@@ -91,25 +96,32 @@ namespace Crimson.Core.AI
 					break;
 
 				default: // ReSharper disable once RedundantCaseLabel
-				case "Strict mode: distance to priority":
-					var orderedTargets = filteredTargets.OrderBy(t =>
-					{
-						var d = math.distance(_transform.position, t.position);
-						var curveSample = math.clamp(
-							(d - behaviour.curveMinSample) / sampleScale, 0f, 1f);
-						return behaviour.priorityCurve.Evaluate(curveSample);
-					}).ToList();
+				case EvaluationMode.Strict:
+					var orderedTargets = filteredTargets
+						.OrderBy(t => CalculatePriorityFor(t.position))
+						.ToList();
 
 					_target = orderedTargets.Last();
 					break;
 			}
 
-			return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ? 0f :
-				behaviour.basePriority * PRIORITY_MULTIPLIER;
+			return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ?
+				0f :
+				Priority.Value * PRIORITY_MULTIPLIER;
+		}
+
+		private float CalculatePriorityFor(Vector3 position)
+		{
+			var distance = math.distance(_transform.position, position);
+			return CurvePriority.Evaluate(distance);
 		}
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
+			if (_path == null)
+			{
+				_path = new NavMeshPath();
+			}
 			_path.ClearCorners();
 
 			if (_target == null || _transform == null)
@@ -148,6 +160,15 @@ namespace Crimson.Core.AI
 			inputData.Move = math.normalize(new float2(dir.x, dir.z));
 
 			return true;
+		}
+
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
+		}
+
+		public void Execute()
+		{
 		}
 	}
 }

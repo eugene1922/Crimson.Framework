@@ -1,50 +1,64 @@
+using Assets.Crimson.Core.AI.GeneralParams;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
-using System;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Crimson.Core.AI
 {
-	[Serializable]
-	public class RoamBehaviour : IAIBehaviour
+	[HideMonoScript]
+	public class RunAwayBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
 	{
-		public string XAxis => "";
+		public BasePriority Priority = new BasePriority
+		{
+			Value = 1
+		};
 
-		public string[] AdditionalModes => new string[0];
+		public CurvePriority CurvePriority = new CurvePriority(0)
+		{
+			XAxisTooltip = "current health"
+		};
 
-		public bool NeedCurve => false;
-		public bool NeedTarget => false;
-		public bool NeedActions => false;
-
-		public bool HasDistanceLimit => false;
+		public IActor Actor { get; set; }
 
 		private const float FINISH_ROAM_DISTSQ = 2f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 
-		private AIBehaviourSetting _behaviour = null;
+		private AbilityActorPlayer _player = null;
 		private Transform _transform = null;
-		private readonly NavMeshPath _path = new NavMeshPath();
+		private NavMeshPath _path;
 
 		private int _currentWaypoint = 0;
 
-		public float Evaluate(Entity entity, AIBehaviourSetting behaviour, AbilityAIInput ai, List<Transform> targets)
+		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
-			_behaviour = behaviour;
-			_transform = _behaviour.Actor.GameObject.transform;
+			var actorObject = Actor.GameObject;
+			_transform = actorObject.transform;
+			_player = actorObject.GetComponent<AbilityActorPlayer>();
 
-			return Random.value * _behaviour.basePriority;
+			if (_player == null)
+			{
+				return 0f;
+			}
+
+			var health = _player.CurrentHealth;
+			return CurvePriority.Evaluate(health) * PRIORITY_MULTIPLIER;
 		}
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
 			Vector3 target;
 			float distSq;
+
+			if (_path == null)
+			{
+				_path = new NavMeshPath();
+			}
 
 			_path.ClearCorners();
 
@@ -63,7 +77,10 @@ namespace Crimson.Core.AI
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null) return false;
+			if (_path.status == NavMeshPathStatus.PathInvalid)
+			{
+				return false;
+			}
 
 			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
 
@@ -72,7 +89,8 @@ namespace Crimson.Core.AI
 				_currentWaypoint++;
 			}
 
-			if ((_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ) || _currentWaypoint >= _path.corners.Length)
+			if (_currentWaypoint >= _path.corners.Length ||
+				(_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ))
 			{
 				inputData.Move = float2.zero;
 				return false;
@@ -83,6 +101,15 @@ namespace Crimson.Core.AI
 			inputData.Move = new float2(dir.x, dir.z);
 
 			return true;
+		}
+
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
+		}
+
+		public void Execute()
+		{
 		}
 	}
 }
