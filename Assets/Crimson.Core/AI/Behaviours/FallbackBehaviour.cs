@@ -36,8 +36,8 @@ namespace Assets.Crimson.Core.AI
 
 		public TagFilter TagFilter;
 
-		public Vector3 _fallbackPlace;
-		public Vector3[] positions = new Vector3[MaxPoints];
+		private Vector3 _fallbackPlace;
+		private Vector3[] positions = new Vector3[MaxPoints];
 		private const int MaxPoints = 16;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 		private NavMeshPath _path;

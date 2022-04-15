@@ -9,6 +9,7 @@ using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Crimson.Core.AI
 {
@@ -33,13 +34,25 @@ namespace Assets.Crimson.Core.AI
 
 		public IActor Actor { get; set; }
 
+		public NavMeshPath Path
+		{
+			get
+			{
+				if (_path == null)
+				{
+					_path = new NavMeshPath();
+				}
+				return _path;
+			}
+		}
+
 		private const float FINISH_CHASE_DISTSQ = 5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
 
 		private Transform _target = null;
 		private Transform _transform = null;
-		private readonly UnityEngine.AI.NavMeshPath _path = new UnityEngine.AI.NavMeshPath();
+		private UnityEngine.AI.NavMeshPath _path;
 
 		private int _currentWaypoint = 0;
 
@@ -111,7 +124,7 @@ namespace Assets.Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
-			_path.ClearCorners();
+			Path.ClearCorners();
 
 			if (_target == null || _transform == null)
 			{
@@ -119,19 +132,19 @@ namespace Assets.Crimson.Core.AI
 			}
 
 			_currentWaypoint = 1;
-			var result = UnityEngine.AI.NavMesh.CalculatePath(_transform.position, _target.position, UnityEngine.AI.NavMesh.AllAreas, _path);
+			var result = UnityEngine.AI.NavMesh.CalculatePath(_transform.position, _target.position, UnityEngine.AI.NavMesh.AllAreas, Path);
 
 			return result;
 		}
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == UnityEngine.AI.NavMeshPathStatus.PathInvalid)
+			if (Path.status == UnityEngine.AI.NavMeshPathStatus.PathInvalid)
 			{
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
+			var distSq = math.distancesq(_transform.position, Path.corners[_currentWaypoint]);
 
 			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
 			{
@@ -146,7 +159,7 @@ namespace Assets.Crimson.Core.AI
 				return true;
 			}
 
-			if (_currentWaypoint >= _path.corners.Length)
+			if (_currentWaypoint >= Path.corners.Length)
 			{
 				inputData.Move = float2.zero;
 				inputData.CustomInput[CustomInput.CustomInputIndex] = 1f;
@@ -154,7 +167,7 @@ namespace Assets.Crimson.Core.AI
 				return false;
 			}
 
-			var dir = _path.corners[_currentWaypoint] - _transform.position;
+			var dir = Path.corners[_currentWaypoint] - _transform.position;
 
 			inputData.Move = math.normalize(new float2(dir.x, dir.z));
 
