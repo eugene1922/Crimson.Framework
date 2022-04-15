@@ -20,7 +20,7 @@ namespace Assets.Crimson.Core.Common.Filters
 		public TagFilterMode filterMode;
 
 		[ShowIf(nameof(use))]
-		[ValueDropdown(nameof(Tags))]
+		[ValueDropdown(nameof(Tags), IsUniqueList = true)]
 		public List<string> filterTags;
 
 		public bool Filter(IActor actor)
