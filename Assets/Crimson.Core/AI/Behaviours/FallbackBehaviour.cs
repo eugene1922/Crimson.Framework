@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
 using Assets.Crimson.Core.Utils;
 using Crimson.Core.AI;
@@ -15,7 +16,7 @@ using UnityEngine.AI;
 namespace Assets.Crimson.Core.AI
 {
 	[HideMonoScript]
-	public class FallbackBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
+	public class FallbackBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour, IDrawGizmos
 	{
 		public BasePriority BasePriority = new BasePriority
 		{
@@ -181,7 +182,7 @@ namespace Assets.Crimson.Core.AI
 			return result;
 		}
 
-		internal void DrawGizmosSelected()
+		public void DrawGizmos()
 		{
 			Gizmos.color = Color.green;
 			Gizmos.DrawSphere(_fallbackPlace, .2f);
