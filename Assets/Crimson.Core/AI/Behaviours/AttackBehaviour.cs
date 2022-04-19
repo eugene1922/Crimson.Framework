@@ -1,4 +1,5 @@
 using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -15,7 +16,7 @@ using Random = UnityEngine.Random;
 namespace Crimson.Core.AI
 {
 	[Serializable, HideMonoScript]
-	public class AttackBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
+	public class AttackBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour, IDrawGizmos
 	{
 		public BasePriority Priority = new BasePriority
 		{
@@ -83,7 +84,7 @@ namespace Crimson.Core.AI
 
 			foreach (var t in orderedTargets)
 			{
-				if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, t.position - _transform.position, out var hit,
+				if (Physics.Raycast(GetDirectionRay(t), out var hit,
 					AIM_MAX_DIST))
 				{
 					if (hit.transform != t)
@@ -115,14 +116,34 @@ namespace Crimson.Core.AI
 				return false;
 			}
 
-			if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
-				AIM_MAX_DIST) && hit.transform == _target)
+			if (Physics.Raycast(GetDirectionRay(_target), out var hit, AIM_MAX_DIST) && hit.transform == _target)
 			{
 				inputData.CustomInput[ExecutableCustomInput.CustomInputIndex] = 1f;
 				return true;
 			}
 
 			return false;
+		}
+
+		public void DrawGizmos()
+		{
+			if (_target == null)
+			{
+				return;
+			}
+			Gizmos.color = Color.green;
+			Gizmos.DrawRay(GetDirectionRay(_target));
+			Gizmos.color = Color.red;
+			Gizmos.DrawSphere(_target.position, 1);
+		}
+
+		private Ray GetDirectionRay(Transform target)
+		{
+			return new Ray()
+			{
+				origin = _transform.position + VIEW_POINT_DELTA,
+				direction = target.position - _transform.position
+			};
 		}
 	}
 }

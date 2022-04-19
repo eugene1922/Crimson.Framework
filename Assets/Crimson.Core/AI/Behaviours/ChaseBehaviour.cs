@@ -1,5 +1,6 @@
 using Assets.Crimson.Core.AI;
 using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -10,13 +11,12 @@ using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Crimson.Core.AI
 {
 	[Serializable, HideMonoScript]
-	public class ChaseBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
+	public class ChaseBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour, IDrawGizmos
 	{
 		public CurvePriority CurvePriority = new CurvePriority(0)
 		{
@@ -32,26 +32,12 @@ namespace Crimson.Core.AI
 
 		public TagFilter TagFilter;
 
-		private const float FINISH_CHASE_DISTSQ = 5f;
+		private const float FINISH_CHASE_DISTSQ = 1f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
-		private int _currentWaypoint = 0;
-		private NavMeshPath _path;
+		private readonly AIPathControl _path = new AIPathControl(finishThreshold: FINISH_CHASE_DISTSQ);
 		private Transform _target = null;
 		private Transform _transform = null;
 		public IActor Actor { get; set; }
-
-		public NavMeshPath Path
-		{
-			get
-			{
-				if (_path == null)
-				{
-					_path = new NavMeshPath();
-				}
-
-				return _path;
-			}
-		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -60,29 +46,20 @@ namespace Crimson.Core.AI
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (Path.status == NavMeshPathStatus.PathInvalid)
+			if (!_path.IsValid)
 			{
 				return false;
 			}
 
-			var distance = 0.0f;
-			if (Path.corners.Length > _currentWaypoint)
-			{
-				distance = math.distancesq(_transform.position, Path.corners[_currentWaypoint]);
-			}
+			_path.NextPoint();
 
-			if (distance <= Constants.WAYPOINT_SQDIST_THRESH)
-			{
-				_currentWaypoint++;
-			}
-
-			if (_currentWaypoint >= Path.corners.Length)
+			if (_path.HasArrived)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = Path.corners[_currentWaypoint] - _transform.position;
+			var dir = _path.Direction;
 
 			inputData.Move = math.normalize(new float2(dir.x, dir.z));
 
@@ -91,7 +68,7 @@ namespace Crimson.Core.AI
 
 		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
-			_target = null;
+			Transform target = null;
 			_transform = Actor?.GameObject.transform;
 
 			if (_transform == null)
@@ -107,8 +84,9 @@ namespace Crimson.Core.AI
 
 			if (filteredTargets.Count == 1)
 			{
-				_target = filteredTargets.First();
-				return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ
+				target = filteredTargets.First();
+				_target = target;
+				return math.distancesq(_transform.position, target.position) < FINISH_CHASE_DISTSQ
 					? 0f :
 					Priority.Value * PRIORITY_MULTIPLIER;
 			}
@@ -122,15 +100,15 @@ namespace Crimson.Core.AI
 
 					var priorityCache = 0f;
 
-					foreach (var target in filteredTargets)
+					foreach (var item in filteredTargets)
 					{
-						var priority = CalculatePriorityFor(target.position);
+						var priority = CalculatePriorityFor(item.position);
 
 						priorities.Add(new MinMaxTarget
 						{
 							Min = priorityCache,
 							Max = priority + priorityCache,
-							Target = target
+							Target = item
 						});
 
 						priorityCache += priority;
@@ -138,7 +116,7 @@ namespace Crimson.Core.AI
 
 					var randomNumber = Random.Range(0f, priorityCache);
 
-					_target = priorities.Find(t => t.Min < randomNumber && t.Max >= randomNumber).Target;
+					target = priorities.Find(t => t.Min < randomNumber && t.Max >= randomNumber).Target;
 					break;
 
 				default: // ReSharper disable once RedundantCaseLabel
@@ -147,11 +125,11 @@ namespace Crimson.Core.AI
 						.OrderBy(t => CalculatePriorityFor(t.position))
 						.ToList();
 
-					_target = orderedTargets.Last();
+					target = orderedTargets.Last();
 					break;
 			}
-
-			return math.distancesq(_transform.position, _target.position) < FINISH_CHASE_DISTSQ ?
+			_target = target;
+			return math.distancesq(_transform.position, target.position) < FINISH_CHASE_DISTSQ ?
 				0f :
 				Priority.Value * PRIORITY_MULTIPLIER;
 		}
@@ -162,23 +140,26 @@ namespace Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
-			Path.ClearCorners();
-
-			if (_target == null || _transform == null)
-			{
-				return false;
-			}
-
-			_currentWaypoint = 1;
-			var result = NavMesh.CalculatePath(_transform.position, _target.position, NavMesh.AllAreas, Path);
-
-			return result;
+			return _path.Setup(_transform, _target);
 		}
 
 		private float CalculatePriorityFor(Vector3 position)
 		{
 			var distance = math.distance(_transform.position, position);
 			return CurvePriority.Evaluate(distance);
+		}
+
+		public void DrawGizmos()
+		{
+			if (_target == null)
+			{
+				return;
+			}
+
+			Gizmos.color = Color.green;
+			var targetPosition = _path.EndWaypointPosition;
+			Gizmos.DrawLine(_transform.position, targetPosition);
+			Gizmos.DrawSphere(targetPosition, .5f);
 		}
 	}
 }

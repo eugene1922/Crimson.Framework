@@ -42,11 +42,11 @@ namespace Assets.Crimson.Core.AI
 		private const int MaxPoints = 16;
 		private const float PositionThreshold = .5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
-		private NavMeshPath _path;
-		private int _currentWaypoint = 0;
 		private Transform _target;
 		private Vector3 _targetPosition;
 		private Transform _transform = null;
+
+		private readonly AIPathControl _path = new AIPathControl(finishThreshold: PositionThreshold);
 
 		private float Priority
 		{
@@ -62,24 +62,20 @@ namespace Assets.Crimson.Core.AI
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null)
+			if (!_path.IsValid)
 			{
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
-			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
-			{
-				_currentWaypoint++;
-			}
+			_path.NextPoint();
 
-			if ((_currentWaypoint == _path.corners.Length - 1 && distSq < PositionThreshold) || _currentWaypoint >= _path.corners.Length)
+			if (_path.HasArrived)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = math.normalize(_path.corners[_currentWaypoint] - _transform.position);
+			var dir = _path.Direction;
 			inputData.Move = new float2(dir.x, dir.z);
 
 			return true;
@@ -153,24 +149,14 @@ namespace Assets.Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
-			if (_path == null)
-			{
-				_path = new NavMeshPath();
-			}
-
-			_path.ClearCorners();
-			_currentWaypoint = 1;
 			_targetPosition = CalculateBestPosition(_target);
-
-			var result = NavMesh.CalculatePath(_transform.position, _targetPosition, NavMesh.AllAreas, _path);
-
-			return result;
+			return _path.Setup(_transform, _targetPosition);
 		}
 
 		public void DrawGizmos()
 		{
 			Gizmos.color = Color.green;
-			Gizmos.DrawSphere(_targetPosition, .2f);
+			Gizmos.DrawSphere(_path.EndWaypointPosition, .2f);
 			Gizmos.color = Color.yellow;
 			var points = positions;
 			for (var i = 0; i < points.Length; i++)
@@ -184,17 +170,18 @@ namespace Assets.Crimson.Core.AI
 			var sourcePosition = target.position;
 			positions = NavMeshUtils.CalculatePositionsOnCircle(sourcePosition, DistanceLimitation.MaxDistance, MaxPoints);
 			var positionStats = new Tuple<float, Vector3>[MaxPoints];
+			var path = new NavMeshPath();
 			for (var i = 0; i < positions.Length; i++)
 			{
 				var position = positions[i];
 				if (position == Vector3.zero
-					|| !NavMesh.CalculatePath(_transform.position, position, NavMesh.AllAreas, _path))
+					|| !NavMesh.CalculatePath(_transform.position, position, NavMesh.AllAreas, path))
 				{
 					positionStats[i] = new Tuple<float, Vector3>(float.MaxValue, position);
 					continue;
 				}
 
-				var pathLength = _path.Length();
+				var pathLength = path.Length();
 				positionStats[i] = new Tuple<float, Vector3>(pathLength, position);
 			}
 

@@ -1,4 +1,6 @@
-﻿using Assets.Crimson.Core.AI.GeneralParams;
+﻿using Assets.Crimson.Core.AI;
+using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.AI.Interfaces;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
@@ -7,13 +9,12 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Crimson.Core.AI
 {
 	[HideMonoScript]
-	public class LimitedRoamBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
+	public class LimitedRoamBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour, IDrawGizmos
 	{
 		public BasePriority Priority = new BasePriority
 		{
@@ -30,9 +31,7 @@ namespace Crimson.Core.AI
 		private const float FINISH_ROAM_DISTSQ = 2f;
 
 		private Transform _transform = null;
-		private NavMeshPath _path;
-
-		private int _currentWaypoint = 0;
+		private readonly AIPathControl _path = new AIPathControl(finishThreshold: FINISH_ROAM_DISTSQ);
 
 		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
@@ -46,48 +45,31 @@ namespace Crimson.Core.AI
 			Vector3 target;
 			float distSq;
 
-			if (_path == null)
-			{
-				_path = new NavMeshPath();
-			}
-
-			_path.ClearCorners();
-
-			_currentWaypoint = 1;
-
 			do
 			{
 				target = NavMeshRandomPointUtil.GetRandomLocation(DistanceLimitation.MaxDistance);
 				distSq = math.distancesq(_transform.position, target);
 			} while (distSq < FINISH_ROAM_DISTSQ);
 
-			var result = NavMesh.CalculatePath(_transform.position, target, NavMesh.AllAreas, _path);
-
-			return result;
+			return _path.Setup(_transform, target);
 		}
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid || _transform == null)
+			if (!_path.IsValid)
 			{
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
+			_path.NextPoint();
 
-			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
-			{
-				_currentWaypoint++;
-			}
-
-			if ((_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ)
-				|| _currentWaypoint >= _path.corners.Length)
+			if (_path.HasArrived)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = math.normalize(_path.corners[_currentWaypoint] - _transform.position);
+			var dir = _path.Direction;
 
 			inputData.Move = new float2(dir.x, dir.z);
 
@@ -101,6 +83,14 @@ namespace Crimson.Core.AI
 
 		public void Execute()
 		{
+		}
+
+		public void DrawGizmos()
+		{
+			Gizmos.color = Color.green;
+			var targetPosition = _path.EndWaypointPosition;
+			Gizmos.DrawLine(_transform.position, targetPosition);
+			Gizmos.DrawSphere(targetPosition, .5f);
 		}
 	}
 }

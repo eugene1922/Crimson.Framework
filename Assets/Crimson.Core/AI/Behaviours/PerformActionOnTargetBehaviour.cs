@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
@@ -9,12 +10,11 @@ using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Crimson.Core.AI
 {
 	[HideMonoScript]
-	public class PerformActionOnTargetBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
+	public class PerformActionOnTargetBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour, IDrawGizmos
 	{
 		public BasePriority Priority = new BasePriority
 		{
@@ -34,27 +34,13 @@ namespace Assets.Crimson.Core.AI
 
 		public IActor Actor { get; set; }
 
-		public NavMeshPath Path
-		{
-			get
-			{
-				if (_path == null)
-				{
-					_path = new NavMeshPath();
-				}
-				return _path;
-			}
-		}
-
 		private const float FINISH_CHASE_DISTSQ = 5f;
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
 
 		private Transform _target = null;
 		private Transform _transform = null;
-		private UnityEngine.AI.NavMeshPath _path;
-
-		private int _currentWaypoint = 0;
+		private readonly AIPathControl _path = new AIPathControl(finishThreshold: FINISH_CHASE_DISTSQ);
 
 		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
@@ -124,32 +110,17 @@ namespace Assets.Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
-			Path.ClearCorners();
-
-			if (_target == null || _transform == null)
-			{
-				return false;
-			}
-
-			_currentWaypoint = 1;
-			var result = UnityEngine.AI.NavMesh.CalculatePath(_transform.position, _target.position, UnityEngine.AI.NavMesh.AllAreas, Path);
-
-			return result;
+			return _path.Setup(_transform, _target);
 		}
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (Path.status == UnityEngine.AI.NavMeshPathStatus.PathInvalid)
+			if (!_path.IsValid)
 			{
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, Path.corners[_currentWaypoint]);
-
-			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
-			{
-				_currentWaypoint++;
-			}
+			_path.NextPoint();
 
 			if (Physics.Raycast(_transform.position + VIEW_POINT_DELTA, _target.position - _transform.position, out var hit,
 				DistanceLimitation.MaxDistance) && hit.transform == _target)
@@ -159,7 +130,7 @@ namespace Assets.Crimson.Core.AI
 				return true;
 			}
 
-			if (_currentWaypoint >= Path.corners.Length)
+			if (_path.HasArrived)
 			{
 				inputData.Move = float2.zero;
 				inputData.CustomInput[CustomInput.CustomInputIndex] = 1f;
@@ -167,7 +138,7 @@ namespace Assets.Crimson.Core.AI
 				return false;
 			}
 
-			var dir = Path.corners[_currentWaypoint] - _transform.position;
+			var dir = _path.Direction;
 
 			inputData.Move = math.normalize(new float2(dir.x, dir.z));
 
@@ -181,6 +152,19 @@ namespace Assets.Crimson.Core.AI
 
 		public void Execute()
 		{
+		}
+
+		public void DrawGizmos()
+		{
+			if (_target == null)
+			{
+				return;
+			}
+
+			Gizmos.color = Color.green;
+			var targetPosition = _path.EndWaypointPosition;
+			Gizmos.DrawLine(_transform.position, targetPosition);
+			Gizmos.DrawSphere(targetPosition, .5f);
 		}
 	}
 }

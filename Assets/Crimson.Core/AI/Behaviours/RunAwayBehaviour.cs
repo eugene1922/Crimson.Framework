@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.AI;
 using Assets.Crimson.Core.AI.GeneralParams;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Crimson.Core.AI
 {
@@ -31,9 +31,7 @@ namespace Crimson.Core.AI
 
 		private AbilityActorPlayer _player = null;
 		private Transform _transform = null;
-		private NavMeshPath _path;
-
-		private int _currentWaypoint = 0;
+		private readonly AIPathControl _path = new AIPathControl(finishThreshold: FINISH_ROAM_DISTSQ);
 
 		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
 		{
@@ -55,48 +53,31 @@ namespace Crimson.Core.AI
 			Vector3 target;
 			float distSq;
 
-			if (_path == null)
-			{
-				_path = new NavMeshPath();
-			}
-
-			_path.ClearCorners();
-
-			_currentWaypoint = 1;
-
 			do
 			{
 				target = NavMeshRandomPointUtil.GetRandomLocation();
 				distSq = math.distancesq(_transform.position, target);
 			} while (distSq < FINISH_ROAM_DISTSQ);
 
-			var result = NavMesh.CalculatePath(_transform.position, target, NavMesh.AllAreas, _path);
-
-			return result;
+			return _path.Setup(_transform, target);
 		}
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid)
+			if (!_path.IsValid)
 			{
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
+			_path.NextPoint();
 
-			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
-			{
-				_currentWaypoint++;
-			}
-
-			if (_currentWaypoint >= _path.corners.Length ||
-				(_currentWaypoint == _path.corners.Length - 1 && distSq < FINISH_ROAM_DISTSQ))
+			if (_path.HasArrived)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = math.normalize(_path.corners[_currentWaypoint] - _transform.position);
+			var dir = _path.Direction;
 
 			inputData.Move = new float2(dir.x, dir.z);
 
