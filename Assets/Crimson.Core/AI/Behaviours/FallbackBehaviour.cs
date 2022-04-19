@@ -81,9 +81,13 @@ namespace Assets.Crimson.Core.AI
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, Path.corners[_currentWaypoint]);
+			var distance = 0.0f;
+			if (Path.corners.Length > _currentWaypoint)
+			{
+				distance = math.distancesq(_transform.position, Path.corners[_currentWaypoint]);
+			}
 
-			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
+			if (distance <= Constants.WAYPOINT_SQDIST_THRESH)
 			{
 				_currentWaypoint++;
 			}

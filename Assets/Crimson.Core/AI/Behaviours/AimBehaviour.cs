@@ -61,7 +61,9 @@ namespace Assets.Crimson.Core.AI
 						x = targetRotation.y * targetRotation.w,
 						y = targetRotation.x * targetRotation.w,
 					};
-					inputData.Look = math.normalize(lookInput);
+					inputData.Look = lookInput.x == 0 && lookInput.y == 0 ?
+						float2.zero
+						: math.normalize(lookInput);
 					result = true;
 				}
 				else if (_catchingAimTime == -1)

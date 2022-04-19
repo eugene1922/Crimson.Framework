@@ -30,6 +30,8 @@ namespace Crimson.Core.Components
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
+			Behaviours = new List<IAIBehaviour>();
+
 			_dstManager.AddComponent<NetworkSyncReceive>(entity);
 
 			StartTimer();
