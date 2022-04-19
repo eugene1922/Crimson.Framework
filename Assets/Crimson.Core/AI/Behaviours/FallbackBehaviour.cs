@@ -57,6 +57,18 @@ namespace Assets.Crimson.Core.AI
 			}
 		}
 
+		public NavMeshPath Path
+		{
+			get
+			{
+				if (_path == null)
+				{
+					_path = new NavMeshPath();
+				}
+				return _path;
+			}
+		}
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
@@ -64,25 +76,25 @@ namespace Assets.Crimson.Core.AI
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
 		{
-			if (_path.status == NavMeshPathStatus.PathInvalid)
+			if (Path.status == NavMeshPathStatus.PathInvalid)
 			{
 				return false;
 			}
 
-			var distSq = math.distancesq(_transform.position, _path.corners[_currentWaypoint]);
+			var distSq = math.distancesq(_transform.position, Path.corners[_currentWaypoint]);
 
 			if (distSq <= Constants.WAYPOINT_SQDIST_THRESH)
 			{
 				_currentWaypoint++;
 			}
 
-			if (_currentWaypoint >= _path.corners.Length)
+			if (_currentWaypoint >= Path.corners.Length)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = _path.corners[_currentWaypoint] - _transform.position;
+			var dir = Path.corners[_currentWaypoint] - _transform.position;
 
 			inputData.Move = math.normalize(new float2(dir.x, dir.z));
 
@@ -163,12 +175,7 @@ namespace Assets.Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
-			if (_path == null)
-			{
-				_path = new NavMeshPath();
-			}
-
-			_path.ClearCorners();
+			Path.ClearCorners();
 
 			if (_target == null || _transform == null)
 			{
@@ -177,7 +184,7 @@ namespace Assets.Crimson.Core.AI
 
 			_currentWaypoint = 1;
 			_fallbackPlace = CalculateBestPosition(_target);
-			var result = NavMesh.CalculatePath(_transform.position, _fallbackPlace, NavMesh.AllAreas, _path);
+			var result = NavMesh.CalculatePath(_transform.position, _fallbackPlace, NavMesh.AllAreas, Path);
 
 			return result;
 		}
@@ -208,13 +215,13 @@ namespace Assets.Crimson.Core.AI
 					continue;
 				}
 
-				var hasPath = NavMesh.CalculatePath(_transform.position, position, NavMesh.AllAreas, _path);
+				var hasPath = NavMesh.CalculatePath(_transform.position, position, NavMesh.AllAreas, Path);
 				if (!hasPath)
 				{
 					continue;
 				}
 
-				var pathLength = _path.Length();
+				var pathLength = Path.Length();
 				if (pathLength < minimalPathLength)
 				{
 					bestPosition = position;

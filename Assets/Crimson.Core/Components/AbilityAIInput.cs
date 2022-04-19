@@ -32,8 +32,6 @@ namespace Crimson.Core.Components
 
 			_dstManager.AddComponent<NetworkSyncReceive>(entity);
 
-			Behaviours = new List<IAIBehaviour>();
-
 			StartTimer();
 			EvaluateAll();
 		}
