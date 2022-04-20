@@ -40,7 +40,6 @@ namespace Assets.Crimson.Core.AI
 		private Vector3 _fallbackPlace;
 		private Vector3[] positions = new Vector3[MaxPoints];
 		private const int MaxPoints = 16;
-		private const float PRIORITY_MULTIPLIER = 0.5f;
 		private Transform _target = null;
 		private Transform _transform = null;
 
@@ -53,8 +52,9 @@ namespace Assets.Crimson.Core.AI
 		{
 			get
 			{
-				return math.distancesq(_transform.position, _fallbackPlace) <= Finish_position_threshold ? 0f :
-					BasePriority.Value * PRIORITY_MULTIPLIER;
+				var distanceToTarget = math.distancesq(_transform.position, _target.position);
+				return _path.IsValid && _path.HasArrived ? 0f :
+					CurvePriority.Evaluate(distanceToTarget) * BasePriority.Value;
 			}
 		}
 

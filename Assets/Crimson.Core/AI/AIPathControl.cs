@@ -20,7 +20,7 @@ namespace Assets.Crimson.Core.AI
 		{
 			get
 			{
-				if (_currentWaypoint != _path.corners.Length - 1)
+				if (_currentWaypoint != Path.corners.Length - 1)
 				{
 					return _currentWaypoint >= Path.corners.Length;
 				}
