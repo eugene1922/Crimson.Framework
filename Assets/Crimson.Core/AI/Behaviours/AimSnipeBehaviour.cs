@@ -35,7 +35,6 @@ namespace Assets.Crimson.Core.AI.Behaviours
 		public float AttackDelay = 1f;
 
 		public float SightRadius = 20;
-		public float SpreadMultiplier = 1;
 		public float SearchTime = .25f;
 
 		private const float AIM_MAX_DIST = 40f;
