@@ -19,7 +19,7 @@ namespace Crimson.Core.AI
 			Value = 1
 		};
 
-		public CurvePriority CurvePriority = new CurvePriority(0)
+		public EvaluatedCurve CurvePriority = new EvaluatedCurve(0)
 		{
 			XAxisTooltip = "current health"
 		};

@@ -2,6 +2,7 @@
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
+using Crimson.Core.Loading.SpawnDataTypes;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System;
@@ -86,6 +87,7 @@ namespace Crimson.Core.Components
 		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
 
 		public bool suppressWeaponSpawn = false;
+		public List<GameObject> _aimEffects;
 
 		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
@@ -182,6 +184,18 @@ namespace Crimson.Core.Components
 			SpawnPointsRoot.SetParent(gameObject.transform);
 
 			SpawnPointsRoot.localPosition = Vector3.zero;
+			for (var i = 0; i < _aimEffects.Count; i++)
+			{
+				var item = _aimEffects[i];
+				var spawnData = new SpawnItemData()
+				{
+					Owner = actor,
+					Spawner = actor,
+					Prefab = item
+				};
+				var instance = ActorSpawn.Spawn(spawnData);
+				instance.transform.SetParent(SpawnPointsRoot, false);
+			}
 			ResetSpawnPointRootRotation();
 
 			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)

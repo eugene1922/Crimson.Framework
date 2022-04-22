@@ -22,7 +22,7 @@ namespace Crimson.Core.AI
 			Value = 1
 		};
 
-		public CurvePriority CurvePriority = new CurvePriority(0);
+		public EvaluatedCurve CurvePriority = new EvaluatedCurve(0);
 		public TagFilter TagFilter;
 
 		private const float FINISH_BEHAVIOUR_DISTSQ = 20f;

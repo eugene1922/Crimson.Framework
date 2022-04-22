@@ -276,7 +276,7 @@ namespace Crimson.Core.Common
 				result.transform.SetParent(parent);
 			}
 
-			if (data.SampledComponents.Length > 0)
+			if (data.SampledComponents != null && data.SampledComponents.Length > 0)
 			{
 				if (data.DeleteExistingComponents)
 				{

@@ -22,7 +22,7 @@ namespace Assets.Crimson.Core.AI
 			Value = 1
 		};
 
-		public CurvePriority CurvePriority = new CurvePriority(0)
+		public EvaluatedCurve CurvePriority = new EvaluatedCurve(0)
 		{
 			XAxisTooltip = "distance to closest seen target"
 		};
@@ -33,6 +33,8 @@ namespace Assets.Crimson.Core.AI
 
 		[InfoBox("Time before shoot (seconds)")]
 		public float AttackDelay = 1f;
+
+		public Vector2 Offset = Vector2.one;
 
 		private const float AIM_MAX_DIST = 40f;
 		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
@@ -149,11 +151,14 @@ namespace Assets.Crimson.Core.AI
 
 		public void DrawGizmos()
 		{
-			var rayLength = 40;
-			var raySize = .2f;
 			Gizmos.color = Color.red;
 			Gizmos.matrix = transform.localToWorldMatrix;
-			Gizmos.DrawCube(Vector3.forward * rayLength / 2, new Vector3(raySize, raySize, rayLength));
+			var direction = Vector3.forward;
+			var xAngle = UnityEngine.Random.Range(-Offset.x, Offset.x);
+			var yAngle = UnityEngine.Random.Range(-Offset.y, Offset.y);
+			direction = Quaternion.AngleAxis(yAngle, Vector3.up) * direction;
+			direction = Quaternion.AngleAxis(xAngle, Vector3.right) * direction;
+			Gizmos.DrawRay(Vector3.zero, direction);
 		}
 	}
 }

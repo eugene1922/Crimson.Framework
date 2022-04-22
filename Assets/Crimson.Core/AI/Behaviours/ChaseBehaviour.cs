@@ -18,7 +18,7 @@ namespace Crimson.Core.AI
 	[Serializable, HideMonoScript]
 	public class ChaseBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour, IDrawGizmos
 	{
-		public CurvePriority CurvePriority = new CurvePriority(0)
+		public EvaluatedCurve CurvePriority = new EvaluatedCurve(0)
 		{
 			XAxisTooltip = "Target priority based on distance to it"
 		};

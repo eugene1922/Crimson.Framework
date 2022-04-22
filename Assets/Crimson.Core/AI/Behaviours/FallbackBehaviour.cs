@@ -23,7 +23,7 @@ namespace Assets.Crimson.Core.AI
 			Value = 1
 		};
 
-		public CurvePriority CurvePriority = new CurvePriority(0)
+		public EvaluatedCurve CurvePriority = new EvaluatedCurve(0)
 		{
 			XAxisTooltip = "Target priority based on distance to it"
 		};

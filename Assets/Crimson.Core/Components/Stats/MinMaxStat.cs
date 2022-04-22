@@ -12,11 +12,17 @@ namespace Crimson.Core.Components.Stats
 
 		[SerializeField] private T _maxLimit;
 
+		[SerializeField] private bool _freeze;
+
 		public T Current
 		{
 			get => _current;
 			set
 			{
+				if (_freeze)
+				{
+					return;
+				}
 				var isEquals = _current.Equals(value);
 				if (isEquals)
 				{
