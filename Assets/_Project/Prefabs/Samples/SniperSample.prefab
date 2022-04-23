@@ -203,6 +203,8 @@ MonoBehaviour:
     HasActorProjectileAnimation: 1
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
+  _aimEffects:
+  - {fileID: 7868634180359517474, guid: e754f93f4ca67664caec7dc8a3c27cb2, type: 3}
   appliedPerksNames: []
   aimingByInput: 0
 --- !u!114 &6430768560650811411
@@ -317,10 +319,12 @@ MonoBehaviour:
       _current: 100
       _minLimit: 0
       _maxLimit: 100
+      _freeze: 0
     Health:
       _current: 100
       _minLimit: 0
       _maxLimit: 100
+      _freeze: 0
     Level: 0
     LevelUpRequiredExperience: 0
     TotalDamageApplied: 0

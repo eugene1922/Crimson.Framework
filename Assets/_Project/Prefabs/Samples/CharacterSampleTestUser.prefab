@@ -205,10 +205,12 @@ MonoBehaviour:
       _current: 100
       _minLimit: 0
       _maxLimit: 100
+      _freeze: 1
     Health:
       _current: 100
       _minLimit: 0
       _maxLimit: 100
+      _freeze: 1
     Level: 1
     LevelUpRequiredExperience: 100
     TotalDamageApplied: 0

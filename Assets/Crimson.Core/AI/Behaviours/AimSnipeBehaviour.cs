@@ -38,7 +38,7 @@ namespace Assets.Crimson.Core.AI.Behaviours
 		public float SearchTime = .25f;
 
 		private const float AIM_MAX_DIST = 40f;
-		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 0.6f, 0f);
+		private readonly Vector3 VIEW_POINT_DELTA = new Vector3(0f, 1.5f, 0f);
 		private const float SHOOTING_ANGLE_THRESH = 1f;
 		private Transform _target = null;
 		private Transform _weaponRoot;
