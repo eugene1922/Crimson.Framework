@@ -205,7 +205,7 @@ MonoBehaviour:
       _current: 100
       _minLimit: 0
       _maxLimit: 100
-      _freeze: 1
+      _freeze: 0
     Health:
       _current: 100
       _minLimit: 0
