@@ -43,8 +43,7 @@ namespace Assets.Crimson.Core.AI
 		private Transform _target = null;
 		private Transform _transform = null;
 
-		private const float Finish_position_threshold = .5f;
-		private readonly AIPathControl _path = new AIPathControl(finishThreshold: Finish_position_threshold);
+		private AIPathControl _path;
 
 		public IActor Actor { get; set; }
 
@@ -53,7 +52,7 @@ namespace Assets.Crimson.Core.AI
 			get
 			{
 				var distanceToTarget = math.distancesq(_transform.position, _target.position);
-				return _path.IsValid && _path.HasArrived ? 0f :
+				return _path == null || (_path.IsValid && _path.HasArrived) ? 0f :
 					CurvePriority.Evaluate(distanceToTarget) * BasePriority.Value;
 			}
 		}
@@ -70,19 +69,13 @@ namespace Assets.Crimson.Core.AI
 				return false;
 			}
 
-			_path.NextPoint();
-
 			if (_path.HasArrived)
 			{
 				inputData.Move = float2.zero;
 				return false;
 			}
 
-			var dir = _path.Direction;
-
-			inputData.Move = new float2(dir.x, dir.z);
-
-			return true;
+			return _path.IsValid;
 		}
 
 		public float Evaluate(Entity entity, AbilityAIInput ai, List<Transform> targets)
@@ -107,8 +100,6 @@ namespace Assets.Crimson.Core.AI
 				_fallbackPlace = CalculateBestPosition(_target);
 				return Priority;
 			}
-
-			var sampleScale = CurvePriority.SampleScale;
 
 			switch (EvaluationMode)
 			{
@@ -159,7 +150,8 @@ namespace Assets.Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
-			return _path.Setup(_transform, _fallbackPlace);
+			_path.SetTarget(_target);
+			return true;
 		}
 
 		public void DrawGizmos()
