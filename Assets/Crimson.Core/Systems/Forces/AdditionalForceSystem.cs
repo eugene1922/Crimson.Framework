@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Assets.Crimson.Core.Systems.Forces
 {
 	[UpdateInGroup(typeof(FixedUpdateGroup))]
-	internal class InwardForceSystem : ComponentSystem
+	internal class AdditionalForceSystem : ComponentSystem
 	{
 		private EntityQuery _forceQuery;
 		private EntityQuery _sourcesQuery;
@@ -17,7 +17,7 @@ namespace Assets.Crimson.Core.Systems.Forces
 				ComponentType.ReadOnly<InwardForceSourceTag>());
 
 			_forceQuery = GetEntityQuery(
-				ComponentType.ReadOnly<InwardForce>(),
+				ComponentType.ReadOnly<ForceData>(),
 				ComponentType.ReadOnly<Rigidbody>());
 		}
 
@@ -32,15 +32,14 @@ namespace Assets.Crimson.Core.Systems.Forces
 				});
 
 			Entities.With(_forceQuery).ForEach(
-				(Entity entity, Rigidbody rigidBody, ref InwardForce data) =>
+				(Entity entity, Rigidbody rigidBody, ref ForceData data) =>
 				{
 					if (rigidBody == null)
 					{
 						return;
 					}
-					var direction = data.SourcePosition - rigidBody.position;
-					rigidBody.AddForceAtPosition(direction.normalized * data.Force, data.SourcePosition, (ForceMode)data.ForceMode);
-					dstManager.RemoveComponent<InwardForce>(entity);
+					rigidBody.AddForce(data.Direction * data.Force, (ForceMode)data.ForceMode);
+					dstManager.RemoveComponent<ForceData>(entity);
 				}
 			);
 		}

@@ -25,10 +25,9 @@ namespace Assets.Crimson.Core.Components.Forces
 
 		public IActor Actor { get; set; }
 
-		private InwardForce _force => new InwardForce
+		private ForceData _force => new ForceData
 		{
 			Force = Force,
-			SourcePosition = transform.position,
 			ForceMode = (int)ForceMode
 		};
 
@@ -72,14 +71,16 @@ namespace Assets.Crimson.Core.Components.Forces
 			{
 				return;
 			}
+			var forceData = _force;
+			forceData.Direction = (transform.position - actor.GameObject.transform.position).normalized;
 			_dstManager.AddComponent<AdditionalForceActorTag>(actor.ActorEntity);
-			if (_dstManager.HasComponent<InwardForce>(actor.ActorEntity))
+			if (_dstManager.HasComponent<ForceData>(actor.ActorEntity))
 			{
-				_dstManager.SetComponentData(actor.ActorEntity, _force);
+				_dstManager.SetComponentData(actor.ActorEntity, forceData);
 			}
 			else
 			{
-				_dstManager.AddComponentData(actor.ActorEntity, _force);
+				_dstManager.AddComponentData(actor.ActorEntity, forceData);
 			}
 		}
 
