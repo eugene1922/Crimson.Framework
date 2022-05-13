@@ -19,12 +19,18 @@ namespace Crimson.Core.Systems
 		private EntityQuery _reloadAnimationsQuery;
 		private EntityQuery _strafeActorsQuery;
 		private EntityQuery _meleeQuery;
+		private EntityQuery _rangeQuery;
 
 		protected override void OnCreate()
 		{
 			_meleeQuery = GetEntityQuery(
 				ComponentType.Exclude<DeadActorTag>(),
 				ComponentType.ReadOnly<AnimationMeleeAttackTag>(),
+				ComponentType.ReadOnly<Animator>());
+
+			_rangeQuery = GetEntityQuery(
+				ComponentType.Exclude<DeadActorTag>(),
+				ComponentType.ReadOnly<AnimationRangeAttackTag>(),
 				ComponentType.ReadOnly<Animator>());
 
 			_movementQuery = GetEntityQuery(
@@ -107,6 +113,25 @@ namespace Crimson.Core.Systems
 
 					animator.SetTrigger(data.NameHash);
 					dstManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
+				});
+
+			Entities.With(_rangeQuery).ForEach(
+				(Entity entity, Animator animator, ref AnimationRangeAttackTag data) =>
+				{
+					if (animator == null)
+					{
+						Debug.LogError("[Range attack] No Animator found!");
+						return;
+					}
+
+					if (data.NameHash == 0)
+					{
+						Debug.LogError("[Range attack] Some hash(es) not found, check your Actor Component Settings!");
+						return;
+					}
+
+					animator.SetTrigger(data.NameHash);
+					dstManager.RemoveComponent<AnimationRangeAttackTag>(entity);
 				});
 
 			Entities.With(_projectileQuery).ForEach(
