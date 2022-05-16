@@ -282,7 +282,7 @@ MonoBehaviour:
     AnimationName: attack
     HasAnimation: 1
   Use: 1
-  Duration: 4.5
+  Duration: 0.1
   actions:
   - {fileID: 924906851837422776}
 --- !u!114 &924906851837422776
@@ -297,13 +297,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: Claws
+  componentName: droid-attack
   ExecuteNow: 1
   ExecuteOnAwake: 0
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 476eeece5461648ecb6a65777fa3e2de, type: 3}
+    - {fileID: 6281343036514993962, guid: 73f41d99a8fd224498ca5e975039d149, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
