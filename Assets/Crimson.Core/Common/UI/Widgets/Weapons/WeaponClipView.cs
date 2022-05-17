@@ -9,29 +9,25 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 		[SerializeField] private TMP_Text _label;
 		[SerializeField] private string _format = "{0}/{1}";
 		[SerializeField] private string _emptyChar = "?";
-		private IWeapon _lastWeapon;
 		private WeaponClip _clip;
 
 		public string Text { get => _label.text; set => _label.text = value; }
 
-		public void Set(IWeapon weapon)
+		public void Set(IHasClip weapon)
 		{
-			if (weapon is IHasClip component)
+			if (weapon == null)
 			{
-				if (_lastWeapon != null)
-				{
-					weapon.OnShot -= Refresh;
-					weapon.OnReload -= Refresh;
-				}
-				weapon.OnShot += Refresh;
-				weapon.OnReload += Refresh;
-				_lastWeapon = weapon;
-				_clip = component.ClipData;
-				Refresh();
+				Refresh(_emptyChar, _emptyChar);
 			}
 			else
 			{
-				Refresh(_emptyChar, _emptyChar);
+				if (_clip != null)
+				{
+					_clip.OnUpdate -= Refresh;
+				}
+				_clip = weapon.ClipData;
+				_clip.OnUpdate += Refresh;
+				Refresh();
 			}
 		}
 

@@ -2,6 +2,7 @@
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
+using Crimson.Core.Loading.SpawnDataTypes;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System;
@@ -87,6 +88,10 @@ namespace Crimson.Core.Components
 
 		public bool suppressWeaponSpawn = false;
 
+		public List<GameObject> _aimEffects = new List<GameObject>();
+
+		private readonly List<GameObject> _aimEffectInstances = new List<GameObject>();
+
 		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
 		[HideInInspector]
@@ -138,7 +143,7 @@ namespace Crimson.Core.Components
 
 		private Entity _entity;
 
-		public WeaponClip ClipData { get; private set; }
+		public WeaponClip ClipData { get; } = new WeaponClip();
 
 		private EntityManager _dstManager;
 
@@ -152,7 +157,7 @@ namespace Crimson.Core.Components
 
 			_entity = entity;
 
-			ClipData = new WeaponClip(projectileClipCapacity);
+			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
 
 			SpawnCallbacks = new List<Action<GameObject>>();
 
@@ -182,6 +187,19 @@ namespace Crimson.Core.Components
 			SpawnPointsRoot.SetParent(gameObject.transform);
 
 			SpawnPointsRoot.localPosition = Vector3.zero;
+			for (var i = 0; i < _aimEffects.Count; i++)
+			{
+				var item = _aimEffects[i];
+				var spawnData = new SpawnItemData()
+				{
+					Owner = actor,
+					Spawner = actor,
+					Prefab = item
+				};
+				var instance = ActorSpawn.Spawn(spawnData);
+				instance.transform.SetParent(SpawnPointsRoot, false);
+				_aimEffectInstances.Add(instance);
+			}
 			ResetSpawnPointRootRotation();
 
 			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
@@ -203,6 +221,19 @@ namespace Crimson.Core.Components
 			baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
 			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+		}
+
+		internal void DestroyAimEffects()
+		{
+			if (_aimEffectInstances.Count == 0)
+			{
+				return;
+			}
+			for (var i = 0; i < _aimEffectInstances.Count; i++)
+			{
+				Destroy(_aimEffectInstances[i]);
+			}
+			_aimEffectInstances.Clear();
 		}
 
 		public void Execute()
@@ -240,7 +271,10 @@ namespace Crimson.Core.Components
 					}
 					Timer.TimedActions.AddAction(FinishTimer, CooldownTime * (_additionalShotsNum + 1));
 				}
-				if (projectileClipCapacity == 0) return;
+				if (projectileClipCapacity == 0)
+				{
+					return;
+				}
 
 				ClipData.Decrease();
 				if (ClipData.IsEmpty)
@@ -345,6 +379,15 @@ namespace Crimson.Core.Components
 			}
 
 			SpawnPointsRoot.localRotation = Quaternion.Euler(0, -180, 0);
+		}
+
+		public void SetAimEffectsState(bool state)
+		{
+			for (var i = 0; i < _aimEffectInstances.Count; i++)
+			{
+				var instance = _aimEffectInstances[i];
+				instance.SetActive(state);
+			}
 		}
 
 		public void Spawn()

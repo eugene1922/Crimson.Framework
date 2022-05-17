@@ -62,6 +62,14 @@ namespace Crimson.Core.Systems
 							slot.UIReceiverList.Items.Add(uiReceiver);
 						}
 					});
+
+					Entities.WithAll<ThrowableSlot>().ForEach((ThrowableSlot slot) =>
+					{
+						if (!slot.UIReceiverList.Items.Contains(uiReceiver))
+						{
+							slot.UIReceiverList.Items.Add(uiReceiver);
+						}
+					});
 				});
 
 			Entities.With(_updateCustomButtonsQuery).ForEach(

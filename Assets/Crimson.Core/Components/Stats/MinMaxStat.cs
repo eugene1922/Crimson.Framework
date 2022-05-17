@@ -8,15 +8,21 @@ namespace Crimson.Core.Components.Stats
 	{
 		[SerializeField] private T _current;
 
+		[SerializeField] private T _minLimit;
+
 		[SerializeField] private T _maxLimit;
 
-		[SerializeField] private T _minLimit;
+		[SerializeField] private bool _freeze;
 
 		public T Current
 		{
 			get => _current;
 			set
 			{
+				if (_freeze)
+				{
+					return;
+				}
 				var isEquals = _current.Equals(value);
 				if (isEquals)
 				{

@@ -9767,7 +9767,6 @@ GameObject:
   - component: {fileID: 198190325525964490}
   - component: {fileID: 199334031638107178}
   - component: {fileID: 114572340106070202}
-  - component: {fileID: -5727770065629178193}
   m_Layer: 0
   m_Name: GrenadeExplosionRed
   m_TagString: Untagged
@@ -14655,20 +14654,6 @@ MonoBehaviour:
   destroyWhenDone: 1
   soundPrefabIsChild: 0
   pitchRandomMultiplier: 1.2
---- !u!114 &-5727770065629178193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1822773341328252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
 --- !u!1 &1849436240653082
 GameObject:
   m_ObjectHideFlags: 0

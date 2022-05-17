@@ -1,83 +1,89 @@
-using System.Collections.Generic;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Crimson.Core.Components
 {
-    [HideMonoScript]
-    public class AbilityAIInput : TimerBaseBehaviour, IActorAbility, IAIModule
-    {
-        public IActor Actor { get; set; }
+	[HideMonoScript]
+	public class AbilityAIInput : TimerBaseBehaviour, IActorAbility, IAIModule
+	{
+		public IActor Actor { get; set; }
 
-        public List<AIBehaviourSetting> behaviours;
+		public List<IAIBehaviour> Behaviours = new List<IAIBehaviour>();
 
-        [MinMaxSlider(0, 30, true)] public Vector2 behaviourUpdatePeriod = new Vector2(2f, 6f);
+		[MinMaxSlider(0, 30, true)] public Vector2 behaviourUpdatePeriod = new Vector2(2f, 6f);
 
-        [HideInInspector] public AIBehaviourSetting activeBehaviour;
-        [HideInInspector] public float activeBehaviourPriority = 0;
+		[ReadOnly, ShowInInspector] private string _currentBehaviour;
 
-        private Entity _entity;
-        private EntityManager _dstManager;
+		[HideInInspector]
+		public IAIBehaviour activeBehaviour
+		{
+			get => _activeBehaviour;
+			set
+			{
+				_activeBehaviour = value;
+				if (value != null)
+				{
+					_currentBehaviour = value.GetType().Name;
+				}
+			}
+		}
 
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-            Actor = actor;
-            _entity = entity;
-            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+		[HideInInspector] public float activeBehaviourPriority = 0;
 
-            _dstManager.AddComponent<NetworkSyncReceive>(entity);
-            
-            var tempBehaviours = new List<AIBehaviourSetting>();
+		private Entity _entity;
+		private EntityManager _dstManager;
+		private IAIBehaviour _activeBehaviour;
 
-            foreach (var t in behaviours)
-            {
-                tempBehaviours.Add(t.CopyBehaviour());
-            }
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
+			_entity = entity;
+			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			Behaviours = new List<IAIBehaviour>();
 
-            behaviours = tempBehaviours;
+			_dstManager.AddComponent<NetworkSyncReceive>(entity);
 
-            for (var i = 0; i < behaviours.Count; i++)
-            {
-                behaviours[i] = behaviours[i].CopyBehaviour();
-                behaviours[i].Actor = Actor;
-            }
+			StartTimer();
+			EvaluateAll();
+		}
 
-            StartTimer();
-            EvaluateAll();
-        }
-        
-        public void EvaluateAll()
-        {
-            this.RemoveAction(EvaluateAll);
+		public void EvaluateAll()
+		{
+			this.RemoveAction(EvaluateAll);
 
-            _dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            if (_dstManager.Exists(_entity))
-            {
-                _dstManager.RemoveComponent<SetupAIData>(_entity);
-                _dstManager.AddComponent<EvaluateAIData>(_entity);   
-            }
+			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			if (_dstManager.Exists(_entity))
+			{
+				_dstManager.RemoveComponent<SetupAITag>(_entity);
+				_dstManager.AddComponent<EvaluateAITag>(_entity);
+			}
 
-            if (this.TimerActive)
-            {
-                this.AddAction(EvaluateAll, Random.Range(behaviourUpdatePeriod[0], behaviourUpdatePeriod[1]));
-            }
-        }
+			if (TimerActive)
+			{
+				this.AddAction(EvaluateAll, Random.Range(behaviourUpdatePeriod[0], behaviourUpdatePeriod[1]));
+			}
+		}
 
-        public void Execute()
-        {
-        }
-    }
+		public void Execute()
+		{
+		}
 
-    public struct EvaluateAIData : IComponentData
-    {
-    }
+#if UNITY_EDITOR
 
-    public struct SetupAIData : IComponentData
-    {
-    }
+		private void OnDrawGizmosSelected()
+		{
+			if (activeBehaviour != null && activeBehaviour is Assets.Crimson.Core.AI.Interfaces.IDrawGizmos drawer)
+			{
+				drawer.DrawGizmos();
+			}
+		}
+
+#endif
+	}
 }

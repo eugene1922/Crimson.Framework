@@ -1,7 +1,7 @@
 ﻿using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
-using System;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,12 +15,19 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[ValidateInput(nameof(MustBeThrowable), "MonoBehaviours must derive from IThrowable!")]
 		public MonoBehaviour ThrowableWeapon;
 
-		private IThrowable _weapon;
+		[HideInInspector] public UIReceiverList UIReceiverList = new UIReceiverList();
+
+		[CastToUI("CurrentThrowable")]
+		public IThrowable _weapon;
+
+		public bool IsEmpty => _weapon == null;
+
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			UIReceiverList.Init(this, entity);
 			if (_executeAction != null)
 			{
 				_executeAction.action.performed += ThrowActionHandler;
@@ -28,13 +35,14 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 			if (ThrowableWeapon != null)
 			{
-				_weapon = (IThrowable)ThrowableWeapon;
+				Change((IThrowable)ThrowableWeapon);
 			}
 		}
 
 		public void Change(IThrowable weapon)
 		{
 			_weapon = weapon;
+			UIReceiverList.UpdateUIData("CurrentThrowable");
 		}
 
 		public void Execute()
@@ -50,11 +58,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 		private void ThrowActionHandler(InputAction.CallbackContext obj)
 		{
 			Execute();
-		}
-
-		internal void Add(IThrowable item)
-		{
-			_weapon = item;
 		}
 	}
 }

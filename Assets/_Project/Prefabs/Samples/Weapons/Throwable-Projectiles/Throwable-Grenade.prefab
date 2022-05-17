@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2636071318529099762}
   - component: {fileID: 2636071318529099761}
   - component: {fileID: 2636071318529099760}
-  - component: {fileID: 2636071318529099767}
   - component: {fileID: 2636071318529099766}
   - component: {fileID: -2148172205551416633}
   - component: {fileID: 606495008889479710}
@@ -79,15 +78,15 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 2636071318529099767}
     - {fileID: 2636071318529099766}
   - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 7991
     useTagFilter: 1
-    filterMode: 1
+    filterMode: 0
     filterTags:
-    - Enemy
+    - CollisionObjects
+    - DestructibleObject
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 0
     actions:
@@ -123,23 +122,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2636071318529099767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636071318529099774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CriticalDamageChance: 0.1
-  CriticalDamageMultiplier: 1
-  Damage: 10
-  levelablePropertiesList: []
-  perkLevel: 1
 --- !u!114 &2636071318529099766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,11 +135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
+  ExecuteNow: 1
   ExecuteOnAwake: 0
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1822773341328252, guid: 8aea2a892ad46aa439b8be49adccdcad, type: 3}
+    - {fileID: 5593429760451260625, guid: 5909985a373009c4d8607e763cc1b996, type: 3}
+    - {fileID: 6300336675488890471, guid: 162b2d65ef809464b85e35b590846ed9, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -172,8 +156,7 @@ MonoBehaviour:
     actorWithComponentName: 
     parentTag: 
     chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 6300336675488890471, guid: 162b2d65ef809464b85e35b590846ed9, type: 3}
+    copyComponentsFromSamples: []
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
@@ -181,9 +164,9 @@ MonoBehaviour:
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
+      InitSize: 40
+      MaxSize: 40
+      UsePool: 1
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
@@ -199,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 5
+  lifespan: 1
   startOnSpawn: 1
-  actionOnDestroy: {fileID: 2636071318529099767}
+  actionOnDestroy: {fileID: 2636071318529099766}
 --- !u!114 &606495008889479710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +252,7 @@ MonoBehaviour:
   moveDirection: 0
   forwardVector: {x: 0, y: 1, z: 1}
   compensateSpawnerRotation: 0
-  OffsetDirection: {x: 0, y: 0.4, z: 0}
+  OffsetDirection: {x: 0, y: 0.25, z: 0}
 --- !u!1001 &4836241702347248632
 PrefabInstance:
   m_ObjectHideFlags: 0

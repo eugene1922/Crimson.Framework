@@ -1,5 +1,4 @@
-﻿using Assets.Crimson.Core.Components.Weapons;
-using Crimson.Core.Common;
+﻿using Crimson.Core.Common;
 using TMPro;
 using UnityEngine;
 
@@ -12,15 +11,15 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 
 		public string Text { get => _label.text; set => _label.text = value; }
 
-		public void Set(IWeapon weapon)
+		public void Set(IHasComponentName item)
 		{
 			var name = _emptyName;
-			if (weapon is IHasComponentName componentName && !string.IsNullOrEmpty(componentName.ComponentName))
+			if (item != null && !string.IsNullOrEmpty(item.ComponentName))
 			{
-				name = componentName.ComponentName;
+				name = item.ComponentName;
 			}
 
-			_label.text = name;
+			Text = name;
 		}
 
 #if UNITY_EDITOR

@@ -17,28 +17,10 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 		IThrowable,
 		IActorSpawnerAbility,
 		IHasComponentName,
+		IHasClip,
 		IEnableable,
 		ICooldownable
 	{
-		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
-
-		[HideIf(nameof(projectileClipCapacity), 0f)]
-		[Space]
-		public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
-
-		public string componentName = "";
-
-		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
-		public int projectileClipCapacity = 0;
-
-		public ActorSpawnerSettings projectileSpawnData;
-		public Vector3 SpawnPointOffset;
-		protected Entity _entity;
-		private bool _actorToUi;
-		[SerializeField] private float _cooldownTime = 0.3f;
-		private EntityManager _dstManager;
-		private int _projectileClip;
-		public bool ActionExecutionAllowed { get; set; }
 		public IActor Actor { get; set; }
 
 		public string ComponentName
@@ -47,19 +29,85 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 			set => componentName = value;
 		}
 
+		[Space]
+		[ShowInInspector]
+		[SerializeField]
+		public string componentName = "";
+
+		public bool primaryProjectile;
+
+		public bool aimingAvailable;
+		public bool deactivateAimingOnCooldown;
+
+		[EnumToggleButtons] public OnClickAttackType onClickAttackType = OnClickAttackType.DirectAttack;
+
+		[EnumToggleButtons] public AttackDirectionType attackDirectionType = AttackDirectionType.Forward;
+
+		[ShowIf("onClickAttackType", OnClickAttackType.AutoAim)]
+		public FindTargetProperties findTargetProperties;
+
+		public AimingProperties aimingProperties;
+		public AimingAnimationProperties aimingAnimProperties;
+
+		[Space] public ActorSpawnerSettings projectileSpawnData;
+
+		[Space] public float projectileStartupDelay = 0f;
+
+		public float cooldownTime = 0.3f;
+
+		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
+		public int projectileClipCapacity = 0;
+
+		[HideIf("projectileClipCapacity", 0f)] public float clipReloadTime = 1f;
+
+		[InfoBox("Force burst on single fire input. Has no effect if CoolDown Time == 0")]
+		public bool forceBursts;
+
+		[ShowIf("forceBursts")]
+		[MinMaxSlider(1, 20)]
+		public Vector2Int burstShotCountRange = new Vector2Int(1, 1);
+
+		[InfoBox("Put here IEnable implementation to display reload")]
+		[Space]
+		public List<MonoBehaviour> reloadDisplayToggle = new List<MonoBehaviour>();
+
+		[HideIf("projectileClipCapacity", 0f)]
+		[Space]
+		public List<MonoBehaviour> clipReloadDisplayToggle = new List<MonoBehaviour>();
+
+		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
+
+		public bool suppressWeaponSpawn = false;
+
+		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
+
+		[HideInInspector]
+		public bool aimingByInput;
+
+		public List<GameObject> SpawnedObjects { get; private set; }
+		public List<Action<GameObject>> SpawnCallbacks { get; set; }
+
+		public Action<GameObject> DisposableSpawnCallback { get; set; }
+		public bool IsEnable { get; set; }
+
+		public Vector3 SpawnPointOffset;
+		protected Entity _entity;
+		private bool _actorToUi;
+		[SerializeField] private float _cooldownTime = 0.3f;
+		private EntityManager _dstManager;
+		public bool ActionExecutionAllowed { get; set; }
+
 		public float CooldownTime
 		{
 			get => _cooldownTime;
 			set => _cooldownTime = value;
 		}
 
-		public Action<GameObject> DisposableSpawnCallback { get; set; }
-		public bool IsEnable { get; set; }
-		public List<Action<GameObject>> SpawnCallbacks { get; set; }
-		public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
+		public WeaponClip ClipData { get; } = new WeaponClip();
+
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 		private Transform SpawnPointsRoot { get; set; }
-
+		
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
@@ -67,7 +115,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
 			IsEnable = true;
-			_projectileClip = projectileClipCapacity;
+			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
 			_dstManager.AddComponent<TimerData>(entity);
 
 			if (actorProjectileSpawnAnimProperties != null
@@ -117,14 +165,14 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 		public void Execute()
 		{
 			// ReSharper disable once CompareOfFloatsByEqualityOperator Here we need exact comparison
-			if (IsEnable && _projectileClip > 0 && CurrentEntityManager.Exists(_entity))
+			if (IsEnable && !ClipData.IsEmpty && CurrentEntityManager.Exists(_entity))
 			{
 				Spawn();
 
 				CurrentEntityManager.AddComponentData(_entity,
 					new ActorProjectileThrowAnimTag());
 
-				_projectileClip--;
+				ClipData.Decrease();
 				// ReSharper disable once CompareOfFloatsByEqualityOperator
 				if (CooldownTime == 0)
 				{
