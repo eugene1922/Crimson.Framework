@@ -1,23 +1,32 @@
 ﻿using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Crimson.Core.Components.FX.ForCamera
 {
 	public class AbilityVignetteCameraFX : AbilityCameraFX
 	{
-		public Camera Target;
+		public CanvasGroup Target;
 		public float Duration = .33f;
-		public Color DamageColor = Color.black;
+
+		private void Awake()
+		{
+			Target.alpha = 0;
+		}
 
 		[Button]
 		public override void Execute()
 		{
 			var sequence = DOTween.Sequence();
-			var lastColor = Target.backgroundColor;
-			sequence.Append(Target.DOColor(DamageColor, Duration / 2));
-			sequence.Append(Target.DOColor(lastColor, Duration / 2));
+			sequence.Append(DOVirtual.Float(0, 1, Duration / 2, ChangeAlpha));
+			sequence.Append(DOVirtual.Float(1, 0, Duration / 2, ChangeAlpha));
 			sequence.Play();
+		}
+
+		private void ChangeAlpha(float value)
+		{
+			Target.alpha = value;
 		}
 	}
 }
