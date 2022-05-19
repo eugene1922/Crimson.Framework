@@ -23,10 +23,22 @@ namespace Assets.Crimson.Core.Systems.Effects
 				(Entity entity) =>
 				{
 					Entities.WithAll<AbilityCameraShake>()
-					.ForEach((AbilityCameraShake ability) => ability.Execute());
+					.ForEach((AbilityCameraShake ability) =>
+					{
+						if (ability.Actor.Owner.ActorEntity == entity)
+						{
+							ability.Execute();
+						}
+					});
 
 					Entities.WithAll<AbilityVignetteCameraFX>()
-					.ForEach((AbilityVignetteCameraFX ability) => ability.Execute());
+					.ForEach((AbilityVignetteCameraFX ability) =>
+					{
+						if (ability.Actor.Owner.ActorEntity == entity)
+						{
+							ability.Execute();
+						}
+					});
 
 					EntityManager.RemoveComponent<DamageFXTag>(entity);
 				});
