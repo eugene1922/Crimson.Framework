@@ -11,9 +11,9 @@ namespace Assets.Crimson.Core.AI
 
 		public Vector3 EndWaypointPosition => _navAgent.pathEndPosition;
 
-		public bool IsValid => _navAgent.pathStatus != NavMeshPathStatus.PathInvalid;
+		public bool IsValid => _navAgent.pathStatus != NavMeshPathStatus.PathInvalid && _navAgent.isOnNavMesh;
 
-		public bool HasArrived => _navAgent.remainingDistance <= _navAgent.stoppingDistance;
+		public bool HasArrived => _navAgent.isOnNavMesh && _navAgent.remainingDistance <= _navAgent.stoppingDistance;
 
 		public Vector3 NextPosition => _navAgent.nextPosition;
 
@@ -37,6 +37,11 @@ namespace Assets.Crimson.Core.AI
 
 		public void SetTarget(Vector3 target)
 		{
+			if (!_navAgent.isOnNavMesh)
+			{
+				return;
+			}
+
 			_navAgent.SetDestination(target);
 			_navAgent.nextPosition = _parent.position;
 		}

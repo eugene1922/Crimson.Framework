@@ -92,6 +92,10 @@ namespace Crimson.Core.Systems
 						Debug.LogError("[MOVEMENT ANIMATION SYSTEM] Some hash(es) not found, check your Actor Movement Component Settings!");
 						return;
 					}
+					if (animator.runtimeAnimatorController == null)
+					{
+						return;
+					}
 					animator.SetBool(animation.AnimHash, Math.Abs(move.x) > Constants.MIN_MOVEMENT_THRESH || Math.Abs(move.z) > Constants.MIN_MOVEMENT_THRESH);
 					animator.SetFloat(animation.SpeedFactorHash,
 						animation.SpeedFactorMultiplier * movement.ExternalMultiplier * Math.Max(Math.Abs(move.x), Math.Abs(move.z)));
@@ -111,7 +115,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetTrigger(data.NameHash);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetTrigger(data.NameHash);
+					}
 					dstManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
 				});
 
@@ -130,12 +137,15 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetTrigger(data.NameHash);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetTrigger(data.NameHash);
+					}
 					dstManager.RemoveComponent<AnimationRangeAttackTag>(entity);
 				});
 
 			Entities.With(_projectileQuery).ForEach(
-				(Entity entity, Animator animator, ref ActorProjectileAnimData animation) =>
+				(Entity entity, Animator animator, ref ActorProjectileAnimData data) =>
 				{
 					if (animator == null)
 					{
@@ -143,13 +153,16 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					if (animation.AnimHash == 0)
+					if (data.AnimHash == 0)
 					{
 						Debug.LogError("[PROJECTILE THROW ANIMATION SYSTEM] Some hash(es) not found, check your Actor Projectile Component Settings!");
 						return;
 					}
 
-					animator.SetTrigger(animation.AnimHash);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetTrigger(data.AnimHash);
+					}
 					PostUpdateCommands.RemoveComponent<ActorProjectileThrowAnimTag>(entity);
 				});
 
@@ -172,7 +185,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetBool(animation.AnimHash, true);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetBool(animation.AnimHash, true);
+					}
 					dstManager.RemoveComponent<ActorDeathAnimData>(entity);
 				});
 
@@ -191,7 +207,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetBool(animation.AnimHash, true);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetBool(animation.AnimHash, true);
+					}
 					dstManager.RemoveComponent<ActorStafeAnimData>(entity);
 				});
 
@@ -210,7 +229,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetBool(animation.AnimHash, true);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetBool(animation.AnimHash, true);
+					}
 					dstManager.RemoveComponent<ActorForceAnimData>(entity);
 				});
 
@@ -229,7 +251,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetTrigger(animation.AnimHash);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetTrigger(animation.AnimHash);
+					}
 					dstManager.RemoveComponent<DamagedActorTag>(entity);
 				});
 
@@ -248,7 +273,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetBool(animation.AnimHash, aimingAnimData.AimingActive);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetBool(animation.AnimHash, aimingAnimData.AimingActive);
+					}
 				});
 
 			Entities.With(_reloadAnimationsQuery).ForEach(
@@ -266,7 +294,10 @@ namespace Crimson.Core.Systems
 						return;
 					}
 
-					animator.SetTrigger(data.AnimHash);
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetTrigger(data.AnimHash);
+					}
 					dstManager.RemoveComponent<ReloadTag>(entity);
 				});
 		}
