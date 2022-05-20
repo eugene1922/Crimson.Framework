@@ -39,6 +39,8 @@ namespace Assets.Crimson.Core.AI
 		{
 			if (!_navAgent.isOnNavMesh)
 			{
+				_navAgent.enabled = false;
+				_navAgent.enabled = true;
 				return;
 			}
 
