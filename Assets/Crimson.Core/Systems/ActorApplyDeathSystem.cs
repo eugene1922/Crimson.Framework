@@ -75,7 +75,14 @@ namespace Crimson.Core.Systems
 
 					if (!actorPlayer.TimerActive) return;
 
-					actorPlayer.StartDeathTimer();
+					if (actorPlayer.NeedCleanup)
+					{
+						actorPlayer.StartDeathTimer();
+					}
+					else
+					{
+						actorPlayer.RemoveUIElements();
+					}
 
 					dstManager.AddComponent<DestructionPendingTag>(entity);
 					PostUpdateCommands.RemoveComponent<DeadActorTag>(entity);

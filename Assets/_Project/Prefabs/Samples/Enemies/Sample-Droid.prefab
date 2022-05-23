@@ -175,6 +175,7 @@ MonoBehaviour:
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
+  NeedCleanup: 0
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0

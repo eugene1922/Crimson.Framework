@@ -51,6 +51,10 @@ namespace Crimson.Core.Components
 		[Header("Additional Force Animation")]
 		public ActorGeneralAnimProperties additionalForceAnim;
 
+		[Header("Cleanup after death")]
+		public bool NeedCleanup;
+
+		[ShowIf(nameof(NeedCleanup))]
 		public float corpseCleanupDelay;
 
 		public DeadBehaviour deadActorBehaviour = new DeadBehaviour();
@@ -343,13 +347,18 @@ namespace Crimson.Core.Components
 
 		public void StartDeathTimer()
 		{
+			RemoveUIElements();
+
+			StartTimer();
+		}
+
+		public void RemoveUIElements()
+		{
 			for (var i = 0; i < UIReceiverList.Count; i++)
 			{
 				var element = UIReceiverList[i];
 				_dstManager.AddComponent<ImmediateDestructionActorTag>(element.ActorEntity);
 			}
-
-			StartTimer();
 		}
 
 		public void StartTimer()
