@@ -119,6 +119,7 @@ namespace Crimson.Core.Systems
 					{
 						animator.SetTrigger(data.NameHash);
 					}
+
 					dstManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
 				});
 
@@ -141,6 +142,7 @@ namespace Crimson.Core.Systems
 					{
 						animator.SetTrigger(data.NameHash);
 					}
+
 					dstManager.RemoveComponent<AnimationRangeAttackTag>(entity);
 				});
 
