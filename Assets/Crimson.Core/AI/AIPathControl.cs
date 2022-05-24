@@ -15,8 +15,6 @@ namespace Assets.Crimson.Core.AI
 
 		public bool HasArrived => _navAgent.isOnNavMesh && _navAgent.remainingDistance <= _navAgent.stoppingDistance;
 
-		public Vector3 NextPosition => _navAgent.nextPosition;
-
 		public float2 MoveDirection
 		{
 			get
@@ -53,7 +51,7 @@ namespace Assets.Crimson.Core.AI
 			_parent = parent;
 			_navAgent = parent.GetComponent<NavMeshAgent>();
 			_navAgent.updatePosition = false;
-			_navAgent.updateRotation = false;
+			_navAgent.updateRotation = true;
 		}
 	}
 }

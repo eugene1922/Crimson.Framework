@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasePriority:
-    Value: 1
+    Value: 0.5
   CurvePriority:
     Curve:
       serializedVersion: 2
@@ -281,7 +281,7 @@ MonoBehaviour:
     _xAxisTooltip: Target priority based on distance to it
   EvaluationMode: 0
   DistanceLimitation:
-    MaxDistance: 10
+    MaxDistance: 5
   TagFilter:
     use: 1
     filterMode: 0
