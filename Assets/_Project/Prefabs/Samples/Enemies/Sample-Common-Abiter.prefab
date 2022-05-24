@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: Melee-attack
+  componentName: Range-attack
   ExecuteNow: 0
   ExecuteOnAwake: 0
   SpawnData:
