@@ -32,7 +32,7 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<UIRespawnScreenView>());
 
 			_destructionActorByTimerQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
-				ComponentType.ReadWrite<DeadActorTag>(),
+				ComponentType.ReadOnly<DeadActorTag>(),
 				ComponentType.Exclude<ImmediateDestructionActorTag>(),
 				ComponentType.Exclude<DestructionPendingTag>());
 
@@ -71,12 +71,11 @@ namespace Crimson.Core.Systems
 						PostUpdateCommands.RemoveComponent<PlayerInputData>(entity);
 					}
 
-					actorPlayer.gameObject.DeathPhysics(entity, actorPlayer.deadActorBehaviour);
-
 					if (!actorPlayer.TimerActive) return;
 
 					if (actorPlayer.NeedCleanup)
 					{
+						actorPlayer.gameObject.DeathPhysics(entity, actorPlayer.deadActorBehaviour);
 						actorPlayer.StartDeathTimer();
 					}
 					else
@@ -85,7 +84,6 @@ namespace Crimson.Core.Systems
 					}
 
 					dstManager.AddComponent<DestructionPendingTag>(entity);
-					PostUpdateCommands.RemoveComponent<DeadActorTag>(entity);
 				}
 			);
 
