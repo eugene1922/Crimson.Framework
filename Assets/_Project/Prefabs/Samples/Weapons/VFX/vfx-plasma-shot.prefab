@@ -319,13 +319,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542068299738612464}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 1, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1544605087473737458}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1494928502231131730
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -384,7 +384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4022810940229596, guid: f67ceb233ad516f4d94d9c2552d5fa6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4022810940229596, guid: f67ceb233ad516f4d94d9c2552d5fa6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -421,6 +421,36 @@ PrefabInstance:
     - target: {fileID: 4911057569164598, guid: f67ceb233ad516f4d94d9c2552d5fa6b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198354219297621256, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
+        type: 3}
+      propertyPath: RotationModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198354219297621256, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198609221929075322, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198609221929075322, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
+        type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198609221929075322, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
+        type: 3}
+      propertyPath: RotationModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198609221929075322, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198609221929075322, guid: f67ceb233ad516f4d94d9c2552d5fa6b,
         type: 3}
