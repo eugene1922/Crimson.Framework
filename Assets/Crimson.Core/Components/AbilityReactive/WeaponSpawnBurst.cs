@@ -53,10 +53,15 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		[Space] public ActorSpawnerSettings projectileSpawnData;
 
-		//TODO: Consider making this class child of AbilityActorSpawn, and leave all common fields to parent
+		[Space, Header("Burst")]
+		public bool UseBurst = false;
+
+		[ShowIf(nameof(UseBurst)), MinMaxSlider(1, 30)] public Vector2Int _burstRange = new Vector2Int(1, 5);
+		[ShowIf(nameof(UseBurst))] public float _burstDelay = .1f;
 
 		[Space] public float projectileStartupDelay = 0f;
 
+		[InfoBox("Time in seconds")]
 		public float cooldownTime = 0.3f;
 
 		[InfoBox("Clip Capacity of 0 stands for unlimited clip")]
@@ -109,11 +114,6 @@ namespace Crimson.Core.Components.AbilityReactive
 		}
 
 		public int BindingIndex { get; set; } = -1;
-
-		public float _cooldownTime = 0.3f;
-
-		[InfoBox("Time in seconds")]
-		public float _weaponFinishTime = 0.150f;
 
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
@@ -206,6 +206,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
 			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+			StartTimer();
 		}
 
 		public void Execute()
@@ -217,14 +218,12 @@ namespace Crimson.Core.Components.AbilityReactive
 
 			if (projectileStartupDelay > 0)
 			{
-				Timer.TimedActions.AddAction(Spawn, projectileStartupDelay);
+				Timer.TimedActions.AddAction(Shot, projectileStartupDelay);
 			}
 			else
 			{
-				Spawn();
-
-				StartTimer();
-				this.RestartAction(Execute, _weaponFinishTime);
+				Shot();
+				Timer.TimedActions.AddAction(Execute, CooldownTime);
 			}
 		}
 
@@ -247,6 +246,21 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void ResetSpawnPointRootRotation()
 		{
 			SpawnPointsRoot.localRotation = Quaternion.identity;
+		}
+
+		private void Shot()
+		{
+			if (!UseBurst)
+			{
+				Spawn();
+				return;
+			}
+			var shots = UnityEngine.Random.Range(_burstRange.x, _burstRange.y);
+			for (var i = 0; i < shots; i++)
+			{
+				Timer.TimedActions.AddAction(Spawn, _burstDelay * i);
+			}
+			Timer.TimedActions.AddAction(FinishTimer, _burstDelay * (3 + 1));
 		}
 
 		public void Spawn()
