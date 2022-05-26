@@ -116,6 +116,8 @@ namespace Crimson.Core.AI
 				return false;
 			}
 
+			transform.rotation = Quaternion.LookRotation(_target.position - transform.position);
+
 			if (Physics.Raycast(GetDirectionRay(_target), out var hit, AIM_MAX_DIST) && hit.transform == _target)
 			{
 				inputData.CustomInput[ExecutableCustomInput.CustomInputIndex] = 1f;
