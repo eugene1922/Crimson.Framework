@@ -2560,8 +2560,8 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 1918208197}
-    - {fileID: 1628608773}
+    - {fileID: 1918208198}
+    - {fileID: 1628608774}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &910456884
