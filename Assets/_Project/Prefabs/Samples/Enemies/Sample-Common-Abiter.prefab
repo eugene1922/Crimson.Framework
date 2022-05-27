@@ -184,8 +184,8 @@ MonoBehaviour:
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
-    RemoveRigidbody: 1
-    RemoveColliders: 1
+    RemoveRigidbody: 0
+    RemoveColliders: 0
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
