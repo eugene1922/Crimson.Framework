@@ -176,7 +176,8 @@ MonoBehaviour:
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  corpseCleanupDelay: 0
+  NeedCleanup: 0
+  corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
     RemoveRigidbody: 1
@@ -185,6 +186,8 @@ MonoBehaviour:
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
     - Spawn Death
+    OnOverdamageActionsComponentNames:
+    - Overdamage-FX
   deathCount: 0
   ExplicitUIChannel: 0
   healAction: {fileID: 0}
