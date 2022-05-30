@@ -2538,7 +2538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2928345277280906309}
   - component: {fileID: 2928345277280906308}
-  - component: {fileID: 2928345277280906311}
+  - component: {fileID: 128184725012590662}
   m_Layer: 0
   m_Name: Spawn-Player_01
   m_TagString: PlayerSpawn
@@ -2579,7 +2579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!114 &2928345277280906311
+--- !u!114 &128184725012590662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2588,10 +2588,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2928345277280906306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8d79eb59c04294bc4318b766629486, type: 3}
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: User Character
+  componentName: 
+  ExecuteNow: 0
+  ExecuteOnAwake: 1
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -2624,6 +2626,9 @@ MonoBehaviour:
       InitSize: 0
       MaxSize: 0
       UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!1 &2928345277285717240
 GameObject:
   m_ObjectHideFlags: 0

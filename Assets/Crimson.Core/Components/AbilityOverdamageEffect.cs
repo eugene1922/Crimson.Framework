@@ -1,7 +1,9 @@
-﻿using Assets.Crimson.Core.Common;
-using Assets.Crimson.Core.Common.ComponentDatas;
+﻿using Assets.Crimson.Core.Common.ComponentDatas;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
@@ -13,13 +15,14 @@ namespace Assets.Crimson.Core.Components
 		public string componentName = "";
 
 		public bool NeedDestroyWhenTriggered;
-
 		public float TriggerDamage = 100;
 
-		public ActionsList Actions = new ActionsList();
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public List<MonoBehaviour> actions = new List<MonoBehaviour>();
 
 		private EntityManager _dstManager;
 		private Entity _entity;
+		private IEnumerable<IActorAbility> actorAbilities;
 		public IActor Actor { get; set; }
 		public string ComponentName { get => componentName; set => componentName = value; }
 
@@ -28,7 +31,7 @@ namespace Assets.Crimson.Core.Components
 			Actor = actor;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_entity = entity;
-			Actions.Init();
+			actorAbilities = actions.Cast<IActorAbility>();
 		}
 
 		public void Execute()
@@ -41,7 +44,7 @@ namespace Assets.Crimson.Core.Components
 			var overdamageData = _dstManager.GetComponentData<OverdamageData>(_entity);
 			if (overdamageData.Damage >= TriggerDamage)
 			{
-				Actions.Execute();
+				ExecuteActions();
 
 				if (NeedDestroyWhenTriggered)
 				{
@@ -52,6 +55,19 @@ namespace Assets.Crimson.Core.Components
 					}
 				}
 			}
+		}
+
+		private void ExecuteActions()
+		{
+			foreach (var ability in actorAbilities)
+			{
+				ability?.Execute();
+			}
+		}
+
+		private bool MustBeAbility(List<MonoBehaviour> a)
+		{
+			return !a.Exists(t => !(t is IActorAbility)) || a.Count == 0;
 		}
 	}
 }

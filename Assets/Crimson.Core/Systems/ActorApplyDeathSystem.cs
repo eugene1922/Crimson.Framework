@@ -9,8 +9,6 @@ namespace Crimson.Core.Systems
 {
 	public class ActorApplyDeathSystem : ComponentSystem
 	{
-		private EntityQuery _deadUserQuery;
-		private EntityQuery _deadUserUiQuery;
 		private EntityQuery _weaponQuery;
 		private EntityQuery _destructionActorByTimerQuery;
 		private EntityQuery _immediateActorDestructionTransformQuery;
@@ -21,15 +19,6 @@ namespace Crimson.Core.Systems
 			_weaponQuery = GetEntityQuery(
 				ComponentType.ReadOnly<AbilityWeapon>(),
 				ComponentType.ReadOnly<DeadActorTag>());
-
-			_deadUserQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
-				ComponentType.ReadOnly<UserInputData>(),
-				ComponentType.ReadWrite<DeadActorTag>(),
-				ComponentType.Exclude<ImmediateDestructionActorTag>(),
-				ComponentType.Exclude<DestructionPendingTag>());
-
-			_deadUserUiQuery = GetEntityQuery(ComponentType.ReadOnly<Actor>(),
-				ComponentType.ReadOnly<UIRespawnScreenView>());
 
 			_destructionActorByTimerQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
 				ComponentType.ReadOnly<DeadActorTag>(),
