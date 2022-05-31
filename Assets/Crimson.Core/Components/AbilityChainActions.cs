@@ -9,70 +9,72 @@ using Unity.Entities;
 
 namespace Assets.Crimson.Core.Components
 {
-    [HideMonoScript]
-    public class AbilityChainActions : TimerBaseBehaviour, IActorAbility
-    {
-        public bool ExecuteOnStart = false;
-        public AbilityChainSettings Settings = new AbilityChainSettings();
-        private List<IActorAbility> _abilities;
-        private int _currentAbility;
-        private int _loopsCount;
-        private bool _isInfinateLoop;
-        public IActor Actor { get; set; }
+	[HideMonoScript]
+	public class AbilityChainActions : TimerBaseBehaviour, IActorAbility
+	{
+		public bool ExecuteOnStart = false;
+		public AbilityChainSettings Settings = new AbilityChainSettings();
+		private List<IActorAbility> _abilities;
+		private int _currentAbility;
+		private bool _isInfiniteLoop;
+		private int _loopsCount;
+		public IActor Actor { get; set; }
 
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-            Actor = actor;
-            _abilities = Settings.Actions.Cast<IActorAbility>().Where(s => s != null).ToList();
-            ResetTimer();
-            StartTimer();
-            if (ExecuteOnStart)
-            {
-                Execute();
-            }
-        }
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+			Actor = actor;
+			_abilities = Settings.Actions.Cast<IActorAbility>().Where(s => s != null).ToList();
+			ResetTimer();
+			StartTimer();
+			if (ExecuteOnStart)
+			{
+				Execute();
+			}
+		}
 
-        public void Execute()
-        {
-            if (Settings.Actions.Count == 0)
-            {
-                return;
-            }
+		public void Execute()
+		{
+			if (Settings.Actions.Count == 0)
+			{
+				return;
+			}
 
-            _loopsCount = Settings.LoopCount;
-            _isInfinateLoop = _loopsCount == 0;
+			_loopsCount = Settings.LoopCount;
+			_isInfiniteLoop = _loopsCount == 0;
 
-            Timer.TimedActions.AddAction(ExecuteAbility, Settings.StartupDelay);
-        }
+			Timer.TimedActions.AddAction(ExecuteAbility, Settings.StartupDelay);
+		}
 
-        private void ExecuteAbility()
-        {
-            _abilities[_currentAbility].Execute();
+		private void ExecuteAbility()
+		{
+			_abilities[_currentAbility].Execute();
 
-            if (_currentAbility < _abilities.Count - 1)
-            {
-                _currentAbility++;
-            }
-            else
-            {
-                if (_isInfinateLoop)
-                {
-                    _currentAbility = 0;
-                }
+			if (_currentAbility < _abilities.Count - 1)
+			{
+				_currentAbility++;
+			}
+			else
+			{
+				if (_isInfiniteLoop)
+				{
+					_currentAbility = 0;
+				}
 
-                if (_loopsCount > 0)
-                {
-                    _loopsCount--;
-                    _currentAbility = 0;
-                }
+				if (_loopsCount > 0)
+				{
+					_loopsCount--;
+					_currentAbility = 0;
+				}
 
-                if (_currentAbility != 0)
-                {
-                    return;
-                }
-            }
-
-            Timer.TimedActions.AddAction(ExecuteAbility, Settings.Delay);
-        }
-    }
+				if (_currentAbility != 0)
+				{
+					return;
+				}
+			}
+			if (_isInfiniteLoop || _loopsCount != 0)
+			{
+				Timer.TimedActions.AddAction(ExecuteAbility, Settings.Delay);
+			}
+		}
+	}
 }

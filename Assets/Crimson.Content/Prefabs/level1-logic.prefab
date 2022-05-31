@@ -128,7 +128,7 @@ MonoBehaviour:
       MaxSize: 0
       UsePool: 0
   SpawnDelays:
-    Delay: 4
+    Delay: 0
     StartupDelay: 0
 --- !u!114 &2198382892046225332
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!1 &2928345276249227467
+--- !u!1 &687240246730327943
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,119 +152,538 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2928345276249227466}
-  - component: {fileID: 902034587}
+  - component: {fileID: 2337239364977811030}
+  - component: {fileID: 9027952992863289851}
   m_Layer: 0
-  m_Name: arbiter_spawn_point_06_10
+  m_Name: drone_spawn_point_05_02
   m_TagString: Zone-2-Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2928345276249227466
+--- !u!4 &2337239364977811030
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276249227467}
+  m_GameObject: {fileID: 687240246730327943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.999996, y: 4, z: -26.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 9
+  m_Father: {fileID: 6433883292927755726}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034587
+--- !u!114 &9027952992863289851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276249227467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276255843823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276255843822}
-  m_Layer: 0
-  m_Name: SpawnTrigger_06
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276255843822
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276255843823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.527893, y: 3.058937, z: -5.6035156}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2928345277053690796}
-  - {fileID: 2928345276735962778}
-  m_Father: {fileID: 2928345277302663538}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345276259424134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276259424137}
-  - component: {fileID: 902034520}
-  m_Layer: 0
-  m_Name: drone_spawn_point_04_07
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276259424137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276259424134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: -1, z: 1.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277763415903}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276259424134}
+  m_GameObject: {fileID: 687240246730327943}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
+  radius: 0.5
+--- !u!1 &1145385294332707037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6433883292927755726}
+  - component: {fileID: 111999801827717979}
+  - component: {fileID: 8019299998852795712}
+  - component: {fileID: 8557508102228730532}
+  m_Layer: 0
+  m_Name: DronesSpawnPoints_05-02_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6433883292927755726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145385294332707037}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 7.28, y: -3.68, z: -10.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8291544324809587878}
+  - {fileID: 2337239364977811030}
+  - {fileID: 2231198092484608427}
+  m_Father: {fileID: 2928345278096202018}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &111999801827717979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145385294332707037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 8019299998852795712}
+    Delay: 5
+    LoopCount: 2
+    StartupDelay: 3
+--- !u!114 &8019299998852795712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145385294332707037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: DronesSpawn
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1102490093963696, guid: 5d594cd7305e4cc49bcb17f30167185a, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 1145385294332707037}
+    spawnPointTag: Enemy
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 219696582898746723, guid: e433813ab07cba5438d073d7f6eb6d73, type: 3}
+    - {fileID: 5249163045441211879, guid: 832bbb39039d3144988e6705931d0d80, type: 3}
+    - {fileID: 758353118697322359, guid: 773e676a221ca6142b202d1349fcaaeb, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &8557508102228730532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145385294332707037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!1 &1286690170667288625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4167327482136317429}
+  - component: {fileID: 3713635029908742370}
+  m_Layer: 0
+  m_Name: sniper_spawn_point_04_02
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4167327482136317429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286690170667288625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7427295511741998410}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3713635029908742370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286690170667288625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.56078434, g: 0.8196079, b: 0.30980393, a: 1}
+  radius: 0.5
+--- !u!1 &1442035903096616705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7427295511741998410}
+  - component: {fileID: 1590378778332107310}
+  - component: {fileID: 7191439366930128710}
+  - component: {fileID: 2232852863729500490}
+  m_Layer: 0
+  m_Name: SnipersSpawnPoints_04-02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7427295511741998410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442035903096616705}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: -3.68, z: 27.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1169143480630523729}
+  - {fileID: 4167327482136317429}
+  m_Father: {fileID: 2928345278096202018}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1590378778332107310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442035903096616705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 7191439366930128710}
+    Delay: 5
+    LoopCount: 2
+    StartupDelay: 3
+--- !u!114 &7191439366930128710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442035903096616705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: SnipersSpawn
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 8690218326895891156, guid: c7fba5663628cb742988edf316ff5034, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 1442035903096616705}
+    spawnPointTag: 
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: 0a22e7d35d6779345bbe9438f43bd2e2, type: 3}
+    - {fileID: 219696582898746723, guid: ca728e3163cdd094e826db95e3d856c6, type: 3}
+    - {fileID: 5249163045441211879, guid: 0e38e5441dc01984b9538e84ffa069d0, type: 3}
+    - {fileID: 758353118697322359, guid: 4ca794a1d8feeb442bde0501aabf80b0, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &2232852863729500490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442035903096616705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!1 &1695495035748313183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2171742041059604772}
+  - component: {fileID: 7949262204570934238}
+  - component: {fileID: 3160868985720790878}
+  - component: {fileID: 1604888142195585342}
+  m_Layer: 0
+  m_Name: ArbitresSpawnPoints_04 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2171742041059604772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695495035748313183}
+  m_LocalRotation: {x: -0, y: -0.71069735, z: -0, w: 0.7034979}
+  m_LocalPosition: {x: 21.93, y: -0.63, z: 1.92}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6005256095933578191}
+  - {fileID: 1478500907884093328}
+  m_Father: {fileID: 2928345276414291261}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -90.583, z: 0}
+--- !u!114 &7949262204570934238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695495035748313183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 3160868985720790878}
+    Delay: 0
+    LoopCount: 1
+    StartupDelay: 10
+--- !u!114 &3160868985720790878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695495035748313183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: ArbitersSpawn
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 2791442027177663522, guid: b94cd6496f042c742b57f80f50a68d2b, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 1695495035748313183}
+    spawnPointTag: 
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 219696582898746723, guid: e63e52b5e833c454f9242a69a7531e23, type: 3}
+    - {fileID: 5249163045441211879, guid: cf9cbdafeda76484b8add2e4e540b011, type: 3}
+    - {fileID: 758353118697322359, guid: 4ca794a1d8feeb442bde0501aabf80b0, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &1604888142195585342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695495035748313183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!1 &1844521764707064912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5061308461298000339}
+  - component: {fileID: 1722188133419486091}
+  m_Layer: 0
+  m_Name: drone_spawn_point_03_01
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5061308461298000339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844521764707064912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7794966868750205492}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1722188133419486091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844521764707064912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
+  radius: 0.5
+--- !u!1 &2555192891901443241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7828803539255338918}
+  - component: {fileID: 1741157483887092761}
+  m_Layer: 0
+  m_Name: arbitr_spawn_point_04_01
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7828803539255338918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555192891901443241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: 0, z: 1.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3935645890177644159}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1741157483887092761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555192891901443241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
   radius: 0.5
 --- !u!1 &2928345276272019292
 GameObject:
@@ -295,7 +714,6 @@ Transform:
   m_Children:
   - {fileID: 2928345277998053985}
   - {fileID: 2928345276992572053}
-  - {fileID: 2928345277239843669}
   m_Father: {fileID: 2928345277302663538}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,9 +771,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276332733221}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.379724, y: -0.89106274, z: 13.076473}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.82, y: 0, z: 5.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345276992572053}
   m_RootOrder: 2
@@ -374,171 +792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
   radius: 0.5
---- !u!1 &2928345276356843701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276356843700}
-  - component: {fileID: 902034591}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276356843700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276356843701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.999996, y: 4, z: -28.000015}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276356843701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276372927246
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276372927281}
-  - component: {fileID: 902034583}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_14
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276372927281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276372927246}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.000004, y: 4, z: -25.000015}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276372927246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276397026774
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276397026777}
-  - component: {fileID: 902034586}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_11
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276397026777
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276397026774}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.000004, y: 4, z: -26.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276397026774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276411539149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276411539148}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_03
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276411539148
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276411539149}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: -2, z: 9.36998}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2928345276414291258
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,9 +820,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345277899003720}
-  - {fileID: 2928345277763415903}
   - {fileID: 2928345278248894320}
+  - {fileID: 3935645890177644159}
+  - {fileID: 2171742041059604772}
   - {fileID: 2928345277248290425}
+  - {fileID: 2928345277763415903}
   m_Father: {fileID: 2928345277302663538}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -598,7 +853,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276442228214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: 2.0000153}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345276970753895}
@@ -644,14 +899,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276465709750}
-  m_LocalRotation: {x: -0, y: 0.72311693, z: -0, w: 0.6907256}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.128296, y: 9.7125, z: 20.88994}
   m_Children:
   - {fileID: 2928345276733389390}
   m_Father: {fileID: 2928345278096202018}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2928345276465709757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,8 +949,10 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 5961632917222803171}
+    - {fileID: 8000448297159801065}
+    - {fileID: 111999801827717979}
+    - {fileID: 1590378778332107310}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &902034473
@@ -736,8 +993,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276472287749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: -4.3600006}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277617595533}
   m_RootOrder: 1
@@ -756,111 +1013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
   radius: 0.5
---- !u!1 &2928345276483175328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276483175331}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_08
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276483175331
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276483175328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.000004, y: -2, z: 9.67}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345276487323503
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276487323502}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_07
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276487323502
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276487323503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.000004, y: -2, z: 8.669998}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345276557103768
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276557103771}
-  - component: {fileID: 902034513}
-  m_Layer: 0
-  m_Name: drone_spawn_point_05_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276557103771
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276557103768}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9999962, y: 2.38, z: 2.9999847}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345276970753895}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276557103768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345276564402157
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +1022,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345276564402156}
+  - component: {fileID: 2491033429987325607}
   m_Layer: 0
   m_Name: arbitr_spawn_point_04_02
   m_TagString: Zone-2-Spawn
@@ -885,12 +1038,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276564402157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: -2, z: 10.36998}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345278248894320}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2491033429987325607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345276564402157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
+  radius: 0.5
 --- !u!1 &2928345276583184027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,8 +1177,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276587825758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.999996, y: -1, z: 17.000015}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: -8.08, y: 0, z: -6.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277248290425}
   m_RootOrder: 2
@@ -1075,96 +1242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
   radius: 0.5
---- !u!1 &2928345276654332650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276654332653}
-  - component: {fileID: 902034536}
-  m_Layer: 0
-  m_Name: drone_spawn_point_02_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276654332653
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276654332650}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2697234, y: -1.0707502, z: 43.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277239843669}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276654332650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345276691492255
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276691492254}
-  - component: {fileID: 902034515}
-  m_Layer: 0
-  m_Name: drone_spawn_point_05_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276691492254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276691492255}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 2.38, z: 2.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345276970753895}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276691492255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345276696544957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,9 +1266,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276696544957}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.379724, y: -0.89106274, z: 15.076473}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -6.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345276992572053}
   m_RootOrder: 1
@@ -1209,51 +1286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276711914024
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276711914027}
-  - component: {fileID: 902034521}
-  m_Layer: 0
-  m_Name: drone_spawn_point_04_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276711914027
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276711914024}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277763415903}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276711914024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
   radius: 0.5
 --- !u!1 &2928345276713832323
 GameObject:
@@ -1280,7 +1312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276713832323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16, y: 1, z: 0.13}
+  m_LocalPosition: {x: 1.16, y: 0, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1.8359375}
   m_Children: []
   m_Father: {fileID: 2928345277930254742}
@@ -1344,98 +1376,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2928345276735962779
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276735962778}
-  - component: {fileID: 2928345276735962783}
-  - component: {fileID: 2928345276735962780}
-  - component: {fileID: 902034472}
-  m_Layer: 0
-  m_Name: Trigger_06
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276735962778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276735962779}
-  m_LocalRotation: {x: -0, y: 0.999794, z: -0, w: 0.020299338}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7528491, y: 4.0309787, z: 5.8694534}
-  m_Children:
-  - {fileID: 2928345277090347049}
-  m_Father: {fileID: 2928345276255843822}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2928345276735962783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276735962779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
---- !u!114 &2928345276735962780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276735962779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d055b42bf26644d89d2475d3cce69e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useCollider: {fileID: 2928345277090347048}
-  collisionActions:
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 16183
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
-    - Player
-    velocityFilter:
-      Use: 0
-      Mode: 0
-      Velocity: 0
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
-    - {fileID: 2928345277053690799}
-  debugCollisions: 0
-  ExistentCollisions: []
---- !u!114 &902034472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276735962779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256dd09723584e74baf3a94844c67c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 0.5019608}
 --- !u!1 &2928345276767962491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,9 +1400,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276767962491}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.3597198, y: -0.89106274, z: 15.096493}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5, y: 0, z: 5.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345276992572053}
   m_RootOrder: 0
@@ -1490,6 +1430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345276771212840}
+  - component: {fileID: 4788512786621723100}
   m_Layer: 0
   m_Name: arbitr_spawn_point_04_01
   m_TagString: Zone-2-Spawn
@@ -1505,12 +1446,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276771212841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0259361, y: -2, z: 10.348404}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345278248894320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4788512786621723100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345276771212841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
+  radius: 0.5
 --- !u!1 &2928345276780688884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,13 +1490,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276780688884}
-  m_LocalRotation: {x: -0, y: 0.72311693, z: -0, w: 0.6907256}
-  m_LocalPosition: {x: -913.8, y: 6.61, z: -411.96}
-  m_LocalScale: {x: 3.1332948, y: 9.7125, z: 77.65025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277624471845}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 92.625, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2928345276780688886
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1580,7 +1535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276796736261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: -1, z: 3.9999847}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277763415903}
@@ -1593,96 +1548,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276796736261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345276818001578
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276818001581}
-  - component: {fileID: 902034512}
-  m_Layer: 0
-  m_Name: drone_spawn_point_05_07
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276818001581
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276818001578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 2.38, z: 0.99998474}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345276970753895}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276818001578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345276840114278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276840114281}
-  - component: {fileID: 902034522}
-  m_Layer: 0
-  m_Name: drone_spawn_point_04_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276840114281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276840114278}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: -1, z: 2.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277763415903}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276840114278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
@@ -1714,9 +1579,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276840143902}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: -1, z: -11}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 7.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277248290425}
   m_RootOrder: 0
@@ -1760,7 +1625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276847931633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.16, y: 1, z: 0.13}
+  m_LocalPosition: {x: 2.16, y: 0, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1.8359375}
   m_Children: []
   m_Father: {fileID: 2928345277930254742}
@@ -1779,96 +1644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276856560349
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276856560348}
-  - component: {fileID: 902034598}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_05_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276856560348
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276856560349}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 2.38, z: -5.3600006}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277617595533}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276856560349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345276885367205
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276885367204}
-  - component: {fileID: 902034530}
-  m_Layer: 0
-  m_Name: drone_spawn_point_03_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276885367204
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276885367205}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 2.38, z: 4.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277243404706}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276885367205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
   radius: 0.5
 --- !u!1 &2928345276906451135
 GameObject:
@@ -1895,7 +1670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276906451135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0259361, y: -1, z: 2.9784393}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277763415903}
@@ -1960,10 +1735,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345276970753895}
+  - component: {fileID: 8000448297159801065}
   - component: {fileID: 2928345276970753894}
   - component: {fileID: 2928345276970753897}
   m_Layer: 0
-  m_Name: DronesSpawnPoints_05
+  m_Name: DronesSpawnPoints_05-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1976,21 +1752,35 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276970753892}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.606415, y: -6.55, z: -9.210022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.71, y: -3.68, z: -8.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345277925655515}
   - {fileID: 2928345277871742345}
   - {fileID: 2928345276442228217}
-  - {fileID: 2928345276691492254}
-  - {fileID: 2928345277400066741}
-  - {fileID: 2928345276557103771}
-  - {fileID: 2928345276818001581}
-  - {fileID: 2928345277561578720}
   m_Father: {fileID: 2928345278096202018}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8000448297159801065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345276970753892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345276970753894}
+    Delay: 5
+    LoopCount: 2
+    StartupDelay: 3
 --- !u!114 &2928345276970753894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2033,7 +1823,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -2057,51 +1847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!1 &2928345276974785914
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345276974785917}
-  - component: {fileID: 902034607}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_02_08
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345276974785917
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276974785914}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10.99972, y: -0.27106285, z: 13.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345276992572053}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345276974785914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345276992572050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,6 +1856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345276992572053}
+  - component: {fileID: 2652803348306330569}
   - component: {fileID: 2928345276992572055}
   - component: {fileID: 2928345276992572052}
   m_Layer: 0
@@ -2128,20 +1874,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345276992572050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345276767962490}
   - {fileID: 2928345276696544956}
   - {fileID: 2928345276332733220}
-  - {fileID: 2928345278254403499}
-  - {fileID: 2928345277328720466}
-  - {fileID: 2928345277511124575}
-  - {fileID: 2928345277084876131}
-  - {fileID: 2928345276974785917}
   m_Father: {fileID: 2928345276272019295}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2652803348306330569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345276992572050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345276992572055}
+    Delay: 4
+    LoopCount: 2
+    StartupDelay: 0
 --- !u!114 &2928345276992572055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,7 +1944,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -2208,209 +1968,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!1 &2928345277028489785
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277028489784}
-  - component: {fileID: 902034584}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_13
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277028489784
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277028489785}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.000004, y: 4, z: -26.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277028489785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277053690797
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277053690796}
-  - component: {fileID: 2928345277053690799}
-  - component: {fileID: 2928345277053690798}
-  m_Layer: 0
-  m_Name: ArbitresSpawnPoints_06
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277053690796
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277053690797}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.14183, y: -4.33, z: -5.220001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2928345277790580805}
-  - {fileID: 2928345277778158206}
-  - {fileID: 2928345277641336871}
-  - {fileID: 2928345277236881313}
-  - {fileID: 2928345277510306228}
-  - {fileID: 2928345276356843700}
-  - {fileID: 2928345277292870076}
-  - {fileID: 2928345277403758395}
-  - {fileID: 2928345278103461505}
-  - {fileID: 2928345276249227466}
-  - {fileID: 2928345276397026777}
-  - {fileID: 2928345277302375938}
-  - {fileID: 2928345277028489784}
-  - {fileID: 2928345276372927281}
-  - {fileID: 2928345277918243560}
-  m_Father: {fileID: 2928345276255843822}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2928345277053690799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277053690797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: ArbitersSpawn
-  ExecuteNow: 0
-  ExecuteOnAwake: 0
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 2791442027177663522, guid: b94cd6496f042c742b57f80f50a68d2b, type: 3}
-    spawnPosition: 0
-    spawnPointsFillingMode: 1
-    fillSpawnPoints: 1
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 2928345277053690797}
-    spawnPointTag: 
-    useChildrenObjects: 1
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 219696582898746723, guid: e63e52b5e833c454f9242a69a7531e23, type: 3}
-    - {fileID: 5249163045441211879, guid: cf9cbdafeda76484b8add2e4e540b011, type: 3}
-    - {fileID: 758353118697322359, guid: 4ca794a1d8feeb442bde0501aabf80b0, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
---- !u!114 &2928345277053690798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277053690797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
---- !u!1 &2928345277061040201
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277061040200}
-  - component: {fileID: 902034534}
-  m_Layer: 0
-  m_Name: drone_spawn_point_02_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277061040200
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277061040201}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2697234, y: -1.0707502, z: 42.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277239843669}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277061040201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277074257776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,95 +1998,6 @@ Transform:
   m_Father: {fileID: 2928345277280906309}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345277084876128
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277084876131}
-  - component: {fileID: 902034608}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_02_07
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277084876131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277084876128}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 9.99972, y: -0.27106285, z: 13.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345276992572053}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277084876128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277090347046
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277090347049}
-  - component: {fileID: 2928345277090347048}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277090347049
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277090347046}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345276735962778}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 177.674, z: 0}
---- !u!65 &2928345277090347048
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277090347046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2928345277141038820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,7 +2197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277166719643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 1, z: 0.13}
+  m_LocalPosition: {x: 0.16, y: 0, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1.8359375}
   m_Children: []
   m_Father: {fileID: 2928345277930254742}
@@ -2793,155 +2261,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2928345277236881342
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277236881313}
-  - component: {fileID: 902034593}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277236881313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277236881342}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 3, z: -2.1484222}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277236881342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277239843666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277239843669}
-  - component: {fileID: 2928345277239843671}
-  - component: {fileID: 2928345277239843668}
-  m_Layer: 0
-  m_Name: DronesSpawnPoints_02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277239843669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277239843666}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2928345277789477436}
-  - {fileID: 2928345277770014426}
-  - {fileID: 2928345278160921739}
-  - {fileID: 2928345276654332653}
-  - {fileID: 2928345278038284024}
-  - {fileID: 2928345277061040200}
-  m_Father: {fileID: 2928345276272019295}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2928345277239843671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277239843666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: DronesSpawn
-  ExecuteNow: 0
-  ExecuteOnAwake: 0
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 1102490093963696, guid: 5d594cd7305e4cc49bcb17f30167185a, type: 3}
-    spawnPosition: 0
-    spawnPointsFillingMode: 1
-    fillSpawnPoints: 1
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints:
-    - {fileID: 2928345277239843666}
-    spawnPointTag: Enemy
-    useChildrenObjects: 1
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 219696582898746723, guid: e433813ab07cba5438d073d7f6eb6d73, type: 3}
-    - {fileID: 5249163045441211879, guid: 832bbb39039d3144988e6705931d0d80, type: 3}
-    - {fileID: 758353118697322359, guid: 773e676a221ca6142b202d1349fcaaeb, type: 3}
-    copyComponentsOfType: 2
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
---- !u!114 &2928345277239843668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277239843666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
 --- !u!1 &2928345277243404707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,10 +2270,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345277243404706}
+  - component: {fileID: 6552809277907368273}
   - component: {fileID: 2928345277243404708}
   - component: {fileID: 2928345277243404709}
   m_Layer: 0
-  m_Name: DronesSpawnPoints_03
+  m_Name: DronesSpawnPoints_03-backward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2968,19 +2288,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277243404707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1497235, y: -2.651063, z: -31.523514}
+  m_LocalPosition: {x: 1.1497235, y: 0.18, z: 7.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345278314960850}
   - {fileID: 2928345278149995062}
-  - {fileID: 2928345278034489488}
-  - {fileID: 2928345276885367204}
-  - {fileID: 2928345277525022327}
-  - {fileID: 2928345277794633319}
-  - {fileID: 2928345278086899145}
   m_Father: {fileID: 2928345278242570439}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6552809277907368273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345277243404707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345277243404708}
+    Delay: 4
+    LoopCount: 2
+    StartupDelay: 0
 --- !u!114 &2928345277243404708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3023,7 +2357,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -3056,10 +2390,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345277248290425}
+  - component: {fileID: 2418739349806282587}
   - component: {fileID: 2928345277248290424}
   - component: {fileID: 2928345277248290427}
   m_Layer: 0
-  m_Name: SnipersSpawnPoints_04
+  m_Name: SnipersSpawnPoints_04-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3072,17 +2407,35 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277248290422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.948517, y: 0.9200001, z: 50.689972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.08, y: -0.6300001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345276840143873}
   - {fileID: 2928345277602376980}
   - {fileID: 2928345276587825729}
-  - {fileID: 2928345277869604172}
   m_Father: {fileID: 2928345276414291261}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2418739349806282587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345277248290422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345277248290424}
+    Delay: 0
+    LoopCount: 1
+    StartupDelay: 10
 --- !u!114 &2928345277248290424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3125,7 +2478,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -3250,126 +2603,6 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
---- !u!1 &2928345277285717240
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277285717243}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_10
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277285717243
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277285717240}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.000004, y: -2, z: 8.669998}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345277292870077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277292870076}
-  - component: {fileID: 902034590}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_07
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277292870076
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277292870077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.999996, y: 4, z: -25.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277292870077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277302375939
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277302375938}
-  - component: {fileID: 902034585}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_12
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277302375938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277302375939}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.000004, y: 4, z: -26.000015}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277302375939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277302663539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3402,55 +2635,9 @@ Transform:
   - {fileID: 2928345278242570439}
   - {fileID: 2928345276414291261}
   - {fileID: 2928345278096202018}
-  - {fileID: 2928345276255843822}
   m_Father: {fileID: 2928345276957825519}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345277328720467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277328720466}
-  - component: {fileID: 902034610}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_02_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277328720466
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277328720467}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 9.99972, y: -0.27106285, z: 14.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345276992572053}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277328720467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277395326539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,96 +2668,6 @@ Transform:
   m_Father: {fileID: 2928345277280906309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345277400066738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277400066741}
-  - component: {fileID: 902034514}
-  m_Layer: 0
-  m_Name: drone_spawn_point_05_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277400066741
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277400066738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9999962, y: 2.38, z: 2.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345276970753895}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277400066738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345277403758392
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277403758395}
-  - component: {fileID: 902034589}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_08
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277403758395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277403758392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.999996, y: 4, z: -26.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277403758392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277414555213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3596,7 +2693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277414555213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 1, z: -0.87}
+  m_LocalPosition: {x: 0.16, y: 0, z: -0.87}
   m_LocalScale: {x: 1, y: 1, z: 1.8359375}
   m_Children: []
   m_Father: {fileID: 2928345277930254742}
@@ -3615,141 +2712,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277510306229
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277510306228}
-  - component: {fileID: 902034592}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277510306228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277510306229}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 3, z: -1.1484222}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277510306229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277511124572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277511124575}
-  - component: {fileID: 902034609}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_02_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277511124575
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277511124572}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10.99972, y: -0.27106285, z: 14.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345276992572053}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277511124572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277525022324
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277525022327}
-  - component: {fileID: 902034529}
-  m_Layer: 0
-  m_Name: drone_spawn_point_03_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277525022327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277525022324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9999962, y: 2.38, z: 4.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277243404706}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277525022324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
   radius: 0.5
 --- !u!1 &2928345277550502018
 GameObject:
@@ -3776,8 +2738,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277550502018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9999962, y: 2.38, z: -5.3600006}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: -7, y: 0, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277617595533}
   m_RootOrder: 2
@@ -3841,51 +2803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
   radius: 0.5
---- !u!1 &2928345277561578721
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277561578720}
-  - component: {fileID: 902034511}
-  m_Layer: 0
-  m_Name: drone_spawn_point_05_08
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277561578720
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277561578721}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: 3.9999847}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345276970753895}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277561578721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277567957235
 GameObject:
   m_ObjectHideFlags: 0
@@ -3911,7 +2828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277567957235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: -1, z: 4.0000153}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277763415903}
@@ -4046,8 +2963,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277602376981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.999996, y: -1, z: -10.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: 0.76, y: 0, z: -3.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277248290425}
   m_RootOrder: 1
@@ -4075,6 +2992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345277617595533}
+  - component: {fileID: 5961632917222803171}
   - component: {fileID: 2928345277617595532}
   - component: {fileID: 2928345277617595535}
   m_Layer: 0
@@ -4091,18 +3009,35 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277617595530}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6064148, y: -6.55, z: 51.789978}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -3.1500006, z: 8.309998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345277659082329}
   - {fileID: 2928345276472287748}
   - {fileID: 2928345277550502021}
-  - {fileID: 2928345276856560348}
-  - {fileID: 2928345278028529288}
   m_Father: {fileID: 2928345278096202018}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &5961632917222803171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345277617595530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345277617595532}
+    Delay: 5
+    LoopCount: 2
+    StartupDelay: 0
 --- !u!114 &2928345277617595532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4145,7 +3080,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -4245,8 +3180,9 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 2928345277243404708}
-    - {fileID: 2928345277930254744}
+    - {fileID: 6552809277907368273}
+    - {fileID: 255505322898380687}
+    - {fileID: 3377650040880787468}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &902034475
@@ -4307,51 +3243,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
   radius: 0.5
---- !u!1 &2928345277641336868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277641336871}
-  - component: {fileID: 902034594}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_03
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277641336871
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277641336868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 3, z: -0.14842224}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277641336868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277659082326
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,8 +3268,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277659082326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 2.38, z: -4.36}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
+  m_LocalPosition: {x: 7, y: 0, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277617595533}
   m_RootOrder: 0
@@ -4397,36 +3288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
   radius: 0.5
---- !u!1 &2928345277695548131
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277695548130}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_09
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277695548130
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277695548131}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.000004, y: -2, z: 7.669998}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2928345277728573227
 GameObject:
   m_ObjectHideFlags: 0
@@ -4451,8 +3312,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277728573227}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277763415903}
@@ -4481,10 +3342,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345277763415903}
+  - component: {fileID: 5830829900969594315}
   - component: {fileID: 2928345277763415902}
   - component: {fileID: 2928345277763415873}
   m_Layer: 0
-  m_Name: DronesSpawnPoints_04
+  m_Name: DronesSpawnPoints_04-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4497,21 +3359,36 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277763415900}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.948517, y: 0.9200001, z: 6.689972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.54, y: -1.08, z: 2.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345277728573226}
   - {fileID: 2928345276906451134}
   - {fileID: 2928345276796736260}
   - {fileID: 2928345277567957234}
-  - {fileID: 2928345276840114281}
-  - {fileID: 2928345276711914027}
-  - {fileID: 2928345276259424137}
-  - {fileID: 2928345277823350492}
   m_Father: {fileID: 2928345276414291261}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5830829900969594315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345277763415900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345277763415902}
+    Delay: 0
+    LoopCount: 1
+    StartupDelay: 10
 --- !u!114 &2928345277763415902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4554,7 +3431,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -4578,96 +3455,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!1 &2928345277770014427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277770014426}
-  - component: {fileID: 902034538}
-  m_Layer: 0
-  m_Name: drone_spawn_point_02_02
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277770014426
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277770014427}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2697234, y: -1.0707502, z: 43.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277239843669}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277770014427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345277778158207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277778158206}
-  - component: {fileID: 902034595}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_02
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277778158206
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277778158207}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 3, z: -1.1484222}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277778158207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277786602271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4712,141 +3499,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2928345277789477437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277789477436}
-  - component: {fileID: 902034539}
-  m_Layer: 0
-  m_Name: drone_spawn_point_02_01
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277789477436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277789477437}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2437835, y: -1.0707502, z: 44.064938}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277239843669}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277789477437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345277790580802
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277790580805}
-  - component: {fileID: 902034596}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_01
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277790580805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277790580802}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0259361, y: 3, z: -2.17}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277790580802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277794633316
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277794633319}
-  - component: {fileID: 902034528}
-  m_Layer: 0
-  m_Name: drone_spawn_point_03_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277794633319
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277794633316}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: 2.38, z: 2.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277243404706}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277794633316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277798643064
 GameObject:
   m_ObjectHideFlags: 0
@@ -4872,7 +3524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277798643064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16, y: 1, z: -0.87}
+  m_LocalPosition: {x: 1.16, y: 0, z: -0.87}
   m_LocalScale: {x: 1, y: 1, z: 1.8359375}
   m_Children: []
   m_Father: {fileID: 2928345277930254742}
@@ -4937,96 +3589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
   radius: 0.5
---- !u!1 &2928345277823350493
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277823350492}
-  - component: {fileID: 902034519}
-  m_Layer: 0
-  m_Name: drone_spawn_point_04_08
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277823350492
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277823350493}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: -1, z: 1.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277763415903}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277823350493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345277869604173
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277869604172}
-  - component: {fileID: 902034623}
-  m_Layer: 0
-  m_Name: sniper_spawn_point_04_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277869604172
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277869604173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.000004, y: -1, z: 20.999985}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277248290425}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277869604173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.56078434, g: 0.8196079, b: 0.30980393, a: 1}
-  radius: 0.5
 --- !u!1 &2928345277871742342
 GameObject:
   m_ObjectHideFlags: 0
@@ -5052,7 +3614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277871742342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: 3.0000153}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345276970753895}
@@ -5148,9 +3710,11 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 9018470348566373973}
+    - {fileID: 1535043933250397272}
+    - {fileID: 7949262204570934238}
+    - {fileID: 5830829900969594315}
+    - {fileID: 2418739349806282587}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &902034474
@@ -5166,36 +3730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0.5019608}
---- !u!1 &2928345277906660359
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277906660358}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_06
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277906660358
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277906660359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.000004, y: -2, z: 8.669968}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2928345277912825232
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,51 +3768,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277912825232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345277918243561
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277918243560}
-  - component: {fileID: 902034582}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_15
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277918243560
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277918243561}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.000004, y: 4, z: -26.000015}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277918243561}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
@@ -5356,7 +3845,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277925655512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0259361, y: 2.38, z: 2.9784393}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345276970753895}
@@ -5385,6 +3874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345277930254742}
+  - component: {fileID: 3377650040880787468}
   - component: {fileID: 2928345277930254744}
   - component: {fileID: 2928345277930254745}
   m_Layer: 0
@@ -5402,7 +3892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345277930254743}
   m_LocalRotation: {x: -0, y: -0.7078594, z: -0, w: 0.70635337}
-  m_LocalPosition: {x: 22.909733, y: 0.72893715, z: -5.3235016}
+  m_LocalPosition: {x: 10.17, y: -0.69, z: -5.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345276713832322}
@@ -5411,8 +3901,27 @@ Transform:
   - {fileID: 2928345277414555212}
   - {fileID: 2928345276847931632}
   m_Father: {fileID: 2928345278242570439}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90.122, z: 0}
+--- !u!114 &3377650040880787468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345277930254743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345277930254744}
+    Delay: 4
+    LoopCount: 2
+    StartupDelay: 0
 --- !u!114 &2928345277930254744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5455,7 +3964,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -5507,8 +4016,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4104704962841847194}
-  - {fileID: 108278228093830064}
   - {fileID: 7351477400683903320}
+  - {fileID: 108278228093830064}
   m_Father: {fileID: 2928345276957825519}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -5557,36 +4066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
   radius: 0.5
---- !u!1 &2928345277991621840
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345277991621843}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345277991621843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345277991621840}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: -2, z: 8.36998}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2928345277998054014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5663,8 +4142,7 @@ MonoBehaviour:
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
-    - {fileID: 2928345276992572055}
-    - {fileID: 2928345277239843671}
+    - {fileID: 2652803348306330569}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &902034476
@@ -5680,171 +4158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0.5019608}
---- !u!1 &2928345278028529289
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278028529288}
-  - component: {fileID: 902034597}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_05_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278028529288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278028529289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: -5.3600006}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277617595533}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278028529289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
---- !u!1 &2928345278034489489
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278034489488}
-  - component: {fileID: 902034531}
-  m_Layer: 0
-  m_Name: drone_spawn_point_03_03
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278034489488
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278034489489}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: 3.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277243404706}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278034489489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345278038284025
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278038284024}
-  - component: {fileID: 902034535}
-  m_Layer: 0
-  m_Name: drone_spawn_point_02_05
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278038284024
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278038284025}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2697234, y: -1.0707502, z: 42.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277239843669}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278038284025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
---- !u!1 &2928345278049418336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278049418339}
-  m_Layer: 0
-  m_Name: arbitr_spawn_point_04_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278049418339
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278049418336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999962, y: -2, z: 9.37}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345278248894320}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2928345278059609314
 GameObject:
   m_ObjectHideFlags: 0
@@ -5899,7 +4212,7 @@ MonoBehaviour:
     Actions:
     - {fileID: 6361360566922216402}
     Delay: 4
-    LoopCount: 2
+    LoopCount: 5
     StartupDelay: 0
 --- !u!114 &2928345278059609319
 MonoBehaviour:
@@ -5967,51 +4280,6 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
---- !u!1 &2928345278086899142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278086899145}
-  - component: {fileID: 902034527}
-  m_Layer: 0
-  m_Name: drone_spawn_point_03_07
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278086899145
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278086899142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 2.38, z: 2.0000153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277243404706}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278086899142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345278096202019
 GameObject:
   m_ObjectHideFlags: 0
@@ -6036,60 +4304,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345278096202019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.063309, y: 6.2789373, z: -58.613495}
+  m_LocalPosition: {x: 28.39, y: 6.2789373, z: -53.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345276465709753}
-  - {fileID: 2928345276970753895}
   - {fileID: 2928345277617595533}
+  - {fileID: 2928345276970753895}
+  - {fileID: 6433883292927755726}
+  - {fileID: 7427295511741998410}
   m_Father: {fileID: 2928345277302663538}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345278103461534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278103461505}
-  - component: {fileID: 902034588}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_06_09
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278103461505
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278103461534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.999996, y: 4, z: -28.000015}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345277053690796}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278103461534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345278149995063
 GameObject:
   m_ObjectHideFlags: 0
@@ -6115,7 +4340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345278149995063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9999962, y: 2.38, z: 3.0000153}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277243404706}
@@ -6165,51 +4390,6 @@ Transform:
   m_Father: {fileID: 2928345277280906309}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2928345278160921736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278160921739}
-  - component: {fileID: 902034537}
-  m_Layer: 0
-  m_Name: drone_spawn_point_02_03
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278160921739
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278160921736}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2697234, y: -1.0707502, z: 44.086483}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2928345277239843669}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278160921736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
-  radius: 0.5
 --- !u!1 &2928345278181068940
 GameObject:
   m_ObjectHideFlags: 0
@@ -6265,7 +4445,7 @@ MonoBehaviour:
     Actions:
     - {fileID: 8976056094657117339}
     Delay: 4
-    LoopCount: 2
+    LoopCount: 5
     StartupDelay: 0
 --- !u!114 &2928345278181068977
 MonoBehaviour:
@@ -6396,6 +4576,7 @@ Transform:
   m_Children:
   - {fileID: 2928345277624471845}
   - {fileID: 2928345277243404706}
+  - {fileID: 7794966868750205492}
   - {fileID: 2928345277930254742}
   m_Father: {fileID: 2928345277302663538}
   m_RootOrder: 2
@@ -6409,6 +4590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928345278248894320}
+  - component: {fileID: 9018470348566373973}
   - component: {fileID: 2928345278248894323}
   - component: {fileID: 2928345278248894322}
   m_Layer: 0
@@ -6425,23 +4607,34 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345278248894321}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.948517, y: 0.9200001, z: -9.310028}
+  m_LocalRotation: {x: -0, y: 0.4983814, z: -0, w: 0.86695796}
+  m_LocalPosition: {x: -2.72, y: -3.69, z: -3.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2928345276771212840}
   - {fileID: 2928345276564402156}
-  - {fileID: 2928345276411539148}
-  - {fileID: 2928345278049418339}
-  - {fileID: 2928345277991621843}
-  - {fileID: 2928345277906660358}
-  - {fileID: 2928345276487323502}
-  - {fileID: 2928345276483175331}
-  - {fileID: 2928345277695548130}
-  - {fileID: 2928345277285717243}
   m_Father: {fileID: 2928345276414291261}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 59.786, z: 0}
+--- !u!114 &9018470348566373973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928345278248894321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 2928345278248894323}
+    Delay: 1
+    LoopCount: 4
+    StartupDelay: 0
 --- !u!114 &2928345278248894323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6484,7 +4677,7 @@ MonoBehaviour:
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -6508,51 +4701,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!1 &2928345278254403496
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2928345278254403499}
-  - component: {fileID: 902034611}
-  m_Layer: 0
-  m_Name: arbiter_spawn_point_02_04
-  m_TagString: Zone-2-Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2928345278254403499
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278254403496}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.379724, y: -0.89106274, z: 13.076473}
-  m_LocalScale: {x: 1, y: 1, z: 1.8359375}
-  m_Children: []
-  m_Father: {fileID: 2928345276992572053}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902034611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928345278254403496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
-  radius: 0.5
 --- !u!1 &2928345278314960851
 GameObject:
   m_ObjectHideFlags: 0
@@ -6578,7 +4726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2928345278314960851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0259361, y: 2.38, z: 2.9784393}
+  m_LocalPosition: {x: -3.35, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2928345277243404706}
@@ -6642,6 +4790,607 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3480459526766377688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3935645890177644159}
+  - component: {fileID: 1535043933250397272}
+  - component: {fileID: 4833456811853206799}
+  - component: {fileID: 7680064670339750862}
+  m_Layer: 0
+  m_Name: ArbitresSpawnPoints_04 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3935645890177644159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480459526766377688}
+  m_LocalRotation: {x: -0, y: 0.67771006, z: -0, w: 0.7353293}
+  m_LocalPosition: {x: 4.34, y: -0.85000014, z: 2.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7828803539255338918}
+  - {fileID: 4345614464142948456}
+  - {fileID: 4116744040540021484}
+  m_Father: {fileID: 2928345276414291261}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 85.33, z: 0}
+--- !u!114 &1535043933250397272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480459526766377688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 4833456811853206799}
+    Delay: 0
+    LoopCount: 1
+    StartupDelay: 4
+--- !u!114 &4833456811853206799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480459526766377688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: ArbitersSpawn
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 2791442027177663522, guid: b94cd6496f042c742b57f80f50a68d2b, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 3480459526766377688}
+    spawnPointTag: 
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 219696582898746723, guid: e63e52b5e833c454f9242a69a7531e23, type: 3}
+    - {fileID: 5249163045441211879, guid: cf9cbdafeda76484b8add2e4e540b011, type: 3}
+    - {fileID: 758353118697322359, guid: 4ca794a1d8feeb442bde0501aabf80b0, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &7680064670339750862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480459526766377688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!1 &3688000983776111667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478500907884093328}
+  - component: {fileID: 5089844537413557232}
+  m_Layer: 0
+  m_Name: arbitr_spawn_point_04_02
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1478500907884093328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3688000983776111667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2171742041059604772}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5089844537413557232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3688000983776111667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
+  radius: 0.5
+--- !u!1 &3838506260111586393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357197334385654474}
+  - component: {fileID: 8329847114794180423}
+  m_Layer: 0
+  m_Name: drone_spawn_point_03_02
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357197334385654474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838506260111586393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.17, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7794966868750205492}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8329847114794180423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838506260111586393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
+  radius: 0.5
+--- !u!1 &4512370043303293307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8291544324809587878}
+  - component: {fileID: 4626224819640023202}
+  m_Layer: 0
+  m_Name: drone_spawn_point_05_01
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8291544324809587878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512370043303293307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6433883292927755726}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4626224819640023202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512370043303293307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
+  radius: 0.5
+--- !u!1 &7321179223471860596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6005256095933578191}
+  - component: {fileID: 3070595333248034051}
+  m_Layer: 0
+  m_Name: arbitr_spawn_point_04_01
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6005256095933578191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321179223471860596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2171742041059604772}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3070595333248034051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321179223471860596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
+  radius: 0.5
+--- !u!1 &7561469805058106012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2231198092484608427}
+  - component: {fileID: 7713646523032502043}
+  m_Layer: 0
+  m_Name: drone_spawn_point_05_03
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2231198092484608427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561469805058106012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6433883292927755726}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7713646523032502043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561469805058106012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.1764706, g: 0.60784316, b: 0.94117653, a: 1}
+  radius: 0.5
+--- !u!1 &7638924288507903067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4345614464142948456}
+  - component: {fileID: 4592777417302904370}
+  m_Layer: 0
+  m_Name: arbitr_spawn_point_04_02
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4345614464142948456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638924288507903067}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.14, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3935645890177644159}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4592777417302904370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638924288507903067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
+  radius: 0.5
+--- !u!1 &8325770495485131590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4116744040540021484}
+  - component: {fileID: 2024704573020549466}
+  m_Layer: 0
+  m_Name: arbitr_spawn_point_04_03
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4116744040540021484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325770495485131590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.57, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3935645890177644159}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024704573020549466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325770495485131590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.07058824, g: 0.80392164, b: 0.8313726, a: 1}
+  radius: 0.5
+--- !u!1 &8649270988636178699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1169143480630523729}
+  - component: {fileID: 2724774285900110438}
+  m_Layer: 0
+  m_Name: sniper_spawn_point_04_01
+  m_TagString: Zone-2-Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1169143480630523729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8649270988636178699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7427295511741998410}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2724774285900110438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8649270988636178699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a5fa931ffd464e9a59303da186c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.56078434, g: 0.8196079, b: 0.30980393, a: 1}
+  radius: 0.5
+--- !u!1 &9175639260616121980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7794966868750205492}
+  - component: {fileID: 255505322898380687}
+  - component: {fileID: 5762332005811227525}
+  - component: {fileID: 148094195721909507}
+  m_Layer: 0
+  m_Name: DronesSpawnPoints_03-forward
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7794966868750205492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175639260616121980}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.44, y: -0.95, z: -19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5061308461298000339}
+  - {fileID: 1357197334385654474}
+  m_Father: {fileID: 2928345278242570439}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &255505322898380687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175639260616121980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnStart: 0
+  Settings:
+    Actions:
+    - {fileID: 5762332005811227525}
+    Delay: 4
+    LoopCount: 2
+    StartupDelay: 0
+--- !u!114 &5762332005811227525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175639260616121980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: DronesSpawn
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1102490093963696, guid: 5d594cd7305e4cc49bcb17f30167185a, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 1
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 9175639260616121980}
+    spawnPointTag: Enemy
+    useChildrenObjects: 1
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples:
+    - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
+    - {fileID: 219696582898746723, guid: e433813ab07cba5438d073d7f6eb6d73, type: 3}
+    - {fileID: 5249163045441211879, guid: 832bbb39039d3144988e6705931d0d80, type: 3}
+    - {fileID: 758353118697322359, guid: 773e676a221ca6142b202d1349fcaaeb, type: 3}
+    copyComponentsOfType: 2
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &148094195721909507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175639260616121980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
 --- !u!1001 &2928345276207842844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6657,7 +5406,7 @@ PrefabInstance:
     - target: {fileID: 2964280024355489196, guid: 8b2b7f33d370a5b40afb3e582c9a5192,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2964280024355489196, guid: 8b2b7f33d370a5b40afb3e582c9a5192,
         type: 3}
@@ -6672,7 +5421,7 @@ PrefabInstance:
     - target: {fileID: 2964280024355489196, guid: 8b2b7f33d370a5b40afb3e582c9a5192,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2964280024355489196, guid: 8b2b7f33d370a5b40afb3e582c9a5192,
         type: 3}
@@ -6727,7 +5476,7 @@ PrefabInstance:
     - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
         type: 3}
@@ -6742,7 +5491,7 @@ PrefabInstance:
     - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
         type: 3}
@@ -6874,15 +5623,15 @@ PrefabInstance:
     - {fileID: 4600830946981902564, guid: 73229eaebbdde45339bf6e78786e88d5, type: 3}
     - {fileID: 4600830946981902567, guid: 73229eaebbdde45339bf6e78786e88d5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 73229eaebbdde45339bf6e78786e88d5, type: 3}
---- !u!4 &6336194674627925244 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9173056185145076088, guid: 73229eaebbdde45339bf6e78786e88d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2928345277090692484}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6336194674627925245 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9173056185145076089, guid: 73229eaebbdde45339bf6e78786e88d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2928345277090692484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6336194674627925244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9173056185145076088, guid: 73229eaebbdde45339bf6e78786e88d5,
     type: 3}
   m_PrefabInstance: {fileID: 2928345277090692484}
   m_PrefabAsset: {fileID: 0}

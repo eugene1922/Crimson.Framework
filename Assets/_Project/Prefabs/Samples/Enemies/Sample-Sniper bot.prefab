@@ -327,7 +327,7 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 4470496162032163094, guid: 0985898cc28becd45aca1a2fe35a9f0c, type: 3}
+    - {fileID: 4470496162032163094, guid: 270d9efd8cb3a5741ae33bcc4b2cdf5b, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0

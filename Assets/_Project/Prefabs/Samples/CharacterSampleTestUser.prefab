@@ -211,7 +211,7 @@ MonoBehaviour:
       _current: 100
       _minLimit: 0
       _maxLimit: 100
-      _freeze: 0
+      _freeze: 1
     Level: 1
     LevelUpRequiredExperience: 100
     TotalDamageApplied: 0
@@ -225,6 +225,7 @@ MonoBehaviour:
   additionalForceAnim:
     AnimationName: Hit
     HasAnimation: 0
+  NeedCleanup: 0
   corpseCleanupDelay: 5
   deadActorBehaviour:
     RemoveTag: 0
@@ -233,6 +234,7 @@ MonoBehaviour:
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
+    OnOverdamageActionsComponentNames: []
   deathCount: 0
   ExplicitUIChannel: 0
   healAction: {fileID: 4166300824754732120}
