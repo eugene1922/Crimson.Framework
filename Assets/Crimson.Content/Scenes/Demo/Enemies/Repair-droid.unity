@@ -416,16 +416,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
         type: 3}
-      propertyPath: SpawnData.poolSettings.UsePool
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
-        type: 3}
-      propertyPath: SpawnData.poolSettings.CollectionCheck
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
-        type: 3}
       propertyPath: SpawnData.copyComponentsFromSamples.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -513,16 +503,6 @@ PrefabInstance:
         type: 3}
       propertyPath: SpawnData.fillSpawnPoints
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
-        type: 3}
-      propertyPath: SpawnData.poolSettings.UsePool
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
-        type: 3}
-      propertyPath: SpawnData.poolSettings.CollectionCheck
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
         type: 3}
@@ -876,16 +856,6 @@ PrefabInstance:
         type: 3}
       propertyPath: SpawnData.fillSpawnPoints
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
-        type: 3}
-      propertyPath: SpawnData.poolSettings.UsePool
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
-        type: 3}
-      propertyPath: SpawnData.poolSettings.CollectionCheck
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
         type: 3}
