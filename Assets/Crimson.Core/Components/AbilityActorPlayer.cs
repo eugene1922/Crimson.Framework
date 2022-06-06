@@ -458,6 +458,10 @@ namespace Crimson.Core.Components
 
 		private void SetOverdamage(int value)
 		{
+			if (Actor == null)
+			{
+				return;
+			}
 			var absValue = math.abs(value);
 			if (_dstManager.HasComponent<OverdamageData>(Actor.ActorEntity))
 			{
@@ -465,7 +469,7 @@ namespace Crimson.Core.Components
 				data.Damage += absValue;
 				_dstManager.SetComponentData(_entity, data);
 			}
-			else
+			else if (Actor.ActorEntity != Entity.Null)
 			{
 				_dstManager.AddComponentData(Actor.ActorEntity, new OverdamageData(absValue));
 			}
