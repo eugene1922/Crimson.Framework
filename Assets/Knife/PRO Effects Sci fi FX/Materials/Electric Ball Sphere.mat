@@ -76,6 +76,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _BlendOp: 0
     - _BumpScale: 1
@@ -97,10 +98,10 @@ Material:
     - _EmissionEnabled: 0
     - _FlipbookMode: 0
     - _FresnelPower: 2.17
-    - _FresnelPower1: 1.8
-    - _FresnelPower2: 100
+    - _FresnelPower1: 1.69
+    - _FresnelPower2: 100.29
     - _FresnelScale: 0.4
-    - _FresnelScale1: 0.3
+    - _FresnelScale1: -0.2
     - _FresnelScale2: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -112,7 +113,7 @@ Material:
     - _NoiseAmount2: 1.41
     - _NoiseAmount3: 1.55
     - _NoiseScale: 0.65
-    - _NoiseScale1: 1
+    - _NoiseScale1: 1.06
     - _NoiseScale2: 2
     - _NoiseScale3: 5
     - _NoiseSpeed: 2
@@ -147,3 +148,4 @@ Material:
     - _NormalSpeed3: {r: -0.3, g: -0.3, b: 0, a: 0}
     - _NosieTextureSpeed: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

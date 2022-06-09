@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 //using UnityEngine.Experimental.Rendering.HDPipeline;
 
 namespace Knife.Effects.SimpleController
@@ -51,6 +53,16 @@ namespace Knife.Effects.SimpleController
         public float HandsHeadbobMultiplier = 1;
 
         public PlayerFreezeChangedEvent PlayerFreezeChanged = new PlayerFreezeChangedEvent();
+
+		public InputActionReference LMB;
+		public InputActionReference RMB;
+		public InputActionReference MMB;
+		public InputActionReference LookAction;
+		public InputActionReference MoveAction;
+		public InputActionReference Pause;
+		public InputActionReference NextWeapon;
+		public InputActionReference SlowMotion;
+
 
         [System.Serializable]
         public class PlayerStandState
@@ -143,7 +155,9 @@ namespace Knife.Effects.SimpleController
 
             Physics.IgnoreCollision(characterCollider, controller, true);
 
-            Look.Init(transform, ControlCamera);
+			MoveAction.action.Enable();
+			LookAction.action.Enable();
+            Look.Init(transform, ControlCamera, LookAction);
 
             defaultHandsHeadbobWeight = HandsHeadbobWeight;
 
@@ -177,7 +191,7 @@ namespace Knife.Effects.SimpleController
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Pause.action.WasPerformedThisFrame())
             {
                 if (isPaused)
                     UnpausePlayer();
@@ -240,10 +254,11 @@ namespace Knife.Effects.SimpleController
 
         void move()
         {
-            float h = Input.GetAxis(StrafeAxis);
-            float v = Input.GetAxis(ForwardAxis);
+			Vector2 pos = MoveAction.action.ReadValue<Vector2>();
+			float h = pos.x;// Input.GetAxis(StrafeAxis);
+            float v = pos.y;// Input.GetAxis(ForwardAxis);
 
-            if (freezeControl)
+			if (freezeControl)
             {
                 h = 0;
                 v = 0;
@@ -274,7 +289,7 @@ namespace Knife.Effects.SimpleController
             Vector3 playerXZVelocity = Vector3.Scale(playerVelocity, new Vector3(1, 0, 1));
 
             float speed = Speed;
-            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && playerXZVelocity.magnitude >= RunSpeedThreshold && !isCrouching)
+            if (false && Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && playerXZVelocity.magnitude >= RunSpeedThreshold && !isCrouching)
             {
                 //speed *= RunSpeedMultiplier;
                 runTime += Time.deltaTime;
@@ -322,7 +337,7 @@ namespace Knife.Effects.SimpleController
                 }
 
             }*/
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !freezeControl)
+            if (false && Input.GetKeyDown(KeyCode.LeftControl) && !freezeControl)
             {
                 isCrouching = !isCrouching;
 
@@ -371,7 +386,7 @@ namespace Knife.Effects.SimpleController
 
             if (controller.isGrounded)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && !isCrouching && !freezeControl)
+                if (false && Input.GetKeyDown(KeyCode.Space) && !isCrouching && !freezeControl)
                 {
                     playerVelocity.y = JumpSpeed;
                     if (JumpStartEvent != null)
@@ -496,13 +511,17 @@ namespace Knife.Effects.SimpleController
 
             private Transform character;
             private Transform camera;
+			private InputActionReference _lookActionReference;
 
-            public void Init(Transform character, Transform camera)
+
+			public void Init(Transform character, Transform camera, InputActionReference lookActionReference)
             {
                 characterTargetRot = character.localRotation;
                 cameraTargetRot = camera.localRotation;
+				_lookActionReference = lookActionReference;
 
-                this.character = character;
+
+				this.character = character;
                 this.camera = camera;
             }
 
@@ -516,7 +535,9 @@ namespace Knife.Effects.SimpleController
                 if (!Enabled)
                     return;
 
-                LookRotation(Input.GetAxis(AxisXName) * XSensitivity * SensivityMultiplier, Input.GetAxis(AxisYName) * YSensitivity * SensivityMultiplier, deltaTime);
+				Vector2 lookValue = _lookActionReference.action.ReadValue<Vector2>();
+
+				LookRotation(lookValue.x * XSensitivity * SensivityMultiplier, lookValue.y * YSensitivity * SensivityMultiplier, deltaTime);
             }
 
             public void LookRotation(float yRot, float xRot, float deltaTime)

@@ -320,6 +320,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199548136435090918, guid: 63dc5e2ffc203ad459a1141a21bd66d0,
+        type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63dc5e2ffc203ad459a1141a21bd66d0, type: 3}
 --- !u!4 &2440549041320083632 stripped

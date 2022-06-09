@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Knife.ScifiEffects;
@@ -54,6 +55,8 @@ namespace Knife.Effects.SimpleController
         /// PlayerController to freeze.
         /// </summary>
         [SerializeField] [Tooltip("PlayerController to freeze")] private PlayerController playerController;
+
+		public InputActionReference OpenAction;
 
         private bool isOpened = false;
         private bool isClosed = false;
@@ -183,14 +186,11 @@ namespace Knife.Effects.SimpleController
 
         private void Update()
         {
-            if (Input.GetKey(openCloseKey))
+            if (OpenAction.action.WasPerformedThisFrame())
             {
-                if (!isOpened && !isClosed)
+                if (!isOpened)
                     Open();
-            }
-            else
-            {
-                if (isOpened)
+	            else if (isOpened)
                 {
                     if (currentHoverWeaponIndex != -1)
                         OnSelected(currentHoverWeaponIndex);
@@ -199,12 +199,12 @@ namespace Knife.Effects.SimpleController
                 }
             }
 
-            if(Input.GetKeyUp(openCloseKey))
+            if(OpenAction.action.WasReleasedThisFrame())
             {
                 isClosed = false;
             }
 
-            float mousewheel = Input.GetAxis("Mouse ScrollWheel");
+			float mousewheel = 0;// Input.GetAxis("Mouse ScrollWheel");
 
             if (mousewheel > 0f)
             {
