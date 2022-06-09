@@ -30,6 +30,7 @@ TagManager:
   - CinemachineTarget
   - MagnetObjects
   - WeaponMountPoint
+  - WeaponPoint
   layers:
   - Default
   - TransparentFX
@@ -45,7 +46,7 @@ TagManager:
   - MiddleLight
   - FX
   - Allies
-  - 
+  - StopAllies
   - 
   - 
   - 
