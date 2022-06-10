@@ -408,8 +408,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199032806808932634, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
         type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 199032806808932634, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
+        type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199041387821213212, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
+        type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 199041387821213212, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
         type: 3}
@@ -418,8 +428,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199619188581976730, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
         type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 199619188581976730, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
+        type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199911912103647900, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
+        type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 199911912103647900, guid: 89cabaed2b8ddf34f84ddba3eaa49707,
         type: 3}
