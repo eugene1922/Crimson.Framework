@@ -208,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8130173564087460156}
   m_Layer: 0
-  m_Name: Electric Gun
+  m_Name: SF Electric Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -99,6 +99,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaDissolve: 0
     - _AlphaEmissionDissolveSub: 0
@@ -117,15 +118,15 @@ Material:
     - _EmissionAlpha: 0
     - _EmissionDissolve: 1
     - _EmissionGradient: 0
-    - _EmissionSoftness1: 0
+    - _EmissionSoftness1: 0.52
     - _EmissionSoftness2: 1
-    - _EmissionSubValue: 0
+    - _EmissionSubValue: 0.604
     - _FinalAlphaSmoothstep: 0
     - _FinalAlphaSmoothstepMax: 1
-    - _FinalAlphaSmoothstepMin: 0
+    - _FinalAlphaSmoothstepMin: 0.582
     - _FinalEmissionSmoothstep: 0
     - _FinalEmissionSmoothstepMax: 1
-    - _FinalEmissionSmoothstepMin: 0
+    - _FinalEmissionSmoothstepMin: 0.593
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -165,3 +166,4 @@ Material:
     - _EmissionSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseSpeed: {r: 0, g: 1, b: 0, a: 0}
     - _NoiseSpeed1: {r: 0, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
