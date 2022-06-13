@@ -124,8 +124,10 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
+		[Header("ActionsOnEnable")]
 		public ActionsList ActionsOnEnable = new ActionsList();
 
+		[Header("ActionsOnDisable")]
 		public ActionsList ActionsOnDisable = new ActionsList();
 
 		public ActorGeneralAnimProperties reloadAnimProps;

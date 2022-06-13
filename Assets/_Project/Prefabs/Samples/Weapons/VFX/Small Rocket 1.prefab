@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 25
+  movementSpeed: 15
   useDynamics: 0
   movementStart:
     curve:
@@ -466,14 +466,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: 0
-  forwardVector: {x: 0, y: 0, z: 0}
+  moveDirection: 3
+  forwardVector: {x: 1, y: 0, z: 0}
   compensateSpawnerRotation: 1
   OffsetDirection: {x: 0, y: 0, z: 0}
   _useVariance: 1
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
-    RotationOffset: {x: 5, y: 5, z: 0}
+    RotationOffset: {x: 88, y: 88, z: 0}
+    Cycled: 1
+    MemoryKoef: 0.945
 --- !u!114 &8126489478513763044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationMode: 1
-  rotationSpeed: 100
+  rotationSpeed: 0
   camRayLen: 20
   groundLayerName: Ground
   sensitivity: 3
@@ -5677,8 +5679,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.6
-      minScalar: 0.6
+      scalar: 2
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:

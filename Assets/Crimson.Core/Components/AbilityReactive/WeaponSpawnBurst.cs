@@ -262,7 +262,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			{
 				Timer.TimedActions.AddAction(Spawn, _burstDelay * i);
 			}
-			Timer.TimedActions.AddAction(FinishTimer, _burstDelay * (3 + 1));
+			Timer.TimedActions.AddAction(FinishTimer, _burstDelay * shots);
 		}
 
 		public void Spawn()
