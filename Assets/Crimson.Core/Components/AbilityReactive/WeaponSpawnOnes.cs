@@ -183,29 +183,32 @@ namespace Crimson.Core.Components.AbilityReactive
 
 			appliedPerksNames = new List<string>();
 
-			SpawnPointsRoot = new GameObject("spawn points root").transform;
-			SpawnPointsRoot.SetParent(gameObject.transform);
-
-			SpawnPointsRoot.localPosition = Vector3.zero;
-			ResetSpawnPointRootRotation();
-
-			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+			if (projectileSpawnData.spawnPosition != SpawnPosition.UseSpawnPoints || projectileSpawnData.spawnPointsFrom != SpawnPointsSource.Manually)
 			{
-				projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+				SpawnPointsRoot = new GameObject("spawn points root").transform;
+				SpawnPointsRoot.SetParent(gameObject.transform);
+
+				SpawnPointsRoot.localPosition = Vector3.zero;
+				ResetSpawnPointRootRotation();
+
+				if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+				{
+					projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+				}
+
+				if (projectileSpawnData.SpawnPoints.Any())
+				{
+					projectileSpawnData.SpawnPoints.Clear();
+				}
+
+				var baseSpawnPoint = new GameObject("Base Spawn Point");
+				baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
+
+				baseSpawnPoint.transform.localPosition = Vector3.zero;
+				baseSpawnPoint.transform.localRotation = Quaternion.identity;
+
+				projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 			}
-
-			if (projectileSpawnData.SpawnPoints.Any())
-			{
-				projectileSpawnData.SpawnPoints.Clear();
-			}
-
-			var baseSpawnPoint = new GameObject("Base Spawn Point");
-			baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
-
-			baseSpawnPoint.transform.localPosition = Vector3.zero;
-			baseSpawnPoint.transform.localRotation = Quaternion.identity;
-
-			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 
 			InitPool();
 
