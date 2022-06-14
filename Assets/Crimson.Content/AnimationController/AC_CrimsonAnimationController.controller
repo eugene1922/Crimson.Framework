@@ -235,7 +235,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Main
     m_StateMachine: {fileID: 6116877639520357917}
-    m_Mask: {fileID: 31900000, guid: 62e839636c85ad442ac6175c49d94d3b, type: 2}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
