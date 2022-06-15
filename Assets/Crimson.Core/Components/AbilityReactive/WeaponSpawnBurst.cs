@@ -38,6 +38,9 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public bool primaryProjectile;
 
+		[ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour abilityOnShot;
+
 		public bool aimingAvailable;
 		public bool deactivateAimingOnCooldown;
 
@@ -218,6 +221,8 @@ namespace Crimson.Core.Components.AbilityReactive
 				return;
 			}
 
+			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
+
 			if (projectileStartupDelay > 0)
 			{
 				Timer.TimedActions.AddAction(Shot, projectileStartupDelay);
@@ -356,6 +361,11 @@ namespace Crimson.Core.Components.AbilityReactive
 				SpawnedObjects[i].Destroy();
 			}
 			SpawnedObjects.Clear();
+		}
+
+		private bool MustBeAbility(MonoBehaviour a)
+		{
+			return (a is IActorAbility) || (a is null);
 		}
 	}
 }
