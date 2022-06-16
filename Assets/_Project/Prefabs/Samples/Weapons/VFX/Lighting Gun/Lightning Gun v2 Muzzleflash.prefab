@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 379542595751974225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 2431835474802817936}
   m_RootOrder: 3
@@ -19274,7 +19274,7 @@ Transform:
   m_GameObject: {fileID: 637821924290847949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 2431835474802817936}
   m_RootOrder: 2
@@ -24185,7 +24185,7 @@ Transform:
   m_GameObject: {fileID: 2431835474066247256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 2431835474802817936}
   m_RootOrder: 0
@@ -29103,7 +29103,7 @@ Transform:
   m_GameObject: {fileID: 2431835474551084117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0774, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 2431835473953321625}
   m_Father: {fileID: 2431835474802817936}
@@ -33904,7 +33904,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2431835474802817936}
-  - component: {fileID: 2431835474802817939}
+  - component: {fileID: 6537520995729016092}
+  - component: {fileID: 3019354819021086953}
   m_Layer: 0
   m_Name: Lightning Gun v2 Muzzleflash
   m_TagString: Untagged
@@ -33933,7 +33934,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &2431835474802817939
+--- !u!114 &6537520995729016092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33942,16 +33943,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2431835474802817937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd23736960bd2a48beef6c615cd7607, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystems:
-  - {fileID: 2431835474066247261}
-  - {fileID: 2431835474551084118}
-  - {fileID: 637821924290847950}
-  - {fileID: 5628019254184940482}
-  fadeRenderers:
-  - {fileID: 637821925196535187}
-  fadeDuration: 0.1
-  countMultiplier: 1
-  emissionEnabled: 1
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!114 &3019354819021086953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431835474802817937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifespan: 2
+  startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}

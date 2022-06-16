@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1260784580410444345}
   - component: {fileID: 6868060985141080581}
   - component: {fileID: 6530814061797775722}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 1485290333249196195}
   - component: {fileID: 6414535468271111848}
   - component: {fileID: 2896130026580109034}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4958362328080936022}
   - component: {fileID: 8887538396399139925}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Other (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2728021282582499950}
   - component: {fileID: 8563707040656641220}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Other
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5147179447227814338}
   - component: {fileID: 7854035025587778155}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Other (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,6 +448,36 @@ MonoBehaviour:
     m_RotationOrder: 4
   startRotation: {x: -0.36154518, y: 0.000000040577202, z: -0.000000027786326, w: 0.93235457}
   endRotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!1 &5325789426628308515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216913600540962273}
+  m_Layer: 12
+  m_Name: Impact Place
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216913600540962273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325789426628308515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6868060984629137243}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6021137856771618672
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1149417354222288077}
   - component: {fileID: 3973321579130389475}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +581,16 @@ GameObject:
   m_Component:
   - component: {fileID: 6868060984629137243}
   - component: {fileID: 386252259831635892}
-  m_Layer: 0
+  - component: {fileID: 6876695176110529166}
+  - component: {fileID: 4179158079921982129}
+  - component: {fileID: 2868155281635877366}
+  - component: {fileID: 8138131335463729977}
+  - component: {fileID: 750779244249824827}
+  - component: {fileID: 7370215575686918942}
+  - component: {fileID: 7144375720638589502}
+  - component: {fileID: 322641995720671155}
+  - component: {fileID: 3495391966625977143}
+  m_Layer: 12
   m_Name: Lightning Effect Constant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,14 +604,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6868060984629137242}
-  m_LocalRotation: {x: -0.0031329088, y: 0.0017801519, z: -0.70696634, w: 0.70723796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 15.000001}
+  m_LocalScale: {x: 1, y: 1, z: 50}
   m_Children:
   - {fileID: 4546589643086449910}
   - {fileID: 2728021282582499950}
   - {fileID: 5147179447227814338}
   - {fileID: 4958362328080936022}
+  - {fileID: 1216913600540962273}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -583,7 +623,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6868060984629137242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97adef767725be849ad68539368b0627, type: 3}
   m_Name: 
@@ -610,6 +650,223 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16183
   bulletSize: 0
+--- !u!114 &6876695176110529166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnSpawn: []
+--- !u!114 &4179158079921982129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifespan: 1.5
+  startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}
+--- !u!65 &2868155281635877366
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!114 &8138131335463729977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CriticalDamageChance: 0.5
+  CriticalDamageMultiplier: 1
+  Damage: 20
+  levelablePropertiesList: []
+  perkLevel: 1
+--- !u!114 &750779244249824827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d055b42bf26644d89d2475d3cce69e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useCollider: {fileID: 2868155281635877366}
+  collisionActions:
+  - collisionLayerMask:
+      serializedVersion: 2
+      m_Bits: 8503
+    useTagFilter: 1
+    filterMode: 0
+    filterTags:
+    - CollisionObjects
+    - Enemy
+    - DestructibleObject
+    velocityFilter:
+      Use: 0
+      Mode: 0
+      Velocity: 0
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 7370215575686918942}
+  - collisionLayerMask:
+      serializedVersion: 2
+      m_Bits: 8503
+    useTagFilter: 1
+    filterMode: 0
+    filterTags:
+    - Enemy
+    - DestructibleObject
+    - CollisionObjects
+    velocityFilter:
+      Use: 0
+      Mode: 0
+      Velocity: 0
+    executeOnCollisionWithSpawner: 0
+    destroyAfterAction: 0
+    actions:
+    - {fileID: 8138131335463729977}
+    - {fileID: 3495391966625977143}
+  debugCollisions: 0
+  ExistentCollisions: []
+--- !u!114 &7370215575686918942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 6841546456471869163, guid: 2f6e783e8b163f4439daeab69fb7def0, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 5325789426628308515}
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &7144375720638589502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff8c79da9bc4d898e1e63e682db1909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RunOnAwake: 1
+  findTargetProperties:
+    targetType: 1
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  followMovementType: 0
+  movementSpeed: 0
+  retainOffset: 0
+  continousFollow: 1
+  hideIfNoTarget: 0
+--- !u!114 &322641995720671155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535773388f1f4534bdad2a70960d5503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTarget: 1
+  actorWithComponentName: 
+  targetTag: 
+  strategy: 0
+  followX: 1
+  followY: 1
+  followZ: 1
+  retainRotationOffset: 0
+  hideIfNoTarget: 0
+  target: {fileID: 0}
+--- !u!114 &3495391966625977143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868060984629137242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78e5dda1ac4b694aa3e7a94fac71680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8226680614332728468
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +880,7 @@ GameObject:
   - component: {fileID: 7644821206561402952}
   - component: {fileID: 8000158888096599436}
   - component: {fileID: 2893963727593837322}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +997,7 @@ GameObject:
   - component: {fileID: 7119062404346702273}
   - component: {fileID: 5226962881468702041}
   - component: {fileID: 3222804953268007446}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}

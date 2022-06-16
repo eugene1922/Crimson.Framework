@@ -12,12 +12,14 @@ GameObject:
   - component: {fileID: 5782258353547518094}
   - component: {fileID: 6222476957291498195}
   - component: {fileID: 4977334697170939616}
-  - component: {fileID: 5693307526344601247}
+  - component: {fileID: 5681038697540602318}
   - component: {fileID: 3060252310668023360}
   - component: {fileID: 2026818696434828206}
   - component: {fileID: 586072524583161766}
-  - component: {fileID: 7895206293461860212}
-  m_Layer: 0
+  - component: {fileID: 2204124151349907559}
+  - component: {fileID: 2878959294307469356}
+  - component: {fileID: 5072197469911120066}
+  m_Layer: 12
   m_Name: Laser Lance Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,11 +91,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 0.9
+  lifespan: 1
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
---- !u!65 &5693307526344601247
-BoxCollider:
+--- !u!136 &5681038697540602318
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,8 +104,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!114 &3060252310668023360
 MonoBehaviour:
@@ -117,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CriticalDamageChance: 0.1
+  CriticalDamageChance: 0.4
   CriticalDamageMultiplier: 1
   Damage: 10
   levelablePropertiesList: []
@@ -134,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d055b42bf26644d89d2475d3cce69e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCollider: {fileID: 5693307526344601247}
+  useCollider: {fileID: 5681038697540602318}
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
@@ -142,23 +145,6 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - CollisionObjects
-    - Enemy
-    - DestructibleObject
-    velocityFilter:
-      Use: 0
-      Mode: 0
-      Velocity: 0
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
-    - {fileID: 586072524583161766}
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 8503
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
     - Enemy
     - DestructibleObject
     - CollisionObjects
@@ -167,9 +153,11 @@ MonoBehaviour:
       Mode: 0
       Velocity: 0
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
+    destroyAfterAction: 0
     actions:
     - {fileID: 3060252310668023360}
+    - {fileID: 5072197469911120066}
+    - {fileID: 586072524583161766}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &586072524583161766
@@ -185,11 +173,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: 
-  ExecuteNow: 0
+  ExecuteNow: 1
   ExecuteOnAwake: 0
   SpawnData:
     spawnerDisabled: 0
-    objectsToSpawn: []
+    objectsToSpawn:
+    - {fileID: 1001707983979619074, guid: 6c1dfd4e7b719bb4ea257a2e354eb182, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -200,7 +189,7 @@ MonoBehaviour:
     - {fileID: 8164692070515967653}
     spawnPointTag: 
     useChildrenObjects: 0
-    rotationOfSpawns: 0
+    rotationOfSpawns: 3
     parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: 
@@ -219,7 +208,7 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
---- !u!114 &7895206293461860212
+--- !u!114 &2204124151349907559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,32 +217,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 3411136207413131176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ff8c79da9bc4d898e1e63e682db1909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
-  useDynamics: 0
-  movementStart:
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    timeScale: 1
-  movementEnd:
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    timeScale: 1
-  movementAnimationProperties:
-    HasMovementAnimation: 0
-    MovementAnimationName: 
-    MovementAnimationSpeedFactorName: 
-    MovementAnimationSpeedFactorMultiplier: 1
+  RunOnAwake: 1
+  findTargetProperties:
+    targetType: 1
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  followMovementType: 0
+  movementSpeed: 0
+  retainOffset: 0
+  continousFollow: 1
+  hideIfNoTarget: 0
+--- !u!114 &2878959294307469356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411136207413131176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535773388f1f4534bdad2a70960d5503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTarget: 1
+  actorWithComponentName: 
+  targetTag: 
+  strategy: 0
+  followX: 1
+  followY: 1
+  followZ: 1
+  retainRotationOffset: 0
+  hideIfNoTarget: 0
+  target: {fileID: 0}
+--- !u!114 &5072197469911120066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411136207413131176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78e5dda1ac4b694aa3e7a94fac71680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6506529101030706115
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +278,7 @@ GameObject:
   - component: {fileID: 3358783610646636264}
   - component: {fileID: 8150947754471802239}
   - component: {fileID: 6342307943907644150}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5843998801646174663}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Impact Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
