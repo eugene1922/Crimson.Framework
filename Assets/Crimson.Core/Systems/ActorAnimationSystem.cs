@@ -92,6 +92,8 @@ namespace Crimson.Core.Systems
 					proxy.RealSpeed.SetValue(animator, inputData.Move * movementData.SpeedFactorMultiplier);
 					proxy.LookAtDirection.SetValue(animator, inputData.Look);
 
+					//TODO: CurrentWeapon
+					//TODO: PreviousWeapon
 					//TODO: WeaponChange
 					//TODO: Crouch
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
