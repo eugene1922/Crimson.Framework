@@ -88,7 +88,8 @@ namespace Crimson.Core.Systems
 				(Entity entity, AnimatorProxy proxy, Animator animator) =>
 				{
 					var inputData = EntityManager.GetComponentData<PlayerInputData>(entity);
-					proxy.RealSpeed.SetValue(animator, inputData.Move);
+					var movementData = EntityManager.GetComponentData<ActorMovementAnimationData>(entity);
+					proxy.RealSpeed.SetValue(animator, inputData.Move * movementData.SpeedFactorMultiplier);
 					proxy.LookAtDirection.SetValue(animator, inputData.Look);
 
 					//TODO: WeaponChange
