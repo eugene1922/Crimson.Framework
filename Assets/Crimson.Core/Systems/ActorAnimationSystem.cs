@@ -1,9 +1,11 @@
 using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components;
 using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using System;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Systems
@@ -20,6 +22,7 @@ namespace Crimson.Core.Systems
 		private EntityQuery _strafeActorsQuery;
 		private EntityQuery _meleeQuery;
 		private EntityQuery _rangeQuery;
+		private EntityQuery _animatorProxyQuery;
 
 		protected override void OnCreate()
 		{
@@ -71,11 +74,69 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<AimingAnimProperties>(),
 				ComponentType.ReadOnly<ActorEvaluateAimingAnimData>(),
 				ComponentType.ReadOnly<Animator>());
+
+			_animatorProxyQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AnimatorProxy>(),
+				ComponentType.ReadOnly<Animator>());
 		}
 
 		protected override void OnUpdate()
 		{
 			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+			Entities.With(_animatorProxyQuery).ForEach(
+				(Entity entity, AnimatorProxy proxy, Animator animator) =>
+				{
+					var inputData = EntityManager.GetComponentData<PlayerInputData>(entity);
+					proxy.RealSpeed.SetValue(animator, inputData.Move);
+					proxy.LookAtDirection.SetValue(animator, inputData.Look);
+
+					//TODO: WeaponChange
+					//TODO: Crouch
+					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
+					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
+					var hasAttack = hasMeleeAttack || hasRangeAttack;
+					proxy.Attacking.SetValue(animator, hasAttack);
+					if (hasAttack)
+					{
+						var attackType = hasMeleeAttack ? 0 : 1;
+						proxy.AttackType.SetValue(animator, attackType);
+					}
+
+					var entityHasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
+					proxy.Hit.SetValue(animator, entityHasHit);
+					if (entityHasHit)
+					{
+						proxy.HitDirection.SetValue(animator, new float2(0, 1));
+					}
+
+					var hasReload = EntityManager.HasComponent<ReloadTag>(entity);
+					proxy.Reloading.SetValue(animator, hasReload);
+					//TODO:Dodge
+
+					//TODO:Falling
+
+					//TODO:Interact
+					//TODO:InteractType
+
+					var hasDeath = EntityManager.HasComponent<ActorDeathAnimData>(entity);
+					if (hasDeath)
+					{
+						proxy.Death.SetTrigger(animator);
+						proxy.IsDead.SetValue(animator, true);
+					}
+
+					//TODO:KnockbackStart
+					//TODO:KnockbackFly
+					//TODO:KnockbackGround
+					//TODO:KnockbackStandUp
+
+					//TODO:IdleFun
+					//TODO:IdleFundID
+
+					//TODO:ItemUse
+					//TODO:ItemUseID
+				});
 
 			Entities.With(_movementQuery).ForEach(
 				(Entity entity, Animator animator, ref ActorMovementAnimationData animation, ref ActorMovementData movement) =>
