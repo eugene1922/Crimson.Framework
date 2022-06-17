@@ -1,75 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &392331293068829506
+--- !u!1001 &5144037595926276631
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5390579384345752196}
+    m_TransformParent: {fileID: 1176923746735141189}
     m_Modifications:
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 2292383143985058402, guid: ab73d62a50e56b342815be9c49e99e64,
+        type: 3}
+      propertyPath: m_Name
+      value: SF Gravity Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.012
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.184
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.04
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
+    - target: {fileID: 4001010000283394468, guid: ab73d62a50e56b342815be9c49e99e64,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245675107, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
-      propertyPath: m_Name
-      value: SF Blaster
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 89010f060e300444c921b123f7993db1, type: 3}
---- !u!1001 &4266261439655585067
+  m_SourcePrefab: {fileID: 100100000, guid: ab73d62a50e56b342815be9c49e99e64, type: 3}
+--- !u!1001 &7038744301558851306
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -80,18 +80,12 @@ PrefabInstance:
         type: 3}
       propertyPath: TargetWeapon
       value: 
-      objectReference: {fileID: 6118439795899716119, guid: 4f0669686914903469f70665c2b0d6d9,
-        type: 3}
-    - target: {fileID: 4391347112680581853, guid: 5f5644991280b3a458800689e8208f80,
-        type: 3}
-      propertyPath: objectToSpawn
-      value: 
-      objectReference: {fileID: 2129211562036466362, guid: 53ac5e7d609657647a8331ef25206347,
+      objectReference: {fileID: 210354411380605698, guid: 7dfd8a488b670d1469fe3bf429a27756,
         type: 3}
     - target: {fileID: 8213406076014876576, guid: 5f5644991280b3a458800689e8208f80,
         type: 3}
       propertyPath: m_Name
-      value: Pickupable-Weapon Blaster Variant
+      value: Pickupable-Weapon GravityGun2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8213406076014876591, guid: 5f5644991280b3a458800689e8208f80,
         type: 3}
@@ -101,17 +95,17 @@ PrefabInstance:
     - target: {fileID: 8213406076014876591, guid: 5f5644991280b3a458800689e8208f80,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.33
       objectReference: {fileID: 0}
     - target: {fileID: 8213406076014876591, guid: 5f5644991280b3a458800689e8208f80,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.6692208
       objectReference: {fileID: 0}
     - target: {fileID: 8213406076014876591, guid: 5f5644991280b3a458800689e8208f80,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.1637201
       objectReference: {fileID: 0}
     - target: {fileID: 8213406076014876591, guid: 5f5644991280b3a458800689e8208f80,
         type: 3}
@@ -150,9 +144,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f5644991280b3a458800689e8208f80, type: 3}
---- !u!4 &5390579384345752196 stripped
+--- !u!4 &1176923746735141189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8213406076014876591, guid: 5f5644991280b3a458800689e8208f80,
     type: 3}
-  m_PrefabInstance: {fileID: 4266261439655585067}
+  m_PrefabInstance: {fileID: 7038744301558851306}
   m_PrefabAsset: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1176294937365100127}
   - component: {fileID: 4526422934711556017}
   m_Layer: 0
-  m_Name: Laser Lance lifgtning gun
+  m_Name: SF Laser Lance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

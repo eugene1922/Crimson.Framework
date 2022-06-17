@@ -38,7 +38,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public bool primaryProjectile;
 
-		[ValidateInput("MustBeAbility", "Ability MonoBehaviours must derive from IActorAbility!")]
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour abilityOnShot;
 
 		public bool aimingAvailable;

@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 7526396487951492578}
   - component: {fileID: 5111935310297416716}
   m_Layer: 0
-  m_Name: Fusion lifgtning gun
+  m_Name: SF Fusion Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
