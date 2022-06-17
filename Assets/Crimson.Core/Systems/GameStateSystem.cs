@@ -1,5 +1,7 @@
 using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Items;
 using Assets.Crimson.Core.Common.UI;
+using Assets.Crimson.Core.Components.Tags.Items;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils.LowLevel;
@@ -138,6 +140,8 @@ namespace Crimson.Core.Systems
 							{
 								perks[i].Apply(state.userPlayer.Actor);
 							}
+							EntityManager.AddComponentData(entity, new UseItemAnimData(data.Item.Type));
+							EntityManager.AddComponentData(entity, new UseItemAnimTag());
 							EntityManager.RemoveComponent<UseItemData>(actorEntity);
 						}
 					);

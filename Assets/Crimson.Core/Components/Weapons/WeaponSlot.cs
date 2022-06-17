@@ -1,4 +1,6 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Common.Weapons;
+using Assets.Crimson.Core.Components.Tags.Weapons;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
@@ -8,10 +10,11 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Crimson.Core.Components.Weapons
 {
-	public class WeaponSlot : MonoBehaviour, IActorAbility
+	public class WeaponSlot : TimerBaseBehaviour, IActorAbility
 	{
 		public InputActionReference _executeAction;
 		public InputActionReference _reloadAction;
+		public float _weaponChangeDuration = 1f;
 
 		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
 		public MonoBehaviour Weapon;
@@ -21,12 +24,17 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[CastToUI("CurrentWeapon")]
 		public IWeapon _weapon;
 
+		private Entity _entity;
+		private EntityManager _entityManager;
+
 		public IActor Actor { get; set; }
 
 		public bool IsEnable { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
+			_entity = entity;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			Actor = actor;
 			UIReceiverList.Init(this, entity);
 			if (_executeAction != null)
@@ -38,6 +46,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				_reloadAction.action.performed += ReloadActionHandler;
 			}
+
+			_entityManager.AddComponentData(_entity, new EquipedWeaponData());
+
+			Timer.Start();
 
 			if (Weapon != null)
 			{
@@ -51,13 +63,25 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				return;
 			}
+			var weaponData = new EquipedWeaponData();
 			if (_weapon != null)
 			{
 				_weapon.IsEnable = false;
+				weaponData.Previous = (byte)_weapon.Type;
 			}
 			_weapon = weapon;
-			weapon.IsEnable = true;
+			_weapon.IsEnable = true;
+			weaponData.Current = (byte)weapon.Type;
+			_entityManager.AddComponentData(_entity, weaponData);
+			_entityManager.AddComponentData(_entity, new StartChangeWeaponAnimTag());
+			Timer.TimedActions.AddAction(EndChangeWeapon, _weaponChangeDuration);
+
 			UIReceiverList.UpdateUIData("CurrentWeapon");
+		}
+
+		private void EndChangeWeapon()
+		{
+			_entityManager.AddComponentData(_entity, new EndChangeWeaponAnimTag());
 		}
 
 		public void Execute()

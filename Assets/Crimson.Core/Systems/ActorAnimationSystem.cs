@@ -1,6 +1,12 @@
 using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Interactions;
+using Assets.Crimson.Core.Common.Items;
+using Assets.Crimson.Core.Common.Weapons;
 using Assets.Crimson.Core.Components;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Interactions;
+using Assets.Crimson.Core.Components.Tags.Items;
+using Assets.Crimson.Core.Components.Tags.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using System;
@@ -92,9 +98,23 @@ namespace Crimson.Core.Systems
 					proxy.RealSpeed.SetValue(animator, inputData.Move * movementData.SpeedFactorMultiplier);
 					proxy.LookAtDirection.SetValue(animator, inputData.Look);
 
-					//TODO: CurrentWeapon
-					//TODO: PreviousWeapon
-					//TODO: WeaponChange
+					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);
+					if (startChangeWeapon)
+					{
+						var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
+						proxy.CurrentWeapon.SetValue(animator, data.Current);
+						proxy.PreviousWeapon.SetValue(animator, data.Previous);
+						proxy.WeaponChange.SetTrigger(animator);
+						EntityManager.RemoveComponent<StartChangeWeaponAnimTag>(entity);
+					}
+
+					var endChangeWeapon = EntityManager.HasComponent<EndChangeWeaponAnimTag>(entity);
+					if (endChangeWeapon)
+					{
+						var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
+						proxy.PreviousWeapon.SetValue(animator, data.Current);
+						EntityManager.RemoveComponent<EndChangeWeaponAnimTag>(entity);
+					}
 					//TODO: Crouch
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
 					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
@@ -119,8 +139,22 @@ namespace Crimson.Core.Systems
 
 					//TODO:Falling
 
-					//TODO:Interact
-					//TODO:InteractType
+					var startInteract = EntityManager.HasComponent<StartInteractionAnimTag>(entity);
+					if (startInteract)
+					{
+						var data = EntityManager.GetComponentData<InteractionTypeData>(entity);
+						proxy.InteractType.SetValue(animator, data.Type);
+						proxy.Interact.SetValue(animator, true);
+						EntityManager.RemoveComponent<InteractionTypeData>(entity);
+						EntityManager.RemoveComponent<StartInteractionAnimTag>(entity);
+					}
+					var endInteract = EntityManager.HasComponent<EndInteractionAnimTag>(entity);
+					if (endInteract)
+					{
+						proxy.Interact.SetValue(animator, false);
+						EntityManager.RemoveComponent<InteractionTypeData>(entity);
+						EntityManager.RemoveComponent<EndInteractionAnimTag>(entity);
+					}
 
 					var hasDeath = EntityManager.HasComponent<ActorDeathAnimData>(entity);
 					if (hasDeath)
@@ -137,8 +171,15 @@ namespace Crimson.Core.Systems
 					//TODO:IdleFun
 					//TODO:IdleFundID
 
-					//TODO:ItemUse
-					//TODO:ItemUseID
+					var useItem = EntityManager.HasComponent<UseItemAnimTag>(entity);
+					if (useItem)
+					{
+						var data = EntityManager.GetComponentData<UseItemAnimData>(entity);
+						proxy.ItemUseID.SetValue(animator, data.Type);
+						proxy.ItemUse.SetTrigger(animator);
+						EntityManager.RemoveComponent<UseItemAnimData>(entity);
+						EntityManager.RemoveComponent<UseItemAnimTag>(entity);
+					}
 				});
 
 			Entities.With(_movementQuery).ForEach(
