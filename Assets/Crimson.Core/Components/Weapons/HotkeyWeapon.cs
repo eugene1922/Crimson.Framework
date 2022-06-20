@@ -62,7 +62,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 		internal void Add(IThrowable throwable)
 		{
 			_throwables.Add(throwable);
-			if (_throwableSlot.IsEmpty)
+			//if (_throwableSlot.IsEmpty)
 			{
 				_throwableSlot.Change(throwable);
 			}
