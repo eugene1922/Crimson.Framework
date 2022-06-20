@@ -1,6 +1,8 @@
-﻿using Assets.Crimson.Core.Components;
+﻿using Assets.Crimson.Core.Common.Interactions;
+using Assets.Crimson.Core.Components;
 using Assets.Crimson.Core.Components.Interaction;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Interactions;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
@@ -19,7 +21,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
 			_interactiveEntitiesQuery = GetEntityQuery(
 				ComponentType.ReadOnly<Transform>(),
 				ComponentType.ReadOnly<AbilityPlayerInput>(),
-				ComponentType.ReadOnly<ActivatedInteractionZone>(),
+				ComponentType.ReadOnly<ActivatedInteractionZoneTag>(),
 				ComponentType.ReadOnly<InteractionZone>());
 
 			_buttonQuery = GetEntityQuery(
@@ -71,11 +73,13 @@ namespace Assets.Crimson.Core.Systems.Interaction
 						}
 						if (nearest != null)
 						{
+							EntityManager.AddComponentData(entity, new InteractionTypeData((byte)nearest.Type));
+							EntityManager.AddComponentData(entity, new StartInteractionAnimTag());
 							nearest.TargetActor = zone.Actor;
 							nearest.Execute();
 						}
 					}
-					EntityManager.RemoveComponent<ActivatedInteractionZone>(entity);
+					EntityManager.RemoveComponent<ActivatedInteractionZoneTag>(entity);
 				}
 			);
 			Entities.With(_buttonQuery).ForEach(

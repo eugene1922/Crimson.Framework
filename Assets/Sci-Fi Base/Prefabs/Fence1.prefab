@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2611209534248607028}
   m_Layer: 0
   m_Name: Fence1
-  m_TagString: Untagged
+  m_TagString: IgnoreProjectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

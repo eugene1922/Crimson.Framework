@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Types;
 using Assets.Crimson.Core.Components.Tags;
 using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
@@ -38,6 +39,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ShowInInspector]
 		[SerializeField]
 		public string componentName = "";
+
+		public WeaponType _weaponType;
 
 		public bool primaryProjectile;
 
@@ -145,6 +148,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 
 		public WeaponClip ClipData { get; private set; } = new WeaponClip();
+
+		public WeaponType Type => _weaponType;
 
 		private void Awake()
 		{

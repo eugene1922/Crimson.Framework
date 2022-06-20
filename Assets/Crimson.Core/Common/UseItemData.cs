@@ -3,8 +3,9 @@ using Unity.Entities;
 
 namespace Assets.Crimson.Core.Common
 {
-    public struct UseItemData : IComponentData
-    {
-        public InventoryItemData Item;
-    }
+	public struct UseItemData : IComponentData
+	{
+		public byte Type;
+		public InventoryItemData Item;
+	}
 }

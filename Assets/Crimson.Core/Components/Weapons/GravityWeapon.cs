@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Types;
 using Crimson.Core.Common;
 using Sirenix.OdinInspector;
 using Unity.Entities;
@@ -22,6 +23,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[ShowInInspector]
 		[SerializeField]
 		public string componentName = "";
+
+		public WeaponType _weaponType;
 
 		public InputActionReference _activationAction;
 		public Entity _entity;
@@ -59,6 +62,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 		}
 
 		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
+
+		public WeaponType Type => _weaponType;
 
 		public void Activate()
 		{

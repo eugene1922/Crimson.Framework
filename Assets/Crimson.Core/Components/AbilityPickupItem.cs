@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Common.Types;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Loading.Repositories;
 using Sirenix.OdinInspector;
@@ -21,6 +22,7 @@ namespace Assets.Crimson.Core.Components
 
 	public class AbilityPickupItem : MonoBehaviour, IActorAbilityTarget
 	{
+		public ItemType ItemType;
 		[HideInInspector] public InventoryItemData ItemData;
 		public IActor AbilityOwnerActor { get; set; }
 		public IActor Actor { get; set; }
@@ -48,6 +50,8 @@ namespace Assets.Crimson.Core.Components
 				return;
 			}
 			var inventory = ability as AbilityInventory;
+			var data = ItemData;
+			data.Type = (byte)ItemType;
 			inventory.Add(ItemData);
 		}
 
