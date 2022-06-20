@@ -526,7 +526,6 @@ GameObject:
   - component: {fileID: -8789085103849931919}
   - component: {fileID: -5988413387020911839}
   - component: {fileID: 532057787033785313}
-  - component: {fileID: 772811957224204162}
   m_Layer: 0
   m_Name: SM_Chr_SpaceSoldier_Female_01
   m_TagString: Untagged
@@ -564,7 +563,7 @@ Animator:
   m_GameObject: {fileID: 1132238362247284}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c8c20564eb982f84a96a0d4d8e357cc5, type: 3}
-  m_Controller: {fileID: 9100000, guid: c5300ecd63a37bc4fa3368b5fd85fb6c, type: 2}
+  m_Controller: {fileID: 22100000, guid: d7c05f8eb5015b44ababd2cb2f192ae9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -660,80 +659,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &772811957224204162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132238362247284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2ea20dfba506d49bea2e3e3bd6c072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 95586128617617380}
-  RealSpeed:
-    NameLength: fRealSpeedMagnitude
-    NameX: fRealSpeedForward
-    NameY: fRealSpeedTangent
-  LookAtDirection:
-    NameX: fLookAtDirectionForward
-    NameY: fLookAtDirectionTangent
-  CurrentWeapon:
-    FloatName: fCurrentWeaponCategory
-    IntName: CurrentWeaponCategory
-  PreviousWeapon:
-    FloatName: fPreviousWeaponCategory
-    IntName: PreviousWeaponCategory
-  WeaponChange:
-    Name: tWeaponChangeStart
-  Crouch:
-    Name: isCrouch
-  Attacking:
-    Name: isAttacking
-  AttackType:
-    FloatName: fAttackType
-    IntName: AttackType
-  Hit:
-    Name: isHit
-  HitDirection:
-    NameLength: fHitStrength
-    NameX: fHitDirectionForward
-    NameY: fHitDirectionTangent
-  Reloading:
-    Name: isReloading
-  Dodge:
-    Name: isDodge
-  Falling:
-    Name: isFalling
-  Interact:
-    Name: isInteract
-  InteractType:
-    FloatName: fInteractionType
-    IntName: InteractionType
-  Death:
-    Name: tDeath
-  IsDead:
-    Name: isDead
-  KnockbackStart:
-    Name: tKnockbackStart
-  KnockbackFly:
-    Name: isKnockbackFly
-  KnockbackGround:
-    Name: isKnockbackGround
-  KnockbackStandUp:
-    Name: tKnockbackStandUp
-  IdleFun:
-    Name: tIdleFun
-  IdleFundID:
-    FloatName: fIdleFunId
-    IntName: IdleFunID
-  ItemUse:
-    Name: tItemUse
-  ItemUseID:
-    FloatName: fItemID
-    IntName: itemID
 --- !u!1 &1165874820660524
 GameObject:
   m_ObjectHideFlags: 0
