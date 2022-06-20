@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2014260872880424890}
   - component: {fileID: 5674475685950854885}
   m_Layer: 0
-  m_Name: Gravity-Grenade Projectile2
+  m_Name: Gravity-Grenade2 Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 6644236195786256075, guid: 24cbc2fe107b64743885bfbd623a9983, type: 3}
+    - {fileID: 6644236195786256075, guid: 62a41f62c63f8ba468ae5b383a79ef1d, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0

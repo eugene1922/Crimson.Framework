@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2144818856}
   - component: {fileID: 2144818858}
   - component: {fileID: 2144818857}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4827,9 +4827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 326754034855095407}
-  - component: {fileID: 8293103387021815421}
-  - component: {fileID: 2712045093366233972}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Vortex Force Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4850,62 +4848,6 @@ Transform:
   m_Father: {fileID: 6644236195786256076}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8293103387021815421
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856308513938362044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2712045093366233972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856308513938362044}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a093c1927bddd5c4db3b55407c76e24c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sphereCollider: {fileID: 8293103387021815421}
-  force: 15000
-  orbitTorque: 3000
-  forceByDistance:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -2.4485848
-      outSlope: -2.4485848
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.029616725
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  workingTime: 4
-  continuous: 1
-  enableDelay: 0
-  antiGravityFactor: 2
 --- !u!1 &6644236195786256075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,8 +4861,9 @@ GameObject:
   - component: {fileID: 6644236195786256077}
   - component: {fileID: 3301877975022430055}
   - component: {fileID: 5718307192817869879}
-  m_Layer: 12
-  m_Name: Gravity Grenade Effect 1
+  - component: {fileID: 4621009267106219983}
+  m_Layer: 0
+  m_Name: Gravity-Grenade 2 Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9762,9 +9705,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 9
+  lifespan: 7
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
+--- !u!114 &4621009267106219983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644236195786256075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteNow: 0
+  ExecuteOnAwake: 1
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 5593429760451260625, guid: d3065d4f30853f742a5429f6a70dce7c, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 4
 --- !u!1 &6644236195825867232
 GameObject:
   m_ObjectHideFlags: 0
@@ -9776,7 +9766,7 @@ GameObject:
   - component: {fileID: 6644236195825867233}
   - component: {fileID: 6644236195825867235}
   - component: {fileID: 6644236195825867234}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Small Lightnings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14712,7 +14702,7 @@ GameObject:
   - component: {fileID: 6644236195983430320}
   - component: {fileID: 6644236195983430322}
   - component: {fileID: 6644236195983430321}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Gravity Grenade Trash [1-3;5]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19533,7 +19523,7 @@ GameObject:
   - component: {fileID: 6644236196117263142}
   - component: {fileID: 6644236196117263144}
   - component: {fileID: 6644236196117263143}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Gravity Grenade Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24408,7 +24398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644236196873946148}
   - component: {fileID: 6644236196873946149}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24502,7 +24492,7 @@ GameObject:
   - component: {fileID: 6644236196955375510}
   - component: {fileID: 6644236196955375512}
   - component: {fileID: 6644236196955375511}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Gravity Grenade Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29378,7 +29368,7 @@ GameObject:
   - component: {fileID: 6644236197281645803}
   - component: {fileID: 6644236197281645805}
   - component: {fileID: 6644236197281645804}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Light Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34255,7 +34245,7 @@ GameObject:
   - component: {fileID: 6644236197340506101}
   - component: {fileID: 6644236197340506103}
   - component: {fileID: 6644236197340506102}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Gravity Grenade Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39082,7 +39072,7 @@ GameObject:
   - component: {fileID: 6191177187980044974}
   - component: {fileID: 1372179768750376180}
   - component: {fileID: 5362541495540762861}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Gravity Grenade Trash [7-10]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43899,7 +43889,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1003533289, guid: bb53c032f9f2c814d930674b4acd1bb7, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1003533291, guid: bb53c032f9f2c814d930674b4acd1bb7, type: 3}
       propertyPath: m_Materials.Array.size
@@ -43913,12 +43903,12 @@ PrefabInstance:
     - target: {fileID: 2343948144363991858, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343948144704352072, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343948144704352118, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
@@ -43933,7 +43923,7 @@ PrefabInstance:
     - target: {fileID: 2343948144766646926, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343948145073397592, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
@@ -43943,17 +43933,17 @@ PrefabInstance:
     - target: {fileID: 2343948145073397594, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343948145783890021, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343948145786068029, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343948145786068031, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
@@ -44033,12 +44023,12 @@ PrefabInstance:
     - target: {fileID: 6156863011048960318, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881180318308687920, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881180318308687922, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
@@ -44048,29 +44038,36 @@ PrefabInstance:
     - target: {fileID: 6881180318690877842, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881180319235308668, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881180319235308670, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7537007476777897535, guid: bb53c032f9f2c814d930674b4acd1bb7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7672519149542676306, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8745558257369802389, guid: bb53c032f9f2c814d930674b4acd1bb7,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7537007476777897535, guid: bb53c032f9f2c814d930674b4acd1bb7, type: 3}
+    - {fileID: 5891982117957067879, guid: bb53c032f9f2c814d930674b4acd1bb7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bb53c032f9f2c814d930674b4acd1bb7, type: 3}
 --- !u!4 &6213382940516860619 stripped
 Transform:
@@ -44093,7 +44090,7 @@ PrefabInstance:
     - target: {fileID: 981107779833764649, guid: a545333941e315f459db5cade4a46462,
         type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 981107779833764649, guid: a545333941e315f459db5cade4a46462,
         type: 3}
