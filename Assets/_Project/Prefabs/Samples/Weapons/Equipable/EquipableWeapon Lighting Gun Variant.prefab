@@ -1,0 +1,316 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &214711888916510471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6523685093983738624}
+  m_Layer: 0
+  m_Name: RaySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6523685093983738624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214711888916510471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.017, y: 0.041, z: 0.674}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1548769087254226115}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &629808139726381647
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8939791187431860214}
+    m_Modifications:
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.226
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124365291277274178, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161842407795244625, guid: 5d8039da4303b7b489401ece6c99004d,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning Gun v2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d8039da4303b7b489401ece6c99004d, type: 3}
+--- !u!1001 &1606315881375638859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_Name
+      value: EquipableWeapon Lighting Gun Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: componentName
+      value: ElectricWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: TargetWeapon
+      value: 
+      objectReference: {fileID: 9212302561314603430}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 194d4f1e3d0c8894c9f478f4fe202fc1, type: 3}
+--- !u!1 &1548769087254226112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1606315881375638859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1548769087254226115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1606315881375638859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8939791187431860214 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1606315881375638859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3285678183776671440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548769087254226112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 1
+  Targets: []
+--- !u!114 &7981926124408840667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548769087254226112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Targets: []
+--- !u!114 &9212302561314603430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548769087254226112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d029a305833285747ab6a38f45bf474d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Lighting Gun
+  primaryProjectile: 0
+  abilityOnShot: {fileID: 0}
+  aimingAvailable: 0
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 0
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 0
+    aimingAreaPrefab: {fileID: 0}
+    sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
+    sightDistance: 0
+    reverseControls: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
+  projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 6868060984629137242, guid: 739434ecfe8ed2c4e8b6230028455949, type: 3}
+    - {fileID: 2431835474802817937, guid: 15f3e3d7709213f49bb97f1caf5a45a2, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 214711888916510471}
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: WeaponPoint
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  UseBurst: 0
+  _burstRange: {x: 1, y: 5}
+  _burstDelay: 0.1
+  projectileStartupDelay: 0
+  cooldownTime: 1
+  projectileClipCapacity: 100
+  clipReloadTime: 1
+  reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
+  suppressWeaponSpawn: 0
+  appliedPerksNames: []
+  aimingByInput: 0
+  AimComponent: {fileID: 0}
+  ActionsOnEnable:
+    actions:
+    - {fileID: 3285678183776671440}
+  ActionsOnDisable:
+    actions:
+    - {fileID: 7981926124408840667}

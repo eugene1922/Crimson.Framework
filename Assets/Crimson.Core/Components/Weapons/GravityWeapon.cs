@@ -1,6 +1,7 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Common.Types;
 using Crimson.Core.Common;
+using Crimson.Core.Components;
 using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
@@ -36,6 +37,16 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private EntityManager _entityManager;
 		[SerializeField] private float _force = 10;
+
+		[SerializeField] private GameObject _grabEffect;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour abilityOnShot;
+
+		public Animator DistortionAnimator;
+		public string AnimationIn;
+		public string AnimationOut;
+
 		private bool _isEnable;
 		private RaycastHit[] _raycastResults = new RaycastHit[25];
 
@@ -95,6 +106,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Deactivate()
 		{
+			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
+
 			SetActivateState(false);
 		}
 
@@ -135,6 +148,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 			Gizmos.DrawWireSphere(MagnetOffset, 1);
 		}
 
+		private bool MustBeAimable(MonoBehaviour behaviour)
+		{
+			return behaviour is IActorAbility;
+		}
+
 #endif
 
 		private void SetActivateState(bool state)
@@ -146,6 +164,14 @@ namespace Assets.Crimson.Core.Components.Weapons
 			var pointData = _entityManager.GetComponentData<MagnetPointData>(_entity);
 			pointData.IsActive = state;
 			_entityManager.SetComponentData(_entity, pointData);
+			if (_grabEffect != null)
+				_grabEffect.SetActive(state);
+			if (DistortionAnimator != null)
+			{
+				string animation = state ? AnimationIn : AnimationOut;
+				if (!string.IsNullOrEmpty(animation))
+					DistortionAnimator.Play(animation, 0, 0);
+			}
 		}
 
 		private void TryGrabObject()
@@ -168,6 +194,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				abilityMagnet.MagnetTo(_entity);
 			}
+		}
+
+		private bool MustBeAbility(MonoBehaviour a)
+		{
+			return (a is IActorAbility) || (a is null);
 		}
 	}
 }

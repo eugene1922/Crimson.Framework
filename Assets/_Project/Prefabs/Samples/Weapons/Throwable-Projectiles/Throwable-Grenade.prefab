@@ -75,6 +75,10 @@ MonoBehaviour:
     filterMode: 0
     filterTags:
     - Enemy
+    velocityFilter:
+      Use: 0
+      Mode: 0
+      Velocity: 0
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 1
     actions:
@@ -87,6 +91,10 @@ MonoBehaviour:
     filterTags:
     - CollisionObjects
     - DestructibleObject
+    velocityFilter:
+      Use: 0
+      Mode: 0
+      Velocity: 0
     executeOnCollisionWithSpawner: 0
     destroyAfterAction: 0
     actions:
@@ -253,6 +261,12 @@ MonoBehaviour:
   forwardVector: {x: 0, y: 1, z: 1}
   compensateSpawnerRotation: 0
   OffsetDirection: {x: 0, y: 0.25, z: 0}
+  _useVariance: 0
+  _transformVariance:
+    PostionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 0, y: 0, z: 0}
+    Cycled: 0
+    MemoryKoef: 0
 --- !u!1001 &4836241702347248632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,13 +324,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199124983878913074, guid: 56f810c590fcf384582ce73c1ac356dc,
         type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 199124983878913074, guid: 56f810c590fcf384582ce73c1ac356dc,
+        type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199172549254551592, guid: 56f810c590fcf384582ce73c1ac356dc,
         type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 199172549254551592, guid: 56f810c590fcf384582ce73c1ac356dc,
+        type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199713071245915622, guid: 56f810c590fcf384582ce73c1ac356dc,
+        type: 3}
+      propertyPath: m_MotionVectors
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 199713071245915622, guid: 56f810c590fcf384582ce73c1ac356dc,
         type: 3}
