@@ -96,7 +96,7 @@ namespace Crimson.Core.Systems
 					var inputData = EntityManager.GetComponentData<PlayerInputData>(entity);
 					var movementData = EntityManager.GetComponentData<ActorMovementAnimationData>(entity);
 					proxy.RealSpeed.SetValue(animator, inputData.Move * movementData.SpeedFactorMultiplier);
-					proxy.LookAtDirection.SetValue(animator, inputData.Look);
+					proxy.LookAtDirection.SetValue(animator, math.normalizesafe(inputData.Look, float2.zero));
 
 					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);
 					if (startChangeWeapon)
