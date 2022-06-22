@@ -576,6 +576,8 @@ MonoBehaviour:
     type: 3}
   _changeAction: {fileID: -9094400888386443425, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
+  _changeThrowableAction: {fileID: -9159582491947093613, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
+    type: 3}
   _slot: {fileID: 7093220250429794912}
   _throwableSlot: {fileID: -93229221922767859}
   Weapons: []

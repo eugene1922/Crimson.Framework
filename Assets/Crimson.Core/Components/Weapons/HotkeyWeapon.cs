@@ -13,6 +13,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 	{
 		public InputActionReference _activateGravigunAction;
 		public InputActionReference _changeAction;
+		public InputActionReference _changeThrowableAction;
 		public WeaponSlot _slot;
 		public ThrowableSlot _throwableSlot;
 
@@ -33,6 +34,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 			if (_changeAction != null)
 			{
 				_changeAction.action.performed += ChangeActionHandler;
+			}
+			if (_changeThrowableAction != null)
+			{
+				_changeThrowableAction.action.performed += ChangeThrowableActionHandler;
 			}
 			if (_activateGravigunAction != null)
 			{
@@ -55,22 +60,24 @@ namespace Assets.Crimson.Core.Components.Weapons
 			else
 			{
 				_weapons.Add(weapon);
-				SelectNextWeapon();
+				_slot.Change(weapon);
 			}
 		}
 
 		internal void Add(IThrowable throwable)
 		{
 			_throwables.Add(throwable);
-			//if (_throwableSlot.IsEmpty)
-			{
-				_throwableSlot.Change(throwable);
-			}
+			_throwableSlot.Change(throwable);
 		}
 
 		private void ChangeActionHandler(InputAction.CallbackContext obj)
 		{
 			SelectNextWeapon();
+		}
+
+		private void ChangeThrowableActionHandler(InputAction.CallbackContext obj)
+		{
+			SelectNextThrowable();
 		}
 
 		private bool MustBeWeapon(List<MonoBehaviour> actions)
@@ -93,6 +100,13 @@ namespace Assets.Crimson.Core.Components.Weapons
 			var currentIndex = _weapons.IndexOf(_slot._weapon);
 			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _weapons.Count;
 			_slot.Change(_weapons[index]);
+		}
+
+		private void SelectNextThrowable()
+		{
+			var currentIndex = _throwables.IndexOf(_throwableSlot._weapon);
+			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _throwables.Count;
+			_throwableSlot.Change(_throwables[index]);
 		}
 
 		private void ToggleGravigunHandler(InputAction.CallbackContext obj)

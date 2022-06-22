@@ -266,9 +266,9 @@ MonoBehaviour:
       UsePool: 0
   UseBurst: 0
   _burstRange: {x: 1, y: 5}
-  _burstDelay: 0.1
+  _burstDelay: 0
   projectileStartupDelay: 0
-  cooldownTime: 0.3
+  cooldownTime: 0.15
   projectileClipCapacity: 100
   clipReloadTime: 1
   reloadDisplayToggle: []

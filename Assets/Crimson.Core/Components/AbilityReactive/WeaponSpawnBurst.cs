@@ -131,6 +131,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		private bool _actorToUi;
 		private EntityManager _dstManager;
 
+		private bool _isWaitingForShot;
+
 		public event Action OnShot;
 
 		private bool isEnable;
@@ -221,10 +223,11 @@ namespace Crimson.Core.Components.AbilityReactive
 				return;
 			}
 
-			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
-
 			if (projectileStartupDelay > 0)
 			{
+				if (_isWaitingForShot)
+					return;
+				_isWaitingForShot = true;
 				Timer.TimedActions.AddAction(Shot, projectileStartupDelay);
 			}
 			else
@@ -232,6 +235,8 @@ namespace Crimson.Core.Components.AbilityReactive
 				Shot();
 				Timer.TimedActions.AddAction(Execute, CooldownTime);
 			}
+
+			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
 		}
 
 		public override void FinishTimer()
@@ -257,6 +262,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		private void Shot()
 		{
+			_isWaitingForShot = false;
 			if (!UseBurst)
 			{
 				Spawn();
@@ -312,6 +318,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void StopFire()
 		{
 			IsActivated = false;
+			if (projectileStartupDelay <= 0)
+				ResetTimer();
 		}
 
 		private void CreateSpawnPointsRoot()
