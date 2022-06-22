@@ -66,8 +66,9 @@ namespace Crimson.Core.Systems
 				(Entity entity, AbilityCollision abilityCollision, ref ActorColliderData colliderData) =>
 				{
 					var gameObject = abilityCollision.gameObject;
-					float3 position = gameObject.transform.position;
-					var rotation = gameObject.transform.rotation;
+					var transform = gameObject.transform;
+					float3 position = transform.position;
+					var rotation = transform.rotation;
 					var destroyAfterActions = false;
 
 					var size = 0;
@@ -75,25 +76,24 @@ namespace Crimson.Core.Systems
 					switch (colliderData.ColliderType)
 					{
 						case ColliderType.Sphere:
-							size = Physics.OverlapSphereNonAlloc(colliderData.SphereCenter + position,
+							size = Physics.OverlapSphereNonAlloc(
+								transform.TransformPoint(colliderData.SphereCenter),
 								colliderData.SphereRadius, _results);
 							break;
 
 						case ColliderType.Capsule:
-							var center =
-								(colliderData.CapsuleStart + position + (colliderData.CapsuleEnd + position)) / 2f;
-							var point1 = colliderData.CapsuleStart + position;
-							var point2 = colliderData.CapsuleEnd + position;
-							point1 = (float3)(rotation * (point1 - center)) + center;
-							point2 = (float3)(rotation * (point2 - center)) + center;
-							size = Physics.OverlapCapsuleNonAlloc(point1,
-								point2,
+							var point1 = transform.TransformPoint(colliderData.CapsuleStart);
+							var point2 = transform.TransformPoint(colliderData.CapsuleEnd);
+							size = Physics.OverlapCapsuleNonAlloc(point1, point2,
 								colliderData.CapsuleRadius, _results);
 							break;
 
 						case ColliderType.Box:
-							size = Physics.OverlapBoxNonAlloc(colliderData.BoxCenter + position,
-								colliderData.BoxHalfExtents, _results, colliderData.BoxOrientation * rotation);
+							size = Physics.OverlapBoxNonAlloc(
+								transform.TransformPoint(colliderData.BoxCenter),
+								colliderData.BoxHalfExtents, 
+								_results,
+								colliderData.BoxOrientation * rotation);
 							break;
 
 						default:

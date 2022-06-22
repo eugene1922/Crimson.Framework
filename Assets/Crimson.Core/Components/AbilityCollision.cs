@@ -67,6 +67,7 @@ namespace Crimson.Core.Components
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
             float3 position = gameObject.transform.position;
+            var worldToLocal = gameObject.transform.worldToLocalMatrix;
             switch (useCollider)
             {
                 case SphereCollider sphere:
@@ -74,7 +75,7 @@ namespace Crimson.Core.Components
                     dstManager.AddComponentData(entity, new ActorColliderData
                     {
                         ColliderType = ColliderType.Sphere,
-                        SphereCenter = sphereCenter - position,
+                        SphereCenter = worldToLocal.MultiplyPoint(sphereCenter),
                         SphereRadius = sphereRadius,
                         initialTakeOff = true
                     });
@@ -84,8 +85,8 @@ namespace Crimson.Core.Components
                     dstManager.AddComponentData(entity, new ActorColliderData
                     {
                         ColliderType = ColliderType.Capsule,
-                        CapsuleStart = capsuleStart - position,
-                        CapsuleEnd = capsuleEnd - position,
+                        CapsuleStart = worldToLocal.MultiplyPoint(capsuleStart),
+                        CapsuleEnd = worldToLocal.MultiplyPoint(capsuleEnd),
                         CapsuleRadius = capsuleRadius,
                         initialTakeOff = true
                     });
@@ -95,9 +96,9 @@ namespace Crimson.Core.Components
                     dstManager.AddComponentData(entity, new ActorColliderData
                     {
                         ColliderType = ColliderType.Box,
-                        BoxCenter = boxCenter - position,
+                        BoxCenter = worldToLocal.MultiplyPoint(boxCenter),
                         BoxHalfExtents = boxHalfExtents,
-                        BoxOrientation = boxOrientation,
+                        BoxOrientation = boxOrientation * Quaternion.Inverse(gameObject.transform.rotation),
                         initialTakeOff = true
                     });
                     break;

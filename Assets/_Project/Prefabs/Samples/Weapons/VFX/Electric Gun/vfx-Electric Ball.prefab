@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887440777994523121}
   - component: {fileID: 973256888982775549}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 5468552313622554710}
   - component: {fileID: 5295076304390341398}
   - component: {fileID: 4327772100029227566}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: vfx-Electric Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,6 +172,8 @@ MonoBehaviour:
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 5, y: 5, z: 0}
+    Cycled: 0
+    MemoryKoef: 0
 --- !u!114 &8589064227647365302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,10 +348,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 887548129269833309}
     m_Modifications:
+    - target: {fileID: 1517652493457766449, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464796897004710172, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796384500149376612, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4226249542960359317, guid: 3a90c46c40d2df949b40be952059a87d,
         type: 3}
       propertyPath: m_Name
       value: Electric Gun Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226249542960359317, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4226249542960359338, guid: 3a90c46c40d2df949b40be952059a87d,
         type: 3}
@@ -406,10 +428,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4289166711454660474, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995960130406266268, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8897215911042445262, guid: 3a90c46c40d2df949b40be952059a87d,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030431032799192202, guid: 3a90c46c40d2df949b40be952059a87d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a90c46c40d2df949b40be952059a87d, type: 3}

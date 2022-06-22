@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Targets: []
+  Targets:
+  - {fileID: 1548769087254226112}
 --- !u!114 &7981926124408840667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Targets: []
+  Targets:
+  - {fileID: 1548769087254226112}
 --- !u!114 &9212302561314603430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +236,7 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 3411136207413131176, guid: da06503f6b23f724fb77fee002c9a737, type: 3}
+    - {fileID: 3411136207413131176, guid: 5cfd4f47d6dd13d4da2ee579ffef0a6f, type: 3}
     - {fileID: 2361831168669359354, guid: a93a8c16625892d45ab3cc22d349144e, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0

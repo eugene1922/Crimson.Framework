@@ -29,7 +29,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public float _maxDistance = 10;
 		public Vector3 MagnetOffset = Vector3.forward;
 
+		[Header("ActionsOnEnable")]
 		public ActionsList ActionsOnEnable;
+
+		[Header("ActionsOnDisable")]
 		public ActionsList ActionsOnDisable;
 
 		private EntityManager _entityManager;
@@ -101,8 +104,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Deactivate()
 		{
-			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
-
 			SetActivateState(false);
 		}
 
@@ -122,6 +123,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void StopFire()
 		{
+			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
+
 			Deactivate();
 		}
 

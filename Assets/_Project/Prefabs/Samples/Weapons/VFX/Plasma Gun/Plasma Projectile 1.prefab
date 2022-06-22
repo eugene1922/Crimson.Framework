@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887440777994523121}
   - component: {fileID: 973256888982775549}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 5468552313622554710}
   - component: {fileID: 5295076304390341398}
   - component: {fileID: 4327772100029227566}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Plasma Projectile 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 2799602839993535161}
   - component: {fileID: 2261042209710801245}
   - component: {fileID: 8369961239150802904}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5170,7 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5080266630623699715}
   - component: {fileID: 9004618797060875604}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

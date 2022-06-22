@@ -219,7 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Targets: []
+  Targets:
+  - {fileID: 1548769087254226112}
 --- !u!114 &3543793338792328126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,8 +264,8 @@ MonoBehaviour:
     - {fileID: 891030007494840639, guid: 3c80e59738834d04ab9c8dd1ad4f4996, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
+    fillSpawnPoints: 2
+    x: 7
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
     _spawnPoints: []
@@ -286,7 +287,7 @@ MonoBehaviour:
       InitSize: 0
       MaxSize: 0
       UsePool: 0
-  UseBurst: 1
+  UseBurst: 0
   _burstRange: {x: 7, y: 7}
   _burstDelay: 0.01
   projectileStartupDelay: 1.5
@@ -303,9 +304,11 @@ MonoBehaviour:
   aimingByInput: 0
   AimComponent: {fileID: 0}
   ActionsOnEnable:
-    actions: []
+    actions:
+    - {fileID: 3285678183776671440}
   ActionsOnDisable:
-    actions: []
+    actions:
+    - {fileID: 7981926124408840667}
 --- !u!114 &7981926124408840667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Targets: []
+  Targets:
+  - {fileID: 1548769087254226112}
 --- !u!1001 &8744465466282413203
 PrefabInstance:
   m_ObjectHideFlags: 0

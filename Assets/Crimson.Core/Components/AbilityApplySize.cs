@@ -22,15 +22,8 @@ namespace Crimson.Core.Components
 		{
 			if (TargetActor == null) return;
 
-			var targetActor = TargetActor.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-
-			if (targetActor == null)
-			{
-				return;
-			}
-
 			Vector3 scale = Actor.GameObject.transform.localScale;
-			float distance = (targetActor.transform.position - Actor.GameObject.transform.position).magnitude;
+			float distance = (TargetActor.GameObject.transform.position - Actor.GameObject.transform.position).magnitude;
 			scale.z = distance;
 			Actor.GameObject.transform.localScale = scale;
 		}

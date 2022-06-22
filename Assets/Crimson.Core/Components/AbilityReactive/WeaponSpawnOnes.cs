@@ -325,8 +325,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public override void StartTimer()
 		{
-			IsEnable = false;
-
 			base.StartTimer();
 			this.StartAbilityCooldownTimer(Actor);
 		}

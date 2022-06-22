@@ -47,12 +47,12 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		internal void Add(IWeapon weapon)
 		{
-			/*if (weapon is GravityWeapon)
+			if (weapon is GravityWeapon)
 			{
 				_gravityGun = weapon;
 				_slot.Change(weapon);
 			}
-			else*/
+			else
 			{
 				_weapons.Add(weapon);
 				SelectNextWeapon();

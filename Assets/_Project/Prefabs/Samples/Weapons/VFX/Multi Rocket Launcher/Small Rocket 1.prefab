@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8489077132486853544}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Raycast Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6884472432773207788}
   - component: {fileID: 7220245114782181229}
   - component: {fileID: 8386307678157981082}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2511257164177020097}
   - component: {fileID: 7067194025232688780}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 9096040789164012318}
   - component: {fileID: 6715293409359051338}
   - component: {fileID: 166662497725121757}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Small Rocket 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 1247556727998294443}
   - component: {fileID: 5995718837855258728}
   - component: {fileID: 4542445728104437225}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5381,7 +5381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4667336847558490958}
   - component: {fileID: 8038457242775369897}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5475,7 +5475,7 @@ GameObject:
   - component: {fileID: 8111069354434540946}
   - component: {fileID: 94695389883199888}
   - component: {fileID: 7011147973426326641}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10293,7 +10293,7 @@ GameObject:
   - component: {fileID: 293992150899217421}
   - component: {fileID: 3532282343342047662}
   - component: {fileID: 3942995871799854780}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PartsEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15170,7 +15170,7 @@ GameObject:
   - component: {fileID: 8480629365701918486}
   - component: {fileID: 1849181218026914004}
   - component: {fileID: 5001030096526294485}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19989,6 +19989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: rocket Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689192416561762029, guid: 78446d6de8eda8c4781679fe34b2bdbb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1689192416561926861, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}

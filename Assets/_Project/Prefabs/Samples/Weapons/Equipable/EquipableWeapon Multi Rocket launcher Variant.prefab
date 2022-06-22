@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: EquipableWeapon-Multi Rocket launcher Variant
+      value: EquipableWeapon Multi Rocket launcher Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -250,7 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Targets: []
+  Targets:
+  - {fileID: 357039506442272740}
 --- !u!114 &3496920647679153277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Targets: []
+  Targets:
+  - {fileID: 357039506442272740}
 --- !u!114 &5861340300978674665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Multi Rocket launcher
   primaryProjectile: 0
+  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 1
@@ -308,8 +311,8 @@ MonoBehaviour:
     - {fileID: 4116869424554050852, guid: 982e59942c13eb04d8cefa3bacfbbd47, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
+    fillSpawnPoints: 2
+    x: 8
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
     _spawnPoints:
@@ -333,7 +336,7 @@ MonoBehaviour:
       InitSize: 16
       MaxSize: 40
       UsePool: 1
-  UseBurst: 1
+  UseBurst: 0
   _burstRange: {x: 8, y: 8}
   _burstDelay: 0.01
   projectileStartupDelay: 0

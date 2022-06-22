@@ -140,7 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Targets: []
+  Targets:
+  - {fileID: 1548769087254226112}
 --- !u!114 &7225986401133262158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Targets: []
+  Targets:
+  - {fileID: 1548769087254226112}
 --- !u!1001 &3193972596384462566
 PrefabInstance:
   m_ObjectHideFlags: 0

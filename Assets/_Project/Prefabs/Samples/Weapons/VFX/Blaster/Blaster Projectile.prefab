@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9082032016700387436}
   - component: {fileID: 215532471028146452}
   - component: {fileID: 8374658111768211256}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blaster Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436630703198782847}
   - component: {fileID: 4619348110744133038}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 5761939414487119592}
   - component: {fileID: 7207207742935799327}
   - component: {fileID: 6227942092161726309}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Projectile Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
