@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: EquipableWeapon-Multi Rocket launcher Variant
+      value: EquipableWeapon Multi Rocket launcher Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -278,7 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Multi Rocket launcher
+  _weaponType: 1
   primaryProjectile: 0
+  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 1

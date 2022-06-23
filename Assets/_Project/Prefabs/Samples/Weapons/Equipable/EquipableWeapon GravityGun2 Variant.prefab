@@ -525,6 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: GravityGun
+  _weaponType: 1
   _activationAction: {fileID: 1120369429361536294, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
   _maxDistance: 20

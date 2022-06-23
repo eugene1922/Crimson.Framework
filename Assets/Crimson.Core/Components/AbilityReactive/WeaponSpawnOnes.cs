@@ -1,6 +1,7 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Common.Types;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Weapons;
 using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components.Interfaces;
@@ -245,6 +246,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		private void Shot()
 		{
+			_dstManager.AddComponentData(Actor.Owner.ActorEntity, new WeaponAttackTag());
 			Spawn();
 
 			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity,
@@ -275,7 +277,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Reload()
 		{
-			CurrentEntityManager.AddComponentData(_entity, new ReloadTag());
+			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
 			ClipData.Reload();
 		}
 

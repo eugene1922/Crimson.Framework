@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Laser Rifle
+  _weaponType: 1
   primaryProjectile: 0
   abilityOnShot: {fileID: 0}
   aimingAvailable: 0

@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Target: {fileID: 7112636540819126059}
+  Targets: []
 --- !u!114 &7347931288159886798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Target: {fileID: 7112636540819126059}
+  Targets: []
 --- !u!114 &9027714982187357638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Blast Weapon
+  _weaponType: 1
   primaryProjectile: 0
+  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -264,9 +266,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 724a05e511db5fa418277d5c2270f07d, type: 3}
---- !u!1 &7112636540819126059 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1333114963308854, guid: 724a05e511db5fa418277d5c2270f07d,
-    type: 3}
-  m_PrefabInstance: {fileID: 7111629431053583901}
-  m_PrefabAsset: {fileID: 0}

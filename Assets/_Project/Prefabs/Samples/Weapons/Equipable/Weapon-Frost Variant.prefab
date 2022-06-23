@@ -57,12 +57,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
---- !u!1 &3725683485437929627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1793815161702332, guid: ec291e63f4e6ef34bacb96ff6e4ad6be,
-    type: 3}
-  m_PrefabInstance: {fileID: 3725064120510230311}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4519803442606820423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Target: {fileID: 3725683485437929627}
+  Targets: []
 --- !u!114 &4605097629040036239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Target: {fileID: 3725683485437929627}
+  Targets: []
 --- !u!114 &6365959774339046654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Frost Weapon
+  _weaponType: 1
   primaryProjectile: 0
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0

@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 7
   useDynamics: 0
   movementStart:
     curve:
@@ -329,7 +329,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     timeScale: 0.1
   movementAnimationProperties:
-    HasMovementAnimation: 1
+    HasMovementAnimation: 0
     MovementAnimationName: Run
     MovementAnimationSpeedFactorName: SpeedFactor
     MovementAnimationSpeedFactorMultiplier: 1.5
@@ -472,6 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryItems:
   - ID: 1646755040
+    Type: 0
 --- !u!114 &8256079418673208729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e0bff8d5234b4439717fbc190fb3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 5
+  Offset: {x: 0, y: 0, z: 1.5}
 --- !u!114 &3756407391955540221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +547,7 @@ MonoBehaviour:
     type: 3}
   _reloadAction: {fileID: -6915801995376133989, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
+  _weaponChangeDuration: 1
   Weapon: {fileID: 0}
 --- !u!114 &-93229221922767859
 MonoBehaviour:

@@ -64,8 +64,8 @@ namespace Assets.Crimson.Core.Components
 		{
 			RealSpeed = new AnimatorFloat2()
 			{
-				NameX = "fRealSpeedForward",
-				NameY = "fRealSpeedTangent",
+				NameX = "fRealSpeedTangent",
+				NameY = "fRealSpeedForward",
 				NameLength = "fRealSpeedMagnitude"
 			};
 

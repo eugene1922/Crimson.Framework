@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Plasma Gun
+  _weaponType: 2
   primaryProjectile: 0
   abilityOnShot: {fileID: 0}
   aimingAvailable: 0
