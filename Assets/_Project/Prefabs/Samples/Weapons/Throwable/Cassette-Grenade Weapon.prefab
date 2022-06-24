@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc22e1b126e62b459b1159007f850c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: Grenade
+  componentName: Cassette Grenade
   primaryProjectile: 0
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0

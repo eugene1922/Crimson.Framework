@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: Weapon-Rocket launcher
+      value: Weapon-Rocket launcher Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -104,7 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Target: {fileID: 778347780407827123}
+  Targets:
+  - {fileID: 357039506442272740}
 --- !u!114 &3496920647679153277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Target: {fileID: 778347780407827123}
+  Targets:
+  - {fileID: 357039506442272740}
 --- !u!114 &6284623228898787596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,9 +268,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
---- !u!1 &778347780407827123 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1793815161702332, guid: ec291e63f4e6ef34bacb96ff6e4ad6be,
-    type: 3}
-  m_PrefabInstance: {fileID: 777821298459778319}
-  m_PrefabAsset: {fileID: 0}

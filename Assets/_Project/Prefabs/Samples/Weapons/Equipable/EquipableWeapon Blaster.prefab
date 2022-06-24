@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4179538388771061731}
-  - component: {fileID: 3958658097571205246}
-  - component: {fileID: 5338999446315894618}
   m_Layer: 0
   m_Name: Projectile Spawn Point
   m_TagString: Untagged
@@ -26,42 +24,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3046358728583350651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0235, y: 0.0125, z: 0.42}
+  m_LocalPosition: {x: 0.005, y: 0.0125, z: 0.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1548769087254226115}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3958658097571205246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3046358728583350651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c92e3aeea62d402bb3fb244ca47a231a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newTag: WeaponPoint
-  alsoSetLayer: 0
-  newLayer: 
-  applyOnStart: 1
---- !u!114 &5338999446315894618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3046358728583350651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnSpawn: []
 --- !u!1001 &1606315881375638859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: EquipableWeapon Fusion Gun Variant
+      value: EquipableWeapon Blaster Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -138,7 +106,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TargetWeapon
       value: 
-      objectReference: {fileID: 3543793338792328126}
+      objectReference: {fileID: 7225986401133262158}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194d4f1e3d0c8894c9f478f4fe202fc1, type: 3}
 --- !u!1 &1548769087254226112 stripped
@@ -159,53 +127,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1606315881375638859}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2372614007474586582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548769087254226112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteNow: 0
-  ExecuteOnAwake: 0
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 4547291018049833434, guid: a26e23f9104153a4980c945a329de316, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
 --- !u!114 &3285678183776671440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,8 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Targets: []
---- !u!114 &3543793338792328126
+  Targets:
+  - {fileID: 1548769087254226112}
+--- !u!114 &7225986401133262158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,12 +151,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1548769087254226112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d029a305833285747ab6a38f45bf474d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: Fusion Gun
+  componentName: Blaster
   primaryProjectile: 0
-  abilityOnShot: {fileID: 2372614007474586582}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -260,14 +181,16 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 891030007494840639, guid: 3c80e59738834d04ab9c8dd1ad4f4996, type: 3}
-    spawnPosition: 2
+    - {fileID: 4777973401180162265, guid: 72b0b51913ec6e84baaffe59e8794ffd, type: 3}
+    - {fileID: 2917218710877661738, guid: 208c3b89b68686e42abe28c44036fa98, type: 3}
+    spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints: []
+    _spawnPoints:
+    - {fileID: 3046358728583350651}
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0
@@ -283,16 +206,15 @@ MonoBehaviour:
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  UseBurst: 1
-  _burstRange: {x: 7, y: 7}
-  _burstDelay: 0.01
-  projectileStartupDelay: 1.5
-  cooldownTime: 2
-  projectileClipCapacity: 70
+      InitSize: 5
+      MaxSize: 10
+      UsePool: 1
+  projectileStartupDelay: 0
+  cooldownTime: 0.2
+  projectileClipCapacity: 1000
   clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -303,9 +225,14 @@ MonoBehaviour:
   aimingByInput: 0
   AimComponent: {fileID: 0}
   ActionsOnEnable:
-    actions: []
+    actions:
+    - {fileID: 3285678183776671440}
   ActionsOnDisable:
-    actions: []
+    actions:
+    - {fileID: 7981926124408840667}
+  reloadAnimProps:
+    AnimationName: 
+    HasAnimation: 0
 --- !u!114 &7981926124408840667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,73 +246,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Targets: []
---- !u!1001 &8744465466282413203
+  Targets:
+  - {fileID: 1548769087254226112}
+--- !u!1001 &3193972596384462566
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8939791187431860214}
     m_Modifications:
-    - target: {fileID: 6467125172856630705, guid: 125cdc7600bd32e47b955e9ef425021b,
-        type: 3}
-      propertyPath: m_Name
-      value: SF Fusion Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.055
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
+    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158382587245675107, guid: 89010f060e300444c921b123f7993db1,
+        type: 3}
+      propertyPath: m_Name
+      value: Blaster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 125cdc7600bd32e47b955e9ef425021b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 89010f060e300444c921b123f7993db1, type: 3}

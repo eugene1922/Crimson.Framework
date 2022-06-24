@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887440777994523121}
   - component: {fileID: 3166200498300741054}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1, y: 0.1, z: 2}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1 &891030007494840639
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 5468552313622554710}
   - component: {fileID: 5295076304390341398}
   - component: {fileID: 4327772100029227566}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Fusion Projectile 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
   _useVariance: 1
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
-    RotationOffset: {x: 1, y: 1, z: 0}
+    RotationOffset: {x: 2, y: 2, z: 0}
     Cycled: 0
     MemoryKoef: 0
 --- !u!114 &8589064227647365302
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 6575915605265943495}
   - component: {fileID: 3218960560628644333}
   - component: {fileID: 8289956671093110590}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trail Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

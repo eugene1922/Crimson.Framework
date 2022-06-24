@@ -69,12 +69,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0838917cb453dc4cad3e49b1be3f4b4, type: 3}
---- !u!1 &1500130926639448403 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1200260564779906, guid: d0838917cb453dc4cad3e49b1be3f4b4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1501328703084692177}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1496637615495398669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4738324210206684, guid: d0838917cb453dc4cad3e49b1be3f4b4,
@@ -181,7 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Target: {fileID: 1500130926639448403}
+  Targets:
+  - {fileID: 4862781404533274069}
 --- !u!114 &4695952822674535236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Target: {fileID: 1500130926639448403}
+  Targets:
+  - {fileID: 4862781404533274069}
 --- !u!114 &8931255258272452073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +229,11 @@ MonoBehaviour:
     actions:
     - {fileID: 369729359942359498}
   _force: 20
+  _grabEffect: {fileID: 0}
+  abilityOnShot: {fileID: 0}
+  DistortionAnimator: {fileID: 0}
+  AnimationIn: 
+  AnimationOut: 
 --- !u!1001 &4664658334714666950
 PrefabInstance:
   m_ObjectHideFlags: 0
