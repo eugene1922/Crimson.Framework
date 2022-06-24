@@ -26,6 +26,7 @@ namespace Crimson.Core.Systems
 		protected override void OnCreate()
 		{
 			_collisionQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityCollision>(),
 				ComponentType.ReadOnly<ActorColliderData>(),
 				ComponentType.ReadOnly<Transform>());
 			_networkQuery = GetEntityQuery(ComponentType.ReadOnly<CollisionReceiveData>());

@@ -71,6 +71,7 @@ namespace Crimson.Core.Components
 			}
 		}
 
+		[Button]
 		public void Execute()
 		{
 			Run(_entity);
