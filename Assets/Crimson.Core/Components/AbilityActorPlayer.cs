@@ -442,11 +442,6 @@ namespace Crimson.Core.Components
 				_dstManager.AddComponentData(_entity, new DamagedActorTag());
 			}
 
-			if (delta < 0)
-			{
-				_dstManager.AddComponentData(_entity, new DamagedActorTag());
-			}
-
 			UpdateUIData(nameof(CurrentHealth));
 
 			if (!IsAlive)

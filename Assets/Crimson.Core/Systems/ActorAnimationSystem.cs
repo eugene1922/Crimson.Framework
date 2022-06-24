@@ -1,4 +1,3 @@
-using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Common.Interactions;
 using Assets.Crimson.Core.Common.Items;
 using Assets.Crimson.Core.Common.Weapons;
@@ -24,24 +23,11 @@ namespace Crimson.Core.Systems
 		private EntityQuery _forceActorsQuery;
 		private EntityQuery _movementQuery;
 		private EntityQuery _projectileQuery;
-		private EntityQuery _reloadAnimationsQuery;
 		private EntityQuery _strafeActorsQuery;
-		private EntityQuery _meleeQuery;
-		private EntityQuery _rangeQuery;
 		private EntityQuery _animatorProxyQuery;
 
 		protected override void OnCreate()
 		{
-			_meleeQuery = GetEntityQuery(
-				ComponentType.Exclude<DeadActorTag>(),
-				ComponentType.ReadOnly<AnimationMeleeAttackTag>(),
-				ComponentType.ReadOnly<Animator>());
-
-			_rangeQuery = GetEntityQuery(
-				ComponentType.Exclude<DeadActorTag>(),
-				ComponentType.ReadOnly<AnimationRangeAttackTag>(),
-				ComponentType.ReadOnly<Animator>());
-
 			_movementQuery = GetEntityQuery(
 				ComponentType.ReadOnly<ActorMovementAnimationData>(),
 				ComponentType.ReadOnly<Animator>());
@@ -49,11 +35,6 @@ namespace Crimson.Core.Systems
 			_projectileQuery = GetEntityQuery(
 				ComponentType.ReadOnly<ActorProjectileAnimData>(),
 				ComponentType.ReadWrite<ActorProjectileThrowAnimTag>(),
-				ComponentType.ReadOnly<Animator>());
-
-			_reloadAnimationsQuery = GetEntityQuery(
-				ComponentType.ReadOnly<ReloadTag>(),
-				ComponentType.ReadWrite<ReloadAnimationData>(),
 				ComponentType.ReadOnly<Animator>());
 
 			_deadActorsQuery = GetEntityQuery(
@@ -131,11 +112,12 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
 					}
 
-					var entityHasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
-					proxy.Hit.SetValue(animator, entityHasHit);
-					if (entityHasHit)
+					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
+					proxy.Hit.SetValue(animator, hasHit);
+					if (hasHit)
 					{
 						proxy.HitDirection.SetValue(animator, new float2(0, 1));
+						EntityManager.RemoveComponent<DamagedActorTag>(entity);
 					}
 
 					var hasReload = EntityManager.HasComponent<ReloadTag>(entity);
@@ -305,28 +287,6 @@ namespace Crimson.Core.Systems
 						animator.SetBool(animation.AnimHash, true);
 					}
 					dstManager.RemoveComponent<ActorForceAnimData>(entity);
-				});
-
-			Entities.With(_damagedActorsQuery).ForEach(
-				(Entity entity, Animator animator, ref ActorTakeDamageAnimData animation, ref DamagedActorTag damagedActorData) =>
-				{
-					if (animator == null)
-					{
-						Debug.LogError("[DAMAGE ANIMATION SYSTEM] No Animator found!");
-						return;
-					}
-
-					if (animation.AnimHash == 0)
-					{
-						Debug.LogError("[DAMAGE ANIMATION SYSTEM] Some hash(es) not found, check your Actor Damage Component Settings!");
-						return;
-					}
-
-					if (animator.runtimeAnimatorController != null)
-					{
-						animator.SetTrigger(animation.AnimHash);
-					}
-					dstManager.RemoveComponent<DamagedActorTag>(entity);
 				});
 
 			Entities.With(_aimingAnimationQuery).ForEach(
