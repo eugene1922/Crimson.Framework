@@ -1,4 +1,6 @@
-﻿using Assets.Crimson.Core.Components.Weapons;
+﻿using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Weapons;
+using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
@@ -392,6 +394,7 @@ namespace Crimson.Core.Components
 
 		public void Spawn()
 		{
+			_dstManager.AddComponentData(Actor.Owner.ActorEntity, new WeaponAttackTag());
 			if (!suppressWeaponSpawn)
 			{
 				if (onClickAttackType == OnClickAttackType.AutoAim && !OnHoldAttackActive && !findTargetProperties.SearchCompleted)
@@ -432,6 +435,7 @@ namespace Crimson.Core.Components
 
 		public void Reload()
 		{
+			_dstManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
 			ClipData.Reload();
 		}
 

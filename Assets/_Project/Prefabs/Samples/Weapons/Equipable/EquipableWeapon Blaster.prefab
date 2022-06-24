@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Blaster
+  _weaponType: 2
   primaryProjectile: 0
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0

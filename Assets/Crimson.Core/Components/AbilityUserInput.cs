@@ -2,6 +2,7 @@
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -60,8 +61,8 @@ namespace Assets.Crimson.Core.Components
 
 			var inputData = _entityManager.GetComponentData<PlayerInputData>(_entity);
 
-			inputData.Mouse = context.ReadValue<Vector2>();
-			inputData.Look = context.ReadValue<Vector2>();
+			var mousePosition = Input.mousePosition;
+			inputData.Mouse = new float2(mousePosition.x, mousePosition.y);
 			_entityManager.SetComponentData(_entity, inputData);
 		}
 

@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Lighting Gun
+  _weaponType: 1
   primaryProjectile: 0
   abilityOnShot: {fileID: 0}
   aimingAvailable: 0

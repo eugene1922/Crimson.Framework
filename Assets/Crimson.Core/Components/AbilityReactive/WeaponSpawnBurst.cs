@@ -1,5 +1,7 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Common.Types;
+using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Weapons;
 using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components.Interfaces;
@@ -132,7 +134,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		protected Entity _entity;
 		private bool _actorToUi;
-		private EntityManager _dstManager;
+		private EntityManager _entityManager;
 
 		private bool _isWaitingForShot;
 
@@ -166,18 +168,18 @@ namespace Crimson.Core.Components.AbilityReactive
 			Actor = actor;
 			InitPool();
 
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
 			_entity = entity;
 			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
 			SpawnCallbacks = new List<Action<GameObject>>();
 
-			_dstManager.AddComponent<TimerData>(entity);
+			_entityManager.AddComponent<TimerData>(entity);
 
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
 			{
-				_dstManager.AddComponentData(actor.Owner.ActorEntity, new ActorProjectileAnimData
+				_entityManager.AddComponentData(actor.Owner.ActorEntity, new ActorProjectileAnimData
 				{
 					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
 				});
@@ -257,6 +259,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Reload()
 		{
+			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
 			ClipData.Reload();
 		}
 
@@ -268,6 +271,7 @@ namespace Crimson.Core.Components.AbilityReactive
 		private void Shot()
 		{
 			_isWaitingForShot = false;
+			_entityManager.AddComponentData(Actor.Owner.ActorEntity, new WeaponAttackTag());
 			if (!UseBurst)
 			{
 				Spawn();

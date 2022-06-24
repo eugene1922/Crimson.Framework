@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Fusion Gun
+  _weaponType: 1
   primaryProjectile: 0
   abilityOnShot: {fileID: 2372614007474586582}
   aimingAvailable: 0

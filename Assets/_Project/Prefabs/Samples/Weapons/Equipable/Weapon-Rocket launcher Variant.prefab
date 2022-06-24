@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Rocket Launcher
+  _weaponType: 1
   primaryProjectile: 0
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
