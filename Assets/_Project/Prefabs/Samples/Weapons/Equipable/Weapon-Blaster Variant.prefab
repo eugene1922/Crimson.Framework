@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Blast Weapon
-  _weaponType: 1
+  _weaponType: 2
   primaryProjectile: 0
   abilityOnShot: {fileID: 0}
   aimingAvailable: 0
