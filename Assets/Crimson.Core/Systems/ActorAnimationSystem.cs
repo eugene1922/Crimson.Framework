@@ -23,7 +23,6 @@ namespace Crimson.Core.Systems
 		private EntityQuery _forceActorsQuery;
 		private EntityQuery _movementQuery;
 		private EntityQuery _projectileQuery;
-		private EntityQuery _strafeActorsQuery;
 		private EntityQuery _animatorProxyQuery;
 
 		protected override void OnCreate()
@@ -40,11 +39,6 @@ namespace Crimson.Core.Systems
 			_deadActorsQuery = GetEntityQuery(
 				ComponentType.ReadOnly<DeadActorTag>(),
 				ComponentType.ReadWrite<ActorDeathAnimData>(),
-				ComponentType.ReadOnly<Animator>());
-
-			_strafeActorsQuery = GetEntityQuery(
-				ComponentType.ReadOnly<StrafeActorTag>(),
-				ComponentType.ReadWrite<ActorStafeAnimData>(),
 				ComponentType.ReadOnly<Animator>());
 
 			_forceActorsQuery = GetEntityQuery(
@@ -127,6 +121,12 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<ReloadTag>(entity);
 					}
 					//TODO:Dodge
+					var hasStrafe = EntityManager.HasComponent<StrafeActorTag>(entity);
+					proxy.Dodge.SetValue(animator, hasStrafe);
+					if (hasStrafe)
+					{
+						EntityManager.RemoveComponent<StrafeActorTag>(entity);
+					}
 
 					//TODO:Falling
 
@@ -243,28 +243,6 @@ namespace Crimson.Core.Systems
 						animator.SetBool(animation.AnimHash, true);
 					}
 					dstManager.RemoveComponent<ActorDeathAnimData>(entity);
-				});
-
-			Entities.With(_strafeActorsQuery).ForEach(
-				(Entity entity, Animator animator, ref ActorStafeAnimData animation) =>
-				{
-					if (animator == null)
-					{
-						Debug.LogError("[STRAFE ANIMATION SYSTEM] No Animator found!");
-						return;
-					}
-
-					if (animation.AnimHash == 0)
-					{
-						Debug.LogError("[STRAFE ANIMATION SYSTEM] Some hash(es) not found, check your Actor STRAFE Component Settings!");
-						return;
-					}
-
-					if (animator.runtimeAnimatorController != null)
-					{
-						animator.SetBool(animation.AnimHash, true);
-					}
-					dstManager.RemoveComponent<ActorStafeAnimData>(entity);
 				});
 
 			Entities.With(_forceActorsQuery).ForEach(
