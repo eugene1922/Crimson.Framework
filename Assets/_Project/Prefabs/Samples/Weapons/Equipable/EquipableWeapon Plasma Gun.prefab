@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: EquipableWeapon Plasme Gun
+      value: EquipableWeapon Plasma Gun
       objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -100,42 +100,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5956257807646811413}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &465006249192904537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6115017838619374156, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5956257807646811413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880700991455437982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &774759173739812131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6370517277054595126, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5956257807646811413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880700991455437982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4103522099825665960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
   m_PrefabInstance: {fileID: 5956257807646811413}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &598564529029489492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5880700991455437982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 0
-  Targets:
-  - {fileID: 5880700991455437982}
---- !u!114 &7347931288159886798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5880700991455437982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 1
-  Targets:
-  - {fileID: 5880700991455437982}
 --- !u!114 &9027714982187357638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,10 +218,10 @@ MonoBehaviour:
   AimComponent: {fileID: 0}
   ActionsOnEnable:
     actions:
-    - {fileID: 7347931288159886798}
+    - {fileID: 465006249192904537}
   ActionsOnDisable:
     actions:
-    - {fileID: 598564529029489492}
+    - {fileID: 774759173739812131}
 --- !u!1001 &7251838995758909613
 PrefabInstance:
   m_ObjectHideFlags: 0

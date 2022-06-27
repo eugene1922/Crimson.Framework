@@ -18,7 +18,7 @@ namespace Crimson.Core.Components
 
 		[MinMaxSlider(0, 30, true)] public Vector2 behaviourUpdatePeriod = new Vector2(2f, 6f);
 
-		[Sirenix.OdinInspector.ReadOnly, ShowInInspector] private string _currentBehaviour;
+		[ReadOnly, ShowInInspector] private string _currentBehaviour;
 
 		[HideInInspector]
 		public IAIBehaviour activeBehaviour
@@ -56,11 +56,6 @@ namespace Crimson.Core.Components
 		public void EvaluateAll()
 		{
 			this.RemoveAction(EvaluateAll);
-
-			if (_dstManager.HasComponent<DeadActorTag>(_entity))
-			{
-				return;
-			}
 
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			if (_dstManager.Exists(_entity))

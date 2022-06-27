@@ -156,17 +156,11 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4632096681113351262}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3031696688696489699 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+--- !u!114 &1482928035124692498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6115017838619374156, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
   m_PrefabInstance: {fileID: 4632096681113351262}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &369729359942359498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4862781404533274069}
   m_Enabled: 1
@@ -174,9 +168,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 0
-  Targets:
-  - {fileID: 4862781404533274069}
+--- !u!114 &1738421160495088744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6370517277054595126, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4632096681113351262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862781404533274069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &3031696688696489699 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4632096681113351262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4695952822674535236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,21 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetWeapon: {fileID: 8931255258272452073}
---- !u!114 &6131533425111234043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4862781404533274069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 1
-  Targets:
-  - {fileID: 4862781404533274069}
 --- !u!114 &8931255258272452073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,10 +219,10 @@ MonoBehaviour:
   MagnetOffset: {x: 0, y: 0, z: 2}
   ActionsOnEnable:
     actions:
-    - {fileID: 6131533425111234043}
+    - {fileID: 1482928035124692498}
   ActionsOnDisable:
     actions:
-    - {fileID: 369729359942359498}
+    - {fileID: 1738421160495088744}
   _force: 20
   _grabEffect: {fileID: 0}
   abilityOnShot: {fileID: 0}

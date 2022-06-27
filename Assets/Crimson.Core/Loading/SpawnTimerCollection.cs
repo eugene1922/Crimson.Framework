@@ -45,7 +45,7 @@ namespace Crimson.Core.Loading
 			Add(ActorSpawn.Spawn(_spawnItems[_currentItemIndex]));
 			_currentItemIndex++;
 
-			_timer.TimedActions.AddAction(SpawnCurrentItem, _delays.Delay);
+			_timer.TimedActions.AddAction(SpawnCurrentItem, _delays.Delay * _currentItemIndex);
 		}
 
 		public void Spawn()

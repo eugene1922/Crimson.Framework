@@ -50,16 +50,6 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
-	adb = {
-		active = false
-		priority = 2500
-		defaultAction = null
-	}
-	performance = {
-		active = false
-		priority = 100
-		defaultAction = null
-	}
 }
 recentSearches = [
 	"character"
@@ -68,9 +58,3 @@ searchItemFavorites = [
 ]
 savedSearchesSortOrder = 0
 showSavedSearchPanel = false
-expandedQueries = [
-]
-queryBuilder = false
-ignoredProperties = "id;name;classname;imagecontentshash"
-helperWidgetCurrentArea = "all"
-disabledIndexers = ""

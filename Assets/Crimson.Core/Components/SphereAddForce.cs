@@ -50,14 +50,9 @@ namespace Crimson.Core.Components
 			}
 
 			var target = targetCollider.GetComponent<Rigidbody>();
-			if (target == null)
-			{
-				return;
-			}
 
 			target.AddExplosionForce(Power, transform.position, Radius, 3.0f, Mode);
 		}
-
 #if UNITY_EDITOR
 
 		private void OnDrawGizmosSelected()

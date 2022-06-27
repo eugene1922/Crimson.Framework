@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2783418795043435644}
   - component: {fileID: 8744062145712760159}
   - component: {fileID: 3287228919993228339}
+  - component: {fileID: 6115017838619374156}
+  - component: {fileID: 6370517277054595126}
   m_Layer: 0
   m_Name: EquipableWeapon
   m_TagString: Untagged
@@ -61,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff8c79da9bc4d898e1e63e682db1909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RunOnAwake: 1
   findTargetProperties:
     targetType: 3
     actorWithComponentName: 
@@ -108,6 +111,34 @@ MonoBehaviour:
   retainRotationOffset: 0
   hideIfNoTarget: 0
   target: {fileID: 0}
+--- !u!114 &6115017838619374156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230970627649061259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 1
+  Target: {fileID: 9150718196419910335}
+--- !u!114 &6370517277054595126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230970627649061259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Target: {fileID: 9150718196419910335}
 --- !u!1 &9150718196419910335
 GameObject:
   m_ObjectHideFlags: 0

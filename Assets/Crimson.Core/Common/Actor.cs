@@ -36,11 +36,7 @@ namespace Crimson.Core.Common
 		{
 			get
 			{
-				if (_abilities == null || _abilities.Count == 0)
-				{
-					_abilities = gameObject.Equals(null) || this == null ? new List<IActorAbility>() : GetComponents<IActorAbility>()?.ToList();
-				}
-
+				if (_abilities == null || _abilities.Count == 0) _abilities = GetComponents<IActorAbility>()?.ToList();
 				_abilities?.RemoveAll(a => a.Equals(null));
 				return _abilities;
 			}

@@ -158,9 +158,9 @@ MonoBehaviour:
       _maxLimit: 0
       _freeze: 0
     Health:
-      _current: 100
+      _current: 10
       _minLimit: 0
-      _maxLimit: 100
+      _maxLimit: 10
       _freeze: 0
     Level: 1
     LevelUpRequiredExperience: 100
@@ -175,17 +175,14 @@ MonoBehaviour:
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  NeedCleanup: 0
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
-    RemoveRigidbody: 0
+    RemoveRigidbody: 1
     RemoveColliders: 1
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
-    OnOverdamageActionsComponentNames:
-    - Overdamage-FX
   deathCount: 0
   ExplicitUIChannel: 0
   healAction: {fileID: 0}
@@ -327,7 +324,7 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 4470496162032163094, guid: 270d9efd8cb3a5741ae33bcc4b2cdf5b, type: 3}
+    - {fileID: 4470496162032163094, guid: 0985898cc28becd45aca1a2fe35a9f0c, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
