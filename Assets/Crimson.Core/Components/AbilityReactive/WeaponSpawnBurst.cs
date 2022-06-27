@@ -1,4 +1,7 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Types;
+using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Weapons;
 using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components.Interfaces;
@@ -36,7 +39,12 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ShowInInspector]
 		public string componentName = "";
 
+		public WeaponType _weaponType;
+
 		public bool primaryProjectile;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour abilityOnShot;
 
 		public bool aimingAvailable;
 		public bool deactivateAimingOnCooldown;
@@ -118,13 +126,17 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
+		[Header("ActionsOnEnable")]
 		public ActionsList ActionsOnEnable = new ActionsList();
 
+		[Header("ActionsOnDisable")]
 		public ActionsList ActionsOnDisable = new ActionsList();
 
 		protected Entity _entity;
 		private bool _actorToUi;
-		private EntityManager _dstManager;
+		private EntityManager _entityManager;
+
+		private bool _isWaitingForShot;
 
 		public event Action OnShot;
 
@@ -143,6 +155,8 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public WeaponClip ClipData { get; private set; } = new WeaponClip();
 
+		public WeaponType Type => _weaponType;
+
 		private void Awake()
 		{
 			ActionsOnDisable.Init();
@@ -154,18 +168,18 @@ namespace Crimson.Core.Components.AbilityReactive
 			Actor = actor;
 			InitPool();
 
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
 			_entity = entity;
 			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
 			SpawnCallbacks = new List<Action<GameObject>>();
 
-			_dstManager.AddComponent<TimerData>(entity);
+			_entityManager.AddComponent<TimerData>(entity);
 
 			if (actorProjectileSpawnAnimProperties != null
 				&& actorProjectileSpawnAnimProperties.HasActorProjectileAnimation)
 			{
-				_dstManager.AddComponentData(actor.Owner.ActorEntity, new ActorProjectileAnimData
+				_entityManager.AddComponentData(actor.Owner.ActorEntity, new ActorProjectileAnimData
 				{
 					AnimHash = Animator.StringToHash(actorProjectileSpawnAnimProperties.ActorProjectileAnimationName)
 				});
@@ -218,6 +232,9 @@ namespace Crimson.Core.Components.AbilityReactive
 
 			if (projectileStartupDelay > 0)
 			{
+				if (_isWaitingForShot)
+					return;
+				_isWaitingForShot = true;
 				Timer.TimedActions.AddAction(Shot, projectileStartupDelay);
 			}
 			else
@@ -225,6 +242,8 @@ namespace Crimson.Core.Components.AbilityReactive
 				Shot();
 				Timer.TimedActions.AddAction(Execute, CooldownTime);
 			}
+
+			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
 		}
 
 		public override void FinishTimer()
@@ -240,6 +259,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Reload()
 		{
+			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
 			ClipData.Reload();
 		}
 
@@ -250,6 +270,8 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		private void Shot()
 		{
+			_isWaitingForShot = false;
+			_entityManager.AddComponentData(Actor.Owner.ActorEntity, new WeaponAttackTag());
 			if (!UseBurst)
 			{
 				Spawn();
@@ -260,7 +282,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			{
 				Timer.TimedActions.AddAction(Spawn, _burstDelay * i);
 			}
-			Timer.TimedActions.AddAction(FinishTimer, _burstDelay * (3 + 1));
+			Timer.TimedActions.AddAction(FinishTimer, _burstDelay * shots);
 		}
 
 		public void Spawn()
@@ -305,6 +327,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void StopFire()
 		{
 			IsActivated = false;
+			if (projectileStartupDelay <= 0)
+				ResetTimer();
 		}
 
 		private void CreateSpawnPointsRoot()
@@ -354,6 +378,11 @@ namespace Crimson.Core.Components.AbilityReactive
 				SpawnedObjects[i].Destroy();
 			}
 			SpawnedObjects.Clear();
+		}
+
+		private bool MustBeAbility(MonoBehaviour a)
+		{
+			return (a is IActorAbility) || (a is null);
 		}
 	}
 }

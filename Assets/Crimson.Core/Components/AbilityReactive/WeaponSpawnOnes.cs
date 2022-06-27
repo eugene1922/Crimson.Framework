@@ -1,5 +1,7 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Types;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Tags.Weapons;
 using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components.Interfaces;
@@ -38,6 +40,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ShowInInspector]
 		[SerializeField]
 		public string componentName = "";
+
+		public WeaponType _weaponType;
 
 		public bool primaryProjectile;
 
@@ -124,8 +128,10 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
+		[Header("ActionsOnEnable")]
 		public ActionsList ActionsOnEnable = new ActionsList();
 
+		[Header("ActionsOnDisable")]
 		public ActionsList ActionsOnDisable = new ActionsList();
 
 		public ActorGeneralAnimProperties reloadAnimProps;
@@ -145,6 +151,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 
 		public WeaponClip ClipData { get; private set; } = new WeaponClip();
+
+		public WeaponType Type => _weaponType;
 
 		private void Awake()
 		{
@@ -181,29 +189,32 @@ namespace Crimson.Core.Components.AbilityReactive
 
 			appliedPerksNames = new List<string>();
 
-			SpawnPointsRoot = new GameObject("spawn points root").transform;
-			SpawnPointsRoot.SetParent(gameObject.transform);
-
-			SpawnPointsRoot.localPosition = Vector3.zero;
-			ResetSpawnPointRootRotation();
-
-			if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+			if (projectileSpawnData.spawnPosition != SpawnPosition.UseSpawnPoints || projectileSpawnData.spawnPointsFrom != SpawnPointsSource.Manually)
 			{
-				projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+				SpawnPointsRoot = new GameObject("spawn points root").transform;
+				SpawnPointsRoot.SetParent(gameObject.transform);
+
+				SpawnPointsRoot.localPosition = Vector3.zero;
+				ResetSpawnPointRootRotation();
+
+				if (projectileSpawnData.SpawnPosition == SpawnPosition.UseSpawnerPosition)
+				{
+					projectileSpawnData.SpawnPosition = SpawnPosition.UseSpawnPoints;
+				}
+
+				if (projectileSpawnData.SpawnPoints.Any())
+				{
+					projectileSpawnData.SpawnPoints.Clear();
+				}
+
+				var baseSpawnPoint = new GameObject("Base Spawn Point");
+				baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
+
+				baseSpawnPoint.transform.localPosition = Vector3.zero;
+				baseSpawnPoint.transform.localRotation = Quaternion.identity;
+
+				projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 			}
-
-			if (projectileSpawnData.SpawnPoints.Any())
-			{
-				projectileSpawnData.SpawnPoints.Clear();
-			}
-
-			var baseSpawnPoint = new GameObject("Base Spawn Point");
-			baseSpawnPoint.transform.SetParent(SpawnPointsRoot);
-
-			baseSpawnPoint.transform.localPosition = Vector3.zero;
-			baseSpawnPoint.transform.localRotation = Quaternion.identity;
-
-			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 
 			InitPool();
 
@@ -235,6 +246,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		private void Shot()
 		{
+			_dstManager.AddComponentData(Actor.Owner.ActorEntity, new WeaponAttackTag());
 			Spawn();
 
 			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity,
@@ -265,7 +277,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Reload()
 		{
-			CurrentEntityManager.AddComponentData(_entity, new ReloadTag());
+			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
 			ClipData.Reload();
 		}
 
@@ -320,8 +332,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public override void StartTimer()
 		{
-			IsEnable = false;
-
 			base.StartTimer();
 			this.StartAbilityCooldownTimer(Actor);
 		}

@@ -25,7 +25,7 @@ namespace Crimson.Core.Systems
 
 			_lookQuery = GetEntityQuery(
 				ComponentType.ReadOnly<Transform>(),
-				ComponentType.ReadOnly<FollowLookRotationTag>(),
+				ComponentType.ReadOnly<FollowLookRotationData>(),
 				ComponentType.ReadOnly<PlayerInputData>(),
 				ComponentType.Exclude<StopRotationData>());
 		}
@@ -56,13 +56,15 @@ namespace Crimson.Core.Systems
 			);
 
 			Entities.With(_lookQuery).ForEach(
-				(ref PlayerInputData input, Transform transform) =>
+				(Transform transform, ref PlayerInputData input, ref FollowLookRotationData lookRotationTag) =>
 				{
 					var mouse = (Vector2)input.Mouse;
-					var position = (Vector2)Camera.main.WorldToScreenPoint(transform.position);
-					var angle = Mathf.Atan2(mouse.y - position.y, mouse.x - position.x) * (180 / Mathf.PI);
+					var position = (Vector2)Camera.main.WorldToScreenPoint(transform.position + (Vector3)lookRotationTag.Offset);
+					var direction = mouse - position;
+					var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-					transform.rotation = Quaternion.AngleAxis(-angle-90, Vector3.up);
+					transform.rotation = Quaternion.AngleAxis(-angle - 90, Vector3.up);
+					input.Look = direction.normalized;
 				});
 		}
 	}

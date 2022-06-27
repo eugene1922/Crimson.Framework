@@ -12,9 +12,6 @@ namespace Assets.Crimson.Core.Components
 {
 	public class AbilityRangeAttack : MonoBehaviour, IActorAbility, IEnableable
 	{
-		[Header(nameof(Animation))]
-		public ActorGeneralAnimProperties Animation = new ActorGeneralAnimProperties();
-
 		[Header(nameof(Cooldown))]
 		public bool Use;
 
@@ -56,10 +53,7 @@ namespace Assets.Crimson.Core.Components
 
 			ResetCooldown();
 
-			if (Animation.HasAnimation)
-			{
-				_dstManager.AddComponentData(_entity, new AnimationRangeAttackTag(Animation.AnimationName));
-			}
+			_dstManager.AddComponentData(_entity, new AnimationRangeAttackTag());
 
 			for (var i = 0; i < AbilityCollection.Count; i++)
 			{

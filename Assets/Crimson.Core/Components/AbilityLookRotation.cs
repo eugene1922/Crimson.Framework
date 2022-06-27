@@ -10,6 +10,8 @@ namespace Assets.Crimson.Core.Components
 	[HideMonoScript]
 	public class AbilityLookRotation : MonoBehaviour, IActorAbility
 	{
+		public float Speed = 5;
+		public Vector3 Offset;
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -18,7 +20,11 @@ namespace Assets.Crimson.Core.Components
 
 			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-			dstManager.AddComponentData(entity, new FollowLookRotationTag());
+			dstManager.AddComponentData(entity, new FollowLookRotationData()
+			{
+				Offset = Offset,
+				Speed = Speed
+			});
 		}
 
 		public void Execute()
