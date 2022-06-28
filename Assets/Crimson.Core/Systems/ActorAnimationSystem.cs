@@ -139,12 +139,16 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<InteractionTypeData>(entity);
 						EntityManager.RemoveComponent<StartInteractionAnimTag>(entity);
 					}
-					var endInteract = EntityManager.HasComponent<EndInteractionAnimTag>(entity);
+					var endInteract = EntityManager.HasComponent<EndInteractionAnimData>(entity);
 					if (endInteract)
 					{
-						proxy.Interact.SetValue(animator, false);
-						EntityManager.RemoveComponent<InteractionTypeData>(entity);
-						EntityManager.RemoveComponent<EndInteractionAnimTag>(entity);
+						var data = EntityManager.GetComponentData<EndInteractionAnimData>(entity);
+						if (data.IsExpired)
+						{
+							proxy.Interact.SetValue(animator, false);
+							EntityManager.RemoveComponent<InteractionTypeData>(entity);
+							EntityManager.RemoveComponent<EndInteractionAnimData>(entity);
+						}
 					}
 
 					var hasDeath = EntityManager.HasComponent<DeadActorTag>(entity);
