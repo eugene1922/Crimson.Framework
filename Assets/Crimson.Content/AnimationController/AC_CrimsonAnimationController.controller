@@ -3614,33 +3614,33 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: -3039198082819444142}
   m_StateMachineTransitions:
+  - first: {fileID: 6816097819700737694}
+    second:
+    - {fileID: 2556724806680604689}
+  - first: {fileID: 9080713351797656907}
+    second:
+    - {fileID: 3914433029201693296}
   - first: {fileID: -5529715259141772566}
     second:
     - {fileID: -6538799297199501040}
-  - first: {fileID: -4809042315839068348}
-    second:
-    - {fileID: -1149508342807982063}
   - first: {fileID: -1371499552125463076}
     second:
     - {fileID: 7656586621315253705}
+  - first: {fileID: -4809042315839068348}
+    second:
+    - {fileID: -1149508342807982063}
+  - first: {fileID: 8622432663331741546}
+    second:
+    - {fileID: 2606821869549657887}
   - first: {fileID: -396764160421171301}
     second:
     - {fileID: 1288609194253566919}
   - first: {fileID: 4354097113574893854}
     second:
     - {fileID: 2907702747592361827}
-  - first: {fileID: 6816097819700737694}
-    second:
-    - {fileID: 2556724806680604689}
   - first: {fileID: 8575279324035014107}
     second:
     - {fileID: 1531331996535988283}
-  - first: {fileID: 8622432663331741546}
-    second:
-    - {fileID: 2606821869549657887}
-  - first: {fileID: 9080713351797656907}
-    second:
-    - {fileID: 3914433029201693296}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 370, y: -210, z: 0}
   m_EntryPosition: {x: -240, y: 280, z: 0}
@@ -3857,7 +3857,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400004, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
     m_Threshold: 0
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -3865,7 +3865,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400002, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
     m_Threshold: 0.2
-    m_Position: {x: 0, y: 1}
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
