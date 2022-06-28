@@ -203,6 +203,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipableWeapon Multi Rocket Launcher
       objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: targetTag
+      value: WeaponMountPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: followTarget
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: componentName
@@ -211,12 +221,17 @@ PrefabInstance:
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.045
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.114
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.518
+      value: 0.282
       objectReference: {fileID: 0}
     - target: {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -305,7 +320,7 @@ MonoBehaviour:
     - {fileID: 4795683133691389418, guid: 1edf9d5153d562646a9b63b6e7250044, type: 3}
     - {fileID: 4116869424554050852, guid: 982e59942c13eb04d8cefa3bacfbbd47, type: 3}
     spawnPosition: 0
-    spawnPointsFillingMode: 0
+    spawnPointsFillingMode: 1
     fillSpawnPoints: 2
     x: 8
     skipBusySpawnPoints: 0

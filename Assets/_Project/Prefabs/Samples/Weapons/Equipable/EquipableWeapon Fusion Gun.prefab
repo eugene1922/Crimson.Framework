@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3046358728583350651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0235, y: 0.0125, z: 0.42}
+  m_LocalPosition: {x: 0.02, y: 0.1015, z: 0.5251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1548769087254226115}
@@ -129,10 +129,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipableWeapon Fusion Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: targetTag
+      value: WeaponMountPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: followTarget
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: componentName
       value: Blaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0313
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.106
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.116
       objectReference: {fileID: 0}
     - target: {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -202,13 +227,14 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 4547291018049833434, guid: a26e23f9104153a4980c945a329de316, type: 3}
-    spawnPosition: 2
+    spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints: []
+    _spawnPoints:
+    - {fileID: 3046358728583350651}
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0
@@ -272,13 +298,14 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 891030007494840639, guid: 3c80e59738834d04ab9c8dd1ad4f4996, type: 3}
-    spawnPosition: 2
+    spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 2
     x: 7
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
-    _spawnPoints: []
+    _spawnPoints:
+    - {fileID: 3046358728583350651}
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0
@@ -326,10 +353,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8939791187431860214}
     m_Modifications:
+    - target: {fileID: 3367016553318960604, guid: 125cdc7600bd32e47b955e9ef425021b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675416950383082299, guid: 125cdc7600bd32e47b955e9ef425021b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6467125172856630705, guid: 125cdc7600bd32e47b955e9ef425021b,
         type: 3}
       propertyPath: m_Name
       value: SF Fusion Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001267712922534089, guid: 125cdc7600bd32e47b955e9ef425021b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8208240383975808631, guid: 125cdc7600bd32e47b955e9ef425021b,
         type: 3}

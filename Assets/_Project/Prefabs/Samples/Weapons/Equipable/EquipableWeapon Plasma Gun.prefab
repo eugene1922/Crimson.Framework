@@ -67,6 +67,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipableWeapon Plasma Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: targetTag
+      value: WeaponMountPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: followTarget
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: componentName
@@ -75,17 +85,17 @@ PrefabInstance:
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.006
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07
+      value: 0.188
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.205
+      value: 0.169
       objectReference: {fileID: 0}
     - target: {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}

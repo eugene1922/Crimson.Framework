@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142992215136889317}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.032, y: 0.034, z: 0.539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2108154066902589365}
   - {fileID: 6848185537830032342}
-  m_Father: {fileID: 4862781404533274070}
+  m_Father: {fileID: 3031696688696489699}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &460000697371709506
@@ -382,10 +382,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipableWeapon GravityGun2
       objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: targetTag
+      value: WeaponMountPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: followTarget
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: componentName
       value: GravityGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.034
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -402,18 +427,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1, type: 3}
+    - target: {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+        type: 3}
+      propertyPath: TargetWeapon
+      value: 
+      objectReference: {fileID: 8931255258272452073}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194d4f1e3d0c8894c9f478f4fe202fc1, type: 3}
 --- !u!1 &4862781404533274069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4632096681113351262}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4862781404533274070 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
   m_PrefabInstance: {fileID: 4632096681113351262}
   m_PrefabAsset: {fileID: 0}
