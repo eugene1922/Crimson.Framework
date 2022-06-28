@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Assets.Crimson.Core.Components.Interaction
 {
 	[HideMonoScript]
-	public class InteractionItem : TimerBaseBehaviour, IActorAbilityTarget
+	public class InteractionItem : MonoBehaviour, IActorAbilityTarget
 	{
 		public InteractionType Type;
 		public float InteractDuration;
@@ -34,7 +34,6 @@ namespace Assets.Crimson.Core.Components.Interaction
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			AbilityOwnerActor = actor;
 			var actions = InteractionReciever.Actions;
-			Timer.Start();
 
 			_targetActions = new List<IActorAbilityTarget>();
 			_abilityActions = new List<IActorAbility>();
@@ -74,11 +73,8 @@ namespace Assets.Crimson.Core.Components.Interaction
 				_abilityActions[i].Execute();
 			}
 
-			Timer.TimedActions.AddAction(() =>
-			{
-				var target = TargetActor.ActorEntity;
-				_entityManager.AddComponentData(target, new EndInteractionAnimTag());
-			}, InteractDuration);
+			var target = TargetActor.ActorEntity;
+			_entityManager.AddComponentData(target, new EndInteractionAnimData(InteractDuration));
 
 			TargetActor = null;
 		}
