@@ -85,36 +85,42 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 558700366730362479}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5988678469435935779 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6115017838619374156, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 558700366730362479}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357039506442272740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6892891944054427225 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6370517277054595126, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 558700366730362479}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357039506442272740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7897805719530536146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
   m_PrefabInstance: {fileID: 558700366730362479}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1995909038479340772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357039506442272740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 1
+  Targets:
+  - {fileID: 357039506442272740}
+--- !u!114 &3496920647679153277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357039506442272740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Targets:
+  - {fileID: 357039506442272740}
 --- !u!114 &6284623228898787596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,10 +205,10 @@ MonoBehaviour:
   AimComponent: {fileID: 0}
   ActionsOnEnable:
     actions:
-    - {fileID: 5988678469435935779}
+    - {fileID: 1995909038479340772}
   ActionsOnDisable:
     actions:
-    - {fileID: 6892891944054427225}
+    - {fileID: 3496920647679153277}
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0

@@ -1,8 +1,7 @@
 {
     "name": "Crimson.Core.Editor",
-    "references": [
-        "GUID:2d4981ca910687e419c19339898a26ef"
-    ],
+    "rootNamespace": "",
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

@@ -9,8 +9,6 @@ namespace Crimson.Core.Systems
 {
 	public class ActorApplyDeathSystem : ComponentSystem
 	{
-		private EntityQuery _deadUserQuery;
-		private EntityQuery _deadUserUiQuery;
 		private EntityQuery _weaponQuery;
 		private EntityQuery _destructionActorByTimerQuery;
 		private EntityQuery _immediateActorDestructionTransformQuery;
@@ -22,17 +20,8 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<AbilityWeapon>(),
 				ComponentType.ReadOnly<DeadActorTag>());
 
-			_deadUserQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
-				ComponentType.ReadOnly<UserInputData>(),
-				ComponentType.ReadWrite<DeadActorTag>(),
-				ComponentType.Exclude<ImmediateDestructionActorTag>(),
-				ComponentType.Exclude<DestructionPendingTag>());
-
-			_deadUserUiQuery = GetEntityQuery(ComponentType.ReadOnly<Actor>(),
-				ComponentType.ReadOnly<UIRespawnScreenView>());
-
 			_destructionActorByTimerQuery = GetEntityQuery(ComponentType.ReadOnly<AbilityActorPlayer>(),
-				ComponentType.ReadWrite<DeadActorTag>(),
+				ComponentType.ReadOnly<DeadActorTag>(),
 				ComponentType.Exclude<ImmediateDestructionActorTag>(),
 				ComponentType.Exclude<DestructionPendingTag>());
 
@@ -71,14 +60,19 @@ namespace Crimson.Core.Systems
 						PostUpdateCommands.RemoveComponent<PlayerInputData>(entity);
 					}
 
-					actorPlayer.gameObject.DeathPhysics(entity, actorPlayer.deadActorBehaviour);
-
 					if (!actorPlayer.TimerActive) return;
 
-					actorPlayer.StartDeathTimer();
+					if (actorPlayer.NeedCleanup)
+					{
+						actorPlayer.gameObject.DeathPhysics(entity, actorPlayer.deadActorBehaviour);
+						actorPlayer.StartDeathTimer();
+					}
+					else
+					{
+						actorPlayer.RemoveUIElements();
+					}
 
 					dstManager.AddComponent<DestructionPendingTag>(entity);
-					PostUpdateCommands.RemoveComponent<DeadActorTag>(entity);
 				}
 			);
 

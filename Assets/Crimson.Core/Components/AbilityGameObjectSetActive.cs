@@ -10,7 +10,7 @@ namespace Assets.Crimson.Core.Components
 	{
 		public bool State;
 
-		public GameObject Target;
+		public GameObject[] Targets;
 
 		public IActor Actor { get; set; }
 
@@ -21,7 +21,10 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
-			Target.SetActive(State);
+			for (var i = 0; i < Targets.Length; i++)
+			{
+				Targets[i].SetActive(State);
+			}
 		}
 	}
 }

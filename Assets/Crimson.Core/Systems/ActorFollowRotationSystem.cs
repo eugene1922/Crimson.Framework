@@ -1,14 +1,12 @@
 using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
-using Crimson.Core.Utils.LowLevel;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Systems
 {
-	[UpdateInGroup(typeof(FixedUpdateGroup))]
 	public class ActorFollowRotationSystem : ComponentSystem
 	{
 		private EntityQuery _lookQuery;
@@ -30,18 +28,18 @@ namespace Crimson.Core.Systems
 				ComponentType.Exclude<StopRotationData>());
 		}
 
-        protected override void OnUpdate()
-        {
-            Entities.With(_query).ForEach(
-                (Entity entity, AbilityFollowRotation follow, ref RotateDirectlyData rotation,
-                    ref ActorFollowRotationData data) =>
-                {
-                    if (follow.target == null)
-                    {
-                        PostUpdateCommands.AddComponent<ActorNoFollowTargetRotationData>(entity);
-                        if (follow.hideIfNoTarget) follow.gameObject.SetActive(false);
-                        return;
-                    }
+		protected override void OnUpdate()
+		{
+			Entities.With(_query).ForEach(
+				(Entity entity, AbilityFollowRotation follow, ref RotateDirectlyData rotation,
+					ref ActorFollowRotationData data) =>
+				{
+					if (follow.target == null)
+					{
+						PostUpdateCommands.AddComponent<ActorNoFollowTargetRotationData>(entity);
+						if (follow.hideIfNoTarget) follow.gameObject.SetActive(false);
+						return;
+					}
 
 					if (follow.hideIfNoTarget)
 					{

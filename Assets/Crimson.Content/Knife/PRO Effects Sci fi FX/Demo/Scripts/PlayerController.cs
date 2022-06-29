@@ -191,7 +191,7 @@ namespace Knife.Effects.SimpleController
 
         void Update()
         {
-            //if (Pause.action.WasPerformedThisFrame())
+            if (Pause.action.WasPerformedThisFrame())
             {
                 if (isPaused)
                     UnpausePlayer();

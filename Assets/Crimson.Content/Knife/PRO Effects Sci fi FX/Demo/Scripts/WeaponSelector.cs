@@ -186,7 +186,7 @@ namespace Knife.Effects.SimpleController
 
         private void Update()
         {
-            //if (OpenAction.action.WasPerformedThisFrame())
+            if (OpenAction.action.WasPerformedThisFrame())
             {
                 if (!isOpened)
                     Open();
@@ -199,7 +199,7 @@ namespace Knife.Effects.SimpleController
                 }
             }
 
-            //if(OpenAction.action.WasReleasedThisFrame())
+            if(OpenAction.action.WasReleasedThisFrame())
             {
                 isClosed = false;
             }

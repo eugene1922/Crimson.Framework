@@ -380,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: EquipableWeapon GravityGun2
+      value: EquipableWeapon GravityGun2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3287228919993228339, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -470,6 +470,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4632096681113351262}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &369729359942359498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862781404533274069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Targets:
+  - {fileID: 4862781404533274069}
 --- !u!114 &3523213445534027934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +533,34 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
+--- !u!114 &4695952822674535236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862781404533274069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b7398b38cc3184abe4dc5eb06cb2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetWeapon: {fileID: 8931255258272452073}
+--- !u!114 &6131533425111234043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862781404533274069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 1
+  Targets:
+  - {fileID: 4862781404533274069}
 --- !u!114 &8931255258272452073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,10 +581,10 @@ MonoBehaviour:
   MagnetOffset: {x: 0, y: 0, z: 2}
   ActionsOnEnable:
     actions:
-    - {fileID: 1482928035124692498}
+    - {fileID: 6131533425111234043}
   ActionsOnDisable:
     actions:
-    - {fileID: 1738421160495088744}
+    - {fileID: 369729359942359498}
   _force: 20
   _grabEffect: {fileID: 2108154066902589364}
   abilityOnShot: {fileID: 3523213445534027934}

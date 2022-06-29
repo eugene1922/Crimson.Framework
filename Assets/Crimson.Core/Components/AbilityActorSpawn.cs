@@ -36,6 +36,7 @@ namespace Crimson.Core.Components
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			InitPool();
+			_spawnedObjectCollection.Clear();
 			Actor = actor;
 			World.DefaultGameObjectInjectionWorld.EntityManager.AddComponent<TimerData>(entity);
 			if (ExecuteOnAwake) Execute();
@@ -57,12 +58,11 @@ namespace Crimson.Core.Components
 		{
 			if (SpawnDelays.StartupDelay == 0 && ExecuteNow)
 			{
-				ActorSpawn.Spawn(SpawnData, Actor, Actor.Owner);
+				_spawnedObjectCollection.AddRange(ActorSpawn.Spawn(SpawnData, Actor, Actor.Owner));
 			}
 			else
 			{
 				_spawnedObjectCollection.SetItems(ActorSpawn.GenerateData(SpawnData, Actor, Actor?.Owner));
-				_spawnedObjectCollection.Clear();
 				_spawnedObjectCollection.SpawnWithOptions(Timer, SpawnDelays);
 			}
 		}

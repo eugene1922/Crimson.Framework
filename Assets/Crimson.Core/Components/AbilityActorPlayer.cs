@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.ComponentDatas;
 using Assets.Crimson.Core.Components.Tags;
 using Assets.Crimson.Core.Components.Tags.Effects;
 using Crimson.Core.Common;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Crimson.Core.Components
@@ -51,6 +53,10 @@ namespace Crimson.Core.Components
 		[Header("Additional Force Animation")]
 		public ActorGeneralAnimProperties additionalForceAnim;
 
+		[Header("Cleanup after death")]
+		public bool NeedCleanup;
+
+		[ShowIf(nameof(NeedCleanup))]
 		public float corpseCleanupDelay;
 
 		public DeadBehaviour deadActorBehaviour = new DeadBehaviour();
@@ -292,7 +298,7 @@ namespace Crimson.Core.Components
 
 		public void FinishTimer()
 		{
-			_dstManager.AddComponent<ImmediateDestructionActorTag>(_entity);
+			Death();
 		}
 
 		public void ForceUpdatePlayerUIData()
@@ -343,13 +349,23 @@ namespace Crimson.Core.Components
 
 		public void StartDeathTimer()
 		{
+			RemoveUIElements();
+
+			StartTimer();
+		}
+
+		public void Death()
+		{
+			_dstManager.AddComponent<ImmediateDestructionActorTag>(_entity);
+		}
+
+		public void RemoveUIElements()
+		{
 			for (var i = 0; i < UIReceiverList.Count; i++)
 			{
 				var element = UIReceiverList[i];
 				_dstManager.AddComponent<ImmediateDestructionActorTag>(element.ActorEntity);
 			}
-
-			StartTimer();
 		}
 
 		public void StartTimer()
@@ -398,11 +414,17 @@ namespace Crimson.Core.Components
 		{
 			if (!IsAlive)
 			{
+				SetOverdamage(math.abs(delta));
 				return;
 			}
 
 			var playerStats = _dstManager.GetComponentData<PlayerStatsData>(_entity);
-
+			if (delta < 0
+				&& playerStats.Health.Current < math.abs(delta))
+			{
+				var overdamage = playerStats.Health.Current + delta;
+				SetOverdamage(overdamage);
+			}
 			playerStats.Health.Current += delta;
 
 			Stats = playerStats;
@@ -426,6 +448,25 @@ namespace Crimson.Core.Components
 			{
 				deathCount++;
 				_dstManager.AddComponent<DeadActorTag>(Actor.ActorEntity);
+			}
+		}
+
+		private void SetOverdamage(int value)
+		{
+			if (Actor == null)
+			{
+				return;
+			}
+			var absValue = math.abs(value);
+			if (_dstManager.HasComponent<OverdamageData>(Actor.ActorEntity))
+			{
+				var data = _dstManager.GetComponentData<OverdamageData>(Actor.ActorEntity);
+				data.Damage += absValue;
+				_dstManager.SetComponentData(_entity, data);
+			}
+			else if (Actor.ActorEntity != Entity.Null)
+			{
+				_dstManager.AddComponentData(Actor.ActorEntity, new OverdamageData(absValue));
 			}
 		}
 
