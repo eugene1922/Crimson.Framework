@@ -6,6 +6,7 @@ using Crimson.Core.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Crimson.Core.Systems
 {
@@ -17,7 +18,7 @@ namespace Assets.Crimson.Core.Systems
 		protected override void OnCreate()
 		{
 			_platformsQuery = GetEntityQuery(
-				ComponentType.ReadOnly<AbilityMovementPlatform>());
+				ComponentType.ReadOnly<MovingPlatformData>());
 		}
 
 		protected override void OnUpdate()
@@ -44,12 +45,17 @@ namespace Assets.Crimson.Core.Systems
 				{
 					var result = _results[i];
 					var hasActor = result.GetComponent<Actor>();
-					if (!hasActor)
+					if (!hasActor || result.transform == transform)
 					{
 						continue;
 					}
 					result.transform.position += positionDelta;
 					result.transform.rotation *= new quaternion(rotationDelta);
+					var hasAgent = result.GetComponent<NavMeshAgent>();
+					if (hasAgent)
+					{
+						hasAgent.ResetPath();
+					}
 				}
 			});
 		}

@@ -14,6 +14,7 @@ namespace Assets.Crimson.Core.Components
 		public Collider ColliderZone;
 		private Entity _entity;
 		private EntityManager _entityManager;
+
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
