@@ -210,18 +210,10 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
     m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400002, guid: 74ab6da24dee7ca40a83456cd2488156, type: 3}
-    m_Threshold: 1.181818
-    m_Position: {x: 0, y: 3.9041698}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: fRealSpeedForward
-    m_Mirror: 0
   m_BlendParameter: fRealSpeedTangent
   m_BlendParameterY: fRealSpeedForward
   m_MinThreshold: 0
-  m_MaxThreshold: 1.181818
+  m_MaxThreshold: 1.090909
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 3
@@ -4053,14 +4045,6 @@ BlendTree:
     m_Motion: {fileID: 7400084, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
     m_Threshold: 1.4000001
     m_Position: {x: 3.2431588, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: fRealSpeedForward
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400122, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
-    m_Threshold: 1.5000001
-    m_Position: {x: 0, y: 3.9041698}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
