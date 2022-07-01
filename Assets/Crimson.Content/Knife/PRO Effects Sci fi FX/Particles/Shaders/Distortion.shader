@@ -148,7 +148,10 @@ Shader "Knife/Distortion"
 				float4 staticSwitch24 = screenColor6;
 			#endif
 			o.Emission = staticSwitch24.rgb;
-			o.Alpha = 1;
+			float x = (i.uv_texcoord.x - .5f) * 2;
+			float y = (i.uv_texcoord.y - .5f) * 2;
+			float r2 = x * x + y * y;
+			o.Alpha = clamp(1 - r2, 0, 1);
 		}
 
 		ENDCG
