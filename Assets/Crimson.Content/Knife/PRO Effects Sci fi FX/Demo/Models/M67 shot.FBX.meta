@@ -1,392 +1,138 @@
 fileFormatVersion: 2
 guid: 40577b1be078d7844a28bf5e179e894c
 ModelImporter:
-  serializedVersion: 21100
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: Box001
-  - first:
-      1: 100002
-    second: Box002
-  - first:
-      1: 100004
-    second: Camera001
-  - first:
-      1: 100006
-    second: CATRigHub001
-  - first:
-      1: 100008
-    second: CATRigLArm1
-  - first:
-      1: 100010
-    second: CATRigLArm21
-  - first:
-      1: 100012
-    second: CATRigLArm22
-  - first:
-      1: 100014
-    second: CATRigLArmCollarbone
-  - first:
-      1: 100016
-    second: CATRigLArmDigit11
-  - first:
-      1: 100018
-    second: CATRigLArmDigit12
-  - first:
-      1: 100020
-    second: CATRigLArmDigit13
-  - first:
-      1: 100022
-    second: CATRigLArmDigit21
-  - first:
-      1: 100024
-    second: CATRigLArmDigit22
-  - first:
-      1: 100026
-    second: CATRigLArmDigit23
-  - first:
-      1: 100028
-    second: CATRigLArmDigit31
-  - first:
-      1: 100030
-    second: CATRigLArmDigit32
-  - first:
-      1: 100032
-    second: CATRigLArmDigit33
-  - first:
-      1: 100034
-    second: CATRigLArmDigit41
-  - first:
-      1: 100036
-    second: CATRigLArmDigit42
-  - first:
-      1: 100038
-    second: CATRigLArmDigit43
-  - first:
-      1: 100040
-    second: CATRigLArmDigit51
-  - first:
-      1: 100042
-    second: CATRigLArmDigit52
-  - first:
-      1: 100044
-    second: CATRigLArmDigit53
-  - first:
-      1: 100046
-    second: CATRigLArmIKTarget
-  - first:
-      1: 100048
-    second: CATRigLArmPalm
-  - first:
-      1: 100050
-    second: CATRigRArm1
-  - first:
-      1: 100052
-    second: CATRigRArm21
-  - first:
-      1: 100054
-    second: CATRigRArm22
-  - first:
-      1: 100056
-    second: CATRigRArmCollarbone
-  - first:
-      1: 100058
-    second: CATRigRArmDigit11
-  - first:
-      1: 100060
-    second: CATRigRArmDigit12
-  - first:
-      1: 100062
-    second: CATRigRArmDigit13
-  - first:
-      1: 100064
-    second: CATRigRArmDigit21
-  - first:
-      1: 100066
-    second: CATRigRArmDigit22
-  - first:
-      1: 100068
-    second: CATRigRArmDigit23
-  - first:
-      1: 100070
-    second: CATRigRArmDigit31
-  - first:
-      1: 100072
-    second: CATRigRArmDigit32
-  - first:
-      1: 100074
-    second: CATRigRArmDigit33
-  - first:
-      1: 100076
-    second: CATRigRArmDigit41
-  - first:
-      1: 100078
-    second: CATRigRArmDigit42
-  - first:
-      1: 100080
-    second: CATRigRArmDigit43
-  - first:
-      1: 100082
-    second: CATRigRArmDigit51
-  - first:
-      1: 100084
-    second: CATRigRArmDigit52
-  - first:
-      1: 100086
-    second: CATRigRArmDigit53
-  - first:
-      1: 100088
-    second: CATRigRArmPalm
-  - first:
-      1: 100090
-    second: Character001
-  - first:
-      1: 100092
-    second: full gloves
-  - first:
-      1: 100094
-    second: gloves without fingers
-  - first:
-      1: 100096
-    second: hands
-  - first:
-      1: 100098
-    second: long sleeves
-  - first:
-      1: 100100
-    second: //RootNode
-  - first:
-      1: 100102
-    second: short sleeves
-  - first:
-      4: 400000
-    second: Box001
-  - first:
-      4: 400002
-    second: Box002
-  - first:
-      4: 400004
-    second: Camera001
-  - first:
-      4: 400006
-    second: CATRigHub001
-  - first:
-      4: 400008
-    second: CATRigLArm1
-  - first:
-      4: 400010
-    second: CATRigLArm21
-  - first:
-      4: 400012
-    second: CATRigLArm22
-  - first:
-      4: 400014
-    second: CATRigLArmCollarbone
-  - first:
-      4: 400016
-    second: CATRigLArmDigit11
-  - first:
-      4: 400018
-    second: CATRigLArmDigit12
-  - first:
-      4: 400020
-    second: CATRigLArmDigit13
-  - first:
-      4: 400022
-    second: CATRigLArmDigit21
-  - first:
-      4: 400024
-    second: CATRigLArmDigit22
-  - first:
-      4: 400026
-    second: CATRigLArmDigit23
-  - first:
-      4: 400028
-    second: CATRigLArmDigit31
-  - first:
-      4: 400030
-    second: CATRigLArmDigit32
-  - first:
-      4: 400032
-    second: CATRigLArmDigit33
-  - first:
-      4: 400034
-    second: CATRigLArmDigit41
-  - first:
-      4: 400036
-    second: CATRigLArmDigit42
-  - first:
-      4: 400038
-    second: CATRigLArmDigit43
-  - first:
-      4: 400040
-    second: CATRigLArmDigit51
-  - first:
-      4: 400042
-    second: CATRigLArmDigit52
-  - first:
-      4: 400044
-    second: CATRigLArmDigit53
-  - first:
-      4: 400046
-    second: CATRigLArmIKTarget
-  - first:
-      4: 400048
-    second: CATRigLArmPalm
-  - first:
-      4: 400050
-    second: CATRigRArm1
-  - first:
-      4: 400052
-    second: CATRigRArm21
-  - first:
-      4: 400054
-    second: CATRigRArm22
-  - first:
-      4: 400056
-    second: CATRigRArmCollarbone
-  - first:
-      4: 400058
-    second: CATRigRArmDigit11
-  - first:
-      4: 400060
-    second: CATRigRArmDigit12
-  - first:
-      4: 400062
-    second: CATRigRArmDigit13
-  - first:
-      4: 400064
-    second: CATRigRArmDigit21
-  - first:
-      4: 400066
-    second: CATRigRArmDigit22
-  - first:
-      4: 400068
-    second: CATRigRArmDigit23
-  - first:
-      4: 400070
-    second: CATRigRArmDigit31
-  - first:
-      4: 400072
-    second: CATRigRArmDigit32
-  - first:
-      4: 400074
-    second: CATRigRArmDigit33
-  - first:
-      4: 400076
-    second: CATRigRArmDigit41
-  - first:
-      4: 400078
-    second: CATRigRArmDigit42
-  - first:
-      4: 400080
-    second: CATRigRArmDigit43
-  - first:
-      4: 400082
-    second: CATRigRArmDigit51
-  - first:
-      4: 400084
-    second: CATRigRArmDigit52
-  - first:
-      4: 400086
-    second: CATRigRArmDigit53
-  - first:
-      4: 400088
-    second: CATRigRArmPalm
-  - first:
-      4: 400090
-    second: Character001
-  - first:
-      4: 400092
-    second: full gloves
-  - first:
-      4: 400094
-    second: gloves without fingers
-  - first:
-      4: 400096
-    second: hands
-  - first:
-      4: 400098
-    second: long sleeves
-  - first:
-      4: 400100
-    second: //RootNode
-  - first:
-      4: 400102
-    second: short sleeves
-  - first:
-      20: 2000000
-    second: Camera001
-  - first:
-      21: 2100000
-    second: M27
-  - first:
-      21: 2100002
-    second: hands
-  - first:
-      21: 2100004
-    second: gloves
-  - first:
-      21: 2100006
-    second: clothes
-  - first:
-      23: 2300000
-    second: Box001
-  - first:
-      23: 2300002
-    second: Box002
-  - first:
-      33: 3300000
-    second: Box001
-  - first:
-      33: 3300002
-    second: Box002
-  - first:
-      43: 4300000
-    second: Box001
-  - first:
-      43: 4300002
-    second: Box002
-  - first:
-      43: 4300004
-    second: full gloves
-  - first:
-      43: 4300006
-    second: short sleeves
-  - first:
-      43: 4300008
-    second: hands
-  - first:
-      43: 4300010
-    second: gloves without fingers
-  - first:
-      43: 4300012
-    second: long sleeves
-  - first:
-      74: 7400000
-    second: GrenadeThrow
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: full gloves
-  - first:
-      137: 13700002
-    second: gloves without fingers
-  - first:
-      137: 13700004
-    second: hands
-  - first:
-      137: 13700006
-    second: long sleeves
-  - first:
-      137: 13700008
-    second: short sleeves
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Box002
+    100004: Camera001
+    100006: CATRigHub001
+    100008: CATRigLArm1
+    100010: CATRigLArm21
+    100012: CATRigLArm22
+    100014: CATRigLArmCollarbone
+    100016: CATRigLArmDigit11
+    100018: CATRigLArmDigit12
+    100020: CATRigLArmDigit13
+    100022: CATRigLArmDigit21
+    100024: CATRigLArmDigit22
+    100026: CATRigLArmDigit23
+    100028: CATRigLArmDigit31
+    100030: CATRigLArmDigit32
+    100032: CATRigLArmDigit33
+    100034: CATRigLArmDigit41
+    100036: CATRigLArmDigit42
+    100038: CATRigLArmDigit43
+    100040: CATRigLArmDigit51
+    100042: CATRigLArmDigit52
+    100044: CATRigLArmDigit53
+    100046: CATRigLArmIKTarget
+    100048: CATRigLArmPalm
+    100050: CATRigRArm1
+    100052: CATRigRArm21
+    100054: CATRigRArm22
+    100056: CATRigRArmCollarbone
+    100058: CATRigRArmDigit11
+    100060: CATRigRArmDigit12
+    100062: CATRigRArmDigit13
+    100064: CATRigRArmDigit21
+    100066: CATRigRArmDigit22
+    100068: CATRigRArmDigit23
+    100070: CATRigRArmDigit31
+    100072: CATRigRArmDigit32
+    100074: CATRigRArmDigit33
+    100076: CATRigRArmDigit41
+    100078: CATRigRArmDigit42
+    100080: CATRigRArmDigit43
+    100082: CATRigRArmDigit51
+    100084: CATRigRArmDigit52
+    100086: CATRigRArmDigit53
+    100088: CATRigRArmPalm
+    100090: Character001
+    100092: full gloves
+    100094: gloves without fingers
+    100096: hands
+    100098: long sleeves
+    100100: //RootNode
+    100102: short sleeves
+    400000: Box001
+    400002: Box002
+    400004: Camera001
+    400006: CATRigHub001
+    400008: CATRigLArm1
+    400010: CATRigLArm21
+    400012: CATRigLArm22
+    400014: CATRigLArmCollarbone
+    400016: CATRigLArmDigit11
+    400018: CATRigLArmDigit12
+    400020: CATRigLArmDigit13
+    400022: CATRigLArmDigit21
+    400024: CATRigLArmDigit22
+    400026: CATRigLArmDigit23
+    400028: CATRigLArmDigit31
+    400030: CATRigLArmDigit32
+    400032: CATRigLArmDigit33
+    400034: CATRigLArmDigit41
+    400036: CATRigLArmDigit42
+    400038: CATRigLArmDigit43
+    400040: CATRigLArmDigit51
+    400042: CATRigLArmDigit52
+    400044: CATRigLArmDigit53
+    400046: CATRigLArmIKTarget
+    400048: CATRigLArmPalm
+    400050: CATRigRArm1
+    400052: CATRigRArm21
+    400054: CATRigRArm22
+    400056: CATRigRArmCollarbone
+    400058: CATRigRArmDigit11
+    400060: CATRigRArmDigit12
+    400062: CATRigRArmDigit13
+    400064: CATRigRArmDigit21
+    400066: CATRigRArmDigit22
+    400068: CATRigRArmDigit23
+    400070: CATRigRArmDigit31
+    400072: CATRigRArmDigit32
+    400074: CATRigRArmDigit33
+    400076: CATRigRArmDigit41
+    400078: CATRigRArmDigit42
+    400080: CATRigRArmDigit43
+    400082: CATRigRArmDigit51
+    400084: CATRigRArmDigit52
+    400086: CATRigRArmDigit53
+    400088: CATRigRArmPalm
+    400090: Character001
+    400092: full gloves
+    400094: gloves without fingers
+    400096: hands
+    400098: long sleeves
+    400100: //RootNode
+    400102: short sleeves
+    2000000: Camera001
+    2100000: M27
+    2100002: hands
+    2100004: gloves
+    2100006: clothes
+    2300000: Box001
+    2300002: Box002
+    3300000: Box001
+    3300002: Box002
+    4300000: Box001
+    4300002: Box002
+    4300004: full gloves
+    4300006: short sleeves
+    4300008: hands
+    4300010: gloves without fingers
+    4300012: long sleeves
+    7400000: GrenadeThrow
+    9500000: //RootNode
+    13700000: full gloves
+    13700002: gloves without fingers
+    13700004: hands
+    13700006: long sleeves
+    13700008: short sleeves
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -415,7 +161,6 @@ ModelImporter:
     - serializedVersion: 16
       name: GrenadeThrow
       takeName: Take 001
-      internalID: 0
       firstFrame: 25
       lastFrame: 200
       wrapMode: 0
@@ -455,32 +200,25 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
-    keepQuads: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
-    bakeAxisConversion: 0
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15
+    secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 0
-    secondaryUVMinLightmapResolution: 10
-    secondaryUVMinObjectScale: 1
-    secondaryUVPackMargin: 8
+    secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.001
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -489,10 +227,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
+  copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -502,17 +240,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 12.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
