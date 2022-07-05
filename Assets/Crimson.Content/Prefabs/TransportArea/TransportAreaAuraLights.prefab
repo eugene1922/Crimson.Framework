@@ -12151,7 +12151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7086144169320084177}
   m_Layer: 0
-  m_Name: Aura Lights
+  m_Name: TransportAreaAuraLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

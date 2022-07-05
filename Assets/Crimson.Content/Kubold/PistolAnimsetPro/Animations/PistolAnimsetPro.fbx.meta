@@ -730,7 +730,184 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'BindPose':\n\tLeftLowerLeg
+      average position error 3.5 mm and maximum position error 3.5 mm at time 0:
+      0 (0.0%) Frame 0\n\tRightLowerLeg average position error 3.5 mm and maximum
+      position error 3.5 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting quality report
+      for clip 'Pistol_Idle_Relaxed':\n\tLeftLowerLeg average position error 1.0
+      mm and maximum position error 1.4 mm at time 4:28 (74.0%) Frame 148\n\tRightLowerLeg
+      average position error 3.2 mm and maximum position error 5.2 mm at time 0:16
+      (8.0%) Frame 16\n\nRetargeting quality report for clip 'Pistol_Idle':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_TurnR_90':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_TurnL_90':\n\tLeftLowerLeg average position
+      error 0.3 mm and maximum position error 3.7 mm at time 0: 7 (23.3%) Frame 7\n\tRightLowerArm
+      average position error 0.4 mm and maximum position error 1.4 mm at time 0:18
+      (60.0%) Frame 18\n\nRetargeting quality report for clip 'Pistol_TurnR_180':\n\tRightLowerLeg
+      average position error 0.2 mm and maximum position error 2.0 mm at time 0:
+      5 (12.5%) Frame 5\n\tRightLowerArm average position error 0.5 mm and maximum
+      position error 2.7 mm at time 1: 1 (77.5%) Frame 31\n\nRetargeting quality
+      report for clip 'Pistol_TurnL_180':\n\tRightLowerArm average position error
+      0.7 mm and maximum position error 4.2 mm at time 0: 5 (11.6%) Frame 5\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStart':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdLoop':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStop_LU':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStop_RU':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkBwdStart':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkBwdLoop':\n\tLeftLowerLeg average position
+      error 0.2 mm and maximum position error 1.6 mm at time 0: 9 (34.6%) Frame 9\n\nRetargeting
+      quality report for clip 'Pistol_WalkBwdStop_RU':\n\tRightLowerArm average position
+      error 0.6 mm and maximum position error 2.2 mm at time 0:15 (45.5%) Frame 15\n\nRetargeting
+      quality report for clip 'Pistol_WalkBwdStop_LU':\n\tRightLowerArm average position
+      error 0.6 mm and maximum position error 4.2 mm at time 0:18 (50.0%) Frame 18\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRightStart':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRightLoop':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRightStop_LU':\n\tRightLowerArm average
+      position error 1.1 mm and maximum position error 4.5 mm at time 0:20 (64.5%)
+      Frame 20\n\nRetargeting quality report for clip 'Pistol_StrafeRightStop_RU':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeLeftStart':\n\tLeftLowerArm average position
+      error 0.3 mm and maximum position error 1.4 mm at time 0:12 (52.2%) Frame 12\n\nRetargeting
+      quality report for clip 'Pistol_StrafeLeftLoop':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeLeftStop_RU':\n\tLeftLowerLeg average
+      position error 0.6 mm and maximum position error 4.3 mm at time 0:10 (41.7%)
+      Frame 10\n\nRetargeting quality report for clip 'Pistol_StrafeLeftStop_LU':\n\tRightLowerArm
+      average position error 1.1 mm and maximum position error 6.3 mm at time 0:13
+      (54.2%) Frame 13\n\nRetargeting quality report for clip 'Pistol_StrafeLeft45Loop':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRight135Loop':\n\tRightLowerArm average
+      position error 0.4 mm and maximum position error 2.8 mm at time 0:24 (88.9%)
+      Frame 24\n\nRetargeting quality report for clip 'Pistol_Look_CC_Additive':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_90L_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_90R_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_90U_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_90D_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_45LU_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_45RU_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_45LD_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Look_45RD_Additive':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_TurnR_90Loop':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_TurnL_90Loop':\n\tLeftLowerLeg average position
+      error 0.3 mm and maximum position error 3.4 mm at time 0: 7 (23.3%) Frame 7\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStart180_R':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStart180_L':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStart90_R':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_WalkFwdStart90_L':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_RunFwdLoop':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_RunBwdLoop':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRunRightLoop':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRunLeftLoop':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_StrafeRun45LeftLoop':\n\tLeftLowerLeg average
+      position error 0.2 mm and maximum position error 1.9 mm at time 0:11 (57.9%)
+      Frame 11\n\nRetargeting quality report for clip 'Pistol_StrafeRun135LeftLoop':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 1.3 mm at time 0:13
+      (61.9%) Frame 13\n\nRetargeting quality report for clip 'Pistol_ShootOnce':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_ShootPowerful':\n\tRightLowerArm average position
+      error 0.5 mm and maximum position error 3.0 mm at time 0:14 (58.3%) Frame 14\n\nRetargeting
+      quality report for clip 'Pistol_Reload_2':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Hit_L_1':\n\tLeftLowerLeg average position
+      error 0.2 mm and maximum position error 3.0 mm at time 0: 5 (11.1%) Frame 5\n\nRetargeting
+      quality report for clip 'Pistol_Hit_L_2':\n\tLeftLowerLeg average position
+      error 0.3 mm and maximum position error 4.8 mm at time 0: 7 (13.5%) Frame 7\n\tRightLowerLeg
+      average position error 0.3 mm and maximum position error 3.2 mm at time 0:14
+      (26.9%) Frame 14\n\tLeftLowerArm average position error 0.3 mm and maximum
+      position error 2.5 mm at time 0:18 (34.6%) Frame 18\n\nRetargeting quality
+      report for clip 'Pistol_Hit_R_2':\n\tLeftLowerArm average position error 0.2
+      mm and maximum position error 1.1 mm at time 0: 6 (14.3%) Frame 6\n\tRightLowerArm
+      average position error 0.2 mm and maximum position error 3.2 mm at time 0:
+      1 (2.4%) Frame 1\n\nRetargeting quality report for clip 'Pistol_Hit_C_1':\n\tLeftLowerArm
+      average position error 0.3 mm and maximum position error 2.6 mm at time 0:14
+      (28.6%) Frame 14\n\nRetargeting quality report for clip 'Pistol_Melee_Hard':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Melee_Kick':\n\tLeftLowerLeg average position
+      error 0.4 mm and maximum position error 3.1 mm at time 1: 4 (75.6%) Frame 34\n\tRightLowerLeg
+      average position error 0.2 mm and maximum position error 1.6 mm at time 0:
+      6 (13.3%) Frame 6\n\nRetargeting quality report for clip 'Pistol_Grenade_Throw_Single':\n\tLeftLowerArm
+      average position error 0.2 mm and maximum position error 4.3 mm at time 0:18
+      (33.3%) Frame 18\n\nRetargeting quality report for clip 'Pistol_Grenade_Throw_Start':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Grenade_Throw_Loop':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Grenade_Throw_Cancel':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Grenade_Throw_Far':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Grenade_Throw_Close':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_SprintLoop':\n\tLeftLowerLeg average position
+      error 0.3 mm and maximum position error 2.2 mm at time 0: 3 (15.8%) Frame 3\n\nRetargeting
+      quality report for clip 'Pistol_SprintStart':\n\tRightLowerLeg average position
+      error 0.3 mm and maximum position error 1.3 mm at time 0: 7 (53.8%) Frame 7\n\nRetargeting
+      quality report for clip 'Pistol_SprintStop_RU':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_SprintStop_LU':\n\tRightLowerArm average position
+      error 0.2 mm and maximum position error 1.7 mm at time 1: 1 (93.9%) Frame 31\n\nRetargeting
+      quality report for clip 'Pistol_FallingLoop':\n\tRetargeting quality is good.
+      No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Land_Generic':\n\tRightLowerArm average position
+      error 0.5 mm and maximum position error 6.3 mm at time 0: 3 (6.7%) Frame 3\n\nRetargeting
+      quality report for clip 'Pistol_LandHard_Generic':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Climb_1m':\n\tLeftLowerLeg average position
+      error 0.3 mm and maximum position error 2.3 mm at time 0:19 (36.5%) Frame 19\n\tLeftLowerArm
+      average position error 0.2 mm and maximum position error 2.5 mm at time 0:26
+      (50.0%) Frame 26\n\nRetargeting quality report for clip 'Pistol_Vault_1m':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 2.8 mm at time 1:23
+      (82.8%) Frame 53\n\tRightLowerLeg average position error 0.1 mm and maximum
+      position error 1.4 mm at time 1: 2 (50.0%) Frame 32\n\nRetargeting quality
+      report for clip 'Pistol_Jump_Platformer_5m_ALL':\n\tLeftLowerArm average position
+      error 0.8 mm and maximum position error 9.6 mm at time 0:14 (22.6%) Frame 14\n\tLeftHand
+      average position error 0.1 mm and maximum position error 1.0 mm at time 0:14
+      (22.6%) Frame 14\n\nRetargeting quality report for clip 'Pistol_Jump_Platformer_Start':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Jump_Platformer_Fall':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Jump_Platformer_Predict_Land':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 1.0 mm at time 1:
+      8 (7.6%) Frame 38\n\nRetargeting quality report for clip 'Pistol_Jump_Platformer_Land':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Pistol_Equip':\n\tLeftLowerLeg average position error
+      0.3 mm and maximum position error 1.1 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg
+      average position error 0.3 mm and maximum position error 3.5 mm at time 0:
+      0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Pistol_UnEquip':\n\tLeftLowerLeg
+      average position error 0.9 mm and maximum position error 6.4 mm at time 1:
+      3 (82.5%) Frame 33\n\tRightLowerLeg average position error 0.8 mm and maximum
+      position error 4.2 mm at time 1: 8 (95.0%) Frame 38\n\nRetargeting quality
+      report for clip 'Pistol_Crouch2Idle':\n\tRetargeting quality is good. No significant
+      differences with original animation were found.\n\nRetargeting quality report
+      for clip 'Pistol_CrouchLoop':\n\tRetargeting quality is good. No significant
+      differences with original animation were found.\n\nRetargeting quality report
+      for clip 'Pistol_Idle2Crouch':\n\tRightLowerArm average position error 0.4
+      mm and maximum position error 2.6 mm at time 0:16 (80.0%) Frame 16\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -15706,9 +15883,9 @@ ModelImporter:
     importLights: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    keepQuads: 0
+    keepQuads: 1
     weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0
@@ -15718,17 +15895,17 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
     secondaryUVMarginMethod: 0
-    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinLightmapResolution: 10
     secondaryUVMinObjectScale: 1
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 8
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
     normalCalculationMode: 0
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1

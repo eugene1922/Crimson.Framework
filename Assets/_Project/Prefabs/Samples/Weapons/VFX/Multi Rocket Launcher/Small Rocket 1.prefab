@@ -373,7 +373,7 @@ MonoBehaviour:
   _useVariance: 1
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
-    RotationOffset: {x: 88, y: 88, z: 0}
+    RotationOffset: {x: 160, y: 160, z: 0}
     Cycled: 1
     MemoryKoef: 0.945
 --- !u!114 &8126489478513763044
@@ -5491,7 +5491,7 @@ Transform:
   m_GameObject: {fileID: 6443370314044984667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.1186}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 2511257164177020097}
   m_RootOrder: 5
@@ -20003,17 +20003,17 @@ PrefabInstance:
     - target: {fileID: 1689192416561926861, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.27875924
+      value: 0.5641081
       objectReference: {fileID: 0}
     - target: {fileID: 1689192416561926861, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.27875924
+      value: 0.95572656
       objectReference: {fileID: 0}
     - target: {fileID: 1689192416561926861, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.27875924
+      value: 0.95572656
       objectReference: {fileID: 0}
     - target: {fileID: 1689192416561926861, guid: 78446d6de8eda8c4781679fe34b2bdbb,
         type: 3}
