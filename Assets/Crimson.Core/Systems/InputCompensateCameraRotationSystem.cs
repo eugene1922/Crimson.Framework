@@ -29,7 +29,9 @@ namespace Crimson.Core.Systems
 			Entities.WithAll<CompensateCameraRotation, PlayerInputData>().ForEach(
 				(Entity entity, ref PlayerInputData input) =>
 				{
-					input.CompensateAngle = _camera.rotation.eulerAngles.y;
+					var angles = _camera.rotation.eulerAngles;
+					input.CompensateAngle = angles.y;
+					input.DeclinationAngle = angles.x;
 				});
 		}
 	}
