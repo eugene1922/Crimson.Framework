@@ -59,7 +59,7 @@ namespace Crimson.Core.Systems
 					var mouse = (Vector2)input.Mouse;
 					var position = (Vector2)Camera.main.WorldToScreenPoint(transform.position + (Vector3)lookRotationTag.Offset);
 					var direction = mouse - position;
-					var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - input.CompensateAngle;
+					var angle = Mathf.Atan2(direction.y / Mathf.Sin(input.DeclinationAngle * Mathf.Deg2Rad), direction.x) * Mathf.Rad2Deg - input.CompensateAngle;
 
 					transform.rotation = Quaternion.AngleAxis(-angle + 90, Vector3.up);
 					input.Look = direction.normalized;

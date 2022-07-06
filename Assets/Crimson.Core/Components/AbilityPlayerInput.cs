@@ -31,6 +31,7 @@ namespace Crimson.Core.Components
     public struct PlayerInputData : IComponentData
     {
         [NetworkSimData] public float CompensateAngle;
+        [NetworkSimData] public float DeclinationAngle;
         [NetworkSimData] public FixedList512<float> CustomInput;
         [NetworkSimData] public FixedList512<float2> CustomSticksInput;
         [NetworkSimData] public float2 Look;
