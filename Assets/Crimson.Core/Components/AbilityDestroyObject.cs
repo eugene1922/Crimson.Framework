@@ -20,6 +20,8 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
+			if (this == null)
+				return;
 			this.gameObject.DestroyWithEntity(_entity);
 		}
 	}
