@@ -70,7 +70,7 @@ namespace Assets.Crimson.Core.Components.Interaction
 
 			for (var i = 0; i < _abilityActions.Count; i++)
 			{
-				_abilityActions[i].Execute();
+				_abilityActions[i]?.Execute();
 			}
 
 			var target = TargetActor.ActorEntity;
