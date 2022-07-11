@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: c8c20564eb982f84a96a0d4d8e357cc5
 ModelImporter:
-  serializedVersion: 21100
+  serializedVersion: 19300
   internalIDToNameTable:
   - first:
       1: 100000
@@ -564,11 +564,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Clavicle_L' has translation animation that
-      will be discarded.\n\t'Clavicle_R' has translation animation that will be discarded.\n\t'UpperLeg_R'
-      has translation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -593,26 +589,21 @@ ModelImporter:
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
-    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
-    keepQuads: 1
+    keepQuads: 0
     weldVertices: 0
-    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    meshOptimizationFlags: -1
+    meshOptimizationFlags: 1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15
+    secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 0
-    secondaryUVMinLightmapResolution: 10
-    secondaryUVMinObjectScale: 1
-    secondaryUVPackMargin: 8
+    secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 0
@@ -1315,7 +1306,6 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
