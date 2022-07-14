@@ -167,6 +167,6 @@ MonoBehaviour:
     - Ally
   ExecutableCustomInput:
     CustomInputIndex: 1
-  AttackDelay: 1
-  SightRadius: 5
-  SearchTime: 0.25
+  AttackDelay: 0.5
+  SightRadius: 2.5
+  SearchTime: 0.125

@@ -285,7 +285,7 @@ MonoBehaviour:
     AnimationName: attack
     HasAnimation: 1
   Use: 1
-  Duration: 3
+  Duration: 1.5
   actions:
   - {fileID: 3681442363188456940}
 --- !u!114 &3681442363188456940
