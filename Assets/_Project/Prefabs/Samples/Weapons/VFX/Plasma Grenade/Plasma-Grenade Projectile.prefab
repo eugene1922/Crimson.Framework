@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 606495008889479710}
   - component: {fileID: 2014260872880424890}
   - component: {fileID: 5674475685950854885}
+  - component: {fileID: 4513554876702020185}
   m_Layer: 0
   m_Name: Plasma-Grenade Projectile
   m_TagString: Untagged
@@ -74,21 +75,6 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Enemy
-    velocityFilter:
-      Use: 0
-      Mode: 0
-      Velocity: 0
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
-    - {fileID: 2636071318529099766}
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 7991
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
     - CollisionObjects
     - DestructibleObject
     velocityFilter:
@@ -110,7 +96,7 @@ Rigidbody:
   m_GameObject: {fileID: 2636071318529099774}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -190,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 1
+  lifespan: 3
   startOnSpawn: 1
   actionOnDestroy: {fileID: 2636071318529099766}
 --- !u!114 &606495008889479710
@@ -206,23 +192,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 15
-  useDynamics: 0
+  useDynamics: 1
   movementStart:
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0022010803
+        value: 1.0037842
+        inSlope: -5.2268724
+        outSlope: -5.2268724
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.18984236
+        value: -0.0000023960602
+        inSlope: -0.0034231707
+        outSlope: -0.0034231707
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.26719093
+        outWeight: 0.066931844
+      - serializedVersion: 3
+        time: 0.9736109
+        value: -0.0000416392
+        inSlope: -0.000050069808
+        outSlope: -0.000050069808
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    timeScale: 1
+    timeScale: 5
   movementEnd:
     curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     timeScale: 1
+  workTime: 1
   movementAnimationProperties:
     HasMovementAnimation: 0
     MovementAnimationName: 
@@ -267,6 +299,53 @@ MonoBehaviour:
     RotationOffset: {x: 0, y: 0, z: 0}
     Cycled: 0
     MemoryKoef: 0
+--- !u!114 &4513554876702020185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636071318529099774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteNow: 0
+  ExecuteOnAwake: 1
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 5050222163090784386, guid: 3ab5de436ce358d48a0ae1b3327cc80d, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 3
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!1001 &4323295836213751141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,6 +357,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803390421069662639, guid: 7253a009fe35fd34281818412ce48da3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803390421069662639, guid: 7253a009fe35fd34281818412ce48da3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803390421069662639, guid: 7253a009fe35fd34281818412ce48da3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2803390421069662639, guid: 7253a009fe35fd34281818412ce48da3,
         type: 3}

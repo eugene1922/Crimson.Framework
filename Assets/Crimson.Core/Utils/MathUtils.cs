@@ -80,7 +80,10 @@ namespace Crimson.Core.Utils
                 }
             }
 
-            return multiplier;
+			if (movement.Dynamics.workTime > 0 && time - movement.CurveInStartTime > movement.Dynamics.workTime)
+				multiplier = 0;
+
+			return multiplier;
         }
 
         public static float2 RotateVector(float2 v, float angle)

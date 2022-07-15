@@ -18,6 +18,8 @@ namespace Crimson.Core.Components
 		[ShowIf("@useDynamics == true")] public MovementDynamics movementStart;
 		[ShowIf("@useDynamics == true")] public MovementDynamics movementEnd;
 
+		[ShowIf("@useDynamics == true")] public float workTime;
+
 		public MovementAnimationProperies movementAnimationProperties;
 
 		private MovementDynamicsInner _dynamics;
@@ -35,6 +37,7 @@ namespace Crimson.Core.Components
 				_dynamics.curveOut.keyframe1 = movementEnd.curve.keys[movementEnd.curve.keys.Length - 1];
 				_dynamics.timeScaleIn = movementStart.timeScale;
 				_dynamics.timeScaleOut = movementEnd.timeScale;
+				_dynamics.workTime = workTime;
 			}
 
 			dstManager.AddComponentData(entity, new ActorMovementData

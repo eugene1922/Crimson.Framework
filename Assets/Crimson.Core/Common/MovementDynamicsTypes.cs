@@ -17,6 +17,7 @@ namespace Crimson.Core.Common
     public struct MovementDynamicsInner
     {
         public bool useDynamics;
+		public float workTime;
         public float timeScaleIn, timeScaleOut;
         public Curve curveIn, curveOut;
     }
