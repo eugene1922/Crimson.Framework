@@ -20,17 +20,18 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
 		public List<MonoBehaviour> Weapons;
 
-		private readonly List<IWeapon> _weapons = new List<IWeapon>();
-		private readonly List<IThrowable> _throwables = new List<IThrowable>();
-
 		private IWeapon _gravityGun;
 
 		public IActor Actor { get; set; }
 
+		public List<IWeapon> EquipedWeapons { get; } = new List<IWeapon>();
+
+		public List<IThrowable> EquipedThrowables { get; } = new List<IThrowable>();
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
-			_weapons.AddRange(Weapons.Cast<IWeapon>());
+			EquipedWeapons.AddRange(Weapons.Cast<IWeapon>());
 			if (_changeAction != null)
 			{
 				_changeAction.action.performed += ChangeActionHandler;
@@ -59,15 +60,20 @@ namespace Assets.Crimson.Core.Components.Weapons
 			}
 			else
 			{
-				_weapons.Add(weapon);
+				EquipedWeapons.Add(weapon);
 				_slot.Change(weapon);
 			}
 		}
 
 		internal void Add(IThrowable throwable)
 		{
-			_throwables.Add(throwable);
+			EquipedThrowables.Add(throwable);
 			_throwableSlot.Change(throwable);
+		}
+
+		internal void UpdateUI()
+		{
+			_slot.UpdateUI();
 		}
 
 		private void ChangeActionHandler(InputAction.CallbackContext obj)
@@ -97,16 +103,16 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void SelectNextWeapon()
 		{
-			var currentIndex = _weapons.IndexOf(_slot._weapon);
-			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _weapons.Count;
-			_slot.Change(_weapons[index]);
+			var currentIndex = EquipedWeapons.IndexOf(_slot._weapon);
+			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % EquipedWeapons.Count;
+			_slot.Change(EquipedWeapons[index]);
 		}
 
 		private void SelectNextThrowable()
 		{
-			var currentIndex = _throwables.IndexOf(_throwableSlot._weapon);
-			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _throwables.Count;
-			_throwableSlot.Change(_throwables[index]);
+			var currentIndex = EquipedThrowables.IndexOf(_throwableSlot._weapon);
+			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % EquipedThrowables.Count;
+			_throwableSlot.Change(EquipedThrowables[index]);
 		}
 
 		private void ToggleGravigunHandler(InputAction.CallbackContext obj)
@@ -119,6 +125,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 			_slot.Change(_gravityGun);
 		}
 
+#if UNITY_EDITOR
+
 		private void OnValidate()
 		{
 			if (_throwableSlot == null)
@@ -126,5 +134,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 				_throwableSlot = GetComponentInChildren<ThrowableSlot>();
 			}
 		}
+
+#endif
 	}
 }

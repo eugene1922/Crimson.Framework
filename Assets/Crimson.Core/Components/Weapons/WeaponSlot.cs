@@ -76,6 +76,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 			_entityManager.AddComponentData(_entity, new StartChangeWeaponAnimTag());
 			Timer.TimedActions.AddAction(EndChangeWeapon, _weaponChangeDuration);
 
+			UpdateUI();
+		}
+
+		public void UpdateUI()
+		{
 			UIReceiverList.UpdateUIData("CurrentWeapon");
 		}
 

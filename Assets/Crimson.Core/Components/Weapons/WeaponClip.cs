@@ -44,8 +44,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Reload()
 		{
-			Count -= Capacity;
-			Current = Capacity;
+			var needValue = Capacity - Current;
+			var value = Mathf.Clamp(needValue, 0, Count);
+			Count -= value;
+			Current += value;
 		}
 
 		public void Decrease()

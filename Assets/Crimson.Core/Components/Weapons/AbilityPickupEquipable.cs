@@ -3,14 +3,15 @@ using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Loading.SpawnDataTypes;
 using Sirenix.OdinInspector;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.Weapons
 {
-	public class AbilityPickupWeapon : MonoBehaviour, IActorAbilityTarget
+	public class AbilityPickupEquipable : MonoBehaviour, IActorAbilityTarget
 	{
-		[ValidateInput(nameof(MustBeWeapon), "MonoBehaviours must derive from IEquipable!")]
+		[ValidateInput(nameof(MustBeEquipable), "MonoBehaviours must derive from IEquipable!"), OnValueChanged(nameof(ChangeTarget))]
 		public MonoBehaviour TargetWeapon;
 
 		private SpawnItemData _spawnData;
@@ -56,9 +57,30 @@ namespace Assets.Crimson.Core.Components.Weapons
 			equipAbility.Equip(TargetActor);
 		}
 
-		private bool MustBeWeapon(MonoBehaviour item)
+		private bool MustBeEquipable(MonoBehaviour item)
 		{
-			return item != null && (item is IEquipable || item.GetComponentInChildren<IEquipable>() != null);
+			return item != null && item is IEquipable;
 		}
+
+		private void ChangeTarget()
+		{
+			if (TargetWeapon != null && !MustBeEquipable(TargetWeapon))
+			{
+				TargetWeapon = TargetWeapon.GetComponentsInChildren<MonoBehaviour>().FirstOrDefault(s => s is IEquipable);
+			}
+		}
+
+#if UNITY_EDITOR
+
+		private void OnValidate()
+		{
+			ChangeTarget();
+			if (TargetWeapon == null)
+			{
+				TargetWeapon = GetComponents<MonoBehaviour>().FirstOrDefault(s => s is IEquipable);
+			}
+		}
+
+#endif
 	}
 }
