@@ -1943,6 +1943,7 @@ GameObject:
   - component: {fileID: 2791442027177663520}
   - component: {fileID: 2791442027177663527}
   - component: {fileID: 4858818627217734039}
+  - component: {fileID: 8617257556592543801}
   - component: {fileID: -4372145636746299666}
   m_Layer: 0
   m_Name: SpaceSoldier_Helmet_Male_01
@@ -2055,6 +2056,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8617257556592543801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2791442027177663522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64344bebced92c4586fc8854eef8118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Agent: {fileID: 4858818627217734039}
+  DistanceLimitation:
+    MaxDistance: 1
+  MaxPoints: 16
+  DebugSphereRadius: 1.5
 --- !u!114 &-4372145636746299666
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 20f77ad4835dad4459dcb1eabe5c998b, type: 2}
     - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 318.3705
       objectReference: {fileID: 0}
@@ -29,6 +34,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -40,16 +50,6 @@ PrefabInstance:
     - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8417036417208304927, guid: be46c85dd88c0434387a785dc5fc9090,
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 9038498573076507145, guid: be46c85dd88c0434387a785dc5fc9090,
         type: 3}
       propertyPath: m_Name
-      value: Wall_Hangar1_Beam1
+      value: Wall_Hangar1_Beam1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9041453320295809810, guid: be46c85dd88c0434387a785dc5fc9090,
         type: 3}
