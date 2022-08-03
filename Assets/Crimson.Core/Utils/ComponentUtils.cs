@@ -125,7 +125,6 @@ namespace Crimson.Core.Utils
 			{
 				var tempObj = fInfo.GetValue(obj);
 				var resultObj = UpdateObject(tempObj, copies);
-
 				fInfo.SetValue(obj, resultObj);
 			}
 

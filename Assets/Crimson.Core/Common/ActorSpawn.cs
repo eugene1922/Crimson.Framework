@@ -106,6 +106,18 @@ namespace Crimson.Core.Common
 					Position = Vector3.zero,
 					Rotation = Quaternion.identity
 				};
+				if (settings.ParentOfSpawns != TargetType.None)
+				{
+					var parentData = new SpawnParentData
+					{
+						Target = settings.ParentOfSpawns,
+						ComponentName = settings.ActorWithComponentName,
+						Tag = settings.ParentTag,
+						TargetStrategy = settings.ChooseStrategy,
+					};
+
+					data.Parent = parentData;
+				}
 				switch (settings.SpawnPosition)
 				{
 					case SpawnPosition.UseSpawnPoints:
@@ -121,6 +133,7 @@ namespace Crimson.Core.Common
 						{
 							data.Rotation = point.transform.rotation;
 						}
+						data.Parent.Point = point.transform;
 
 						break;
 					}
@@ -227,19 +240,6 @@ namespace Crimson.Core.Common
 				data.Owner = owner;
 				data.DeleteExistingComponents = settings.DeleteExistingComponents;
 
-				if (settings.ParentOfSpawns != TargetType.None)
-				{
-					var parentData = new SpawnParentData
-					{
-						Target = settings.ParentOfSpawns,
-						ComponentName = settings.ActorWithComponentName,
-						Tag = settings.ParentTag,
-						TargetStrategy = settings.ChooseStrategy
-					};
-
-					data.Parent = parentData;
-				}
-
 				results.Add(data);
 			}
 
@@ -268,8 +268,7 @@ namespace Crimson.Core.Common
 
 			if (!data.Parent.IsEmpty)
 			{
-				var parents = FindActorsUtils.GetActorsList(result, data.Spawner, data.Parent.Target,
-					   data.Parent.ComponentName, data.Parent.Tag, data.Parent.TargetStrategy == ChooseTargetStrategy.FirstInChildren);
+				var parents = FindActorsUtils.GetActorsList(result, data.Spawner, data.Parent, data.Parent.TargetStrategy == ChooseTargetStrategy.FirstInChildren);
 
 				var parent = FindActorsUtils.ChooseActor(result.transform, parents, data.Parent.TargetStrategy);
 

@@ -65,14 +65,11 @@ MonoBehaviour:
   compensateCameraRotation: 1
   customBindings:
   - index: 1
-    actions:
-    - {fileID: 0}
+    actions: []
   - index: 2
-    actions:
-    - {fileID: 0}
+    actions: []
   - index: 3
-    actions:
-    - {fileID: 0}
+    actions: []
   inputSource: 1
   minMoveInputMagnitude: 1
 --- !u!114 &-4939348821489114762
@@ -107,6 +104,7 @@ MonoBehaviour:
     parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: 
+    parentPoint: {fileID: 0}
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
@@ -154,6 +152,7 @@ MonoBehaviour:
     parentOfSpawns: 0
     actorWithComponentName: UIRoot
     parentTag: UIRoot
+    parentPoint: {fileID: 0}
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
@@ -327,6 +326,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     timeScale: 0.1
+  workTime: 0
   movementAnimationProperties:
     HasMovementAnimation: 0
     MovementAnimationName: Run
@@ -407,6 +407,7 @@ MonoBehaviour:
     parentOfSpawns: 0
     actorWithComponentName: UIRoot
     parentTag: UIRoot
+    parentPoint: {fileID: 0}
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0

@@ -86,6 +86,7 @@ MonoBehaviour:
     parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: 
+    parentPoint: {fileID: 0}
     chooseParentStrategy: 0
     copyComponentsFromSamples: []
     copyComponentsOfType: 0

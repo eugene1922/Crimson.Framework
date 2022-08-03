@@ -42,7 +42,6 @@ namespace Crimson.Core.Components
 			if (ExecuteOnAwake) Execute();
 		}
 
-		[ContextMenu(nameof(Execute))]
 		public void Execute()
 		{
 			Spawn();

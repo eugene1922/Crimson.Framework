@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: 
+  componentName: Player
   ExecuteOnSpawn: []
 --- !u!114 &1155381865467653284
 MonoBehaviour:

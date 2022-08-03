@@ -10,12 +10,15 @@ namespace Assets.Crimson.Core.Systems.Effects
 {
 	public class FXSystem : ComponentSystem
 	{
+		private EntityQuery _fadeInQuery;
 		private EntityQuery _damageEffectQuery;
 		private EntityQuery _shakeEffectQuery;
 		private EntityQuery _overdamageEffectQuery;
 
 		protected override void OnCreate()
 		{
+			_fadeInQuery = GetEntityQuery(
+				ComponentType.ReadOnly<FadeInFXTag>());
 			_damageEffectQuery = GetEntityQuery(
 				ComponentType.ReadOnly<DamageFXTag>());
 			_shakeEffectQuery = GetEntityQuery(
@@ -29,6 +32,23 @@ namespace Assets.Crimson.Core.Systems.Effects
 
 		protected override void OnUpdate()
 		{
+			Entities.WithAll<FadeInFXTag>().ForEach(
+				(Entity entity, ShowFadeInFx showAbility) =>
+				{
+					var effectName = showAbility.EffectName;
+					var duration = showAbility.Duration;
+					Entities.WithAll<AbilityCameraFadeFX>().ForEach(
+					(AbilityCameraFadeFX ability) =>
+					{
+						if (ability.ComponentName.Contains(effectName))
+						{
+							ability.Duration = duration;
+							ability.Execute();
+						}
+					});
+					EntityManager.RemoveComponent<FadeInFXTag>(entity);
+				});
+
 			Entities.With(_damageEffectQuery).ForEach(
 				(Entity entity) =>
 				{

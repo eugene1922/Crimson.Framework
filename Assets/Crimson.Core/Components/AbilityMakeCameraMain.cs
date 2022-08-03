@@ -5,41 +5,41 @@ using UnityEngine;
 
 namespace Crimson.Core.Components
 {
-    [HideMonoScript]
-    public class AbilityMakeCameraMain : MonoBehaviour, IActorAbility
-    {
-        public IActor Actor { get; set; }
+	[HideMonoScript]
+	public class AbilityMakeCameraMain : MonoBehaviour, IActorAbility
+	{
+		public IActor Actor { get; set; }
 
-        public Camera mainCamera;
+		public Camera mainCamera;
 
-        public void AddComponentData(ref Entity entity, IActor actor)
-        {
-        }
+		public void AddComponentData(ref Entity entity, IActor actor)
+		{
+		}
 
-        public void Execute()
-        {
-            if (mainCamera == null)
-            {
-                mainCamera = this.gameObject.GetComponent<Camera>();
+		public void Execute()
+		{
+			if (mainCamera == null)
+			{
+				mainCamera = this.gameObject.GetComponent<Camera>();
 
-                if (mainCamera == null)
-                {
-                    mainCamera = this.gameObject.GetComponentInChildren<Camera>();
-                }
+				if (mainCamera == null)
+				{
+					mainCamera = this.gameObject.GetComponentInChildren<Camera>();
+				}
 
-                if (mainCamera == null)
-                {
-                    Debug.LogError("[MAKE CAMERA MAIN] Camera is neither set nor found in children!");
-                    return;
-                }
-            }
+				if (mainCamera == null)
+				{
+					Debug.LogError("[MAKE CAMERA MAIN] Camera is neither set nor found in children!");
+					return;
+				}
+			}
 
-            mainCamera.gameObject.tag = "MainCamera";
+			mainCamera.gameObject.tag = "MainCamera";
 
-            foreach (var c in FindObjectsOfType<Camera>())
-            {
-                c.gameObject.SetActive(c.gameObject == mainCamera.gameObject);
-            }
-        }
-    }
+			foreach (var camera in FindObjectsOfType<Camera>())
+			{
+				camera.enabled = camera.gameObject == mainCamera.gameObject;
+			}
+		}
+	}
 }
