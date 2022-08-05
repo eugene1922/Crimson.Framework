@@ -46,7 +46,7 @@ namespace Crimson.Core.Systems
 						input.Move = float2.zero;
 						input.Look = float2.zero;
 						input.Mouse = float2.zero;
-						input.CustomInput = new FixedList512<float> { Length = Constants.INPUT_BUFFER_CAPACITY };
+						input.CustomInput = new FixedList512Bytes<float> { Length = Constants.INPUT_BUFFER_CAPACITY };
 					}
 				});
 		}

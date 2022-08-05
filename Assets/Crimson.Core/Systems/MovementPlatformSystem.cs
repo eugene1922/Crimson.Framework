@@ -51,10 +51,10 @@ namespace Assets.Crimson.Core.Systems
 					}
 					result.transform.position += positionDelta;
 					result.transform.rotation *= new quaternion(rotationDelta);
-					var hasAgent = result.GetComponent<NavMeshAgent>();
-					if (hasAgent)
+					var agent = result.GetComponent<NavMeshAgent>();
+					if (agent && agent.isOnNavMesh)
 					{
-						hasAgent.ResetPath();
+						agent.ResetPath();
 					}
 				}
 			});

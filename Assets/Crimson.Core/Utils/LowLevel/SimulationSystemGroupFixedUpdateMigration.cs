@@ -4,98 +4,108 @@ using UnityEngine.PlayerLoop;
 
 namespace Crimson.Core.Utils.LowLevel
 {
-    public struct SimulationSystemGroupFixedUpdateMigration : ICustomBootstrap
-    {
-        public bool Initialize(string defaultWorldName)
-        {
-            // Initialize the world normally
-            var systems = DefaultWorldInitialization.GetAllSystems(WorldSystemFilterFlags.Default);
+	public struct SimulationSystemGroupFixedUpdateMigration : ICustomBootstrap
+	{
+		public bool Initialize(string defaultWorldName)
+		{
+			// Initialize the world normally
+			var systems = DefaultWorldInitialization.GetAllSystems(WorldSystemFilterFlags.Default);
 
-            var world = new World(defaultWorldName);
-            World.DefaultGameObjectInjectionWorld = world;
+			var world = new World(defaultWorldName);
+			World.DefaultGameObjectInjectionWorld = world;
 
-            DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(world, systems);
-            
-            // Moving SimulationSystemGroup to FixedUpdate is done in two parts.
-            // The PlayerLoopSystem of type SimulationSystemGroup has to be found,
-            // stored, and removed before adding it to the FixedUpdate PlayerLoopSystem.
+			DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(world, systems);
 
-            PlayerLoopSystem playerLoop = PlayerLoop.GetCurrentPlayerLoop();
-            ScriptBehaviourUpdateOrder.AddWorldToPlayerLoop(world,ref playerLoop);
+			// Moving SimulationSystemGroup to FixedUpdate is done in two parts.
+			// The PlayerLoopSystem of type SimulationSystemGroup has to be found,
+			// stored, and removed before adding it to the FixedUpdate PlayerLoopSystem.
 
-            // simulationSystem has to be constructed or compiler will complain due to
-            //    using non-assigned variables.
-            PlayerLoopSystem simulationSystem = new PlayerLoopSystem();
-            bool simSysFound = false;
+			PlayerLoopSystem playerLoop = PlayerLoop.GetCurrentPlayerLoop();
+			ScriptBehaviourUpdateOrder.AppendWorldToPlayerLoop(world, ref playerLoop);
 
-            // Find the location of the SimulationSystemGroup under the Update Loop
-            for (var i = 0; i < playerLoop.subSystemList.Length; ++i)
-            {
-                int subsystemListLength = playerLoop.subSystemList[i].subSystemList.Length;
+			// simulationSystem has to be constructed or compiler will complain due to
+			//    using non-assigned variables.
+			PlayerLoopSystem simulationSystem = new PlayerLoopSystem();
+			bool simSysFound = false;
 
-                // Find Update loop...
-                if (playerLoop.subSystemList[i].type != typeof(Update)) continue;
-                
-                // Pop out SimulationSystemGroup and store it temporarily
-                var newSubsystemList = new PlayerLoopSystem[subsystemListLength - 1];
-                int k = 0;
+			// Find the location of the SimulationSystemGroup under the Update Loop
+			for (var i = 0; i < playerLoop.subSystemList.Length; ++i)
+			{
+				var systemList = playerLoop.subSystemList[i];
+				if (systemList.subSystemList == null)
+				{
+					continue;
+				}
+				var subsystemListLength = systemList.subSystemList.Length;
 
-                for (var j = 0; j < subsystemListLength; ++j)
-                {
-                    if (playerLoop.subSystemList[i].subSystemList[j].type == typeof(SimulationSystemGroup))
-                    {
-                        simulationSystem = playerLoop.subSystemList[i].subSystemList[j];
-                        simSysFound = true;
-                    }
-                    else
-                    {
-                        newSubsystemList[k] = playerLoop.subSystemList[i].subSystemList[j];
-                        k++;
-                    }
-                }
+				// Find Update loop...
+				if (playerLoop.subSystemList[i].type != typeof(Update)) continue;
 
-                playerLoop.subSystemList[i].subSystemList = newSubsystemList;
-            }
+				// Pop out SimulationSystemGroup and store it temporarily
+				var newSubsystemList = new PlayerLoopSystem[subsystemListLength - 1];
+				int k = 0;
 
-            // This should never happen if SimulationSystemGroup was created like usual
-            // (or at least I think it might not happen :P )
-            if (!simSysFound)
-                throw new System.Exception("SimulationSystemGroup was not found!");
+				for (var j = 0; j < subsystemListLength; ++j)
+				{
+					if (playerLoop.subSystemList[i].subSystemList[j].type == typeof(SimulationSystemGroup))
+					{
+						simulationSystem = playerLoop.subSystemList[i].subSystemList[j];
+						simSysFound = true;
+					}
+					else
+					{
+						newSubsystemList[k] = playerLoop.subSystemList[i].subSystemList[j];
+						k++;
+					}
+				}
 
-            // Round 2: find FixedUpdate...
-            for (var i = 0; i < playerLoop.subSystemList.Length; ++i)
-            {
-                int subsystemListLength = playerLoop.subSystemList[i].subSystemList.Length;
+				playerLoop.subSystemList[i].subSystemList = newSubsystemList;
+			}
 
-                // Found FixedUpdate
-                if (playerLoop.subSystemList[i].type != typeof(FixedUpdate)) continue;
-                
-                // Allocate new space for stored SimulationSystemGroup
-                //    PlayerLoopSystem, and place simulation group at index defined by
-                //    temporary variable.
-                var newSubsystemList = new PlayerLoopSystem[subsystemListLength + 1];
-                int k = 0;
+			// This should never happen if SimulationSystemGroup was created like usual
+			// (or at least I think it might not happen :P )
+			if (!simSysFound)
+				throw new System.Exception("SimulationSystemGroup was not found!");
 
-                int indexToPlaceSimulationSystemGroupIn = subsystemListLength;
+			// Round 2: find FixedUpdate...
+			for (var i = 0; i < playerLoop.subSystemList.Length; ++i)
+			{
+				var currentSystemList = playerLoop.subSystemList[i];
+				if (currentSystemList.subSystemList == null)
+				{
+					continue;
+				}
+				var subsystemListLength = currentSystemList.subSystemList.Length;
 
-                for (var j = 0; j < subsystemListLength + 1; ++j)
-                {
-                    if (j == indexToPlaceSimulationSystemGroupIn)
-                        newSubsystemList[j] = simulationSystem;
-                    else
-                    {
-                        newSubsystemList[j] = playerLoop.subSystemList[i].subSystemList[k];
-                        k++;
-                    }
-                }
+				// Found FixedUpdate
+				if (playerLoop.subSystemList[i].type != typeof(FixedUpdate)) continue;
 
-                playerLoop.subSystemList[i].subSystemList = newSubsystemList;
-            }
+				// Allocate new space for stored SimulationSystemGroup
+				//    PlayerLoopSystem, and place simulation group at index defined by
+				//    temporary variable.
+				var newSubsystemList = new PlayerLoopSystem[subsystemListLength + 1];
+				int k = 0;
 
-            // Set the beautiful, new player loop
-            PlayerLoop.SetPlayerLoop(playerLoop);
+				int indexToPlaceSimulationSystemGroupIn = subsystemListLength;
 
-            return true;
-        }
-    }
+				for (var j = 0; j < subsystemListLength + 1; ++j)
+				{
+					if (j == indexToPlaceSimulationSystemGroupIn)
+						newSubsystemList[j] = simulationSystem;
+					else
+					{
+						newSubsystemList[j] = playerLoop.subSystemList[i].subSystemList[k];
+						k++;
+					}
+				}
+
+				playerLoop.subSystemList[i].subSystemList = newSubsystemList;
+			}
+
+			// Set the beautiful, new player loop
+			PlayerLoop.SetPlayerLoop(playerLoop);
+
+			return true;
+		}
+	}
 }

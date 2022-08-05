@@ -177,7 +177,7 @@ namespace Crimson.Core.Utils
 
             dstManager.AddComponentData(actor.ActorEntity,
                 new BindedActionsCooldownData
-                { ReadyToUseBindingIndexes = new FixedList32<int> { bindable.BindingIndex } });
+                { ReadyToUseBindingIndexes = new FixedList32Bytes<int> { bindable.BindingIndex } });
         }
 
         public static void ResetAiming(this IAimable aiming, IActor actor)
@@ -277,7 +277,7 @@ namespace Crimson.Core.Utils
             {
                 dstManager.AddComponentData(actor.ActorEntity, new BindedActionsCooldownData
                 {
-                    OnCooldownBindingIndexes = new FixedList32<int> { bindable.BindingIndex },
+                    OnCooldownBindingIndexes = new FixedList32Bytes<int> { bindable.BindingIndex },
                 });
             }
 
@@ -311,7 +311,7 @@ namespace Crimson.Core.Utils
 
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(entity, new BindedActionsCooldownData
             {
-                ReadyToUseBindingIndexes = new FixedList32<int> { bindable.BindingIndex }
+                ReadyToUseBindingIndexes = new FixedList32Bytes<int> { bindable.BindingIndex }
             });
         }
     }

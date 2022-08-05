@@ -557,12 +557,12 @@ namespace Crimson.Core.Components
 
 	public struct BindedActionsCooldownData : IComponentData
 	{
-		public FixedList32<int> ReadyToUseBindingIndexes;
-		public FixedList32<int> OnCooldownBindingIndexes;
+		public FixedList32Bytes<int> ReadyToUseBindingIndexes;
+		public FixedList32Bytes<int> OnCooldownBindingIndexes;
 	}
 
 	public struct FindAutoAimTargetData : IComponentData
 	{
-		public FixedString128 WeaponComponentName;
+		public FixedString128Bytes WeaponComponentName;
 	}
 }

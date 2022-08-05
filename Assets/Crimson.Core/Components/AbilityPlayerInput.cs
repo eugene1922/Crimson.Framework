@@ -32,8 +32,8 @@ namespace Crimson.Core.Components
     {
         [NetworkSimData] public float CompensateAngle;
         [NetworkSimData] public float DeclinationAngle;
-        [NetworkSimData] public FixedList512<float> CustomInput;
-        [NetworkSimData] public FixedList512<float2> CustomSticksInput;
+        [NetworkSimData] public FixedList512Bytes<float> CustomInput;
+        [NetworkSimData] public FixedList512Bytes<float2> CustomSticksInput;
         [NetworkSimData] public float2 Look;
         public float MinMagnitude;
         [NetworkSimData] public float2 Mouse;
@@ -96,8 +96,8 @@ namespace Crimson.Core.Components
 
             var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-            var c = new FixedList512<float> { Length = Constants.INPUT_BUFFER_CAPACITY };
-            var sticksInput = new FixedList512<float2> { Length = Constants.INPUT_BUFFER_CAPACITY };
+            var c = new FixedList512Bytes<float> { Length = Constants.INPUT_BUFFER_CAPACITY };
+            var sticksInput = new FixedList512Bytes<float2> { Length = Constants.INPUT_BUFFER_CAPACITY };
 
             dstManager.AddComponentData(entity, new PlayerInputData
             {

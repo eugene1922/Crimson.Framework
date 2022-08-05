@@ -59,6 +59,11 @@ namespace Assets.Crimson.Core.Components
 					break;
 
 				case BoxCollider box:
+					if (box == null)
+					{
+						Debug.LogWarning("BoxCollider is null", gameObject);
+						return;
+					}
 					box.ToWorldSpaceBox(out var boxCenter, out var boxHalfExtents, out var boxOrientation);
 					_entityManager.AddComponentData(_entity, new ActorColliderData
 					{
