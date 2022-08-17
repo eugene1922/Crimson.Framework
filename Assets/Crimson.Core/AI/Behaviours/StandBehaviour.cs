@@ -1,4 +1,5 @@
 using Assets.Crimson.Core.AI.GeneralParams;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -28,6 +29,7 @@ namespace GameFramework.Example.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
+			dstManager.RemoveComponent<AggressiveAITag>(entity);
 			return true;
 		}
 

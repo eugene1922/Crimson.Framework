@@ -1,6 +1,7 @@
 ﻿using Assets.Crimson.Core.AI.GeneralParams;
 using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -118,6 +119,7 @@ namespace Assets.Crimson.Core.AI.Behaviours
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
+			dstManager.AddComponentData(entity, new AggressiveAITag());
 			return true;
 		}
 

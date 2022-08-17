@@ -1,6 +1,7 @@
 using Assets.Crimson.Core.AI.GeneralParams;
 using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
@@ -55,9 +56,12 @@ namespace Crimson.Core.AI
 
 		public IActor Actor { get; set; }
 
+		private EntityManager _entityManager;
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 		}
 
 		public void Execute()
@@ -68,8 +72,10 @@ namespace Crimson.Core.AI
 		{
 			_target = null;
 			_transform = Actor.GameObject.transform;
+			var hasTag = _entityManager.HasComponent<AggressiveAITag>(entity);
 
-			if (Time.timeSinceLevelLoad < ATTACK_DELAY * Random.value
+			if (!hasTag 
+				|| Time.timeSinceLevelLoad < ATTACK_DELAY * Random.value
 				|| World.DefaultGameObjectInjectionWorld.EntityManager.HasComponent<DeadActorTag>(entity)
 				|| CustomInput == null
 				|| !CustomInput.bindingsDict.TryGetValue(ExecutableCustomInput.CustomInputIndex, out _abilities)
@@ -106,6 +112,7 @@ namespace Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
+			dstManager.AddComponentData(entity, new AggressiveAITag());
 			return true;
 		}
 

@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Utils;
@@ -46,7 +47,6 @@ namespace Crimson.Core.Components
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			Behaviours = new List<IAIBehaviour>();
-
 			_dstManager.AddComponent<NetworkSyncReceive>(entity);
 
 			StartTimer();
@@ -80,6 +80,12 @@ namespace Crimson.Core.Components
 		}
 
 #if UNITY_EDITOR
+
+		[Button]
+		private void MakeAggressive()
+		{
+			_dstManager.AddComponentData(_entity, new AggressiveAITag());
+		}
 
 		private void OnDrawGizmosSelected()
 		{
