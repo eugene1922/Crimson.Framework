@@ -1,5 +1,7 @@
-﻿using Assets.Crimson.Core.Components;
+﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components;
 using Unity.Entities;
+using Unity.Mathematics;
 
 namespace Assets.Crimson.Core.Systems
 {
@@ -17,12 +19,22 @@ namespace Assets.Crimson.Core.Systems
 		protected override void OnUpdate()
 		{
 			Entities.With(_aggressiveGroupsQuery).ForEach(
-				(AbilityAggressiveGroup ability) =>
+				(AbilityAggressiveGroup group) =>
 				{
-					var result = ability.IsAllHasTag;
-					if (result == AggressiveTagResult.Any)
+					var actors = group.GroupActors;
+					foreach (var actor in actors)
 					{
-						ability.Execute();
+						var hasBasePoint = EntityManager.HasComponent<BasePointData>(actor.ActorEntity);
+						if (!hasBasePoint)
+						{
+							continue;
+						}
+						var basePoint = EntityManager.GetComponentData<BasePointData>(actor.ActorEntity);
+						var distance = math.distance(actor.transform.position, basePoint.Position);
+						if (distance > group.Distance)
+						{
+							group.RemoveTag();
+						}
 					}
 				});
 		}

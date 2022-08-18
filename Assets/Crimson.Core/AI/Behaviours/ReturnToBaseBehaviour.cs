@@ -11,17 +11,19 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.AI.Behaviours
 {
-	internal class ReturnToBaseBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
+	public class ReturnToBaseBehaviour : MonoBehaviour, IActorAbility, IAIBehaviour
 	{
+		public BasePriority Priority = new BasePriority
+		{
+			Value = 1
+		};
+
 		public EvaluatedCurve CurvePriority = new EvaluatedCurve(0)
 		{
 			XAxisTooltip = "Target priority based on distance to it"
 		};
 
-		public BasePriority Priority = new BasePriority
-		{
-			Value = 1
-		};
+		private const float _breakDistance = 1;
 
 		private BasePointData _basePoint;
 		private EntityManager _entityManager;
@@ -46,8 +48,9 @@ namespace Assets.Crimson.Core.AI.Behaviours
 		{
 			_basePoint = _entityManager.GetComponentData<BasePointData>(entity);
 			var hasTag = _entityManager.HasComponent<AggressiveAITag>(entity);
-			return !hasTag ?
-				CurvePriority.Evaluate(math.distance(transform.position, _basePoint.Position))
+			var distance = math.distance(transform.position, _basePoint.Position);
+			return !hasTag && distance > _breakDistance ?
+				CurvePriority.Evaluate(distance)
 				: 0f;
 		}
 

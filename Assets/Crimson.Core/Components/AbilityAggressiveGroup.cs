@@ -9,16 +9,10 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.Components
 {
-	public enum AggressiveTagResult
-	{
-		None,
-		Any,
-		All
-	}
-
 	public class AbilityAggressiveGroup : MonoBehaviour, IActorAbility
 	{
 		public IActorSpawner[] _spawners;
+		public float Distance = 10;
 
 		[ValidateInput(nameof(MustBeSpawner))]
 		public List<MonoBehaviour> Spawners = new List<MonoBehaviour>();
@@ -26,14 +20,8 @@ namespace Assets.Crimson.Core.Components
 		private EntityManager _dstManager;
 		public IActor Actor { get; set; }
 
-		public AggressiveTagResult IsAllHasTag
-		{
-			get
-			{
-				var result = CheckSpawners(_spawners);
-				return result;
-			}
-		}
+		public IEnumerable<GameObject> GroupObjects => _spawners.SelectMany(s => s.SpawnedObjects);
+		public IEnumerable<Actor> GroupActors => GroupObjects.Select(s => s?.GetComponent<Actor>()).Where(s => s != null);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -42,6 +30,7 @@ namespace Assets.Crimson.Core.Components
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 		}
 
+		[Button]
 		public void AddTag()
 		{
 			var targets = _spawners.SelectMany(s => s.SpawnedObjects);
@@ -49,6 +38,11 @@ namespace Assets.Crimson.Core.Components
 			{
 				AddTagTo(target);
 			}
+		}
+
+		public void Execute()
+		{
+			AddTag();
 		}
 
 		[Button]
@@ -59,11 +53,6 @@ namespace Assets.Crimson.Core.Components
 			{
 				RemoveFrom(target);
 			}
-		}
-
-		public void Execute()
-		{
-			AddTag();
 		}
 
 		private void AddTagTo(GameObject target)
@@ -77,6 +66,11 @@ namespace Assets.Crimson.Core.Components
 			_dstManager.AddComponentData(actor.ActorEntity, new AggressiveAITag());
 		}
 
+		private bool MustBeSpawner(List<MonoBehaviour> behaviours)
+		{
+			return behaviours == null || behaviours.All(s => s is IActorSpawner);
+		}
+
 		private void RemoveFrom(GameObject target)
 		{
 			var actor = target.GetComponent<Actor>();
@@ -86,50 +80,6 @@ namespace Assets.Crimson.Core.Components
 			}
 
 			_dstManager.RemoveComponent<AggressiveAITag>(actor.ActorEntity);
-		}
-
-		private bool CheckActor(GameObject item)
-		{
-			var actor = item.GetComponent<Actor>();
-			return actor != null && _dstManager.HasComponent<AggressiveAITag>(actor.ActorEntity);
-		}
-
-		private AggressiveTagResult CheckObjects(IEnumerable<GameObject> objects)
-		{
-			var result = AggressiveTagResult.None;
-			var targets = objects.Where(s => !s.Equals(null));
-			var hasTag = false;
-			foreach (var target in targets)
-			{
-				hasTag = CheckActor(target);
-				if (hasTag)
-				{
-					break;
-				}
-			}
-			if (hasTag)
-			{
-				result = AggressiveTagResult.Any;
-			}
-			return result;
-		}
-
-		private AggressiveTagResult CheckSpawners(IActorSpawner[] spawners)
-		{
-			var result = AggressiveTagResult.None;
-			var targets = spawners.SelectMany(s => s.SpawnedObjects);
-			var spawnerResult = CheckObjects(targets);
-			if (spawnerResult == AggressiveTagResult.Any
-				|| (result != spawnerResult))
-			{
-				result = AggressiveTagResult.Any;
-			}
-			return result;
-		}
-
-		private bool MustBeSpawner(List<MonoBehaviour> behaviours)
-		{
-			return behaviours == null || behaviours.All(s => s is IActorSpawner);
 		}
 	}
 }

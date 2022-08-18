@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459ee12b6b689134d8aa55a2b89730fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Distance: 20
   Spawners:
   - {fileID: 1348301500}
   - {fileID: 1001178211}
