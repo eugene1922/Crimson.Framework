@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.AI;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -37,11 +38,15 @@ namespace Crimson.Core.Systems
 			_targets.Clear();
 			Entities.With(_queryAI).ForEach((Entity entity, AbilityAIInput ai) =>
 				{
+					var isAggressive = EntityManager.HasComponent<AggressiveAITag>(entity);
 					if (_targets.Count == 0)
-						Entities.With(_queryTargets).ForEach((Entity e, Transform transform) =>
-						{
-							_targets.Add(transform);
-						});
+					{
+						Entities.With(_queryTargets).ForEach(
+							(Entity e, Transform transform) =>
+							{
+								_targets.Add(transform);
+							});
+					}
 
 					var bestPriority = float.MinValue;
 					IAIBehaviour bestBehaviour = null;

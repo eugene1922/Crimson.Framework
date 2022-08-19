@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3822694807642908144}
   - component: {fileID: 924906851837422776}
   - component: {fileID: 2566817678050206234}
+  - component: {fileID: 2970064523160460450}
   m_Layer: 0
   m_Name: Sample-Droid
   m_TagString: Untagged
@@ -266,6 +267,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     timeScale: 1
+  workTime: 0
   movementAnimationProperties:
     HasMovementAnimation: 1
     MovementAnimationName: Run
@@ -384,3 +386,16 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
+--- !u!114 &2970064523160460450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219696582898746723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b05b9c85da269e4db628c8a3e22692d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _executeOnAwake: 1

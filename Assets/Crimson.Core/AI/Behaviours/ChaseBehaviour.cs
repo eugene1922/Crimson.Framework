@@ -2,6 +2,7 @@ using Assets.Crimson.Core.AI;
 using Assets.Crimson.Core.AI.GeneralParams;
 using Assets.Crimson.Core.AI.Interfaces;
 using Assets.Crimson.Core.Common.Filters;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
@@ -34,6 +35,7 @@ namespace Crimson.Core.AI
 		private const float PRIORITY_MULTIPLIER = 0.5f;
 
 		private AIPathControl _path;
+		private EntityManager _entityManager;
 		private Transform _target = null;
 
 		private Transform _transform = null;
@@ -53,6 +55,7 @@ namespace Crimson.Core.AI
 		{
 			Actor = actor;
 			_path = new AIPathControl(transform);
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 		}
 
 		public bool Behave(Entity entity, EntityManager dstManager, ref PlayerInputData inputData)
@@ -66,8 +69,9 @@ namespace Crimson.Core.AI
 		{
 			Transform target = null;
 			_transform = Actor?.GameObject.transform;
+			var hasTag = _entityManager.HasComponent<AggressiveAITag>(entity);
 
-			if (_transform == null)
+			if (_transform == null || !hasTag)
 			{
 				return 0f;
 			}
@@ -136,6 +140,7 @@ namespace Crimson.Core.AI
 
 		public bool SetUp(Entity entity, EntityManager dstManager)
 		{
+			dstManager.AddComponentData(entity, new AggressiveAITag());
 			return true;
 		}
 

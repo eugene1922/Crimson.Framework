@@ -106,18 +106,18 @@ namespace Crimson.Core.Components
 		[NetworkSimData]
 		[ReadOnly]
 		[CastToUI(nameof(CurrentEnergy))]
-		public int CurrentEnergy => _stats.Energy.Current;
+		public float CurrentEnergy => _stats.Energy.Current;
 
 		[NetworkSimData]
 		[ReadOnly]
 		[CastToUI(nameof(CurrentExperience))]
-		public int CurrentExperience => _stats.CurrentExperience;
+		public float CurrentExperience => _stats.CurrentExperience;
 
 		[NetworkSimData]
 		[ReadOnly]
 		[CastToUI(nameof(CurrentHealth))]
 		[LevelableValue]
-		public int CurrentHealth => _stats.Health.Current;
+		public float CurrentHealth => _stats.Health.Current;
 
 		public bool IsAlive => CurrentHealth > 0;
 
@@ -177,12 +177,12 @@ namespace Crimson.Core.Components
 		[ReadOnly]
 		[CastToUI(nameof(MaxEnergy))]
 		[LevelableValue]
-		public int MaxEnergy => _stats.Energy.MaxLimit;
+		public float MaxEnergy => _stats.Energy.MaxLimit;
 
 		[NetworkSimData]
 		[CastToUI(nameof(MaxHealth))]
 		[LevelableValue]
-		public int MaxHealth => _stats.Health.MaxLimit;
+		public float MaxHealth => _stats.Health.MaxLimit;
 
 		[TitleGroup("Player data")]
 		[NetworkSimData]
@@ -410,7 +410,7 @@ namespace Crimson.Core.Components
 			UpdateUIData(nameof(CurrentExperience));
 		}
 
-		public void UpdateHealth(int delta)
+		public void UpdateHealth(float delta)
 		{
 			if (!IsAlive)
 			{
@@ -451,7 +451,7 @@ namespace Crimson.Core.Components
 			}
 		}
 
-		private void SetOverdamage(int value)
+		private void SetOverdamage(float value)
 		{
 			if (Actor == null)
 			{
