@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Components;
 using Unity.Entities;
 
@@ -22,6 +23,12 @@ namespace Assets.Crimson.Core.Systems
 			Entities.With(_healBuffQuery).ForEach(
 				(Entity entity, ref FullHealPercentBuff buff) =>
 				{
+					var isAggressive = EntityManager.HasComponent<AggressiveAITag>(entity);
+					if (isAggressive)
+					{
+						EntityManager.RemoveComponent<FullHealPercentBuff>(entity);
+						return;
+					}
 					if (buff.Timeout > 0)
 					{
 						buff.Timeout -= UnityEngine.Time.deltaTime;
