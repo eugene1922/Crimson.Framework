@@ -8,9 +8,9 @@ namespace Crimson.Core.Components.Stats
 	{
 		[Range(0, 1)] public float CriticalDamageChance;
 		public float CriticalDamageMultiplier;
-		public int CurrentExperience;
-		public MinMaxStat<int> Energy;
-		public MinMaxStat<int> Health;
+		public float CurrentExperience;
+		public MinMaxStat<float> Energy;
+		public MinMaxStat<float> Health;
 		public int Level;
 		public int LevelUpRequiredExperience;
 		public int TotalDamageApplied;

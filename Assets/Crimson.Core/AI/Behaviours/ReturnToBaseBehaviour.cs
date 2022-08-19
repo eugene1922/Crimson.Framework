@@ -41,6 +41,12 @@ namespace Assets.Crimson.Core.AI.Behaviours
 		{
 			_path.SetTarget(_basePoint.Position);
 			inputData.Move = _path.MoveDirection;
+			if (_path.HasArrived)
+			{
+				var movementData = _entityManager.GetComponentData<ActorMovementData>(entity);
+				movementData.ExternalMultiplier = 1;
+				_entityManager.SetComponentData(entity, movementData);
+			}
 			return !_path.HasArrived;
 		}
 
@@ -58,9 +64,12 @@ namespace Assets.Crimson.Core.AI.Behaviours
 		{
 		}
 
-		public bool SetUp(Entity entity, EntityManager dstManager)
+		public bool SetUp(Entity entity, EntityManager entityManager)
 		{
-			dstManager.RemoveComponent<AggressiveAITag>(entity);
+			var movementData = entityManager.GetComponentData<ActorMovementData>(entity);
+			movementData.ExternalMultiplier = 2;
+			entityManager.SetComponentData(entity, movementData);
+			entityManager.AddComponentData(entity, new FullHealPercentBuff(10));
 			return true;
 		}
 	}
