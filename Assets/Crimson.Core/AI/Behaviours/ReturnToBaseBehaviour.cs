@@ -23,6 +23,9 @@ namespace Assets.Crimson.Core.AI.Behaviours
 			XAxisTooltip = "Target priority based on distance to it"
 		};
 
+		public float SpeedMultiplier = 2;
+		public float HealPercent = 10;
+
 		private const float _breakDistance = 1;
 
 		private BasePointData _basePoint;
@@ -67,9 +70,9 @@ namespace Assets.Crimson.Core.AI.Behaviours
 		public bool SetUp(Entity entity, EntityManager entityManager)
 		{
 			var movementData = entityManager.GetComponentData<ActorMovementData>(entity);
-			movementData.ExternalMultiplier = 2;
+			movementData.ExternalMultiplier = SpeedMultiplier;
 			entityManager.SetComponentData(entity, movementData);
-			entityManager.AddComponentData(entity, new FullHealPercentBuff(10));
+			entityManager.AddComponentData(entity, new FullHealPercentBuff(HealPercent));
 			return true;
 		}
 	}
