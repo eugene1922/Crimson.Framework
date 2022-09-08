@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Use: 1
-  Duration: 0.1
+  Duration: 3
   actions:
   - {fileID: 7914029100133809227}
 --- !u!114 &7914029100133809227

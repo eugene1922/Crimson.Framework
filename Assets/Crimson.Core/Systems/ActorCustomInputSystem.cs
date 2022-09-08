@@ -47,6 +47,11 @@ namespace Crimson.Core.Systems
 							});
 						});
 					}
+
+					for (var i = 0; i < playerInput.CustomInput.Length; i++)
+					{
+						playerInput.CustomInput[i] = 0;
+					}
 				});
 		}
 	}
