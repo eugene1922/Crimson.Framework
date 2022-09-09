@@ -28,10 +28,6 @@ namespace Assets.Plugins.Behavior_Designer.Behavior_Designer_Tactical.Scripts.Ta
 			{
 				return TaskStatus.Failure;
 			}
-			//var target = Target.Value;
-			//var targetDirection = target.transform.position - transform.position;
-			//targetDirection.y = 0;
-			//transform.rotation = Quaternion.LookRotation(targetDirection);
 
 			var data = _entityManager.GetComponentData<PlayerInputData>(_actor.ActorEntity);
 			data.CustomInput[AttackInput.Value] = 1f;
