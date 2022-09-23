@@ -53,17 +53,17 @@ namespace Crimson.Core.Systems
 				}
 			);
 
-			Entities.With(_lookQuery).ForEach(
-				(Transform transform, ref PlayerInputData input, ref FollowLookRotationData lookRotationTag) =>
-				{
-					var mouse = (Vector2)input.Mouse;
-					var position = (Vector2)Camera.main.WorldToScreenPoint(transform.position + (Vector3)lookRotationTag.Offset);
-					var direction = mouse - position;
-					var angle = Mathf.Atan2(direction.y / Mathf.Sin(input.DeclinationAngle * Mathf.Deg2Rad), direction.x) * Mathf.Rad2Deg - input.CompensateAngle;
+			//Entities.With(_lookQuery).ForEach(
+			//	(Transform transform, ref PlayerInputData input, ref FollowLookRotationData lookRotationTag) =>
+			//	{
+			//		var mouse = (Vector2)input.Mouse;
+			//		var position = (Vector2)Camera.main.WorldToScreenPoint(transform.position + (Vector3)lookRotationTag.Offset);
+			//		var direction = mouse - position;
+			//		var angle = Mathf.Atan2(direction.y / Mathf.Sin(input.DeclinationAngle * Mathf.Deg2Rad), direction.x) * Mathf.Rad2Deg - input.CompensateAngle;
 
-					transform.rotation = Quaternion.AngleAxis(-angle + 90, Vector3.up);
-					input.Look = direction.normalized;
-				});
+			//		transform.rotation = Quaternion.AngleAxis(-angle + 90, Vector3.up);
+			//		input.Look = direction.normalized;
+			//	});
 		}
 	}
 }
