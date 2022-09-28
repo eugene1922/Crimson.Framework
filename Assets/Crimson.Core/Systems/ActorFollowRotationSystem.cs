@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -64,6 +65,19 @@ namespace Crimson.Core.Systems
 			//		transform.rotation = Quaternion.AngleAxis(-angle + 90, Vector3.up);
 			//		input.Look = direction.normalized;
 			//	});
+
+			Entities.WithAll<AimData>().ForEach(
+				(ref AimData aimData, Transform transform) =>
+				{
+					var deadZoneRadius = .5f;
+					var aimDirection = (Vector3)aimData.LockedPosition - transform.position;
+					if (aimDirection.magnitude < deadZoneRadius)
+					{
+						return;
+					}
+					aimDirection.y = transform.position.y;
+					transform.LookAt(aimDirection);
+				});
 		}
 	}
 }

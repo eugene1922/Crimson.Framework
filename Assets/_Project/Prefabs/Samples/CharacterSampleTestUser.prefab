@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 109786123851096012}
   - component: {fileID: 7669828600908181923}
   - component: {fileID: -4939348821489114762}
-  - component: {fileID: -136997334286632821}
   - component: {fileID: -5199557533950553967}
   - component: {fileID: -1969340818193211531}
   - component: {fileID: -5360728394872650663}
@@ -28,6 +27,7 @@ GameObject:
   - component: {fileID: -93229221922767859}
   - component: {fileID: 3834946692048838755}
   - component: {fileID: 6232876792227498021}
+  - component: {fileID: 523432030384506568}
   m_Layer: 0
   m_Name: CharacterSampleTestUser
   m_TagString: Untagged
@@ -91,7 +91,9 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 8908091917784543394, guid: 98ab9143ccfb34348ba1f2f67304b347, type: 3}
+    - {fileID: 8908091917784543394, guid: 6a0e79a12bf0d2b4897eb31280b6ddfe, type: 3}
+    - {fileID: 6202466194594555935, guid: af2dfdf505b60254da9cf874350c178b, type: 3}
+    - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -120,54 +122,6 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.1
---- !u!114 &-136997334286632821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteNow: 0
-  ExecuteOnAwake: 1
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
-    - {fileID: 6202466194594555935, guid: af2dfdf505b60254da9cf874350c178b, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 1
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 3
-    parentOfSpawns: 0
-    actorWithComponentName: UIRoot
-    parentTag: UIRoot
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0.2
 --- !u!114 &-5199557533950553967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,3 +554,17 @@ MonoBehaviour:
   _input: {fileID: 5040436995964547475, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
   actions:
   - {fileID: -7126598297091492315}
+--- !u!114 &523432030384506568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854924350193893075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1f910f3a8685248ac31ab69b2a7173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimRange: 10
+  LockRange: 3

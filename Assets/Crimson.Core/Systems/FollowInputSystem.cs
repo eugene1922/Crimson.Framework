@@ -9,11 +9,9 @@ namespace Assets.Crimson.Core.Systems
 		protected override void OnUpdate()
 		{
 			Entities.WithAll<AbilityUIFollowInput>().ForEach(
-				(Entity entity, AbilityUIFollowInput ability) =>
+				(AbilityUIFollowInput ability) =>
 				{
-					var owner = ability.Actor.Spawner;
-					var inputData = EntityManager.GetComponentData<PlayerInputData>(owner.ActorEntity);
-					ability.Setup(inputData);
+					ability.Execute();
 				});
 		}
 	}
