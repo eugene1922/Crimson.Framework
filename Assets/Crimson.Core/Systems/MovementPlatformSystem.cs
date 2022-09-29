@@ -1,4 +1,4 @@
-﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Common.Extensions;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -13,7 +13,7 @@ namespace Assets.Crimson.Core.Systems
 	{
 		private EntityQuery _platformsQuery;
 		private Collider[] _results = new Collider[Constants.COLLISION_BUFFER_CAPACITY];
-
+  
 		protected override void OnCreate()
 		{
 			_platformsQuery = GetEntityQuery(
