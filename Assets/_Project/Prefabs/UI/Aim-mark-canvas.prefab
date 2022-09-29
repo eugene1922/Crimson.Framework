@@ -355,8 +355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42f523ee424c87468ea4196d237c1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mark: {fileID: 8940869650416629048}
   CanvasGroup: {fileID: 9008480215822524734}
+  HideRadius: 0.4
+  Mark: {fileID: 8940869650416629048}
 --- !u!1 &6941626150811650472
 GameObject:
   m_ObjectHideFlags: 0
