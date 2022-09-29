@@ -429,6 +429,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
         type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 219696582898746723, guid: 69c15c49d664fc04a94824743794a6ba,
+        type: 3}
+    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
+        type: 3}
       propertyPath: SpawnData.copyComponentsFromSamples.Array.data[2]
       value: 
       objectReference: {fileID: 758353118697322359, guid: 773e676a221ca6142b202d1349fcaaeb,
@@ -528,6 +534,12 @@ PrefabInstance:
       propertyPath: SpawnData.copyComponentsFromSamples.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
+        type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 219696582898746723, guid: 69c15c49d664fc04a94824743794a6ba,
+        type: 3}
     - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
         type: 3}
       propertyPath: SpawnData.copyComponentsFromSamples.Array.data[2]
@@ -895,6 +907,12 @@ PrefabInstance:
       propertyPath: SpawnData.copyComponentsFromSamples.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
+        type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 219696582898746723, guid: 69c15c49d664fc04a94824743794a6ba,
+        type: 3}
     - target: {fileID: 4340358458289354448, guid: 0933cfd309049c541a225f2c6763e52b,
         type: 3}
       propertyPath: SpawnData.copyComponentsFromSamples.Array.data[2]
