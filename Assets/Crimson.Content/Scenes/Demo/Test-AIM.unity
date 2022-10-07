@@ -323,75 +323,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
   m_ActionId: 3c7022bf-7922-4f7c-a998-c437916075ad
---- !u!1001 &714594267
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.4828086
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.413703
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752196, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390579384345752203, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
-      propertyPath: m_Name
-      value: Pickupable-Weapon Plasma Gun Variant
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29a55906a78c6274081ce60e46c952b6, type: 3}
 --- !u!114 &728875613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +337,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 1523ff8b0b3be9a499c77e654fdd9e4d, type: 3}
   m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
+--- !u!1001 &917410140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.49477875
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.36029965
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982658, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667255924441982669, guid: eec57254ae04e1f448a5e6c8ed294405,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickupable-Weapon BlastGun Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eec57254ae04e1f448a5e6c8ed294405, type: 3}
 --- !u!1001 &1050376977
 PrefabInstance:
   m_ObjectHideFlags: 0
