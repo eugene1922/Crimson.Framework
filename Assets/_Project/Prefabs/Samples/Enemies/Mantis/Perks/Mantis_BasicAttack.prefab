@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3289702619521376159}
   - component: {fileID: 3289702619521376157}
-  - component: {fileID: 3289702619521376158}
+  - component: {fileID: 8658032069598616278}
+  - component: {fileID: -7272671265992810375}
   - component: {fileID: 3289702619521376156}
+  - component: {fileID: 4639911213622380245}
+  - component: {fileID: 1340977124918961791}
   m_Layer: 0
   m_Name: Mantis_BasicAttack
   m_TagString: Untagged
@@ -49,10 +52,10 @@ MonoBehaviour:
   customBinding:
     index: 0
     actions:
-    - {fileID: 3289702619521376158}
-  destroyAfterActions: 1
+    - {fileID: 8658032069598616278}
+  destroyAfterActions: 0
   removeSameIndexBindings: 1
---- !u!114 &3289702619521376158
+--- !u!114 &8658032069598616278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,9 +71,26 @@ MonoBehaviour:
     AnimationName: 
     HasAnimation: 0
   Use: 1
-  Duration: 1
+  Duration: 0.2
+  actions:
+  - {fileID: -7272671265992810375}
+--- !u!114 &-7272671265992810375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289702619521376152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44220fc38d11c14683b68488d3cc013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   actions:
   - {fileID: 3289702619521376156}
+  - {fileID: 4639911213622380245}
+  - {fileID: 1340977124918961791}
+  ResetTime: 0.5
 --- !u!114 &3289702619521376156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,13 +103,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: 
+  componentName: Attack_R
   ExecuteNow: 0
   ExecuteOnAwake: 0
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1090190289803064, guid: 476eeece5461648ecb6a65777fa3e2de, type: 3}
+    - {fileID: 1090190289803064, guid: 483933251f24f544aa19d59e8af8218d, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &4639911213622380245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289702619521376152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Attack_L
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 85f8b4c252ac5a6489e7cf33591d3244, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
+--- !u!114 &1340977124918961791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289702619521376152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Attack_LR
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 1090190289803064, guid: 21f18c3a8a2e71246a4a675dea8e12e0, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
