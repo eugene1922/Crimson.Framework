@@ -33,20 +33,21 @@ namespace Assets.Crimson.Core.Systems
 					var minimalAimDistance = float.MaxValue;
 					var minimalSourceDistance = ability.AimRange;
 					var minimalAngle = 90f;
-					Entities.WithAll<EnemyTag>().ForEach(
-						(Actor actor) =>
+					Entities.WithAll<EnemyData>().ForEach(
+						(Actor actor, ref EnemyData enemyData) =>
 						{
-							if (Vector3.Distance(actor.transform.position, ability.transform.position) <= ability.AimRange)
+							var enemyPosition = actor.transform.position + (Vector3)enemyData.Offset;
+							if (Vector3.Distance(enemyPosition, ability.transform.position) <= ability.AimRange)
 							{
-								var distanceToAim = math.distance(actor.transform.position, aimPosition);
-								var sourceDistance = math.distance(actor.transform.position, ability.transform.position);
-								var targetDirection = actor.transform.position - ability.transform.position;
+								var distanceToAim = math.distance(enemyPosition, aimPosition);
+								var sourceDistance = math.distance(enemyPosition, ability.transform.position);
+								var targetDirection = enemyPosition - ability.transform.position;
 								var angle = Vector3.Angle(targetDirection, aimDirection);
 								if (angle < minimalAngle
 									&& ability.LockRange > distanceToAim
 									&& sourceDistance < minimalSourceDistance)
 								{
-									targetPosition = actor.transform.position;
+									targetPosition = enemyPosition;
 									minimalAimDistance = distanceToAim;
 									minimalSourceDistance = sourceDistance;
 									minimalAngle = angle;
