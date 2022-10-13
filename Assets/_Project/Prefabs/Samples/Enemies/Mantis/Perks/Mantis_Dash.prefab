@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3289702619521376159}
   - component: {fileID: 3289702619521376157}
-  - component: {fileID: 3919223139258224450}
+  - component: {fileID: 311869688742371534}
   m_Layer: 0
   m_Name: Mantis_Dash
   m_TagString: Untagged
@@ -48,10 +48,10 @@ MonoBehaviour:
   customBinding:
     index: 1
     actions:
-    - {fileID: 3919223139258224450}
+    - {fileID: 311869688742371534}
   destroyAfterActions: 0
   removeSameIndexBindings: 1
---- !u!114 &3919223139258224450
+--- !u!114 &311869688742371534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,27 +60,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3289702619521376152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e77814d3934c9a8e2ec977d5998f08, type: 3}
+  m_Script: {fileID: 11500000, guid: bed3cb5171dbb2a4d9de475ecedbc6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   perkLevel: 1
-  force: 8
-  timer: 1
-  cooldownTime: 1
-  aimingAvailable: 0
-  useMovementVector: 0
-  deactivateAimingOnCooldown: 0
-  aimingProperties:
-    evaluateActionOptions: 0
-    aimingType: 0
-    aimingAreaPrefab: {fileID: 0}
-    sightPrefab: {fileID: 0}
-    circlePrefab: {fileID: 0}
-    sightDistance: 0
-    reverseControls: 0
-  aimingAnimProperties:
-    HasActorAimingAnimation: 0
-    ActorAimingAnimationName: 
+  DashDelay: 0.3
+  DashCount: 4
+  force: 1
+  cooldownTime: 5
   dashFX:
   - {fileID: 1097198447161478, guid: 97786ae8e944f4c47953c0d63ca0293e, type: 3}
   perkRelatedComponents: []
