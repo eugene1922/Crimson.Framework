@@ -193,7 +193,7 @@ PrefabInstance:
     - target: {fileID: 9088967893855860311, guid: 06738f6003c9a4f4abc6b26ed657547a,
         type: 3}
       propertyPath: SpawnData.copyComponentsFromSamples.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9088967893855860311, guid: 06738f6003c9a4f4abc6b26ed657547a,
         type: 3}
@@ -487,7 +487,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 65769997807a5ba4fb3621f57f121960, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
