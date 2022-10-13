@@ -697,6 +697,7 @@ MonoBehaviour:
     - {fileID: 3289702619521376152, guid: 49999ce45e360f24080ff3b266d1d69e, type: 3}
     - {fileID: 3289702619521376152, guid: 0d0212adb46157843b234b91c355a097, type: 3}
     - {fileID: 758353118697322359, guid: 773e676a221ca6142b202d1349fcaaeb, type: 3}
+    - {fileID: 3289702619521376152, guid: fc6e9aa97b99dc345b12ad76f3ca2f77, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
