@@ -71,7 +71,7 @@ MonoBehaviour:
     AnimationName: 
     HasAnimation: 0
   Use: 1
-  Duration: 0.2
+  Duration: 0.5
   actions:
   - {fileID: -7272671265992810375}
 --- !u!114 &-7272671265992810375
@@ -90,7 +90,7 @@ MonoBehaviour:
   - {fileID: 3289702619521376156}
   - {fileID: 4639911213622380245}
   - {fileID: 1340977124918961791}
-  ResetTime: 0.5
+  ResetTime: 1
 --- !u!114 &3289702619521376156
 MonoBehaviour:
   m_ObjectHideFlags: 0
