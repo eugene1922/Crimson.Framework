@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Components;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Components.AbilityReactive;
@@ -14,6 +15,8 @@ namespace Crimson.Core.Systems
 {
 	public class ActorFindTargetSystem : ComponentSystem
 	{
+		private EntityQuery _aliveActors;
+		private EntityQuery _findTargetQuery;
 		private EntityQuery _queryFollowMovement, _queryFollowRotation, _queryAutoAim, _newAutoAimQuery;
 
 		protected override void OnCreate()
@@ -37,6 +40,15 @@ namespace Crimson.Core.Systems
 
 			_newAutoAimQuery = GetEntityQuery(
 				ComponentType.ReadOnly<AutoAimTargetData>(),
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.Exclude<DeadActorTag>());
+
+			_findTargetQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityFindTargetActor>(),
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.Exclude<DeadActorTag>());
+
+			_aliveActors = GetEntityQuery(
 				ComponentType.ReadOnly<Actor>(),
 				ComponentType.Exclude<DeadActorTag>());
 		}
@@ -184,6 +196,24 @@ namespace Crimson.Core.Systems
 					PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
 				}
 			);
+
+			Entities.With(_findTargetQuery).ForEach(
+				(Transform source, AbilityFindTargetActor ability) =>
+				{
+					Actor target = null;
+					var distance = float.MaxValue;
+					Entities.With(_aliveActors).ForEach(
+						(Actor actor) =>
+						{
+							var distanceToActor = Vector3.Distance(actor.transform.position, source.transform.position);
+							if (ability.TagFilter.Filter((IActor)actor) && distanceToActor < distance)
+							{
+								target = actor;
+								distance = distanceToActor;
+							}
+						});
+					ability.Target = target;
+				});
 		}
 
 		private List<Transform> GetTargetList(IActor source, TargetType followTarget, string name, string tag)

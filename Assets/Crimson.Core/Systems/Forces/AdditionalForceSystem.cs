@@ -36,6 +36,7 @@ namespace Assets.Crimson.Core.Systems.Forces
 				{
 					if (rigidBody == null)
 					{
+						Debug.LogWarning($"[{nameof(AdditionalForceSystem)}] Not rigidbody on actor. Abort..");
 						return;
 					}
 					rigidBody.AddForce(data.Direction * data.Force, (ForceMode)data.ForceMode);

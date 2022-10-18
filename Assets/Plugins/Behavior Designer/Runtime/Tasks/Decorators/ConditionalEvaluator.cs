@@ -10,6 +10,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         [InspectTask]
         [Tooltip("The conditional task to evaluate")]
         public Conditional conditionalTask;
+        public bool Invert;
 
         // The status of the child after it has finished running.
         private TaskStatus executionStatus = TaskStatus.Inactive;
@@ -55,6 +56,10 @@ namespace BehaviorDesigner.Runtime.Tasks
         public override TaskStatus OnUpdate()
         {
             var childStatus = conditionalTask.OnUpdate();
+            if (Invert)
+            {
+                childStatus = childStatus == TaskStatus.Success ? TaskStatus.Failure : TaskStatus.Success;
+            }
             conditionalTaskFailed = conditionalTask == null || childStatus == TaskStatus.Failure;
             return childStatus;
         }
