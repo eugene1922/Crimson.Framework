@@ -18,6 +18,7 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		[TitleGroup("Dash")] public AbilityFindTargetActor AbilityTarget;
 		[TitleGroup("Dash")] public float Angle;
+		public AbilityBlocker Blocker;
 		[TitleGroup("Dash")] public int Charges = 4;
 		[TitleGroup("Dash")] public float Cooldown = 5;
 
@@ -56,6 +57,7 @@ namespace Assets.Crimson.Core.Components.Perks
 		}
 
 		private bool _inRange => Target != null && Vector3.Distance(Target.transform.position, transform.position) >= MinDistance;
+		private bool _inEndRange => Target != null && Vector3.Distance(Target.transform.position, transform.position) >= 2;
 		private Actor Target => AbilityTarget != null ? AbilityTarget.Target : null;
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -73,7 +75,7 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		public void Apply(IActor target)
 		{
-			if (!_dstManager.Exists(target.ActorEntity) || !_inRange)
+			if (IsBlocked || !IsEnable || !_dstManager.Exists(target.ActorEntity) || !_inRange)
 			{
 				return;
 			}
@@ -98,20 +100,24 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		private void ExecuteDash()
 		{
+			Blocker.IsEnable = true;
 			if (_charges == 0)
 			{
+				Blocker.IsEnable = false;
 				return;
 			}
 			if (_inDeadlyJumpRange)
 			{
+				Blocker.IsEnable = false;
 				foreach (var ability in _deadlyJumpActions)
 				{
 					ability.Execute();
 				}
 				return;
 			}
-			if (!_inRange)
+			if (!_inEndRange)
 			{
+				Blocker.IsEnable = false;
 				return;
 			}
 			this.AddAction(ExecuteDash, DashDelay);

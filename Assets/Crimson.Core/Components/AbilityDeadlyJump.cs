@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Interfaces;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.Perks
 {
-	public class AbilityDeadlyJump : MonoBehaviour, IActorAbility
+	public class AbilityDeadlyJump : MonoBehaviour, IActorAbility, IBlockable
 	{
 		public AbilityFindTargetActor AbilityTarget;
 
@@ -24,6 +25,7 @@ namespace Assets.Crimson.Core.Components.Perks
 		private Entity _entity;
 		private EntityManager _entityManager;
 		public IActor Actor { get; set; }
+		public bool IsBlocked { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -35,6 +37,10 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		public void Execute()
 		{
+			if (IsBlocked)
+			{
+				return;
+			}
 			var target = AbilityTarget.Target.transform;
 			var direction = target.position - transform.position;
 			var lookToTarget = Quaternion.LookRotation(direction);

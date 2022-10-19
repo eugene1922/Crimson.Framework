@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4567102045052354374}
   - component: {fileID: 6873756242184086055}
   - component: {fileID: 4293860348458152604}
+  - component: {fileID: -7202611170488994649}
   m_Layer: 0
   m_Name: Mantis_Dash
   m_TagString: Untagged
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityTarget: {fileID: 7385490213853750165}
   Angle: 30
+  Blocker: {fileID: -7202611170488994649}
   Charges: 4
   Cooldown: 5
   DashActions:
@@ -225,3 +227,18 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0.2
+--- !u!114 &-7202611170488994649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289702619521376152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46526d71d697f244cb65b51a1892ebbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  References:
+  - PerkMantisDash
+  - AbilityDeadlyJump
