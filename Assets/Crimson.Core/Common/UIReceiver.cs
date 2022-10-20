@@ -50,7 +50,6 @@ namespace Crimson.Core.Common
 				return _associatedIdsCache;
 			}
 		}
-
 		public List<IUIElement> UIElements
 		{
 			get
@@ -143,8 +142,9 @@ namespace Crimson.Core.Common
 				{
 					var attrs = member.GetCustomAttributes(false);
 
-					foreach (var attr in attrs)
+					for (var i = 0; i < attrs.Length; i++)
 					{
+						var attr = attrs[i];
 						if (attr is CastToUI castToUi)
 						{
 							_ids.Add(castToUi.FieldId);
@@ -208,6 +208,12 @@ namespace Crimson.Core.Common
 			primaryWeaponButton.SetupCustomButton(((IAimable)primaryWeaponAbility).AimingAvailable,
 				primaryWeaponAbility.aimingProperties.evaluateActionOptions ==
 				EvaluateActionOptions.RepeatingEvaluation);
+		}
+
+		private void Reset()
+		{
+			_associatedIdsCache = GetUIFieldsIDs();
+			_associatedIdsCache.Insert(0, "No ID");
 		}
 
 		private void UpdateUIChannelInfo()

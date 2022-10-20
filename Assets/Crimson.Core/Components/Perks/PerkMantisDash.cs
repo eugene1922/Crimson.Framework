@@ -16,6 +16,17 @@ namespace Assets.Crimson.Core.Components.Perks
 		public EntityManager _dstManager;
 		public Entity _entity;
 
+		[CastToUI(nameof(NotificationText))]
+		public string NotificationText;
+
+		private void SetNotification(string value)
+		{
+			NotificationText = value;
+			UIReceiverList.UpdateUIData(nameof(NotificationText));
+		}
+
+		[HideInInspector] public UIReceiverList UIReceiverList = new UIReceiverList();
+
 		[TitleGroup("Dash")] public AbilityFindTargetActor AbilityTarget;
 		[TitleGroup("Dash")] public float Angle;
 		public AbilityBlocker Blocker;
@@ -56,8 +67,8 @@ namespace Assets.Crimson.Core.Components.Perks
 			}
 		}
 
-		private bool _inRange => Target != null && Vector3.Distance(Target.transform.position, transform.position) >= MinDistance;
 		private bool _inEndRange => Target != null && Vector3.Distance(Target.transform.position, transform.position) >= 2;
+		private bool _inRange => Target != null && Vector3.Distance(Target.transform.position, transform.position) >= MinDistance;
 		private Actor Target => AbilityTarget != null ? AbilityTarget.Target : null;
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -65,6 +76,7 @@ namespace Assets.Crimson.Core.Components.Perks
 			_entity = entity;
 			Actor = actor;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			UIReceiverList.Init(this, entity);
 			if (!Actor.Abilities.Contains(this))
 			{
 				Actor.Abilities.Add(this);
@@ -109,6 +121,7 @@ namespace Assets.Crimson.Core.Components.Perks
 			if (_inDeadlyJumpRange)
 			{
 				Blocker.IsEnable = false;
+				SetNotification("DeadlyJump");
 				foreach (var ability in _deadlyJumpActions)
 				{
 					ability.Execute();
@@ -120,6 +133,7 @@ namespace Assets.Crimson.Core.Components.Perks
 				Blocker.IsEnable = false;
 				return;
 			}
+			SetNotification("Dash");
 			this.AddAction(ExecuteDash, DashDelay);
 			_charges--;
 			var direction = Target.transform.position - transform.position;
