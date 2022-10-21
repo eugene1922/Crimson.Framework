@@ -13,6 +13,7 @@ namespace Assets.Crimson.Core.Common
 		public InputActionReference CustomInput4Ref;
 		public InputActionReference CustomInput5Ref;
 		public InputActionReference LookInputRef;
+		public InputActionReference PointerInputRef;
 		public InputActionReference MoveInputRef;
 	}
 }

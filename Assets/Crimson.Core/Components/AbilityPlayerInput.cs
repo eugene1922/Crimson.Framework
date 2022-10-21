@@ -105,6 +105,7 @@ namespace Crimson.Core.Components
                 MinMagnitude = minMoveInputMagnitude,
                 CustomSticksInput = sticksInput
             });
+            dstManager.AddComponentData(entity, new AimData());
 
             foreach (var binding in customBindings)
             {
