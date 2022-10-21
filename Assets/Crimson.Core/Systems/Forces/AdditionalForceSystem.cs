@@ -9,11 +9,12 @@ namespace Assets.Crimson.Core.Systems.Forces
 	internal class AdditionalForceSystem : ComponentSystem
 	{
 		private EntityQuery _forceQuery;
-		private EntityQuery _sourcesQuery;
+		private EntityQuery _inwardSourceQuery;
 
 		protected override void OnCreate()
 		{
-			_sourcesQuery = GetEntityQuery(
+			_inwardSourceQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityInwardForce>(),
 				ComponentType.ReadOnly<InwardForceSourceTag>());
 
 			_forceQuery = GetEntityQuery(
@@ -25,7 +26,7 @@ namespace Assets.Crimson.Core.Systems.Forces
 		{
 			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-			Entities.With(_sourcesQuery).ForEach(
+			Entities.With(_inwardSourceQuery).ForEach(
 				(AbilityInwardForce ability) =>
 				{
 					ability.AddForceInRadius();

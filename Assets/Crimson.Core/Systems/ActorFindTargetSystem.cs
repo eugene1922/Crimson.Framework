@@ -15,9 +15,10 @@ namespace Crimson.Core.Systems
 {
 	public class ActorFindTargetSystem : ComponentSystem
 	{
-		private EntityQuery _aliveActors;
-		private EntityQuery _findTargetQuery;
 		private EntityQuery _queryFollowMovement, _queryFollowRotation, _queryAutoAim, _newAutoAimQuery;
+		private EntityQuery _targetDashQuery;
+		private EntityQuery _followActorQuery;
+		private EntityQuery _aliveActors;
 
 		protected override void OnCreate()
 		{
@@ -43,8 +44,13 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<Actor>(),
 				ComponentType.Exclude<DeadActorTag>());
 
-			_findTargetQuery = GetEntityQuery(
-				ComponentType.ReadOnly<AbilityFindTargetActor>(),
+			_targetDashQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityTargetDash>(),
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.Exclude<DeadActorTag>());
+
+			_followActorQuery = GetEntityQuery(
+				ComponentType.ReadOnly<AbilityFollowActor>(),
 				ComponentType.ReadOnly<Actor>(),
 				ComponentType.Exclude<DeadActorTag>());
 
@@ -194,25 +200,52 @@ namespace Crimson.Core.Systems
 					autoAim.SetTarget(targetTransform.position);
 					properties.SearchCompleted = true;
 					PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
-				}
-			);
+				});
 
-			Entities.With(_findTargetQuery).ForEach(
-				(Transform source, AbilityFindTargetActor ability) =>
+			Entities.With(_targetDashQuery).ForEach(
+				(Actor source, AbilityTargetDash ability) =>
 				{
 					Actor target = null;
-					var distance = float.MaxValue;
+					float distance = float.MaxValue;
+
 					Entities.With(_aliveActors).ForEach(
 						(Actor actor) =>
 						{
-							var distanceToActor = Vector3.Distance(actor.transform.position, source.transform.position);
-							if (ability.TagFilter.Filter((IActor)actor) && distanceToActor < distance)
+							if (!ability.AbilityTarget.TagFilter.Filter((IActor)actor))
+							{
+								return;
+							}
+							var targetDistance = Vector3.Distance(source.transform.position, actor.transform.position);
+							if (targetDistance < distance)
 							{
 								target = actor;
-								distance = distanceToActor;
+								distance = targetDistance;
 							}
 						});
-					ability.Target = target;
+					ability.AbilityTarget.Target = target;
+				});
+
+			Entities.With(_followActorQuery).ForEach(
+				(Actor source, AbilityFollowActor ability) =>
+				{
+					Actor target = null;
+					float distance = float.MaxValue;
+
+					Entities.With(_aliveActors).ForEach(
+						(Actor actor) =>
+						{
+							if (!ability.AbilityTarget.TagFilter.Filter((IActor)actor))
+							{
+								return;
+							}
+							var targetDistance = Vector3.Distance(source.transform.position, actor.transform.position);
+							if (targetDistance < distance)
+							{
+								target = actor;
+								distance = targetDistance;
+							}
+						});
+					ability.AbilityTarget.Target = target;
 				});
 		}
 

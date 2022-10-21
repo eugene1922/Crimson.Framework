@@ -6,12 +6,14 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
+using UnityEngine;
 
 namespace Assets.Crimson.Core.Components
 {
 	[HideMonoScript]
-	public class AbilityChainActions : TimerBaseBehaviour, IActorAbility
+	public class AbilityChainActions : TimerBaseBehaviour, IActorAbility, IHasComponentName
 	{
+		[SerializeField] public string componentName = "";
 		public bool ExecuteOnStart = false;
 		public AbilityChainSettings Settings = new AbilityChainSettings();
 		private List<IActorAbility> _abilities;
@@ -19,6 +21,7 @@ namespace Assets.Crimson.Core.Components
 		private bool _isInfiniteLoop;
 		private int _loopsCount;
 		public IActor Actor { get; set; }
+		public string ComponentName { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
