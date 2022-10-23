@@ -54307,6 +54307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 684433559033171752, guid: a9be4439403c3654a8ca4997a40b737f,
+        type: 3}
+      propertyPath: SpawnData.spawnerDisabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 684433559033171766, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
       propertyPath: m_Name
@@ -54435,6 +54440,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnPoint-Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273565221685378619, guid: 64ea12b20e896db44821def5e7d848e8,
+        type: 3}
+      propertyPath: SpawnData.spawnerDisabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64ea12b20e896db44821def5e7d848e8, type: 3}

@@ -14,9 +14,11 @@ namespace Assets.Crimson.Core.Components
 
 		public float LockRange = 5;
 
+		private Vector3 _distanceFromCamera;
 		private Entity _entity;
 		private EntityManager _entityManager;
-
+		private Vector3 _mousePositionOnPlane;
+		private Plane _plane;
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -25,36 +27,33 @@ namespace Assets.Crimson.Core.Components
 			_entity = entity;
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_entityManager.AddComponentData(_entity, new AimData());
+			_distanceFromCamera = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+			_plane = new Plane(Vector3.up, _distanceFromCamera);
 		}
 
 		public Vector3 AimPositionByInput(PlayerInputData inputData)
 		{
 			var position = transform.position;
 			var lookLenght = math.length(inputData.Look);
-			Vector2 direction;
+			Vector2 direction = Vector2.zero;
 			if (lookLenght > 0)
 			{
 				direction = inputData.Look;
+				if (!direction.Equals(float2.zero))
+				{
+					var vector = new Vector3(direction.x, 0, direction.y) * AimRange;
+					vector = Quaternion.AngleAxis(inputData.CompensateAngle, Vector3.up) * vector;
+					position += vector;
+				}
 			}
 			else
 			{
-				var camera = Camera.main;
-				var mousePosition = (Vector2)inputData.Mouse;
-				var ownerScreenPosition = (Vector2)camera.WorldToScreenPoint(position);
-				var mouseDirection = mousePosition - ownerScreenPosition;
-				direction = mouseDirection.normalized;
-
-				var worldAimRangePostion = position + new Vector3(direction.x, 0, direction.y) * AimRange;
-				var aimRangeScreenPosition = camera.WorldToScreenPoint(worldAimRangePostion);
-				var aimRangeDirection = (Vector2)aimRangeScreenPosition - ownerScreenPosition;
-				var range = math.min(mouseDirection.magnitude, aimRangeDirection.magnitude);
-				direction *= range / aimRangeDirection.magnitude;
-			}
-			if (!direction.Equals(float2.zero))
-			{
-				var vector = new Vector3(direction.x, 0, direction.y) * AimRange;
-				vector = Quaternion.AngleAxis(inputData.CompensateAngle, Vector3.up) * vector;
-				position += vector;
+				var ray = Camera.main.ScreenPointToRay((Vector2)inputData.Mouse);
+				if (_plane.Raycast(ray, out var enter))
+				{
+					_mousePositionOnPlane = ray.GetPoint(enter);
+					position = _mousePositionOnPlane;
+				}
 			}
 			return position;
 		}
@@ -99,6 +98,8 @@ namespace Assets.Crimson.Core.Components
 			Gizmos.color = Color.blue;
 			Gizmos.DrawWireSphere(position, LockRange);
 			DrawAimRange();
+			Gizmos.color = Color.magenta;
+			Gizmos.DrawSphere(_mousePositionOnPlane, .2f);
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace Assets.Crimson.Core.Systems
 	public class AimAssistSystem : ComponentSystem
 	{
 		private EntityQuery _aimQuery;
+		private EntityQuery _visibleEnemy;
 
 		protected override void OnCreate()
 		{
@@ -19,6 +20,11 @@ namespace Assets.Crimson.Core.Systems
 				ComponentType.ReadOnly<AbilityAimAssist>(),
 				ComponentType.ReadWrite<AimData>(),
 				ComponentType.ReadOnly<PlayerInputData>()
+				);
+			_visibleEnemy = GetEntityQuery(
+				ComponentType.ReadOnly<EnemyData>(),
+				ComponentType.Exclude<InvisibleTag>(),
+				ComponentType.Exclude<DeadActorTag>()
 				);
 		}
 
@@ -33,7 +39,7 @@ namespace Assets.Crimson.Core.Systems
 					var minimalAngle = 90f;
 					var lockedPosition = aimPosition;
 					Entity target = Entity.Null;
-					Entities.WithAll<EnemyData>().ForEach(
+					Entities.With(_visibleEnemy).ForEach(
 						(Actor actor, ref EnemyData enemyData) =>
 						{
 							var enemyPosition = actor.transform.position + (Vector3)enemyData.Offset;
