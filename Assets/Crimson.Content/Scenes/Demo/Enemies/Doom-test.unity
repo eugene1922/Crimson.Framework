@@ -54310,7 +54310,7 @@ PrefabInstance:
     - target: {fileID: 684433559033171752, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
       propertyPath: SpawnData.spawnerDisabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 684433559033171766, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
