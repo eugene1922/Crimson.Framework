@@ -1,6 +1,9 @@
 ﻿using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Crimson.Core.Enums;
+using Crimson.Core.Loading;
+using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -10,6 +13,10 @@ namespace Assets.Crimson.Core.Components
 	{
 		public AbilityFindTargetActor AbilityTarget;
 		public float PositionThreshold = 1;
+
+		public List<GameObject> PreFX = new List<GameObject>();
+		public List<GameObject> PostFX = new List<GameObject>();
+
 		private Entity _entity;
 		private EntityManager _entityManager;
 
@@ -29,6 +36,24 @@ namespace Assets.Crimson.Core.Components
 				PositionThreshold = PositionThreshold
 			};
 			_entityManager.AddComponentData(_entity, teleportData);
+		}
+
+		public void SpawnFX(List<GameObject> items)
+		{
+			if (items != null && items.Count > 0)
+			{
+				var spawnData = new ActorSpawnerSettings
+				{
+					objectsToSpawn = items,
+					SpawnPosition = SpawnPosition.UseSpawnerPosition,
+					RotationOfSpawns = RotationOfSpawns.UseSpawnPointRotation,
+					parentOfSpawns = TargetType.None,
+					runSpawnActionsOnObjects = true,
+					destroyAbilityAfterSpawn = true
+				};
+
+				ActorSpawn.Spawn(spawnData, Actor, null);
+			}
 		}
 	}
 }

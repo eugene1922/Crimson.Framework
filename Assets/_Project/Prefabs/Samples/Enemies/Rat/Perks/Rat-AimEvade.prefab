@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1895190981981173719}
-  - component: {fileID: 1895190981981173713}
-  - component: {fileID: -3497342784354956984}
   - component: {fileID: 1895190981981173718}
   m_Layer: 0
   m_Name: Rat-AimEvade
@@ -34,38 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1895190981981173713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895190981981173716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dfe92ecb9c4859965e7f99504d885a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  perkToApply: {fileID: 1895190981981173718}
-  perkDuplicateHandling: 1
---- !u!114 &-3497342784354956984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895190981981173716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e882fb038f0ab364c899c3446a45c4ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TagFilter:
-    use: 1
-    filterMode: 0
-    filterTags:
-    - Player
-    - Ally
 --- !u!114 &1895190981981173718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fef06bbad33644db01b0bd77522aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilityTarget: {fileID: -3497342784354956984}
   _perkEffects: []
+  _postEffects: []
   AnimProperties:
     AnimationName: 
     HasAnimation: 0
-  cooldownTime: 5
-  force: 25
+  cooldownTime: 4
+  Distance: 4
+  Duration: 0.1
   perkRelatedComponents: []
-  timer: 0.1
+  PositionThreshold: 1

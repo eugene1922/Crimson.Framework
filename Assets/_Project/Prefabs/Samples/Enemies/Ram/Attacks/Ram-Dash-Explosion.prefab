@@ -156,7 +156,7 @@ MonoBehaviour:
     destroyAfterAction: 0
     actions:
     - {fileID: 881066388547042622}
-  debugCollisions: 1
+  debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &881066388547042622
 MonoBehaviour:

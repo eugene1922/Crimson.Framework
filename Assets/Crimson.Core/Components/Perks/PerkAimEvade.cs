@@ -4,9 +4,7 @@ using Crimson.Core.Components;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
-using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
@@ -17,16 +15,16 @@ namespace Assets.Crimson.Core.Components.Perks
 		IPerkAbility,
 		ICooldownable
 	{
-		[TitleGroup("Params")] public EntityManager _dstManager;
-		[TitleGroup("Params")] public Entity _entity;
-		[TitleGroup("Params")] public List<GameObject> _perkEffects = new List<GameObject>();
-		public AbilityFindTargetActor AbilityTarget;
-		[TitleGroup("Params")] public ActorGeneralAnimProperties AnimProperties;
-		[TitleGroup("Params")] public float cooldownTime;
-		[TitleGroup("Params")] public float force = 25;
-		[TitleGroup("Params")] public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
-		[TitleGroup("Params", Order = 1)] public float timer = 0.1f;
-		private Vector3 _previousVelocity;
+		public Entity _entity;
+		public EntityManager _entityManager;
+		public List<GameObject> _perkEffects = new List<GameObject>();
+		public List<GameObject> _postEffects = new List<GameObject>();
+		public ActorGeneralAnimProperties AnimProperties;
+		public float cooldownTime;
+		public float Distance;
+		public float Duration = 1;
+		public List<MonoBehaviour> perkRelatedComponents = new List<MonoBehaviour>();
+		public float PositionThreshold;
 		private IActor _target;
 		public IActor Actor { get; set; }
 
@@ -40,11 +38,11 @@ namespace Assets.Crimson.Core.Components.Perks
 		{
 			_entity = entity;
 			Actor = actor;
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
 			if (AnimProperties.HasAnimation)
 			{
-				_dstManager.AddComponentData(entity, new ActorStafeAnimData
+				_entityManager.AddComponentData(entity, new ActorStafeAnimData
 				{
 					AnimHash = AnimProperties.AnimationHash
 				});
@@ -58,12 +56,11 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		public void Apply(IActor target)
 		{
-			_target = target;
-
 			if (!IsEnable)
 			{
 				return;
 			}
+			_target = target;
 
 			ApplyActionWithCooldown(cooldownTime, Strafe);
 		}
@@ -102,38 +99,21 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		public void Strafe()
 		{
-			if (_target != Actor.Owner)
+			var direction = transform.right;
+			if (Random.Range(0, 2) > 0)
 			{
-				var ownerActorPlayer =
-					Actor.Owner.Abilities.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
-
-				if (ownerActorPlayer == null)
-				{
-					return;
-				}
+				direction *= -1;
 			}
-
-			if (!_target.AppliedPerks.Contains(this))
+			direction = direction.normalized * Distance;
+			var moveData = new MoveData
 			{
-				_target.AppliedPerks.Add(this);
-			}
+				EndPosition = transform.position + direction,
+				PositionThreshold = PositionThreshold,
+				Velocity = direction.magnitude / Duration
+			};
+			_entityManager.AddComponentData(_entity, moveData);
+			_entityManager.AddComponent<StrafeActorTag>(Actor.ActorEntity);
 
-			var targetRigidbody = _target.GameObject.GetComponent<Rigidbody>();
-
-			if (targetRigidbody == null)
-			{
-				return;
-			}
-
-			_dstManager.AddComponent<StrafeActorTag>(Actor.ActorEntity);
-
-			_previousVelocity = targetRigidbody.velocity;
-			var dashVector = -1 * _target.GameObject.transform.forward;
-			var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-			var movement = entityManager.GetComponentData<ActorMovementData>(_target.ActorEntity);
-			movement.Input = dashVector;
-			entityManager.SetComponentData(_target.ActorEntity, movement);
-			targetRigidbody.AddForce(dashVector * force, ForceMode.Impulse);
 			if (_perkEffects != null && _perkEffects.Count > 0)
 			{
 				var spawnData = new ActorSpawnerSettings
@@ -145,18 +125,25 @@ namespace Assets.Crimson.Core.Components.Perks
 					destroyAbilityAfterSpawn = true
 				};
 
-				var fx = ActorSpawn.Spawn(spawnData, Actor, null)?[0];
+				ActorSpawn.Spawn(spawnData, Actor, null);
 			}
 
 			Timer.TimedActions.AddAction(() =>
 			{
-				if (targetRigidbody == null)
+				if (_postEffects != null && _postEffects.Count > 0)
 				{
-					return;
-				}
+					var spawnData = new ActorSpawnerSettings
+					{
+						objectsToSpawn = _postEffects,
+						SpawnPosition = SpawnPosition.UseSpawnerPosition,
+						parentOfSpawns = TargetType.None,
+						runSpawnActionsOnObjects = true,
+						destroyAbilityAfterSpawn = true
+					};
 
-				targetRigidbody.velocity = _previousVelocity;
-			}, timer);
+					ActorSpawn.Spawn(spawnData, Actor, null);
+				}
+			}, Duration);
 		}
 	}
 }

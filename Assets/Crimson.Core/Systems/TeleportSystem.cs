@@ -23,6 +23,7 @@ namespace Assets.Crimson.Core.Systems
 			Entities.With(_teleportTargetQuery).ForEach(
 				(Entity entity, ref TeleportData teleportData, AbilityTargetTeleport teleportAbility, Transform transform) =>
 				{
+					teleportAbility.SpawnFX(teleportAbility.PreFX);
 					var source = teleportAbility;
 					Transform targetTransform = null;
 					var distance = float.MaxValue;
@@ -42,8 +43,8 @@ namespace Assets.Crimson.Core.Systems
 					var thresholdVector = direction.normalized * teleportData.PositionThreshold;
 					var position = targetTransform.position - thresholdVector;
 					transform.position = position;
-
 					EntityManager.RemoveComponent<TeleportData>(entity);
+					teleportAbility.SpawnFX(teleportAbility.PostFX);
 				});
 		}
 	}

@@ -28,11 +28,11 @@ namespace Assets.Crimson.Core.Systems
 				(Entity entity, AbilityAimAssist ability, ref AimData aimData, ref PlayerInputData inputData) =>
 				{
 					var aimPosition = ability.AimPositionByInput(inputData);
-					var targetPosition = aimPosition;
-					var aimDirection = aimPosition - ability.transform.position;
 					var minimalAimDistance = float.MaxValue;
 					var minimalSourceDistance = ability.AimRange;
 					var minimalAngle = 90f;
+					var lockedPosition = aimPosition;
+					Entity target = Entity.Null;
 					Entities.WithAll<EnemyData>().ForEach(
 						(Actor actor, ref EnemyData enemyData) =>
 						{
@@ -42,19 +42,21 @@ namespace Assets.Crimson.Core.Systems
 								var distanceToAim = math.distance(enemyPosition, aimPosition);
 								var sourceDistance = math.distance(enemyPosition, ability.transform.position);
 								var targetDirection = enemyPosition - ability.transform.position;
-								var angle = Vector3.Angle(targetDirection, aimDirection);
+								var angle = Vector3.Angle(targetDirection, aimPosition);
 								if (angle < minimalAngle
 									&& ability.LockRange > distanceToAim
 									&& sourceDistance < minimalSourceDistance)
 								{
-									targetPosition = enemyPosition;
+									lockedPosition = enemyPosition;
 									minimalAimDistance = distanceToAim;
 									minimalSourceDistance = sourceDistance;
 									minimalAngle = angle;
+									target = actor.ActorEntity;
 								}
 							}
 						});
-					aimData.LockedPosition = targetPosition;
+					aimData.Target = target;
+					aimData.LockedPosition = lockedPosition;
 					EntityManager.SetComponentData(entity, aimData);
 				});
 		}

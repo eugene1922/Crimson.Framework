@@ -1,13 +1,17 @@
 ﻿using Assets.Crimson.Core.Common;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
+using Crimson.Core.Enums;
+using Crimson.Core.Loading;
+using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Components
 {
-	public class AbilityTargetDash : MonoBehaviour, IActorAbility
+	public class AbilityTargetDash : TimerBaseBehaviour, IActorAbility
 	{
 		public AbilityFindTargetActor AbilityTarget;
 		public float PositionThreshold = 1;
@@ -16,6 +20,9 @@ namespace Assets.Crimson.Core.Components
 		public string Mode;
 
 		public float Value = 2;
+
+		public List<GameObject> PreFX = new List<GameObject>();
+		public List<GameObject> PostFX = new List<GameObject>();
 
 		private Entity _entity;
 		private EntityManager _entityManager;
@@ -36,6 +43,7 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
+			SpawnFX(PreFX);
 			var target = AbilityTarget.Target.transform;
 			var direction = target.position - transform.position;
 			var lookToTarget = Quaternion.LookRotation(direction);
@@ -46,20 +54,45 @@ namespace Assets.Crimson.Core.Components
 				PositionThreshold = PositionThreshold
 			};
 
+			float duration = 0;
 			switch (Mode)
 			{
 				case "Duration":
 					moveData.Velocity = direction.magnitude / Value;
+					duration = Value;
 					break;
 
 				case "Velocity":
 					moveData.Velocity = Value;
+					duration = direction.magnitude / Value;
 					break;
 
 				default:
 					break;
 			}
 			_entityManager.AddComponentData(_entity, moveData);
+			this.AddAction(() =>
+			{
+				SpawnFX(PostFX);
+			}, duration);
+		}
+
+		private void SpawnFX(List<GameObject> items)
+		{
+			if (items != null && items.Count > 0)
+			{
+				var spawnData = new ActorSpawnerSettings
+				{
+					objectsToSpawn = items,
+					SpawnPosition = SpawnPosition.UseSpawnerPosition,
+					RotationOfSpawns = RotationOfSpawns.UseSpawnPointRotation,
+					parentOfSpawns = TargetType.None,
+					runSpawnActionsOnObjects = true,
+					destroyAbilityAfterSpawn = true
+				};
+
+				ActorSpawn.Spawn(spawnData, Actor, null);
+			}
 		}
 	}
 }

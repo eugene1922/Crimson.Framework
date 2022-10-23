@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 8316797730702808627}
   - component: {fileID: 4709701975019342113}
   - component: {fileID: 5118063039488738570}
-  - component: {fileID: 2395080915450661699}
-  - component: {fileID: -7670373682138142101}
   m_Layer: 0
   m_Name: Ram-PushDash
   m_TagString: Untagged
@@ -74,8 +72,6 @@ MonoBehaviour:
   Duration: 4
   actions:
   - {fileID: 4709701975019342113}
-  - {fileID: 2395080915450661699}
-  - {fileID: -7670373682138142101}
 --- !u!114 &4709701975019342113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,9 +85,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AbilityTarget: {fileID: 5118063039488738570}
-  PositionThreshold: 1
+  PositionThreshold: 0.1
   Mode: Duration
-  Value: 2
+  Value: 0.4
+  PreFX:
+  - {fileID: 2560468823489873303, guid: 7d3cf60963e2fe64ca311da8f353bef5, type: 3}
+  PostFX:
+  - {fileID: 8916607035571281972, guid: c27d7449129ee0940a4cd7f460f42d5d, type: 3}
 --- !u!114 &5118063039488738570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,97 +110,3 @@ MonoBehaviour:
     filterTags:
     - Player
     - Ally
---- !u!114 &2395080915450661699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634552862115458412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteNow: 0
-  ExecuteOnAwake: 0
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 2560468823489873303, guid: 7d3cf60963e2fe64ca311da8f353bef5, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
---- !u!114 &-7670373682138142101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634552862115458412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteNow: 0
-  ExecuteOnAwake: 0
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 8916607035571281972, guid: c27d7449129ee0940a4cd7f460f42d5d, type: 3}
-    spawnPosition: 2
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 0
-    _spawnPoints: []
-    spawnPointTag: 
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 1.5

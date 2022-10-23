@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1537386155854703314}
   - component: {fileID: 230981813513355803}
   m_Layer: 0
-  m_Name: Ram-Dash-FX
+  m_Name: Rat-Dash-FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

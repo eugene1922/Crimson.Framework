@@ -16,6 +16,7 @@ namespace Assets.Crimson.Core.Components
 
 		private Entity _entity;
 		private EntityManager _entityManager;
+
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -23,15 +24,35 @@ namespace Assets.Crimson.Core.Components
 			Actor = actor;
 			_entity = entity;
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_entityManager.AddComponentData(_entity, new AimData());
 		}
 
 		public Vector3 AimPositionByInput(PlayerInputData inputData)
 		{
 			var position = transform.position;
-			var direction = inputData.Look * AimRange;
+			var lookLenght = math.length(inputData.Look);
+			Vector2 direction;
+			if (lookLenght > 0)
+			{
+				direction = inputData.Look;
+			}
+			else
+			{
+				var camera = Camera.main;
+				var mousePosition = (Vector2)inputData.Mouse;
+				var ownerScreenPosition = (Vector2)camera.WorldToScreenPoint(position);
+				var mouseDirection = mousePosition - ownerScreenPosition;
+				direction = mouseDirection.normalized;
+
+				var worldAimRangePostion = position + new Vector3(direction.x, 0, direction.y) * AimRange;
+				var aimRangeScreenPosition = camera.WorldToScreenPoint(worldAimRangePostion);
+				var aimRangeDirection = (Vector2)aimRangeScreenPosition - ownerScreenPosition;
+				var range = math.min(mouseDirection.magnitude, aimRangeDirection.magnitude);
+				direction *= range / aimRangeDirection.magnitude;
+			}
 			if (!direction.Equals(float2.zero))
 			{
-				var vector = new Vector3(direction.x, 0, direction.y);
+				var vector = new Vector3(direction.x, 0, direction.y) * AimRange;
 				vector = Quaternion.AngleAxis(inputData.CompensateAngle, Vector3.up) * vector;
 				position += vector;
 			}
