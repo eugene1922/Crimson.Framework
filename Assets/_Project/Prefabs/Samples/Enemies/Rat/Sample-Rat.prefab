@@ -53,7 +53,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compensateCameraRotation: 1
-  customBindings: []
+  customBindings:
+  - index: 0
+    actions:
+    - {fileID: 0}
+  - index: 1
+    actions:
+    - {fileID: 0}
   inputSource: 3
   minMoveInputMagnitude: 0
 --- !u!114 &1741994161196160966
@@ -111,7 +117,7 @@ MonoBehaviour:
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  NeedCleanup: 0
+  NeedCleanup: 1
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0

@@ -53,9 +53,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIBehaviour: {fileID: 6748390534130873612}
   compensateCameraRotation: 1
-  customBindings: []
+  customBindings:
+  - index: 0
+    actions:
+    - {fileID: 0}
+  - index: 1
+    actions:
+    - {fileID: 0}
   inputSource: 3
   minMoveInputMagnitude: 0
 --- !u!114 &6748390534130873612
@@ -127,8 +132,8 @@ MonoBehaviour:
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  NeedCleanup: 0
-  corpseCleanupDelay: 2
+  NeedCleanup: 1
+  corpseCleanupDelay: 1
   deadActorBehaviour:
     RemoveTag: 0
     RemoveRigidbody: 0

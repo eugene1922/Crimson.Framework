@@ -10,6 +10,7 @@ namespace Crimson.Core.Systems
 {
 	public class ActorFollowRotationSystem : ComponentSystem
 	{
+		private EntityQuery _aimQuery;
 		private EntityQuery _lookQuery;
 		private EntityQuery _query;
 
@@ -25,6 +26,12 @@ namespace Crimson.Core.Systems
 			_lookQuery = GetEntityQuery(
 				ComponentType.ReadOnly<Transform>(),
 				ComponentType.ReadOnly<FollowLookRotationData>(),
+				ComponentType.ReadOnly<PlayerInputData>(),
+				ComponentType.Exclude<StopRotationData>());
+
+			_aimQuery = GetEntityQuery(
+				ComponentType.ReadOnly<Transform>(),
+				ComponentType.ReadOnly<AimData>(),
 				ComponentType.ReadOnly<PlayerInputData>(),
 				ComponentType.Exclude<StopRotationData>());
 		}
@@ -66,17 +73,21 @@ namespace Crimson.Core.Systems
 			//		input.Look = direction.normalized;
 			//	});
 
-			Entities.WithAll<AimData>().ForEach(
-				(ref AimData aimData, Transform transform) =>
+			Entities.With(_aimQuery).ForEach(
+				(Transform transform, ref AimData aimData, ref PlayerInputData inputData) =>
 				{
 					var deadZoneRadius = .5f;
-					var aimDirection = (Vector3)aimData.LockedPosition - transform.position;
+					var aimPosition = (Vector3)aimData.RealPosition;
+					var aimDirection = aimPosition - transform.position;
 					if (aimDirection.magnitude < deadZoneRadius)
 					{
+						var moveDirection = new Vector3(inputData.Move.x, 0, inputData.Move.y);
+						moveDirection = Quaternion.AngleAxis(inputData.CompensateAngle, Vector3.up) * moveDirection;
+						transform.LookAt(transform.position + moveDirection);
 						return;
 					}
-					aimDirection.y = transform.position.y;
-					transform.LookAt(aimDirection);
+					aimPosition.y = transform.position.y;
+					transform.LookAt(aimPosition);
 				});
 		}
 	}

@@ -24330,7 +24330,7 @@ PrefabInstance:
         type: 3}
       propertyPath: SpawnData.copyComponentsFromSamples.Array.data[3]
       value: 
-      objectReference: {fileID: 4935957120434825583, guid: 5d04c4f8465b2fd4391e06f7ab861a53,
+      objectReference: {fileID: 357039506442272740, guid: 7bfd14efd677173449914f4c96e8bc57,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06738f6003c9a4f4abc6b26ed657547a, type: 3}
@@ -41083,6 +41083,75 @@ Transform:
   m_Father: {fileID: 1434606116}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1001 &1470827635
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5422980739872109986, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickupable-Weapon Rocket Launcher Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980739872109997, guid: ec32648059228e342b1ab69caa4df6b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec32648059228e342b1ab69caa4df6b1, type: 3}
 --- !u!1 &1549775128
 GameObject:
   m_ObjectHideFlags: 0
@@ -54446,5 +54515,17 @@ PrefabInstance:
       propertyPath: SpawnData.spawnerDisabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6273565221685378619, guid: 64ea12b20e896db44821def5e7d848e8,
+        type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[1]
+      value: 
+      objectReference: {fileID: 219696582898746723, guid: 5e5e0f5830fbfa54794eedd6740ba885,
+        type: 3}
+    - target: {fileID: 6273565221685378619, guid: 64ea12b20e896db44821def5e7d848e8,
+        type: 3}
+      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[2]
+      value: 
+      objectReference: {fileID: 51177463365656585, guid: 4db74cacc47acce4b80671abad008723,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64ea12b20e896db44821def5e7d848e8, type: 3}

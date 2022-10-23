@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: -7126598297091492315}
   - component: {fileID: 4824009499160723703}
   - component: {fileID: 8256079418673208729}
-  - component: {fileID: 1657955151746243340}
   - component: {fileID: 3756407391955540221}
   - component: {fileID: 7093220250429794912}
   - component: {fileID: -93229221922767859}
@@ -60,7 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIBehaviour: {fileID: 0}
   compensateCameraRotation: 1
   customBindings: []
   inputSource: 1
@@ -427,20 +425,6 @@ MonoBehaviour:
       type: 3}
     MoveInputRef: {fileID: -1680190386980627800, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
       type: 3}
---- !u!114 &1657955151746243340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854924350193893075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e0bff8d5234b4439717fbc190fb3bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 5
-  Offset: {x: 0, y: 1.5, z: 0}
 --- !u!114 &3756407391955540221
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Panel HP
-  ExecuteNow: 1
-  ExecuteOnAwake: 0
+  ExecuteNow: 0
+  ExecuteOnAwake: 1
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
@@ -69,7 +69,7 @@ MonoBehaviour:
     copyComponentsOfType: 0
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 1
-    destroyAbilityAfterSpawn: 1
+    destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
@@ -78,4 +78,4 @@ MonoBehaviour:
       UsePool: 0
   SpawnDelays:
     Delay: 0
-    StartupDelay: 1
+    StartupDelay: 0

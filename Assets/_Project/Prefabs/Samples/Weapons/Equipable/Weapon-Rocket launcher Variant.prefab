@@ -85,12 +85,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 558700366730362479}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7897805719530536146 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 558700366730362479}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1995909038479340772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +174,7 @@ MonoBehaviour:
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
@@ -212,6 +206,12 @@ MonoBehaviour:
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0
+--- !u!4 &7897805719530536146 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 558700366730362479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &777821298459778319
 PrefabInstance:
   m_ObjectHideFlags: 0

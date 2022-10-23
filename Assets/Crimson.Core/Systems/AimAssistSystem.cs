@@ -34,6 +34,7 @@ namespace Assets.Crimson.Core.Systems
 				(Entity entity, AbilityAimAssist ability, ref AimData aimData, ref PlayerInputData inputData) =>
 				{
 					var aimPosition = ability.AimPositionByInput(inputData);
+					aimData.RealPosition = aimPosition;
 					var minimalAimDistance = float.MaxValue;
 					var minimalSourceDistance = ability.AimRange;
 					var minimalAngle = 90f;

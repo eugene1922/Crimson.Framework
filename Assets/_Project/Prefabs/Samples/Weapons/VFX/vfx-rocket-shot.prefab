@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3634883157211129722}
   m_RootOrder: 0
@@ -79,6 +80,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3634497278198229206}
   - {fileID: 4760908037300168642}
@@ -147,6 +149,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     timeScale: 1
+  workTime: 0
   movementAnimationProperties:
     HasMovementAnimation: 0
     MovementAnimationName: 
@@ -172,6 +175,8 @@ MonoBehaviour:
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 5, y: 5, z: 0}
+    Cycled: 0
+    MemoryKoef: 0
 --- !u!114 &5265546632698648977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,23 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollider: {fileID: 3720313388265070554}
   collisionActions:
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 8503
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
-    - CollisionObjects
-    - Enemy
-    - DestructibleObject
-    velocityFilter:
-      Use: 0
-      Mode: 0
-      Velocity: 0
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
-    - {fileID: 8486107640918872433}
   - collisionLayerMask:
       serializedVersion: 2
       m_Bits: 8503
@@ -316,9 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 3
+  lifespan: 0.2
   startOnSpawn: 1
-  actionOnDestroy: {fileID: 8486107640918872433}
+  actionOnDestroy: {fileID: 0}
 --- !u!114 &157576923612502793
 MonoBehaviour:
   m_ObjectHideFlags: 0
