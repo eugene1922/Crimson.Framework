@@ -43,11 +43,18 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
-			SpawnFX(PreFX);
 			var target = AbilityTarget.Target.transform;
 			var direction = target.position - transform.position;
+			var ray = new Ray(transform.position, direction);
+			var results = new RaycastHit[1];
+			var positionThreshold = PositionThreshold;
+			if (Physics.RaycastNonAlloc(ray, results, direction.magnitude) > 0)
+			{
+				return;
+			}
 			var lookToTarget = Quaternion.LookRotation(direction);
 			transform.rotation = lookToTarget;
+			SpawnFX(PreFX);
 			var moveData = new MoveData()
 			{
 				EndPosition = target.position,
