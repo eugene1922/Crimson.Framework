@@ -23,7 +23,7 @@ namespace Assets.Crimson.Core.Systems
 				);
 			_visibleEnemy = GetEntityQuery(
 				ComponentType.ReadOnly<EnemyData>(),
-				//ComponentType.Exclude<InvisibleTag>(),
+				ComponentType.Exclude<InvisibleTag>(),
 				ComponentType.Exclude<DeadActorTag>()
 				);
 		}
