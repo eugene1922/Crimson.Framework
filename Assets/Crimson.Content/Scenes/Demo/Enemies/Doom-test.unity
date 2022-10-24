@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1832843, g: 0.22701189, b: 0.29523087, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &13535231
 Transform:
   m_ObjectHideFlags: 0
@@ -11964,7 +11964,7 @@ PrefabInstance:
     - target: {fileID: 6273565221685378618, guid: 64ea12b20e896db44821def5e7d848e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6273565221685378619, guid: 64ea12b20e896db44821def5e7d848e8,
         type: 3}
@@ -23319,7 +23319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &479834419
 Transform:
   m_ObjectHideFlags: 0
@@ -25538,7 +25538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &571954644
 Transform:
   m_ObjectHideFlags: 0
@@ -30024,7 +30024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &687468178
 Transform:
   m_ObjectHideFlags: 0
@@ -32275,7 +32275,7 @@ PrefabInstance:
     - target: {fileID: 6273565221685378618, guid: 64ea12b20e896db44821def5e7d848e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6273565221685378619, guid: 64ea12b20e896db44821def5e7d848e8,
         type: 3}
@@ -32370,7 +32370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &829724276
 Transform:
   m_ObjectHideFlags: 0
@@ -34255,7 +34255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &914799014
 Transform:
   m_ObjectHideFlags: 0
@@ -39703,7 +39703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1064979413
 Transform:
   m_ObjectHideFlags: 0
@@ -44647,7 +44647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1247882218
 Transform:
   m_ObjectHideFlags: 0
@@ -61894,7 +61894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1574901076
 Transform:
   m_ObjectHideFlags: 0
@@ -68408,7 +68408,7 @@ PrefabInstance:
     - target: {fileID: 684433559033171766, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 684433559033171767, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
@@ -68496,7 +68496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1828948486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69566,7 +69566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1962487508
 Transform:
   m_ObjectHideFlags: 0
@@ -74195,7 +74195,7 @@ PrefabInstance:
     - target: {fileID: 684433559033171766, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 684433559033171767, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
@@ -74331,7 +74331,7 @@ PrefabInstance:
     - target: {fileID: 684433559033171766, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 684433559033171767, guid: a9be4439403c3654a8ca4997a40b737f,
         type: 3}
@@ -74715,7 +74715,7 @@ PrefabInstance:
     - target: {fileID: 6273565221685378618, guid: 64ea12b20e896db44821def5e7d848e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6273565221685378619, guid: 64ea12b20e896db44821def5e7d848e8,
         type: 3}
