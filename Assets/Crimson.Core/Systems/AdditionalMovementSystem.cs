@@ -1,6 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,8 +33,8 @@ namespace Assets.Crimson.Core.Systems
 					var direction = (Vector3)moveData.EndPosition - transform.position;
 					var ray = new Ray(transform.position, direction);
 					var results = new RaycastHit[1];
-					var positionThreshold = math.max(moveData.PositionThreshold, .1f);
-					if (Physics.RaycastNonAlloc(ray, results) > 0
+					var positionThreshold = moveData.PositionThreshold;
+					if ((!moveData.IgnoreRaycast && Physics.RaycastNonAlloc(ray, results, direction.magnitude) > 0)
 					 || direction.magnitude <= positionThreshold)
 					{
 						EntityManager.RemoveComponent<MoveData>(entity);
@@ -49,12 +48,12 @@ namespace Assets.Crimson.Core.Systems
 				{
 					agent.enabled = false;
 					var direction = (Vector3)moveData.EndPosition - agent.transform.position;
-					var positionThreshold = math.max(moveData.PositionThreshold, .1f);
+					var positionThreshold = moveData.PositionThreshold;
 					var offsetVector = direction.normalized * -1 * positionThreshold;
 					direction += offsetVector;
 					var ray = new Ray(agent.transform.position, direction);
 					var results = new RaycastHit[1];
-					if (Physics.RaycastNonAlloc(ray, results, direction.magnitude) > 0
+					if ((!moveData.IgnoreRaycast && Physics.RaycastNonAlloc(ray, results, direction.magnitude) > 0)
 					 || direction.magnitude <= positionThreshold)
 					{
 						EntityManager.RemoveComponent<MoveData>(entity);

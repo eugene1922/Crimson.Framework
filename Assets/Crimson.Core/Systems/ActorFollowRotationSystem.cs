@@ -87,7 +87,8 @@ namespace Crimson.Core.Systems
 						return;
 					}
 					aimPosition.y = transform.position.y;
-					transform.LookAt(aimPosition);
+					aimDirection.y = transform.position.y;
+					transform.LookAt(transform.position + aimDirection.normalized);
 				});
 		}
 	}

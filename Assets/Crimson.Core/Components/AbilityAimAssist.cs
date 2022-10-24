@@ -27,18 +27,16 @@ namespace Assets.Crimson.Core.Components
 			_entity = entity;
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_entityManager.AddComponentData(_entity, new AimData());
-			_distanceFromCamera = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
-			_plane = new Plane(Vector3.up, _distanceFromCamera);
+			_plane = new Plane(Vector3.up, transform.position);
 		}
 
 		public Vector3 AimPositionByInput(PlayerInputData inputData)
 		{
 			var position = transform.position;
 			var lookLenght = math.length(inputData.Look);
-			Vector2 direction = Vector2.zero;
 			if (lookLenght > 0)
 			{
-				direction = inputData.Look;
+				var direction = inputData.Look;
 				if (!direction.Equals(float2.zero))
 				{
 					var vector = new Vector3(direction.x, 0, direction.y) * AimRange;
