@@ -23,7 +23,7 @@ namespace Assets.Crimson.Core.Systems
 				);
 			_visibleEnemy = GetEntityQuery(
 				ComponentType.ReadOnly<EnemyData>(),
-				ComponentType.Exclude<InvisibleTag>(),
+				//ComponentType.Exclude<InvisibleTag>(),
 				ComponentType.Exclude<DeadActorTag>()
 				);
 		}
@@ -37,7 +37,6 @@ namespace Assets.Crimson.Core.Systems
 					aimData.RealPosition = aimPosition;
 					var minimalAimDistance = float.MaxValue;
 					var minimalSourceDistance = ability.AimRange;
-					var minimalAngle = 90f;
 					var lockedPosition = aimPosition;
 					Entity target = Entity.Null;
 					Entities.With(_visibleEnemy).ForEach(
@@ -48,16 +47,12 @@ namespace Assets.Crimson.Core.Systems
 							{
 								var distanceToAim = math.distance(enemyPosition, aimPosition);
 								var sourceDistance = math.distance(enemyPosition, ability.transform.position);
-								var targetDirection = enemyPosition - ability.transform.position;
-								var angle = Vector3.Angle(targetDirection, aimPosition);
-								if (angle < minimalAngle
-									&& ability.LockRange > distanceToAim
+								if (ability.LockRange > distanceToAim
 									&& sourceDistance < minimalSourceDistance)
 								{
 									lockedPosition = enemyPosition;
 									minimalAimDistance = distanceToAim;
 									minimalSourceDistance = sourceDistance;
-									minimalAngle = angle;
 									target = actor.ActorEntity;
 								}
 							}
