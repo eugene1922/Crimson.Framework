@@ -225,6 +225,29 @@ namespace Crimson.Core.Systems
 					ability.AbilityTarget.Target = target;
 				});
 
+			Entities.WithAll<AbilityTargetDirectionMove>().ForEach(
+				(Actor source, AbilityTargetDirectionMove ability) =>
+				{
+					Actor target = null;
+					float distance = float.MaxValue;
+
+					Entities.With(_aliveActors).ForEach(
+						(Actor actor) =>
+						{
+							if (!ability.AbilityTarget.TagFilter.Filter((IActor)actor))
+							{
+								return;
+							}
+							var targetDistance = Vector3.Distance(source.transform.position, actor.transform.position);
+							if (targetDistance < distance)
+							{
+								target = actor;
+								distance = targetDistance;
+							}
+						});
+					ability.AbilityTarget.Target = target;
+				});
+
 			Entities.With(_followActorQuery).ForEach(
 				(Actor source, AbilityFollowActor ability) =>
 				{

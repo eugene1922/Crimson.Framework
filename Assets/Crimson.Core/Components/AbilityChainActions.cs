@@ -27,7 +27,6 @@ namespace Assets.Crimson.Core.Components
 		{
 			Actor = actor;
 			_abilities = Settings.Actions.Cast<IActorAbility>().Where(s => s != null).ToList();
-			ResetTimer();
 			StartTimer();
 			if (ExecuteOnStart)
 			{
@@ -37,7 +36,7 @@ namespace Assets.Crimson.Core.Components
 
 		public void Execute()
 		{
-			if (Settings.Actions.Count == 0)
+			if (_abilities.Count == 0)
 			{
 				return;
 			}

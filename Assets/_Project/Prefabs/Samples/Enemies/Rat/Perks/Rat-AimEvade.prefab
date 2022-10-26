@@ -53,4 +53,4 @@ MonoBehaviour:
   Distance: 4
   Duration: 0.1
   perkRelatedComponents: []
-  PositionThreshold: 1
+  PositionThreshold: 0

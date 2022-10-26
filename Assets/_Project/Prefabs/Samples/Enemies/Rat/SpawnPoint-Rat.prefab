@@ -87,6 +87,8 @@ MonoBehaviour:
     - {fileID: 1895190981981173716, guid: bb139385cdae5c14f921cf4300a7ba02, type: 3}
     - {fileID: 4978421317857125721, guid: c22de81f7c781eb4c93d0bc7c768f64c, type: 3}
     - {fileID: 7634552862115458412, guid: 889783c1d184fe44a9f5898591e89013, type: 3}
+    - {fileID: 8207249245278010865, guid: 6682e0dd26054ea40b88114fdce9eb73, type: 3}
+    - {fileID: 2718444085923925667, guid: b95d180ea3c1046479773dabbf99e0e4, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
