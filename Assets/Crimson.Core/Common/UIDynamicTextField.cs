@@ -6,47 +6,43 @@ using UnityEngine;
 
 namespace Crimson.Core.Common
 {
-    [HideMonoScript]
-    public class UIDynamicTextField : MonoBehaviour, IUIElement
-    {
-        public string fieldText;
+	[HideMonoScript]
+	public class UIDynamicTextField : MonoBehaviour, IUIElement
+	{
+		[ValueDropdown(nameof(UIAssociatedIds))] public string associatedFieldID = "";
+		public string fieldText;
+		private object _cachedFieldValue = new object();
+		private UIReceiver _receiver = null;
+		private TMP_Text _textMeshPro;
+		public string AssociatedID => associatedFieldID;
 
-        [ValueDropdown("UIAssociatedIds")] public string associatedFieldID = "";
+		public void Awake()
+		{
+			_textMeshPro = this.GetComponent<TMP_Text>();
+			if (_textMeshPro == null)
+				Debug.LogError("[UI Text Field] TextMeshProGUI Component is required !");
+		}
 
-        private TextMeshProUGUI _textMeshPro;
+		public void SetData(object input)
+		{
+			if (_textMeshPro == null) return;
 
-        private object _cachedFieldValue = new object();
-        private UIReceiver _receiver = null;
+			if (!input.IsNumericType() && !(input is string)) return;
 
-        public string AssociatedID => associatedFieldID;
+			if (_cachedFieldValue.Equals(input)) return;
 
-        public void Awake()
-        {
-            _textMeshPro = this.GetComponent<TextMeshProUGUI>();
-            if (_textMeshPro == null)
-                Debug.LogError("[UI Text Field] TextMeshProGUI Component is required !");
-        }
+			_textMeshPro.SetText($"{fieldText}{input}");
+			_cachedFieldValue = input;
+		}
 
-        public void SetData(object input)
-        {
-            if (_textMeshPro == null) return;
-
-            if (!input.IsNumericType() && !(input is string)) return;
-
-            if (_cachedFieldValue.Equals(input)) return;
-
-            _textMeshPro.SetText($"{fieldText}{input}");
-            _cachedFieldValue = input;
-        }
-
-        private List<string> UIAssociatedIds()
-        {
+		private List<string> UIAssociatedIds()
+		{
 #if UNITY_EDITOR
-            if (_receiver == null) _receiver = GetComponentInParent<UIReceiver>();
-            return _receiver == null ? null : _receiver.UIAssociatedIds;
+			if (_receiver == null) _receiver = GetComponentInParent<UIReceiver>();
+			return _receiver == null ? null : _receiver.UIAssociatedIds;
 #else
             return null;
 #endif
-        }
-    }
+		}
+	}
 }

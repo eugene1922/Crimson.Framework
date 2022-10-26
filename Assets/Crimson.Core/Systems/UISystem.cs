@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Components;
+using Assets.Crimson.Core.Components.Perks;
 using Assets.Crimson.Core.Components.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -60,6 +61,14 @@ namespace Crimson.Core.Systems
 						if (!slot.UIReceiverList.Items.Contains(uiReceiver))
 						{
 							slot.UIReceiverList.Items.Add(uiReceiver);
+						}
+					});
+
+					Entities.WithAll<PerkMantisDash>().ForEach((PerkMantisDash ability) =>
+					{
+						if (!ability.UIReceiverList.Items.Contains(uiReceiver))
+						{
+							ability.UIReceiverList.Items.Add(uiReceiver);
 						}
 					});
 

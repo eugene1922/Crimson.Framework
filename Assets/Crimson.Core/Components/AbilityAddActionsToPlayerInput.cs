@@ -14,7 +14,7 @@ namespace Crimson.Core.Components
             "Bind Abilities calls to Custom Inputs, indexes 0..9 represent keyboard keys of 0..9.\n" +
             "Further bindings are as set in User Input")]
         public CustomBinding customBinding;
-        public bool destroyAfterActions = true;
+        public bool destroyAfterAdd = true;
         public bool removeSameIndexBindings;
         
         public IActor Actor { get; set; }
@@ -53,7 +53,7 @@ namespace Crimson.Core.Components
             
             abilityPlayerInput.AddCustomBinding(customBinding); 
             
-            if (destroyAfterActions) Destroy(this);
+            if (destroyAfterAdd) Destroy(this);
         }
 
         public void Execute()

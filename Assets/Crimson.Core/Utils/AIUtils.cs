@@ -1,3 +1,4 @@
+using Assets.Crimson.Core.Components.Interfaces;
 using Crimson.Core.Components;
 using System.Collections.Generic;
 
@@ -9,13 +10,22 @@ namespace Crimson.Core.Utils
 		{
 			var possible = false;
 
-			foreach (var a in abilities)
+			for (var i = 0; i < abilities.Count; i++)
 			{
-				if (a is IEnableable enableable)
+				var ability = abilities[i];
+				var enableable = ability as IEnableable;
+				var blockable = ability as IBlockable;
+
+				if (blockable != null && blockable.IsBlocked)
+				{
+					possible |= !blockable.IsBlocked;
+				}
+				else if (enableable != null)
 				{
 					possible |= enableable.IsEnable;
 				}
-				else
+
+				if (blockable == null && enableable == null)
 				{
 					possible = true;
 				}
