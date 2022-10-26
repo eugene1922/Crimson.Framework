@@ -16,7 +16,12 @@ namespace Assets.Scripts
 		{
 			Actor = actor;
 			var behaviour = gameObject.GetComponent<BehaviorTree>();
+			if (behaviour == null)
+			{
+				behaviour = gameObject.AddComponent<BehaviorTree>();
+			}
 			behaviour.ExternalBehavior = _externalBehavior;
+			behaviour.Start();
 			Destroy(this);
 		}
 

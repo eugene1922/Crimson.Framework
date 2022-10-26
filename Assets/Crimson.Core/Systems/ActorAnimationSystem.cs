@@ -18,13 +18,12 @@ namespace Crimson.Core.Systems
 	public class ActorAnimationSystem : ComponentSystem
 	{
 		private EntityQuery _aimingAnimationQuery;
+		private EntityQuery _animatorProxyQuery;
 		private EntityQuery _damagedActorsQuery;
 		private EntityQuery _deadActorsQuery;
 		private EntityQuery _forceActorsQuery;
 		private EntityQuery _movementQuery;
 		private EntityQuery _projectileQuery;
-		private EntityQuery _animatorProxyQuery;
-
 		protected override void OnCreate()
 		{
 			_movementQuery = GetEntityQuery(
@@ -72,9 +71,7 @@ namespace Crimson.Core.Systems
 					var movementData = EntityManager.GetComponentData<ActorMovementData>(entity);
 					var move = math.normalizesafe(inputData.Move, float2.zero);
 					var moveVector = new Vector3(move.x, 0, move.y);
-					var angle = Camera.main.transform.eulerAngles.y;
-					angle += transform.eulerAngles.y;
-					angle %= 360;
+					var angle = inputData.CompensateAngle;
 					moveVector = Quaternion.AngleAxis(angle, Vector3.down) * moveVector;
 					move = new float2(moveVector.x, moveVector.z);
 					proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);

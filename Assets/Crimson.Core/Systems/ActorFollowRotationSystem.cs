@@ -56,6 +56,11 @@ namespace Crimson.Core.Systems
 			Entities.With(_lookQuery).ForEach(
 				(Transform transform, ref PlayerInputData input, ref FollowLookRotationData lookRotationTag) =>
 				{
+					if (Camera.main == null)
+					{
+						return;
+					}
+
 					var mouse = (Vector2)input.Mouse;
 					var position = (Vector2)Camera.main.WorldToScreenPoint(transform.position + (Vector3)lookRotationTag.Offset);
 					var direction = mouse - position;
