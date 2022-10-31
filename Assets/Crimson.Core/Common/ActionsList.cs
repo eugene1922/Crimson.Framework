@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.Common
 {
-	[Serializable, HideLabel]
+	[HideLabel]
 	public class ActionsList
 	{
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]

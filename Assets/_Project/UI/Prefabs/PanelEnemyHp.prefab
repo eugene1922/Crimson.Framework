@@ -1115,7 +1115,6 @@ GameObject:
   - component: {fileID: 8797778542242257235}
   - component: {fileID: 5731460029058703681}
   - component: {fileID: 1170653856627437001}
-  - component: {fileID: 5156765614318171778}
   m_Layer: 0
   m_Name: PanelEnemyHp
   m_TagString: Untagged
@@ -1220,16 +1219,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RelatedCanvasRect: {fileID: 6271632468975401459}
   Offset: {x: 0, y: 2.5, z: 0}
---- !u!114 &5156765614318171778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8994825095257699652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89e365a82a03e864f82854ff245d6160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 2308828671140214915}

@@ -24,6 +24,8 @@ namespace Crimson.Core.Systems
 		private EntityQuery _forceActorsQuery;
 		private EntityQuery _movementQuery;
 		private EntityQuery _projectileQuery;
+		private EntityQuery _ressurectQuery;
+
 		protected override void OnCreate()
 		{
 			_movementQuery = GetEntityQuery(
@@ -36,9 +38,14 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<Animator>());
 
 			_deadActorsQuery = GetEntityQuery(
-				ComponentType.ReadOnly<DeadActorTag>(),
+				ComponentType.ReadOnly<DeathAnimationTag>(),
 				ComponentType.ReadWrite<ActorDeathAnimData>(),
 				ComponentType.ReadOnly<Animator>());
+
+			_ressurectQuery = GetEntityQuery(
+				ComponentType.ReadWrite<ActorDeathAnimData>(),
+				ComponentType.ReadOnly<Animator>(),
+				ComponentType.ReadOnly<RessurectAnimationTag>());
 
 			_forceActorsQuery = GetEntityQuery(
 				ComponentType.ReadOnly<AdditionalForceActorTag>(),
@@ -228,6 +235,7 @@ namespace Crimson.Core.Systems
 			Entities.With(_deadActorsQuery).ForEach(
 				(Entity entity, Animator animator, ref ActorDeathAnimData animation) =>
 				{
+					dstManager.RemoveComponent<DeathAnimationTag>(entity);
 					if (animator == null)
 					{
 						Debug.LogError("[DEATH ANIMATION SYSTEM] No Animator found!");
@@ -248,7 +256,28 @@ namespace Crimson.Core.Systems
 					{
 						animator.SetBool(animation.AnimHash, true);
 					}
-					dstManager.RemoveComponent<ActorDeathAnimData>(entity);
+				});
+
+			Entities.With(_ressurectQuery).ForEach(
+				(Entity entity, Animator animator, ref ActorDeathAnimData animation, ref RessurectAnimationTag tag) =>
+				{
+					dstManager.RemoveComponent<RessurectAnimationTag>(entity);
+					if (animator == null)
+					{
+						Debug.LogError("[DEATH ANIMATION SYSTEM] No Animator found!");
+						return;
+					}
+
+					if (animation.AnimHash == 0)
+					{
+						Debug.LogError("[DEATH ANIMATION SYSTEM] Some hash(es) not found, check your Actor Death Component Settings!");
+						return;
+					}
+
+					if (animator.runtimeAnimatorController != null)
+					{
+						animator.SetBool(animation.AnimHash, false);
+					}
 				});
 
 			Entities.With(_forceActorsQuery).ForEach(
