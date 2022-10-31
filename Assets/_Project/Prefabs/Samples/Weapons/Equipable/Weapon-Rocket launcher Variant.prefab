@@ -174,7 +174,7 @@ MonoBehaviour:
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
@@ -183,8 +183,8 @@ MonoBehaviour:
       MaxSize: 10
       UsePool: 1
   projectileStartupDelay: 0
-  cooldownTime: 0.3
-  projectileClipCapacity: 10
+  cooldownTime: 0.2
+  projectileClipCapacity: 50
   clipReloadTime: 1
   forceBursts: 0
   burstShotCountRange: {x: 1, y: 1}

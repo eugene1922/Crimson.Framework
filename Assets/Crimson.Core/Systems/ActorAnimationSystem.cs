@@ -56,6 +56,8 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<Animator>());
 
 			_animatorProxyQuery = GetEntityQuery(
+				ComponentType.ReadOnly<ActorMovementData>(),
+				ComponentType.ReadOnly<PlayerInputData>(),
 				ComponentType.ReadOnly<AnimatorProxy>(),
 				ComponentType.ReadOnly<Animator>());
 		}
@@ -65,14 +67,17 @@ namespace Crimson.Core.Systems
 			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
 			Entities.With(_animatorProxyQuery).ForEach(
-				(Entity entity, Transform transform, AnimatorProxy proxy, Animator animator) =>
+				(Entity entity,
+				AnimatorProxy proxy,
+				ref PlayerInputData inputData,
+				ref ActorMovementData movementData) =>
 				{
-					var inputData = EntityManager.GetComponentData<PlayerInputData>(entity);
-					var movementData = EntityManager.GetComponentData<ActorMovementData>(entity);
+					var transform = proxy.transform;
+					var animator = proxy.TargetAnimator;
 					var move = math.normalizesafe(inputData.Move, float2.zero);
 					var moveVector = new Vector3(move.x, 0, move.y);
-					var angle = inputData.CompensateAngle;
-					moveVector = Quaternion.AngleAxis(angle, Vector3.down) * moveVector;
+					moveVector = Quaternion.AngleAxis(inputData.CompensateAngle, transform.up) * moveVector;
+					moveVector = Quaternion.AngleAxis(transform.rotation.y, transform.up) * moveVector;
 					move = new float2(moveVector.x, moveVector.z);
 					proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
 					proxy.LookAtDirection.SetValue(animator, new float2(1, 0));

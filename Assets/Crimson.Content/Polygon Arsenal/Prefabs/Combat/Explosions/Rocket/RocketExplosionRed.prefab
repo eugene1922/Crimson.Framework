@@ -4914,7 +4914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 2
+  lifespan: 0.2
   startOnSpawn: 1
   actionOnDestroy: {fileID: 0}
 --- !u!1 &1150097387688674

@@ -164,7 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.GarageWhale.Crimson
-    Standalone: com.GarageWhale.Crimson
+    Standalone: com.Garage-Whale.Crimson
     iPhone: com.azurgames.cherry
   buildNumber:
     Standalone: 0

@@ -602,7 +602,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &-8789085103849931919
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -686,67 +686,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2ea20dfba506d49bea2e3e3bd6c072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealSpeed:
-    NameLength: fRealSpeedMagnitude
-    NameX: fRealSpeedForward
-    NameY: fRealSpeedTangent
-  LookAtDirection:
-    NameX: fLookAtDirectionForward
-    NameY: fLookAtDirectionTangent
-  CurrentWeapon:
-    FloatName: fCurrentWeaponCategory
-    IntName: CurrentWeaponCategory
-  PreviousWeapon:
-    FloatName: fPreviousWeaponCategory
-    IntName: PreviousWeaponCategory
-  WeaponChange:
-    Name: tWeaponChangeStart
-  Crouch:
-    Name: isCrouch
   Attacking:
     Name: isAttacking
   AttackType:
     FloatName: fAttackType
     IntName: AttackType
+  Crouch:
+    Name: isCrouch
+  CurrentWeapon:
+    FloatName: fCurrentWeaponCategory
+    IntName: CurrentWeaponCategory
+  Death:
+    Name: tDeath
+  Dodge:
+    Name: isDodge
+  Falling:
+    Name: isFalling
   Hit:
     Name: isHit
   HitDirection:
     NameLength: fHitStrength
     NameX: fHitDirectionForward
     NameY: fHitDirectionTangent
-  Reloading:
-    Name: isReloading
-  Dodge:
-    Name: isDodge
-  Falling:
-    Name: isFalling
+  IdleFun:
+    Name: tIdleFun
+  IdleFundID:
+    FloatName: fIdleFunId
+    IntName: IdleFunID
   Interact:
     Name: isInteract
   InteractType:
     FloatName: fInteractionType
     IntName: InteractionType
-  Death:
-    Name: tDeath
   IsDead:
     Name: isDead
-  KnockbackStart:
-    Name: tKnockbackStart
+  ItemUse:
+    Name: tItemUse
+  ItemUseID:
+    FloatName: fItemID
+    IntName: itemID
   KnockbackFly:
     Name: isKnockbackFly
   KnockbackGround:
     Name: isKnockbackGround
   KnockbackStandUp:
     Name: tKnockbackStandUp
-  IdleFun:
-    Name: tIdleFun
-  IdleFundID:
-    FloatName: fIdleFunId
-    IntName: IdleFunID
-  ItemUse:
-    Name: tItemUse
-  ItemUseID:
-    FloatName: fItemID
-    IntName: itemID
+  KnockbackStart:
+    Name: tKnockbackStart
+  LookAtDirection:
+    NameX: fLookAtDirectionForward
+    NameY: fLookAtDirectionTangent
+  PreviousWeapon:
+    FloatName: fPreviousWeaponCategory
+    IntName: PreviousWeaponCategory
+  RealSpeed:
+    NameLength: fRealSpeedMagnitude
+    NameX: fRealSpeedForward
+    NameY: fRealSpeedTangent
+  Reloading:
+    Name: isReloading
+  TargetAnimator: {fileID: 0}
+  WeaponChange:
+    Name: tWeaponChangeStart
 --- !u!1 &1165874820660524
 GameObject:
   m_ObjectHideFlags: 0
