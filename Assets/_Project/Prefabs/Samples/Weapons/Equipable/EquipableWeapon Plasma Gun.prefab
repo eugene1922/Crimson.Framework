@@ -216,7 +216,7 @@ MonoBehaviour:
     spawnPointTag: WeaponMountPoint
     useChildrenObjects: 0
     rotationOfSpawns: 3
-    parentOfSpawns: 1
+    parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: WeaponPoint
     chooseParentStrategy: 0
