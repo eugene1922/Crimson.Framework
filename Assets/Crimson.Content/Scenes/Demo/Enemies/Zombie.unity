@@ -2212,23 +2212,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6191749295954689913, guid: 4dedd901fdc16234f8d3cd26b049f454,
         type: 3}
-      propertyPath: ExecuteOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6191749295954689913, guid: 4dedd901fdc16234f8d3cd26b049f454,
-        type: 3}
       propertyPath: SpawnData.spawnPosition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6191749295954689913, guid: 4dedd901fdc16234f8d3cd26b049f454,
         type: 3}
-      propertyPath: SpawnData.fillSpawnPoints
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6191749295954689913, guid: 4dedd901fdc16234f8d3cd26b049f454,
-        type: 3}
-      propertyPath: SpawnData._spawnPoints.Array.size
-      value: 6
+      propertyPath: SpawnData.parentOfSpawns
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6191749295954689913, guid: 4dedd901fdc16234f8d3cd26b049f454,
         type: 3}
