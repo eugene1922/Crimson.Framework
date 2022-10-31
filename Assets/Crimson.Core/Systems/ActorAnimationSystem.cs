@@ -18,13 +18,12 @@ namespace Crimson.Core.Systems
 	public class ActorAnimationSystem : ComponentSystem
 	{
 		private EntityQuery _aimingAnimationQuery;
+		private EntityQuery _animatorProxyQuery;
 		private EntityQuery _damagedActorsQuery;
 		private EntityQuery _deadActorsQuery;
 		private EntityQuery _forceActorsQuery;
 		private EntityQuery _movementQuery;
 		private EntityQuery _projectileQuery;
-		private EntityQuery _animatorProxyQuery;
-
 		protected override void OnCreate()
 		{
 			_movementQuery = GetEntityQuery(
