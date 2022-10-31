@@ -125,10 +125,10 @@ MonoBehaviour:
   forwardVector: {x: 0, y: 0, z: 0}
   compensateSpawnerRotation: 1
   OffsetDirection: {x: 0, y: 0, z: 0}
-  _useVariance: 1
+  _useVariance: 0
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
-    RotationOffset: {x: 5, y: 5, z: 0}
+    RotationOffset: {x: 1, y: 1, z: 0}
     Cycled: 0
     MemoryKoef: 0
 --- !u!114 &4196610924736697958
