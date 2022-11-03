@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5361989116664018087}
   - component: {fileID: 6585889142924801}
   - component: {fileID: 4414492491990384905}
-  - component: {fileID: -5330652662536823110}
   - component: {fileID: 5835128684462789782}
   m_Layer: 0
   m_Name: Sample-Shooter-Range
@@ -51,7 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compensateCameraRotation: 1
-  customBindings: []
+  customBindings:
+  - index: 2
+    actions: []
+  - index: 1
+    actions: []
   inputSource: 3
   minMoveInputMagnitude: 0
 --- !u!114 &1741994161196160966
@@ -197,19 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1153b6c467b0b4da5b9fcebff3f75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _externalBehavior: {fileID: 11400000, guid: ceaac3f56a67f4c4482a56d4b05aef5c, type: 2}
---- !u!114 &-5330652662536823110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219696582898746723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b7a59c1912928f4699ecb4fe43eaa2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _externalBehavior: {fileID: 11400000, guid: 24d35469afcbb9e4f9ca4d70e976c4c1, type: 2}
 --- !u!114 &5835128684462789782
 MonoBehaviour:
   m_ObjectHideFlags: 0
