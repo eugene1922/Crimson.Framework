@@ -10,7 +10,7 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Actions.GarageWhale
 	[TaskCategory("GarageWhale")]
 	public class RandomDirectionMove : NavMeshMovement
 	{
-		public float Distance = 1;
+		public SharedFloat Distance = 1;
 		public Color GizmosColor = Color.green;
 		public SharedVector2 Range;
 		public SharedGameObject Target;
@@ -22,7 +22,7 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Actions.GarageWhale
 		public override void OnDrawGizmos()
 		{
 			Gizmos.color = GizmosColor;
-			var positions = CalculatePositionsOnCircle(transform.position, Distance, _maxPoints);
+			var positions = CalculatePositionsOnCircle(transform.position, Distance.Value, _maxPoints);
 			for (var i = 0; i < positions.Length; i++)
 			{
 				var position = positions[i];
@@ -39,7 +39,7 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Actions.GarageWhale
 		// Return running if the agent hasn't reached the destination yet
 		public override TaskStatus OnUpdate()
 		{
-			if (Distance == 0)
+			if (Distance.Value == 0)
 			{
 				return TaskStatus.Inactive;
 			}
@@ -47,7 +47,7 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Actions.GarageWhale
 			if (!_hasTarget)
 			{
 				_hasTarget = true;
-				_target = GetRandomLocation(Distance, _maxPoints);
+				_target = GetRandomLocation(Distance.Value, _maxPoints);
 				SetDestination(_target);
 			}
 
