@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2618805644847596440}
   - component: {fileID: 2618805644847596443}
   - component: {fileID: 2618805644847596442}
-  - component: {fileID: 2618805644847596421}
   - component: {fileID: 2618805644847596441}
   - component: {fileID: 4688317270686566197}
   m_Layer: 0
@@ -67,30 +66,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Use: 1
-  Duration: 6
+  Duration: 3
   actions:
   - {fileID: 4688317270686566197}
-  - {fileID: 2618805644847596421}
---- !u!114 &2618805644847596421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618805644847596420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteOnStart: 0
-  Settings:
-    Actions:
-    - {fileID: 2618805644847596441}
-    Delay: 0.5
-    LoopCount: 3
-    StartupDelay: 2
+  - {fileID: 2618805644847596441}
 --- !u!114 &2618805644847596441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,10 +89,10 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 1541125407894622608, guid: c27f017dc4c1ad6499e40e1269cbc2bf, type: 3}
-    spawnPosition: 0
+    spawnPosition: 2
     spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
+    fillSpawnPoints: 2
+    x: 5
     skipBusySpawnPoints: 0
     spawnPointsFrom: 1
     _spawnPoints: []
@@ -136,8 +115,8 @@ MonoBehaviour:
       MaxSize: 0
       UsePool: 0
   SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
+    Delay: 0.1
+    StartupDelay: 1.5
 --- !u!114 &4688317270686566197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,8 +135,8 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 4547291018049833434, guid: a26e23f9104153a4980c945a329de316, type: 3}
-    spawnPosition: 0
+    - {fileID: 4547291018049833434, guid: 16883def9b2a0ab4789deddf02c85d4a, type: 3}
+    spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
