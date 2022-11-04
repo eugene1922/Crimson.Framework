@@ -1,5 +1,4 @@
 using Crimson.Core.Components;
-using Crimson.Core.Utils;
 using Crimson.Core.Utils.LowLevel;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -24,8 +23,8 @@ namespace Crimson.Core.Systems
 			Entities.With(_movementQuery).ForEach(
 				(ref PlayerInputData input, ref ActorMovementData movement) =>
 				{
-					var inputVector = MathUtils.RotateVector(input.Move, 0 - input.CompensateAngle);
-					var tempInput = inputVector;
+					var inputVector = input.Move;//MathUtils.RotateVector(input.Move, 0 - input.CompensateAngle);
+					var tempInput = input.Move;
 					if (input.MinMagnitude == 0f)
 					{
 						movement.Input = new float3(inputVector.x, 0f, inputVector.y);

@@ -82,9 +82,9 @@ namespace Crimson.Core.Systems
 					var transform = proxy.transform;
 					var animator = proxy.TargetAnimator;
 					var move = math.normalizesafe(inputData.Move, float2.zero);
-					var moveVector = new Vector3(move.x, 0, move.y);
-					moveVector = Quaternion.AngleAxis(inputData.CompensateAngle, transform.up) * moveVector;
-					moveVector = Quaternion.AngleAxis(transform.rotation.y, transform.up) * moveVector;
+					var moveVector = new Vector3(move.x, 0, -move.y);
+					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, transform.up);
+					moveVector = Quaternion.AngleAxis(-angle, Vector3.up) * moveVector;
 					move = new float2(moveVector.x, moveVector.z);
 					proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
 					proxy.LookAtDirection.SetValue(animator, new float2(1, 0));
