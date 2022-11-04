@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 5361989116664018087}
   - component: {fileID: 6585889142924801}
   - component: {fileID: 2566817678050206234}
-  - component: {fileID: 1989436583810379950}
   - component: {fileID: 4414492491990384905}
-  - component: {fileID: -5330652662536823110}
   - component: {fileID: 5835128684462789782}
   m_Layer: 0
   m_Name: Sample-Rat
@@ -53,13 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compensateCameraRotation: 1
-  customBindings:
-  - index: 0
-    actions:
-    - {fileID: 0}
-  - index: 1
-    actions:
-    - {fileID: 0}
+  customBindings: []
   inputSource: 3
   minMoveInputMagnitude: 0
 --- !u!114 &1741994161196160966
@@ -110,14 +102,10 @@ MonoBehaviour:
   actorDeathAnimProperties:
     HasActorDeathAnimation: 1
     ActorDeathAnimationName: Dead
-  TakeDamageAnimation:
-    AnimationName: 
-    HasAnimation: 0
   actorToUI: 0
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  NeedCleanup: 1
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
@@ -154,6 +142,11 @@ MonoBehaviour:
     - MaxHealth
     - LevelUpRequiredExperience
   levelUpAction: {fileID: 0}
+  NeedCleanup: 1
+  DeathAbilities: []
+  TakeDamageAnimation:
+    AnimationName: 
+    HasAnimation: 0
   targetMarkActorComponentName: Aim Enemy Mark
   UIChannelID: 0
 --- !u!114 &6585889142924801
@@ -239,46 +232,6 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
---- !u!114 &1989436583810379950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219696582898746723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 0
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: 75c060b184bab3a48a8405ddb08e2a98, type: 2}
-  mBehaviorSource:
-    behaviorName: Behavior
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(341,-23)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(1,117)"},"ID":1,"Name":"Idle","Instant":true},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true}]}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects: []
-        byteData: 
-        byteDataArray: 
-      Version: 1.6.8
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
 --- !u!114 &4414492491990384905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,18 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _externalBehavior: {fileID: 11400000, guid: 0440d16b12a75084dbe4265579623ab3, type: 2}
---- !u!114 &-5330652662536823110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219696582898746723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b7a59c1912928f4699ecb4fe43eaa2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5835128684462789782
 MonoBehaviour:
   m_ObjectHideFlags: 0
