@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Use: 1
-  Duration: 3
+  Duration: 1.5
   actions:
   - {fileID: 8373134546618953108}
 --- !u!114 &8373134546618953108
