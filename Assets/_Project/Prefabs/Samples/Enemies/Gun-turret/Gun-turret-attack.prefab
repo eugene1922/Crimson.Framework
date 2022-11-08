@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Use: 1
-  Duration: 3
+  Duration: 2
   actions:
   - {fileID: 4688317270686566197}
   - {fileID: 2618805644847596441}
@@ -116,7 +116,7 @@ MonoBehaviour:
       UsePool: 0
   SpawnDelays:
     Delay: 0.1
-    StartupDelay: 1.5
+    StartupDelay: 0.8
 --- !u!114 &4688317270686566197
 MonoBehaviour:
   m_ObjectHideFlags: 0
