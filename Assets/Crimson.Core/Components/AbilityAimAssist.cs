@@ -14,7 +14,6 @@ namespace Assets.Crimson.Core.Components
 
 		public float LockRange = 5;
 
-		private Vector3 _distanceFromCamera;
 		private Entity _entity;
 		private EntityManager _entityManager;
 		private Vector3 _mousePositionOnPlane;

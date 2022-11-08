@@ -1,11 +1,12 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Common;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.Targets
 {
-	public class AbilityRotateToEnemySpawner : MonoBehaviour, IActorAbility
+	public class AbilityRotateToAimSpawner : MonoBehaviour, IActorAbility
 	{
 		public bool ExecuteOnAwake;
 
@@ -24,15 +25,25 @@ namespace Assets.Crimson.Core.Components.Targets
 
 		public void Execute()
 		{
-			if (!_entityManager.HasComponent<EnemyTargetData>(Actor.Spawner.ActorEntity))
+			var target = Actor;
+			while (target != null)
 			{
-				return;
+				target = TryLookAtAim(target) ? null : target.Spawner;
 			}
-			var enemy = _entityManager.GetComponentData<EnemyTargetData>(Actor.Spawner.ActorEntity);
+		}
+
+		private bool TryLookAtAim(IActor source)
+		{
+			if (!_entityManager.HasComponent<AimData>(source.ActorEntity))
+			{
+				return false;
+			}
+			var enemy = _entityManager.GetComponentData<EnemyTargetData>(source.ActorEntity);
 			if (enemy.Entity != Entity.Null)
 			{
 				transform.LookAt(enemy.Position);
 			}
+			return true;
 		}
 	}
 }
