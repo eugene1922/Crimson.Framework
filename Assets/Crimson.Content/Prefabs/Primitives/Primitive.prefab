@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c809a49f47ed5e458c6c55bd792d6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnableOnAwake: 1
   OnChangeState:
     m_PersistentCalls:
       m_Calls:
