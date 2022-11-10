@@ -28,5 +28,10 @@ namespace Assets.Scripts
 		public void Execute()
 		{
 		}
+
+		private void OnDrawGizmos()
+		{
+			
+		}
 	}
 }

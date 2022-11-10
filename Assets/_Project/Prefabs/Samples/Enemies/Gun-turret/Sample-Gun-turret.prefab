@@ -49,7 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compensateCameraRotation: 1
-  customBindings: []
+  customBindings:
+  - index: 0
+    actions:
+    - {fileID: 0}
   inputSource: 3
   minMoveInputMagnitude: 0
 --- !u!114 &774899593392371014
@@ -194,4 +197,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1153b6c467b0b4da5b9fcebff3f75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _externalBehavior: {fileID: 11400000, guid: 6ca035847af76c94ab896710eba088f4, type: 2}
+  _externalBehavior: {fileID: 11400000, guid: 5e70b2c84ee7ecd479813ef42691fb5e, type: 2}

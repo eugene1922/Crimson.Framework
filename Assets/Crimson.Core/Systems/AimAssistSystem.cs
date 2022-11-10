@@ -1,6 +1,7 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Components;
 using Assets.Crimson.Core.Components.Tags;
+using Assets.Crimson.Core.Components.Targets;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Unity.Entities;
@@ -37,8 +38,10 @@ namespace Assets.Crimson.Core.Systems
 					aimData.RealPosition = aimPosition;
 					var minimalAimDistance = float.MaxValue;
 					var minimalSourceDistance = ability.AimRange;
-					var lockedPosition = aimPosition;
-					Entity target = Entity.Null;
+					var targetData = new EnemyTargetData
+					{
+						Position = aimPosition
+					};
 					Entities.With(_visibleEnemy).ForEach(
 						(Actor actor, ref EnemyData enemyData) =>
 						{
@@ -50,15 +53,24 @@ namespace Assets.Crimson.Core.Systems
 								if (ability.LockRange > distanceToAim
 									&& sourceDistance < minimalSourceDistance)
 								{
-									lockedPosition = enemyPosition;
+									targetData.Position = enemyPosition;
+									targetData.Rotation = actor.transform.rotation;
 									minimalAimDistance = distanceToAim;
 									minimalSourceDistance = sourceDistance;
-									target = actor.ActorEntity;
+									targetData.Entity = actor.ActorEntity;
 								}
 							}
 						});
-					aimData.Target = target;
-					aimData.LockedPosition = lockedPosition;
+					aimData.Target = targetData.Entity;
+					if (EntityManager.HasComponent<EnemyTargetData>(entity))
+					{
+						EntityManager.SetComponentData(entity, targetData);
+					}
+					else
+					{
+						EntityManager.AddComponentData(entity, targetData);
+					}
+					aimData.LockedPosition = targetData.Position;
 					EntityManager.SetComponentData(entity, aimData);
 				});
 		}

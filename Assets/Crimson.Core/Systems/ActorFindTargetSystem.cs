@@ -1,4 +1,5 @@
 using Assets.Crimson.Core.Components;
+using Assets.Crimson.Core.Components.Targets;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Components.AbilityReactive;
@@ -15,10 +16,11 @@ namespace Crimson.Core.Systems
 {
 	public class ActorFindTargetSystem : ComponentSystem
 	{
+		private EntityQuery _aliveActors;
+		private EntityQuery _enemyTargetQuery;
+		private EntityQuery _followActorQuery;
 		private EntityQuery _queryFollowMovement, _queryFollowRotation, _queryAutoAim, _newAutoAimQuery;
 		private EntityQuery _targetDashQuery;
-		private EntityQuery _followActorQuery;
-		private EntityQuery _aliveActors;
 
 		protected override void OnCreate()
 		{
@@ -57,10 +59,45 @@ namespace Crimson.Core.Systems
 			_aliveActors = GetEntityQuery(
 				ComponentType.ReadOnly<Actor>(),
 				ComponentType.Exclude<DeadActorTag>());
+
+			_enemyTargetQuery = GetEntityQuery(
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.ReadWrite<EnemyTargetData>(),
+				ComponentType.ReadOnly<FindEnemyTargetTag>(),
+				ComponentType.Exclude<DeadActorTag>());
 		}
 
 		protected override void OnUpdate()
 		{
+			Entities.With(_enemyTargetQuery).ForEach(
+				(Entity entity, ref EnemyTargetData targetData, Actor actor, AbilityEnemyTarget ability) =>
+				{
+					var properties = ability.FindTargetProperties;
+
+					var targets = GetTargetActors(actor, properties.targetType,
+						properties.actorWithComponentName, properties.targetTag);
+
+					if (properties.ignoreSpawner && targets.Contains(actor.Spawner))
+					{
+						targets.Remove(actor.Spawner);
+					}
+
+					var target = FindActorsUtils.ChooseActor(actor.GameObject.transform, targets, properties.strategy);
+					if (target != null)
+					{
+						targetData.Entity = target.ActorEntity;
+						var targetTransform = target.GameObject.transform;
+						targetData.Position = targetTransform.position;
+						targetData.Rotation = targetTransform.rotation;
+					}
+					else
+					{
+						targetData.Entity = Entity.Null;
+						targetData.Position = Vector3.zero;
+						targetData.Rotation = quaternion.identity;
+					}
+				});
+
 			Entities.With(_queryFollowMovement).ForEach(
 				(Entity entity, AbilityFollowMovement follow, ref ActorFollowMovementData followData) =>
 				{
@@ -270,6 +307,61 @@ namespace Crimson.Core.Systems
 						});
 					ability.AbilityTarget.Target = target;
 				});
+		}
+
+		private List<IActor> GetTargetActors(IActor source, TargetType followTarget, string name, string tag)
+		{
+			var targets = new List<IActor>();
+
+			switch (followTarget)
+			{
+				case TargetType.ComponentName:
+					Entities.With(_aliveActors).ForEach(
+						(Entity entity, Actor actor, Transform obj) =>
+						{
+							if (obj == null)
+							{
+								return;
+							}
+							targets.AddRange(from component in obj.gameObject.GetComponents<IHasComponentName>()
+											 where component.ComponentName.Equals(name, StringComparison.Ordinal)
+											 select actor);
+						}
+					);
+					break;
+
+				case TargetType.ChooseByTag:
+					Entities.With(_aliveActors).ForEach(
+						(Entity entity, Actor actor, Transform obj) =>
+						{
+							if (!obj.CompareTag(tag))
+							{
+								return;
+							}
+
+							targets.Add(actor);
+						}
+					);
+
+					break;
+
+				case TargetType.Spawner:
+					var t = source?.Spawner;
+					if (t != null && t.GameObject != null)
+					{
+						targets.Add(source);
+					}
+
+					break;
+
+				case TargetType.None:
+					break;
+
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+
+			return targets;
 		}
 
 		private List<Transform> GetTargetList(IActor source, TargetType followTarget, string name, string tag)

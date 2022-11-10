@@ -16,7 +16,7 @@ namespace Assets.Crimson.Core.Systems
 				{
 					var aimData = EntityManager.GetComponentData<AimData>(ability.Owner.ActorEntity);
 					var ownerPosition = Camera.main.WorldToScreenPoint(ability.Owner.transform.position);
-					var position = Camera.main.WorldToScreenPoint(aimData.LockedPosition);
+					var position = Camera.main.WorldToScreenPoint(aimData.RealPosition);
 					var hasPostion = (ownerPosition - position).magnitude > ability.HideRadius;
 					ability.CanvasGroup.alpha = hasPostion ? 1 : 0;
 					if (hasPostion)
@@ -31,9 +31,9 @@ namespace Assets.Crimson.Core.Systems
 				var data = EntityManager.GetComponentData<PlayerInputData>(ability.Owner.ActorEntity);
 				var ownerPosition = (Vector2)Camera.main.WorldToScreenPoint(ability.Owner.transform.position);
 				var position = (Vector2)data.Mouse;
-				//var hasPostion = (ownerPosition - position).magnitude > HideRadius;
-				//CanvasGroup.alpha = hasPostion ? 1 : 0;
-				//if (hasPostion)
+				var hasPostion = (ownerPosition - position).magnitude > ability.HideRadius;
+				ability.CanvasGroup.alpha = hasPostion ? 1 : 0;
+				if (hasPostion)
 				{
 					ability.TargetRect.anchoredPosition = position;
 				}
