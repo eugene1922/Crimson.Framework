@@ -51,6 +51,8 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Actions.GarageWhale
 				SetDestination(_target);
 			}
 
+			transform.LookAt(Target.Value.transform);
+
 			if (HasArrived())
 			{
 				_hasTarget = false;
