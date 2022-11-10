@@ -92,6 +92,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1f910f3a8685248ac31ab69b2a7173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimRange: 10
+  AimRange: 20
   LockRange: 3
-  MousePivot: {x: 0.5, y: 0.5}

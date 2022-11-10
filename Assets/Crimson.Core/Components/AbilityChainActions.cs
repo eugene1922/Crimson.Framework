@@ -21,11 +21,20 @@ namespace Assets.Crimson.Core.Components
 		private bool _isInfiniteLoop;
 		private int _loopsCount;
 		public IActor Actor { get; set; }
-		public string ComponentName { get; set; }
+
+		public string ComponentName
+		{
+			get => componentName;
+			set => componentName = value;
+		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			if (componentName == null)
+			{
+				Debug.Log("Name is null");
+			}
 			_abilities = Settings.Actions.Cast<IActorAbility>().Where(s => s != null).ToList();
 			StartTimer();
 			if (ExecuteOnStart)
