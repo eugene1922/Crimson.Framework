@@ -168,7 +168,7 @@ MonoBehaviour:
     useTagFilter: 1
     filterMode: 0
     filterTags:
-    - Enemy
+    - Player
     - DestructibleObject
     - CollisionObjects
     velocityFilter:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 0.3
   startOnSpawn: 1
-  actionOnDestroy: {fileID: 215532471028146452}
+  actionOnDestroy: {fileID: 0}
 --- !u!114 &-6340515386526941010
 MonoBehaviour:
   m_ObjectHideFlags: 0
