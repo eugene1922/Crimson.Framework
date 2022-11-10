@@ -18,6 +18,10 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Conditionals.GarageWhal
 
 		public override TaskStatus OnUpdate()
 		{
+			if (Target == null || Target.Value == null)
+			{
+				return TaskStatus.Failure;
+			}
 			var target = Target.Value.transform;
 			var sector = Sector.Value;
 			var angle = Vector3.SignedAngle(_initDirection, target.position - transform.position, transform.up);
