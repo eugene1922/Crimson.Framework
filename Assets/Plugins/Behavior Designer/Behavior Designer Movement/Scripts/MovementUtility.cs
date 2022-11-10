@@ -115,7 +115,6 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                 // The hit agent needs to be within view of the current agent
                 var hitTransform = LineOfSight(transform, positionOffset, targetObject, targetOffset, usePhysics2D, ignoreLayerMask, drawDebugRay);
                 if (hitTransform != null) {
-					Debug.Log($"{nameof(WithinSight)} hit");
 					if (IsAncestor(targetObject.transform, hitTransform)) {
 #if UNITY_EDITOR
                         if (drawDebugRay) {
