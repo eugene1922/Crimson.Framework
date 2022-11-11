@@ -332,9 +332,9 @@ namespace Crimson.Core.Systems
 
 				case TargetType.ChooseByTag:
 					Entities.With(_aliveActors).ForEach(
-						(Entity entity, Actor actor, Transform obj) =>
+						(Entity entity, Actor actor) =>
 						{
-							if (!obj.CompareTag(tag))
+							if (!actor.CompareTag(tag))
 							{
 								return;
 							}
