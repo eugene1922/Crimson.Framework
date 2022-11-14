@@ -100,9 +100,10 @@ namespace Assets.Crimson.Core.Systems
 			Entities.With(_directAgentQuery).ForEach(
 				(Entity entity, ref DirectMoveData data, NavMeshAgent agent, AbilityTargetDirectionMove ability) =>
 				{
-					if (agent.enabled)
+					if ((ability.PreFXInstance == null || ability.PreFXInstance.Count == 0)
+						&& ability.PreFX.Count != 0)
 					{
-						agent.enabled = false;
+						agent.ResetPath();
 						ability.PreFXInstance = ability.SpawnFX(ability.PreFX);
 					}
 
@@ -112,7 +113,6 @@ namespace Assets.Crimson.Core.Systems
 						ability.DestroyFX(ability.PreFXInstance);
 						ability.PreFXInstance = null;
 						ability.SpawnFX(ability.PostFX);
-						agent.enabled = true;
 						return;
 					}
 
@@ -127,14 +127,13 @@ namespace Assets.Crimson.Core.Systems
 					var path = new NavMeshPath();
 					if (NavMesh.CalculatePath(transform.position, newPosition, NavMesh.AllAreas, path))
 					{
-						transform.position += newPosition;
+						agent.Move(newPosition);
 					}
 					else
 					{
 						ability.DestroyFX(ability.PreFXInstance);
 						ability.PreFXInstance = null;
 						ability.SpawnFX(ability.PostFX);
-						agent.enabled = true;
 						EntityManager.RemoveComponent<DirectMoveData>(entity);
 						return;
 					}
