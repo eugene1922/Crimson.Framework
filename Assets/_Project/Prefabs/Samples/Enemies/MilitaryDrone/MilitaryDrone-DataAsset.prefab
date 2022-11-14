@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5835128684462789782}
   - component: {fileID: 5618822145254221807}
   m_Layer: 0
-  m_Name: Sample-Droid
+  m_Name: MilitaryDrone-DataAsset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
