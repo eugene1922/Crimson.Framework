@@ -73,7 +73,6 @@ namespace Assets.Crimson.Core.Components
 
 		private void Check()
 		{
-			Debug.Log("Execute check tag");
 			if (IsEnable)
 			{
 				var result = CheckActor(Actor);
