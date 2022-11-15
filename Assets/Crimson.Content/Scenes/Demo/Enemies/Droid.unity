@@ -396,17 +396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint-Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9088967893855860311, guid: 06738f6003c9a4f4abc6b26ed657547a,
-        type: 3}
-      propertyPath: SpawnData.copyComponentsFromSamples.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9088967893855860311, guid: 06738f6003c9a4f4abc6b26ed657547a,
-        type: 3}
-      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[3]
-      value: 
-      objectReference: {fileID: 5390579384345752203, guid: 29a55906a78c6274081ce60e46c952b6,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06738f6003c9a4f4abc6b26ed657547a, type: 3}
 --- !u!1 &310748940
@@ -1956,7 +1945,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh94330
+  m_Name: pb_Mesh32362
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

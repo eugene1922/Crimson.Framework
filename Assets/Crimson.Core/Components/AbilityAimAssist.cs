@@ -74,6 +74,10 @@ namespace Assets.Crimson.Core.Components
 
 		private void OnDrawGizmos()
 		{
+			if (_entity == Entity.Null || _entityManager.Equals(null) || !_entityManager.HasComponent<PlayerInputData>(_entity))
+			{
+				return;
+			}
 			var position = transform.position;
 			DrawForward();
 			if (Application.isPlaying)

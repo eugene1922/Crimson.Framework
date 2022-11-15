@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2618805644847596442}
   - component: {fileID: 2618805644847596441}
   - component: {fileID: 4688317270686566197}
+  - component: {fileID: -4989120522563038202}
   m_Layer: 0
   m_Name: Gun-turret-attack
   m_TagString: Untagged
@@ -164,3 +165,15 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
+--- !u!114 &-4989120522563038202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618805644847596420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce67dd32ac845648c5595a62bbb14dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
