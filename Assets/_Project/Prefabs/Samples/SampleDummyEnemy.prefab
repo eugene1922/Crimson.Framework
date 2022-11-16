@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4179922788077170508}
   - component: {fileID: 4179922788077170509}
   - component: {fileID: -6428474313728638450}
+  - component: {fileID: -7678217110997237404}
   m_Layer: 0
   m_Name: SampleDummyEnemy
   m_TagString: Untagged
@@ -65,14 +66,10 @@ MonoBehaviour:
   actorDeathAnimProperties:
     HasActorDeathAnimation: 0
     ActorDeathAnimationName: 
-  TakeDamageAnimation:
-    AnimationName: 
-    HasAnimation: 0
   actorToUI: 0
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  NeedCleanup: 1
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
@@ -87,6 +84,11 @@ MonoBehaviour:
   isEnabled: 1
   levelablePropertiesList: []
   levelUpAction: {fileID: 0}
+  NeedCleanup: 1
+  DeathAbilities: []
+  TakeDamageAnimation:
+    AnimationName: 
+    HasAnimation: 0
   targetMarkActorComponentName: 
   UIChannelID: 0
 --- !u!114 &-6428474313728638450
@@ -105,3 +107,16 @@ MonoBehaviour:
   alsoSetLayer: 0
   newLayer: 
   applyOnStart: 1
+--- !u!114 &-7678217110997237404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4179922788077170610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4d6db937ff82541acec0274c091000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Offset: {x: 0, y: 1, z: 0}

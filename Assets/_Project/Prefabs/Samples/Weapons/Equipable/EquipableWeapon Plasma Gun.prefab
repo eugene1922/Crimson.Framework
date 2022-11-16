@@ -235,9 +235,9 @@ MonoBehaviour:
   _burstRange: {x: 1, y: 5}
   _burstDelay: 0.1
   projectileStartupDelay: 0
-  cooldownTime: 0.1
+  cooldownTime: 0.071428575
   projectileClipCapacity: 1000
-  clipReloadTime: 1
+  clipReloadTime: 0.9
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
@@ -247,12 +247,6 @@ MonoBehaviour:
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
-  ActionsOnEnable:
-    actions:
-    - {fileID: 7347931288159886798}
-  ActionsOnDisable:
-    actions:
-    - {fileID: 598564529029489492}
 --- !u!1001 &7251838995758909613
 PrefabInstance:
   m_ObjectHideFlags: 0

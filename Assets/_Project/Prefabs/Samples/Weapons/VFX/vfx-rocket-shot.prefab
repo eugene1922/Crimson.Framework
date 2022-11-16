@@ -170,7 +170,7 @@ MonoBehaviour:
   forwardVector: {x: 0, y: 0, z: 0}
   compensateSpawnerRotation: 1
   OffsetDirection: {x: 0, y: 0, z: 0}
-  _useVariance: 1
+  _useVariance: 0
   _transformVariance:
     PostionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 5, y: 5, z: 0}
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CriticalDamageChance: 0.1
   CriticalDamageMultiplier: 1
-  Damage: 10
+  Damage: 70
   levelablePropertiesList: []
   perkLevel: 1
 --- !u!114 &8600579458164341297
@@ -386,7 +386,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114841909408766930, guid: 89cabaed2b8ddf34f84ddba3eaa49707, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 89cabaed2b8ddf34f84ddba3eaa49707, type: 3}
 --- !u!4 &4760908037300168642 stripped
 Transform:
