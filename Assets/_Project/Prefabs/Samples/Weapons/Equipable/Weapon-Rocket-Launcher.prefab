@@ -1,37 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3046358728583350651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4179538388771061731}
-  m_Layer: 0
-  m_Name: Projectile Spawn Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4179538388771061731
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3046358728583350651}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.22000003, y: 0.0125, z: -0.005000025}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8939791187431860214}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1606315881375638859
+--- !u!1001 &558700366730362479
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -96,48 +65,33 @@ PrefabInstance:
     - target: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_Name
-      value: EquipableWeapon Blaster
+      value: Weapon-Rocket-Launcher
       objectReference: {fileID: 0}
     - target: {fileID: 4801918414694250332, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: componentName
-      value: Blaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.093
-      objectReference: {fileID: 0}
-    - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.116
+      value: Rocket Launcher
       objectReference: {fileID: 0}
     - target: {fileID: 8744062145712760159, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: TargetWeapon
       value: 
-      objectReference: {fileID: 7225986401133262158}
+      objectReference: {fileID: 6284623228898787596}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194d4f1e3d0c8894c9f478f4fe202fc1, type: 3}
---- !u!1 &1548769087254226112 stripped
+--- !u!1 &357039506442272740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 230970627649061259, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
-  m_PrefabInstance: {fileID: 1606315881375638859}
+  m_PrefabInstance: {fileID: 558700366730362479}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3285678183776671440
+--- !u!114 &1995909038479340772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548769087254226112}
+  m_GameObject: {fileID: 357039506442272740}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
@@ -145,21 +99,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   Targets:
-  - {fileID: 1548769087254226112}
---- !u!114 &7225986401133262158
+  - {fileID: 357039506442272740}
+--- !u!114 &3496920647679153277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548769087254226112}
+  m_GameObject: {fileID: 357039506442272740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Targets:
+  - {fileID: 357039506442272740}
+--- !u!114 &6284623228898787596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357039506442272740}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentName: Blaster
-  _weaponType: 2
+  componentName: Rocket Launcher
+  _weaponType: 1
   primaryProjectile: 0
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
@@ -186,16 +155,15 @@ MonoBehaviour:
   projectileSpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 4777973401180162265, guid: 72b0b51913ec6e84baaffe59e8794ffd, type: 3}
-    - {fileID: 2917218710877661738, guid: 208c3b89b68686e42abe28c44036fa98, type: 3}
+    - {fileID: 3638087958422087704, guid: 12e82b72a5f3a5340b1b20da27c30ce2, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
+    fillSpawnPoints: 2
+    x: 5
     skipBusySpawnPoints: 0
     spawnPointsFrom: 1
     _spawnPoints:
-    - {fileID: 3046358728583350651}
+    - {fileID: 0}
     spawnPointTag: WeaponMountPoint
     useChildrenObjects: 0
     rotationOfSpawns: 0
@@ -206,25 +174,25 @@ MonoBehaviour:
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
+    runSpawnActionsOnObjects: 1
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
       CollectionCheck: 0
-      InitSize: 5
+      InitSize: 10
       MaxSize: 10
       UsePool: 1
   projectileStartupDelay: 0
-  cooldownTime: 0.33
-  projectileClipCapacity: 0
-  clipReloadTime: 0.6
+  cooldownTime: 0
+  projectileClipCapacity: 1
+  clipReloadTime: 4
   forceBursts: 0
   burstShotCountRange: {x: 1, y: 1}
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
   appliedPerksNames: []
   aimingByInput: 0
@@ -232,93 +200,66 @@ MonoBehaviour:
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0
---- !u!114 &7981926124408840667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548769087254226112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 0
-  Targets:
-  - {fileID: 1548769087254226112}
---- !u!4 &8939791187431860214 stripped
+--- !u!4 &7897805719530536146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
-  m_PrefabInstance: {fileID: 1606315881375638859}
+  m_PrefabInstance: {fileID: 558700366730362479}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3193972596384462566
+--- !u!1001 &777821298459778319
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8939791187431860214}
+    m_TransformParent: {fileID: 7897805719530536146}
     m_Modifications:
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 1793815161702332, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
+      propertyPath: m_Name
+      value: SM_Wep_Rifle_Laser_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245322115, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
+    - target: {fileID: 4434898408097148, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7158382587245675107, guid: 89010f060e300444c921b123f7993db1,
-        type: 3}
-      propertyPath: m_Name
-      value: Blaster
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 89010f060e300444c921b123f7993db1, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ec291e63f4e6ef34bacb96ff6e4ad6be, type: 3}

@@ -122,7 +122,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 		{
 			var currentIndex = _throwables.IndexOf(_throwableSlot._weapon);
 			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _throwables.Count;
-			if (_throwables.Count - 1 > index)
+			if (_throwables.Count > index)
 			{
 				_throwableSlot.Change(_throwables[index]);
 			}
@@ -132,7 +132,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 		{
 			var currentIndex = _weapons.IndexOf(_slot._weapon);
 			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _weapons.Count;
-			if (_throwables.Count - 1 > index)
+			if (_weapons.Count > index)
 			{
 				_slot.Change(_weapons[index]);
 			}
