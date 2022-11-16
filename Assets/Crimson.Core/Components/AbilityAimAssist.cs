@@ -26,7 +26,6 @@ namespace Assets.Crimson.Core.Components
 			_entity = entity;
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_entityManager.AddComponentData(_entity, new AimData());
-			_plane = new Plane(Vector3.up, transform.position);
 		}
 
 		public Vector3 AimPositionByInput(PlayerInputData inputData)
@@ -46,6 +45,7 @@ namespace Assets.Crimson.Core.Components
 			else
 			{
 				var ray = Camera.main.ScreenPointToRay((Vector2)inputData.Mouse);
+				_plane = new Plane(Vector3.up, transform.position);
 				if (_plane.Raycast(ray, out var enter))
 				{
 					_mousePositionOnPlane = ray.GetPoint(enter);
