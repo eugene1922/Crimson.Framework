@@ -225,7 +225,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
-			if (!IsEnable || !IsActivated || ClipData.IsEmpty)
+			if (!IsEnable || !IsActivated || ClipData.IsEmpty || ClipData.Current == 0)
 			{
 				return;
 			}
@@ -260,6 +260,11 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void Reload()
 		{
 			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
+			Timer.TimedActions.AddAction(EndReload, clipReloadTime);
+		}
+
+		private void EndReload()
+		{
 			ClipData.Reload();
 		}
 
@@ -327,6 +332,10 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void StopFire()
 		{
 			IsActivated = false;
+			if (ClipData.Current == 0)
+			{
+				return;
+			}
 			if (projectileStartupDelay <= 0)
 				ResetTimer();
 		}
