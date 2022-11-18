@@ -123,7 +123,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ORMAORoughMetal:
-        m_Texture: {fileID: 2800000, guid: 0ceaa83d48f8d8642b6f772d08bfe270, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b3ffec779b3f0d4d89bd8722072dd7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -165,7 +165,7 @@ Material:
     - Vector1_BDF4927C: 1
     - Vector1_D39B6A9D: 1
     - Vector1_ED619312: -0.5104537
-    - _AOpower: 0.1
+    - _AOpower: 0.449
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaCutoffEnable: 0
