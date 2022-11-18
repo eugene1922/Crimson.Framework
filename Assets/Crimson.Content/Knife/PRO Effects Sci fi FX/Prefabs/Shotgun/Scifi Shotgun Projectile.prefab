@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950119381041386627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.23}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7759299112067143410}
   - component: {fileID: 9190048867407067892}
   - component: {fileID: 595841000726405029}
-  - component: {fileID: 6047428249184936470}
+  - component: {fileID: 5376577471990730104}
   m_Layer: 0
   m_Name: Scifi Shotgun Projectile
   m_TagString: Untagged
@@ -286,10 +286,10 @@ MonoBehaviour:
       Mode: 0
       Velocity: 0
     executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 0
+    destroyAfterAction: 1
     actions:
     - {fileID: 4735277096244204248}
-    - {fileID: 6047428249184936470}
+    - {fileID: 5376577471990730104}
   debugCollisions: 0
   ExistentCollisions: []
 --- !u!114 &9190048867407067892
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: 0
+  moveDirection: 3
   forwardVector: {x: 0, y: 0, z: 0}
   compensateSpawnerRotation: 1
   OffsetDirection: {x: 0, y: 0, z: 0}
@@ -350,7 +350,7 @@ MonoBehaviour:
     MovementAnimationName: 
     MovementAnimationSpeedFactorName: 
     MovementAnimationSpeedFactorMultiplier: 1
---- !u!114 &6047428249184936470
+--- !u!114 &5376577471990730104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,6 +359,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4226249542960359317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769a4190941bb514298725a0da893d8f, type: 3}
+  m_Script: {fileID: 11500000, guid: cf7505beefdc468b98e39e54f7335d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CriticalDamageChance: 0.1
+  CriticalDamageMultiplier: 1
+  Damage: 1
+  levelablePropertiesList: []
+  perkLevel: 1
