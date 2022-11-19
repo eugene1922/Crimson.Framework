@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -4815723476054843372
-    second: dead4
+    second: InsaneGunner@dead4
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: dead4
+      name: InsaneGunner@dead4
       takeName: dead4
       internalID: 0
       firstFrame: 0
@@ -712,7 +712,8 @@ ModelImporter:
     - name: Bip001 L Finger42
       parentName: Bip001 L Finger41
       position: {x: -0.02977356, y: 0, z: 0.000000009536743}
-      rotation: {x: -0.0000000018667592, y: -0.0000000012745636, z: -0.0032202841, w: 0.9999948}
+      rotation: {x: -0.0000000018667592, y: -0.0000000012745636, z: -0.0032202841,
+        w: 0.9999948}
       scale: {x: 1, y: 1, z: 1}
     - name: Gun_L
       parentName: Bip001 L Hand
@@ -827,7 +828,8 @@ ModelImporter:
     - name: Bip001 R Finger41
       parentName: Bip001 R Finger4
       position: {x: -0.035138626, y: 0, z: 0}
-      rotation: {x: -0.0000000065730323, y: -0.0000000044619903, z: -0.011946662, w: 0.99992865}
+      rotation: {x: -0.0000000065730323, y: -0.0000000044619903, z: -0.011946662,
+        w: 0.99992865}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: Bip001 R Finger42
       parentName: Bip001 R Finger41
@@ -861,7 +863,8 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6d915fc68e4f79846b3fbc9bba60e01c, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6d915fc68e4f79846b3fbc9bba60e01c,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
