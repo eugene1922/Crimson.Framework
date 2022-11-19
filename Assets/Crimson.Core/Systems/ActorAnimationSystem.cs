@@ -86,7 +86,10 @@ namespace Crimson.Core.Systems
 					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, transform.up);
 					moveVector = Quaternion.AngleAxis(-angle, Vector3.up) * moveVector;
 					move = new float2(moveVector.x, moveVector.z);
-					proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
+					if (proxy.ManagedByNavmeshAgent)
+						proxy.RealSpeed.SetValue(animator, new float2(0, moveVector.magnitude * movementData.MovementSpeed));
+					else
+						proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
 					proxy.LookAtDirection.SetValue(animator, new float2(1, 0));
 
 					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);
