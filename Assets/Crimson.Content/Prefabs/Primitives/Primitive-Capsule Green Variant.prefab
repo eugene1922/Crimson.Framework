@@ -11,6 +11,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1093abaeea0660a439f0f4af282deeb5, type: 2}
+    - target: {fileID: 3843984014823667421, guid: 16b37d8484aa9214db1b92128e5c3269,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6437174693470435674, guid: 16b37d8484aa9214db1b92128e5c3269,
         type: 3}
       propertyPath: m_RootOrder
@@ -69,7 +74,7 @@ PrefabInstance:
     - target: {fileID: 6437174693470435675, guid: 16b37d8484aa9214db1b92128e5c3269,
         type: 3}
       propertyPath: m_Name
-      value: Primitive-Capsule Variant
+      value: Primitive-Capsule Green Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16b37d8484aa9214db1b92128e5c3269, type: 3}
