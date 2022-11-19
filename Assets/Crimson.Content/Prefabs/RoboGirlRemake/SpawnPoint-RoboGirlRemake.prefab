@@ -84,9 +84,9 @@ MonoBehaviour:
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 774899593392371021, guid: e32496a8f8f4ff842900516ca4a0698a, type: 3}
+    - {fileID: 219696582898746723, guid: 79b140efa9e64884fa5251847dd1b4dc, type: 3}
     - {fileID: 51177463365656585, guid: 4db74cacc47acce4b80671abad008723, type: 3}
-    - {fileID: 4978421317857125721, guid: 24321277db4aa7c408ff24f2d61edeca, type: 3}
+    - {fileID: 8373134546618953105, guid: f682bff15eb1ce84fac7cb864b154e39, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 1

@@ -149,9 +149,9 @@ MonoBehaviour:
       _maxLimit: 100
       _freeze: 0
     Health:
-      _current: 100
+      _current: 10000
       _minLimit: 0
-      _maxLimit: 100
+      _maxLimit: 10000
       _freeze: 0
     Level: 1
     LevelUpRequiredExperience: 100
@@ -454,6 +454,7 @@ MonoBehaviour:
     type: 3}
   _weaponChangeDuration: 1
   Weapon: {fileID: 0}
+  EnableOnStart: 0
 --- !u!114 &-93229221922767859
 MonoBehaviour:
   m_ObjectHideFlags: 0
