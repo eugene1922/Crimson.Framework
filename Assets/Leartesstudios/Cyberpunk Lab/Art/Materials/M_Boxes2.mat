@@ -21,12 +21,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Boxes2
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords:
-  - _METALLICGLOSSMAP
-  - _NORMALMAP
+  m_Shader: {fileID: 4800000, guid: f2b9ce2e0a432df44bb99967614fba9c, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
+  - _METALLICGLOSSMAP
+  - _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -106,6 +106,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: aab9116ce10f97c48847c12fa3e73f83, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -138,6 +142,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: f5f84fcca6b04ca4da8bd5b0db299193, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 43c34969babee5344974a372f7d323fa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ORMAORoughMetal:
+        m_Texture: {fileID: 2800000, guid: 8b3ffec779b3f0d4d89bd8722072dd7a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 2800000, guid: f5f84fcca6b04ca4da8bd5b0db299193, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -147,6 +159,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -179,6 +195,7 @@ Material:
     - Vector1_D39B6A9D: 1
     - Vector1_D6CC3BBF: 0
     - Vector1_ED619312: -0.5104537
+    - _AOpower: 0.237
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaCutoffEnable: 0
@@ -195,6 +212,7 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
+    - _DelMetall: 1
     - _DepthOffsetEnable: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -251,6 +269,7 @@ Material:
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
+    - __dirty: 1
     m_Colors:
     - Color_A7DF1144: {r: 0, g: 0, b: 0, a: 0}
     - Color_AF14EE56: {r: 1, g: 1, b: 1, a: 0}

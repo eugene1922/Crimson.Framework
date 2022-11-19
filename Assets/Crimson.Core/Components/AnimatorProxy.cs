@@ -15,6 +15,9 @@ namespace Assets.Crimson.Core.Components
 		[Title(nameof(Crouch))] public AnimatorBool Crouch;
 		[Title(nameof(CurrentWeapon))] public AnimatorTypeValue CurrentWeapon;
 		[Title(nameof(Death))] public AnimatorTrigger Death;
+		public int DeathLayer = 7;
+		public string DeathTag = "Death";
+		[Title(nameof(IsDead))] public AnimatorBool IsDead;
 		[Title(nameof(Dodge))] public AnimatorBool Dodge;
 		[Title(nameof(Falling))] public AnimatorBool Falling;
 		[Title(nameof(Hit))] public AnimatorBool Hit;
@@ -23,7 +26,6 @@ namespace Assets.Crimson.Core.Components
 		[Title(nameof(IdleFundID))] public AnimatorTypeValue IdleFundID;
 		[Title(nameof(Interact))] public AnimatorBool Interact;
 		[Title(nameof(InteractType))] public AnimatorTypeValue InteractType;
-		[Title(nameof(IsDead))] public AnimatorBool IsDead;
 		[Title(nameof(ItemUse))] public AnimatorTrigger ItemUse;
 		[Title(nameof(ItemUseID))] public AnimatorTypeValue ItemUseID;
 		[Title(nameof(KnockbackFly))] public AnimatorBool KnockbackFly;

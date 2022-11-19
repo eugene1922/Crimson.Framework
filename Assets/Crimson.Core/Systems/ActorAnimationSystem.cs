@@ -115,6 +115,14 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
 					}
 
+					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
+					proxy.Attacking.SetValue(animator, hasMeleeAttack);
+					if (hasMeleeAttack)
+					{
+						proxy.AttackType.SetValue(animator, 0);
+						EntityManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
+					}
+
 					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
 					proxy.Hit.SetValue(animator, hasHit);
 					if (hasHit)
@@ -164,7 +172,8 @@ namespace Crimson.Core.Systems
 					if (hasDeath)
 					{
 						proxy.Death.SetTrigger(animator);
-						proxy.IsDead.SetValue(animator, true);
+						if (animator.GetCurrentAnimatorStateInfo(proxy.DeathLayer).IsTag(proxy.DeathTag))
+							proxy.IsDead.SetValue(animator, true);
 					}
 
 					//TODO:KnockbackStart
