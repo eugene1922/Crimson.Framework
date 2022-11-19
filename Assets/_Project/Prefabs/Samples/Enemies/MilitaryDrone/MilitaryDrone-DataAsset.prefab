@@ -104,7 +104,7 @@ MonoBehaviour:
     LevelUpRequiredExperience: 100
     TotalDamageApplied: 0
   actorDeathAnimProperties:
-    HasActorDeathAnimation: 1
+    HasActorDeathAnimation: 0
     ActorDeathAnimationName: Dead
   actorToUI: 0
   additionalForceAnim:
@@ -185,7 +185,7 @@ MonoBehaviour:
     timeScale: 1
   workTime: 0
   movementAnimationProperties:
-    HasMovementAnimation: 1
+    HasMovementAnimation: 0
     MovementAnimationName: Run
     MovementAnimationSpeedFactorName: SpeedFactor
     MovementAnimationSpeedFactorMultiplier: 1.5

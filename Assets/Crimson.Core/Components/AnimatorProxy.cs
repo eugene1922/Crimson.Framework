@@ -37,6 +37,7 @@ namespace Assets.Crimson.Core.Components
 
 		[Title(nameof(RealSpeed))]
 		public AnimatorFloat2 RealSpeed;
+		public bool ManagedByNavmeshAgent;
 
 		[Title(nameof(Reloading))] public AnimatorBool Reloading;
 		[PropertyOrder(1)] public Animator TargetAnimator;

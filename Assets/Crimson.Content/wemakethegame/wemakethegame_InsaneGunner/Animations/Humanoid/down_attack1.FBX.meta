@@ -1094,7 +1094,7 @@ ModelImporter:
     second: BLW_DEF
   - first:
       74: 7400000
-    second: insanegunner.down_attack1
+    second: InsaneGunner@down_attack1
   - first:
       95: 9500000
     second: //RootNode
@@ -1203,7 +1203,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: insanegunner.down_attack1
+      name: InsaneGunner@down_attack1
       takeName: Take 001
       internalID: 0
       firstFrame: 0
@@ -2130,7 +2130,8 @@ ModelImporter:
     - name: J_L_SusoBack_01
       parentName: J_L_SusoBack_00
       position: {x: -0.25925583, y: 0, z: 0.000000038146972}
-      rotation: {x: -0.000000009313226, y: -0.000000007450581, z: 0.000000014901161, w: 1}
+      rotation: {x: -0.000000009313226, y: -0.000000007450581, z: 0.000000014901161,
+        w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: J_L_SkirtBack_01
       parentName: J_L_SkirtBack_00
@@ -2165,7 +2166,8 @@ ModelImporter:
     - name: J_R_SkirtBack_02
       parentName: J_R_SkirtBack_01
       position: {x: 0.46566772, y: 0.000000076293944, z: 0.00000019073485}
-      rotation: {x: -0.0000000027939677, y: 2.081668e-17, z: -0.0000000074505797, w: 1}
+      rotation: {x: -0.0000000027939677, y: 2.081668e-17, z: -0.0000000074505797,
+        w: 1}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: Character1_RightUpLeg
       parentName: Character1_Hips
@@ -2265,7 +2267,8 @@ ModelImporter:
     - name: J_L_Sode_D01
       parentName: J_L_Sode_D00
       position: {x: -0.36721098, y: -0.0020738982, z: -0.018793639}
-      rotation: {x: 0.000000029802312, y: -0.00000003725289, z: -0.000000007450578, w: 1}
+      rotation: {x: 0.000000029802312, y: -0.00000003725289, z: -0.000000007450578,
+        w: 1}
       scale: {x: 1.0000004, y: 0.99999994, z: 1.0000004}
     - name: J_L_Sode_C00
       parentName: Character1_LeftForeArm
@@ -2275,7 +2278,8 @@ ModelImporter:
     - name: J_L_Sode_C01
       parentName: J_L_Sode_C00
       position: {x: -0.41371214, y: -0.000000019073486, z: -0.00000022888183}
-      rotation: {x: -0.000000001862645, y: 0.000000014901161, z: 0.0000000037252907, w: 1}
+      rotation: {x: -0.000000001862645, y: 0.000000014901161, z: 0.0000000037252907,
+        w: 1}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: Character1_LeftHand
       parentName: Character1_LeftForeArm
@@ -2405,7 +2409,8 @@ ModelImporter:
     - name: J_R_Sode_A01
       parentName: J_R_Sode_A00
       position: {x: -0.37847915, y: -0.03386444, z: 0.018401565}
-      rotation: {x: -0.000000011175871, y: 8.3266733e-17, z: -0.0000000074505815, w: 1}
+      rotation: {x: -0.000000011175871, y: 8.3266733e-17, z: -0.0000000074505815,
+        w: 1}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: J_R_Sode_B00
       parentName: Character1_RightForeArm
@@ -2435,7 +2440,8 @@ ModelImporter:
     - name: J_R_Sode_C01
       parentName: J_R_Sode_C00
       position: {x: -0.4137123, y: 0.00000015258789, z: -0.00000030517577}
-      rotation: {x: 0.000000024214392, y: -0.000000014901161, z: 0.000000007450581, w: 1}
+      rotation: {x: 0.000000024214392, y: -0.000000014901161, z: 0.000000007450581,
+        w: 1}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Character1_RightHand
       parentName: Character1_RightForeArm
@@ -2570,7 +2576,8 @@ ModelImporter:
     - name: EL_DEF
       parentName: EYE_DEF
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0.000000007450581, y: -0.0000000018626451, z: -0.0000000037252903, w: 1}
+      rotation: {x: 0.000000007450581, y: -0.0000000018626451, z: -0.0000000037252903,
+        w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: eye_L_old
       parentName: Character1_Head
@@ -2750,7 +2757,8 @@ ModelImporter:
     - name: J_Mune_root_01
       parentName: J_Mune_root_00
       position: {x: 0.000000009536743, y: 0.09508819, z: 0.10048309}
-      rotation: {x: -0.0000000074505815, y: -0.00000002514571, z: -1.8735016e-16, w: 1}
+      rotation: {x: -0.0000000074505815, y: -0.00000002514571, z: -1.8735016e-16,
+        w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: J_L_Mune_00
       parentName: J_Mune_root_00
@@ -2790,7 +2798,8 @@ ModelImporter:
     - name: J_R_SusoSide_01
       parentName: J_R_SusoSide_00
       position: {x: 0.25225556, y: -0.024905013, z: -0.0039858245}
-      rotation: {x: -0.0000000037252903, y: 0.000000014901159, z: -0.0000000074505797, w: 1}
+      rotation: {x: -0.0000000037252903, y: 0.000000014901159, z: -0.0000000074505797,
+        w: 1}
       scale: {x: 1.0000001, y: 1, z: 1}
     - name: J_L_SusoSide_00
       parentName: Character1_Spine

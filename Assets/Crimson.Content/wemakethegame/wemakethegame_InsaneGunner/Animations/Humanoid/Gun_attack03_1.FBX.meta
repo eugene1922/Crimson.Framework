@@ -1094,7 +1094,7 @@ ModelImporter:
     second: BLW_DEF
   - first:
       74: 7400000
-    second: insanegunner.Gun_attack03_1
+    second: InsaneGunner@Gun_attack03_1
   - first:
       95: 9500000
     second: //RootNode
@@ -1217,7 +1217,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: insanegunner.Gun_attack03_1
+      name: InsaneGunner@Gun_attack03_1
       takeName: Take 001
       internalID: 0
       firstFrame: 0
@@ -2179,7 +2179,8 @@ ModelImporter:
     - name: J_R_SkirtBack_02
       parentName: J_R_SkirtBack_01
       position: {x: 0.46566772, y: 0.000000114440915, z: 0.00000015258789}
-      rotation: {x: -5.5511125e-17, y: -0.000000007450579, z: -0.000000007450579, w: 1}
+      rotation: {x: -5.5511125e-17, y: -0.000000007450579, z: -0.000000007450579,
+        w: 1}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: Character1_RightUpLeg
       parentName: Character1_Hips
@@ -2269,7 +2270,8 @@ ModelImporter:
     - name: J_L_Sode_B01
       parentName: J_L_Sode_B00
       position: {x: -0.38321725, y: -0.00000015258789, z: -0.000000076293944}
-      rotation: {x: -0.00000000745058, y: -0.000000007450581, z: 0.000000029802322, w: 1}
+      rotation: {x: -0.00000000745058, y: -0.000000007450581, z: 0.000000029802322,
+        w: 1}
       scale: {x: 1, y: 1, z: 0.99999994}
     - name: J_L_Sode_D00
       parentName: Character1_LeftForeArm
@@ -2429,7 +2431,8 @@ ModelImporter:
     - name: J_R_Sode_B01
       parentName: J_R_Sode_B00
       position: {x: -0.3827034, y: -0.019842224, z: 0}
-      rotation: {x: -0.000000014901159, y: -0.0000000074505797, z: -1.11022276e-16, w: 1}
+      rotation: {x: -0.000000014901159, y: -0.0000000074505797, z: -1.11022276e-16,
+        w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: J_R_Sode_D00
       parentName: Character1_RightForeArm
@@ -2449,7 +2452,8 @@ ModelImporter:
     - name: J_R_Sode_C01
       parentName: J_R_Sode_C00
       position: {x: -0.4137123, y: 0.000000095367426, z: -0.00000015258789}
-      rotation: {x: 0.0000000037252907, y: 0.000000014901161, z: -0.0000000037252903, w: 1}
+      rotation: {x: 0.0000000037252907, y: 0.000000014901161, z: -0.0000000037252903,
+        w: 1}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Character1_RightHand
       parentName: Character1_RightForeArm
