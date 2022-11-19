@@ -69,7 +69,12 @@ PrefabInstance:
     - target: {fileID: 3876419338250721179, guid: d3a89e78283eb4540b15c98df6bd08b4,
         type: 3}
       propertyPath: m_Name
-      value: Primitive-Sphere Red
+      value: Primitive-Sphere Red Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468907972411775005, guid: d3a89e78283eb4540b15c98df6bd08b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3a89e78283eb4540b15c98df6bd08b4, type: 3}

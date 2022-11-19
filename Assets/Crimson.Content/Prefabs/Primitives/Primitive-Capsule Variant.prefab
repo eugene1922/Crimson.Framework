@@ -148,7 +148,12 @@ PrefabInstance:
     - target: {fileID: 1692484514404856131, guid: 7beb676316835774b84b39181485de61,
         type: 3}
       propertyPath: m_Name
-      value: Primitive-Capsule
+      value: Primitive-Capsule Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391546842785650847, guid: 7beb676316835774b84b39181485de61,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7beb676316835774b84b39181485de61, type: 3}
