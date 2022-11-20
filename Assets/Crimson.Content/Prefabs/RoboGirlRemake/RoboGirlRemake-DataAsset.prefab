@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5835128684462789782}
   - component: {fileID: 5618822145254221807}
   - component: {fileID: 7511218889674514224}
+  - component: {fileID: -8569948265353016041}
+  - component: {fileID: 5313459572749675776}
   m_Layer: 0
   m_Name: RoboGirlRemake-DataAsset
   m_TagString: Untagged
@@ -114,8 +116,8 @@ MonoBehaviour:
   corpseCleanupDelay: 1
   deadActorBehaviour:
     RemoveTag: 0
-    RemoveRigidbody: 0
-    RemoveColliders: 0
+    RemoveRigidbody: 1
+    RemoveColliders: 1
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
@@ -166,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 8.5
+  movementSpeed: 3.6
   useDynamics: 0
   movementStart:
     curve:
@@ -312,3 +314,103 @@ MonoBehaviour:
   TargetAnimator: {fileID: 0}
   WeaponChange:
     Name: tWeaponChangeStart
+--- !u!114 &-8569948265353016041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219696582898746723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c774fff41177e4e9994d67dec249c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _executeAction: {fileID: 0}
+  _reloadAction: {fileID: 0}
+  _weaponChangeDuration: 1
+  Weapon: {fileID: 5313459572749675776}
+  EnableOnStart: 1
+--- !u!114 &5313459572749675776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219696582898746723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4e47c09b1dbb74b8ebfeb03d9c0014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  _weaponType: 2
+  primaryProjectile: 0
+  aimingAvailable: 0
+  deactivateAimingOnCooldown: 0
+  onClickAttackType: 0
+  attackDirectionType: 0
+  findTargetProperties:
+    targetType: 0
+    actorWithComponentName: 
+    targetTag: 
+    ignoreSpawner: 0
+    strategy: 0
+    maxDistanceThreshold: 0
+  aimingProperties:
+    evaluateActionOptions: 0
+    aimingType: 0
+    aimingAreaPrefab: {fileID: 0}
+    sightPrefab: {fileID: 0}
+    circlePrefab: {fileID: 0}
+    sightDistance: 0
+    reverseControls: 0
+  aimingAnimProperties:
+    HasActorAimingAnimation: 0
+    ActorAimingAnimationName: 
+  projectileSpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn: []
+    spawnPosition: 0
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  projectileStartupDelay: 0
+  cooldownTime: 0.3
+  projectileClipCapacity: 0
+  clipReloadTime: 1
+  forceBursts: 0
+  burstShotCountRange: {x: 1, y: 1}
+  reloadDisplayToggle: []
+  clipReloadDisplayToggle: []
+  actorProjectileSpawnAnimProperties:
+    HasActorProjectileAnimation: 0
+    ActorProjectileAnimationName: 
+  suppressWeaponSpawn: 0
+  appliedPerksNames: []
+  aimingByInput: 0
+  AimComponent: {fileID: 0}
+  reloadAnimProps:
+    AnimationName: 
+    HasAnimation: 0
