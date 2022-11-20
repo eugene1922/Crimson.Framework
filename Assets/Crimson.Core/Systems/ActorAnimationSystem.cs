@@ -111,19 +111,19 @@ namespace Crimson.Core.Systems
 					}
 					//TODO: Crouch
 					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
-					proxy.Attacking.SetValue(animator, hasAttack);
-					if (hasAttack)
-					{
-						proxy.AttackType.SetValue(animator, 0);
-						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
-					}
-
+					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
-					proxy.Attacking.SetValue(animator, hasMeleeAttack);
-					if (hasMeleeAttack)
+					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
+					proxy.Attacking.SetValue(animator, hasAnyAttack);
+					if (hasAnyAttack)
 					{
 						proxy.AttackType.SetValue(animator, 0);
-						EntityManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
+						if (hasAttack)
+							EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+						if (hasRangeAttack)
+							EntityManager.RemoveComponent<AnimationRangeAttackTag>(entity);
+						if (hasMeleeAttack)
+							EntityManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
 					}
 
 					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
