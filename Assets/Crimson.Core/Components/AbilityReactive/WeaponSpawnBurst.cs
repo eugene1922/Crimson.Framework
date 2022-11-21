@@ -43,9 +43,6 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public bool primaryProjectile;
 
-		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
-		public MonoBehaviour abilityOnShot;
-
 		public bool aimingAvailable;
 		public bool deactivateAimingOnCooldown;
 
@@ -88,6 +85,12 @@ namespace Crimson.Core.Components.AbilityReactive
 		public ActorProjectileSpawnAnimProperties actorProjectileSpawnAnimProperties;
 
 		public bool suppressWeaponSpawn = false;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] PreShotAbilities;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] PostShotAbilities;
 
 		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
@@ -141,6 +144,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		public event Action OnShot;
 
 		private bool isEnable;
+		private ActorAbilityList _preShotAbilities;
+		private ActorAbilityList _postShotAbilities;
 
 		public bool ActionExecutionAllowed { get; set; }
 		public IAimable Aim => AimComponent as IAimable;
@@ -166,6 +171,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			_preShotAbilities = new ActorAbilityList(PreShotAbilities);
+			_postShotAbilities = new ActorAbilityList(PostShotAbilities);
 			InitPool();
 
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -220,6 +227,7 @@ namespace Crimson.Core.Components.AbilityReactive
 			baseSpawnPoint.transform.localRotation = Quaternion.identity;
 
 			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
+
 			StartTimer();
 		}
 
@@ -242,8 +250,6 @@ namespace Crimson.Core.Components.AbilityReactive
 				Shot();
 				Timer.TimedActions.AddAction(Execute, CooldownTime);
 			}
-
-			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
 		}
 
 		public override void FinishTimer()
@@ -297,9 +303,11 @@ namespace Crimson.Core.Components.AbilityReactive
 
 			LookAtTargetIfAimExist();
 
-			ClipData.Decrease();
 			OnShot?.Invoke();
+			ClipData.Decrease();
+			_preShotAbilities.Execute();
 			SpawnedObjects = ActorSpawn.Spawn(projectileSpawnData, Actor, Actor.Owner);
+			_postShotAbilities.Execute();
 
 			if (SpawnedObjects == null)
 			{
@@ -389,9 +397,9 @@ namespace Crimson.Core.Components.AbilityReactive
 			SpawnedObjects.Clear();
 		}
 
-		private bool MustBeAbility(MonoBehaviour a)
+		private bool MustBeAbility(MonoBehaviour[] a)
 		{
-			return (a is IActorAbility) || (a is null);
+			return (a is null) || (a.All(s => s is IActorAbility));
 		}
 	}
 }

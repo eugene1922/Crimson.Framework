@@ -1786,9 +1786,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e904609c17beb14eaa709eba3fc8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActionsOnStart:
-  - {fileID: 0}
-  ActionsOnSuccess: []
+  ActionsOnStart: []
+  ActionsOnSuccess:
+  - {fileID: 1781694543}
+  - {fileID: 1673409450}
   CheckupDelay: 2
   ExecuteOnAwake: 1
   Spawners:

@@ -177,6 +177,35 @@ MonoBehaviour:
   State: 0
   Targets:
   - {fileID: 5880700991455437982}
+--- !u!114 &3004619680722403326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880700991455437982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64d97204b5ff4f419df406a225d1d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Abilities:
+  - {fileID: 5883804914797046431}
+--- !u!114 &5883804914797046431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880700991455437982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b56a6b4f1c631348a3a699a1c65ac89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Direction: {x: 0, y: 0, z: -1}
+  Force: 3
+  ForceMode: 2
 --- !u!114 &7347931288159886798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +236,6 @@ MonoBehaviour:
   componentName: Shotgun
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -273,6 +301,9 @@ MonoBehaviour:
     HasActorProjectileAnimation: 1
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
+  PreShotAbilities:
+  - {fileID: 3004619680722403326}
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
