@@ -61,3 +61,6 @@ Assets/StreamingAssets/Audio/GeneratedSoundBanks/
 Assets/Plugins/Editor/JetBrains
 Assets/Plugins/Editor/JetBrains.meta
 *.xsd
+ProjectSettings/Packages/com.unity.polybrush/Settings.json
+UserSettings/EditorUserSettings.asset
+ProjectSettings/PackageManagerSettings.asset
