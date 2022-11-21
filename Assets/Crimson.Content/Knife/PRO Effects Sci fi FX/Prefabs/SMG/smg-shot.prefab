@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6482992712407893611
+--- !u!1 &4796518233095041167
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6482992712407893610}
-  - component: {fileID: 5555843359687168743}
-  - component: {fileID: 9088967893855860311}
+  - component: {fileID: 4796518233095041160}
+  - component: {fileID: 4796518233095041162}
+  - component: {fileID: 4796518233095041161}
+  - component: {fileID: 4796518233095041163}
+  - component: {fileID: 4796518233095041172}
   m_Layer: 0
-  m_Name: SpawnPoint-Player
+  m_Name: smg-shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6482992712407893610
+--- !u!4 &4796518233095041160
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6482992712407893611}
+  m_GameObject: {fileID: 4796518233095041167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.048419, y: -0.1756432, z: 1.7346295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5555843359687168743
+--- !u!114 &4796518233095041162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6482992712407893611}
+  m_GameObject: {fileID: 4796518233095041167}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e47d41c27514e84ab0ce1cee5d70b15, type: 3}
@@ -47,13 +49,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   ExecuteOnSpawn: []
---- !u!114 &9088967893855860311
+--- !u!114 &4796518233095041161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6482992712407893611}
+  m_GameObject: {fileID: 4796518233095041167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28c327207e74b30a8ea4c9513e0109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifespan: 1
+  startOnSpawn: 1
+  actionOnDestroy: {fileID: 0}
+--- !u!114 &4796518233095041163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796518233095041167}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
@@ -65,7 +82,8 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1132238362247284, guid: 4f7f4a16de8f8484192ea25cea9d4db3, type: 3}
+    - {fileID: 8866508048713513764, guid: 3ac86504507bd6c4395f5fa426e55ed6, type: 3}
+    - {fileID: 5423031045433904113, guid: a37f966421f14b2499e4727ab7dcd4c9, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -80,12 +98,8 @@ MonoBehaviour:
     actorWithComponentName: 
     parentTag: 
     chooseParentStrategy: 0
-    copyComponentsFromSamples:
-    - {fileID: 7670242131266225950, guid: b066d472f10fc5f4d919e4e86e10da84, type: 3}
-    - {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78, type: 3}
-    - {fileID: 4935957120434825583, guid: 5d04c4f8465b2fd4391e06f7ab861a53, type: 3}
-    - {fileID: 89991304198168361, guid: c303287b04a3795489a1d638bbf10799, type: 3}
-    copyComponentsOfType: 2
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
@@ -98,3 +112,25 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
+--- !u!114 &4796518233095041172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796518233095041167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535773388f1f4534bdad2a70960d5503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTarget: 1
+  actorWithComponentName: 
+  targetTag: 
+  strategy: 0
+  followX: 0
+  followY: 1
+  followZ: 0
+  retainRotationOffset: 1
+  hideIfNoTarget: 0
+  target: {fileID: 0}
