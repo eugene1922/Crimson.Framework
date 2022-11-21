@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4795683133691389397}
   m_RootOrder: 0
@@ -44,10 +45,12 @@ TrailRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -165,7 +168,7 @@ GameObject:
   - component: {fileID: 6066008230528578808}
   - component: {fileID: 7157757733098946908}
   m_Layer: 0
-  m_Name: Auto Aim Laser
+  m_Name: SMG Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,6 +184,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6884472432773207788}
   m_Father: {fileID: 0}
@@ -203,7 +207,7 @@ MonoBehaviour:
   speed: 50
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32567
   explosion: {fileID: 6002720521190060909, guid: 0b70cc3f4ec9c844a9f040dbc0f96af4,
     type: 3}
   thresholdByNormal: 0.05
@@ -218,6 +222,7 @@ MonoBehaviour:
   bulletSize: 1
   disablingBehaviours: []
   raycastOrigin: {fileID: 0}
+  explosionScale: 1
 --- !u!114 &6066008230528578808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +239,7 @@ MonoBehaviour:
   physics: 1
   smoothPhysics: 1
   delay: 0
+  duration: 1000
   threshold: 2.5
   smoothByDistanceCurve:
     serializedVersion: 2

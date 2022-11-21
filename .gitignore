@@ -60,7 +60,12 @@ Assets/StreamingAssets/Android.meta
 Assets/StreamingAssets/Audio/GeneratedSoundBanks/
 Assets/Plugins/Editor/JetBrains
 Assets/Plugins/Editor/JetBrains.meta
+
 *.xsd
-ProjectSettings/Packages/com.unity.polybrush/Settings.json
+Assets/Crimson.Content/Kubold/PistolAnimsetPro/UI/Materials/Yellow.mat
+UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+ProjectSettings/ProjectSettings.asset
 UserSettings/EditorUserSettings.asset
-ProjectSettings/PackageManagerSettings.asset
+Assets/showConsole.cs
+/UserSettings/Layouts/default-2021.dwlt
+/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
