@@ -97,7 +97,7 @@ MonoBehaviour:
     skipBusySpawnPoints: 0
     spawnPointsFrom: 1
     _spawnPoints: []
-    spawnPointTag: WeaponMountPoint
+    spawnPointTag: WeaponPoint
     useChildrenObjects: 0
     rotationOfSpawns: 0
     parentOfSpawns: 0
