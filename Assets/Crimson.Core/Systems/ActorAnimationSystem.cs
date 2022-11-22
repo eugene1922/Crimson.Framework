@@ -117,12 +117,21 @@ namespace Crimson.Core.Systems
 					}
 					//TODO: Crouch
 					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
-					if (hasAttack)
+					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
+					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
+					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
+					if (hasAnyAttack)
 					{
 						proxy.Attack.SetTrigger(animator);
 						proxy.AttackType.SetValue(animator, 0);
-						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+						if (hasAttack)
+							EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+						if (hasRangeAttack)
+							EntityManager.RemoveComponent<AnimationRangeAttackTag>(entity);
+						if (hasMeleeAttack)
+							EntityManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
 					}
+
 
 					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
 					proxy.Hit.SetValue(animator, hasHit);
@@ -173,7 +182,8 @@ namespace Crimson.Core.Systems
 					if (hasDeath)
 					{
 						proxy.Death.SetTrigger(animator);
-						proxy.IsDead.SetValue(animator, true);
+						if (animator.GetCurrentAnimatorStateInfo(proxy.DeathLayer).IsTag(proxy.DeathTag))
+							proxy.IsDead.SetValue(animator, true);
 					}
 
 					//TODO:KnockbackStart
@@ -210,7 +220,7 @@ namespace Crimson.Core.Systems
 					moveVector = Quaternion.AngleAxis(angle, Vector3.up) * moveVector;
 					var realSpeed = new float2(moveVector.x, moveVector.z);
 					proxy.RealSpeed.SetValue(animator, realSpeed * movementData.MovementSpeed);
-					proxy.LookAtDirection.SetValue(animator, new float2(1, 0));
+					proxy.LookAtDirection.SetValue(animator, new float2(0, 1));
 
 					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);
 					if (startChangeWeapon)
