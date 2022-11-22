@@ -277,8 +277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2ea20dfba506d49bea2e3e3bd6c072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attacking:
-    Name: isAttacking
+  Attack:
+    Name: tAttack
   AttackType:
     FloatName: fAttackType
     IntName: AttackType

@@ -16,6 +16,9 @@ scopes = {
 	"last_search.DA949528" = "maintainer"
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "all"
+	"last_search.2138236A" = "AnimatorProxy"
+	"OpenInspectorPreview.2138236A" = "0"
+	"currentGroup.2138236A" = "all"
 }
 providers = {
 	asset = {
@@ -67,12 +70,13 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"AnimatorProxy"
 	"character"
 ]
 searchItemFavorites = [
 ]
 savedSearchesSortOrder = 0
-showSavedSearchPanel = false
+showSavedSearchPanel = true
 expandedQueries = [
 ]
 queryBuilder = false

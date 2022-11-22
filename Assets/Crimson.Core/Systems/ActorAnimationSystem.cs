@@ -114,9 +114,9 @@ namespace Crimson.Core.Systems
 					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
 					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
-					proxy.Attacking.SetValue(animator, hasAnyAttack);
 					if (hasAnyAttack)
 					{
+						proxy.Attack.SetTrigger(animator);
 						proxy.AttackType.SetValue(animator, 0);
 						if (hasAttack)
 							EntityManager.RemoveComponent<WeaponAttackTag>(entity);

@@ -20,7 +20,7 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Conditionals.GarageWhal
 			{
 				return TaskStatus.Failure;
 			}
-			if (_target != Target.Value || _abilityActorPlayer)
+			if (_target != Target.Value || _abilityActorPlayer == null)
 			{
 				_target = Target.Value;
 				_abilityActorPlayer = Target.Value.GetComponent<AbilityActorPlayer>();
