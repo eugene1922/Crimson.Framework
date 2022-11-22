@@ -76,10 +76,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 			_weapon = weapon;
 			_weapon.IsEnable = true;
 			weaponData.Current = (byte)weapon.Type;
+			weaponData.NeedAnimation = !skipAnimation;
 			_entityManager.AddComponentData(_entity, weaponData);
+			_entityManager.AddComponentData(_entity, new StartChangeWeaponAnimTag());
 			if (!skipAnimation)
 			{
-				_entityManager.AddComponentData(_entity, new StartChangeWeaponAnimTag());
 				Timer.TimedActions.AddAction(EndChangeWeapon, _weaponChangeDuration);
 			}
 
