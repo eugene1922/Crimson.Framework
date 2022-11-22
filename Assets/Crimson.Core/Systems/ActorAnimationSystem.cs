@@ -12,13 +12,15 @@ using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Crimson.Core.Systems
 {
 	public class ActorAnimationSystem : ComponentSystem
 	{
 		private EntityQuery _aimingAnimationQuery;
-		private EntityQuery _animatorProxyQuery;
+		private EntityQuery _animatorProxyBotQuery;
+		private EntityQuery _animatorProxyPlayerQuery;
 		private EntityQuery _damagedActorsQuery;
 		private EntityQuery _deadActorsQuery;
 		private EntityQuery _forceActorsQuery;
@@ -62,18 +64,26 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<ActorEvaluateAimingAnimData>(),
 				ComponentType.ReadOnly<Animator>());
 
-			_animatorProxyQuery = GetEntityQuery(
+			_animatorProxyBotQuery = GetEntityQuery(
 				ComponentType.ReadOnly<ActorMovementData>(),
 				ComponentType.ReadOnly<PlayerInputData>(),
 				ComponentType.ReadOnly<AnimatorProxy>(),
-				ComponentType.ReadOnly<Animator>());
+				ComponentType.ReadOnly<Animator>(),
+				ComponentType.ReadOnly<NavMeshAgent>());
+
+			_animatorProxyPlayerQuery = GetEntityQuery(
+				ComponentType.ReadOnly<ActorMovementData>(),
+				ComponentType.ReadOnly<PlayerInputData>(),
+				ComponentType.ReadOnly<AnimatorProxy>(),
+				ComponentType.ReadOnly<Animator>(),
+				ComponentType.Exclude<NavMeshAgent>());
 		}
 
 		protected override void OnUpdate()
 		{
 			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-			Entities.With(_animatorProxyQuery).ForEach(
+			Entities.With(_animatorProxyBotQuery).ForEach(
 				(Entity entity,
 				AnimatorProxy proxy,
 				ref PlayerInputData inputData,
@@ -82,14 +92,124 @@ namespace Crimson.Core.Systems
 					var transform = proxy.transform;
 					var animator = proxy.TargetAnimator;
 					var move = math.normalizesafe(inputData.Move, float2.zero);
-					var moveVector = new Vector3(move.x, 0, -move.y);
+					var moveVector = new Vector3(move.x, 0, move.y);
 					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, transform.up);
-					moveVector = Quaternion.AngleAxis(-angle, Vector3.up) * moveVector;
 					move = new float2(moveVector.x, moveVector.z);
-					if (proxy.ManagedByNavmeshAgent)
-						proxy.RealSpeed.SetValue(animator, new float2(0, moveVector.magnitude * movementData.MovementSpeed));
-					else
-						proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
+					proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
+					proxy.LookAtDirection.SetValue(animator, new float2(0, 1));
+
+					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);
+					if (startChangeWeapon)
+					{
+						var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
+						proxy.CurrentWeapon.SetValue(animator, data.Current);
+						proxy.PreviousWeapon.SetValue(animator, data.Previous);
+						proxy.WeaponChange.SetTrigger(animator);
+						EntityManager.RemoveComponent<StartChangeWeaponAnimTag>(entity);
+					}
+
+					var endChangeWeapon = EntityManager.HasComponent<EndChangeWeaponAnimTag>(entity);
+					if (endChangeWeapon)
+					{
+						var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
+						proxy.PreviousWeapon.SetValue(animator, data.Current);
+						EntityManager.RemoveComponent<EndChangeWeaponAnimTag>(entity);
+					}
+					//TODO: Crouch
+					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
+					if (hasAttack)
+					{
+						proxy.Attack.SetTrigger(animator);
+						proxy.AttackType.SetValue(animator, 0);
+						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+					}
+
+					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
+					proxy.Hit.SetValue(animator, hasHit);
+					if (hasHit)
+					{
+						proxy.HitDirection.SetValue(animator, new float2(0, 1));
+						EntityManager.RemoveComponent<DamagedActorTag>(entity);
+					}
+
+					var hasReload = EntityManager.HasComponent<ReloadTag>(entity);
+					proxy.Reloading.SetValue(animator, hasReload);
+					if (hasReload)
+					{
+						EntityManager.RemoveComponent<ReloadTag>(entity);
+					}
+					//TODO:Dodge
+					var hasStrafe = EntityManager.HasComponent<StrafeActorTag>(entity);
+					proxy.Dodge.SetValue(animator, hasStrafe);
+					if (hasStrafe)
+					{
+						EntityManager.RemoveComponent<StrafeActorTag>(entity);
+					}
+
+					//TODO:Falling
+
+					var startInteract = EntityManager.HasComponent<StartInteractionAnimTag>(entity);
+					if (startInteract)
+					{
+						var data = EntityManager.GetComponentData<InteractionTypeData>(entity);
+						proxy.InteractType.SetValue(animator, data.Type);
+						proxy.Interact.SetValue(animator, true);
+						EntityManager.RemoveComponent<InteractionTypeData>(entity);
+						EntityManager.RemoveComponent<StartInteractionAnimTag>(entity);
+					}
+					var endInteract = EntityManager.HasComponent<EndInteractionAnimData>(entity);
+					if (endInteract)
+					{
+						var data = EntityManager.GetComponentData<EndInteractionAnimData>(entity);
+						if (data.IsExpired)
+						{
+							proxy.Interact.SetValue(animator, false);
+							EntityManager.RemoveComponent<InteractionTypeData>(entity);
+							EntityManager.RemoveComponent<EndInteractionAnimData>(entity);
+						}
+					}
+
+					var hasDeath = EntityManager.HasComponent<DeadActorTag>(entity);
+					if (hasDeath)
+					{
+						proxy.Death.SetTrigger(animator);
+						proxy.IsDead.SetValue(animator, true);
+					}
+
+					//TODO:KnockbackStart
+					//TODO:KnockbackFly
+					//TODO:KnockbackGround
+					//TODO:KnockbackStandUp
+
+					//TODO:IdleFun
+					//TODO:IdleFundID
+
+					var useItem = EntityManager.HasComponent<UseItemAnimTag>(entity);
+					if (useItem)
+					{
+						var data = EntityManager.GetComponentData<UseItemAnimData>(entity);
+						proxy.ItemUseID.SetValue(animator, data.Type);
+						proxy.ItemUse.SetTrigger(animator);
+						EntityManager.RemoveComponent<UseItemAnimData>(entity);
+						EntityManager.RemoveComponent<UseItemAnimTag>(entity);
+					}
+				});
+
+			Entities.With(_animatorProxyPlayerQuery).ForEach(
+				(Entity entity,
+				AnimatorProxy proxy,
+				ref PlayerInputData inputData,
+				ref ActorMovementData movementData) =>
+				{
+					var transform = proxy.transform;
+					var animator = proxy.TargetAnimator;
+					var move = math.normalizesafe(inputData.Move, float2.zero);
+					var moveVector = new Vector3(move.x, 0, move.y);
+					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, Vector3.up);
+					moveVector = Quaternion.AngleAxis(inputData.CompensateAngle, Vector3.up) * moveVector;
+					moveVector = Quaternion.AngleAxis(angle, Vector3.up) * moveVector;
+					var realSpeed = new float2(moveVector.x, moveVector.z);
+					proxy.RealSpeed.SetValue(animator, realSpeed * movementData.MovementSpeed);
 					proxy.LookAtDirection.SetValue(animator, new float2(1, 0));
 
 					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);

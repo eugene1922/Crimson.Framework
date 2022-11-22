@@ -14,15 +14,18 @@ namespace Assets.Crimson.Core.Systems
 		{
 			_syncMoveQuery = GetEntityQuery(
 				ComponentType.ReadWrite<PlayerInputData>(),
-				ComponentType.ReadOnly<NavMeshAgent>()
+				ComponentType.ReadOnly<NavMeshAgent>(),
+				ComponentType.ReadOnly<AnimatorProxy>()
 				);
 		}
+
 		protected override void OnUpdate()
 		{
 			Entities.With(_syncMoveQuery).ForEach(
-				(NavMeshAgent agent, ref PlayerInputData data) =>
+				(ref PlayerInputData data, NavMeshAgent agent, AnimatorProxy proxy) =>
 				{
-					data.Move = agent.GetVelocity();
+					var move = agent.GetMoveDirection();
+					data.Move = move;
 				});
 		}
 	}

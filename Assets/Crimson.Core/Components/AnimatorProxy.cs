@@ -15,9 +15,8 @@ namespace Assets.Crimson.Core.Components
 		[Title(nameof(Crouch))] public AnimatorBool Crouch;
 		[Title(nameof(CurrentWeapon))] public AnimatorTypeValue CurrentWeapon;
 		[Title(nameof(Death))] public AnimatorTrigger Death;
-		public int DeathLayer = 7;
 		public string DeathTag = "Death";
-		[Title(nameof(IsDead))] public AnimatorBool IsDead;
+		public int DeathLayer = 7;
 		[Title(nameof(Dodge))] public AnimatorBool Dodge;
 		[Title(nameof(Falling))] public AnimatorBool Falling;
 		[Title(nameof(Hit))] public AnimatorBool Hit;
@@ -26,6 +25,7 @@ namespace Assets.Crimson.Core.Components
 		[Title(nameof(IdleFundID))] public AnimatorTypeValue IdleFundID;
 		[Title(nameof(Interact))] public AnimatorBool Interact;
 		[Title(nameof(InteractType))] public AnimatorTypeValue InteractType;
+		[Title(nameof(IsDead))] public AnimatorBool IsDead;
 		[Title(nameof(ItemUse))] public AnimatorTrigger ItemUse;
 		[Title(nameof(ItemUseID))] public AnimatorTypeValue ItemUseID;
 		[Title(nameof(KnockbackFly))] public AnimatorBool KnockbackFly;
@@ -37,13 +37,11 @@ namespace Assets.Crimson.Core.Components
 
 		[Title(nameof(RealSpeed))]
 		public AnimatorFloat2 RealSpeed;
-		public bool ManagedByNavmeshAgent;
 
 		[Title(nameof(Reloading))] public AnimatorBool Reloading;
 		[PropertyOrder(1)] public Animator TargetAnimator;
 		[Title(nameof(WeaponChange))] public AnimatorTrigger WeaponChange;
 		public IActor Actor { get; set; }
-
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			if (TargetAnimator == null)
@@ -68,8 +66,8 @@ namespace Assets.Crimson.Core.Components
 
 			LookAtDirection = new AnimatorNormalizedFloat2()
 			{
-				NameX = "fLookAtDirectionForward",
-				NameY = "fLookAtDirectionTangent"
+				NameX = "fLookAtDirectionTangent",
+				NameY = "fLookAtDirectionForward"
 			};
 
 			CurrentWeapon = new AnimatorTypeValue()
@@ -194,6 +192,11 @@ namespace Assets.Crimson.Core.Components
 				FloatName = "fItemID",
 				IntName = "itemID"
 			};
+
+			if (TargetAnimator == null)
+			{
+				TargetAnimator = GetComponent<Animator>();
+			}
 		}
 	}
 }
