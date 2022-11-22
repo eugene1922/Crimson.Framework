@@ -10,11 +10,13 @@ namespace Assets.Crimson.Core.Components
 	[HideMonoScript]
 	public class AnimatorProxy : MonoBehaviour, IActorAbility
 	{
-		[Title(nameof(Attacking))] public AnimatorBool Attacking;
+		[Title(nameof(Attack))] public AnimatorTrigger Attack;
 		[Title(nameof(AttackType))] public AnimatorTypeValue AttackType;
 		[Title(nameof(Crouch))] public AnimatorBool Crouch;
 		[Title(nameof(CurrentWeapon))] public AnimatorTypeValue CurrentWeapon;
 		[Title(nameof(Death))] public AnimatorTrigger Death;
+		public string DeathTag = "Death";
+		public int DeathLayer = 7;
 		[Title(nameof(Dodge))] public AnimatorBool Dodge;
 		[Title(nameof(Falling))] public AnimatorBool Falling;
 		[Title(nameof(Hit))] public AnimatorBool Hit;
@@ -90,9 +92,9 @@ namespace Assets.Crimson.Core.Components
 				Name = "isCrouch"
 			};
 
-			Attacking = new AnimatorBool()
+			Attack = new AnimatorTrigger()
 			{
-				Name = "isAttacking"
+				Name = "tAttack"
 			};
 
 			AttackType = new AnimatorTypeValue()

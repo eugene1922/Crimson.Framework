@@ -117,9 +117,9 @@ namespace Crimson.Core.Systems
 					}
 					//TODO: Crouch
 					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
-					proxy.Attacking.SetValue(animator, hasAttack);
 					if (hasAttack)
 					{
+						proxy.Attack.SetTrigger(animator);
 						proxy.AttackType.SetValue(animator, 0);
 						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
 					}
@@ -231,11 +231,19 @@ namespace Crimson.Core.Systems
 					}
 					//TODO: Crouch
 					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
-					proxy.Attacking.SetValue(animator, hasAttack);
-					if (hasAttack)
+					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
+					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
+					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
+					if (hasAnyAttack)
 					{
+						proxy.Attack.SetTrigger(animator);
 						proxy.AttackType.SetValue(animator, 0);
-						EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+						if (hasAttack)
+							EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+						if (hasRangeAttack)
+							EntityManager.RemoveComponent<AnimationRangeAttackTag>(entity);
+						if (hasMeleeAttack)
+							EntityManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
 					}
 
 					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
@@ -287,7 +295,8 @@ namespace Crimson.Core.Systems
 					if (hasDeath)
 					{
 						proxy.Death.SetTrigger(animator);
-						proxy.IsDead.SetValue(animator, true);
+						if (animator.GetCurrentAnimatorStateInfo(proxy.DeathLayer).IsTag(proxy.DeathTag))
+							proxy.IsDead.SetValue(animator, true);
 					}
 
 					//TODO:KnockbackStart
