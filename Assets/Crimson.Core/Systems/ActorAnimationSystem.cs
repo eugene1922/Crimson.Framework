@@ -104,7 +104,8 @@ namespace Crimson.Core.Systems
 						var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
 						proxy.CurrentWeapon.SetValue(animator, data.Current);
 						proxy.PreviousWeapon.SetValue(animator, data.Previous);
-						proxy.WeaponChange.SetTrigger(animator);
+						if (data.NeedAnimation)
+							proxy.WeaponChange.SetTrigger(animator);
 						EntityManager.RemoveComponent<StartChangeWeaponAnimTag>(entity);
 					}
 

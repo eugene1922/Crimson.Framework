@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _executeAction: {fileID: 0}
   _reloadAction: {fileID: 0}
-  _weaponChangeDuration: 1
+  _weaponChangeDuration: 0
   Weapon: {fileID: -7793011651485679112}
   EnableOnStart: 1
 --- !u!114 &-7793011651485679112

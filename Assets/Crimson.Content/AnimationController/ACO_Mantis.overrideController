@@ -8,4 +8,19 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: ACO_Mantis
   m_Controller: {fileID: 9100000, guid: 880cb64c3cdee6d448fc3715983005a4, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: cfcf64c28e615504bba2677f865dfee6, type: 3}
+    m_OverrideClip: {fileID: 3584459062387288229, guid: 821a91d475b9436eb055f39ac5506b1f,
+      type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: ce102fb84d0543043935bed064a8669d, type: 3}
+    m_OverrideClip: {fileID: 3584459062387288229, guid: 821a91d475b9436eb055f39ac5506b1f,
+      type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 542bb5f4a33c12b438020ebf619fc290, type: 3}
+    m_OverrideClip: {fileID: 3584459062387288229, guid: 821a91d475b9436eb055f39ac5506b1f,
+      type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 710bcab4c75a34b4cac9e87299e398d7, type: 3}
+    m_OverrideClip: {fileID: 3584459062387288229, guid: 821a91d475b9436eb055f39ac5506b1f,
+      type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: d7c406c45b9d4ca4f98f071f9947be02, type: 3}
+    m_OverrideClip: {fileID: 3584459062387288229, guid: 821a91d475b9436eb055f39ac5506b1f,
+      type: 3}
