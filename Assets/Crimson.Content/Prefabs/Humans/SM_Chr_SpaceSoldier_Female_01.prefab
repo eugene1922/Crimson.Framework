@@ -654,6 +654,8 @@ MonoBehaviour:
     IntName: CurrentWeaponCategory
   Death:
     Name: tDeath
+  DeathLayer: 7
+  DeathTag: Death
   Dodge:
     Name: isDodge
   Falling:
@@ -690,18 +692,18 @@ MonoBehaviour:
   KnockbackStart:
     Name: tKnockbackStart
   LookAtDirection:
-    NameX: fLookAtDirectionForward
-    NameY: fLookAtDirectionTangent
+    NameX: fLookAtDirectionTangent
+    NameY: fLookAtDirectionForward
   PreviousWeapon:
     FloatName: fPreviousWeaponCategory
     IntName: PreviousWeaponCategory
   RealSpeed:
     NameLength: fRealSpeedMagnitude
-    NameX: fRealSpeedForward
-    NameY: fRealSpeedTangent
+    NameX: fRealSpeedTangent
+    NameY: fRealSpeedForward
   Reloading:
     Name: isReloading
-  TargetAnimator: {fileID: 0}
+  TargetAnimator: {fileID: 95586128617617380}
   WeaponChange:
     Name: tWeaponChangeStart
 --- !u!1 &1165874820660524
