@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animation:
-    AnimationName: isAttacking
+    AnimationType: 5
     HasAnimation: 1
   Use: 1
   Duration: 2

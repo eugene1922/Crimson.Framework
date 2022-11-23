@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animation:
-    AnimationName: 
+    AnimationType: 0
     HasAnimation: 1
   Use: 1
   Duration: 0.5

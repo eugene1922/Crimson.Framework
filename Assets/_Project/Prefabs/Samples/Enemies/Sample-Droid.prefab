@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIBehaviour: {fileID: 6748390534130873612}
   compensateCameraRotation: 1
   customBindings:
   - index: 1
@@ -174,14 +173,10 @@ MonoBehaviour:
   actorDeathAnimProperties:
     HasActorDeathAnimation: 1
     ActorDeathAnimationName: Dead
-  TakeDamageAnimation:
-    AnimationName: 
-    HasAnimation: 0
   actorToUI: 0
   additionalForceAnim:
     AnimationName: 
     HasAnimation: 0
-  NeedCleanup: 0
   corpseCleanupDelay: 2
   deadActorBehaviour:
     RemoveTag: 0
@@ -218,6 +213,11 @@ MonoBehaviour:
     - MaxHealth
     - LevelUpRequiredExperience
   levelUpAction: {fileID: 0}
+  NeedCleanup: 0
+  DeathAbilities: []
+  TakeDamageAnimation:
+    AnimationName: 
+    HasAnimation: 0
   targetMarkActorComponentName: Aim Enemy Mark
   UIChannelID: 0
 --- !u!114 &3005303906965274516
@@ -290,8 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animation:
-    AnimationName: attack
-    HasAnimation: 1
+    AnimationType: 0
+    HasAnimation: 0
   Use: 1
   Duration: 0.1
   actions:

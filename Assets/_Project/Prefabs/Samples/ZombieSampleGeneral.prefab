@@ -35,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.128908, y: -24.239397, z: -14.475027}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIBehaviour: {fileID: -3678600976375478634}
   compensateCameraRotation: 1
   customBindings:
   - index: 1
@@ -168,9 +168,6 @@ MonoBehaviour:
   actorDeathAnimProperties:
     HasActorDeathAnimation: 1
     ActorDeathAnimationName: Dead
-  actorTakeDamageAnimProperties:
-    HasActorTakeDamageAnimation: 1
-    ActorTakeDamageName: Hit
   actorToUI: 0
   additionalForceAnim:
     AnimationName: 
@@ -183,6 +180,7 @@ MonoBehaviour:
     RemoveInput: 1
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
+    OnOverdamageActionsComponentNames: []
   deathCount: 0
   ExplicitUIChannel: 0
   healAction: {fileID: 0}
@@ -208,6 +206,11 @@ MonoBehaviour:
     - MaxHealth
     - LevelUpRequiredExperience
   levelUpAction: {fileID: 0}
+  NeedCleanup: 0
+  DeathAbilities: []
+  TakeDamageAnimation:
+    AnimationName: 
+    HasAnimation: 0
   targetMarkActorComponentName: Aim Enemy Mark
   UIChannelID: 0
 --- !u!114 &4098585114710412302
@@ -261,6 +264,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     timeScale: 1
+  workTime: 0
   movementAnimationProperties:
     HasMovementAnimation: 1
     MovementAnimationName: Run
@@ -279,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animation:
-    AnimationName: attack
+    AnimationType: 0
     HasAnimation: 1
   Use: 1
   Duration: 4.5
