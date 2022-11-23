@@ -1,4 +1,5 @@
 using Assets.Crimson.Core.Components;
+using Assets.Crimson.Core.Components.Perks;
 using Assets.Crimson.Core.Components.Targets;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -19,6 +20,7 @@ namespace Crimson.Core.Systems
 		private EntityQuery _aliveActors;
 		private EntityQuery _enemyTargetQuery;
 		private EntityQuery _followActorQuery;
+		private EntityQuery _mantisDashQuery;
 		private EntityQuery _queryFollowMovement, _queryFollowRotation, _queryAutoAim, _newAutoAimQuery;
 		private EntityQuery _targetDashQuery;
 
@@ -48,6 +50,11 @@ namespace Crimson.Core.Systems
 
 			_targetDashQuery = GetEntityQuery(
 				ComponentType.ReadOnly<AbilityTargetDash>(),
+				ComponentType.ReadOnly<Actor>(),
+				ComponentType.Exclude<DeadActorTag>());
+
+			_mantisDashQuery = GetEntityQuery(
+				ComponentType.ReadOnly<PerkMantisDash>(),
 				ComponentType.ReadOnly<Actor>(),
 				ComponentType.Exclude<DeadActorTag>());
 
@@ -237,6 +244,34 @@ namespace Crimson.Core.Systems
 					autoAim.SetTarget(targetTransform.position);
 					properties.SearchCompleted = true;
 					PostUpdateCommands.RemoveComponent<AutoAimTargetData>(entity);
+				});
+
+			Entities.With(_mantisDashQuery).ForEach(
+				(Actor source, PerkMantisDash ability) =>
+				{
+					if (ability.AbilityTarget == null)
+					{
+						return;
+					}
+
+					Actor target = null;
+					float distance = float.MaxValue;
+
+					Entities.With(_aliveActors).ForEach(
+						(Actor actor) =>
+						{
+							if (!ability.AbilityTarget.TagFilter.Filter((IActor)actor))
+							{
+								return;
+							}
+							var targetDistance = Vector3.Distance(source.transform.position, actor.transform.position);
+							if (targetDistance < distance)
+							{
+								target = actor;
+								distance = targetDistance;
+							}
+						});
+					ability.AbilityTarget.Target = target;
 				});
 
 			Entities.With(_targetDashQuery).ForEach(
