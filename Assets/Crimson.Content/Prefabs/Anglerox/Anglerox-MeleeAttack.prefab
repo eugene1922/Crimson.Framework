@@ -119,7 +119,7 @@ MonoBehaviour:
       UsePool: 0
   SpawnDelays:
     Delay: 0
-    StartupDelay: 0
+    StartupDelay: 0.5
 --- !u!114 &8164022589831880619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _executeAction: {fileID: 0}
   _reloadAction: {fileID: 0}
-  _weaponChangeDuration: 1
+  _weaponChangeDuration: 0
   Weapon: {fileID: -7793011651485679112}
   EnableOnStart: 1
 --- !u!114 &-7793011651485679112
@@ -150,5 +150,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponType: 4
-  _activationAction: {fileID: 0}
-  abilityOnShot: {fileID: 0}

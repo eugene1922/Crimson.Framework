@@ -57,11 +57,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 			if (Weapon != null)
 			{
-				Change((IWeapon)Weapon);
+				Change((IWeapon)Weapon, EnableOnStart);
 			}
 		}
 
-		public void Change(IWeapon weapon)
+		public void Change(IWeapon weapon, bool skipAnimation = false)
 		{
 			if (!IsEnable)
 			{
@@ -76,9 +76,13 @@ namespace Assets.Crimson.Core.Components.Weapons
 			_weapon = weapon;
 			_weapon.IsEnable = true;
 			weaponData.Current = (byte)weapon.Type;
+			weaponData.NeedAnimation = !skipAnimation;
 			_entityManager.AddComponentData(_entity, weaponData);
 			_entityManager.AddComponentData(_entity, new StartChangeWeaponAnimTag());
-			Timer.TimedActions.AddAction(EndChangeWeapon, _weaponChangeDuration);
+			if (!skipAnimation)
+			{
+				Timer.TimedActions.AddAction(EndChangeWeapon, _weaponChangeDuration);
+			}
 
 			UIReceiverList.UpdateUIData("CurrentWeapon");
 		}

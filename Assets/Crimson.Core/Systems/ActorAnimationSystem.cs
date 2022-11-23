@@ -12,13 +12,16 @@ using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Crimson.Core.Systems
 {
 	public class ActorAnimationSystem : ComponentSystem
 	{
 		private EntityQuery _aimingAnimationQuery;
-		private EntityQuery _animatorProxyQuery;
+		private EntityQuery _animatorProxyBaseQuery;
+		private EntityQuery _animatorProxyBotQuery;
+		private EntityQuery _animatorProxyPlayerQuery;
 		private EntityQuery _damagedActorsQuery;
 		private EntityQuery _deadActorsQuery;
 		private EntityQuery _forceActorsQuery;
@@ -62,35 +65,39 @@ namespace Crimson.Core.Systems
 				ComponentType.ReadOnly<ActorEvaluateAimingAnimData>(),
 				ComponentType.ReadOnly<Animator>());
 
-			_animatorProxyQuery = GetEntityQuery(
+			_animatorProxyBaseQuery = GetEntityQuery(
 				ComponentType.ReadOnly<ActorMovementData>(),
 				ComponentType.ReadOnly<PlayerInputData>(),
 				ComponentType.ReadOnly<AnimatorProxy>(),
 				ComponentType.ReadOnly<Animator>());
+
+			_animatorProxyBotQuery = GetEntityQuery(
+				ComponentType.ReadOnly<ActorMovementData>(),
+				ComponentType.ReadOnly<PlayerInputData>(),
+				ComponentType.ReadOnly<AnimatorProxy>(),
+				ComponentType.ReadOnly<Animator>(),
+				ComponentType.ReadOnly<NavMeshAgent>());
+
+			_animatorProxyPlayerQuery = GetEntityQuery(
+				ComponentType.ReadOnly<ActorMovementData>(),
+				ComponentType.ReadOnly<PlayerInputData>(),
+				ComponentType.ReadOnly<AnimatorProxy>(),
+				ComponentType.ReadOnly<Animator>(),
+				ComponentType.Exclude<NavMeshAgent>());
 		}
 
 		protected override void OnUpdate()
 		{
 			var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-			Entities.With(_animatorProxyQuery).ForEach(
+			Entities.With(_animatorProxyBaseQuery).ForEach(
 				(Entity entity,
 				AnimatorProxy proxy,
 				ref PlayerInputData inputData,
 				ref ActorMovementData movementData) =>
 				{
-					var transform = proxy.transform;
 					var animator = proxy.TargetAnimator;
-					var move = math.normalizesafe(inputData.Move, float2.zero);
-					var moveVector = new Vector3(move.x, 0, -move.y);
-					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, transform.up);
-					moveVector = Quaternion.AngleAxis(-angle, Vector3.up) * moveVector;
-					move = new float2(moveVector.x, moveVector.z);
-					if (proxy.ManagedByNavmeshAgent)
-						proxy.RealSpeed.SetValue(animator, new float2(0, moveVector.magnitude * movementData.MovementSpeed));
-					else
-						proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
-					proxy.LookAtDirection.SetValue(animator, new float2(1, 0));
+					proxy.LookAtDirection.SetValue(animator, new float2(0, 1));
 
 					var startChangeWeapon = EntityManager.HasComponent<StartChangeWeaponAnimTag>(entity);
 					if (startChangeWeapon)
@@ -98,7 +105,11 @@ namespace Crimson.Core.Systems
 						var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
 						proxy.CurrentWeapon.SetValue(animator, data.Current);
 						proxy.PreviousWeapon.SetValue(animator, data.Previous);
-						proxy.WeaponChange.SetTrigger(animator);
+						if (data.NeedAnimation)
+						{
+							proxy.WeaponChange.SetTrigger(animator);
+						}
+
 						EntityManager.RemoveComponent<StartChangeWeaponAnimTag>(entity);
 					}
 
@@ -113,17 +124,25 @@ namespace Crimson.Core.Systems
 					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
 					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
-					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
-					proxy.Attacking.SetValue(animator, hasAnyAttack);
+					var hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
 					if (hasAnyAttack)
 					{
+						proxy.Attack.SetTrigger(animator);
 						proxy.AttackType.SetValue(animator, 0);
 						if (hasAttack)
+						{
 							EntityManager.RemoveComponent<WeaponAttackTag>(entity);
+						}
+
 						if (hasRangeAttack)
+						{
 							EntityManager.RemoveComponent<AnimationRangeAttackTag>(entity);
+						}
+
 						if (hasMeleeAttack)
+						{
 							EntityManager.RemoveComponent<AnimationMeleeAttackTag>(entity);
+						}
 					}
 
 					var hasHit = EntityManager.HasComponent<DamagedActorTag>(entity);
@@ -176,7 +195,9 @@ namespace Crimson.Core.Systems
 					{
 						proxy.Death.SetTrigger(animator);
 						if (animator.GetCurrentAnimatorStateInfo(proxy.DeathLayer).IsTag(proxy.DeathTag))
+						{
 							proxy.IsDead.SetValue(animator, true);
+						}
 					}
 
 					//TODO:KnockbackStart
@@ -196,6 +217,38 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<UseItemAnimData>(entity);
 						EntityManager.RemoveComponent<UseItemAnimTag>(entity);
 					}
+				});
+
+			Entities.With(_animatorProxyBotQuery).ForEach(
+				(Entity entity,
+				AnimatorProxy proxy,
+				ref PlayerInputData inputData,
+				ref ActorMovementData movementData) =>
+				{
+					var transform = proxy.transform;
+					var animator = proxy.TargetAnimator;
+					var move = math.normalizesafe(inputData.Move, float2.zero);
+					var moveVector = new Vector3(move.x, 0, move.y);
+					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, transform.up);
+					move = new float2(moveVector.x, moveVector.z);
+					proxy.RealSpeed.SetValue(animator, move * movementData.MovementSpeed);
+				});
+
+			Entities.With(_animatorProxyPlayerQuery).ForEach(
+				(Entity entity,
+				AnimatorProxy proxy,
+				ref PlayerInputData inputData,
+				ref ActorMovementData movementData) =>
+				{
+					var transform = proxy.transform;
+					var animator = proxy.TargetAnimator;
+					var move = math.normalizesafe(inputData.Move, float2.zero);
+					var moveVector = new Vector3(move.x, 0, move.y);
+					var angle = Vector3.SignedAngle(transform.forward, Vector3.forward, Vector3.up);
+					moveVector = Quaternion.AngleAxis(inputData.CompensateAngle, Vector3.up) * moveVector;
+					moveVector = Quaternion.AngleAxis(angle, Vector3.up) * moveVector;
+					var realSpeed = new float2(moveVector.x, moveVector.z);
+					proxy.RealSpeed.SetValue(animator, realSpeed * movementData.MovementSpeed);
 				});
 
 			Entities.With(_movementQuery).ForEach(

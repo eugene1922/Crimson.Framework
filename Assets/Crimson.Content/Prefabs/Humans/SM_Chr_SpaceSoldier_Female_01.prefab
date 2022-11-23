@@ -576,7 +576,7 @@ Animator:
   m_GameObject: {fileID: 1132238362247284}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c8c20564eb982f84a96a0d4d8e357cc5, type: 3}
-  m_Controller: {fileID: 22100000, guid: d7c05f8eb5015b44ababd2cb2f192ae9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 880cb64c3cdee6d448fc3715983005a4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -642,8 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2ea20dfba506d49bea2e3e3bd6c072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attacking:
-    Name: isAttacking
+  Attack:
+    Name: tAttack
   AttackType:
     FloatName: fAttackType
     IntName: AttackType
@@ -654,6 +654,8 @@ MonoBehaviour:
     IntName: CurrentWeaponCategory
   Death:
     Name: tDeath
+  DeathLayer: 7
+  DeathTag: Death
   Dodge:
     Name: isDodge
   Falling:
@@ -690,18 +692,18 @@ MonoBehaviour:
   KnockbackStart:
     Name: tKnockbackStart
   LookAtDirection:
-    NameX: fLookAtDirectionForward
-    NameY: fLookAtDirectionTangent
+    NameX: fLookAtDirectionTangent
+    NameY: fLookAtDirectionForward
   PreviousWeapon:
     FloatName: fPreviousWeaponCategory
     IntName: PreviousWeaponCategory
   RealSpeed:
     NameLength: fRealSpeedMagnitude
-    NameX: fRealSpeedForward
-    NameY: fRealSpeedTangent
+    NameX: fRealSpeedTangent
+    NameY: fRealSpeedForward
   Reloading:
     Name: isReloading
-  TargetAnimator: {fileID: 0}
+  TargetAnimator: {fileID: 95586128617617380}
   WeaponChange:
     Name: tWeaponChangeStart
 --- !u!1 &1165874820660524

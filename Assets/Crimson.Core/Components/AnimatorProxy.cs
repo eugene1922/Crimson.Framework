@@ -10,14 +10,13 @@ namespace Assets.Crimson.Core.Components
 	[HideMonoScript]
 	public class AnimatorProxy : MonoBehaviour, IActorAbility
 	{
-		[Title(nameof(Attacking))] public AnimatorBool Attacking;
+		[Title(nameof(Attack))] public AnimatorTrigger Attack;
 		[Title(nameof(AttackType))] public AnimatorTypeValue AttackType;
 		[Title(nameof(Crouch))] public AnimatorBool Crouch;
 		[Title(nameof(CurrentWeapon))] public AnimatorTypeValue CurrentWeapon;
 		[Title(nameof(Death))] public AnimatorTrigger Death;
 		public int DeathLayer = 7;
 		public string DeathTag = "Death";
-		[Title(nameof(IsDead))] public AnimatorBool IsDead;
 		[Title(nameof(Dodge))] public AnimatorBool Dodge;
 		[Title(nameof(Falling))] public AnimatorBool Falling;
 		[Title(nameof(Hit))] public AnimatorBool Hit;
@@ -26,6 +25,7 @@ namespace Assets.Crimson.Core.Components
 		[Title(nameof(IdleFundID))] public AnimatorTypeValue IdleFundID;
 		[Title(nameof(Interact))] public AnimatorBool Interact;
 		[Title(nameof(InteractType))] public AnimatorTypeValue InteractType;
+		[Title(nameof(IsDead))] public AnimatorBool IsDead;
 		[Title(nameof(ItemUse))] public AnimatorTrigger ItemUse;
 		[Title(nameof(ItemUseID))] public AnimatorTypeValue ItemUseID;
 		[Title(nameof(KnockbackFly))] public AnimatorBool KnockbackFly;
@@ -37,7 +37,6 @@ namespace Assets.Crimson.Core.Components
 
 		[Title(nameof(RealSpeed))]
 		public AnimatorFloat2 RealSpeed;
-		public bool ManagedByNavmeshAgent;
 
 		[Title(nameof(Reloading))] public AnimatorBool Reloading;
 		[PropertyOrder(1)] public Animator TargetAnimator;
@@ -68,8 +67,8 @@ namespace Assets.Crimson.Core.Components
 
 			LookAtDirection = new AnimatorNormalizedFloat2()
 			{
-				NameX = "fLookAtDirectionForward",
-				NameY = "fLookAtDirectionTangent"
+				NameX = "fLookAtDirectionTangent",
+				NameY = "fLookAtDirectionForward"
 			};
 
 			CurrentWeapon = new AnimatorTypeValue()
@@ -94,9 +93,9 @@ namespace Assets.Crimson.Core.Components
 				Name = "isCrouch"
 			};
 
-			Attacking = new AnimatorBool()
+			Attack = new AnimatorTrigger()
 			{
-				Name = "isAttacking"
+				Name = "tAttack"
 			};
 
 			AttackType = new AnimatorTypeValue()
@@ -194,6 +193,11 @@ namespace Assets.Crimson.Core.Components
 				FloatName = "fItemID",
 				IntName = "itemID"
 			};
+
+			if (TargetAnimator == null)
+			{
+				TargetAnimator = GetComponent<Animator>();
+			}
 		}
 	}
 }

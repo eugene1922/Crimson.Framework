@@ -37,6 +37,8 @@ namespace Crimson.Core.Common
 
 		public void DestroyWithEntity()
 		{
+			if (this == null)
+				return;
 			this.gameObject.DestroyWithEntity(actor.ActorEntity);
 		}
 

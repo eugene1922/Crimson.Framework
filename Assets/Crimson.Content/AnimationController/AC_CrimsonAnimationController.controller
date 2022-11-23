@@ -1204,7 +1204,7 @@ AnimatorStateMachine:
     m_StateMachine: {fileID: 4841017400359649223}
     m_Position: {x: 310, y: -60, z: 0}
   m_AnyStateTransitions:
-  - {fileID: 9090033117420589593}
+  - {fileID: 4583979744905418539}
   m_EntryTransitions: []
   m_StateMachineTransitions:
   - first: {fileID: 4841017400359649223}
@@ -2275,217 +2275,223 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fRealSpeedTangent
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fRealSpeedMagnitude
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fLookAtDirectionForward
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fLookAtDirectionTangent
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: CurrentWeaponCategory
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fCurrentWeaponCategory
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: PreviousWeaponCategory
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 1
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fPreviousWeaponCategory
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tWeaponChangeStart
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isCrouch
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
+  - m_Name: tAttack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: isAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AttackType
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fAttackType
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isHit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fHitDirectionForward
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fHitDirectionTangent
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fHitStrength
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isReloading
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isDodge
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isFalling
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isInteract
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: InteractionType
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fInteractionType
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tDeath
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tKnockbackStart
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isKnockbackFly
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isKnockbackGround
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tKnockbackStandUp
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tIdleFun
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IdleFunID
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fIdleFunId
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: tItemUse
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: itemID
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fItemID
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: DefaultKeysEmptyLayer
@@ -2554,7 +2560,7 @@ AnimatorController:
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
-    m_SyncedLayerIndex: -1
+    m_SyncedLayerIndex: 0
     m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
@@ -3536,6 +3542,34 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &4583979744905418539
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: tAttack
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isDead
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 4841017400359649223}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &4586563294637441287
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -3982,7 +4016,7 @@ BlendTree:
     m_Motion: {fileID: -6709621323537768637, guid: 01e95d8e63eb025468de9cc6adce6129,
       type: 3}
     m_Threshold: 0.1
-    m_Position: {x: 0.00009160824, y: -4.1316085}
+    m_Position: {x: 0, y: -4.1316085}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -3991,7 +4025,7 @@ BlendTree:
     m_Motion: {fileID: -7898054074781924278, guid: 5c3030e78cfb5234082b3156dfa80c27,
       type: 3}
     m_Threshold: 0.2
-    m_Position: {x: -2.9033754, y: -2.8925757}
+    m_Position: {x: 2.903375, y: -2.8925757}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4000,7 +4034,7 @@ BlendTree:
     m_Motion: {fileID: 7871900149279562703, guid: 7e2c06a17e5e5034aa0bf20e61a85dc1,
       type: 3}
     m_Threshold: 0.3
-    m_Position: {x: 2.900831, y: -2.8942304}
+    m_Position: {x: -2.900831, y: -2.8942304}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4009,7 +4043,7 @@ BlendTree:
     m_Motion: {fileID: -3215135566274277976, guid: 2bbb11c035afeb941ba58accf01408fd,
       type: 3}
     m_Threshold: 0.4
-    m_Position: {x: -0.036685903, y: 3.6126988}
+    m_Position: {x: 0.0366859, y: 3.6126988}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4018,7 +4052,7 @@ BlendTree:
     m_Motion: {fileID: -223341961636412259, guid: 09e18b7ffa5cabb418296f79661fb4e9,
       type: 3}
     m_Threshold: 0.5
-    m_Position: {x: -2.8772602, y: 2.3706188}
+    m_Position: {x: 2.87726, y: 2.3706188}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4027,7 +4061,7 @@ BlendTree:
     m_Motion: {fileID: 4677475350056371360, guid: c01989884e191914d9aee5a43f98c169,
       type: 3}
     m_Threshold: 0.6
-    m_Position: {x: 2.9156418, y: 2.3757567}
+    m_Position: {x: -2.915642, y: 2.3757567}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4036,7 +4070,7 @@ BlendTree:
     m_Motion: {fileID: 5143065521006415261, guid: c18e08ee484ed30439a86e247edb58eb,
       type: 3}
     m_Threshold: 0.7
-    m_Position: {x: -4.126538, y: -0.03304894}
+    m_Position: {x: 4.126538, y: -0.03304894}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4045,7 +4079,7 @@ BlendTree:
     m_Motion: {fileID: -1748806409106743706, guid: abee964f35d009b47b8b585a4d782881,
       type: 3}
     m_Threshold: 0.8
-    m_Position: {x: 4.1110134, y: -0.071693696}
+    m_Position: {x: -4.111013, y: -0.071693696}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4054,7 +4088,7 @@ BlendTree:
     m_Motion: {fileID: 1278502969022494773, guid: c0eb7f641e9a9704ab175b4be21ae71c,
       type: 3}
     m_Threshold: 0.9
-    m_Position: {x: 0.0025218711, y: -0.8098957}
+    m_Position: {x: -0.002521871, y: -0.8098957}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4063,7 +4097,7 @@ BlendTree:
     m_Motion: {fileID: -1556336269981646592, guid: 048988107fe66454994290639a7d0694,
       type: 3}
     m_Threshold: 1
-    m_Position: {x: -0.57592386, y: -0.5697783}
+    m_Position: {x: 0.5759239, y: -0.5697783}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4072,7 +4106,7 @@ BlendTree:
     m_Motion: {fileID: 7648892547778831923, guid: 0125d8fc0c75d2a44ac11eb88a9e2bdc,
       type: 3}
     m_Threshold: 1.1
-    m_Position: {x: 0.5760064, y: -0.57129127}
+    m_Position: {x: -0.5760064, y: -0.57129127}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4081,7 +4115,7 @@ BlendTree:
     m_Motion: {fileID: 3075406400403718275, guid: 0283105db8bd7ea459f819cde2f602fe,
       type: 3}
     m_Threshold: 1.3000001
-    m_Position: {x: 0.005451287, y: 0.78624755}
+    m_Position: {x: -0.005451287, y: 0.78624755}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4090,7 +4124,7 @@ BlendTree:
     m_Motion: {fileID: 7553701096184309136, guid: e8e985f502e0bd245971d10833127e5d,
       type: 3}
     m_Threshold: 1.4000001
-    m_Position: {x: -0.54362434, y: 0.523707}
+    m_Position: {x: 0.5436243, y: 0.523707}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4099,7 +4133,7 @@ BlendTree:
     m_Motion: {fileID: 3584040600789282585, guid: 60e338cca1eae204882536d89fd0f5a6,
       type: 3}
     m_Threshold: 1.6000001
-    m_Position: {x: 0.57643807, y: 0.56114995}
+    m_Position: {x: -0.5764381, y: 0.56114995}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4108,7 +4142,7 @@ BlendTree:
     m_Motion: {fileID: 8427495719836056625, guid: e136d79600b49954a9f83cbaca1f958a,
       type: 3}
     m_Threshold: 1.7000002
-    m_Position: {x: -0.81133574, y: 0.006208079}
+    m_Position: {x: 0.8113357, y: 0.006208079}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4117,7 +4151,7 @@ BlendTree:
     m_Motion: {fileID: -3883322120217936878, guid: 1746f51db635d5e4aba23ec42073a714,
       type: 3}
     m_Threshold: 1.8000002
-    m_Position: {x: 0.81214845, y: 0.0030562927}
+    m_Position: {x: -0.8121485, y: 0.0030562927}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: fRealSpeedForward
@@ -4647,31 +4681,3 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -1039802595366014410}
---- !u!1101 &9090033117420589593
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isAttacking
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isDead
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 4841017400359649223}
-  m_DstState: {fileID: 0}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.01
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 1
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
