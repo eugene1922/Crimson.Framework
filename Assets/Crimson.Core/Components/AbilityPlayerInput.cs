@@ -63,6 +63,8 @@ namespace Crimson.Core.Components
 	[HideMonoScript]
 	public class AbilityPlayerInput : MonoBehaviour, IActorAbility
 	{
+		public bool _enableMoveByInput;
+
 		[HideInInspector] public Dictionary<int, List<IActorAbility>> bindingsDict;
 
 		[ShowIfGroup("inputSource", InputSource.UserInput)]
@@ -104,7 +106,10 @@ namespace Crimson.Core.Components
 				AddCustomBinding(binding);
 			}
 
-			dstManager.AddComponentData(entity, new MoveByInputData());
+			if (_enableMoveByInput)
+			{
+				dstManager.AddComponentData(entity, new MoveByInputData());
+			}
 
 			switch (inputSource)
 			{
