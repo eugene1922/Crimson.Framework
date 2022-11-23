@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: Blaster
-  _weaponType: 2
+  _weaponType: 1
   primaryProjectile: 0
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
@@ -226,6 +226,8 @@ MonoBehaviour:
     HasActorProjectileAnimation: 0
     ActorProjectileAnimationName: 
   suppressWeaponSpawn: 0
+  PreShotAbilities: []
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
