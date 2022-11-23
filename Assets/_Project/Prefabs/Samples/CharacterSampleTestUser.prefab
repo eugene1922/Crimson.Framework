@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enableMoveByInput: 1
   compensateCameraRotation: 1
   customBindings: []
   inputSource: 1
