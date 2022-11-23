@@ -24,27 +24,27 @@ namespace Assets.Crimson.Core.Utils
 			return results;
 		}
 
-		public static float2 GetVelocity(this NavMeshAgent agent)
-		{
-			var hasIsArrived = agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance;
-			if (hasIsArrived)
-			{
-				return float2.zero;
-			}
-			var direction = math.normalizesafe(new float2(agent.desiredVelocity.x, agent.desiredVelocity.z), float2.zero);
-			return direction;
-		}
-
 		public static float2 GetMoveDirection(this NavMeshAgent agent)
 		{
 			var hasIsArrived = agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance;
-			if (hasIsArrived)
+			if (hasIsArrived || agent.isStopped)
 			{
 				return float2.zero;
 			}
 			var target = agent.steeringTarget;
 			var moveVector = agent.transform.InverseTransformPoint(target);
 			var direction = math.normalizesafe(new float2(moveVector.x, moveVector.z), float2.zero);
+			return direction;
+		}
+
+		public static float2 GetVelocity(this NavMeshAgent agent)
+		{
+			var hasIsArrived = agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance;
+			if (hasIsArrived || agent.isStopped)
+			{
+				return float2.zero;
+			}
+			var direction = math.normalizesafe(new float2(agent.desiredVelocity.x, agent.desiredVelocity.z), float2.zero);
 			return direction;
 		}
 
