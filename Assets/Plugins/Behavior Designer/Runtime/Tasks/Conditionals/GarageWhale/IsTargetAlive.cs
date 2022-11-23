@@ -3,6 +3,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEditor;
 using UnityEngine;
 using Crimson.Core.Components;
+using BehaviorDesigner.Runtime.Tasks.Movement;
 
 namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Conditionals.GarageWhale
 {
@@ -23,7 +24,7 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Conditionals.GarageWhal
 			if (_target != Target.Value || _abilityActorPlayer == null)
 			{
 				_target = Target.Value;
-				_abilityActorPlayer = Target.Value.GetComponent<AbilityActorPlayer>();
+				_abilityActorPlayer = MovementUtility.GetComponentForType<AbilityActorPlayer>(_target);
 			}
 			if (_abilityActorPlayer == null)
 			{
