@@ -589,6 +589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2caa2cd08508b247bd968a66cfc5b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animation:
+    AnimationType: 0
+    HasAnimation: 0
   Use: 1
   Duration: 1.5
   actions:
@@ -652,6 +655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2caa2cd08508b247bd968a66cfc5b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animation:
+    AnimationType: 0
+    HasAnimation: 0
   Use: 1
   Duration: 1.5
   actions:

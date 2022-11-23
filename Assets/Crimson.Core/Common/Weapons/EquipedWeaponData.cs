@@ -7,5 +7,6 @@ namespace Assets.Crimson.Core.Common.Weapons
 		public byte Current;
 		public byte Previous;
 		public bool NeedAnimation;
+		public byte AttackType;
 	}
 }

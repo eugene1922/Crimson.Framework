@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Common.Weapons;
 using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
@@ -13,7 +14,7 @@ namespace Assets.Crimson.Core.Components
 	public class AbilityMeleeAttack : MonoBehaviour, IActorAbility, IEnableable
 	{
 		[Header(nameof(Animation))]
-		public ActorGeneralAnimProperties Animation = new ActorGeneralAnimProperties();
+		public ActorTypedAnimProperties Animation = new ActorTypedAnimProperties();
 
 		[Header(nameof(Cooldown))]
 		public bool Use;
@@ -57,7 +58,10 @@ namespace Assets.Crimson.Core.Components
 
 			if (Animation.HasAnimation)
 			{
-				_dstManager.AddComponentData(_entity, new AnimationMeleeAttackTag(Animation.AnimationName));
+				var weaponData = new EquipedWeaponData();
+				weaponData.AttackType = Animation.AnimationType;
+				_dstManager.AddComponentData(_entity, weaponData);
+				_dstManager.AddComponentData(_entity, new AnimationMeleeAttackTag());
 			}
 
 			for (var i = 0; i < AbilityCollection.Count; i++)

@@ -117,15 +117,21 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<EndChangeWeaponAnimTag>(entity);
 					}
 					//TODO: Crouch
-					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
+					var hasWeaponAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
 					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
-					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
+					bool hasAnyAttack = hasWeaponAttack || hasRangeAttack || hasMeleeAttack;
 					if (hasAnyAttack)
 					{
+						byte attackType = 0;
+						if (hasMeleeAttack || hasRangeAttack)
+						{
+							var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
+							attackType = data.AttackType;
+						}
+						proxy.AttackType.SetValue(animator, attackType);
 						proxy.Attack.SetTrigger(animator);
-						proxy.AttackType.SetValue(animator, 0);
-						if (hasAttack)
+						if (hasWeaponAttack)
 							EntityManager.RemoveComponent<WeaponAttackTag>(entity);
 						if (hasRangeAttack)
 							EntityManager.RemoveComponent<AnimationRangeAttackTag>(entity);
@@ -241,15 +247,21 @@ namespace Crimson.Core.Systems
 						EntityManager.RemoveComponent<EndChangeWeaponAnimTag>(entity);
 					}
 					//TODO: Crouch
-					var hasAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
+					var hasWeaponAttack = EntityManager.HasComponent<WeaponAttackTag>(entity);
 					var hasRangeAttack = EntityManager.HasComponent<AnimationRangeAttackTag>(entity);
 					var hasMeleeAttack = EntityManager.HasComponent<AnimationMeleeAttackTag>(entity);
-					bool hasAnyAttack = hasAttack || hasRangeAttack || hasMeleeAttack;
+					bool hasAnyAttack = hasWeaponAttack || hasRangeAttack || hasMeleeAttack;
 					if (hasAnyAttack)
 					{
+						byte attackType = 0;
+						if (hasMeleeAttack || hasRangeAttack)
+						{
+							var data = EntityManager.GetComponentData<EquipedWeaponData>(entity);
+							attackType = data.AttackType;
+						}
+						proxy.AttackType.SetValue(animator, attackType);
 						proxy.Attack.SetTrigger(animator);
-						proxy.AttackType.SetValue(animator, 0);
-						if (hasAttack)
+						if (hasWeaponAttack)
 							EntityManager.RemoveComponent<WeaponAttackTag>(entity);
 						if (hasRangeAttack)
 							EntityManager.RemoveComponent<AnimationRangeAttackTag>(entity);

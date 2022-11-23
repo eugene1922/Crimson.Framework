@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animation:
-    AnimationName: 
+    AnimationType: 0
     HasAnimation: 0
   Use: 1
   Duration: 2
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animation:
-    AnimationName: 
+    AnimationType: 0
     HasAnimation: 0
   Use: 1
   Duration: 7

@@ -2303,22 +2303,5 @@ PrefabInstance:
       propertyPath: SpawnData._spawnPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1407100782}
-    - target: {fileID: 3706507198359825305, guid: 6a986010b103e224cbe7842ea54b359c,
-        type: 3}
-      propertyPath: SpawnData.copyComponentsFromSamples.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3706507198359825305, guid: 6a986010b103e224cbe7842ea54b359c,
-        type: 3}
-      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[3]
-      value: 
-      objectReference: {fileID: 3289702619521376152, guid: 49999ce45e360f24080ff3b266d1d69e,
-        type: 3}
-    - target: {fileID: 3706507198359825305, guid: 6a986010b103e224cbe7842ea54b359c,
-        type: 3}
-      propertyPath: SpawnData.copyComponentsFromSamples.Array.data[4]
-      value: 
-      objectReference: {fileID: 3289702619521376152, guid: 0d0212adb46157843b234b91c355a097,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a986010b103e224cbe7842ea54b359c, type: 3}

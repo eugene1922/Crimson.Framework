@@ -14,22 +14,22 @@ public class SelectPrefabsOfType : EditorWindow {
         EditorWindow.GetWindow<SelectPrefabsOfType>(true, "Prefab Finder");
     }
 
-    List<Type> _types = null;
-    string[] _typesArray = null;
-    int _idx = 0;
+    private List<Type> _types = null;
+	private string _pattern = "Proxy";
+    private string[] _typesArray = null;
+    private int _idx = 0;
 
-    private string pattern = "";
-    
     void OnGUI()
     {
         GUILayout.Label("String Pattern");
-        pattern = GUILayout.TextField(pattern, 25);
+        string pattern = GUILayout.TextField(_pattern, 25);
+		if (pattern != _pattern || _types == null)
+		{
+			_pattern = pattern;
+			GetAllTypes();
+		}
 
         GUILayout.Label("Select Script");
-        if (_types == null)
-        {
-            GetAllTypes();
-        }
 
         _idx = EditorGUILayout.Popup(_idx, _typesArray);
 
@@ -41,7 +41,6 @@ public class SelectPrefabsOfType : EditorWindow {
 
     void GetAllTypes()
     {
-        string pattern = "Proxy";
         _types = new List<Type>();
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         foreach (var asm in assemblies)
@@ -51,7 +50,7 @@ public class SelectPrefabsOfType : EditorWindow {
             {
                 if (type.IsSubclassOf(typeof(MonoBehaviour)))
                 {
-                    if (( !pattern.IsNullOrWhitespace() && type.Name.Contains(pattern) ) || pattern.IsNullOrWhitespace() )
+                    if (( !_pattern.IsNullOrWhitespace() && type.Name.Contains(_pattern) ) || _pattern.IsNullOrWhitespace() )
                     {
                         _types.Add(type); 
                     }
