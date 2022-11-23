@@ -406,7 +406,8 @@ BlendTree:
     m_DirectBlendParameter: fRealSpeedForward
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400092, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
+    m_Motion: {fileID: -7524964340392654364, guid: e9ef59aac8067bc4dbcbc525bc9a0326,
+      type: 3}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -4010,7 +4011,7 @@ BlendTree:
   m_Name: Walk Pistol
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -5252816984213320552, guid: 239c39426e7a5c74681304d47ee78bd3,
+    m_Motion: {fileID: -5252816984213320552, guid: b1615e1c3cbc70046aa4d96802ccdc54,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -4046,7 +4047,7 @@ BlendTree:
     m_DirectBlendParameter: fRealSpeedForward
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7871900149279562703, guid: 7e2c06a17e5e5034aa0bf20e61a85dc1,
+    m_Motion: {fileID: -4106230474196449189, guid: 396bfc43e6d2abb4c8fd9d3c3daa6107,
       type: 3}
     m_Threshold: 0.4
     m_Position: {x: 0.0366859, y: 3.6126988}
@@ -4201,7 +4202,8 @@ BlendTree:
   m_Name: In-Place Pistol
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400004, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
+    m_Motion: {fileID: -5252816984213320552, guid: b1615e1c3cbc70046aa4d96802ccdc54,
+      type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -4209,7 +4211,8 @@ BlendTree:
     m_DirectBlendParameter: fRealSpeedForward
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400002, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
+    m_Motion: {fileID: -5252816984213320552, guid: b1615e1c3cbc70046aa4d96802ccdc54,
+      type: 3}
     m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
