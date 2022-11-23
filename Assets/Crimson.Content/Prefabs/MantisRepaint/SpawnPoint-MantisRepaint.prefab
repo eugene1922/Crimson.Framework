@@ -74,7 +74,6 @@ MonoBehaviour:
     spawnPointsFrom: 0
     _spawnPoints:
     - {fileID: 0}
-    - {fileID: 0}
     spawnPointTag: 
     useChildrenObjects: 0
     rotationOfSpawns: 0
@@ -84,7 +83,7 @@ MonoBehaviour:
     chooseParentStrategy: 0
     copyComponentsFromSamples:
     - {fileID: 7670242131266225950, guid: e5133513f7273694ca88ddb7c2e2b446, type: 3}
-    - {fileID: 774899593392371021, guid: 4c4038aeebb43454ab726d4623c90ff1, type: 3}
+    - {fileID: 219696582898746723, guid: 03bf0899534672e4cb3f5e2ecd02ed2d, type: 3}
     - {fileID: 51177463365656585, guid: 4db74cacc47acce4b80671abad008723, type: 3}
     - {fileID: 3289702619521376152, guid: 49999ce45e360f24080ff3b266d1d69e, type: 3}
     - {fileID: 3289702619521376152, guid: 0d0212adb46157843b234b91c355a097, type: 3}

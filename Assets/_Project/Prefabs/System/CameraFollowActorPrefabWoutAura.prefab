@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9154619367224627045}
   - component: {fileID: 5417278254244838625}
-  - component: {fileID: 5369569114103795942}
+  - component: {fileID: 4838410621859554925}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -76,7 +76,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &5369569114103795942
+--- !u!114 &4838410621859554925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frustumSettings:
-    baseSettings: {fileID: 0}
+    baseSettings: {fileID: 11400000, guid: 4d603cd021107ca4c83489443493b77c, type: 2}
     qualitySettings: {fileID: 0}
 --- !u!1 &6371576650104898679
 GameObject:
@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _componentName: 
-  Target: {fileID: 9117924197036037059}
   Duration: 0.33
+  ExecuteOnAwake: 0
   Strength: 0.2
 --- !u!114 &7570589951912532668
 MonoBehaviour:

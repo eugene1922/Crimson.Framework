@@ -2298,10 +2298,5 @@ PrefabInstance:
       propertyPath: SpawnData._spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1104994847}
-    - target: {fileID: 3706507198359825305, guid: 6a986010b103e224cbe7842ea54b359c,
-        type: 3}
-      propertyPath: SpawnData._spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1407100782}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a986010b103e224cbe7842ea54b359c, type: 3}
