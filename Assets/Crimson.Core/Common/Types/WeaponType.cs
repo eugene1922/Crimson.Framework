@@ -3,8 +3,8 @@
 	public enum WeaponType
 	{
 		Unarmed = 0,
-		Rifle = 1,
-		Pistol = 2,
+		Pistol = 1,
+		Rifle = 2,
 		Grenade = 3,
 		Spear = 4
 	}
