@@ -4202,7 +4202,8 @@ BlendTree:
   m_Name: In-Place Pistol
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400004, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
+    m_Motion: {fileID: -5252816984213320552, guid: b1615e1c3cbc70046aa4d96802ccdc54,
+      type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -4210,7 +4211,8 @@ BlendTree:
     m_DirectBlendParameter: fRealSpeedForward
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400002, guid: e7468f78a01b86e439c96f57154dab25, type: 3}
+    m_Motion: {fileID: -5252816984213320552, guid: b1615e1c3cbc70046aa4d96802ccdc54,
+      type: 3}
     m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
