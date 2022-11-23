@@ -1368,8 +1368,8 @@ MonoBehaviour:
   KnockbackStart:
     Name: tKnockbackStart
   LookAtDirection:
-    NameX: fLookAtDirectionForward
-    NameY: fLookAtDirectionTangent
+    NameX: fLookAtDirectionTangent
+    NameY: fLookAtDirectionForward
   PreviousWeapon:
     FloatName: fPreviousWeaponCategory
     IntName: PreviousWeaponCategory
@@ -1377,10 +1377,9 @@ MonoBehaviour:
     NameLength: fRealSpeedMagnitude
     NameX: fRealSpeedTangent
     NameY: fRealSpeedForward
-  ManagedByNavmeshAgent: 0
   Reloading:
     Name: isReloading
-  TargetAnimator: {fileID: 0}
+  TargetAnimator: {fileID: 8285691603516542242}
   WeaponChange:
     Name: tWeaponChangeStart
 --- !u!1 &3481615251951323549
