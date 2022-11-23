@@ -15,8 +15,8 @@ namespace Assets.Crimson.Core.Components
 		[Title(nameof(Crouch))] public AnimatorBool Crouch;
 		[Title(nameof(CurrentWeapon))] public AnimatorTypeValue CurrentWeapon;
 		[Title(nameof(Death))] public AnimatorTrigger Death;
-		public string DeathTag = "Death";
 		public int DeathLayer = 7;
+		public string DeathTag = "Death";
 		[Title(nameof(Dodge))] public AnimatorBool Dodge;
 		[Title(nameof(Falling))] public AnimatorBool Falling;
 		[Title(nameof(Hit))] public AnimatorBool Hit;
@@ -42,6 +42,7 @@ namespace Assets.Crimson.Core.Components
 		[PropertyOrder(1)] public Animator TargetAnimator;
 		[Title(nameof(WeaponChange))] public AnimatorTrigger WeaponChange;
 		public IActor Actor { get; set; }
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			if (TargetAnimator == null)
