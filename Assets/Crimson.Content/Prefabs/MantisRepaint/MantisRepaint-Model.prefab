@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 3272291708372109014}
   - component: {fileID: 3272291708372109013}
   - component: {fileID: 3272291708372109012}
+  - component: {fileID: 8240631061443467348}
   m_Layer: 0
   m_Name: MantisRepaint-Model
   m_TagString: Untagged
@@ -975,7 +976,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -983,6 +984,82 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8240631061443467348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8712186532609448836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2ea20dfba506d49bea2e3e3bd6c072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attack:
+    Name: tAttack
+  AttackType:
+    FloatName: fAttackType
+    IntName: AttackType
+  Crouch:
+    Name: isCrouch
+  CurrentWeapon:
+    FloatName: fCurrentWeaponCategory
+    IntName: CurrentWeaponCategory
+  Death:
+    Name: tDeath
+  DeathLayer: 7
+  DeathTag: Death
+  Dodge:
+    Name: isDodge
+  Falling:
+    Name: isFalling
+  Hit:
+    Name: isHit
+  HitDirection:
+    NameLength: fHitStrength
+    NameX: fHitDirectionForward
+    NameY: fHitDirectionTangent
+  IdleFun:
+    Name: tIdleFun
+  IdleFundID:
+    FloatName: fIdleFunId
+    IntName: IdleFunID
+  Interact:
+    Name: isInteract
+  InteractType:
+    FloatName: fInteractionType
+    IntName: InteractionType
+  IsDead:
+    Name: isDead
+  ItemUse:
+    Name: tItemUse
+  ItemUseID:
+    FloatName: fItemID
+    IntName: itemID
+  KnockbackFly:
+    Name: isKnockbackFly
+  KnockbackGround:
+    Name: isKnockbackGround
+  KnockbackStandUp:
+    Name: tKnockbackStandUp
+  KnockbackStart:
+    Name: tKnockbackStart
+  LookAtDirection:
+    NameX: fLookAtDirectionTangent
+    NameY: fLookAtDirectionForward
+  PreviousWeapon:
+    FloatName: fPreviousWeaponCategory
+    IntName: PreviousWeaponCategory
+  RealSpeed:
+    NameLength: fRealSpeedMagnitude
+    NameX: fRealSpeedTangent
+    NameY: fRealSpeedForward
+  Reloading:
+    Name: isReloading
+  TargetAnimator: {fileID: 8712186532618938394}
+  WeaponChange:
+    Name: tWeaponChangeStart
 --- !u!1 &8712186532609448838
 GameObject:
   m_ObjectHideFlags: 0

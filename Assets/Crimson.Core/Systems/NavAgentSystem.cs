@@ -2,6 +2,7 @@
 using Assets.Crimson.Core.Utils;
 using Crimson.Core.Components;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine.AI;
 
 namespace Assets.Crimson.Core.Systems
@@ -24,7 +25,7 @@ namespace Assets.Crimson.Core.Systems
 			Entities.With(_syncMoveQuery).ForEach(
 				(ref PlayerInputData data, NavMeshAgent agent, AnimatorProxy proxy) =>
 				{
-					var move = agent.GetMoveDirection();
+					var move = agent.isStopped ? float2.zero : agent.GetMoveDirection();
 					data.Move = move;
 				});
 		}
