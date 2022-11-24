@@ -140,9 +140,17 @@ namespace Crimson.Core.Components.AbilityReactive
 		[Header("ActionsOnDisable")]
 		public ActionsList ActionsOnDisable = new ActionsList();
 
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] StartFireAbilities;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] StopFireAbilities;
+
 		public ActorGeneralAnimProperties reloadAnimProps;
 
 		protected Entity _entity;
+		private ActorAbilityList _starFireAbilities;
+		private ActorAbilityList _stopFireAbilities;
 		private bool _actorToUi;
 		private EntityManager _dstManager;
 		private bool isEnable;
@@ -172,6 +180,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		{
 			Actor = actor;
 			_entity = entity;
+			_starFireAbilities = new ActorAbilityList(StartFireAbilities);
+			_stopFireAbilities = new ActorAbilityList(StopFireAbilities);
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			SpawnCallbacks = new List<Action<GameObject>>();
 			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
@@ -341,6 +351,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
+			_starFireAbilities.Execute();
 			Execute();
 		}
 
@@ -352,6 +363,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StopFire()
 		{
+			_stopFireAbilities.Execute();
 		}
 
 		private bool MustBeAimable(MonoBehaviour behaviour)

@@ -83,7 +83,6 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 8866508048713513764, guid: 3ac86504507bd6c4395f5fa426e55ed6, type: 3}
-    - {fileID: 5423031045433904113, guid: a37f966421f14b2499e4727ab7dcd4c9, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0

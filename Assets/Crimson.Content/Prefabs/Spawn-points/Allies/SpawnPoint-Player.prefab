@@ -65,7 +65,7 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 1132238362247284, guid: 4f7f4a16de8f8484192ea25cea9d4db3, type: 3}
+    - {fileID: 3411279790089948642, guid: bc0db8f04b753bd49b7f06ae6ab40513, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -85,6 +85,7 @@ MonoBehaviour:
     - {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78, type: 3}
     - {fileID: 4935957120434825583, guid: 5d04c4f8465b2fd4391e06f7ab861a53, type: 3}
     - {fileID: 89991304198168361, guid: c303287b04a3795489a1d638bbf10799, type: 3}
+    - {fileID: 6882162225140268797, guid: 50af3a4ab6680994fb4cc045e16bf34f, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
