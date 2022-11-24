@@ -85,7 +85,7 @@ MonoBehaviour:
     - {fileID: 5854924350193893075, guid: 8e1fc00f9df09e44985eeff91f04db78, type: 3}
     - {fileID: 4935957120434825583, guid: 5d04c4f8465b2fd4391e06f7ab861a53, type: 3}
     - {fileID: 89991304198168361, guid: c303287b04a3795489a1d638bbf10799, type: 3}
-    - {fileID: 6882162225140268797, guid: 0f29dc9c12f7b874bb22c447f654e0a4, type: 3}
+    - {fileID: 6882162225140268797, guid: 50af3a4ab6680994fb4cc045e16bf34f, type: 3}
     copyComponentsOfType: 2
     deleteExistingComponents: 0
     runSpawnActionsOnObjects: 0
