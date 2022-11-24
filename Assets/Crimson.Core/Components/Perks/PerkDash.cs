@@ -191,6 +191,11 @@ namespace Crimson.Core.Components.Perks
 				dashVector = useMovementVector ? (Vector3)movement.MovementCache : _target.GameObject.transform.forward;
 			}
 
+			if (dashVector.magnitude == 0)
+			{
+				dashVector = transform.forward.normalized;
+			}
+
 			movement.Input = dashVector * force;
 			World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(_target.ActorEntity, movement);
 
