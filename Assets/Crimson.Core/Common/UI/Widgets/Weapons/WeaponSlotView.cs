@@ -14,8 +14,8 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 		[SerializeField] private CanvasGroup _canvas;
 		[SerializeField] private bool _hideOnAwake;
 		private UIReceiver _receiver;
-		[SerializeField] private WeaponClipView _weaponClipView;
-		[SerializeField] private WeaponNameLabel _weaponNameLabel;
+		[SerializeField] private List<WeaponClipView> _weaponClipView = new List<WeaponClipView>();
+		[SerializeField] private List<WeaponNameLabel> _weaponNameLabel = new List<WeaponNameLabel>();
 		public string AssociatedID => AssociatedValueID;
 		public bool IsVisible { get => _canvas.alpha == 1; set => _canvas.alpha = value ? 1 : 0; }
 
@@ -29,8 +29,16 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 
 			IsVisible = true;
 
-			_weaponNameLabel.Set(weapon as IHasComponentName);
-			_weaponClipView.Set(weapon as IHasClip);
+			foreach (var n in _weaponNameLabel)
+			{
+				n.Set(weapon as IHasComponentName);
+			}
+
+			foreach (var c in _weaponClipView)
+			{
+				c.Set(weapon as IHasClip);
+			}
+			
 		}
 
 		private void Awake()

@@ -83,7 +83,7 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 8908091917784543394, guid: 6a0e79a12bf0d2b4897eb31280b6ddfe, type: 3}
-    - {fileID: 9021903524027786950, guid: f9e806d19bdd64c438fca370a1e20ff8, type: 3}
+    - {fileID: 9021903524027786950, guid: 57425df6ad9fe427091a981897da804b, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
       _maxLimit: 100
       _freeze: 0
     Health:
-      _current: 10000
+      _current: 500
       _minLimit: 0
-      _maxLimit: 10000
+      _maxLimit: 500
       _freeze: 0
     Level: 1
     LevelUpRequiredExperience: 100
