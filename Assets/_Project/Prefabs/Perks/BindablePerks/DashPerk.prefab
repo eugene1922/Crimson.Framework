@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,7 +49,7 @@ MonoBehaviour:
     index: 3
     actions:
     - {fileID: 328192306876815148}
-  destroyAfterActions: 1
+  destroyAfterAdd: 1
   removeSameIndexBindings: 1
 --- !u!114 &328192306876815148
 MonoBehaviour:
@@ -64,10 +65,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perkLevel: 0
   force: 100
-  timer: 0.1
-  cooldownTime: 5
+  timer: 1
+  cooldownTime: 1
   aimingAvailable: 0
-  deactivateAimingOnCooldown: 1
+  useMovementVector: 1
+  deactivateAimingOnCooldown: 0
   aimingProperties:
     evaluateActionOptions: 0
     aimingType: 0
