@@ -9,6 +9,7 @@ using Assets.Crimson.Core.Components.Tags.Weapons;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using System;
+using System.Linq;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -274,8 +275,10 @@ namespace Crimson.Core.Systems
 					{
 						return;
 					}
-					animator.SetBool(animation.AnimHash, Math.Abs(move.x) > Constants.MIN_MOVEMENT_THRESH || Math.Abs(move.z) > Constants.MIN_MOVEMENT_THRESH);
-					animator.SetFloat(animation.SpeedFactorHash,
+
+					var anim = animation;
+					if (animator.parameters.Any(a => a.nameHash == anim.AnimHash )) animator.SetBool(animation.AnimHash, Math.Abs(move.x) > Constants.MIN_MOVEMENT_THRESH || Math.Abs(move.z) > Constants.MIN_MOVEMENT_THRESH);
+					if (animator.parameters.Any(a => a.nameHash == anim.SpeedFactorHash )) animator.SetFloat(animation.SpeedFactorHash,
 						animation.SpeedFactorMultiplier * movement.ExternalMultiplier * Math.Max(Math.Abs(move.x), Math.Abs(move.z)));
 				});
 
