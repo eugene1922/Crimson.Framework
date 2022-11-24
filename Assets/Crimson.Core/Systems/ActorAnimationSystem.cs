@@ -299,7 +299,8 @@ namespace Crimson.Core.Systems
 
 					if (animator.runtimeAnimatorController != null)
 					{
-						animator.SetTrigger(data.AnimHash);
+						var d1 = data;
+						if (animator.parameters.Any(a => a.nameHash == d1.AnimHash )) animator.SetTrigger(data.AnimHash);
 					}
 					PostUpdateCommands.RemoveComponent<ActorProjectileThrowAnimTag>(entity);
 				});
