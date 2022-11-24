@@ -162,10 +162,9 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public WeaponType Type => _weaponType;
 
-		private void Awake()
+		public void AddAmmo(IAmmo ammo)
 		{
-			ActionsOnDisable.Init();
-			ActionsOnEnable.Init();
+			ClipData.Add(ammo.Value);
 		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -229,6 +228,12 @@ namespace Crimson.Core.Components.AbilityReactive
 			projectileSpawnData.SpawnPoints.Add(baseSpawnPoint);
 
 			StartTimer();
+		}
+
+		private void Awake()
+		{
+			ActionsOnDisable.Init();
+			ActionsOnEnable.Init();
 		}
 
 		public void Execute()
