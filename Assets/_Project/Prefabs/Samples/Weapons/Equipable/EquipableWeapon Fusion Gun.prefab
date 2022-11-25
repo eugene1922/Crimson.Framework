@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0.02, y: 0.1015, z: 0.5251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2818165849091586010}
   m_Father: {fileID: 1548769087254226115}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -173,54 +174,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1606315881375638859}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2372614007474586582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548769087254226112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  ExecuteNow: 0
-  ExecuteOnAwake: 0
-  SpawnData:
-    spawnerDisabled: 0
-    objectsToSpawn:
-    - {fileID: 4547291018049833434, guid: a26e23f9104153a4980c945a329de316, type: 3}
-    spawnPosition: 0
-    spawnPointsFillingMode: 0
-    fillSpawnPoints: 0
-    x: 0
-    skipBusySpawnPoints: 0
-    spawnPointsFrom: 1
-    _spawnPoints:
-    - {fileID: 3046358728583350651}
-    spawnPointTag: WeaponMountPoint
-    useChildrenObjects: 0
-    rotationOfSpawns: 0
-    parentOfSpawns: 0
-    actorWithComponentName: 
-    parentTag: 
-    chooseParentStrategy: 0
-    copyComponentsFromSamples: []
-    copyComponentsOfType: 0
-    deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 0
-    destroyAbilityAfterSpawn: 0
-    randomSeed: 0
-    poolSettings:
-      CollectionCheck: 0
-      InitSize: 0
-      MaxSize: 0
-      UsePool: 0
-  SpawnDelays:
-    Delay: 0
-    StartupDelay: 0
 --- !u!114 &3285678183776671440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +204,6 @@ MonoBehaviour:
   componentName: Fusion Gun
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 2372614007474586582}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -307,25 +259,29 @@ MonoBehaviour:
   UseBurst: 0
   _burstRange: {x: 7, y: 7}
   _burstDelay: 0.01
-  projectileStartupDelay: 1.5
+  projectileStartupDelay: 0.1
   cooldownTime: 2
   projectileClipCapacity: 70
   clipReloadTime: 1
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
+  PreShotAbilities: []
+  PostShotAbilities: []
+  StartFireAbilities:
+  - {fileID: 6247049190220294502}
+  StopFireAbilities:
+  - {fileID: 941197641657325550}
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
   ActionsOnEnable:
-    actions:
-    - {fileID: 3285678183776671440}
+  - {fileID: 3285678183776671440}
   ActionsOnDisable:
-    actions:
-    - {fileID: 7981926124408840667}
+  - {fileID: 7981926124408840667}
 --- !u!114 &7981926124408840667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +297,36 @@ MonoBehaviour:
   State: 0
   Targets:
   - {fileID: 1548769087254226112}
+--- !u!114 &6247049190220294502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548769087254226112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 1
+  Targets:
+  - {fileID: 2818165849091586011}
+--- !u!114 &941197641657325550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548769087254226112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Targets:
+  - {fileID: 2818165849091586011}
 --- !u!4 &1548769087254226115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
@@ -352,6 +338,92 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
     type: 3}
   m_PrefabInstance: {fileID: 1606315881375638859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6141812113221319132
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4179538388771061731}
+    m_Modifications:
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658631, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_Name
+      value: Fusion Charge End
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223638319389658631, guid: ad446e3969500a444ba9ef2ee066d091,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad446e3969500a444ba9ef2ee066d091, type: 3}
+--- !u!4 &2818165849091586010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8223638319389658630, guid: ad446e3969500a444ba9ef2ee066d091,
+    type: 3}
+  m_PrefabInstance: {fileID: 6141812113221319132}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2818165849091586011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8223638319389658631, guid: ad446e3969500a444ba9ef2ee066d091,
+    type: 3}
+  m_PrefabInstance: {fileID: 6141812113221319132}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8744465466282413203
 PrefabInstance:

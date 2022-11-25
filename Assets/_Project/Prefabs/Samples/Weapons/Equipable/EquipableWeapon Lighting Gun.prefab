@@ -255,7 +255,6 @@ MonoBehaviour:
   componentName: Lighting Gun
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -320,17 +319,17 @@ MonoBehaviour:
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
+  PreShotAbilities: []
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
   ActionsOnEnable:
-    actions:
-    - {fileID: 3285678183776671440}
+  - {fileID: 3285678183776671440}
   ActionsOnDisable:
-    actions:
-    - {fileID: 7981926124408840667}
+  - {fileID: 7981926124408840667}
 --- !u!4 &8939791187431860214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,

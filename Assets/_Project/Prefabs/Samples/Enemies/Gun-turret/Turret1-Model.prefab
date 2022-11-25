@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1252737805707249270}
   - component: {fileID: 1224769025363262458}
   - component: {fileID: 4366090948542609995}
+  - component: {fileID: 2699327270370693178}
   m_Layer: 0
   m_Name: Turret1-Model
   m_TagString: Untagged
@@ -180,11 +181,31 @@ MonoBehaviour:
   objectToSpawn: {fileID: 2485616753431377798, guid: cb1a8a3ddcf896540840d4439600e60b,
     type: 3}
   spawnerType: 0
-  ownerType: 0
+  ownerType: 2
   executeProbability: 1
   ExecuteOnAwake: 1
   DestroyAfterSpawn: 0
   spawnedObject: {fileID: 0}
+--- !u!95 &2699327270370693178
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3999611173465789600}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3999611173465816026
 GameObject:
   m_ObjectHideFlags: 0
