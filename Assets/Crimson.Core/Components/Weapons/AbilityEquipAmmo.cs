@@ -10,10 +10,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 {
 	public class AbilityEquipAmmo : MonoBehaviour, IActorAbilityTarget, IEquipable
 	{
-		[ValidateInput(nameof(MustBeAmmo))]
-		public MonoBehaviour[] Packs;
+		public AmmoPack[] Packs;
 
-		private IAmmo[] _packs;
 		public IActor AbilityOwnerActor { get; set; }
 		public IActor Actor { get; set; }
 		public IActor TargetActor { get; set; }
@@ -21,25 +19,21 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
-			if (Packs == null)
-			{
-				_packs = Packs.Cast<IAmmo>().ToArray();
-			}
 		}
 
 		public void Equip(IActor target)
 		{
-			if (target == null || _packs == null || _packs.Length == 0)
+			if (target == null || Packs == null || Packs.Length == 0)
 			{
 				return;
 			}
 
-			var hotkeyWeapon = target.GameObject.GetComponent<HotkeyWeapon>();
+			var hotkeyWeapon = target.Abilities.Find(s => s is HotkeyWeapon) as HotkeyWeapon;
 			if (hotkeyWeapon != null)
 			{
-				for (var i = 0; i < _packs.Length; i++)
+				for (var i = 0; i < Packs.Length; i++)
 				{
-					hotkeyWeapon.Add(_packs[i]);
+					hotkeyWeapon.Add(Packs[i]);
 				}
 			}
 		}

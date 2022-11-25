@@ -245,12 +245,6 @@ namespace Crimson.Core.Components.AbilityReactive
 			StartTimer();
 		}
 
-		private void Awake()
-		{
-			ActionsOnDisable.Init();
-			ActionsOnEnable.Init();
-		}
-
 		public void Execute()
 		{
 			if (!IsEnable || !IsActivated || ClipData.IsEmpty || ClipData.Current == 0)
@@ -261,7 +255,10 @@ namespace Crimson.Core.Components.AbilityReactive
 			if (projectileStartupDelay > 0)
 			{
 				if (_isWaitingForShot)
+				{
 					return;
+				}
+
 				_isWaitingForShot = true;
 				Timer.TimedActions.AddAction(Shot, projectileStartupDelay);
 			}
@@ -353,6 +350,10 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
+			if (!IsEnable || ClipData.IsEmpty || ClipData.Current == 0)
+			{
+				return;
+			}
 			_starFireAbilities.Execute();
 			IsActivated = true;
 			Execute();

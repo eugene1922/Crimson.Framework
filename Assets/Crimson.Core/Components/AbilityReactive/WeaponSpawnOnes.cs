@@ -172,6 +172,11 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public WeaponType Type => _weaponType;
 
+		public void AddAmmo(IAmmo ammo)
+		{
+			ClipData.Add(ammo.Value);
+		}
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
@@ -248,7 +253,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
-			if (!IsEnable || ClipData.IsEmpty)
+			if (!IsEnable || ClipData.Current == 0)
 			{
 				return;
 			}
@@ -349,6 +354,10 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
+			if (!IsEnable || ClipData.Current == 0)
+			{
+				return;
+			}
 			_starFireAbilities.Execute();
 			Execute();
 		}

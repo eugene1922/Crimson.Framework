@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.Weapons
@@ -44,8 +45,13 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Reload()
 		{
-			Count -= Capacity;
-			Current = Capacity;
+			if (Count == 0)
+			{
+				return;
+			}
+			var value = math.max(0, Count - Capacity);
+			Count = value;
+			Current = value > 0 ? value : Capacity;
 		}
 
 		public void Decrease()

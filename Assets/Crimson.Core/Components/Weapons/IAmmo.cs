@@ -1,9 +1,8 @@
-﻿using Crimson.Core.Common;
-
-namespace Assets.Crimson.Core.Components.Weapons
+﻿namespace Assets.Crimson.Core.Components.Weapons
 {
-	public interface IAmmo : IHasComponentName
+	public interface IAmmo
 	{
+		public string ComponentName { get; }
 		public int Value { get; }
 	}
 }
