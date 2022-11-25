@@ -27,6 +27,7 @@ namespace Crimson.Core.Systems
 		{
 			_collisionQuery = GetEntityQuery(
 				ComponentType.ReadOnly<AbilityCollision>(),
+				ComponentType.Exclude<ImmediateDestructionActorTag>(),
 				ComponentType.ReadOnly<ActorColliderData>(),
 				ComponentType.ReadOnly<Transform>());
 			_networkQuery = GetEntityQuery(ComponentType.ReadOnly<CollisionReceiveData>());
@@ -73,6 +74,7 @@ namespace Crimson.Core.Systems
 					var destroyAfterActions = false;
 
 					var size = 0;
+
 
 					switch (colliderData.ColliderType)
 					{

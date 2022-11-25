@@ -194,9 +194,15 @@ MonoBehaviour:
     HasActorProjectileAnimation: 1
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
+  PreShotAbilities: []
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
+  ActionsOnEnable:
+  - {fileID: 1995909038479340772}
+  ActionsOnDisable:
+  - {fileID: 3496920647679153277}
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0

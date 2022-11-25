@@ -412,22 +412,6 @@ MonoBehaviour:
     destroyAfterAction: 1
     actions:
     - {fileID: 9096040789164012318}
-  - collisionLayerMask:
-      serializedVersion: 2
-      m_Bits: 8503
-    useTagFilter: 1
-    filterMode: 0
-    filterTags:
-    - Enemy
-    - DestructibleObject
-    - CollisionObjects
-    velocityFilter:
-      Use: 0
-      Mode: 0
-      Velocity: 0
-    executeOnCollisionWithSpawner: 0
-    destroyAfterAction: 1
-    actions:
     - {fileID: 984192865019348573}
     - {fileID: 6746206228051708103}
   debugCollisions: 0
@@ -502,7 +486,7 @@ MonoBehaviour:
     copyComponentsFromSamples: []
     copyComponentsOfType: 0
     deleteExistingComponents: 0
-    runSpawnActionsOnObjects: 1
+    runSpawnActionsOnObjects: 0
     destroyAbilityAfterSpawn: 0
     randomSeed: 0
     poolSettings:
@@ -527,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifespan: 3.2
   startOnSpawn: 1
-  actionOnDestroy: {fileID: 9096040789164012318}
+  actionOnDestroy: {fileID: 0}
 --- !u!114 &166662497725121757
 MonoBehaviour:
   m_ObjectHideFlags: 0
