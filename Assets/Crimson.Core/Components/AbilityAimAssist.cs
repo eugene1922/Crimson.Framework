@@ -42,7 +42,7 @@ namespace Assets.Crimson.Core.Components
 					position += vector;
 				}
 			}
-			else
+			else if (math.length(inputData.Mouse) > 0)
 			{
 				var ray = Camera.main.ScreenPointToRay((Vector2)inputData.Mouse);
 				_plane = new Plane(Vector3.up, transform.position);
