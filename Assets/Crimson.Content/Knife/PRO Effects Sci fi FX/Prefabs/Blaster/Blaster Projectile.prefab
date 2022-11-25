@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4795683133691389397}
   m_RootOrder: 1
@@ -90,6 +91,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &4795683133270089745
@@ -120,6 +122,7 @@ Transform:
   m_LocalRotation: {x: 0.7071065, y: -0.00000022817383, z: -0, w: 0.7071071}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.011677639, y: 0.6023685, z: 0.011677645}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4795683133691389397}
   m_RootOrder: 0
@@ -143,10 +146,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 2
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,6 +176,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4795683133691389418
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +188,7 @@ GameObject:
   - component: {fileID: 4795683133691389397}
   - component: {fileID: 239347518749388209}
   m_Layer: 0
-  m_Name: Blaster Laser
+  m_Name: Blaster Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,6 +204,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4795683133270089744}
   - {fileID: 1902166205236133416}
@@ -217,10 +224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumDistance: Infinity
+  lifeTime: Infinity
   speed: 100
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 65335
   explosion: {fileID: 6002720521190060909, guid: 0061e77d71ca73c4286ed78eca98e952,
     type: 3}
   thresholdByNormal: 0.05
@@ -234,3 +242,7 @@ MonoBehaviour:
   disablingComponents:
   - {fileID: 4795683133270089745}
   - {fileID: 394521102684399349}
+  bulletSize: 1
+  disablingBehaviours: []
+  raycastOrigin: {fileID: 0}
+  explosionScale: 1

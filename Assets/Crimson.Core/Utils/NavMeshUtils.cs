@@ -26,8 +26,7 @@ namespace Assets.Crimson.Core.Utils
 
 		public static float2 GetMoveDirection(this NavMeshAgent agent)
 		{
-			var hasIsArrived = agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance;
-			if (hasIsArrived || agent.isStopped)
+			if (!agent.IsValid())
 			{
 				return float2.zero;
 			}
@@ -39,8 +38,7 @@ namespace Assets.Crimson.Core.Utils
 
 		public static float2 GetVelocity(this NavMeshAgent agent)
 		{
-			var hasIsArrived = agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance;
-			if (hasIsArrived || agent.isStopped)
+			if (!agent.IsValid())
 			{
 				return float2.zero;
 			}
@@ -80,6 +78,17 @@ namespace Assets.Crimson.Core.Utils
 			}
 
 			return result;
+		}
+
+		private static bool IsValid(this NavMeshAgent agent)
+		{
+			var isInvalid = !agent.isOnNavMesh;
+			if (!isInvalid)
+			{
+				isInvalid |= agent.remainingDistance <= agent.stoppingDistance;
+				isInvalid |= agent.isStopped;
+			}
+			return !isInvalid;
 		}
 	}
 }

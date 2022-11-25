@@ -29,6 +29,9 @@ namespace Crimson.Core.Components.AbilityReactive
 	{
 		public IActor Actor { get; set; }
 
+		private ActorAbilityList _abilityOnEnable;
+		private ActorAbilityList _abilityOnDisable;
+
 		public string ComponentName
 		{
 			get => componentName;
@@ -92,6 +95,12 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour[] PostShotAbilities;
 
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] StartFireAbilities;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] StopFireAbilities;
+
 		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
 		[HideInInspector]
@@ -109,11 +118,11 @@ namespace Crimson.Core.Components.AbilityReactive
 				isEnable = value;
 				if (isEnable)
 				{
-					ActionsOnEnable.Execute();
+					_abilityOnEnable?.Execute();
 				}
 				else
 				{
-					ActionsOnDisable.Execute();
+					_abilityOnDisable?.Execute();
 				}
 			}
 		}
@@ -129,11 +138,11 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
-		[Header("ActionsOnEnable")]
-		public ActionsList ActionsOnEnable = new ActionsList();
+		[Header("ActionsOnEnable"), ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] ActionsOnEnable;
 
-		[Header("ActionsOnDisable")]
-		public ActionsList ActionsOnDisable = new ActionsList();
+		[Header("ActionsOnDisable"), ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] ActionsOnDisable;
 
 		protected Entity _entity;
 		private bool _actorToUi;
@@ -146,6 +155,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		private bool isEnable;
 		private ActorAbilityList _preShotAbilities;
 		private ActorAbilityList _postShotAbilities;
+		private ActorAbilityList _starFireAbilities;
+		private ActorAbilityList _stopFireAbilities;
 
 		public bool ActionExecutionAllowed { get; set; }
 		public IAimable Aim => AimComponent as IAimable;
@@ -170,8 +181,12 @@ namespace Crimson.Core.Components.AbilityReactive
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			_abilityOnEnable = new ActorAbilityList(ActionsOnEnable);
+			_abilityOnDisable = new ActorAbilityList(ActionsOnDisable);
 			_preShotAbilities = new ActorAbilityList(PreShotAbilities);
 			_postShotAbilities = new ActorAbilityList(PostShotAbilities);
+			_starFireAbilities = new ActorAbilityList(StartFireAbilities);
+			_stopFireAbilities = new ActorAbilityList(StopFireAbilities);
 			InitPool();
 
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -338,19 +353,23 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
+			_starFireAbilities.Execute();
 			IsActivated = true;
 			Execute();
 		}
 
 		public void StopFire()
 		{
+			_stopFireAbilities.Execute();
 			IsActivated = false;
 			if (ClipData.Current == 0)
 			{
 				return;
 			}
 			if (projectileStartupDelay <= 0)
+			{
 				ResetTimer();
+			}
 		}
 
 		private void CreateSpawnPointsRoot()
@@ -404,7 +423,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		private bool MustBeAbility(MonoBehaviour[] a)
 		{
-			return (a is null) || (a.All(s => s is IActorAbility));
+			return a is null || a.All(s => s is IActorAbility);
 		}
 	}
 }

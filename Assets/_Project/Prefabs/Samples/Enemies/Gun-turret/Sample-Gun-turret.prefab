@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enableMoveByInput: 0
   compensateCameraRotation: 1
   customBindings:
   - index: 0
@@ -102,7 +103,7 @@ MonoBehaviour:
     LevelUpRequiredExperience: 100
     TotalDamageApplied: 0
   actorDeathAnimProperties:
-    HasActorDeathAnimation: 1
+    HasActorDeathAnimation: 0
     ActorDeathAnimationName: Dead
   actorToUI: 0
   additionalForceAnim:

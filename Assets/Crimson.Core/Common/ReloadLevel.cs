@@ -10,5 +10,10 @@ namespace Assets.Crimson.Core.Common
 			var scene = SceneManager.GetActiveScene();
 			SceneManager.LoadScene(scene.buildIndex);
 		}
+
+		public void MainMenu()
+		{
+			SceneManager.LoadScene(0);
+		}
 	}
 }
