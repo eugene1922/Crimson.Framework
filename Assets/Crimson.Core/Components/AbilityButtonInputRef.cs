@@ -1,8 +1,9 @@
-﻿using Assets.Crimson.Core.Components.Tags;
+﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,12 +12,12 @@ namespace Assets.Crimson.Core.Components
 {
 	public class AbilityButtonInputRef : MonoBehaviour, IActorAbility
 	{
-		public List<IActorAbility> _actions;
 		public InputActionReference _input;
 
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
-		public List<MonoBehaviour> actions;
+		public MonoBehaviour[] actions;
 
+		private ActorAbilityList _actions;
 		private EntityManager _dstManager;
 		public IActor Actor { get; set; }
 		public Entity Entity { get; private set; }
@@ -35,16 +36,17 @@ namespace Assets.Crimson.Core.Components
 				_input.action.Enable();
 			}
 
-			_actions = actions.ConvertAll(s => s as IActorAbility);
+			_actions = new ActorAbilityList(actions);
 		}
 
 		public void Execute()
 		{
+			_actions.Execute();
 		}
 
-		private bool MustBeAbility(List<MonoBehaviour> a)
+		private bool MustBeAbility(MonoBehaviour[] items)
 		{
-			return !a.Exists(t => !(t is IActorAbility)) || a.Count == 0;
+			return items == null || items.All(s => s is IActorAbility);
 		}
 
 		private void OnDestroy()

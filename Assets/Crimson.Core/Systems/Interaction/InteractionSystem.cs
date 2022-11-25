@@ -89,11 +89,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
 					{
 						return;
 					}
-					var actions = buttonInput._actions;
-					for (var i = 0; i < actions.Count; i++)
-					{
-						actions[i]?.Execute();
-					}
+					buttonInput.Execute();
 				}
 			);
 		}

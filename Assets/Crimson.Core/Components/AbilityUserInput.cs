@@ -30,8 +30,9 @@ namespace Assets.Crimson.Core.Components
 
 			for (var i = 0; i < _bindings.CustomInputs.Count; i++)
 			{
-				_customInputCallbacks.Add(i, (context) => ReadCustomInput(i, context));
-				SubscribeInput(_bindings.CustomInputs[i], _customInputCallbacks[i]);
+				var index = i;
+				_customInputCallbacks.Add(index, (context) => ReadCustomInput(index, context));
+				SubscribeInput(_bindings.CustomInputs[index], _customInputCallbacks[index]);
 			}
 		}
 
