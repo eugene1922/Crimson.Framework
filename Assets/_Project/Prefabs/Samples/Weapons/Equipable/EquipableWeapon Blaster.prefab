@@ -193,7 +193,7 @@ MonoBehaviour:
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
-    spawnPointsFrom: 1
+    spawnPointsFrom: 0
     _spawnPoints:
     - {fileID: 3046358728583350651}
     spawnPointTag: WeaponMountPoint
@@ -223,14 +223,18 @@ MonoBehaviour:
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
   PreShotAbilities: []
   PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
+  ActionsOnEnable:
+  - {fileID: 3285678183776671440}
+  ActionsOnDisable:
+  - {fileID: 7981926124408840667}
   reloadAnimProps:
     AnimationName: 
     HasAnimation: 0

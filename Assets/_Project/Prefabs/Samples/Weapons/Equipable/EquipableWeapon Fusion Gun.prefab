@@ -191,13 +191,13 @@ MonoBehaviour:
   SpawnData:
     spawnerDisabled: 0
     objectsToSpawn:
-    - {fileID: 4547291018049833434, guid: a26e23f9104153a4980c945a329de316, type: 3}
+    - {fileID: 8223638319389658631, guid: ad446e3969500a444ba9ef2ee066d091, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
-    spawnPointsFrom: 1
+    spawnPointsFrom: 0
     _spawnPoints:
     - {fileID: 3046358728583350651}
     spawnPointTag: WeaponMountPoint
@@ -251,7 +251,6 @@ MonoBehaviour:
   componentName: Fusion Gun
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 2372614007474586582}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -307,25 +306,26 @@ MonoBehaviour:
   UseBurst: 0
   _burstRange: {x: 7, y: 7}
   _burstDelay: 0.01
-  projectileStartupDelay: 1.5
+  projectileStartupDelay: 0.1
   cooldownTime: 2
   projectileClipCapacity: 70
   clipReloadTime: 1
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
-    HasActorProjectileAnimation: 0
-    ActorProjectileAnimationName: 
+    HasActorProjectileAnimation: 1
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
+  PreShotAbilities:
+  - {fileID: 2372614007474586582}
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
   ActionsOnEnable:
-    actions:
-    - {fileID: 3285678183776671440}
+  - {fileID: 3285678183776671440}
   ActionsOnDisable:
-    actions:
-    - {fileID: 7981926124408840667}
+  - {fileID: 7981926124408840667}
 --- !u!114 &7981926124408840667
 MonoBehaviour:
   m_ObjectHideFlags: 0

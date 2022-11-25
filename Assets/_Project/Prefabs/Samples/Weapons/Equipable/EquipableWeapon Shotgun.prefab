@@ -299,7 +299,7 @@ MonoBehaviour:
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
   PreShotAbilities:
   - {fileID: 3004619680722403326}
@@ -307,6 +307,8 @@ MonoBehaviour:
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
+  ActionsOnEnable: []
+  ActionsOnDisable: []
 --- !u!1001 &7251838995758909613
 PrefabInstance:
   m_ObjectHideFlags: 0

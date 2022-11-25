@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1860860451236964988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4910363295713563393}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4910363295713563393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860860451236964988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005, y: 0.021, z: 0.476}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4103522099825665960}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5956257807646811413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,12 +121,12 @@ PrefabInstance:
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.168
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.006
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -176,7 +207,6 @@ MonoBehaviour:
   componentName: Plasma Gun
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -210,9 +240,9 @@ MonoBehaviour:
     fillSpawnPoints: 0
     x: 0
     skipBusySpawnPoints: 0
-    spawnPointsFrom: 1
+    spawnPointsFrom: 0
     _spawnPoints:
-    - {fileID: 0}
+    - {fileID: 1860860451236964988}
     spawnPointTag: WeaponMountPoint
     useChildrenObjects: 0
     rotationOfSpawns: 3
@@ -242,11 +272,17 @@ MonoBehaviour:
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
+  PreShotAbilities: []
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
+  ActionsOnEnable:
+  - {fileID: 7347931288159886798}
+  ActionsOnDisable:
+  - {fileID: 598564529029489492}
 --- !u!1001 &7251838995758909613
 PrefabInstance:
   m_ObjectHideFlags: 0

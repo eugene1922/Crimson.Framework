@@ -364,6 +364,10 @@ MonoBehaviour:
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
+  ActionsOnEnable:
+  - {fileID: 1995909038479340772}
+  ActionsOnDisable:
+  - {fileID: 3496920647679153277}
 --- !u!114 &8221238006568278328
 MonoBehaviour:
   m_ObjectHideFlags: 0
