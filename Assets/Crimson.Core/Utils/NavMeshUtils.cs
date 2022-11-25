@@ -26,7 +26,7 @@ namespace Assets.Crimson.Core.Utils
 
 		public static float2 GetMoveDirection(this NavMeshAgent agent)
 		{
-			if (agent.IsValid())
+			if (!agent.IsValid())
 			{
 				return float2.zero;
 			}
@@ -38,7 +38,7 @@ namespace Assets.Crimson.Core.Utils
 
 		public static float2 GetVelocity(this NavMeshAgent agent)
 		{
-			if (agent.IsValid())
+			if (!agent.IsValid())
 			{
 				return float2.zero;
 			}
