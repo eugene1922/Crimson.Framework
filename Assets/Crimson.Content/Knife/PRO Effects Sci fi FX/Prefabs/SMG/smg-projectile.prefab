@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8866508048713513763}
   - component: {fileID: 8866508048713513762}
   - component: {fileID: 8866508048713513760}
-  - component: {fileID: 8866508048713513761}
+  - component: {fileID: 8699523305935668509}
   - component: {fileID: 8866508048713513758}
   - component: {fileID: 8866508048713513759}
   - component: {fileID: 1522086568175412570}
@@ -92,8 +92,8 @@ MonoBehaviour:
     RotationOffset: {x: 0, y: 0, z: 0}
     Cycled: 0
     MemoryKoef: 0
---- !u!135 &8866508048713513761
-SphereCollider:
+--- !u!65 &8699523305935668509
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,7 +103,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Size: {x: 0.1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8866508048713513758
 MonoBehaviour:
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d055b42bf26644d89d2475d3cce69e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCollider: {fileID: 8866508048713513761}
+  useCollider: {fileID: 8699523305935668509}
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2

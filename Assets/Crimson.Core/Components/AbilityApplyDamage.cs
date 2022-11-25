@@ -57,7 +57,7 @@ namespace Crimson.Core.Components
 
 		public void Execute()
 		{
-			if (TargetActor == null) return;
+			if (TargetActor == null || AbilityOwnerActor == null) return;
 
 			var ownerActorPlayer = AbilityOwnerActor?.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;
 			var targetActor = TargetActor?.Abilities?.FirstOrDefault(a => a is AbilityActorPlayer) as AbilityActorPlayer;

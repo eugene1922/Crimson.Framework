@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d055b42bf26644d89d2475d3cce69e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCollider: {fileID: 6227942092161726309}
+  useCollider: {fileID: 9173360981741584289}
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 7237893941641555998}
   - component: {fileID: 5761939414487119592}
   - component: {fileID: 7207207742935799327}
-  - component: {fileID: 6227942092161726309}
+  - component: {fileID: 9173360981741584289}
   m_Layer: 12
   m_Name: Projectile Mesh
   m_TagString: Untagged
@@ -470,8 +470,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6227942092161726309
-SphereCollider:
+--- !u!65 &9173360981741584289
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -481,5 +481,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.86, z: 0}
+  m_Size: {x: 2, y: 1.9999999, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

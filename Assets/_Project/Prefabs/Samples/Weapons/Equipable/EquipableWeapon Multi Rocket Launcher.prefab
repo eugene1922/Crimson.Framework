@@ -292,7 +292,6 @@ MonoBehaviour:
   componentName: Multi Rocket launcher
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 1
@@ -319,11 +318,10 @@ MonoBehaviour:
     spawnerDisabled: 0
     objectsToSpawn:
     - {fileID: 4795683133691389418, guid: 1edf9d5153d562646a9b63b6e7250044, type: 3}
-    - {fileID: 4116869424554050852, guid: 982e59942c13eb04d8cefa3bacfbbd47, type: 3}
     spawnPosition: 0
     spawnPointsFillingMode: 1
     fillSpawnPoints: 2
-    x: 8
+    x: 5
     skipBusySpawnPoints: 0
     spawnPointsFrom: 0
     _spawnPoints:
@@ -346,7 +344,7 @@ MonoBehaviour:
       CollectionCheck: 1
       InitSize: 16
       MaxSize: 40
-      UsePool: 1
+      UsePool: 0
   UseBurst: 0
   _burstRange: {x: 8, y: 8}
   _burstDelay: 0.01
@@ -358,17 +356,62 @@ MonoBehaviour:
   clipReloadDisplayToggle: []
   actorProjectileSpawnAnimProperties:
     HasActorProjectileAnimation: 1
-    ActorProjectileAnimationName: Throw
+    ActorProjectileAnimationName: tAttack
   suppressWeaponSpawn: 0
+  PreShotAbilities:
+  - {fileID: 8221238006568278328}
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
-  ActionsOnEnable:
-    actions:
-    - {fileID: 1995909038479340772}
-  ActionsOnDisable:
-    actions:
-    - {fileID: 3496920647679153277}
+--- !u!114 &8221238006568278328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357039506442272740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteNow: 0
+  ExecuteOnAwake: 0
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 4116869424554050852, guid: 982e59942c13eb04d8cefa3bacfbbd47, type: 3}
+    spawnPosition: 0
+    spawnPointsFillingMode: 1
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints:
+    - {fileID: 7170242124395698468}
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!4 &7897805719530536146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,

@@ -428,6 +428,8 @@ namespace Crimson.Core.Components
 
 		public void UpdateHealth(float delta)
 		{
+			if (_entity == null || !_entityManager.HasComponent<PlayerStatsData>(_entity))
+				return;
 			if (!IsAlive)
 			{
 				SetOverdamage(math.abs(delta));
