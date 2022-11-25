@@ -62,8 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perkLevel: 0
   force: 100
-  timer: 1
+  timer: 0.1
   cooldownTime: 1
+  NeedResetVelocityOnEnd: 1
   aimingAvailable: 0
   useMovementVector: 1
   deactivateAimingOnCooldown: 0
@@ -83,8 +84,7 @@ MonoBehaviour:
   dashFX:
   - {fileID: 8575838153484086779, guid: 1fdfdd2c1c4a1b74280496a8b40cf8da, type: 3}
   - {fileID: 2154348514870167830, guid: b381f5f18673d7849a50b48f8131c7a5, type: 3}
-  perkRelatedComponents:
-  - {fileID: 0}
+  perkRelatedComponents: []
   levelablePropertiesList:
   - propertyName: force
     levelablePropertyAction: 1

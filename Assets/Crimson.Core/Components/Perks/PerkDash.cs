@@ -237,7 +237,7 @@ namespace Crimson.Core.Components.Perks
 				{
 					navMeshAgent.velocity = velocity;
 				}
-				else if (targetRigidbody == null)
+				else if (targetRigidbody != null)
 				{
 					targetRigidbody.velocity = velocity;
 				}
