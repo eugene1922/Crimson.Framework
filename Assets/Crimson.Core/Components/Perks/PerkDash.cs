@@ -22,6 +22,8 @@ namespace Crimson.Core.Components.Perks
 
 		public float cooldownTime;
 
+		public bool NeedResetVelocityOnEnd;
+
 		public bool aimingAvailable;
 		[HideIf("aimingAvailable")] public bool useMovementVector = true;
 		public bool deactivateAimingOnCooldown;
@@ -225,13 +227,19 @@ namespace Crimson.Core.Components.Perks
 
 			Timer.TimedActions.AddAction(() =>
 			{
+				var velocity = _previousVelocity;
+				if (NeedResetVelocityOnEnd)
+				{
+					velocity = Vector3.zero;
+				}
+
 				if (hasAgent)
 				{
-					navMeshAgent.velocity = _previousVelocity;
+					navMeshAgent.velocity = velocity;
 				}
 				else if (targetRigidbody == null)
 				{
-					targetRigidbody.velocity = _previousVelocity;
+					targetRigidbody.velocity = velocity;
 				}
 				_dashVector = Vector3.zero;
 			}, timer);
