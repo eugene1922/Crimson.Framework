@@ -67,6 +67,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				return;
 			}
+			_weapon?.StopFire();
 			var weaponData = new EquipedWeaponData();
 			if (_weapon != null)
 			{
