@@ -155,6 +155,7 @@ namespace Assets.Crimson.Core.Components.Perks
 
 		private void OnDrawGizmosSelected()
 		{
+#if UNITY_EDITOR
 			Gizmos.color = Color.red;
 			var targetPosition = transform.position;
 			if (Target != null)
@@ -171,6 +172,7 @@ namespace Assets.Crimson.Core.Components.Perks
 			Handles.color = Color.green;
 			Handles.DrawWireDisc(Vector3.zero, Vector3.up, DeadlyJumpRange.x);
 			Handles.DrawWireDisc(Vector3.zero, Vector3.up, DeadlyJumpRange.y);
+#endif
 		}
 	}
 }
