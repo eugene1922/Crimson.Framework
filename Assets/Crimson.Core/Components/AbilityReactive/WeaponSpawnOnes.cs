@@ -112,11 +112,11 @@ namespace Crimson.Core.Components.AbilityReactive
 				isEnable = value;
 				if (isEnable)
 				{
-					ActionsOnEnable.Execute();
+					_abilityOnEnable?.Execute();
 				}
 				else
 				{
-					ActionsOnDisable.Execute();
+					_abilityOnDisable?.Execute();
 				}
 			}
 		}
@@ -134,17 +134,19 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAimable), "Ability MonoBehaviours must derive from IAimable!")]
 		public MonoBehaviour AimComponent;
 
-		[Header("ActionsOnEnable")]
-		public ActionsList ActionsOnEnable = new ActionsList();
+		[Header("ActionsOnEnable"), ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] ActionsOnEnable;
 
-		[Header("ActionsOnDisable")]
-		public ActionsList ActionsOnDisable = new ActionsList();
+		[Header("ActionsOnDisable"), ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour[] ActionsOnDisable;
 
 		public ActorGeneralAnimProperties reloadAnimProps;
 
 		protected Entity _entity;
 		private bool _actorToUi;
 		private EntityManager _dstManager;
+		private ActorAbilityList _abilityOnEnable;
+		private ActorAbilityList _abilityOnDisable;
 		private bool isEnable;
 		private ActorAbilityList _preShotAbilities;
 		private ActorAbilityList _postShotAbilities;
@@ -162,17 +164,13 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public WeaponType Type => _weaponType;
 
-		private void Awake()
-		{
-			ActionsOnDisable.Init();
-			ActionsOnEnable.Init();
-		}
-
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
 			_entity = entity;
 			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_abilityOnEnable = new ActorAbilityList(ActionsOnEnable);
+			_abilityOnDisable = new ActorAbilityList(ActionsOnDisable);
 			SpawnCallbacks = new List<Action<GameObject>>();
 			ClipData.Setup(projectileClipCapacity, projectileClipCapacity);
 			_dstManager.AddComponent<TimerData>(entity);
