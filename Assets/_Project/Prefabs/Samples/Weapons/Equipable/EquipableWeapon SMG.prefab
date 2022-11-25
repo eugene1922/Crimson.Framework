@@ -121,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1405
       objectReference: {fileID: 0}
     - target: {fileID: 7663511867989263037, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
         type: 3}
@@ -207,7 +207,6 @@ MonoBehaviour:
   componentName: SMG
   _weaponType: 1
   primaryProjectile: 0
-  abilityOnShot: {fileID: 0}
   aimingAvailable: 0
   deactivateAimingOnCooldown: 0
   onClickAttackType: 0
@@ -273,6 +272,8 @@ MonoBehaviour:
     HasActorProjectileAnimation: 1
     ActorProjectileAnimationName: Throw
   suppressWeaponSpawn: 0
+  PreShotAbilities: []
+  PostShotAbilities: []
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
