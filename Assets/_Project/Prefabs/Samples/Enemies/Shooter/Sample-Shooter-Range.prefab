@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 4414492491990384905}
   - component: {fileID: 5835128684462789782}
   - component: {fileID: -2236828386707731388}
+  - component: {fileID: -6438969008333652266}
+  - component: {fileID: -4272051309154341320}
   m_Layer: 0
   m_Name: Sample-Shooter-Range
   m_TagString: Untagged
@@ -50,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enableMoveByInput: 0
   compensateCameraRotation: 1
   customBindings:
   - index: 2
@@ -234,3 +237,33 @@ MonoBehaviour:
     ignoreSpawner: 0
     strategy: 0
     maxDistanceThreshold: 0
+--- !u!114 &-6438969008333652266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219696582898746723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c774fff41177e4e9994d67dec249c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _executeAction: {fileID: 0}
+  _reloadAction: {fileID: 0}
+  _weaponChangeDuration: 1
+  Weapon: {fileID: -4272051309154341320}
+  EnableOnStart: 1
+--- !u!114 &-4272051309154341320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219696582898746723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3319eabb227c9a6429b66af8b3d1b6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponType: 2

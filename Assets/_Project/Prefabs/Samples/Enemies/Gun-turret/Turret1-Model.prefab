@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 5413002971035418703}
   - component: {fileID: 1252737805707249270}
   - component: {fileID: 1224769025363262458}
-  - component: {fileID: 4366090948542609995}
   - component: {fileID: 2699327270370693178}
+  - component: {fileID: 4265855231521961015}
   m_Layer: 0
   m_Name: Turret1-Model
   m_TagString: Untagged
@@ -165,27 +165,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4366090948542609995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3999611173465789600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17eb0bf644eb4bd4b35b4db0dde4cb47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentName: 
-  objectToSpawn: {fileID: 2485616753431377798, guid: cb1a8a3ddcf896540840d4439600e60b,
-    type: 3}
-  spawnerType: 0
-  ownerType: 2
-  executeProbability: 1
-  ExecuteOnAwake: 1
-  DestroyAfterSpawn: 0
-  spawnedObject: {fileID: 0}
 --- !u!95 &2699327270370693178
 Animator:
   serializedVersion: 4
@@ -206,6 +185,53 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4265855231521961015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3999611173465789600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f755fb37600a4c38b7d01a5e1da947d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteNow: 0
+  ExecuteOnAwake: 1
+  SpawnData:
+    spawnerDisabled: 0
+    objectsToSpawn:
+    - {fileID: 2485616753431377798, guid: cb1a8a3ddcf896540840d4439600e60b, type: 3}
+    spawnPosition: 2
+    spawnPointsFillingMode: 0
+    fillSpawnPoints: 0
+    x: 0
+    skipBusySpawnPoints: 0
+    spawnPointsFrom: 0
+    _spawnPoints: []
+    spawnPointTag: 
+    useChildrenObjects: 0
+    rotationOfSpawns: 0
+    parentOfSpawns: 0
+    actorWithComponentName: 
+    parentTag: 
+    chooseParentStrategy: 0
+    copyComponentsFromSamples: []
+    copyComponentsOfType: 0
+    deleteExistingComponents: 0
+    runSpawnActionsOnObjects: 0
+    destroyAbilityAfterSpawn: 0
+    randomSeed: 0
+    poolSettings:
+      CollectionCheck: 0
+      InitSize: 0
+      MaxSize: 0
+      UsePool: 0
+  SpawnDelays:
+    Delay: 0
+    StartupDelay: 0
 --- !u!1 &3999611173465816026
 GameObject:
   m_ObjectHideFlags: 0

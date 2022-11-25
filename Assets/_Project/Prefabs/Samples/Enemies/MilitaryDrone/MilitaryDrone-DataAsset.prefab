@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 5835128684462789782}
   - component: {fileID: 5618822145254221807}
   - component: {fileID: 7817038765688317815}
-  - component: {fileID: 3124386521872807727}
   m_Layer: 0
   m_Name: MilitaryDrone-DataAsset
   m_TagString: Untagged
@@ -52,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enableMoveByInput: 0
   compensateCameraRotation: 1
   customBindings:
   - index: 2
@@ -283,79 +283,3 @@ MonoBehaviour:
   SpawnDelays:
     Delay: 0
     StartupDelay: 0
---- !u!114 &3124386521872807727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219696582898746723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2ea20dfba506d49bea2e3e3bd6c072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Attack:
-    Name: tAttack
-  AttackType:
-    FloatName: fAttackType
-    IntName: AttackType
-  Crouch:
-    Name: isCrouch
-  CurrentWeapon:
-    FloatName: fCurrentWeaponCategory
-    IntName: CurrentWeaponCategory
-  Death:
-    Name: tDeath
-  DeathTag: Death
-  DeathLayer: 7
-  Dodge:
-    Name: isDodge
-  Falling:
-    Name: isFalling
-  Hit:
-    Name: isHit
-  HitDirection:
-    NameLength: fHitStrength
-    NameX: fHitDirectionForward
-    NameY: fHitDirectionTangent
-  IdleFun:
-    Name: tIdleFun
-  IdleFundID:
-    FloatName: fIdleFunId
-    IntName: IdleFunID
-  Interact:
-    Name: isInteract
-  InteractType:
-    FloatName: fInteractionType
-    IntName: InteractionType
-  IsDead:
-    Name: isDead
-  ItemUse:
-    Name: tItemUse
-  ItemUseID:
-    FloatName: fItemID
-    IntName: itemID
-  KnockbackFly:
-    Name: isKnockbackFly
-  KnockbackGround:
-    Name: isKnockbackGround
-  KnockbackStandUp:
-    Name: tKnockbackStandUp
-  KnockbackStart:
-    Name: tKnockbackStart
-  LookAtDirection:
-    NameX: fLookAtDirectionTangent
-    NameY: fLookAtDirectionForward
-  PreviousWeapon:
-    FloatName: fPreviousWeaponCategory
-    IntName: PreviousWeaponCategory
-  RealSpeed:
-    NameLength: fRealSpeedMagnitude
-    NameX: fRealSpeedTangent
-    NameY: fRealSpeedForward
-  Reloading:
-    Name: isReloading
-  TargetAnimator: {fileID: 0}
-  WeaponChange:
-    Name: tWeaponChangeStart
