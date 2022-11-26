@@ -1,5 +1,4 @@
 ﻿using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.Weapons
@@ -49,9 +48,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				return;
 			}
-			var value = math.max(0, Count - Capacity);
-			Count = value;
-			Current = value > 0 ? value : Capacity;
+
+			var targetValue = Capacity - Current;
+			var value = Mathf.Clamp(targetValue, 0, Count);
+			Count -= value;
+			Current += value;
 		}
 
 		public void Decrease()
