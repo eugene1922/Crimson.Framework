@@ -33,7 +33,7 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 
 		private void Refresh()
 		{
-			Refresh(_clip.Current, _clip.Capacity);
+			Refresh(_clip.Current, _clip.Count);
 		}
 
 		private void Refresh(object current, object capacity)

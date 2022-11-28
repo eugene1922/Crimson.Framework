@@ -31,14 +31,13 @@ namespace Assets.Crimson.Core.Common.UI.Widgets.Weapons
 
 			foreach (var n in _weaponNameLabel)
 			{
-				n.Set(weapon as IHasComponentName);
+				n.Set(weapon);
 			}
 
 			foreach (var c in _weaponClipView)
 			{
 				c.Set(weapon as IHasClip);
 			}
-			
 		}
 
 		private void Awake()

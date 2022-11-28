@@ -107,7 +107,12 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 
 		protected EntityManager CurrentEntityManager => World.DefaultGameObjectInjectionWorld.EntityManager;
 		private Transform SpawnPointsRoot { get; set; }
-		
+
+		public void AddAmmo(IAmmo ammo)
+		{
+			ClipData.Add(ammo.Value);
+		}
+
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;

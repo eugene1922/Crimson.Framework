@@ -68,6 +68,27 @@ namespace Assets.Crimson.Core.Components.Weapons
 			}
 		}
 
+		internal void Add(IAmmo ammo)
+		{
+			for (var i = 0; i < _weapons.Count; i++)
+			{
+				if (_weapons[i].ComponentName == ammo.ComponentName)
+				{
+					_weapons[i].AddAmmo(ammo);
+					return;
+				}
+			}
+
+			for (var i = 0; i < _throwables.Count; i++)
+			{
+				if (_throwables[i].ComponentName == ammo.ComponentName)
+				{
+					_throwables[i].AddAmmo(ammo);
+					return;
+				}
+			}
+		}
+
 		internal void Add(IThrowable throwable)
 		{
 			_throwables.Add(throwable);
