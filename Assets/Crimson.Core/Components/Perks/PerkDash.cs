@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Common.Interfaces;
+using Crimson.Core.Common;
 using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
@@ -14,8 +15,11 @@ namespace Crimson.Core.Components.Perks
 {
 	[HideMonoScript]
 	public class PerkDash : CooldownBehaviour, IActorAbility, IPerkAbility, IPerkAbilityBindable, ILevelable,
-		ICooldownable, IAimable
+		ICooldownable, IAimable, ICooldownObservable
 	{
+		[SerializeField]
+		public string _componentName = "";
+
 		[Sirenix.OdinInspector.ReadOnly] public int perkLevel = 1;
 		[LevelableValue] public float force = 25;
 		public float timer = 0.1f;
@@ -110,6 +114,8 @@ namespace Crimson.Core.Components.Perks
 			get => aimingAnimProperties;
 			set => aimingAnimProperties = value;
 		}
+
+		public string ComponentName { get => _componentName; set => _componentName = value; }
 
 		private List<FieldInfo> _levelablePropertiesInfoCached = new List<FieldInfo>();
 		private Vector3 _previousVelocity;
