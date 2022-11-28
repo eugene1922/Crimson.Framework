@@ -147,9 +147,9 @@ MonoBehaviour:
       _maxLimit: 0
       _freeze: 0
     Health:
-      _current: 50
+      _current: 300
       _minLimit: 0
-      _maxLimit: 50
+      _maxLimit: 300
       _freeze: 0
     Level: 1
     LevelUpRequiredExperience: 100
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 15
   useDynamics: 0
   movementStart:
     curve:
@@ -239,7 +239,7 @@ MonoBehaviour:
     HasMovementAnimation: 1
     MovementAnimationName: Run
     MovementAnimationSpeedFactorName: SpeedFactor
-    MovementAnimationSpeedFactorMultiplier: 1.5
+    MovementAnimationSpeedFactorMultiplier: 5
 --- !u!114 &2566817678050206234
 MonoBehaviour:
   m_ObjectHideFlags: 0
