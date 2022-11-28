@@ -27,11 +27,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Execute()
 		{
-			if (TargetActor == null)
-			{
-				Debug.LogError("Target actor is null", gameObject);
-				return;
-			}
 			if (TargetWeapon == null)
 			{
 				Debug.LogError("Target weapon is null", gameObject);

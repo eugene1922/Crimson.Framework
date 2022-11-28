@@ -14,15 +14,18 @@ namespace Assets.Crimson.Core.Components.Weapons
 	{
 		public InputActionReference _executeAction;
 		public InputActionReference _reloadAction;
-		public float _weaponChangeDuration = 1f;
-
-		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
-		public MonoBehaviour Weapon;
-
-		[HideInInspector] public UIReceiverList UIReceiverList = new UIReceiverList();
 
 		[CastToUI("CurrentWeapon")]
 		public IWeapon _weapon;
+
+		public float _weaponChangeDuration = 1f;
+
+		public bool EnableOnStart;
+
+		[HideInInspector] public UIReceiverList UIReceiverList = new UIReceiverList();
+
+		[ValidateInput(nameof(MustBeWeapon), "Perk MonoBehaviours must derive from IWeapon!")]
+		public MonoBehaviour Weapon;
 
 		private Entity _entity;
 		private EntityManager _entityManager;
@@ -30,7 +33,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public IActor Actor { get; set; }
 
 		public bool IsEnable { get; set; }
-		public bool EnableOnStart;
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -52,8 +54,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 			Timer.Start();
 
-			if (EnableOnStart)
-				IsEnable = true;
+			IsEnable = EnableOnStart;
 
 			if (Weapon != null)
 			{
@@ -88,11 +89,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 			UIReceiverList.UpdateUIData("CurrentWeapon");
 		}
 
-		private void EndChangeWeapon()
-		{
-			_entityManager.AddComponentData(_entity, new EndChangeWeaponAnimTag());
-		}
-
 		public void Execute()
 		{
 			if (!IsEnable)
@@ -100,6 +96,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 				return;
 			}
 			_weapon?.StartFire();
+		}
+
+		private void EndChangeWeapon()
+		{
+			_entityManager.AddComponentData(_entity, new EndChangeWeaponAnimTag());
 		}
 
 		private void ExectionActionCanceled(InputAction.CallbackContext obj)

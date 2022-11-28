@@ -43,6 +43,11 @@ namespace Assets.Crimson.Core.Components.Weapons
 				_activateGravigunAction.action.performed += ToggleGravigunHandler;
 			}
 			_slot.IsEnable = true;
+
+			if (!actor.Abilities.Contains(this))
+			{
+				actor.Abilities.Add(this);
+			}
 		}
 
 		public void Execute()
@@ -60,6 +65,27 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				_weapons.Add(weapon);
 				_slot.Change(weapon);
+			}
+		}
+
+		internal void Add(IAmmo ammo)
+		{
+			for (var i = 0; i < _weapons.Count; i++)
+			{
+				if (_weapons[i].ComponentName == ammo.ComponentName)
+				{
+					_weapons[i].AddAmmo(ammo);
+					return;
+				}
+			}
+
+			for (var i = 0; i < _throwables.Count; i++)
+			{
+				if (_throwables[i].ComponentName == ammo.ComponentName)
+				{
+					_throwables[i].AddAmmo(ammo);
+					return;
+				}
 			}
 		}
 

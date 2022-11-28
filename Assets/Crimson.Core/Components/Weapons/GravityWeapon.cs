@@ -78,10 +78,14 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
 
 		public WeaponType Type => _weaponType;
-
 		public void Activate()
 		{
 			SetActivateState(true);
+		}
+
+		public void AddAmmo(IAmmo ammo)
+		{
+			Debug.Log("Gravity weapon has not ammo logic now");
 		}
 
 		private void Awake()
