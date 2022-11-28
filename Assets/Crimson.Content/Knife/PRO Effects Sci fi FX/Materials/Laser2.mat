@@ -62,7 +62,7 @@ Material:
     m_Floats:
     - _AddTreshold: 0.95
     - _AlphaAdd: 2
-    - _AlphaMax: 0.3
+    - _AlphaMax: 0.612
     - _AlphaMin: 0.168
     - _BlendOp: 0
     - _BumpScale: 1
