@@ -63,10 +63,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e77814d3934c9a8e2ec977d5998f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentName: Dash
   perkLevel: 0
   force: 100
   timer: 1
   cooldownTime: 1
+  NeedResetVelocityOnEnd: 0
   aimingAvailable: 0
   useMovementVector: 1
   deactivateAimingOnCooldown: 0

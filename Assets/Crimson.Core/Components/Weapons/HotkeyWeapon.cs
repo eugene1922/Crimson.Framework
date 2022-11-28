@@ -43,6 +43,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 				_activateGravigunAction.action.performed += ToggleGravigunHandler;
 			}
 			_slot.IsEnable = true;
+
 			if (!actor.Abilities.Contains(this))
 			{
 				actor.Abilities.Add(this);

@@ -11,7 +11,11 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 	public class AbilityExecuteOnSpawner : MonoBehaviour, IActorAbility
 	{
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbilityTarget!")]
+		[PropertyOrder(1)]
 		public MonoBehaviour[] Abilities;
+
+		[PropertyOrder(0)]
+		public bool ExecuteOnAwake;
 
 		private ActorAbilityTargetList _abilities;
 		public IActor Actor { get; set; }
@@ -20,6 +24,10 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 		{
 			Actor = actor;
 			_abilities = new ActorAbilityTargetList(Abilities);
+			if (ExecuteOnAwake)
+			{
+				Execute();
+			}
 		}
 
 		public void Execute()
