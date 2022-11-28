@@ -10,7 +10,15 @@ namespace Assets.Crimson.Core.Common.UI
 	public class UICooldownObserver : MonoBehaviour, IUIObserver
 	{
 		public string AbilityComponentName;
+		public UnityEvent OnStart;
+		public UnityEvent OnFinish;
 		public UnityEvent<float> OnRefresh;
+		private float _lastState = 1.0f;
+
+		private void Awake()
+		{
+			OnFinish?.Invoke();
+		}
 
 		public void Refresh(IActor actor)
 		{
@@ -35,8 +43,21 @@ namespace Assets.Crimson.Core.Common.UI
 			}
 
 			var state = target.State;
+			var result = state.CompareTo(_lastState);
+			if (result != 0)
+			{
+				_lastState = state;
+				if (_lastState == 1)
+				{
+					OnFinish?.Invoke();
+				}
+				if (result < 0)
+				{
+					OnStart?.Invoke();
+				}
+			}
 
-			OnRefresh?.Invoke(state);
+			OnRefresh?.Invoke(_lastState);
 		}
 	}
 }
