@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Components;
+﻿using Assets.Crimson.Core.Common.Interfaces;
+using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace Crimson.Core.Common
 				return _associatedIdsCache;
 			}
 		}
+
 		public List<IUIElement> UIElements
 		{
 			get
@@ -62,6 +64,8 @@ namespace Crimson.Core.Common
 				return _uiElements;
 			}
 		}
+
+		public List<IUIObserver> UIObservers { get; private set; } = new List<IUIObserver>();
 
 		public void NotifyButtonActionExecuted(int index)
 		{
@@ -86,6 +90,7 @@ namespace Crimson.Core.Common
 				var element = _uiElements[i] as MonoBehaviour;
 			}
 			UIBehaviours = UIElements.ConvertAll(f => f as MonoBehaviour);
+			UIObservers = GetComponentsInChildren<IUIObserver>().ToList();
 
 			foreach (var actor in GetComponentsInChildren<IActor>().Where(s => s.Spawner == null))
 			{
