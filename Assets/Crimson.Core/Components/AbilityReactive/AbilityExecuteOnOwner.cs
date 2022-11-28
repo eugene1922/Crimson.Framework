@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.AbilityReactive
 {
-	public class AbilityExecuteOnSpawner : MonoBehaviour, IActorAbility
+	public class AbilityExecuteOnOwner : MonoBehaviour, IActorAbility
 	{
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbilityTarget!")]
 		[PropertyOrder(1)]
@@ -32,7 +32,7 @@ namespace Assets.Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
-			_abilities.Execute(Actor.Spawner);
+			_abilities.Execute(Actor.Owner);
 		}
 
 		private bool MustBeAbility(MonoBehaviour[] a)

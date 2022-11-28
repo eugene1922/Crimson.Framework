@@ -28,10 +28,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 			var weapon = TargetWeapon as IWeapon;
 
-			var hotkeyWeapon = target.GameObject.GetComponent<HotkeyWeapon>();
+			var hotkeyWeapon = target.Abilities.Find(s => s is HotkeyWeapon);
 			if (hotkeyWeapon != null)
 			{
-				hotkeyWeapon.Add(weapon);
+				((HotkeyWeapon)hotkeyWeapon).Add(weapon);
 			}
 		}
 
