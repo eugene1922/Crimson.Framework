@@ -3,6 +3,8 @@ using Assets.Crimson.Core.Common.Types;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,6 +48,8 @@ namespace Assets.Crimson.Core.Components.Weapons
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour abilityOnShot;
 
+		public GameObject[] WeaponReadyFXReferences;
+
 		public Animator DistortionAnimator;
 		public string AnimationIn;
 		public string AnimationOut;
@@ -69,6 +73,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 				}
 				else
 				{
+					IsReady = false;
 					ActionsOnDisable.Execute();
 					Deactivate();
 				}
@@ -78,6 +83,13 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
 
 		public WeaponType Type => _weaponType;
+
+		public bool IsReady
+		{
+			get => WeaponReadyFXReferences.All(s => s.activeSelf);
+			set => WeaponReadyFXReferences.ForEach(s => s.SetActive(value));
+		}
+
 		public void Activate()
 		{
 			SetActivateState(true);
@@ -96,6 +108,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
+			IsReady = false;
 			_entity = entity;
 			Actor = actor;
 

@@ -14,8 +14,10 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Conditionals.GarageWhal
 
 		public override void OnDrawGizmos()
 		{
+#if UNITY_EDITOR
 			Handles.color = Color.yellow;
 			Handles.DrawWireDisc(transform.position, transform.up, Range.Value.x, Range.Value.y);
+#endif
 		}
 
 		public override TaskStatus OnUpdate()

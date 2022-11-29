@@ -85,6 +85,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				Timer.TimedActions.AddAction(EndChangeWeapon, _weaponChangeDuration);
 			}
+			else
+			{
+				_weapon.IsReady = true;
+			}
 
 			UIReceiverList.UpdateUIData("CurrentWeapon");
 		}
@@ -100,6 +104,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void EndChangeWeapon()
 		{
+			_weapon.IsReady = true;
 			_entityManager.AddComponentData(_entity, new EndChangeWeaponAnimTag());
 		}
 

@@ -8,14 +8,15 @@ namespace Assets.Crimson.Core.Components
 {
 	public class AbilityEnemyMark : MonoBehaviour, IActorAbility
 	{
-		public Vector3 Offset;
+		public Vector3 PivotOffset;
+		public Vector3 LockRange = Vector3.one;
 
 		public IActor Actor { get; set; }
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
-			World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(entity, new EnemyData(Offset));
+			World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(entity, new EnemyData(PivotOffset, LockRange));
 		}
 
 		public void Execute()
@@ -24,7 +25,7 @@ namespace Assets.Crimson.Core.Components
 
 		private void OnDrawGizmos()
 		{
-			Gizmos.DrawWireSphere(transform.position + Offset, 1);
+			Gizmos.DrawWireCube(transform.position + PivotOffset, LockRange * 2);
 		}
 	}
 }

@@ -291,6 +291,8 @@ MonoBehaviour:
   - {fileID: 6247049190220294502}
   StopFireAbilities:
   - {fileID: 941197641657325550}
+  WeaponReadyFXReferences:
+  - {fileID: 1796522242545776958}
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
@@ -409,6 +411,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b76f16d5bb34448a70ff509251402f, type: 3}
+--- !u!1 &1796522242545776958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2469034292298665458, guid: a6b76f16d5bb34448a70ff509251402f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4228109212602807500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7703218190002936312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,

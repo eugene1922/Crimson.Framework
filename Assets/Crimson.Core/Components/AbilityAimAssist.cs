@@ -14,6 +14,8 @@ namespace Assets.Crimson.Core.Components
 
 		public float LockRange = 5;
 
+		public Vector3 Offset = Vector3.up;
+
 		private Entity _entity;
 		private EntityManager _entityManager;
 		private Vector3 _mousePositionOnPlane;
@@ -72,6 +74,17 @@ namespace Assets.Crimson.Core.Components
 			Gizmos.matrix = Matrix4x4.identity;
 		}
 
+		private void DrawAimVector()
+		{
+			var source = transform.TransformPoint(Offset);
+			var aimData = _entityManager.GetComponentData<AimData>(_entity);
+			var aimPosition = aimData.LockedPosition;
+			Gizmos.color = Color.red;
+			Gizmos.DrawLine(source, aimPosition);
+			Gizmos.DrawWireSphere(source, .4f);
+			Gizmos.DrawWireCube(aimPosition, Vector3.one);
+		}
+
 		private void OnDrawGizmos()
 		{
 			if (_entity == Entity.Null || _entityManager.Equals(null) || !_entityManager.HasComponent<PlayerInputData>(_entity))
@@ -92,12 +105,9 @@ namespace Assets.Crimson.Core.Components
 				}
 				position += vector;
 				Gizmos.DrawLine(transform.position, position);
-				Gizmos.color = Color.green;
-				var aimData = _entityManager.GetComponentData<AimData>(_entity);
-				Gizmos.DrawWireSphere(aimData.LockedPosition, .5f);
+				DrawAimVector();
 			}
 			Gizmos.color = Color.blue;
-			Gizmos.DrawWireSphere(position, LockRange);
 			DrawAimRange();
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawSphere(_mousePositionOnPlane, .2f);

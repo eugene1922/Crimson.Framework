@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6585889142924801}
   - component: {fileID: 2566817678050206234}
   - component: {fileID: 4414492491990384905}
+  - component: {fileID: 5184533714887178155}
   m_Layer: 0
   m_Name: Sample-Mantis
   m_TagString: Untagged
@@ -167,6 +168,7 @@ MonoBehaviour:
     RemoveRigidbody: 0
     RemoveColliders: 0
     RemoveInput: 1
+    ReceiveOverDamage: 0
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
     - Spawn Death
@@ -197,7 +199,7 @@ MonoBehaviour:
     - MaxHealth
     - LevelUpRequiredExperience
   levelUpAction: {fileID: 0}
-  NeedCleanup: 0
+  NeedCleanup: 1
   DeathAbilities: []
   TakeDamageAnimation:
     AnimationName: 
@@ -216,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bfe9b20e4840be7f8b09537fb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
+  movementSpeed: 5
   useDynamics: 0
   movementStart:
     curve:
@@ -300,3 +302,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _externalBehavior: {fileID: 11400000, guid: 61b937692e98d6d488ec422a08b8cfbf, type: 2}
+--- !u!114 &5184533714887178155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219696582898746723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0266813aa78dac4191dcbd2477db741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnAwake: 1
+  WeaponType: 4

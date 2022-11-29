@@ -9793,6 +9793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6859393984422945155}
+  - {fileID: 4713050992143468909}
   m_Father: {fileID: 5344452518582272995}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -19604,6 +19605,97 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1001 &1234558198997804121
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2422886234572484385}
+    m_Modifications:
+    - target: {fileID: 2469034292298665458, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_Name
+      value: LaserRay
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469034292298665458, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a6b76f16d5bb34448a70ff509251402f, type: 3}
+--- !u!1 &3702466590566459819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2469034292298665458, guid: a6b76f16d5bb34448a70ff509251402f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1234558198997804121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4713050992143468909 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1234558198997804121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5956257807646811413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19881,6 +19973,8 @@ MonoBehaviour:
   - {fileID: 2085406940550149190}
   StopFireAbilities:
   - {fileID: 8070172348064034192}
+  WeaponReadyFXReferences:
+  - {fileID: 3702466590566459819}
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}

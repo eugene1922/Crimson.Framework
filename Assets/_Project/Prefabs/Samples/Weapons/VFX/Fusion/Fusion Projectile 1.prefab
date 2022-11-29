@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 887548129269833309}
   m_RootOrder: 0
@@ -62,6 +63,7 @@ GameObject:
   - component: {fileID: 5468552313622554710}
   - component: {fileID: 5295076304390341398}
   - component: {fileID: 4327772100029227566}
+  - component: {fileID: -2502108658121541833}
   m_Layer: 12
   m_Name: Fusion Projectile 1
   m_TagString: Untagged
@@ -79,6 +81,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 887440777994523121}
   - {fileID: 6575915605265943495}
@@ -147,6 +150,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     timeScale: 1
+  workTime: 0
   movementAnimationProperties:
     HasMovementAnimation: 0
     MovementAnimationName: 
@@ -341,6 +345,19 @@ MonoBehaviour:
   Horizontal: 0
   Vertical: 0
   invertVertical: 0
+--- !u!114 &-2502108658121541833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891030007494840639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9680c88d6db91e4083821bb27c261cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnAwake: 1
 --- !u!1 &1596738269113808565
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +386,7 @@ Transform:
   m_LocalRotation: {x: 0.0038445496, y: 0.9955418, z: 0.046710532, w: -0.08185273}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 887548129269833309}
   m_RootOrder: 1
@@ -474,7 +492,7 @@ TrailRenderer:
   m_Emitting: 1
 --- !u!95 &8289956671093110590
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -487,6 +505,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

@@ -28,6 +28,7 @@ namespace Assets.Crimson.Core.Components.Targets
 			var target = Actor;
 			while (target != null)
 			{
+				
 				target = TryLookAtAim(target) ? null : target.Spawner;
 			}
 		}

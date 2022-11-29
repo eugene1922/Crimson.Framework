@@ -65,7 +65,7 @@ namespace Crimson.Core.Systems
 			Entities.With(_destructionActorByTimerQuery).ForEach(
 				(Entity entity, AbilityActorPlayer actorPlayer) =>
 				{
-					if (dstManager.HasComponent<UserInputData>(entity)) return;
+					if (dstManager.HasComponent<UserInputData>(entity) || actorPlayer.deadActorBehaviour.ReceiveOverDamage) return;
 
 					foreach (var name in actorPlayer.deadActorBehaviour.OnDeathActionsComponentNames)
 					{

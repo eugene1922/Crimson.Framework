@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 5361989116664018087}
   - component: {fileID: 6585889142924801}
   - component: {fileID: 4414492491990384905}
-  - component: {fileID: 5835128684462789782}
   - component: {fileID: -2236828386707731388}
-  - component: {fileID: -4272051309154341320}
   m_Layer: 0
   m_Name: Sample-Shooter-Range
   m_TagString: Untagged
@@ -118,6 +116,7 @@ MonoBehaviour:
     RemoveRigidbody: 0
     RemoveColliders: 0
     RemoveInput: 1
+    ReceiveOverDamage: 0
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
     - Spawn Death
@@ -204,19 +203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _externalBehavior: {fileID: 11400000, guid: 3f9c47a68c5dbfc44a1ef33a26e7f176, type: 2}
---- !u!114 &5835128684462789782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219696582898746723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4d6db937ff82541acec0274c091000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 1, z: 0}
 --- !u!114 &-2236828386707731388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,17 +222,3 @@ MonoBehaviour:
     ignoreSpawner: 0
     strategy: 0
     maxDistanceThreshold: 0
---- !u!114 &-4272051309154341320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219696582898746723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3319eabb227c9a6429b66af8b3d1b6ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExecuteOnAwake: 1
-  WeaponType: 2
