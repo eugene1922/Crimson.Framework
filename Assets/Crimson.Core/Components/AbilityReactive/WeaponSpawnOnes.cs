@@ -377,7 +377,7 @@ namespace Crimson.Core.Components.AbilityReactive
 				}
 				return;
 			}
-			_starFireAbilities.Execute();
+			_starFireAbilities?.Execute();
 			Execute();
 		}
 
@@ -389,7 +389,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StopFire()
 		{
-			_stopFireAbilities.Execute();
+			_stopFireAbilities?.Execute();
 		}
 
 		private bool MustBeAimable(MonoBehaviour behaviour)
