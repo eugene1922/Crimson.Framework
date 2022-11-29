@@ -9,6 +9,7 @@ using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +102,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour[] StopFireAbilities;
 
+		public GameObject[] WeaponReadyFXReferences;
+
 		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
 		[HideInInspector]
@@ -122,6 +125,7 @@ namespace Crimson.Core.Components.AbilityReactive
 				}
 				else
 				{
+					IsReady = false;
 					_abilityOnDisable?.Execute();
 				}
 			}
@@ -157,6 +161,7 @@ namespace Crimson.Core.Components.AbilityReactive
 		private ActorAbilityList _postShotAbilities;
 		private ActorAbilityList _starFireAbilities;
 		private ActorAbilityList _stopFireAbilities;
+		private bool _lastState;
 
 		public bool ActionExecutionAllowed { get; set; }
 		public IAimable Aim => AimComponent as IAimable;
@@ -173,6 +178,12 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public WeaponType Type => _weaponType;
 
+		public bool IsReady
+		{
+			get => WeaponReadyFXReferences.All(s => s.activeSelf);
+			set => WeaponReadyFXReferences.ForEach(s => s.SetActive(value));
+		}
+
 		public void AddAmmo(IAmmo ammo)
 		{
 			ClipData.Add(ammo.Value);
@@ -180,6 +191,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
+			IsReady = false;
 			Actor = actor;
 			_abilityOnEnable = new ActorAbilityList(ActionsOnEnable);
 			_abilityOnDisable = new ActorAbilityList(ActionsOnDisable);
@@ -249,6 +261,7 @@ namespace Crimson.Core.Components.AbilityReactive
 		{
 			if (!IsEnable || !IsActivated || ClipData.IsEmpty || ClipData.Current == 0)
 			{
+				IsReady = false;
 				return;
 			}
 
@@ -282,6 +295,9 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Reload()
 		{
+			_lastState = IsActivated;
+			IsReady = false;
+			StopFire();
 			CurrentEntityManager.AddComponentData(Actor.Owner.ActorEntity, new ReloadTag());
 			Timer.TimedActions.AddAction(EndReload, clipReloadTime);
 		}
@@ -289,6 +305,11 @@ namespace Crimson.Core.Components.AbilityReactive
 		private void EndReload()
 		{
 			ClipData.Reload();
+			if (_lastState)
+			{
+				StartFire();
+			}
+			IsReady = !ClipData.IsEmpty;
 		}
 
 		public void ResetSpawnPointRootRotation()

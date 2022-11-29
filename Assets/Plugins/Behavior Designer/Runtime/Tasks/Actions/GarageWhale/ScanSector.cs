@@ -47,9 +47,11 @@ namespace Assets.Plugins.Behavior_Designer.Runtime.Tasks.Actions.GarageWhale
 
 		private void OnDrawGizmosSelected()
 		{
+#if UNITY_EDITOR
 			Handles.color = Color.magenta;
 			Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, Sector.Value.x, 2);
 			Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, Sector.Value.y, 2);
+#endif			
 		}
 	}
 }

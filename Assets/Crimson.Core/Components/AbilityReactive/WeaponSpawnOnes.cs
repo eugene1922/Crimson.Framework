@@ -9,6 +9,7 @@ using Crimson.Core.Enums;
 using Crimson.Core.Loading;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,6 +95,8 @@ namespace Crimson.Core.Components.AbilityReactive
 		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
 		public MonoBehaviour[] PostShotAbilities;
 
+		public GameObject[] WeaponReadyFXReferences;
+
 		[HideInInspector] public List<string> appliedPerksNames = new List<string>();
 
 		[HideInInspector]
@@ -116,6 +119,7 @@ namespace Crimson.Core.Components.AbilityReactive
 				}
 				else
 				{
+					IsReady = false;
 					_abilityOnDisable?.Execute();
 				}
 			}
@@ -172,6 +176,12 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public WeaponType Type => _weaponType;
 
+		public bool IsReady
+		{
+			get => WeaponReadyFXReferences.All(s => s.activeSelf);
+			set => WeaponReadyFXReferences.ForEach(s => s.SetActive(value));
+		}
+
 		public void AddAmmo(IAmmo ammo)
 		{
 			ClipData.Add(ammo.Value);
@@ -179,6 +189,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
+			IsReady = false;
 			Actor = actor;
 			_entity = entity;
 			_starFireAbilities = new ActorAbilityList(StartFireAbilities);

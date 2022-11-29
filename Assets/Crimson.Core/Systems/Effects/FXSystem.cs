@@ -61,7 +61,7 @@ namespace Assets.Crimson.Core.Systems.Effects
 				(Entity entity, AbilityActorPlayer actorPlayer, ref OverdamageData overdamageData) =>
 				{
 					EntityManager.RemoveComponent<OverdamageFXTag>(entity);
-					if (actorPlayer.deadActorBehaviour == null)
+					if (actorPlayer.deadActorBehaviour == null && !actorPlayer.deadActorBehaviour.ReceiveOverDamage)
 					{
 						return;
 					}
