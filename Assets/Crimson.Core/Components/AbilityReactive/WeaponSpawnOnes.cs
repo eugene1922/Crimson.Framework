@@ -264,8 +264,12 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void Execute()
 		{
-			if (!IsEnable || ClipData.Current == 0)
+			if (!IsReady || !IsEnable || ClipData.IsEmpty)
 			{
+				if (IsReady && ClipData.IsEmpty)
+				{
+					IsReady = false;
+				}
 				return;
 			}
 
@@ -365,8 +369,12 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StartFire()
 		{
-			if (!IsEnable || ClipData.Current == 0)
+			if (!IsReady || !IsEnable || ClipData.IsEmpty)
 			{
+				if (IsReady && ClipData.IsEmpty)
+				{
+					IsReady = false;
+				}
 				return;
 			}
 			_starFireAbilities.Execute();
