@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimRange: 20
   LockRange: 5
-  Offset: {x: 0, y: 1, z: 0}
+  Offset: {x: 0, y: 1, z: 1}

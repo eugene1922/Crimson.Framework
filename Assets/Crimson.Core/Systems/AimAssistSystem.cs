@@ -2,7 +2,6 @@
 using Assets.Crimson.Core.Components;
 using Assets.Crimson.Core.Components.Tags;
 using Assets.Crimson.Core.Components.Targets;
-using Codice.CM.Common.Merge;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.Utilities;
@@ -36,7 +35,7 @@ namespace Assets.Crimson.Core.Systems
 			Entities.With(_aimQuery).ForEach(
 				(Entity entity, AbilityAimAssist ability, ref AimData aimData, ref PlayerInputData inputData) =>
 				{
-					var sourcePosition = ability.transform.position + ability.Offset;
+					var sourcePosition = ability.transform.TransformPoint(ability.Offset);
 					var aimPosition = ability.AimPositionByInput(inputData);
 					aimData.RealPosition = aimPosition;
 					var minimalSourceDistance = ability.AimRange;
@@ -56,6 +55,10 @@ namespace Assets.Crimson.Core.Systems
 							{
 								var enemyDirection = sourcePosition - enemyPosition;
 								if (Vector3.Dot(enemyDirection, aimDirection) < 1)
+								{
+									return;
+								}
+								if (!CanSee(actor.gameObject, sourcePosition, enemyPosition))
 								{
 									return;
 								}
@@ -99,6 +102,11 @@ namespace Assets.Crimson.Core.Systems
 					aimData.LockedPosition = targetData.Position;
 					EntityManager.SetComponentData(entity, aimData);
 				});
+		}
+
+		private static bool CanSee(GameObject target, Vector3 source, Vector3 enemy)
+		{
+			return Physics.Raycast(source, enemy - source, out var hit) && hit.collider.gameObject.Equals(target);
 		}
 
 		private bool InRange(Vector3 range, Vector3 target)

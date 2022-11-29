@@ -54,7 +54,7 @@ namespace Assets.Crimson.Core.Components
 					position = _mousePositionOnPlane;
 				}
 			}
-			return position + Offset;
+			return position;
 		}
 
 		public void Execute()
@@ -76,11 +76,12 @@ namespace Assets.Crimson.Core.Components
 
 		private void DrawAimVector()
 		{
-			var source = transform.position + Offset;
+			var source = transform.TransformPoint(Offset);
 			var aimData = _entityManager.GetComponentData<AimData>(_entity);
 			var aimPosition = aimData.LockedPosition;
 			Gizmos.color = Color.red;
 			Gizmos.DrawLine(source, aimPosition);
+			Gizmos.DrawWireSphere(source, .4f);
 			Gizmos.DrawWireCube(aimPosition, Vector3.one);
 		}
 
