@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb3e455117448ea9f306badb3b4145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enableMoveByInput: 0
   compensateCameraRotation: 1
   customBindings:
   - index: 2
@@ -96,9 +97,9 @@ MonoBehaviour:
       _maxLimit: 0
       _freeze: 0
     Health:
-      _current: 900
+      _current: 70
       _minLimit: 0
-      _maxLimit: 900
+      _maxLimit: 70
       _freeze: 0
     Level: 1
     LevelUpRequiredExperience: 100
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1153b6c467b0b4da5b9fcebff3f75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _externalBehavior: {fileID: 11400000, guid: 97541db3bfad6a645bc7ce04904903ed, type: 2}
+  _externalBehavior: {fileID: 11400000, guid: c9dadb44d8b5d914592872f05db505cf, type: 2}
 --- !u!114 &3242593546732819731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,8 +290,8 @@ MonoBehaviour:
     IntName: CurrentWeaponCategory
   Death:
     Name: tDeath
-  DeathTag: Death
   DeathLayer: 7
+  DeathTag: Death
   Dodge:
     Name: isDodge
   Falling:
