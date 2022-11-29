@@ -2,11 +2,12 @@ Shader "Knife/Laser2"
 {
 	Properties
 	{
+		_Noise("Noise", 2D) = "white" {}
 		[HDR]_Color("Color", Color) = (1,1,1,1)
 		_AlphaMin("Alpha Min", Range( 0 , 1)) = 0
 		_AlphaMax("Alpha Max", Range( 0 , 1)) = 1
-		_AlphaAdd("Alpha Add", Range( 0 , 2)) = 1
-		_AddTreshold("Add Treshold", Range( 0 , 0.999)) = 0.95
+		_NoiseAdd("Noise Add", Range( 0 , 1)) = 1
+		_Scale("Scale", float) = 5
 
 	}
 	
@@ -36,13 +37,8 @@ Shader "Knife/Laser2"
 
 			
 
-			#ifndef UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX
-			//only defining to not throw compilation error over Unity 5.5
-			#define UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input)
-			#endif
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_instancing
 			#include "UnityCG.cginc"
 			
 
@@ -50,24 +46,24 @@ Shader "Knife/Laser2"
 			{
 				float4 vertex : POSITION;
 				float4 color : COLOR;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
 				float4 ase_texcoord : TEXCOORD0;
 			};
 			
 			struct v2f
 			{
 				float4 vertex : SV_POSITION;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-				UNITY_VERTEX_OUTPUT_STEREO
 				float4 ase_color : COLOR;
 				float4 ase_texcoord1 : TEXCOORD1;
 			};
 
+			uniform sampler2D _Noise;
+			uniform float4 _Noise_ST;
+
 			uniform float4 _Color;
 			uniform float _AlphaMin;
 			uniform float _AlphaMax;
-			uniform float _AlphaAdd;
-			uniform float _AddTreshold;
+			uniform float _NoiseAdd;
+			uniform float _Scale;
 
 			
 			v2f vert ( appdata v )
@@ -88,10 +84,9 @@ Shader "Knife/Laser2"
 				float4 break8 = ( i.ase_color * _Color );
 				float2 uv01 = i.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float alpha = lerp( _AlphaMax , _AlphaMin, uv01.x);
-				float sin1 = sin(-5 * uv01.x + _Time.w * 2);
-				float mul = (clamp(sin1 * sin1, _AddTreshold, 1) - _AddTreshold) / (1 - _AddTreshold);
-				mul = 1 + _AlphaAdd * mul;
-				alpha *= mul ;
+				float sin1 = sin(-_Scale * uv01.x + _Time.w * 2);
+				float noise = tex2D(_Noise, float2(i.ase_texcoord1.x * 5 * _Scale - _Time.w * 2, .5)).r * _AlphaMax;
+				alpha = lerp(alpha, noise, _NoiseAdd);
 				float4 appendResult9 = (float4(break8.r , break8.g , break8.b , alpha));
 				
 				
