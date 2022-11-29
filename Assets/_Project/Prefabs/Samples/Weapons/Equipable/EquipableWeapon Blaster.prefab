@@ -147,6 +147,21 @@ MonoBehaviour:
   State: 1
   Targets:
   - {fileID: 1548769087254226112}
+--- !u!114 &7159081261137070256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548769087254226112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Targets:
+  - {fileID: 3930606778458217235}
 --- !u!114 &7225986401133262158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +231,7 @@ MonoBehaviour:
       UsePool: 1
   projectileStartupDelay: 0
   cooldownTime: 0.33
-  projectileClipCapacity: 0
+  projectileClipCapacity: 100
   clipReloadTime: 0.6
   forceBursts: 0
   burstShotCountRange: {x: 1, y: 1}
@@ -270,21 +285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  Targets:
-  - {fileID: 3930606778458217235}
---- !u!114 &7159081261137070256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548769087254226112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e76f38ae5d17d44fb544ed6a9c33808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 0
   Targets:
   - {fileID: 3930606778458217235}
 --- !u!4 &8939791187431860214 stripped
