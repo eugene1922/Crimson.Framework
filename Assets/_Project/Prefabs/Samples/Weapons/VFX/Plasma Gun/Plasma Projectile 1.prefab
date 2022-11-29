@@ -41,7 +41,7 @@ SphereCollider:
   m_GameObject: {fileID: 889523067240137311}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0.000000008927913}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 3141666524747521655}
   - component: {fileID: 5468552313622554710}
   - component: {fileID: 5295076304390341398}
-  - component: {fileID: 4327772100029227566}
+  - component: {fileID: -4623740322007195495}
   m_Layer: 12
   m_Name: Plasma Projectile 1
   m_TagString: Untagged
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e9d255d7f4ab89786cf777c343ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: 0
+  moveDirection: 3
   forwardVector: {x: 0, y: 0, z: 1}
   compensateSpawnerRotation: 0
   OffsetDirection: {x: 0, y: 0, z: 0}
@@ -325,7 +325,7 @@ MonoBehaviour:
   lifespan: 1.5
   startOnSpawn: 1
   actionOnDestroy: {fileID: 5468552313622554710}
---- !u!114 &4327772100029227566
+--- !u!114 &-4623740322007195495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,17 +334,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 891030007494840639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c5b563c0af4530b164bae3737e7d34, type: 3}
+  m_Script: {fileID: 11500000, guid: d9680c88d6db91e4083821bb27c261cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationMode: 1
-  rotationSpeed: 100
-  camRayLen: 20
-  groundLayerName: Ground
-  sensitivity: 3
-  Horizontal: 0
-  Vertical: 0
-  invertVertical: 0
+  ExecuteOnAwake: 1
 --- !u!1 &2558368675510753545
 GameObject:
   m_ObjectHideFlags: 0

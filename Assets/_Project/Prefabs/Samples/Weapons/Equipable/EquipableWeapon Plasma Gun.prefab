@@ -342,6 +342,19 @@ MonoBehaviour:
   State: 0
   Targets:
   - {fileID: 7394629027993697746}
+--- !u!114 &4484851842113313821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880700991455437982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9680c88d6db91e4083821bb27c261cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExecuteOnAwake: 1
 --- !u!114 &5969207429834218967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +437,7 @@ MonoBehaviour:
     - {fileID: 1860860451236964988}
     spawnPointTag: WeaponMountPoint
     useChildrenObjects: 0
-    rotationOfSpawns: 3
+    rotationOfSpawns: 0
     parentOfSpawns: 0
     actorWithComponentName: 
     parentTag: WeaponPoint
