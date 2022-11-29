@@ -205,6 +205,7 @@ MonoBehaviour:
   State: 1
   Targets:
   - {fileID: 1548769087254226112}
+  - {fileID: 1796522242545776958}
 --- !u!114 &3543793338792328126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +329,7 @@ MonoBehaviour:
   State: 0
   Targets:
   - {fileID: 1548769087254226112}
+  - {fileID: 1796522242545776958}
 --- !u!4 &1548769087254226115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 230970627649061256, guid: 194d4f1e3d0c8894c9f478f4fe202fc1,
@@ -409,6 +411,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b76f16d5bb34448a70ff509251402f, type: 3}
+--- !u!1 &1796522242545776958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2469034292298665458, guid: a6b76f16d5bb34448a70ff509251402f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4228109212602807500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7703218190002936312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
