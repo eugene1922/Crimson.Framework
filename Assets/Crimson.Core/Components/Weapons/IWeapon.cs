@@ -9,6 +9,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 	{
 		event Action OnShot;
 
+		bool IsReady { get; set; }
 		public WeaponType Type { get; }
 
 		void AddAmmo(IAmmo ammo);

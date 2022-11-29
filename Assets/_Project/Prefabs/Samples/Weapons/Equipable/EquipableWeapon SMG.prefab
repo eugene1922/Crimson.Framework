@@ -19617,6 +19617,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserRay
       objectReference: {fileID: 0}
+    - target: {fileID: 2469034292298665458, guid: a6b76f16d5bb34448a70ff509251402f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5785461736921165108, guid: a6b76f16d5bb34448a70ff509251402f,
         type: 3}
       propertyPath: m_RootOrder
@@ -19837,7 +19842,6 @@ MonoBehaviour:
   State: 0
   Targets:
   - {fileID: 5880700991455437982}
-  - {fileID: 3702466590566459819}
 --- !u!114 &2085406940550149190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19868,7 +19872,6 @@ MonoBehaviour:
   State: 1
   Targets:
   - {fileID: 5880700991455437982}
-  - {fileID: 3702466590566459819}
 --- !u!114 &8070172348064034192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19970,6 +19973,8 @@ MonoBehaviour:
   - {fileID: 2085406940550149190}
   StopFireAbilities:
   - {fileID: 8070172348064034192}
+  WeaponReadyFXReferences:
+  - {fileID: 3702466590566459819}
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}

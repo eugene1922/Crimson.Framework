@@ -262,7 +262,6 @@ MonoBehaviour:
   State: 1
   Targets:
   - {fileID: 357039506442272740}
-  - {fileID: 4555747145013227081}
 --- !u!114 &3496920647679153277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +277,6 @@ MonoBehaviour:
   State: 0
   Targets:
   - {fileID: 357039506442272740}
-  - {fileID: 4555747145013227081}
 --- !u!114 &5861340300978674665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +363,8 @@ MonoBehaviour:
   PostShotAbilities: []
   StartFireAbilities: []
   StopFireAbilities: []
+  WeaponReadyFXReferences:
+  - {fileID: 4555747145013227081}
   appliedPerksNames: []
   aimingByInput: 0
   AimComponent: {fileID: 0}
