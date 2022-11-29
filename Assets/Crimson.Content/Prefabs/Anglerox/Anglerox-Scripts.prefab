@@ -145,7 +145,7 @@ MonoBehaviour:
     - MaxHealth
     - LevelUpRequiredExperience
   levelUpAction: {fileID: 0}
-  NeedCleanup: 0
+  NeedCleanup: 1
   DeathAbilities: []
   TakeDamageAnimation:
     AnimationName: 
