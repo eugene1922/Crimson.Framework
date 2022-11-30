@@ -42,10 +42,5 @@ namespace Assets.Crimson.Core.Components.Weapons
 		{
 			Equip(TargetActor);
 		}
-
-		private bool MustBeAmmo(MonoBehaviour[] items)
-		{
-			return items == null || items.All(s => s is IAmmo);
-		}
 	}
 }
