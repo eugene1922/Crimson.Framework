@@ -22,13 +22,16 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private readonly List<IThrowable> _throwables = new List<IThrowable>();
 		private readonly List<IWeapon> _weapons = new List<IWeapon>();
+		private EntityManager _entityManager;
 		private IWeapon _gravityGun;
 
 		public IActor Actor { get; set; }
+		private bool IsActorDead => _entityManager == null || _entityManager.HasComponent<DeadActorTag>(Actor.ActorEntity);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_weapons.AddRange(Weapons.Cast<IWeapon>());
 			if (_changeAction != null)
 			{
@@ -146,6 +149,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void SelectNextThrowable()
 		{
+			if (IsActorDead)
+			{
+				return;
+			}
 			var currentIndex = _throwables.IndexOf(_throwableSlot._weapon);
 			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _throwables.Count;
 			if (_throwables.Count > index)
@@ -156,6 +163,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void SelectNextWeapon()
 		{
+			if (IsActorDead)
+			{
+				return;
+			}
 			var currentIndex = _weapons.IndexOf(_slot._weapon);
 			var index = currentIndex == -1 ? 0 : (currentIndex + 1) % _weapons.Count;
 			if (_weapons.Count > index)
@@ -166,7 +177,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ToggleGravigunHandler(InputAction.CallbackContext obj)
 		{
-			if (_gravityGun == null)
+			if (_gravityGun == null || IsActorDead)
 			{
 				return;
 			}

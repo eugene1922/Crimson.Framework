@@ -29,10 +29,9 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private Entity _entity;
 		private EntityManager _entityManager;
-
 		public IActor Actor { get; set; }
-
 		public bool IsEnable { get; set; }
+		private bool IsActorDead => _entityManager == null || _entityManager.HasComponent<DeadActorTag>(Actor.ActorEntity);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -65,7 +64,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Change(IWeapon weapon, bool skipAnimation = false)
 		{
-			if (!IsEnable)
+			if (!IsEnable || IsActorDead)
 			{
 				return;
 			}
@@ -96,7 +95,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void Execute()
 		{
-			if (!IsEnable)
+			if (!IsEnable || IsActorDead)
 			{
 				return;
 			}
@@ -111,7 +110,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ExectionActionCanceled(InputAction.CallbackContext obj)
 		{
-			if (!IsEnable)
+			if (!IsEnable || IsActorDead)
 			{
 				return;
 			}
@@ -120,7 +119,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ExectionActionPerformed(InputAction.CallbackContext obj)
 		{
-			if (!IsEnable)
+			if (!IsEnable || IsActorDead)
 			{
 				return;
 			}
@@ -147,7 +146,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ReloadActionHandler(InputAction.CallbackContext obj)
 		{
-			if (!IsEnable)
+			if (!IsEnable || IsActorDead)
 			{
 				return;
 			}
