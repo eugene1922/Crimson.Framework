@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTag: Enemy
-  alsoSetLayer: 0
-  newLayer: 
+  alsoSetLayer: 1
+  newLayer: Enemies
   applyOnStart: 1
 --- !u!114 &5361989116664018087
 MonoBehaviour:
