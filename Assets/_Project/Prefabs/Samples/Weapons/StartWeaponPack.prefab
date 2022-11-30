@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 564709356064459056}
   - component: {fileID: 8518303063410333294}
   - component: {fileID: -2423061720228332776}
-  - component: {fileID: 564709356064459057}
   - component: {fileID: 7956924933973127294}
   m_Layer: 0
   m_Name: StartWeaponPack
@@ -69,22 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Abilities:
   - {fileID: 7956924933973127294}
-  - {fileID: 564709356064459057}
   ExecuteOnAwake: 0
---- !u!114 &564709356064459057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564709356064459071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a39b526bf63c4f49a28927933eeb180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetWeapon: {fileID: 6118439795899716119, guid: f771e2d643c61e643a89522e978fef61,
-    type: 3}
 --- !u!114 &7956924933973127294
 MonoBehaviour:
   m_ObjectHideFlags: 0

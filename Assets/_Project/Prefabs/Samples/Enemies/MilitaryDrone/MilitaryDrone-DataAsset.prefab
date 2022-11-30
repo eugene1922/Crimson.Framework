@@ -114,8 +114,8 @@ MonoBehaviour:
   corpseCleanupDelay: 1
   deadActorBehaviour:
     RemoveTag: 0
-    RemoveRigidbody: 0
-    RemoveColliders: 0
+    RemoveRigidbody: 1
+    RemoveColliders: 1
     RemoveInput: 1
     ReceiveOverDamage: 0
     OnDeathActionsComponentNames:

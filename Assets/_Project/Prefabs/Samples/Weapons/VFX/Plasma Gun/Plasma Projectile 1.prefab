@@ -194,7 +194,7 @@ MonoBehaviour:
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 8503
+      m_Bits: 407
     useTagFilter: 1
     filterMode: 0
     filterTags:
@@ -211,7 +211,7 @@ MonoBehaviour:
     - {fileID: 5468552313622554710}
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 8503
+      m_Bits: 407
     useTagFilter: 1
     filterMode: 0
     filterTags:

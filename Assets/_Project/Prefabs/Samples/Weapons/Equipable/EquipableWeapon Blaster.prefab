@@ -232,7 +232,7 @@ MonoBehaviour:
       UsePool: 1
   projectileStartupDelay: 0
   cooldownTime: 0.33
-  projectileClipCapacity: 100
+  projectileClipCapacity: 0
   clipReloadTime: 0.6
   forceBursts: 0
   burstShotCountRange: {x: 1, y: 1}

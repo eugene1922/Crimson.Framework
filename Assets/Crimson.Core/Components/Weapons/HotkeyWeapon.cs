@@ -72,7 +72,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 		{
 			for (var i = 0; i < _weapons.Count; i++)
 			{
-				if (_weapons[i].ComponentName == ammo.ComponentName)
+				if (_weapons[i].ComponentName == ammo.Target.ComponentName)
 				{
 					_weapons[i].AddAmmo(ammo);
 					return;
@@ -81,7 +81,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 			for (var i = 0; i < _throwables.Count; i++)
 			{
-				if (_throwables[i].ComponentName == ammo.ComponentName)
+				if (_throwables[i].ComponentName == ammo.Target.ComponentName)
 				{
 					_throwables[i].AddAmmo(ammo);
 					return;

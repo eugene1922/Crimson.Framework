@@ -148,7 +148,7 @@ MonoBehaviour:
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 8503
+      m_Bits: 439
     useTagFilter: 1
     filterMode: 0
     filterTags:
@@ -165,7 +165,7 @@ MonoBehaviour:
     - {fileID: 215532471028146452}
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 8503
+      m_Bits: 439
     useTagFilter: 1
     filterMode: 0
     filterTags:
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CriticalDamageChance: 0.1
   CriticalDamageMultiplier: 1
-  Damage: 14
+  Damage: 5
   levelablePropertiesList: []
   perkLevel: 1
 --- !u!114 &215532471028146452

@@ -122,7 +122,7 @@ MonoBehaviour:
   collisionActions:
   - collisionLayerMask:
       serializedVersion: 2
-      m_Bits: 32567
+      m_Bits: 407
     useTagFilter: 1
     filterMode: 0
     filterTags:
