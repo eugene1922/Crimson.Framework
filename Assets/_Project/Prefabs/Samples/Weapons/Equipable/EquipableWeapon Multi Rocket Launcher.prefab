@@ -350,7 +350,7 @@ MonoBehaviour:
   _burstDelay: 0.01
   projectileStartupDelay: 0
   cooldownTime: 0.3
-  projectileClipCapacity: 80
+  projectileClipCapacity: 5
   clipReloadTime: 1
   reloadDisplayToggle: []
   clipReloadDisplayToggle: []

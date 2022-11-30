@@ -150,9 +150,9 @@ MonoBehaviour:
       _maxLimit: 100
       _freeze: 0
     Health:
-      _current: 500
+      _current: 200
       _minLimit: 0
-      _maxLimit: 500
+      _maxLimit: 200
       _freeze: 0
     Level: 1
     LevelUpRequiredExperience: 100

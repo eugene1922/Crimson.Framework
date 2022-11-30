@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CriticalDamageChance: 0.1
   CriticalDamageMultiplier: 1
-  Damage: 1
+  Damage: 2
   levelablePropertiesList: []
   perkLevel: 1
 --- !u!114 &2783402712042990354
