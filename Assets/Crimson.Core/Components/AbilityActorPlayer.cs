@@ -588,5 +588,11 @@ namespace Crimson.Core.Components
 				receiver.UpdateUIElementsData(id, value);
 			}
 		}
+
+		[Button]
+		private void Kill()
+		{
+			UpdateHealth(-Stats.Health.Current);
+		}
 	}
 }

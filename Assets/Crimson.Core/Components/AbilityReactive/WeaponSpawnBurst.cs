@@ -264,6 +264,7 @@ namespace Crimson.Core.Components.AbilityReactive
 				if (IsReady && ClipData.IsEmpty)
 				{
 					IsReady = false;
+					StopFire();
 				}
 				return;
 			}

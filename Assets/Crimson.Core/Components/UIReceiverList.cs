@@ -2,7 +2,6 @@
 using Crimson.Core.Common;
 using Crimson.Core.Utils;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using Unity.Entities;
@@ -18,6 +17,7 @@ namespace Assets.Crimson.Core.Components
 
 		public void Init(object parent, Entity entity)
 		{
+			Items.Clear();
 			_fieldsInfo.Clear();
 			_parent = parent;
 			World.DefaultGameObjectInjectionWorld.EntityManager.AddComponent<UIReceiverListTag>(entity);

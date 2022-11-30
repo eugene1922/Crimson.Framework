@@ -37,6 +37,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			_entity = entity;
+			_weapon = null;
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			Actor = actor;
 			UIReceiverList.Init(this, entity);
@@ -129,6 +130,19 @@ namespace Assets.Crimson.Core.Components.Weapons
 		private bool MustBeWeapon(MonoBehaviour item)
 		{
 			return item == null || item is IWeapon;
+		}
+
+		private void OnDestroy()
+		{
+			if (_executeAction != null)
+			{
+				_executeAction.action.performed -= ExectionActionPerformed;
+				_executeAction.action.canceled -= ExectionActionCanceled;
+			}
+			if (_reloadAction != null)
+			{
+				_reloadAction.action.performed -= ReloadActionHandler;
+			}
 		}
 
 		private void ReloadActionHandler(InputAction.CallbackContext obj)

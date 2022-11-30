@@ -1,8 +1,6 @@
 ﻿using Assets.Crimson.Core.Common.Interfaces;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
-using Sirenix.OdinInspector;
-using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
