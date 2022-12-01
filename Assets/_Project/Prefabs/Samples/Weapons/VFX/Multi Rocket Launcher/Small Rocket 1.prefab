@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 6715293409359051338}
   - component: {fileID: 166662497725121757}
   - component: {fileID: 1479836291975604340}
+  - component: {fileID: 2078362095146275027}
   m_Layer: 12
   m_Name: Small Rocket 1
   m_TagString: Untagged
@@ -545,7 +546,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9680c88d6db91e4083821bb27c261cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExecuteOnAwake: 1
+  ExecuteOnAwake: 0
+--- !u!114 &2078362095146275027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795683133691389418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d35c0c866f12814dae68e061b2948be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  ExecuteOnStart: 1
+  Settings:
+    Actions:
+    - {fileID: 1479836291975604340}
+    Delay: 0
+    LoopCount: 1
+    StartupDelay: 0.1
 --- !u!1 &5016446794002035256
 GameObject:
   m_ObjectHideFlags: 0
