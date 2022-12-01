@@ -566,7 +566,7 @@ MonoBehaviour:
     - {fileID: 1479836291975604340}
     Delay: 0
     LoopCount: 1
-    StartupDelay: 0.1
+    StartupDelay: 1
 --- !u!1 &5016446794002035256
 GameObject:
   m_ObjectHideFlags: 0
