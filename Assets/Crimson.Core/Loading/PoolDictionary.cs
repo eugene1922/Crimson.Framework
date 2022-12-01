@@ -31,6 +31,10 @@ namespace Assets.Crimson.Core.Loading
 
 		public void Register(GameObject prefab, ObjectPoolSettings settings)
 		{
+			if (prefab.Equals(null))
+			{
+				return;
+			}
 			var key = ConstructKey(prefab);
 			if (_pools.ContainsKey(key))
 			{
@@ -53,7 +57,7 @@ namespace Assets.Crimson.Core.Loading
 
 		private string ConstructKey(GameObject item)
 		{
-			return item.name;
+			return item.Equals(null) ? null : item.name;
 		}
 
 		private bool HasPoolFor(GameObject item)

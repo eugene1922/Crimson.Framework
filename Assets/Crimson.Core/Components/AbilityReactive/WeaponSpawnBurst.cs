@@ -390,7 +390,7 @@ namespace Crimson.Core.Components.AbilityReactive
 
 		public void StopFire()
 		{
-			_stopFireAbilities.Execute();
+			_stopFireAbilities?.Execute();
 			IsActivated = false;
 			if (ClipData.Current == 0)
 			{
