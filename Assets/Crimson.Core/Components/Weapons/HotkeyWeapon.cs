@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Components.Tags;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -22,15 +23,21 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private readonly List<IThrowable> _throwables = new List<IThrowable>();
 		private readonly List<IWeapon> _weapons = new List<IWeapon>();
+		private Entity _entity;
 		private EntityManager _entityManager;
 		private IWeapon _gravityGun;
 
 		public IActor Actor { get; set; }
-		private bool IsActorDead => _entityManager == null || _entityManager.HasComponent<DeadActorTag>(Actor.ActorEntity);
+
+		private bool IsInvalidActor => _entity == Entity.Null
+					|| _entityManager == null
+			|| _entityManager.HasComponent<DeadActorTag>(_entity)
+			|| _entityManager.HasComponent<StopInputTag>(_entity);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			_entity = entity;
 			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			_weapons.AddRange(Weapons.Cast<IWeapon>());
 			if (_changeAction != null)
@@ -149,7 +156,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void SelectNextThrowable()
 		{
-			if (IsActorDead)
+			if (IsInvalidActor)
 			{
 				return;
 			}
@@ -163,7 +170,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void SelectNextWeapon()
 		{
-			if (IsActorDead)
+			if (IsInvalidActor)
 			{
 				return;
 			}
@@ -177,7 +184,7 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ToggleGravigunHandler(InputAction.CallbackContext obj)
 		{
-			if (_gravityGun == null || IsActorDead)
+			if (_gravityGun == null || IsInvalidActor)
 			{
 				return;
 			}

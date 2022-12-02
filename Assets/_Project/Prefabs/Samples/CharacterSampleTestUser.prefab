@@ -84,6 +84,7 @@ MonoBehaviour:
     objectsToSpawn:
     - {fileID: 8908091917784543394, guid: 6a0e79a12bf0d2b4897eb31280b6ddfe, type: 3}
     - {fileID: 9021903524027786950, guid: 57425df6ad9fe427091a981897da804b, type: 3}
+    - {fileID: 4358890236116905264, guid: d2721e387626fa243b34b73f969592d8, type: 3}
     spawnPosition: 2
     spawnPointsFillingMode: 0
     fillSpawnPoints: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
       _current: 200
       _minLimit: 0
       _maxLimit: 200
-      _freeze: 0
+      _freeze: 1
     Level: 1
     LevelUpRequiredExperience: 100
     TotalDamageApplied: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
     RemoveRigidbody: 1
     RemoveColliders: 1
     RemoveInput: 1
+    ReceiveOverDamage: 0
     OnDeathActionsComponentNames:
     - Spawn Healing Potion
     OnOverdamageActionsComponentNames: []
@@ -454,8 +456,8 @@ MonoBehaviour:
   _reloadAction: {fileID: -6915801995376133989, guid: 1523ff8b0b3be9a499c77e654fdd9e4d,
     type: 3}
   _weaponChangeDuration: 1
-  Weapon: {fileID: 0}
   EnableOnStart: 0
+  Weapon: {fileID: 0}
 --- !u!114 &-93229221922767859
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
 					var result = Physics.OverlapBoxNonAlloc(zone.Position, zone.Size / 2, _results);
 					if (result > 0)
 					{
-						InteractionItem nearest = null;
+						AbilityInteractionTarget nearest = null;
 						float minimalDistance = -1;
 						for (var i = 0; i < _results.Length; i++)
 						{
@@ -52,7 +52,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
 
 							if (nearest == null)
 							{
-								nearest = _results[i].GetComponent<InteractionItem>();
+								nearest = _results[i].GetComponent<AbilityInteractionTarget>();
 								if (nearest != null)
 								{
 									minimalDistance = (transform.position - nearest.transform.position).magnitude;
@@ -60,7 +60,7 @@ namespace Assets.Crimson.Core.Systems.Interaction
 								continue;
 							}
 
-							var item = _results[i].GetComponent<InteractionItem>();
+							var item = _results[i].GetComponent<AbilityInteractionTarget>();
 							if (item != null)
 							{
 								var distance = (transform.position - item.transform.position).magnitude;

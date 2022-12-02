@@ -1,4 +1,5 @@
 ﻿using Assets.Crimson.Core.Common;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using System;
@@ -17,6 +18,9 @@ namespace Assets.Crimson.Core.Components
 		public EntityManager _entityManager;
 		private Dictionary<int, Action<InputAction.CallbackContext>> _customInputCallbacks = new Dictionary<int, Action<InputAction.CallbackContext>>();
 		public IActor Actor { get; set; }
+
+		private bool IsInvalidActor => _entityManager.HasComponent<DeadActorTag>(_entity)
+							|| _entityManager.HasComponent<StopInputTag>(_entity);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
@@ -54,7 +58,7 @@ namespace Assets.Crimson.Core.Components
 
 		private void ReadCustomInput(int index, InputAction.CallbackContext context)
 		{
-			if (_entityManager.HasComponent<DeadActorTag>(_entity))
+			if (IsInvalidActor)
 			{
 				return;
 			}
@@ -67,7 +71,7 @@ namespace Assets.Crimson.Core.Components
 
 		private void ReadLook(InputAction.CallbackContext context)
 		{
-			if (_entityManager.HasComponent<DeadActorTag>(_entity))
+			if (IsInvalidActor)
 			{
 				return;
 			}
@@ -79,7 +83,7 @@ namespace Assets.Crimson.Core.Components
 
 		private void ReadMove(InputAction.CallbackContext context)
 		{
-			if (_entityManager.HasComponent<DeadActorTag>(_entity))
+			if (IsInvalidActor)
 			{
 				return;
 			}
@@ -91,7 +95,7 @@ namespace Assets.Crimson.Core.Components
 
 		private void ReadPointer(InputAction.CallbackContext context)
 		{
-			if (_entityManager.HasComponent<DeadActorTag>(_entity))
+			if (IsInvalidActor)
 			{
 				return;
 			}

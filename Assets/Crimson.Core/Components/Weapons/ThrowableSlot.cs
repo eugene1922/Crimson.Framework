@@ -1,4 +1,5 @@
-﻿using Crimson.Core.Common;
+﻿using Assets.Crimson.Core.Components.Tags;
+using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Crimson.Core.Utils;
 using Sirenix.OdinInspector;
@@ -19,12 +20,22 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public MonoBehaviour ThrowableWeapon;
 
 		[HideInInspector] public UIReceiverList UIReceiverList = new UIReceiverList();
+		private Entity _entity;
+		private EntityManager _entityManager;
 		public IActor Actor { get; set; }
+
 		public bool IsEmpty => _weapon == null;
+
+		private bool IsInvalidActor => _entity == Entity.Null
+					|| _entityManager == null
+			|| _entityManager.HasComponent<DeadActorTag>(_entity)
+			|| _entityManager.HasComponent<StopInputTag>(_entity);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Actor = actor;
+			_entity = entity;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			UIReceiverList.Init(this, entity);
 			if (_executeAction != null)
 			{
@@ -63,7 +74,10 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ThrowActionHandler(InputAction.CallbackContext obj)
 		{
-			Execute();
+			if (!IsInvalidActor)
+			{
+				Execute();
+			}
 		}
 	}
 }

@@ -18,16 +18,20 @@ namespace Assets.Crimson.Core.Components
 		public MonoBehaviour[] actions;
 
 		private ActorAbilityList _actions;
-		private EntityManager _dstManager;
+		private EntityManager _entityManager;
 		public IActor Actor { get; set; }
 		public Entity Entity { get; private set; }
 		public bool IsActivated { get; private set; }
+
+		private bool IsInvalidActor => _entityManager == null
+			|| _entityManager.HasComponent<DeadActorTag>(Actor.ActorEntity)
+			|| _entityManager.HasComponent<StopInputTag>(Actor.ActorEntity);
 
 		public void AddComponentData(ref Entity entity, IActor actor)
 		{
 			Entity = entity;
 			Actor = actor;
-			_dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+			_entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
 			if (_input != null)
 			{
@@ -61,13 +65,21 @@ namespace Assets.Crimson.Core.Components
 
 		private void StartAction(InputAction.CallbackContext context)
 		{
+			if (IsInvalidActor)
+			{
+				return;
+			}
 			IsActivated = true;
-			_dstManager.AddComponentData(Entity, new InputExecuteTag());
+			_entityManager.AddComponentData(Entity, new InputExecuteTag());
 		}
 
 		private void StopAction(InputAction.CallbackContext context)
 		{
-			_dstManager.RemoveComponent<InputExecuteTag>(Entity);
+			if (IsInvalidActor)
+			{
+				return;
+			}
+			_entityManager.RemoveComponent<InputExecuteTag>(Entity);
 			IsActivated = false;
 		}
 	}

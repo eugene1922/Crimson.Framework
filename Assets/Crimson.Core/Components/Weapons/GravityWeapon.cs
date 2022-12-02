@@ -1,5 +1,6 @@
 ﻿using Assets.Crimson.Core.Common;
 using Assets.Crimson.Core.Common.Types;
+using Assets.Crimson.Core.Components.Tags;
 using Crimson.Core.Common;
 using Crimson.Core.Components;
 using Sirenix.OdinInspector;
@@ -16,50 +17,57 @@ namespace Assets.Crimson.Core.Components.Weapons
 		IWeapon,
 		IHasComponentName
 	{
-		public string ComponentName
-		{
-			get => componentName;
-			set => componentName = value;
-		}
+		public InputActionReference _activationAction;
+
+		public Entity _entity;
+
+		public float _maxDistance = 10;
+
+		public WeaponType _weaponType;
+
+		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
+		public MonoBehaviour abilityOnShot;
+
+		[Header("ActionsOnDisable")]
+		public ActionsList ActionsOnDisable = new ActionsList();
+
+		[Header("ActionsOnEnable")]
+		public ActionsList ActionsOnEnable = new ActionsList();
+
+		public string AnimationIn;
+
+		public string AnimationOut;
 
 		[Space]
 		[ShowInInspector]
 		[SerializeField]
 		public string componentName = "";
 
-		public WeaponType _weaponType;
+		public Animator DistortionAnimator;
 
-		public InputActionReference _activationAction;
-		public Entity _entity;
-		public float _maxDistance = 10;
 		public Vector3 MagnetOffset = Vector3.forward;
 
-		[Header("ActionsOnEnable")]
-		public ActionsList ActionsOnEnable = new ActionsList();
-
-		[Header("ActionsOnDisable")]
-		public ActionsList ActionsOnDisable = new ActionsList();
+		public GameObject[] WeaponReadyFXReferences;
 
 		private EntityManager _entityManager;
+
 		[SerializeField] private float _force = 10;
 
 		[SerializeField] private GameObject _grabEffect;
 
-		[ValidateInput(nameof(MustBeAbility), "Ability MonoBehaviours must derive from IActorAbility!")]
-		public MonoBehaviour abilityOnShot;
-
-		public GameObject[] WeaponReadyFXReferences;
-
-		public Animator DistortionAnimator;
-		public string AnimationIn;
-		public string AnimationOut;
-
 		private bool _isEnable;
+
 		private RaycastHit[] _raycastResults = new RaycastHit[25];
 
 		public event System.Action OnShot;
 
 		public IActor Actor { get; set; }
+
+		public string ComponentName
+		{
+			get => componentName;
+			set => componentName = value;
+		}
 
 		public bool IsEnable
 		{
@@ -80,15 +88,20 @@ namespace Assets.Crimson.Core.Components.Weapons
 			}
 		}
 
-		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
-
-		public WeaponType Type => _weaponType;
-
 		public bool IsReady
 		{
 			get => WeaponReadyFXReferences.All(s => s.activeSelf);
 			set => WeaponReadyFXReferences.ForEach(s => s.SetActive(value));
 		}
+
+		public Vector3 MagnetPoint => transform.TransformPoint(MagnetOffset);
+
+		public WeaponType Type => _weaponType;
+
+		private bool IsInvalidActor => _entity == Entity.Null
+			|| _entityManager == null
+			|| _entityManager.HasComponent<DeadActorTag>(_entity)
+			|| _entityManager.HasComponent<StopInputTag>(_entity);
 
 		public void Activate()
 		{
@@ -98,12 +111,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 		public void AddAmmo(IAmmo ammo)
 		{
 			Debug.Log("Gravity weapon has not ammo logic now");
-		}
-
-		private void Awake()
-		{
-			ActionsOnDisable.Init();
-			ActionsOnEnable.Init();
 		}
 
 		public void AddComponentData(ref Entity entity, IActor actor)
@@ -139,12 +146,20 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		public void StartFire()
 		{
+			if (IsInvalidActor)
+			{
+				return;
+			}
 			Activate();
 			TryGrabObject();
 		}
 
 		public void StopFire()
 		{
+			if (IsInvalidActor)
+			{
+				return;
+			}
 			if (abilityOnShot != null) ((IActorAbility)abilityOnShot).Execute();
 
 			Deactivate();
@@ -152,25 +167,36 @@ namespace Assets.Crimson.Core.Components.Weapons
 
 		private void ActivateActionHandler(InputAction.CallbackContext obj)
 		{
-			if (!IsEnable)
+			if (!IsEnable || !IsInvalidActor)
 			{
 				return;
 			}
 			Execute();
 		}
 
+		private void Awake()
+		{
+			ActionsOnDisable.Init();
+			ActionsOnEnable.Init();
+		}
+
 #if UNITY_EDITOR
+
+		private bool MustBeAbility(MonoBehaviour a)
+		{
+			return (a is IActorAbility) || (a is null);
+		}
+
+		private bool MustBeAimable(MonoBehaviour behaviour)
+		{
+			return behaviour is IActorAbility;
+		}
 
 		private void OnDrawGizmosSelected()
 		{
 			Gizmos.color = Color.yellow;
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawWireSphere(MagnetOffset, 1);
-		}
-
-		private bool MustBeAimable(MonoBehaviour behaviour)
-		{
-			return behaviour is IActorAbility;
 		}
 
 #endif
@@ -217,11 +243,6 @@ namespace Assets.Crimson.Core.Components.Weapons
 			{
 				abilityMagnet.MagnetTo(_entity);
 			}
-		}
-
-		private bool MustBeAbility(MonoBehaviour a)
-		{
-			return (a is IActorAbility) || (a is null);
 		}
 	}
 }

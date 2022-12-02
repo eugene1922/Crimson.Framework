@@ -1,7 +1,7 @@
 ﻿using Crimson.Core.Components;
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Crimson.Core.Components.Interaction
@@ -10,11 +10,11 @@ namespace Assets.Crimson.Core.Components.Interaction
 	public struct ActionReciver
 	{
 		[ValidateInput(nameof(MustBeAbilityTarget), "Ability MonoBehaviours must derive from IActorAbilityTarget or IActorAbility!")]
-		public List<MonoBehaviour> Actions;
+		public MonoBehaviour[] Actions;
 
-		private bool MustBeAbilityTarget(List<MonoBehaviour> a)
+		private bool MustBeAbilityTarget(MonoBehaviour[] a)
 		{
-			return !a.Exists(t => !(t is IActorAbilityTarget) && !(t is IActorAbility)) || a.Count == 0;
+			return a == null || a.All(s => s is IActorAbility);
 		}
 	}
 }
